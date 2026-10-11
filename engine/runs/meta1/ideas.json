@@ -1,1 +1,83 @@
-[]
+[
+ {
+  "id": "map_1#1",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Self-Prediction Surprise Scoring",
+  "mech": "Before generating, a \"forecaster\" agent is told the question and the technique, and writes 10 short predictions of what that technique will produce. Originality is then computed rather than judged: the score is the embedding distance from the answer to the nearest forecast and to all families in a cross-run attractor ledger. Each new family found at any layer is added to the ledger, which every later run loads as forbidden input from the start. Technique choice across runs uses Thompson sampling on the stored scores, and each run uses paired prompts so techniques are compared on the same inputs, which cancels out much of the run-to-run variance.",
+  "value": "Originality is measured against the model's own predicted outputs, so judges who share the generators' blind spots can no longer reward the obvious, and attractors are pre-empted instead of rediscovered every run."
+ },
+ {
+  "id": "map_1#2",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Kill-Test Bounty Value",
+  "mech": "Each survivor must arrive with a pre-registered \"kill test\": the cheapest check whose failure would sink it, such as a back-of-envelope calculation, a search for a counterexample, or a conflict with a known constraint. A separate red-team agent role, rewarded in its prompt and scoring only for confirmed kills, runs that test and up to two of its own using web search and quantitative estimates. Value is then scored as surviving kill attempts multiplied by the size of the stated payoff, which replaces the judges' impression of usefulness. The test types that killed ideas are stored, and future generator prompts are seeded with that list so they avoid known failure patterns.",
+  "value": "Validity is checked inside the pipeline instead of handed to an external verifier, so original ideas that are actually wrong are filtered out and average value can rise above plain answers."
+ },
+ {
+  "id": "map_1#3",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Stock-and-Scion Grafting",
+  "mech": "Crossover becomes asymmetric. The more concrete parent is the \"stock\" and is reduced to a fixed build sheet: its actors, inputs, steps, measurable output and first experiment. The other parent contributes exactly one \"scion\" mechanism, which must be grafted into a named step of that sheet. A checker agent rejects any offspring that removes or blurs a build-sheet field. The pipeline records which stock–scion pairings held up in final judging and uses that history to weight which families get paired in later runs.",
+  "value": "Offspring gain novelty from distant families while keeping a runnable implementation, which removes the measured loss of concreteness in crossover."
+ },
+ {
+  "id": "map_2#1",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Problem-Card First Inversion",
+  "mech": "Move the literature stage to the front. A scout agent searches the web for documented, specific unsolved failures (\"problem cards\"), each with evidence of who it hurts and the cost. Attractor mapping and all five techniques then run per card, and every answer must name the card and the cost it reduces. Value is scored against that stated cost rather than in the abstract. Cards are kept between runs as solved, partial or open, and the scout gives priority to open cards that keep coming back.",
+  "value": "Originality pressure works inside a value frame that is already anchored, so unusual ideas stop trading away usefulness."
+ },
+ {
+  "id": "map_2#2",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Executable Claim Contracts",
+  "mech": "Each idea must come with a contract: typed slots (input, operation, stored state, feedback loop) plus 2-3 falsifiable checks the pipeline can run itself. Examples of checks: a search query with a predicted hit or no-hit, a Fermi estimate, or a small code simulation. A verifier agent with web and code tools runs the checks, and the score uses pass rates and evidence instead of judge opinion. Crossover swaps slots between parents. A child survives only if a compatibility checker accepts the combined slots and the child keeps at least one passed check from each parent.",
+  "value": "Validity gets tested inside the pipeline rather than handed to an unspecified verifier, and crossover offspring stay concrete because they are built from verified parts."
+ },
+ {
+  "id": "map_2#3",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Forecast-Surprise Archive with Replicates",
+  "mech": "Keep a persistent cross-run archive of every family and every idea, recording the layer where each family first appeared. Before a run, a forecaster agent reads the archive and the question and predicts the likely families. Originality is then scored as forecast failure plus distance from the nearest archive entry, not as a judge's raw impression. Families that first appeared in late layers are added to the next run's forbidden list from layer 1. Each configuration runs as paired replicates, and a bandit updates the technique weights only when an effect is larger than the measured replicate variance.",
+  "value": "The pipeline gets a cumulative, measurable novelty baseline, so it stops rediscovering attractors and stops tuning itself on noise."
+ },
+ {
+  "id": "map_3#1",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Executable Kill-Test Gate",
+  "mech": "Add a \"kill-test engineer\" agent after blind judging. For each survivor it writes the cheapest decisive test the pipeline can run itself: a short code simulation, an order-of-magnitude calculation, or a targeted search with a pre-registered expected result. The pipeline runs the test, and the judges' value score is multiplied by the outcome (pass, partial or fail). Failed tests and their reasons go into a persistent library. In later runs that library acts as a repulsion constraint for generation and crossover, and serves as reusable test templates. Crossover offspring must inherit at least one parent's passing test unchanged. This stops them from blending away concrete detail.",
+  "value": "Validity moves inside the pipeline instead of going to an unnamed external verifier, so the ideas that rank highest have survived a real check and are not just plausible to the same model that wrote them."
+ },
+ {
+  "id": "map_3#2",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Grounded Constraint Dossier",
+  "mech": "Before attractor mapping, a retrieval agent builds a dossier of real-world constraints for each question. It covers documented failed attempts, cost and scale limits, practitioner complaints, and open-problem statements, each with a source. Every generated idea must name the dossier constraint it removes and say how. Judges score value only against the cited constraint and its evidence, not their own intuition. The dossier persists across runs. Constraints that no idea has resolved gain weight and are handed to the generators as explicit targets.",
+  "value": "Value is anchored in external evidence rather than the judges' shared knowledge gaps, which should close the value gap with plain answers while still pushing originality toward constraints that remain unsolved."
+ },
+ {
+  "id": "map_3#3",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Cross-Run Attractor Ledger",
+  "mech": "Keep a persistent ledger of every idea family detected at any layer, in any run, with descriptions and the layer where each family first appeared. Each new run starts with the whole ledger forbidden. Families that first appeared late in a run are fed back as seeds for the next run's attractor mapping. Final selection uses replicated scoring: three judge resamples with shuffled order and swapped judge roles. Ideas are ranked by the lower confidence bound of their score, not the mean, so only results that stay stable across judges are kept.",
+  "value": "Each run starts beyond everything earlier runs found, and the ranking filters out wins that are just run-to-run noise. Improvements then add up across runs instead of being lost to variance."
+ }
+]
