@@ -1,0 +1,4 @@
+
+The CRUX of this question - the hard part that typical answers delegate, assume away or leave unsolved - is:
+{CRUX}
+Every answer must attack this crux directly with its own mechanism. An answer that hands the crux to an unspecified external verifier, component or future step does not count, however original it is.

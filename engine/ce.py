@@ -52,6 +52,8 @@ def transcript_text(p):
 def read_source(a):
     return transcript_text(a.transcript) if a.transcript else open(a.file).read()
 
+FRAG = re.compile(r"\b(?:idea|answer|offspring)\s*#?\s*\d\b|\b(?:as|see) above\b|\bthe above\b|\bprevious (?:idea|answer)\b", re.I)
+
 def parse_ideas(text):
     if "=== IDEAS ===" not in text: return []
     body = text.split("=== IDEAS ===", 1)[1]
@@ -82,7 +84,9 @@ def fill(run, body, n, extra=None, sources=None):
     cfg = load(run, "config.json", {})
     fmt = tpl("_format_" + cfg["format"]).replace("{N}", str(n))
     if cfg.get("thoughts"): fmt = tpl("_thoughts") + fmt
+    if cfg.get("use_crux") and cfg.get("crux"): fmt = tpl("_crux") + fmt  # v1.7: generators must attack the crux
     s = body.replace("{QUESTION}", cfg["question"]).replace("{FORMAT}", fmt).replace("{N}", str(n))
+    s = s.replace("{CRUX}", cfg.get("crux", "(no crux recorded)"))
     s = s.replace("{BASINS}", basins_block(run, sources))
     gaps = load(run, "gaps.json", [])
     s = s.replace("{GAPS}", "\n".join(f"{g['code']}: {g['desc']}" for g in gaps) if gaps else "(no gaps recorded)")
@@ -116,7 +120,9 @@ def cmd_ingest(a):
     ideas = [i for i in ideas if i["label"] != a.label]  # повторный ingest заменяет
     new = parse_ideas(text)
     for k, d in enumerate(new, 1):
-        ideas.append({"id": f"{a.label}#{k}", "label": a.label, "arm": a.arm, "gen": a.gen, **d})
+        frag = bool(FRAG.search(d["mech"] + " " + d["value"]))
+        if frag: print(f"WARNING: {a.label}#{k} is a fragment (refers to another idea) - excluded from selection")
+        ideas.append({"id": f"{a.label}#{k}", "label": a.label, "arm": a.arm, "gen": a.gen, **d, **({"fragment": True} if frag else {})})
     save(a.run, "ideas.json", ideas); print(f"{a.label}: {len(new)} ideas ({len(text.split())} words)")
     if "FIRST THOUGHTS" in text:
         block = text.split("FIRST THOUGHTS", 1)[1].split("=== IDEAS ===", 1)[0]
@@ -142,6 +148,10 @@ def cmd_set(a):
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
     for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
+        if kind == "judge" and getattr(a, "crux", False):
+            crux = load(a.run, "config.json", {}).get("crux") or sys.exit("no crux recorded: run `family` with the v1.7 template first")
+            s = s.replace("- closest = ", f"- X = Y if the answer attacks this crux directly with its own mechanism: \"{crux}\"; N if it delegates, assumes away or ignores it.\n- closest = ")
+            s = s.replace("ID | O | C | V | R | BASIN | closest", "ID | O | C | V | R | BASIN | X | closest")
         open(os.path.join(d, f"prompt_{kind}.txt"), "w").write(s)
     print(f"set {a.set}: {len(items)} items -> {d}/blind.txt (+ prompt_judge/family/lit.txt)")
 
@@ -160,14 +170,19 @@ def cmd_family(a):
         basins.append({"code": code, "desc": desc.strip(), "source": "predicted" if not members else "observed", "members": members})
         have.add(code); added += 1
     save(a.run, "basins.json", basins); print(f"basins: +{added} (total {len(basins)})")
+    m = re.search(r"^CRUX \| (.+)$", text, re.M)
+    if m:
+        cfg = load(a.run, "config.json", {}); cfg["crux"] = m.group(1).strip(); save(a.run, "config.json", cfg)
+        print("crux:", cfg["crux"])
 
 def cmd_judge(a):
     text = read_source(a); key = setkey(a.run, a.set)
     open(path(a.run, "sets", a.set, f"judge_{a.judge}.md"), "w").write(text)
     sc = load(a.run, "scores.json", {}); n = 0
-    for sid, o, c, v, r, b, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| ([YN]) \| ([A-Z0-9_]+) \| (.+)$", text, re.M):
+    for sid, o, c, v, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| ([YN]) \| ([A-Z0-9_]+) \| (?:([YN]) \| )?(.+)$", text, re.M):
         if sid not in key: continue
-        sc.setdefault(key[sid], {})[f"{a.set}:{a.judge}"] = {"O": int(o), "C": int(c), "V": int(v), "R": r, "B": b, "closest": cl.strip()}
+        sc.setdefault(key[sid], {})[f"{a.set}:{a.judge}"] = {"O": int(o), "C": int(c), "V": int(v), "R": r, "B": b, "closest": cl.strip(),
+                                                           **({"X": x} if x else {})}
         n += 1
     save(a.run, "scores.json", sc); print(f"judge {a.judge} on {a.set}: {n}/{len(key)} parsed")
     if n < len(key): print("WARNING: missing lines — check sets/" + a.set + f"/judge_{a.judge}.md")
@@ -182,7 +197,8 @@ def agg(run, iid):
     return {"O": m("O"), "C": m("C"), "V": m("V"), "OV": m("O") * m("V"), "n_judges": len(js),
             "R_all": all(j["R"] == "Y" for j in js), "R_any": any(j["R"] == "Y" for j in js),
             "new_all": all(j["B"] == "NEW" for j in js), "new_frac": sum(j["B"] == "NEW" for j in js) / len(js),
-            "basins": [j["B"] for j in js], "closest": js[0]["closest"]}
+            "basins": [j["B"] for j in js], "closest": js[0]["closest"], "closest_all": " ".join(j["closest"] for j in js),
+            "crux": (sum(j["X"] == "Y" for j in js if "X" in j) / sum("X" in j for j in js)) if any("X" in j for j in js) else None}
 
 def cmd_select(a):
     lit = load(a.run, "lit.json", {}); pool = []
@@ -191,13 +207,22 @@ def cmd_select(a):
         if not g: continue
         known_basin = all(b != "NEW" for b in g["basins"]) and len(set(g["basins"])) == 1
         if g["R_all"] or (a.drop_known_basins and known_basin) or lit.get(i["id"], {}).get("verdict") == "KNOWN": continue
+        if i.get("fragment"): continue
         if a.v2:
             au = load(a.run, "audit.json", {}).get(i["id"])
             if not au: continue
             if au["spec"] is not None and au["spec"] <= 0: continue  # «подходит к любому вопросу» — отсев
             pool.append((g["OV"] * (0.5 + 0.5 * au["carried"]), i["id"], g)); continue
         pool.append((g["OV"], i["id"], g))
-    pool.sort(key=lambda t: -t[0]); top = pool[:a.k]
+    pool.sort(key=lambda t: -t[0])
+    if getattr(a, "diverse", False):  # v1.7: near-duplicates (same closest work) take one slot
+        words = lambda g: set(re.findall(r"[a-z]{4,}", g["closest_all"].lower()))
+        top = []
+        for t in pool:
+            if all(len(words(t[2]) & words(u[2])) / max(1, len(words(t[2]) | words(u[2]))) < 0.5 for u in top): top.append(t)
+            if len(top) == a.k: break
+    else:
+        top = pool[:a.k]
     save(a.run, f"survivors_{a.name}.json", [t[1] for t in top])
     for ov, iid, g in top: print(f"{iid:18s} O{g['O']:.1f} V{g['V']:.1f} OV{ov:5.1f} basins={g['basins']}")
     print(f"-> survivors_{a.name}.json ({len(top)} of {len(pool)} eligible)")
@@ -443,10 +468,12 @@ def main():
     x = sp.add_parser("set"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--labels"); x.add_argument("--ids")
     x.add_argument("--arms"); x.add_argument("--prefix", default="S")
     x.add_argument("--basin-sources", help="e.g. observed,predicted — exclude visited families from judge prompts (fair final comparison)")
+    x.add_argument("--crux", action="store_true", help="v1.7: add the crux column X to the judge prompt")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("judge"); x.add_argument("run"); x.add_argument("set"); x.add_argument("judge"); src(x)
     x = sp.add_parser("select"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--labels"); x.add_argument("--arms")
     x.add_argument("--k", type=int, default=6); x.add_argument("--drop-known-basins", action="store_true")
+    x.add_argument("--diverse", action="store_true", help="v1.7: near-duplicates (same closest work) take one slot")
     x.add_argument("--v2", action="store_true", help="score = O*V*(0.5+0.5*carried); drop ideas with decoy specificity <= 0 (needs audit)")
     x = sp.add_parser("lit"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("pairs"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--n", type=int, default=6)

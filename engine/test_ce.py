@@ -100,6 +100,32 @@ def main():
                 if r: json.dump(r, open(reg, "w"), indent=1)
                 else: os.remove(reg)
             shutil.rmtree(rd2, ignore_errors=True)
+        # v1.7: crux, judge X column, fragments, diverse selection
+        R7 = "_selftest17"; rd7 = os.path.join(HERE, "runs", R7)
+        try:
+            ce("init", R7, "--question", "Q?", "--force")
+            ideas = "=== IDEAS ===\n" + "\n".join(f"IDEA {k}\nNAME: n{k}\nMECHANISM: {m}\nVALUE: v{k}\n" for k, m in
+                    [(1, "alpha mechanism"), (2, "beta mechanism"), (3, "gamma mechanism"), (4, "extends Idea 1 with delta")])
+            p = os.path.join(tmp, "g7"); open(p, "w").write(ideas)
+            out = ce("ingest", R7, "g1_x", "--arm", "engine", "--gen", "1", "--file", p)
+            assert "4 ideas" in out and "fragment" in out
+            ce("set", R7, "s00", "--labels", "g1_x", "--prefix", "M"); k0 = json.load(open(os.path.join(rd7, "sets", "s00", "key.json")))
+            p = os.path.join(tmp, "f7"); open(p, "w").write(f"FAMILY | AA | aa | {list(k0)[0]}\nCRUX | judging validity of the unprecedented\n")
+            assert "crux:" in ce("family", R7, "s00", "--file", p)
+            ce("setcfg", R7, "use_crux", "1"); ce("prompt", R7, "neg", "g1_neg")
+            assert "judging validity of the unprecedented" in open(os.path.join(rd7, "prompts", "g1_neg.txt")).read()
+            ce("set", R7, "s01", "--labels", "g1_x", "--prefix", "A", "--crux"); k1 = json.load(open(os.path.join(rd7, "sets", "s01", "key.json")))
+            assert "| X |" in open(os.path.join(rd7, "sets", "s01", "prompt_judge.txt")).read()
+            closest = {"g1_x#1": "geodetic network adjustment", "g1_x#2": "geodetic network adjustment", "g1_x#3": "kinetic proofreading", "g1_x#4": "other thing"}
+            p = os.path.join(tmp, "j7"); open(p, "w").write("SCORES\n" + "\n".join(f"{sid} | 6 | 5 | 5 | N | NEW | Y | {closest[iid]}" for sid, iid in k1.items()))
+            assert "4/4" in ce("judge", R7, "s01", "J1", "--file", p)
+            sys.path.insert(0, HERE); import ce as cem7
+            assert cem7.agg(R7, "g1_x#1")["crux"] == 1.0
+            ce("select", R7, "g1", "--k", "4", "--diverse")
+            surv7 = json.load(open(os.path.join(rd7, "survivors_g1.json")))
+            assert "g1_x#4" not in surv7 and len(surv7) == 2, surv7  # fragment dropped, near-duplicates share one slot
+        finally:
+            shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")
     finally:
         shutil.rmtree(rd, ignore_errors=True); shutil.rmtree(tmp, ignore_errors=True)

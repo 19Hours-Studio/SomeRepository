@@ -34,6 +34,12 @@ Literature checks use `subagent_type: general-purpose` (they need WebSearch) wit
 After an agent finishes, ingest from its transcript: `--transcript <output_file from the Agent launch result>`.
 Launch independent agents in one message; never read transcripts into your own context.
 
+## v1.7 options (A/B pending, see research/stage1-creativity/06-engine-v17.md)
+- Crux: the family judge now also outputs `CRUX | ...`; `setcfg R use_crux 1` makes every generator attack it; final sets with `--crux` get a column X (attacks the crux: Y/N).
+- `select ... --diverse`: near-duplicates (same closest work) share one slot. Fragments (ideas citing "Idea 1") are never selected.
+- Portfolio by cross-run fitness: neg, core, core2, mech, loop (`mechneg` lost selection on 2 new questions).
+- Intent check: before gen 1, show the user 2-3 contrasting readings of the question from the map and confirm (a literal reading cost a whole run on arch_spec).
+
 ## Procedure (R = run name, E = engine arm, C = control arm)
 0. `python3 engine/ce.py init R --question "<question>"`
 1. **Attractor map.** `prompt R plain map_1` (… `map_3`); run 3 generators; `ingest R map_k --arm C --gen 0 --transcript …`.

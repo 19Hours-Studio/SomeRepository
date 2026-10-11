@@ -5,4 +5,5 @@ NAME: (max 5 words)
 MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
 DIFFERENCE: (1 sentence: what it can do that current approaches fundamentally cannot)
 (same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
 Keep everything under 500 words.
