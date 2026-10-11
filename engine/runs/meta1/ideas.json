@@ -79,5 +79,140 @@
   "name": "Cross-Run Attractor Ledger",
   "mech": "Keep a persistent ledger of every idea family detected at any layer, in any run, with descriptions and the layer where each family first appeared. Each new run starts with the whole ledger forbidden. Families that first appeared late in a run are fed back as seeds for the next run's attractor mapping. Final selection uses replicated scoring: three judge resamples with shuffled order and swapped judge roles. Ideas are ranked by the lower confidence bound of their score, not the mean, so only results that stay stable across judges are kept.",
   "value": "Each run starts beyond everything earlier runs found, and the ranking filters out wins that are just run-to-run noise. Improvements then add up across runs instead of being lost to variance."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Odd Question, Plain Answer",
+  "mech": "A new first stage rewrites the original question into many changed versions, each made by one rewrite operator: change the scale, the actor, the time horizon, the unit of analysis, or who pays. The forbidden-family check is applied to these rewritten questions instead of to the answers. Each kept question is answered by the ordinary plain-answer stage, and an agent then maps that answer back onto the original question. The pipeline stores which rewrite operators produced answers that kept their value after mapping back, and samples those operators more often in later runs.",
+  "value": "Plain answers are already the most valuable and concrete outputs, so moving originality into the question gives answers that are both original and dependable."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Hand-Wave Mining",
+  "mech": "Implementer agents take each plain answer and expand it into a detailed step-by-step build plan. They must mark every step where they cannot say exactly what is done (\"then calibrate appropriately\"). These gaps are collected across all the plain answers and grouped together, and generation then targets only the gaps that recur. A finished idea is a specific way to fill one gap, inserted into the plain plan it came from. The pipeline keeps a list of gaps that are still unfilled and checks whether each fill actually removes the gap when the plan is expanded again.",
+  "value": "Originality goes into the step everyone skips, inside a plan that is already valuable, so the new ideas arrive concrete and buildable."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Structural Signature Sampling",
+  "mech": "Before writing any content, a generator is assigned a structural signature: who acts, what is stored, when it fires, and what is measured. Signatures are drawn from a grid of combinations, weighted toward combinations that past runs rarely produced. The generator must write an idea that fits that signature exactly. Judges classify ideas by signature rather than by meaning, which gives a fixed set of categories and stops new attractor families from appearing at every layer. How often each signature turns out valuable is stored, so later sampling moves toward rare combinations that are still valuable.",
+  "value": "Novelty becomes a controlled, repeatable input rather than a lucky output, which cuts run-to-run variance and makes it clear which structures produce value."
+ },
+ {
+  "id": "g1_core#1",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Sensitivity-Guided Answer Carving",
+  "mech": "Each plain answer is split into 4–8 component slots. An ablation agent removes one slot at a time, and judges score how much value drops, which gives a value-sensitivity map. Slots with high sensitivity are frozen. Generators may rewrite only slots with low sensitivity, and only off-attractor. The cycle repeats with the map recomputed after each carve. Sensitivity maps are stored per question type across runs.",
+  "value": "Originality goes only where it costs no value, so value stops falling below plain answers."
+ },
+ {
+  "id": "g1_core#2",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Mutation-Tested Judges",
+  "mech": "A mutator agent plants typed defects in copies of real answers: a broken causal step, an inflated value claim, a disguised known family, or a step that cannot be implemented. These go into each judging batch. The pipeline computes each judge's kill rate per defect type and weights each scoring criterion by that rate. Defect types with low kill rates are flagged so that idea must state its own evidence. The mutant library and kill rates persist across runs, and mutants judges keep missing are planted more often.",
+  "value": "The judges' shared blind spots are measured and discounted instead of silently rewarded."
+ },
+ {
+  "id": "g1_core#3",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Retrosynthetic Idea Assembly",
+  "mech": "Ideas are built backward from a stated target effect, such as \"value at least the baseline\" or \"concreteness survives recombination.\" An agent proposes \"reactions\": each is a step that produces the effect from precursors. It recurses until every leaf is an available pipeline primitive. Trees with leaves that cannot be resolved are rejected. Validated reactions are stored as a library across runs, and novel reactions get a bonus.",
+  "value": "Every idea comes out concrete and implementable by construction, not restored after the fact."
+ },
+ {
+  "id": "g1_reframe#1",
+  "label": "g1_reframe",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Sibling-Question Expansion",
+  "mech": "Before attractor mapping, a \"question mutator\" agent applies named operators to the input question to produce 6-10 sibling questions: invert the goal, change the scale by 1000x, swap who benefits, remove the main resource, or ask what would make the question moot. Each sibling question runs through the normal generate-and-judge stages. A \"porter\" agent then translates each sibling's best answers back into the original question, and the judges score the ported answers against the original question. Each operator's record of producing ported answers classified NEW is stored across runs, and the operators are re-weighted so the mutator learns which reframings pay off for which kinds of question.",
+  "value": "The pipeline delivers a map of neighbouring questions that are worth asking, each with its own answers, alongside answers to the question it was given."
+ },
+ {
+  "id": "g1_reframe#2",
+  "label": "g1_reframe",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Adopted-World Diary Simulation",
+  "mech": "After stage 3, each survivor is assumed to be fully adopted. Three inhabitant agents (an operator, a competitor and a bystander affected by it) each write a dated diary of the first year in that world. A \"consequence miner\" pulls out the second-order problems and opportunities from the diaries. Those become new seed prompts, which the portfolio answers in a follow-up generation pass. The resulting parent idea, consequence and child idea chains are stored and scored as one unit.",
+  "value": "The pipeline can discover ideas that only make sense once another idea exists, so it produces linked sequences of ideas instead of standalone answers."
+ },
+ {
+  "id": "g1_reframe#3",
+  "label": "g1_reframe",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Orphan Mechanism Inventory",
+  "mech": "In every run, a separate \"inventor\" agent is given no question at all. It is only given random constraint tuples (one material, one actor, one timing rule, one quantity), and it builds fully specified mechanisms from them. These \"orphan\" mechanisms are stored in a persistent cross-run inventory. A \"matchmaker\" agent searches that inventory for orphans that answer the current question, and the judges score each match. An orphan's match history raises or lowers the chance that its constraint tuple is sampled again.",
+  "value": "Over many runs the pipeline builds up a stock of concrete mechanisms made before any question existed, so it can answer future questions it has never seen using mechanisms that no question-driven search would have produced."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Stall-Point Seeding",
+  "mech": "Before generation, a walker agent takes each plain answer and plays it out step by step on one specific, concrete instance of the question. It records the first step where the walk stalls: what was missing, what contradicted what, or what cost exploded. Generators receive only these stall records, never the plain answers, and must produce an answer that gets past a named stall. The same walker then replays that instance to confirm the answer passes the step. A stall table is kept between runs, holding each stall, how often it was hit and how many answers got past it. Stalls nobody has passed get more sampling weight in the next run, and stalls that have been passed are retired.",
+  "value": "Originality is pointed at the exact places where obvious answers break, so new ideas start from real failure points and are less likely to lose on value to the plain answers."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Hint-Gap Selection",
+  "mech": "For each surviving idea, an author agent writes a hint of at most 15 words. N fresh agents each get the question plus the hint and try to rebuild the full mechanism, and N other fresh agents get only the question. A comparer agent scores each rebuild against the original, field by field. Selection keeps ideas where rebuild success with the hint minus rebuild success without it is large. A high with-hint score means the idea is crisp enough to be compressed. A low without-hint score means it does not follow from the question alone. Ideas that score low with the hint are sent back for rewriting instead of being dropped. Hints that score well, and their ideas, are stored so later runs can tell whether a \"new\" idea rebuilds from an old hint.",
+  "value": "One signal that comes from repeated sampling rewards ideas that are both unexpected and concretely specified, without depending on what the judges happen to know."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Outcome-First Reverse Build",
+  "mech": "A first agent writes a dated, specific success record: who used it, the measured before and after numbers, and what changed. A judge accepts the record only if it would surprise someone holding the plain answers. A second agent sees only the record, not the forbidden families, and works out the smallest mechanism that could produce it. A third agent walks forward from that mechanism to see whether it really yields the record's numbers, and keeps only matching pairs. Records with no workable mechanism are stored as open targets and seeded into the next run. Mechanisms that worked are stored as templates that the next run must not repeat.",
+  "value": "Concreteness and value are built in from the start, because every idea is derived backward from a specific measured payoff instead of having details added after the idea exists."
+ },
+ {
+  "id": "g1_loop#1",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Shared-Error Hidden Ancestry",
+  "mech": "An extractor agent breaks each idea into its rare mechanism parts, and the pipeline computes which ideas share the same rare parts. Any group sharing two or more becomes a new forbidden family at once, at the current layer, and crossover may only pair parents with no shared rare parts. Part frequencies are stored across runs, so parts that become common stop counting as rare.",
+  "value": "Hidden attractors are caught at the layer where they appear instead of slipping through the judges' surface-level labels."
+ },
+ {
+  "id": "g1_loop#2",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Mutant Ideas Test Judges",
+  "mech": "A mutator agent plants specific defects (reversed causal claims, costs that can't be met, circular metrics) in copies of the survivors and mixes them blind into the judges' batches. For each kind of defect, the share the judges catch is recorded. Kinds they miss create a new scoring item and a checker role, and real ideas that look like missed defects lose their value score.",
+  "value": "Judges' shared blind spots become checks the pipeline actually runs, which raises the real value of what survives."
+ },
+ {
+  "id": "g1_loop#3",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Unseen-Family Coverage Gate",
+  "mech": "For each layer and each technique, the pipeline counts families seen once and twice and computes Chao1 and Good-Turing coverage. Generation can't start until plain-answer coverage is at least 0.9. Techniques that keep adding families seen only once are split into versions with different seeds, and techniques whose estimate is flat are deleted.",
+  "value": "The pipeline only starts generating once the plain-answer families are close to fully mapped, and it keeps only techniques that keep finding new families."
  }
 ]
