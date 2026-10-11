@@ -3,6 +3,6 @@ Read the file {SETFILE}. It contains ideas labelled by ID, answering: "{QUESTION
 For each idea find the closest prior work (papers, preprints, known systems) for the CORE mechanism, not the wording. Be skeptical in both directions.
 Output ONLY this, no preamble:
 LIT
-ID | KNOWN or PARTIAL or NO-CLOSE-MATCH | closest work: title (year) URL ; second closest | what is genuinely new, in one sentence
+ID | KNOWN or PARTIAL or NO-CLOSE-MATCH | closest work: title (YYYY-MM of publication if you can find it, else year) URL ; second closest | what is genuinely new, in one sentence
 (one line per idea)
 NOTE: 2-3 sentences on patterns.

@@ -387,7 +387,8 @@ def cmd_futurematch(a):
     cutoff (arXiv ids YYMM >= --after). Such ideas could not be copied, yet people later found them worth doing."""
     ideas = {i["id"]: i for i in load(a.run, "ideas.json", [])}; lit = load(a.run, "lit.json", {}); by = defaultdict(lambda: [0, 0])
     for iid, v in lit.items():
-        arm = ideas.get(iid, {}).get("arm", "?"); late = [x for x in re.findall(r"arxiv\.org/(?:abs|pdf|html)/(\d{4})\.\d{4,5}", json.dumps(v)) if x >= a.after]
+        arm = ideas.get(iid, {}).get("arm", "?"); t = json.dumps(v); late = [x for x in re.findall(r"arxiv\.org/(?:abs|pdf|html)/(\d{4})\.\d{4,5}", t) if x >= a.after]
+        late += [y[2:] + m for y, m in re.findall(r"\((20\d\d)-(\d\d)\)", t) if y[2:] + m >= a.after]  # dated journal work
         by[arm][0] += 1; by[arm][1] += bool(late)
     for arm, (n, k) in sorted(by.items()): print(f"  {arm:10s} future-match {k}/{n} = {k / n:.0%}")
 

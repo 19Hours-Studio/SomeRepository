@@ -142,6 +142,9 @@ def main():
             assert "valorized 1/4" in ce("valorize", R7, "s01", "--arm", "v7C", "--file", p)
             json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Some work https://arxiv.org/abs/2608.01234"}}, open(os.path.join(rd7, "lit.json"), "w"))
             assert "future-match 1/1" in ce("futurematch", R7)
+            json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Journal work (2026-09) https://doi.org/x ; older (2019-03)"},
+                       "g1_x#2": {"verdict": "KNOWN", "closest": "Old work (2024-05) https://doi.org/y"}}, open(os.path.join(rd7, "lit.json"), "w"))
+            assert "future-match 1/2" in ce("futurematch", R7)
             assert "portfolio:" in ce("portfolio")
             open(p, "w").write("READING | alpha | deliver a | CRUX: crux a\nREADING | beta | deliver b | CRUX: crux b\nREADING | gamma | deliver c | CRUX: crux c\n")
             assert "[2] gamma" in ce("intent", R7, "s01", "--file", p)
