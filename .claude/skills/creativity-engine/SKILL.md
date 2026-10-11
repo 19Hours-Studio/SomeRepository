@@ -1,6 +1,6 @@
 ---
 name: creativity-engine
-description: Run the evidence-based creativity engine (protocol v1.5) to generate genuinely unusual, valuable ideas for a hard open question - empirical attractor mapping, a portfolio of de-biasing techniques, two blind judges, literature check, evolution with attractor memory, and a best-of-N control. Use when the user wants maximally original ideas, not a quick brainstorm.
+description: Run the evidence-based creativity engine (protocol v1.9: layers A-B-C, plus D for physical questions) to generate genuinely unusual, valuable ideas for a hard open question - empirical attractor mapping, a portfolio of de-biasing techniques, two blind judges, literature check, evolution with attractor memory, and a best-of-N control. Use when the user wants maximally original ideas, not a quick brainstorm.
 ---
 
 # Creativity engine
@@ -45,6 +45,14 @@ Launch independent agents in one message; never read transcripts into your own c
   child-vs-parent deltas (each layer's ideas keep a `parent` link) and `ce.py futurematch R` for literature-checked ideas.
 - Measured: B gives O +0.7, G +1.0; C gives V +0.2..+0.3; no idea ever lost V, almost none lost O. A->B->C matches
   v1.7 on V and G with O +1.4. Biggest remaining lever: the crux decides what all ideas are about, so do the intent check.
+
+## v1.9: add layer D (fermi) after C for questions about the physical world (07-v18-full-run.md)
+- `set R t01a --ids <EC ids> --prefix D` (batches of ~8), one agent per set on `prompt_fermi.txt`,
+  `valorize R t01a --arm ED --transcript ...` (stores `verdict` PASS/FIX/FAIL and `estimate`).
+- Judging: add one judge on a set built with `--feasible` (column F = order-of-magnitude feasibility); report O·V·F.
+  V alone cannot see D's gain: V means "if it worked". Measured: F +1.0, C +2.3, O -0.2, V -0.1 (FIX ideas: V +0.3;
+  FAIL ideas shrink their claims honestly, V -1.0), O·V·F +31%. Judges alone put ideas that fail by orders of
+  magnitude in their TOP3, so never report physical-world winners without D or an F judge.
 
 ## v1.7 option (crux in generation: best V, but O -1.0 vs layered)
 - Gen 1 portfolio: neg, core, loop, mech, genius. Gen 2: `prompt R evo_simple g2_evo1|g2_evo2 ...` (simplifying crossover) + immigrant of the best technique. Parents: `select ... --drop-known-basins --diverse --by ovg`. Screening/final sets: `--crux --genius`.
