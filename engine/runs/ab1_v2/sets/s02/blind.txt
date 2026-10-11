@@ -1,0 +1,24 @@
+L01
+MECHANISM: A candidate inference step must survive K sequential, irreversible holding stages before it is committed. At each stage it is re-tested for match against an independently perturbed context, and if it detaches it resets to the beginning rather than to the previous stage. Errors therefore decay roughly as f^K. The number of stages a candidate survives gives a confidence score, and the system can raise K wherever stakes are high.
+VALUE: Reasoning accuracy can be bought with compute in a predictable, near-exponential way, instead of being capped by a single forward pass.
+
+L02
+MECHANISM: Closes G1. The system does not parse the input directly. It applies a large set of small edits to the raw input (swapping a token or phrase, inpainting an image patch, shifting time) and records how each edit changes a frozen predictor's output distribution. Edits are clustered by their effect signature, and each cluster becomes one variable whose values are the observed edit outcomes. A typed link is added wherever a pair of clusters shows a non-additive second-order effect, meaning editing both does not equal the sum of editing each. The edit library and clusters are stored, and the clustering is refit as new inputs come in, so the structured form is built from the input itself rather than hand-specified.
+VALUE: It turns "parse the input into the representation" into a measurable procedure that works the same way on text, pixels and sensor streams.
+
+L03
+MECHANISM: A capability counts as kept only if the system can write a short, human-readable lesson that lets a fresh, small, randomly initialized student reach the same behavior within a fixed budget of examples. Anything that cannot be transmitted this way is pruned on each generation cycle, and the surviving lessons become the next generation's training core (iterated cultural learning). The system adapts by changing what it teaches, not by refining a model of the world.
+VALUE: Knowledge becomes explicit, portable and auditable by design, and opaque shortcuts that cannot be taught are removed systematically.
+
+L04
+MECHANISM: Every internal quantity carries an exponent vector over a growing set of base kinds, and operations may only combine compatible vectors. The system keeps rescaling or swapping kinds in its own inputs and checks that its outputs change exactly as the exponents predict. Each failure splits a kind, adds a new one, or revises an exponent.
+VALUE: Reliable extrapolation far beyond the magnitudes in its experience, plus automatic detection of answers that make no sense.
+
+L05
+MECHANISM: Closes G2. For each real task type, the system builds twin tasks in the easy direction, where the answer is fixed first and the problem is generated from it: run a program and then ask for its output, hide a known span and then ask to reconstruct it, compose a plan and then ask what goal it achieves. A discriminator is trained adversarially until it cannot tell the twins from real tasks. The system stores per-twin-cluster accuracy for every checker and solver. On a real task with no oracle, the correctness estimate is the measured accuracy on the twins that match it most closely.
+VALUE: It gives a calibrated, always-available correctness signal on tasks where no verified outcome will ever arrive.
+
+L06
+MECHANISM: Every derivation path to a candidate answer contributes a complex amplitude, and the path's phase is set by the assumptions it relies on. Paths that support an answer through incompatible assumptions cancel each other out, while paths that agree reinforce each other. The final confidence is the squared magnitude after summing. The phase assignments are learned, so that recurring conflicting assumption pairs become orthogonal or opposed.
+VALUE: The system can represent "many reasons that cancel out" as real uncertainty, which averaging probabilities cannot express, so it stops being overconfident when it has many weak, conflicting justifications.
+

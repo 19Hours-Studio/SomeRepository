@@ -241,5 +241,50 @@
   "name": "Pedigree-BLUP Knowledge Reliability",
   "mech": "Each acquired fact, rule or skill is logged with its parents, meaning the items it was derived or distilled from. This builds a sparse relationship matrix. Reliability is solved as a breeding value with Henderson's mixed-model equations, so an item with almost no direct checks borrows strength from its relatives. A single new check updates the whole family through A⁻¹.",
   "value": "Reliability estimates for brand-new knowledge become usable after one or a few observations, because they draw on where that knowledge came from."
+ },
+ {
+  "id": "g2_evo1#1",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Cross-Route Residual Closure",
+  "mech": "Each key quantity is derived by two or more reversible routes, and each route writes the bits it cannot reverse into a residual register. Each route's residual is fed into the backward pass of the other routes. Bits that no route can rebuild form the loop's misclosure, and that misclosure is measured in bits. A Baarda-style test, weighted by each step's residual size, flags the single step that is invented rather than derived. The planner then adds new independent routes where residual bits cannot be cross-checked by any other route.",
+  "value": "A long chain can find exactly which step introduced unsupported content and can build itself to be checkable."
+ },
+ {
+  "id": "g2_evo1#2",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Equivocation Curl Detector",
+  "mech": "An invertible reasoner reconstructs its inputs from the answer under many premise subsets, and the reconstruction gap between each pair of subsets is stored as a flow on a graph. A Hodge decomposition splits these flows. The gradient part is surfaced as one explicit missing assumption. The curl part marks a term whose meaning shifts around the cycle, so that concept is split along a new latent context axis. The new axis becomes a premise slot that the next backward pass must fill.",
+  "value": "The system can tell an argument that rests on an unstated assumption from one that quietly changes what a word means."
+ },
+ {
+  "id": "g2_evo1#3",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Teachability-Ordered Knowledge Lattice",
+  "mech": "Each deployed copy stores concepts as short messages. One message ranks above another if a fresh learner with a different architecture, taught only that message, passes all of the other message's held-out tasks. A join is the shortest message that teaches both, found by compressing them together. When no such message is found, the two are kept as tombstone-safe sibling branches with grow-only evidence counters. Counter growth triggers retesting against a refreshed pool of naive learners, and a branch that no longer teaches is retracted by a tombstone.",
+  "value": "Millions of copies can pool what they learned into shared abstractions that stay explainable, and they never blend incompatible ones."
+ },
+ {
+  "id": "g2_evo2#1",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Blunder-or-Ambiguity Loop Adjuster",
+  "mech": "Reasoning steps form redundant closed loops, adjusted by least squares. Baarda's w-test plus re-derivation sorts each misclosure: if it moves to one step and disappears on re-derivation, that step is a blunder and is fixed; if it stays spread evenly around the cycle, larger than any single step's minimal detectable bias, it is curl, and the concept is split along a new latent context dimension. Each split adds nodes with no redundancy yet, so the planner must build new independent routes that tell the two meanings apart before either can be used. The split concepts are stored with their triggering cycle and their reliability numbers.",
+  "value": "Long reasoning chains can tell their own arithmetic slips apart from real hidden ambiguities, fixing the first and splitting the second, instead of averaging them away or repeating the same wrong fix."
+ },
+ {
+  "id": "g2_evo2#2",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Residual-Deficit Premise Promotion",
+  "mech": "Reasoning runs on reversible operations; the forward pass logs bits it cannot reverse in a residual register (added content), and the backward pass from answer plus premises measures input-reconstruction deficit (assumed content). Residual spans are decoded into candidate premise sentences and fed into the backward pass. A candidate becomes a stated assumption only if it closes a matching part of the deficit. Residual that closes no deficit is labelled fabricated, and deficit left unexplained triggers retrieval or a question to the user. Training minimises the bits left unmatched on both sides.",
+  "value": "Hidden assumptions and made-up claims are worked out mechanically and turned into explicit premises that can be tested, rather than being guessed from confidence scores."
  }
 ]

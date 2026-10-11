@@ -92,5 +92,101 @@
   "desc": "Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V14",
+  "desc": "Fully reversible uncomputable inference — Every layer and every reasoning step is a bijection, built from invertible couplings with explicit \"garbage\" registers, so each output can be run backward exact",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Teach-to-retain transmission bottleneck — A capability counts as kept only if the system can write a short, human-readable lesson that lets a fresh, small, randomly initialized student reach the same be",
+  "source": "visited",
+  "members": [
+   "g1_neg#2"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Phase-interference evidence aggregation — Every derivation path to a candidate answer contributes a complex amplitude, and the path's phase is set by the assumptions it relies on. Paths that support an ",
+  "source": "visited",
+  "members": [
+   "g1_neg#3"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Guarded Trace Compilation of Skills — A slow, general deliberative solver handles new problems and records the step trace it executes. When a trace becomes hot, it is compiled into a fast specialize",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Kinetic Proofreading Inference — A candidate inference step must survive K sequential, irreversible holding stages before it is committed. At each stage it is re-tested for match against an ind",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Learned Dimensional Similarity Algebra — Every latent quantity carries a learned vector of integer \"dimension\" exponents. These are inferred so that every observed relation is dimensionally homogeneous",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Shared False-Alarm Wealth Thresholds — Closes G4. Every cutoff (surprise, \"similar enough\", \"least-supported\", stopping tolerance) is replaced by an online conformal p-value. The p-value is computed ",
+  "source": "visited",
+  "members": [
+   "g1_gap#3"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Rescaling-Tested Kind Exponents — Every internal quantity carries an exponent vector over a growing set of base kinds, and operations may only combine compatible vectors. The system keeps rescal",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Teach-Back Transfer Gap — Knowledge is also held as short, explicit lessons. Periodically a small, empty student is rebuilt using only those lessons and scored on held-out cases. Lessons",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Rigidity-Braced Concept Frames — Concepts are joints and learned relations are bars. The system periodically computes the spectrum of the rigidity matrix. Floppy modes trigger acquisition of ne",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Allan-Grown Memory Timescales — The system computes the Allan deviation of its prediction residuals across context lag. When the deviation rises at τ\\*, it creates a new recurrent state with t",
+  "source": "visited",
+  "members": [
+   "g1_loop#2"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Wahlund-Split Module Growth — For each module, the system tests whether paired feature co-activations match the products of their marginal frequencies. A heterozygote-like deficit indicates ",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
  }
 ]

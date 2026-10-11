@@ -1,0 +1,377 @@
+{
+ "g1_gap#2": {
+  "slots": [
+   {
+    "slot": "twin tasks built easy direction, answer fixed first",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "twins: program output, span reconstruction, plan-to-goal",
+    "D": "N",
+    "L": 1
+   },
+   {
+    "slot": "adversarial discriminator until twins indistinguishable from real tasks",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "per-twin-cluster accuracy stored for each checker and solver",
+    "D": "Y",
+    "L": 2
+   },
+   {
+    "slot": "real-task correctness estimated from nearest twins' accuracy",
+    "D": "Y",
+    "L": 3
+   }
+  ],
+  "carried": 0.55,
+  "decoy": [
+   7,
+   3,
+   4,
+   5
+  ],
+  "spec": 3.0
+ },
+ "g1_neg#3": {
+  "slots": [
+   {
+    "slot": "each derivation path contributes a complex amplitude",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "path phase set by assumptions it relies on",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "incompatible paths cancel, agreeing paths reinforce",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "confidence is squared magnitude of summed amplitudes",
+    "D": "N",
+    "L": 1
+   },
+   {
+    "slot": "phase assignments learned so conflicting assumptions oppose",
+    "D": "N",
+    "L": 2
+   }
+  ],
+  "carried": 1.0,
+  "decoy": [
+   6,
+   2,
+   2,
+   4
+  ],
+  "spec": 3.33
+ },
+ "g1_mech#3": {
+  "slots": [
+   {
+    "slot": "knowledge also held as short explicit lessons",
+    "D": "Y",
+    "L": 2
+   },
+   {
+    "slot": "empty student periodically rebuilt from lessons only",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "student scored on held-out cases",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "lessons linked to student failures rewritten or split",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "lessons whose removal leaves score unchanged are deleted",
+    "D": "Y",
+    "L": 1
+   },
+   {
+    "slot": "system-student accuracy gap drives rewriting",
+    "D": "N",
+    "L": 2
+   }
+  ],
+  "carried": 0.75,
+  "decoy": [
+   6,
+   6,
+   3,
+   4
+  ],
+  "spec": 1.67
+ },
+ "g1_loop#1": {
+  "slots": [
+   {
+    "slot": "concepts as joints, learned relations as bars",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "periodic spectrum of rigidity matrix computed",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "floppy modes trigger acquisition of new bracing relations",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "self-stress states split node along stress eigenvector",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "stored concept frame grows or splits over time",
+    "D": "Y",
+    "L": 1
+   }
+  ],
+  "carried": 0.91,
+  "decoy": [
+   6,
+   3,
+   2,
+   4
+  ],
+  "spec": 3.0
+ },
+ "g1_neg#2": {
+  "slots": [
+   {
+    "slot": "capability kept only if teachable to fresh small student",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "short human-readable lessons within fixed example budget",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "untransmittable capabilities pruned each generation cycle",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "surviving lessons become next generation training core",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "adapt by changing what is taught, not world model",
+    "D": "N",
+    "L": 1
+   }
+  ],
+  "carried": 1.0,
+  "decoy": [
+   6,
+   7,
+   3,
+   4
+  ],
+  "spec": 1.33
+ },
+ "g1_neg#1": {
+  "slots": [
+   {
+    "slot": "every layer and step a bijection with garbage registers",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "outputs traced backward exactly to inputs and training data",
+    "D": "Y",
+    "L": 2
+   },
+   {
+    "slot": "learning as reversible updates logged as inverse operations",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "forget or undo by uncomputing matching update chain",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "no irreversible erasure, near thermodynamic limit",
+    "D": "N",
+    "L": 0
+   }
+  ],
+  "carried": 0.82,
+  "decoy": [
+   6,
+   2,
+   3,
+   3
+  ],
+  "spec": 3.33
+ },
+ "g1_core#1": {
+  "slots": [
+   {
+    "slot": "slow general deliberative solver records executed step traces",
+    "D": "Y",
+    "L": 2
+   },
+   {
+    "slot": "hot traces compiled into fast specialized routines",
+    "D": "Y",
+    "L": 3
+   },
+   {
+    "slot": "explicit guard predicates encode trace input assumptions",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "failed guard falls back to solver, increments exit counter",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "repeatedly failing exits compiled into child traces, never overwritten",
+    "D": "N",
+    "L": 2
+   }
+  ],
+  "carried": 0.58,
+  "decoy": [
+   6,
+   6,
+   6,
+   3
+  ],
+  "spec": 1.0
+ },
+ "g1_mech#2": {
+  "slots": [
+   {
+    "slot": "every internal quantity carries exponent vector over base kinds",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "operations only combine compatible exponent vectors",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "self-rescale or swap kinds in inputs, check predicted change",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "failures split kinds, add kinds, or revise exponents",
+    "D": "N",
+    "L": 2
+   }
+  ],
+  "carried": 1.0,
+  "decoy": [
+   6,
+   2,
+   4,
+   3
+  ],
+  "spec": 3.0
+ },
+ "g1_core#2": {
+  "slots": [
+   {
+    "slot": "candidate inference held through K sequential irreversible stages",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "each stage re-tests match against independently perturbed context",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "detachment resets candidate to first stage, not previous",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "errors decay roughly as f^K",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "stages survived serve as confidence score",
+    "D": "N",
+    "L": 1
+   },
+   {
+    "slot": "raise K where stakes are high",
+    "D": "Y",
+    "L": 1
+   }
+  ],
+  "carried": 0.92,
+  "decoy": [
+   6,
+   3,
+   3,
+   6
+  ],
+  "spec": 2.0
+ },
+ "g1_gap#1": {
+  "slots": [
+   {
+    "slot": "apply many small edits to raw input",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "record edit-induced changes in frozen predictor output",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "cluster edits by effect signature into variables",
+    "D": "N",
+    "L": 3
+   },
+   {
+    "slot": "non-additive second-order effects create typed links",
+    "D": "N",
+    "L": 2
+   },
+   {
+    "slot": "edit library and clusters stored, refit on new inputs",
+    "D": "N",
+    "L": 1
+   }
+  ],
+  "carried": 1.0,
+  "decoy": [
+   7,
+   4,
+   4,
+   3
+  ],
+  "spec": 3.33
+ }
+}
