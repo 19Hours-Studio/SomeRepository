@@ -1,0 +1,7 @@
+{QUESTION}
+Propose {N} fundamentally new answers. Obvious answers to this question were expanded into concrete build plans; these are the RECURRING GAPS where they stall or hand-wave:
+{GAPS}
+Each answer must close one named gap with a concrete mechanism that the obvious answers lack, and say which gap it closes inside its MECHANISM.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}

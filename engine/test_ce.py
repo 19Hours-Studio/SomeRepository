@@ -43,6 +43,34 @@ def main():
         for t in ["plain", "neg", "core", "reframe", "mech", "loop"]:
             s = open(ce("prompt", RUN, t, "t_" + t).strip()).read(); assert "{" not in s and "=== IDEAS ===" in s, t
         ce("remember", RUN); assert "| engine |" in ce("report", RUN)
+        # --- v2: fork, gapwalk, gap-техника, strip, audit, select --v2, import
+        RUN2 = RUN + "_v2"; rd2 = os.path.join(HERE, "runs", RUN2)
+        try:
+            ce("fork", RUN, RUN2)
+            assert all(b["source"] != "visited" for b in json.load(open(os.path.join(rd2, "basins.json"))))
+            p = os.path.join(tmp, "gw"); open(p, "w").write("GAP | G1 | plans never say how X is measured | M01,M02\nGAP | G2 | cost of Y explodes | M03\n")
+            ce("set", RUN2, "s00", "--prefix", "M")
+            assert "gaps: 2" in ce("gapwalk", RUN2, "s00", "--file", p)
+            g = open(ce("prompt", RUN2, "gap", "g1_gap").strip()).read(); assert "G1: plans never say" in g and "{" not in g
+            ce("set", RUN2, "s01", "--prefix", "A"); k2 = json.load(open(os.path.join(rd2, "sets", "s01", "key.json")))
+            p = os.path.join(tmp, "st"); open(p, "w").write("\n".join(f"STRIP | {k} | flat text {k}" for k in list(k2)[:-1]))
+            out = ce("strip", RUN2, "s01", "--file", p); assert "WARNING" in out and "prompt_judge_stripped" in out
+            pj = open(os.path.join(rd2, "sets", "s01", "prompt_judge_stripped.txt")).read(); assert "blind_stripped.txt" in pj
+            for j in "AB":
+                q = os.path.join(tmp, "j2" + j); open(q, "w").write("SCORES\n" + "\n".join(f"{k} | 5 | 5 | 5 | N | NEW | w" for k in k2))
+                ce("judge", RUN2, "s01", j, "--file", q)
+            ks = list(k2); p = os.path.join(tmp, "au")
+            open(p, "w").write(f"SLOT | {ks[0]} | part a | N | 3\nSLOT | {ks[0]} | part b | Y | 1\nDECOY | {ks[0]} | 7 | 3 | 4 | 2\n"
+                               f"SLOT | {ks[1]} | part c | Y | 3\nDECOY | {ks[1]} | 5 | 6 | 6 | 6\n")
+            assert "audit: 2 ideas" in ce("audit", RUN2, "s01", "--file", p)
+            au = json.load(open(os.path.join(rd2, "audit.json"))); assert au[k2[ks[0]]]["carried"] == 0.75 and au[k2[ks[1]]]["spec"] < 0
+            out = ce("select", RUN2, "v2sel", "--k", "6", "--v2")
+            assert k2[ks[0]] in out and k2[ks[1]] not in out  # отрицательная специфичность отсеяна
+            ce("ingest", RUN2, "g1_x", "--arm", "engine", "--gen", "1", "--file", os.path.join(RAW, "r4/EVO1.md"))
+            assert "imported 3 ideas" in ce("import", RUN, RUN2, "--arm", "v2x")
+            assert any(i["id"].startswith("v2x:") for i in json.load(open(os.path.join(rd, "ideas.json"))))
+        finally:
+            shutil.rmtree(rd2, ignore_errors=True)
         print("OK: all engine commands passed")
     finally:
         shutil.rmtree(rd, ignore_errors=True); shutil.rmtree(tmp, ignore_errors=True)

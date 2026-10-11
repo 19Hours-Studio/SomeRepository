@@ -15,6 +15,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "mutation testing; honeypot judge calibration"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "mutation testing, judge perturbation audits"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "mutation testing of evaluator LLMs"
   }
  },
  "g1_mech#1": {
@@ -33,6 +49,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "failure-mode walkthrough; TRIZ contradiction finding"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "plan simulation, failure-driven ideation"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "simulated failure-mode analysis"
   }
  },
  "g1_mech#2": {
@@ -51,6 +83,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "MDL / conditional compression novelty"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "conditional compressibility, MDL novelty"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "conditional Kolmogorov complexity, MDL"
   }
  },
  "g1_reframe#2": {
@@ -69,6 +117,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "futures wheel scenario planning"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "futures wheel, scenario planning"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "futures wheel, scenario planning"
   }
  },
  "g1_loop#1": {
@@ -87,6 +151,22 @@
    "R": "N",
    "B": "LEDGER",
    "closest": "patent claim-element novelty analysis"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "atypical-combination novelty metrics (Uzzi)"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "frequent itemset mining, tabu lists"
   }
  },
  "g1_reframe#3": {
@@ -105,6 +185,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "random-stimulus ideation; technology-push inventory"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "solutions-seeking-problems, garbage-can model"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "technology-push, solutions seeking problems"
   }
  },
  "g1_loop#2": {
@@ -123,6 +219,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "mutation testing of evaluators"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "mutation testing for judges"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "perturbation tests for LLM judges"
   }
  },
  "g1_loop#3": {
@@ -141,6 +253,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Chao1 species-richness coverage estimation"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Chao1 / Good-Turing richness estimation"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Chao1 / Good-Turing species estimation"
   }
  },
  "g1_core#3": {
@@ -159,6 +287,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "retrosynthesis / backward goal regression"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "retrosynthesis, HTN backward chaining"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "retrosynthesis, means-ends backward chaining"
   }
  },
  "g1_neg#2": {
@@ -177,6 +321,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "gap analysis via plan elaboration"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "plan elaboration, gap analysis"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "underspecification and gap analysis"
   }
  },
  "g1_neg#1": {
@@ -195,6 +355,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "problem reformulation; step-back prompting"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "problem reformulation, step-back prompting"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "problem reformulation heuristics, TRIZ"
   }
  },
  "g1_neg#3": {
@@ -213,6 +389,22 @@
    "R": "Y",
    "B": "QDMAP",
    "closest": "Zwicky morphological box; descriptor-conditioned MAP-Elites"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Zwicky morphological analysis"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Zwicky morphological analysis"
   }
  },
  "g1_reframe#1": {
@@ -231,6 +423,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Polya/TRIZ problem reformulation operators"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "problem reformulation, TRIZ/SCAMPER"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "problem reformulation, TRIZ inversion"
   }
  },
  "g1_core#1": {
@@ -249,6 +457,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "ablation attribution; constrained mutation"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ablation, sensitivity analysis"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ablation sensitivity analysis"
   }
  },
  "g1_mech#3": {
@@ -267,6 +491,328 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Amazon working-backwards; backcasting"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Amazon PR-FAQ, backcasting"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "working-backwards press release, abduction"
+  }
+ },
+ "map_2#2": {
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "KILLTEST",
+   "closest": "executable verification, AI-Scientist-style checks"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "KILLTEST",
+   "closest": "design-by-contract, property-based testing"
+  }
+ },
+ "g2_imm#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "LLM-judge style bias, paraphrase robustness"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "style-controlled LLM-judge evaluation"
+  }
+ },
+ "map_3#2": {
+  "s99:F1": {
+   "O": 3,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "PROBANCH",
+   "closest": "evidence-grounded problem framing, RAG ideation"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "PROBANCH",
+   "closest": "evidence-grounded RAG problem framing"
+  }
+ },
+ "g2_imm#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "negative controls, contrastive specificity"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "contrastive specificity, TF-IDF analog"
+  }
+ },
+ "g2_evo2#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "backcasting plus plan simulation"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "failure-driven chained simulation"
+  }
+ },
+ "map_1#2": {
+  "s99:F1": {
+   "O": 3,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "KILLTEST",
+   "closest": "pre-registration, red-team falsification"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "KILLTEST",
+   "closest": "red teaming, pre-registered falsification"
+  }
+ },
+ "g2_evo1#1": {
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "masked reconstruction, ensemble disagreement"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "masked reconstruction, self-consistency uncertainty"
+  }
+ },
+ "map_3#3": {
+  "s99:F1": {
+   "O": 2,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "LEDGER",
+   "closest": "novelty-search archive, LCB ranking"
+  },
+  "s99:F2": {
+   "O": 2,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "LEDGER",
+   "closest": "tabu search plus LCB ranking"
+  }
+ },
+ "map_2#3": {
+  "s99:F1": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "FORECAST",
+   "closest": "novelty search, bandit selection"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "FORECAST",
+   "closest": "surprise-based novelty, bandit tuning"
+  }
+ },
+ "map_1#3": {
+  "s99:F1": {
+   "O": 3,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "GRAFT",
+   "closest": "template-constrained recombination"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "GRAFT",
+   "closest": "constrained crossover, grafting operators"
+  }
+ },
+ "map_2#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "PROBANCH",
+   "closest": "needs-finding, problem-first ideation"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "PROBANCH",
+   "closest": "problem-first innovation, pain-point mining"
+  }
+ },
+ "g2_evo1#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ablation plus plan simulation"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ablation plus failure-mode simulation"
+  }
+ },
+ "map_1#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "FORECAST",
+   "closest": "novelty search, Thompson sampling"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "FORECAST",
+   "closest": "embedding novelty, Thompson sampling"
+  }
+ },
+ "g2_imm#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "adoption/uptake metrics, peer influence"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "downstream-utility evaluation, adoption metrics"
+  }
+ },
+ "g2_evo2#1": {
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ablation plus derivability sampling"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ablation plus derivability sampling"
+  }
+ },
+ "g2_evo1#3": {
+  "s99:F1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "contrastive explanation, backcasting"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "contrastive causal explanation"
+  }
+ },
+ "map_3#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 8,
+   "V": 7,
+   "R": "N",
+   "B": "KILLTEST",
+   "closest": "pre-registered tests, AI Scientist"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "KILLTEST",
+   "closest": "pre-registered falsification tests"
   }
  }
 }

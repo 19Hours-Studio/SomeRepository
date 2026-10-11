@@ -14,7 +14,7 @@ from collections import Counter, defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TPL = os.path.join(HERE, "templates")
-TECHS = ["plain", "neg", "core", "reframe", "mech", "loop", "evo"]
+TECHS = ["plain", "neg", "core", "reframe", "mech", "loop", "evo", "gap"]
 VERDICT_ORDER = {"KNOWN": 0, "PARTIAL": 1, "NO-CLOSE-MATCH": 2}
 
 
@@ -78,6 +78,9 @@ def fill(run, body, n, extra=None, sources=None):
     fmt = tpl("_format_" + cfg["format"]).replace("{N}", str(n))
     s = body.replace("{QUESTION}", cfg["question"]).replace("{FORMAT}", fmt).replace("{N}", str(n))
     s = s.replace("{BASINS}", basins_block(run, sources))
+    gaps = load(run, "gaps.json", [])
+    s = s.replace("{GAPS}", "\n".join(f"{g['code']}: {g['desc']}" for g in gaps) if gaps else "(no gaps recorded)")
+    s = s.replace("{PLAINFILE}", path(run, "sets", "s00", "blind.txt"))
     for k, v in (extra or {}).items(): s = s.replace("{" + k + "}", v)
     return s
 
@@ -127,7 +130,7 @@ def cmd_set(a):
             sid = f"{a.prefix}{j:02d}"; key[sid] = i["id"]
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
-    for kind in ("judge", "family", "lit"):
+    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         open(os.path.join(d, f"prompt_{kind}.txt"), "w").write(s)
     print(f"set {a.set}: {len(items)} items -> {d}/blind.txt (+ prompt_judge/family/lit.txt)")
@@ -178,6 +181,11 @@ def cmd_select(a):
         if not g: continue
         known_basin = all(b != "NEW" for b in g["basins"]) and len(set(g["basins"])) == 1
         if g["R_all"] or (a.drop_known_basins and known_basin) or lit.get(i["id"], {}).get("verdict") == "KNOWN": continue
+        if a.v2:
+            au = load(a.run, "audit.json", {}).get(i["id"])
+            if not au: continue
+            if au["spec"] is not None and au["spec"] <= 0: continue  # «подходит к любому вопросу» — отсев
+            pool.append((g["OV"] * (0.5 + 0.5 * au["carried"]), i["id"], g)); continue
         pool.append((g["OV"], i["id"], g))
     pool.sort(key=lambda t: -t[0]); top = pool[:a.k]
     save(a.run, f"survivors_{a.name}.json", [t[1] for t in top])
@@ -238,6 +246,65 @@ def cmd_remember(a):
                                    "source": "visited", "members": [i["id"]]})
     save(a.run, "basins.json", basins); print(f"remembered {k} visited families (total {len(basins)})")
 
+def cmd_fork(a):
+    """Новый прогон с общей картой аттракторов (gen0, наблюдённые/предсказанные бассейны, s00): плечи A/B не загрязняют друг друга."""
+    import shutil
+    os.makedirs(path(a.dst, "prompts"), exist_ok=True); os.makedirs(path(a.dst, "outputs"), exist_ok=True)
+    save(a.dst, "config.json", load(a.src, "config.json", {}))
+    save(a.dst, "ideas.json", [i for i in load(a.src, "ideas.json", []) if i["gen"] == 0])
+    save(a.dst, "basins.json", [b for b in load(a.src, "basins.json", []) if b.get("source") in ("observed", "predicted")])
+    for f, v in [("scores.json", {}), ("lit.json", {})]: save(a.dst, f, v)
+    if os.path.exists(path(a.src, "gaps.json")): shutil.copy(path(a.src, "gaps.json"), path(a.dst, "gaps.json"))
+    if os.path.isdir(path(a.src, "sets", "s00")):
+        shutil.copytree(path(a.src, "sets", "s00"), path(a.dst, "sets", "s00"), dirs_exist_ok=True)
+        for f in os.listdir(path(a.dst, "sets", "s00")):  # пути в промптах — на новый прогон
+            fp = path(a.dst, "sets", "s00", f)
+            if f.startswith("prompt_"): open(fp, "w").write(open(fp).read().replace(rdir(a.src) + "/", rdir(a.dst) + "/"))
+    os.makedirs(path(a.dst, "sets"), exist_ok=True)
+    print(f"forked {a.src} -> {a.dst}")
+
+def cmd_import(a):
+    """Импорт идей gen>=1 из другого прогона под меткой плеча (id получают префикс плеча)."""
+    ideas = [i for i in load(a.dst, "ideas.json", []) if not i["id"].startswith(a.arm + ":")]
+    n = 0
+    for i in load(a.src, "ideas.json", []):
+        if i["gen"] >= 1:
+            ideas.append({**i, "id": f"{a.arm}:{i['id']}", "label": f"{a.arm}:{i['label']}", "arm": a.arm}); n += 1
+    save(a.dst, "ideas.json", ideas); print(f"imported {n} ideas from {a.src} as arm {a.arm}")
+
+def cmd_gapwalk(a):
+    text = read_source(a); open(path(a.run, "sets", a.set, "gapwalk.md"), "w").write(text)
+    gaps = [{"code": c, "desc": d.strip(), "where": w.strip()} for c, d, w in re.findall(r"^GAP \| (G\d+) \| (.+?) \| (.+)$", text, re.M)]
+    save(a.run, "gaps.json", gaps); print(f"gaps: {len(gaps)}")
+    if not gaps: print("WARNING: no GAP lines parsed")
+
+def cmd_strip(a):
+    """Очищенные от риторики версии -> blind_stripped.txt с теми же ID + prompt_judge_stripped.txt."""
+    text = read_source(a); d = path(a.run, "sets", a.set); key = setkey(a.run, a.set)
+    got = dict(re.findall(r"^STRIP \| ([A-Z]+\d\d) \| (.+)$", text, re.M))
+    missing = [k for k in key if k not in got]
+    if missing: print("WARNING: not stripped (original kept):", missing)
+    orig = dict(re.findall(r"^([A-Z]+\d\d)\n(MECHANISM: .+?\nVALUE: .+?)\n", open(os.path.join(d, "blind.txt")).read(), re.S))
+    with open(os.path.join(d, "blind_stripped.txt"), "w") as f:
+        for k in key: f.write(f"{k}\n" + (f"MECHANISM: {got[k]}\n\n" if k in got else orig.get(k, "") + "\n\n"))
+    open(os.path.join(d, "prompt_judge_stripped.txt"), "w").write(
+        open(os.path.join(d, "prompt_judge.txt")).read().replace(os.path.join(d, "blind.txt"), os.path.join(d, "blind_stripped.txt")))
+    print(f"stripped {len(got)}/{len(key)} -> {d}/prompt_judge_stripped.txt")
+
+def cmd_audit(a):
+    text = read_source(a); key = setkey(a.run, a.set); au = load(a.run, "audit.json", {})
+    open(path(a.run, "sets", a.set, "audit.md"), "w").write(text)
+    slots = defaultdict(list)
+    for sid, st, dd, ll in re.findall(r"^SLOT \| ([A-Z]+\d\d) \| (.+?) \| ([YN]) \| (\d)$", text, re.M):
+        if sid in key: slots[key[sid]].append({"slot": st.strip(), "D": dd, "L": int(ll)})
+    dec = {key[s]: tuple(map(int, v)) for s, *v in re.findall(r"^DECOY \| ([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| (\d+)$", text, re.M) if s in key}
+    for iid in set(slots) | set(dec):
+        L = slots.get(iid, []); tot = sum(x["L"] for x in L)
+        carried = sum(x["L"] for x in L if x["D"] == "N") / tot if tot else 0.0
+        v = dec.get(iid); spec = (v[0] - sum(v[1:]) / 3) if v else None
+        au[iid] = {"slots": L, "carried": round(carried, 2), "decoy": v, "spec": None if spec is None else round(spec, 2)}
+    save(a.run, "audit.json", au); print(f"audit: {len(au)} ideas ({len(slots)} with slots, {len(dec)} with decoys)")
+
 def cmd_report(a):
     arms = defaultdict(list)
     for i in load(a.run, "ideas.json", []):
@@ -276,12 +343,17 @@ def main():
     x = sp.add_parser("judge"); x.add_argument("run"); x.add_argument("set"); x.add_argument("judge"); src(x)
     x = sp.add_parser("select"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--labels"); x.add_argument("--arms")
     x.add_argument("--k", type=int, default=6); x.add_argument("--drop-known-basins", action="store_true")
+    x.add_argument("--v2", action="store_true", help="score = O*V*(0.5+0.5*carried); drop ideas with decoy specificity <= 0 (needs audit)")
     x = sp.add_parser("lit"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("pairs"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--n", type=int, default=6)
     x = sp.add_parser("remember"); x.add_argument("run"); x.add_argument("--labels"); x.add_argument("--arms")
     x = sp.add_parser("report"); x.add_argument("run"); x.add_argument("--top", type=int, default=10)
+    x = sp.add_parser("fork"); x.add_argument("src"); x.add_argument("dst")
+    x = sp.add_parser("import"); x.add_argument("dst"); x.add_argument("src"); x.add_argument("--arm", required=True)
+    for name in ("gapwalk", "strip", "audit"):
+        x = sp.add_parser(name); x.add_argument("run"); x.add_argument("set"); src(x)
     a = p.parse_args()
-    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit"):
+    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit"):
         sys.exit("need --transcript or --file")
     globals()["cmd_" + a.cmd](a)
 
