@@ -1,0 +1,32 @@
+K01
+MECHANISM: One model answers each question at a shallow and at a deep compute budget. Each run also predicts the distribution of answers the other run will give. An answer is credited when it is more common than the cross-predictions expected, and deep chains are rewarded when they correctly predict the shallow answers while the shallow runs fail to predict them. This Bayesian-Truth-Serum score is the reward for revising weights. The system stores per-domain asymmetry statistics and stops training wherever the asymmetry disappears.
+VALUE: It gives a correctness reward without an oracle, based on an information asymmetry that the model cannot fake by agreeing with itself.
+
+K02
+MECHANISM: Before every retrieval, calculator call, database query or sensor read made during ordinary work, the system hash-commits a probability distribution over the result. The returned value settles the wager immediately. Parametric weights are trained only on these settled log-scores, never on answers the system grades itself. Log-scores are also stored per topic and tool, giving a running, tamper-proof record of where its memory can be relied on.
+VALUE: Every action the system takes in the world becomes a correctness signal it cannot fake, so it gets millions of uncontaminated grades a day instead of waiting months for the future to arrive.
+
+K03
+MECHANISM: For each stored belief, the system runs a cheap twin forward pass with that belief masked out. Whenever a new raw observation arrives (a document token, sensor value, tool output or user reply), it records the difference in prediction error between the full pass and the masked pass. This running per-belief credit is the only quality signal. It sets how strongly each belief is weighted and how much new data may overwrite it. Beliefs with persistently negative credit are retracted, and sources whose added beliefs earn negative credit are down-weighted.
+VALUE: Every belief is graded continuously by the outside world's next data rather than by the model's own judgment, so learning can stay open-ended in domains with no labels.
+
+K04
+MECHANISM: Every stored belief keeps its provenance: sources, intermediate derivations and earlier model states. The system builds a genealogy tree in which beliefs that share rare, idiosyncratic errors are joined as descendants of a common ancestor. A claim counts as corroborated only when it appears in branches that the tree shows to be independent; support from copies of one ancestor counts once. When an ancestor node is found to be corrupt, the system retracts or down-weights the whole subtree it fed.
+VALUE: It can learn continually from a web of mutually copying sources without mistaking repetition for evidence.
+
+K05
+MECHANISM: In the background, the system copies verified source values (numbers, relations, entities) into its belief store and corrupts them by graded known amounts. It then measures what fraction of each corruption its next inferences pull back toward what neighbouring beliefs imply. This restoring-force slope is stored for each region of the belief store. A slope near zero marks the region as uncheckable. A real belief that deviates from its neighbour-implied value by more than the measured slope allows is flagged as a likely blunder and revised. Regions whose slope drops trigger targeted relearning, and the slope is measured again afterwards.
+VALUE: Without an oracle or self-grading, the system can tell which of its beliefs are actually held in check by other knowledge, and can find specific errors there using only errors it planted with known size.
+
+K06
+MECHANISM: The system logs its surprise (log-loss) on every incoming datum, tagged by source and knowledge region. It continuously regresses each region's later surprise on earlier surprises from each source. A positive lagged correlation means that source was under-weighted; a negative one, where the model was misled and corrected later, means it was over-weighted. These coefficients directly set the per-source trust weights and per-region learning rates, which are adjusted until the surprise sequences become unpredictable.
+VALUE: The system learns continuously from untrusted streams and calibrates its own plasticity and each source's reliability from the stream alone, with no labels.
+
+K07
+MECHANISM: For each claim, the system makes two small weight edits: one that asserts the claim and one that asserts its negation. It then measures how well each edited model predicts a held-out stream of raw data (documents, logs, sensor records) that was not used for the edit. The difference in log-likelihood, compared against a null distribution from edits of random claims, is stored as the claim's support. Claims the world prefers are consolidated, and claims whose negation predicts better are retracted. Claims that sit inside the null band are labelled "uncontrolled by any data" rather than trusted.
+VALUE: Unlabeled raw data, not the model's opinion, decides whether each belief is right, wrong or unverifiable.
+
+K08
+MECHANISM: Two unrelated families of probes look for outputs that cannot all be true, for example contradictory answers to logically linked questions. Each such contradiction proves at least one error without anyone grading the answer. The overlap between the errors each family "captures" feeds a Chao estimator, corrected with a log-linear model across a third family, which estimates how many errors remain undetected in each domain. That estimate of unseen error decides where learning effort goes and when the system abstains.
+VALUE: It gives the system a quantitative estimate of its own undetected errors, letting it calibrate where to learn and when to abstain.
+

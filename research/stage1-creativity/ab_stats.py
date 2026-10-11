@@ -26,7 +26,9 @@ def stats(run, prior_prefix="PV"):
             row = {"id": iid, "O": m("O"), "C": m("C"), "V": m("V"), "OV": m("O") * m("V"),
                    "R": any(j["R"] == "Y" for j in js),
                    "prior": sum(str(j["B"]).startswith(prior_prefix) for j in js) / len(js),
-                   "name": ideas[iid]["name"]}
+                   "name": ideas[iid]["name"],
+                   "G": mean([j["G"] for j in js if "G" in j]) if any("G" in j for j in js) else float("nan"),
+                   "X": mean([j["X"] == "Y" for j in js if "X" in j]) if any("X" in j for j in js) else float("nan")}
             arm = ideas[iid]["arm"]; by_arm[arm].append(row)
             by_tech[(arm, ideas[iid]["label"].split(":")[-1])].append(row)
         out[g] = (by_arm, by_tech)
@@ -40,19 +42,20 @@ def main():
     run = sys.argv[1]; pp = sys.argv[sys.argv.index("--prior-prefix") + 1] if "--prior-prefix" in sys.argv else "PV"
     for g, (by_arm, by_tech) in stats(run, pp).items():
         print(f"== {g}")
-        print(f"{'arm':10s} {'n':>3s} {'O':>5s} {'C':>5s} {'V':>5s} {'OxV':>6s} {'top3':>6s} {'R':>3s} {'prior%':>7s}")
+        print(f"{'arm':10s} {'n':>3s} {'O':>5s} {'C':>5s} {'V':>5s} {'OxV':>6s} {'top3':>6s} {'R':>3s} {'prior%':>7s} {'G':>5s} {'X%':>4s} {'OVG3':>6s}")
         for arm, rows in sorted(by_arm.items()):
             top = sorted((r["OV"] for r in rows), reverse=True)[:3]
             print(f"{arm:10s} {len(rows):3d} {mean([r['O'] for r in rows]):5.2f} {mean([r['C'] for r in rows]):5.2f} "
                   f"{mean([r['V'] for r in rows]):5.2f} {mean([r['OV'] for r in rows]):6.1f} {mean(top):6.1f} "
-                  f"{sum(r['R'] for r in rows):3d} {100 * mean([r['prior'] for r in rows]):6.0f}%")
-        print("-- by technique (arm:label  n  O  C  V  OxV  prior%)")
+                  f"{sum(r['R'] for r in rows):3d} {100 * mean([r['prior'] for r in rows]):6.0f}% {mean([r['G'] for r in rows]):5.2f} "
+                  f"{100 * mean([r['X'] for r in rows]):3.0f}% {mean(sorted((r['OV'] * r['G'] for r in rows), reverse=True)[:3]):6.1f}")
+        print("-- by technique (arm:label  n  O  C  V  OxV  prior%  G)")
         for (arm, lab), rows in sorted(by_tech.items(), key=lambda kv: -mean([r["OV"] for r in kv[1]])):
             print(f"   {arm + ':' + lab:24s} {len(rows)} {mean([r['O'] for r in rows]):5.2f} {mean([r['C'] for r in rows]):5.2f} "
-                  f"{mean([r['V'] for r in rows]):5.2f} {mean([r['OV'] for r in rows]):6.1f} {100 * mean([r['prior'] for r in rows]):5.0f}%")
+                  f"{mean([r['V'] for r in rows]):5.2f} {mean([r['OV'] for r in rows]):6.1f} {100 * mean([r['prior'] for r in rows]):5.0f}% {mean([r['G'] for r in rows]):5.2f}")
         print("-- top 6")
         allr = sorted((r for rows in by_arm.values() for r in rows), key=lambda r: -r["OV"])[:6]
-        for r in allr: print(f"   {r['OV']:5.1f} O{r['O']:.1f} V{r['V']:.1f} {r['id']:24s} {r['name']}")
+        for r in allr: print(f"   {r['OV']:5.1f} O{r['O']:.1f} V{r['V']:.1f} G{r['G']:.1f} {r['id']:24s} {r['name']}")
 
 
 if __name__ == "__main__":

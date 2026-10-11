@@ -214,5 +214,85 @@
   "name": "Teachability-Graded Claims",
   "mech": "Each claim or explanation the system produces is given to a small, freshly initialized student model. The claim is scored by how much it improves the student's prediction of held-out raw observations from the domain, compared with a student that did not receive it. The system stores these gains per claim and trains itself toward claims with high gains, while claims with no gain are demoted.",
   "value": "It grounds correctness in abundant unlabeled data, which exists everywhere, instead of in the system's own fallible judgment."
+ },
+ {
+  "id": "g2_evo1#1",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Claim-Versus-Negation Edit Contrast",
+  "mech": "For each claim, the system makes two small weight edits: one that asserts the claim and one that asserts its negation. It then measures how well each edited model predicts a held-out stream of raw data (documents, logs, sensor records) that was not used for the edit. The difference in log-likelihood, compared against a null distribution from edits of random claims, is stored as the claim's support. Claims the world prefers are consolidated, and claims whose negation predicts better are retracted. Claims that sit inside the null band are labelled \"uncontrolled by any data\" rather than trusted. First test: Apply ROME assert/negate edits to GPT-2 XL for 300 CounterFact claims and score held-out Wikipedia paragraphs about each subject against a random-claim null; success means the sign matches truth for more than 75% of claims, and null-band claims are mostly those whose subjects lack held-out text.",
+  "value": "Unlabeled raw data, not the model's opinion, decides whether each belief is right, wrong or unverifiable.",
+  "mech_orig": "For each claim, the system makes two small weight edits: one that asserts the claim and one that asserts its negation. It then measures how well each edited model predicts a held-out stream of raw data (documents, logs, sensor records) that was not used for the edit. The difference in log-likelihood, compared against a null distribution from edits of random claims, is stored as the claim's support. Claims the world prefers are consolidated, and claims whose negation predicts better are retracted. Claims that sit inside the null band are labelled \"uncontrolled by any data\" rather than trusted."
+ },
+ {
+  "id": "g2_evo1#2",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Predictable-Surprise Gain Correction",
+  "mech": "The system logs its surprise (log-loss) on every incoming datum, tagged by source and knowledge region. It continuously regresses each region's later surprise on earlier surprises from each source. A positive lagged correlation means that source was under-weighted; a negative one, where the model was misled and corrected later, means it was over-weighted. These coefficients directly set the per-source trust weights and per-region learning rates, which are adjusted until the surprise sequences become unpredictable. First test: Train an online small LM on a synthetic multi-source stream with known per-source noise and bias, then apply lagged surprise-regression trust; success means learned trust weights rank true source reliability (Spearman > 0.8) and final held-out loss beats uniform weighting.",
+  "value": "The system learns continuously from untrusted streams and calibrates its own plasticity and each source's reliability from the stream alone, with no labels.",
+  "mech_orig": "The system logs its surprise (log-loss) on every incoming datum, tagged by source and knowledge region. It continuously regresses each region's later surprise on earlier surprises from each source. A positive lagged correlation means that source was under-weighted; a negative one, where the model was misled and corrected later, means it was over-weighted. These coefficients directly set the per-source trust weights and per-region learning rates, which are adjusted until the surprise sequences become unpredictable."
+ },
+ {
+  "id": "g2_evo1#3",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Sealed Pre-Lookup Wagers",
+  "mech": "Before every retrieval, calculator call, database query or sensor read made during ordinary work, the system hash-commits a probability distribution over the result. The returned value settles the wager immediately. Parametric weights are trained only on these settled log-scores, never on answers the system grades itself. Log-scores are also stored per topic and tool, giving a running, tamper-proof record of where its memory can be relied on. First test: Have Llama-3-8B commit distributions before 50k logged calculator and Wikidata lookups, then fine-tune on the settled log-scores; success means held-out tool-result log-loss drops at least 10% versus a self-graded fine-tune, and per-topic log-scores predict closed-book accuracy (Spearman > 0.6).",
+  "value": "Every action the system takes in the world becomes a correctness signal it cannot fake, so it gets millions of uncontaminated grades a day instead of waiting months for the future to arrive.",
+  "mech_orig": "Before every retrieval, calculator call, database query or sensor read made during ordinary work, the system hash-commits a probability distribution over the result. The returned value settles the wager immediately. Parametric weights are trained only on these settled log-scores, never on answers the system grades itself. Log-scores are also stored per topic and tool, giving a running, tamper-proof record of where its memory can be relied on."
+ },
+ {
+  "id": "g2_evo2#1",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Restoring-Force Belief Sounding",
+  "mech": "In the background, the system copies verified source values (numbers, relations, entities) into its belief store and corrupts them by graded known amounts. It then measures what fraction of each corruption its next inferences pull back toward what neighbouring beliefs imply. This restoring-force slope is stored for each region of the belief store. A slope near zero marks the region as uncheckable. A real belief that deviates from its neighbour-implied value by more than the measured slope allows is flagged as a likely blunder and revised. Regions whose slope drops trigger targeted relearning, and the slope is measured again afterwards. First test: Load Wikidata country statistics, which are linked by identities such as GDP/population, plant graded corruptions, and fit per-region restoring slopes; success means slope-thresholded flagging catches separately planted unknown blunders with precision > 0.8 in high-slope regions and near chance in low-slope regions.",
+  "value": "Without an oracle or self-grading, the system can tell which of its beliefs are actually held in check by other knowledge, and can find specific errors there using only errors it planted with known size.",
+  "mech_orig": "In the background, the system copies verified source values (numbers, relations, entities) into its belief store and corrupts them by graded known amounts. It then measures what fraction of each corruption its next inferences pull back toward what neighbouring beliefs imply. This restoring-force slope is stored for each region of the belief store. A slope near zero marks the region as uncheckable. A real belief that deviates from its neighbour-implied value by more than the measured slope allows is flagged as a likely blunder and revised. Regions whose slope drops trigger targeted relearning, and the slope is measured again afterwards."
+ },
+ {
+  "id": "g2_evo2#2",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Leave-Out Forecast Credit",
+  "mech": "For each stored belief, the system runs a cheap twin forward pass with that belief masked out. Whenever a new raw observation arrives (a document token, sensor value, tool output or user reply), it records the difference in prediction error between the full pass and the masked pass. This running per-belief credit is the only quality signal. It sets how strongly each belief is weighted and how much new data may overwrite it. Beliefs with persistently negative credit are retracted, and sources whose added beliefs earn negative credit are down-weighted. First test: Inject 1,000 CounterFact beliefs (half true, half false) as maskable prefixes into Pythia-1B and stream subsequent Wikipedia text; success means accumulated masked-vs-full prediction-error credit separates true from false beliefs with AUROC > 0.75.",
+  "value": "Every belief is graded continuously by the outside world's next data rather than by the model's own judgment, so learning can stay open-ended in domains with no labels.",
+  "mech_orig": "For each stored belief, the system runs a cheap twin forward pass with that belief masked out. Whenever a new raw observation arrives (a document token, sensor value, tool output or user reply), it records the difference in prediction error between the full pass and the masked pass. This running per-belief credit is the only quality signal. It sets how strongly each belief is weighted and how much new data may overwrite it. Beliefs with persistently negative credit are retracted, and sources whose added beliefs earn negative credit are down-weighted."
+ },
+ {
+  "id": "g2_imm#1",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Depth-Asymmetry Truth Serum",
+  "mech": "One model answers each question at a shallow and at a deep compute budget. Each run also predicts the distribution of answers the other run will give. An answer is credited when it is more common than the cross-predictions expected, and deep chains are rewarded when they correctly predict the shallow answers while the shallow runs fail to predict them. This Bayesian-Truth-Serum score is the reward for revising weights. The system stores per-domain asymmetry statistics and stops training wherever the asymmetry disappears. First test: Run Qwen2.5-7B on 1,000 MATH problems at 64- and 1024-token budgets, with cross-predicted answer distributions, and no training; success means the BTS score's AUROC for ground-truth correctness beats self-consistency majority-vote confidence by at least 0.05.",
+  "value": "It gives a correctness reward without an oracle, based on an information asymmetry that the model cannot fake by agreeing with itself.",
+  "mech_orig": "One model answers each question at a shallow and at a deep compute budget. Each run also predicts the distribution of answers the other run will give. An answer is credited when it is more common than the cross-predictions expected, and deep chains are rewarded when they correctly predict the shallow answers while the shallow runs fail to predict them. This Bayesian-Truth-Serum score is the reward for revising weights. The system stores per-domain asymmetry statistics and stops training wherever the asymmetry disappears."
+ },
+ {
+  "id": "g2_imm#2",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Stemmatic Error Genealogy",
+  "mech": "Every stored belief keeps its provenance: sources, intermediate derivations and earlier model states. The system builds a genealogy tree in which beliefs that share rare, idiosyncratic errors are joined as descendants of a common ancestor. A claim counts as corroborated only when it appears in branches that the tree shows to be independent; support from copies of one ancestor counts once. When an ancestor node is found to be corrupt, the system retracts or down-weights the whole subtree it fed. First test: On the Dong et al. truth-discovery datasets (Stock and Flight, which have known copier relations), build error-sharing genealogies and count only independent branches; success means truth-selection accuracy beats naive voting by at least 10 points and matches or beats ACCU/copy-aware baselines.",
+  "value": "It can learn continually from a web of mutually copying sources without mistaking repetition for evidence.",
+  "mech_orig": "Every stored belief keeps its provenance: sources, intermediate derivations and earlier model states. The system builds a genealogy tree in which beliefs that share rare, idiosyncratic errors are joined as descendants of a common ancestor. A claim counts as corroborated only when it appears in branches that the tree shows to be independent; support from copies of one ancestor counts once. When an ancestor node is found to be corrupt, the system retracts or down-weights the whole subtree it fed."
+ },
+ {
+  "id": "g2_imm#3",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Recapture Census of Errors",
+  "mech": "Two unrelated families of probes look for outputs that cannot all be true, for example contradictory answers to logically linked questions. Each such contradiction proves at least one error without anyone grading the answer. The overlap between the errors each family \"captures\" feeds a Chao estimator, corrected with a log-linear model across a third family, which estimates how many errors remain undetected in each domain. That estimate of unseen error decides where learning effort goes and when the system abstains. First test: Run paraphrase-consistency and negation-consistency probe families (plus an entailment third family) on Llama-3-8B over labeled TriviaQA/BoolQ domains; success means Chao-estimated total errors per domain come within 20% of label-counted errors and rank domains with Spearman > 0.7.",
+  "value": "It gives the system a quantitative estimate of its own undetected errors, letting it calibrate where to learn and when to abstain.",
+  "mech_orig": "Two unrelated families of probes look for outputs that cannot all be true, for example contradictory answers to logically linked questions. Each such contradiction proves at least one error without anyone grading the answer. The overlap between the errors each family \"captures\" feeds a Chao estimator, corrected with a log-linear model across a third family, which estimates how many errors remain undetected in each domain. That estimate of unseen error decides where learning effort goes and when the system abstains."
  }
 ]
