@@ -25,29 +25,30 @@ E. self-testing, retractable beliefs; editable knowledge
 F. fast weights / adapters / plasticity as memory
 G. graph of intermediate results with local verification and repair"""
 WEAKNESS_BAN = """Do NOT justify any idea by fixing a known weakness of current AI (catastrophic forgetting, interpretability/auditability, editability, context length/cost, verification/guarantees, efficiency, sample efficiency). Instead, the DIFFERENCE line must name a genuinely new capability or behaviour that nobody is currently asking AI for."""
-P = {}
-P["MAP"] = TASK + "\n" + ATTRACTOR_MAP + "\n" + FORMAT
-fields = rng.sample(MSC, 3)
-P["MSC"] = TASK + "\nEach idea's core computational primitive (its state, its update rule and its learning signal) must come from the mathematical/scientific field drawn at random for it - not as a metaphor, as the actual mechanism.\n" + \
-  "\n".join(f"Idea {i+1} field: MSC {f}" for i, f in enumerate(fields)) + "\n" + FORMAT
-locks = [words(8) for _ in range(3)]
-P["LOCK"] = TASK + "\nHard, machine-checked constraint: the MECHANISM text of idea i must contain ALL 8 locked words of LOCK i, exactly as written, in the given order (fill the gaps between them with your own words). The locked words were drawn at random from unrelated files. A script will reject ideas that violate this, and the idea must still be a coherent, buildable architecture, with the locked words doing real work in it.\n" + \
-  "\n".join(f"LOCK {i+1}: {l}" for i, l in enumerate(locks)) + "\n" + FORMAT
-P["REFRAME"] = TASK + "\n" + WEAKNESS_BAN + "\n" + FORMAT
-f2 = rng.sample([f for f in MSC if f not in fields], 3)
-P["STACK"] = TASK + """
-Pipeline you must follow:
-1. Write one sentence naming the paradigm all mainstream AI shares, then forbid that whole paradigm (not a list of methods - the paradigm).
-2. """ + ATTRACTOR_MAP.replace("\n", "\n   ") + """
-3. Each idea's core primitive must come from its randomly drawn field (as the actual mechanism, not as a metaphor):
-""" + "\n".join(f"   Idea {i+1} field: MSC {f}" for i, f in enumerate(f2)) + """
-4. Describe the mechanism in plain quantities, flows, update rules and driving signals; no ML buzzwords; name it last.
-5. """ + WEAKNESS_BAN + "\n" + FORMAT
-P["SELFPRED"] = """A model like you (a Claude model) was asked the following prompt twice, in two independent sessions:
----
-""" + TASK + """
----
-Predict, for EACH of the two runs, the 3 core mechanisms it most likely produced (one line each). Then estimate how many of the 3 ideas the two runs share in substance. Be specific about mechanisms, not just field names. Do not use tools. Under 200 words."""
-for k, v in P.items(): open(f"prompts/r2/{k}.txt", "w").write(v)
-json.dump({"MSC": fields, "STACK_MSC": f2, "LOCK": locks}, open("prompts/r2/draws.json", "w"), indent=1)
-print(json.dumps({"MSC": fields, "STACK_MSC": f2, "LOCK": locks}, indent=1))
+if __name__ == "__main__":
+    P = {}
+    P["MAP"] = TASK + "\n" + ATTRACTOR_MAP + "\n" + FORMAT
+    fields = rng.sample(MSC, 3)
+    P["MSC"] = TASK + "\nEach idea's core computational primitive (its state, its update rule and its learning signal) must come from the mathematical/scientific field drawn at random for it - not as a metaphor, as the actual mechanism.\n" + \
+      "\n".join(f"Idea {i+1} field: MSC {f}" for i, f in enumerate(fields)) + "\n" + FORMAT
+    locks = [words(8) for _ in range(3)]
+    P["LOCK"] = TASK + "\nHard, machine-checked constraint: the MECHANISM text of idea i must contain ALL 8 locked words of LOCK i, exactly as written, in the given order (fill the gaps between them with your own words). The locked words were drawn at random from unrelated files. A script will reject ideas that violate this, and the idea must still be a coherent, buildable architecture, with the locked words doing real work in it.\n" + \
+      "\n".join(f"LOCK {i+1}: {l}" for i, l in enumerate(locks)) + "\n" + FORMAT
+    P["REFRAME"] = TASK + "\n" + WEAKNESS_BAN + "\n" + FORMAT
+    f2 = rng.sample([f for f in MSC if f not in fields], 3)
+    P["STACK"] = TASK + """
+    Pipeline you must follow:
+    1. Write one sentence naming the paradigm all mainstream AI shares, then forbid that whole paradigm (not a list of methods - the paradigm).
+    2. """ + ATTRACTOR_MAP.replace("\n", "\n   ") + """
+    3. Each idea's core primitive must come from its randomly drawn field (as the actual mechanism, not as a metaphor):
+    """ + "\n".join(f"   Idea {i+1} field: MSC {f}" for i, f in enumerate(f2)) + """
+    4. Describe the mechanism in plain quantities, flows, update rules and driving signals; no ML buzzwords; name it last.
+    5. """ + WEAKNESS_BAN + "\n" + FORMAT
+    P["SELFPRED"] = """A model like you (a Claude model) was asked the following prompt twice, in two independent sessions:
+    ---
+    """ + TASK + """
+    ---
+    Predict, for EACH of the two runs, the 3 core mechanisms it most likely produced (one line each). Then estimate how many of the 3 ideas the two runs share in substance. Be specific about mechanisms, not just field names. Do not use tools. Under 200 words."""
+    for k, v in P.items(): open(f"prompts/r2/{k}.txt", "w").write(v)
+    json.dump({"MSC": fields, "STACK_MSC": f2, "LOCK": locks}, open("prompts/r2/draws.json", "w"), indent=1)
+    print(json.dumps({"MSC": fields, "STACK_MSC": f2, "LOCK": locks}, indent=1))
