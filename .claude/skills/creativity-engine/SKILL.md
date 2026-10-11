@@ -23,6 +23,10 @@ Why each step exists: `engine/README.md` and `research/stage1-creativity/03-deep
 Generator / judge prompt files are produced by `ce.py`. Launch each with the Agent tool:
 > Your task is in the file `<prompt path>`. Read it with the Read tool - that single Read is the only tool call you may make (no other tools, no sessions, no files written). Then follow it exactly and reply with text only.
 
+Judge, family, concretize and breed prompts point to a second file (`blind.txt` of the set). For them, say so explicitly,
+otherwise the agent stops on the "single Read" rule:
+> Your task is in the file `<prompt path>`. Read it with the Read tool, then read the file of anonymous answers it points to (`<set dir>/blind.txt`). Those two Reads are the only tool calls you may make (no other tools, no sessions, no files written). Then follow the task exactly and reply with text only.
+
 Literature checks use `subagent_type: general-purpose` (they need WebSearch) with the set's `prompt_lit.txt`.
 After an agent finishes, ingest from its transcript: `--transcript <output_file from the Agent launch result>`.
 Launch independent agents in one message; never read transcripts into your own context.
