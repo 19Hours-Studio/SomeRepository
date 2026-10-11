@@ -10,6 +10,8 @@ for line in open(path):
         parts = msg.get("content")
         if isinstance(parts, list):
             t = "".join(p.get("text", "") for p in parts if isinstance(p, dict) and p.get("type") == "text")
+            t += "".join((p.get("input") or {}).get("message", "") for p in parts
+                         if isinstance(p, dict) and p.get("type") == "tool_use" and p.get("name") == "SubagentHandback")
             if t.strip(): last = t
 open(f"raw/{cond}.md", "w").write(last)
 print(cond, len(last.split()), "words")
