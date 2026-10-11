@@ -1,0 +1,10 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Hard constraint: you may NOT use any named concept, method or buzzword from ML/neuroscience (no 'attention', 'transformer', 'memory network', 'neuro-symbolic', 'world model', 'hierarchical', 'brain-inspired', 'meta-learning', 'experts', 'graph', 'spiking', 'energy', 'quantum', etc.). Describe each idea ONLY in terms of: what quantities exist, how they flow, what update rule changes them, and what signal drives the update. Think in plain mechanics first; give the NAME last, after the mechanism is fixed.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.

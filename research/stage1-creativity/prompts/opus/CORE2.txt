@@ -1,0 +1,25 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Follow this pipeline:
+1. GOALS FROM THE CENTER: pick 3 problems that genuinely matter for more capable intelligence. Well-known, important problems are expected here - do not try to be original about the goal; just pick what you honestly believe matters most.
+2. PARADIGM NEGATION: write one sentence naming the paradigm all mainstream AI shares. Forbid it as the MECHANISM (it stays allowed as a goal).
+3. KNOWN ESCAPES ARE ALSO FORBIDDEN as mechanisms:
+   Empirically, models like you converge on these idea families (forbidden, including re-skins and recombinations):
+   A. population of hypotheses/world models + choosing experiments by information gain (active causal inference)
+   B. library of verified executable programs / MDL program induction / rewrite rules
+   C. fast episodic store + slow offline consolidation into weights
+   D. market/coalition of specialist modules that bid, split and get pruned
+   E. self-testing, retractable beliefs; editable knowledge
+   F. fast weights / adapters / plasticity as memory
+   G. graph of intermediate results with local verification and repair
+   H. second-layer alternatives: coupled oscillators/synchrony, cellular automata, reversible/invertible networks, wave/optical/physical computing, reservoir computing, replicator/market dynamics.
+4. MECHANISM FROM THE PERIPHERY: for each goal, find a field of mathematics or science far from ML that has ALREADY SOLVED an analogous problem in its own domain, and port its actual mechanism (state, update rule, driving signal) - not a metaphor.
+5. HONESTY CHECK: for each idea, name the closest existing ML work. If the idea is essentially that work, discard it and make another.
+Describe mechanisms in plain quantities, flows and update rules, without ML buzzwords; give the NAME last.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.
