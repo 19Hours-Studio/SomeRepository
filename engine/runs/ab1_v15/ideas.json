@@ -1,0 +1,83 @@
+[
+ {
+  "id": "map_1#1",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Experimenting Causal Program Library",
+  "mech": "The system keeps a growing library of small probabilistic programs, each encoding a candidate causal mechanism (e.g., \"pressure causes leak if seal is worn\"). When several programs explain the observations equally well, it computes which intervention (real action, simulator query or tool call) would best tell them apart, runs it, and reweights or deletes programs based on the result. New programs are synthesized by recombining fragments of programs that survived, so the library compresses over time.",
+  "value": "It can discover and reliably use real cause-and-effect structure, including in situations that never appeared in its data."
+ },
+ {
+  "id": "map_1#2",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Self-Revising Provenance Belief Ledger",
+  "mech": "Every assertion the system adopts becomes a node in a persistent graph that stores its source, confidence and the nodes it was derived from. On each inference step a constraint checker scans for contradictions. Conflicts are resolved by retracting the least-supported justification, and the retraction automatically propagates to all dependent conclusions (truth maintenance). Generation is restricted to drawing on the active ledger and has to cite node IDs.",
+  "value": "It enables lifelong learning without catastrophic forgetting, with traceable reasoning and instant correction of any fact and everything derived from it."
+ },
+ {
+  "id": "map_1#3",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Information-Priced Compute Market",
+  "mech": "Many heterogeneous modules (search, simulation, symbolic solvers, small neural nets) bid for slices of a shared compute budget. A bid is priced by the expected reduction in task uncertainty, and the payout is the realized reduction. Modules that bid well gain budget and get copied with mutations, while chronically bad bidders are retired. The architecture is therefore an evolving economy rather than a fixed graph.",
+  "value": "It makes possible adaptive, open-ended allocation of reasoning effort and self-directed architectural growth after deployment."
+ },
+ {
+  "id": "map_2#1",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Audited Sleep Consolidation",
+  "mech": "Surprising experiences go verbatim into a fast episodic buffer. During offline phases the system replays them to propose weight deltas inside a sandboxed copy of its slow network. Each delta is accepted only if a self-maintained regression suite of past skills shows no loss, and rejected deltas are stored as interference records that shape later proposals.",
+  "value": "It enables continual lifelong learning after deployment without catastrophic forgetting."
+ },
+ {
+  "id": "map_2#2",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Evolving Executable World Simulators",
+  "mech": "The system maintains a population of small probabilistic programs, each a candidate simulator of some part of the environment. Queries are answered by running or intervening on the best-scoring simulators. Prediction errors drive program-synthesis mutations, and simulators are selected by how well they compress observations and predict accurately.",
+  "value": "It gives explicit causal and counterfactual reasoning and lets the system discover new models that can be inspected."
+ },
+ {
+  "id": "map_2#3",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Verified Competence Cartography",
+  "mech": "An embedding-indexed map stores the system's ground-truth-verified error statistics for each region of problem space, updated whenever an outcome is checked. Before answering, the system looks up the query's region. It then answers, abstains, asks for information, or routes the region to the learning loop, depending on the measured reliability and the cost of being wrong.",
+  "value": "It gives reliable self-knowledge of where the system is competent, so it can abstain and direct its own learning based on its actual track record."
+ },
+ {
+  "id": "map_3#1",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Surprise-Gated Synaptic Patch Memory",
+  "mech": "When prediction error on an input crosses a learned threshold, the system writes a small key-value module next to the frozen core. The key is the context embedding and the value is a low-rank change to the core's weights. Those changes take effect only when a later context is similar to that key. During an offline phase, the system replays old episodes against the patches. It merges patches that do the same thing and deletes ones that conflict, using how often they agree as the score. Each patch keeps a count of how often it was used and how often it was confirmed, and patches that stop earning their place are removed.",
+  "value": "The system could learn permanently from a single experience without forgetting what it already knows or needing retraining."
+ },
+ {
+  "id": "map_3#2",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Falsifiable Causal World-Graph",
+  "mech": "Perception updates a running graph of objects, their attributes and typed causal links. Each link carries a probability and a count of how many times its predictions came true. Before each step the system simulates what it expects to observe, then compares that with what it actually observes. When they differ, it traces the error back through the graph to the links most to blame and revises them: it adds hidden variables, splits links or reverses their direction. It can also run interventions inside the graph to test competing explanations before acting.",
+  "value": "The system could know when its beliefs are wrong, reason about counterfactuals, and keep a consistent, inspectable model of the world over long periods."
+ },
+ {
+  "id": "map_3#3",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Verifier-Halted Constraint Relaxation",
+  "mech": "A query is turned into a set of variables, which are partial answers and sub-goals, plus constraints between them that are learned or extracted from the query. Local update rules pass messages between these units, and the system keeps iterating until either a symbolic checker or a learned checker confirms that every constraint is met, or the energy of the system stops falling. When progress stalls, the system adds intermediate variables, for example lemmas or sub-plans, and stores successful arrangements as reusable templates.",
+  "value": "The system could spend compute in proportion to how hard a problem is and solve multi-step problems it cannot solve in one pass, with a clear signal for when it has succeeded and when it has failed."
+ }
+]

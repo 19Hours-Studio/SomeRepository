@@ -76,6 +76,7 @@ def cmd_init(a):
 def fill(run, body, n, extra=None, sources=None):
     cfg = load(run, "config.json", {})
     fmt = tpl("_format_" + cfg["format"]).replace("{N}", str(n))
+    if cfg.get("thoughts"): fmt = tpl("_thoughts") + fmt
     s = body.replace("{QUESTION}", cfg["question"]).replace("{FORMAT}", fmt).replace("{N}", str(n))
     s = s.replace("{BASINS}", basins_block(run, sources))
     gaps = load(run, "gaps.json", [])
@@ -112,6 +113,10 @@ def cmd_ingest(a):
     for k, d in enumerate(new, 1):
         ideas.append({"id": f"{a.label}#{k}", "label": a.label, "arm": a.arm, "gen": a.gen, **d})
     save(a.run, "ideas.json", ideas); print(f"{a.label}: {len(new)} ideas ({len(text.split())} words)")
+    if "FIRST THOUGHTS" in text:
+        block = text.split("FIRST THOUGHTS", 1)[1].split("=== IDEAS ===", 1)[0]
+        th = load(a.run, "thoughts.json", {}); th[a.label] = [l.strip()[2:].strip() for l in block.splitlines() if l.strip().startswith("- ")]
+        save(a.run, "thoughts.json", th); print(f"  first thoughts: {len(th[a.label])}")
     if not new: print("WARNING: no ideas parsed — check outputs/" + a.label + ".md")
 
 def select_ids(run, labels=None, ids=None, arms=None):
@@ -130,7 +135,7 @@ def cmd_set(a):
             sid = f"{a.prefix}{j:02d}"; key[sid] = i["id"]
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
-    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit"):
+    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         open(os.path.join(d, f"prompt_{kind}.txt"), "w").write(s)
     print(f"set {a.set}: {len(items)} items -> {d}/blind.txt (+ prompt_judge/family/lit.txt)")
@@ -305,6 +310,30 @@ def cmd_audit(a):
         au[iid] = {"slots": L, "carried": round(carried, 2), "decoy": v, "spec": None if spec is None else round(spec, 2)}
     save(a.run, "audit.json", au); print(f"audit: {len(au)} ideas ({len(slots)} with slots, {len(dec)} with decoys)")
 
+def cmd_setcfg(a):
+    cfg = load(a.run, "config.json", {}); cfg[a.key] = json.loads(a.value) if a.value[:1] in "[{0123456789tf" else a.value
+    save(a.run, "config.json", cfg); print(a.key, "=", cfg[a.key])
+
+def cmd_thoughts(a):
+    """Самоотчёт о первых мыслях -> посещённые бассейны (source=self): следующее поколение отталкивается и от них."""
+    th = load(a.run, "thoughts.json", {}); basins = load(a.run, "basins.json", []); k = 0
+    have = {b["desc"] for b in basins}
+    for lab in (a.labels.split(",") if a.labels else th):
+        for t in th.get(lab, []):
+            if t not in have:
+                basins.append({"code": f"T{len(basins)+1:02d}", "desc": t[:200], "source": "self", "members": []}); have.add(t); k += 1
+    save(a.run, "basins.json", basins); print(f"self-reported first thoughts -> {k} basins (total {len(basins)})")
+
+def cmd_concretize(a):
+    """Добавляет «первый тест» к механизму идей набора (оригинал сохраняется в mech_orig)."""
+    text = read_source(a); key = setkey(a.run, a.set); open(path(a.run, "sets", a.set, "concretize.md"), "w").write(text)
+    got = {key[s]: t.strip() for s, t in re.findall(r"^TEST \| ([A-Z]+\d\d) \| (.+)$", text, re.M) if s in key}
+    ideas = load(a.run, "ideas.json", [])
+    for i in ideas:
+        if i["id"] in got:
+            i.setdefault("mech_orig", i["mech"]); i["mech"] = i["mech_orig"] + " " + got[i["id"]]
+    save(a.run, "ideas.json", ideas); print(f"concretized {len(got)}/{len(key)}")
+
 def cmd_report(a):
     arms = defaultdict(list)
     for i in load(a.run, "ideas.json", []):
@@ -350,10 +379,12 @@ def main():
     x = sp.add_parser("report"); x.add_argument("run"); x.add_argument("--top", type=int, default=10)
     x = sp.add_parser("fork"); x.add_argument("src"); x.add_argument("dst")
     x = sp.add_parser("import"); x.add_argument("dst"); x.add_argument("src"); x.add_argument("--arm", required=True)
-    for name in ("gapwalk", "strip", "audit"):
+    x = sp.add_parser("setcfg"); x.add_argument("run"); x.add_argument("key"); x.add_argument("value")
+    x = sp.add_parser("thoughts"); x.add_argument("run"); x.add_argument("--labels")
+    for name in ("gapwalk", "strip", "audit", "concretize"):
         x = sp.add_parser(name); x.add_argument("run"); x.add_argument("set"); src(x)
     a = p.parse_args()
-    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit"):
+    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize"):
         sys.exit("need --transcript or --file")
     globals()["cmd_" + a.cmd](a)
 

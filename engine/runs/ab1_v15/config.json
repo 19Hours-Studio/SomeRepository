@@ -1,0 +1,6 @@
+{
+ "question": "What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.",
+ "format": "value",
+ "n": 3,
+ "thoughts": 1
+}

@@ -69,6 +69,18 @@ def main():
             ce("ingest", RUN2, "g1_x", "--arm", "engine", "--gen", "1", "--file", os.path.join(RAW, "r4/EVO1.md"))
             assert "imported 3 ideas" in ce("import", RUN, RUN2, "--arm", "v2x")
             assert any(i["id"].startswith("v2x:") for i in json.load(open(os.path.join(rd, "ideas.json"))))
+            # --- v1.5: первые мысли, самоотчёт -> бассейны, конкретизация
+            ce("setcfg", RUN2, "thoughts", "1")
+            pr = open(ce("prompt", RUN2, "core", "g1_c").strip()).read(); assert "FIRST THOUGHTS:" in pr and "{" not in pr
+            ft = os.path.join(tmp, "ft"); open(ft, "w").write("intro\nFIRST THOUGHTS:\n- obvious one\n- obvious two\n" + open(os.path.join(RAW, "r4/EVO1.md")).read())
+            out = ce("ingest", RUN2, "g1_c", "--arm", "engine", "--gen", "1", "--file", ft); assert "first thoughts: 2" in out
+            assert "-> 2 basins" in ce("thoughts", RUN2, "--labels", "g1_c")
+            assert "T" in open(ce("prompt", RUN2, "loop", "g2_t").strip()).read().split("obvious one")[0][-6:]
+            ce("set", RUN2, "s05", "--labels", "g1_c", "--prefix", "C"); k5 = json.load(open(os.path.join(rd2, "sets", "s05", "key.json")))
+            cz = os.path.join(tmp, "cz"); open(cz, "w").write("\n".join(f"TEST | {k} | First test: run X, metric Y." for k in k5))
+            assert f"concretized {len(k5)}/{len(k5)}" in ce("concretize", RUN2, "s05", "--file", cz)
+            ii = [i for i in json.load(open(os.path.join(rd2, "ideas.json"))) if i["label"] == "g1_c"]
+            assert all(i["mech"].endswith("metric Y.") and "mech_orig" in i for i in ii)
         finally:
             shutil.rmtree(rd2, ignore_errors=True)
         print("OK: all engine commands passed")

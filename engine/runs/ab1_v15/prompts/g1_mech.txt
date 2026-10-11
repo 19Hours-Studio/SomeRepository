@@ -1,0 +1,28 @@
+What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.
+Propose 3 fundamentally new answers.
+Hard constraint: you may NOT use any named concept, method, theory or buzzword from this problem's home field. Describe each answer ONLY in terms of: what quantities or objects exist, how they flow or interact, what rule changes them, and what signal drives the change. Fix the mechanics first; give the NAME last.
+Families that models have been observed to converge on (forbidden, including re-skins):
+PROGSYN: Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions
+CAUSGR: Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph
+COMPMAP: Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning
+MODMKT: Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement
+TMS: Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes
+CONSOL: Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting
+ENERGY: Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates
+WMPLAN: Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts
+ACTINF: Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience
+VSA: Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations
+CURIO: Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress
+GWS: Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control
+PLAST: Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference
+
+Before the final section, write a section that starts with the exact line `FIRST THOUGHTS:` and list the 5 answers that came to your mind FIRST, one line each, starting with "- ". Your final answers must not be any of these first thoughts or re-skins of them.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+
