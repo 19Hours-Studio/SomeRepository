@@ -1,6 +1,8 @@
 """Статистика A/B по плечам для прогонов финального судейства движка (ab1_final15, ab1_final16, ...).
 
-Использование: python3 research/stage1-creativity/ab_stats.py RUN [--prior-prefix PV]
+Использование: python3 research/stage1-creativity/ab_stats.py RUN [--prior-prefix PV] [--paired]
+--paired: парные разности «потомок слоя минус родитель» (по полю parent) для каждой руки слоёв B/C,
+и разность «C минус исходная идея A» по всей цепочке родителей.
 Для каждого плеча и каждой группы судей (s99 = судьи с картой, s98c = чистый судья):
 O, C, V, O×V (среднее по идеям от средних O и V), топ-3 O×V, переоткрытия (R=Y хоть у одного),
 доля оценок в бассейне «ранее найденного» (код начинается с --prior-prefix), и разбивка по технике.
@@ -38,7 +40,36 @@ def stats(run, prior_prefix="PV"):
 def mean(xs): return sum(xs) / len(xs) if xs else float("nan")
 
 
+def paired(run):
+    S = json.load(open(os.path.join(RUNS, run, "scores.json")))
+    ideas = {i["id"]: i for i in json.load(open(os.path.join(RUNS, run, "ideas.json")))}
+    groups = sorted({k.split(":")[0] for s in S.values() for k in s})
+    def sc(iid, g, f):
+        js = [v for k, v in S.get(iid, {}).items() if k.startswith(g + ":") and f in v]
+        return mean([j[f] for j in js]) if js else None
+    def root(iid):
+        while ideas[iid].get("parent") in ideas: iid = ideas[iid]["parent"]
+        return iid
+    for g in groups:
+        print(f"== {g} paired (child - parent): n, dO, dC, dV, dG, share dO<0, share dV<0")
+        arms = sorted({i["arm"] for i in ideas.values() if i.get("parent")})
+        for arm in arms:
+            for name, ref in (("parent", lambda i: i["parent"]), ("root", lambda i: root(i["id"]))):
+                if name == "root" and all(ideas.get(i["parent"], {}).get("parent") is None for i in ideas.values() if i["arm"] == arm): continue
+                d = defaultdict(list)
+                for i in ideas.values():
+                    if i["arm"] != arm or not i.get("parent"): continue
+                    r = ref(i)
+                    for f in "OCVG":
+                        a, b = sc(i["id"], g, f), sc(r, g, f)
+                        if a is not None and b is not None: d[f].append(a - b)
+                if not d["O"]: continue
+                print(f"   {arm:4s} vs {name:6s} n={len(d['O']):2d} dO {mean(d['O']):+.2f} dC {mean(d['C']):+.2f} dV {mean(d['V']):+.2f} "
+                      f"dG {mean(d['G']):+.2f}  O<0 {sum(x < 0 for x in d['O'])}/{len(d['O'])}  V<0 {sum(x < 0 for x in d['V'])}/{len(d['V'])}")
+
+
 def main():
+    if "--paired" in sys.argv: return paired(sys.argv[1])
     run = sys.argv[1]; pp = sys.argv[sys.argv.index("--prior-prefix") + 1] if "--prior-prefix" in sys.argv else "PV"
     for g, (by_arm, by_tech) in stats(run, pp).items():
         print(f"== {g}")
