@@ -1,0 +1,60 @@
+A01
+MECHANISM: To learn a new concept from a few examples, the system modulates the hypothesized feature (present or absent, at varying strength) across its inputs following a pseudo-random reference code. Per-channel integrators multiply each internal activation by the reference and low-pass the product, which pulls out the channels coherently locked to the concept even far below the noise. The locked channel set becomes a durable address for the concept. A new code then re-tests the address, and channels whose lock fades are dropped.
+VALUE: Concepts can be isolated precisely from very few, noisy examples, with a signal-to-noise level that can be measured.
+
+A02
+MECHANISM: The system keeps a growing pool of candidate input transformations, built by composing primitive edits: relabel, permute, reflect, rescale, swap roles. At inference it answers both the original input and several transformed copies, maps each answer back through the inverse transformation, and measures how much the answers disagree. A transformation's score rises when answers agree on cases that were verified correct, and it falls when they diverge. High-scoring transformations are kept and used both to vote at inference and to enlarge the training data. Low scorers are discarded, and recombinations of kept ones are proposed as new candidates.
+VALUE: The system finds on its own which changes to an input must not change the answer, which gives it structured generalization far outside its training distribution.
+
+A03
+MECHANISM: Every internal quantity carries a vector of integer exponents over learned base "dimensions", like units in physics. Operations that mix incompatible dimensions are masked out. When data forces an inconsistent assignment, the system solves the integer linear system (Smith normal form) and adds a new base dimension. Predictions are made only through dimensionless groups found automatically, in the style of the Buckingham-pi theorem.
+VALUE: Built-in sanity checks and principled extrapolation far outside the training range, because laws written in dimensionless form transfer across scales.
+
+A04
+MECHANISM: Each module stores a compact functional signature: its input-output behavior on a probe set. When the gradient from new data conflicts with that signature beyond a threshold, the module is duplicated rather than overwritten. Both copies then receive complementary sparse degeneration masks, so each loses a different subset of sub-functions while the pair together still reproduces the old signature. The new copy specializes on the new data. Copies that end up redundant are pruned.
+VALUE: New capabilities can grow after deployment, with old ones preserved in the network's structure rather than by penalties or replay.
+
+A05
+MECHANISM: Each intermediate claim is a "station" that is derived along at least two independent routes, so the routes form closed loops. Each loop has a computed mismatch (misclosure). A least-squares adjustment spreads small mismatches across the loop, and Baarda's w-test singles out the one derivation step that is a blunder. Each claim gets a redundancy number. Any claim with a value near zero is unchecked, so the planner deliberately adds a new route to it before answering.
+VALUE: Long chains of reasoning check themselves. The system can say which step is wrong and which conclusions nothing has verified yet.
+
+A06
+MECHANISM: Learned transformations (analogies, translations, coordinate maps) are composed around closed cycles, and each cycle's misclosure is recorded the way a surveyor records a traverse error. A Hodge decomposition of these residuals over the cycle complex leads to three repairs. The gradient part goes back into local map corrections. The curl part localizes and deletes or rewires the specific inconsistent edges. The harmonic part shows a real topological hole, and it creates a new context variable that divides the domain into separate charts with explicit transition maps.
+VALUE: The system can find out that its knowledge needs several context-dependent frames, and build them, instead of averaging contradictory regularities into one incoherent map.
+
+A07
+MECHANISM: Concepts are stored as points in an embedding space, and each learned fact is a constraint between points (distance, angle or relation). The system keeps computing the rigidity matrix of this framework. Its null space gives "floppy modes", directions in which a concept can move without breaking any known fact, so the concept is underdetermined. Each floppy mode creates a bracing latent variable or a targeted query along that direction. Each state of self-stress (constraints that are redundant and in conflict) splits the stressed concept into two nodes, so that each one meets a consistent subset of the constraints.
+VALUE: The system can tell, from the geometry alone, exactly which parts of its knowledge are underdetermined or overconstrained, and it repairs each part structurally.
+
+A08
+MECHANISM: The system keeps about 64 copies of a "knowledge state", which is a subset of its parameters. Each new fact or correction is handled as a weather-style observation. The update gain comes from the copies' cross-covariance between parameters and their predictions of that fact. A learned taper limits the update to parameters close to the fact in concept space, which stops a new fact from overwriting distant ones. When the copies agree too much, they are spread apart again so the system can keep learning.
+VALUE: The system can absorb a stream of new facts and corrections, each with a real confidence level, without retraining, and without the long-range damage that causes forgetting.
+
+A09
+MECHANISM: Each internal unit's discretized activation states are treated as alleles, and pairs of co-occurring contexts are treated as diploid genotypes. A running Hardy–Weinberg test compares how often mixed ("heterozygous") pairs actually occur with how often they would occur in one homogeneous population. A significant heterozygote deficit is the Wahlund signature that the unit merges hidden subpopulations. In that case the unit is split into typed children, and the F-statistics between those children decide the routing. Children that later come back into equilibrium with each other are merged again.
+VALUE: The model breaks apart conflated concepts while it runs, using an online statistical test instead of an analysis done after the fact.
+
+A10
+MECHANISM: Each state change described in the input or produced during reasoning is written as a transfer: one amount debited from one holder and credited to another, across a learned set of conserved quantities (objects, money, people, information). After every step, the totals for each quantity are summed, and they must balance. A nonzero imbalance is the training signal. If the imbalance persists, the system creates a new hidden holder to absorb it and keeps that holder only if it later balances other transfers. Quantities whose totals never actually stay constant get demoted from the conserved set.
+VALUE: The system can track the state of the world exactly over very long sequences, and it can infer unmentioned participants or leaks from bookkeeping gaps.
+
+A11
+MECHANISM: Each candidate reasoning step gets a "binding margin": how strongly it is re-derived when the context is re-encoded in a different way. The step then passes n sequential stages, and at each stage the context decorrelates further (paraphrase, dropout, abstraction). The chance of being discarded rises as the margin falls, and a discarded step cannot be restored. Only steps that survive all n stages are committed, so the error rate falls roughly as ε^n. The system adapts n, the compute it spends, to how much downstream work depends on the step.
+VALUE: Long chains can be made as reliable as needed, with an explicit dial between speed and accuracy, instead of errors compounding.
+
+A12
+MECHANISM: Every internal quantity carries, alongside its real-valued vector, a short integer vector of exponents over a learned set of base "kinds" (like length, time, count, agent). When two quantities are multiplied or divided, their exponent vectors add or subtract. When they are added or compared, the exponents must match, and any mismatch produces an imbalance residual. That residual is the learning signal. Persistent mismatches over many examples cause a new base kind or a conversion constant to be created, and kinds that never constrain anything are merged away.
+VALUE: Reasoning steps that make no physical or logical sense get rejected because their kinds don't match, and the system can extrapolate to unseen magnitudes by scaling rules instead of memorized examples.
+
+A13
+MECHANISM: A bank of coupled phase oscillators (Kuramoto dynamics) runs continuously, and timestamped events phase-reset or nudge them. Concepts and routines are stored as stable phase-locking patterns between oscillators, not as static vectors. Each oscillator adapts its natural frequency to minimize phase error at event onsets, and an expectation is read out as the phase at which the next event should arrive.
+VALUE: A real sense of duration, rhythm, deadlines and "something is late", including discovering hidden periodicities in event streams. Token-sequence models have no clock, so they cannot do this.
+
+A14
+MECHANISM: For a given query, the system runs several retrieval or generation passes that are deliberately independent, each using different cues, sources or decompositions. It records which candidate facts or solutions each pass "captures". From the overlaps it computes Chao or Lincoln-Petersen estimates of how many relevant items are still missing, adjusting for the fact that some items are easier to capture than others. It keeps sampling until the estimated unseen share falls below a set threshold, and its answer states how complete it is.
+VALUE: The system can say "I have probably found 90% of the relevant cases" and know when to stop searching.
+
+A15
+MECHANISM: Every layer is a bijection, and any information a step would normally discard is written exactly to an ancilla tape. The tape's length measures how much was forgotten. Abduction runs the network backward: fix the desired output, edit the ancilla, and recover exactly which inputs would produce it. Unlearning removes one example's influence by un-computing its trace.
+VALUE: Exact provenance, exact counterfactual inputs ("what would have had to be true?") and certified forgetting, none of which LLMs can do because they discard information at every layer.
+

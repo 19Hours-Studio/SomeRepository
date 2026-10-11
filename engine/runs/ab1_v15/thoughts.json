@@ -1,0 +1,37 @@
+{
+ "g1_neg": [
+  "A fast generator paired with a slow, deliberate verifier (dual-process)",
+  "A differentiable external read/write memory (Neural Turing Machine style)",
+  "Several agents that debate and reach consensus",
+  "A neural model coupled to a formal theorem prover",
+  "Looped recurrent latent depth that \"thinks longer\" on harder inputs"
+ ],
+ "g1_core": [
+  "Latent world model with planning over imagined rollouts",
+  "Neurosymbolic program synthesis over a library of programs",
+  "Episodic memory with sleep-like consolidation",
+  "Energy-based iterative reasoning until a verifier passes",
+  "Curiosity-driven self-play curriculum"
+ ],
+ "g1_core2": [
+  "Neuro-symbolic program synthesis over a library of skills",
+  "Latent world model plus tree-search planning",
+  "Episodic memory plus sleep-like consolidation",
+  "Energy-based iterative reasoning with a verifier",
+  "Mixture of experts routed by uncertainty"
+ ],
+ "g1_mech": [
+  "A persistent external memory the system writes to and reads from at inference, consolidated later",
+  "A learned simulator of the environment used to imagine and search over futures before acting",
+  "Specialist sub-networks competing for a shared bottleneck that decides what gets processed next",
+  "A self-checking loop where outputs are verified by a separate checker and revised until they pass",
+  "Small symbolic programs induced from examples and executed instead of pattern-matched"
+ ],
+ "g1_loop": [
+  "A latent world model that plans over imagined rollouts (WMPLAN)",
+  "A library of small programs as causal simulators, revised by synthesis (PROGSYN)",
+  "An episodic memory consolidated offline through replay (CONSOL)",
+  "An explicit causal graph revised from prediction error (CAUSGR)",
+  "A competence map that routes between answering and abstaining (COMPMAP)"
+ ]
+}
