@@ -1,0 +1,44 @@
+What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.
+Propose 3 fundamentally new answers. Follow this pipeline:
+1. GOALS FROM THE CENTER: pick the 3 sub-problems that matter most here. Do not try to be original about the goals; pick what you honestly believe matters most.
+2. PARADIGM NEGATION: name in one sentence the paradigm that mainstream approaches share. Forbid it as the MECHANISM (it stays allowed as a goal).
+3. KNOWN FAMILIES ARE FORBIDDEN as mechanisms, including re-skins and recombinations:
+PROGSYN: Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions
+CAUSGR: Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph
+COMPMAP: Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning
+MODMKT: Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement
+TMS: Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes
+CONSOL: Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting
+ENERGY: Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates
+WMPLAN: Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts
+ACTINF: Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience
+VSA: Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations
+CURIO: Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress
+GWS: Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control
+PLAST: Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference
+V14: Source-Sharded Additive Weights — Training data is split into hashed provenance shards (one per source or document cluster). Each shard trains its own low-rank weight delta on a frozen base. At 
+V15: Reversible Inference with Uncompute — Reasoning runs on a bijective (invertible-layer) network that keeps the full input-plus-scratch state rather than throwing information away. After producing an 
+V16: Teachability Bottleneck — An internal concept is kept only if it passes a transmission test. The system compresses the concept into a short message, and a freshly initialised learner wit
+V17: Lattice-Merged Knowledge Replicas — Knowledge is stored as many small content-addressed entries rather than shared weights. Each entry holds monotone state: grow-only evidence counters, last-write
+V18: Survey-Adjusted Reasoning Networks — Each reasoning step is treated as a survey observation with a variance. The planner deliberately builds redundancy by deriving key quantities along independent 
+V19: Unseen-Mass Coverage Estimator — For each query, the system draws several decorrelated derivations, each with a different decomposition, persona, or retrieval seed. It clusters the consideratio
+V20: Subtractable Upbringing Ledger — During training, each distinct data stream (a corpus, a school of thought, a language community) writes into its own separate low-rank weight delta, so the mode
+V21: Oscillator-Entrained Timing Core — Representations are held as the phases and amplitudes of a large bank of coupled oscillators, not as static vectors. Inputs drive phase-locking, and the outputs
+V22: Sealed Commitment Register — Inference runs deterministically on quantized arithmetic, so any internal state can be replayed exactly. A commitment register stores cryptographic hashes of ch
+V23: Exponent-Tagged Quantity Arithmetic — Every internal numeric slot carries a short integer vector of exponents over a few base "kinds". Multiplying two slots adds their vectors. Adding or comparing t
+V24: Backward-Recovery Residual Audit — Each derivation step is built from operations that can be run in reverse. Information a step cannot reverse is written to an explicit residual register instead 
+V25: Observer-Partitioned State Copies — The system keeps one separate copy of the world state for each agent in a scene, plus one ground-truth copy. Events are sent through gated channels, and a copy 
+V26: Complementation-Driven Module Fission — Failures are logged as "mutants," and pairs are crossed by swapping internal states between their runs. Pairs that fail to recover are grouped as sharing one un
+V27: Curl-Triggered Concept Splitting — The model learns transformation maps between concepts and contexts. It decomposes them by Hodge decomposition to find cycles whose sum is not zero. Where curl p
+V28: Gauge-R&R Feature Auditing — Each feature's variance is split into run-to-run noise, surface-form variance and content variance. Features above a GRR threshold are re-typed as nuisance chan
+4. MECHANISM FROM THE PERIPHERY: for each goal, find a field far from this problem's home field that has ALREADY SOLVED an analogous problem in its own domain, and port its actual mechanism (state, update rule, driving signal) - not a metaphor.
+5. HONESTY CHECK: name the closest existing work for each answer; if it is essentially that work, discard it and make another.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+

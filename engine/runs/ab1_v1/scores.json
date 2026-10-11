@@ -1,1 +1,272 @@
-{}
+{
+ "g1_reframe#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal schemes, zkML verifiable inference"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal schemes; zkML verifiable inference"
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Buckingham Pi, AI Feynman, unit types"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Buckingham Pi; AI Feynman dimensional analysis"
+  }
+ },
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Gage R&R; invariant representation learning"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Gauge R&R; invariant feature learning"
+  }
+ },
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Good-Turing/Chao1; semantic entropy sampling"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Good-Turing/Chao1 unseen-species estimation"
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bennett reversible computing garbage tape"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 3,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bennett reversible computing; invertible networks"
+  }
+ },
+ "g1_neg#1": {
+  "s01:J1": {
+   "O": 3,
+   "C": 8,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SISA unlearning; Branch-Train-Merge/SILO"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SISA unlearning; Branch-Train-Merge LoRAs"
+  }
+ },
+ "g1_neg#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "i-RevNet invertible nets; cycle-consistency"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "i-RevNet invertible nets; cycle consistency"
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SymbolicToM per-agent belief graphs"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SymbolicToM per-agent belief graphs"
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CRDTs; federated knowledge bases"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CRDTs plus federated learning"
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank; sheaf cohomology consistency"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank; sheaf cohomology inconsistency detection"
+  }
+ },
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic least-squares adjustment, Baarda testing"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic least-squares adjustment, Baarda testing"
+  }
+ },
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genetic complementation; activation patching"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genetic complementation; activation patching"
+  }
+ },
+ "g1_neg#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning; emergent communication"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning; emergent communication"
+  }
+ },
+ "g1_reframe#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "task arithmetic; Branch-Train-Merge"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "task arithmetic; Branch-Train-Merge"
+  }
+ },
+ "g1_reframe#2": {
+  "s01:J1": {
+   "O": 4,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Kuramoto oscillator nets (AKOrN)"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Kuramoto nets; neural resonance theory"
+  }
+ }
+}

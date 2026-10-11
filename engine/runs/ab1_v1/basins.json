@@ -92,5 +92,125 @@
   "desc": "Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V14",
+  "desc": "Source-Sharded Additive Weights — Training data is split into hashed provenance shards (one per source or document cluster). Each shard trains its own low-rank weight delta on a frozen base. At ",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Reversible Inference with Uncompute — Reasoning runs on a bijective (invertible-layer) network that keeps the full input-plus-scratch state rather than throwing information away. After producing an ",
+  "source": "visited",
+  "members": [
+   "g1_neg#2"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Teachability Bottleneck — An internal concept is kept only if it passes a transmission test. The system compresses the concept into a short message, and a freshly initialised learner wit",
+  "source": "visited",
+  "members": [
+   "g1_neg#3"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Lattice-Merged Knowledge Replicas — Knowledge is stored as many small content-addressed entries rather than shared weights. Each entry holds monotone state: grow-only evidence counters, last-write",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Survey-Adjusted Reasoning Networks — Each reasoning step is treated as a survey observation with a variance. The planner deliberately builds redundancy by deriving key quantities along independent ",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Unseen-Mass Coverage Estimator — For each query, the system draws several decorrelated derivations, each with a different decomposition, persona, or retrieval seed. It clusters the consideratio",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Subtractable Upbringing Ledger — During training, each distinct data stream (a corpus, a school of thought, a language community) writes into its own separate low-rank weight delta, so the mode",
+  "source": "visited",
+  "members": [
+   "g1_reframe#1"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Oscillator-Entrained Timing Core — Representations are held as the phases and amplitudes of a large bank of coupled oscillators, not as static vectors. Inputs drive phase-locking, and the outputs",
+  "source": "visited",
+  "members": [
+   "g1_reframe#2"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Sealed Commitment Register — Inference runs deterministically on quantized arithmetic, so any internal state can be replayed exactly. A commitment register stores cryptographic hashes of ch",
+  "source": "visited",
+  "members": [
+   "g1_reframe#3"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Exponent-Tagged Quantity Arithmetic — Every internal numeric slot carries a short integer vector of exponents over a few base \"kinds\". Multiplying two slots adds their vectors. Adding or comparing t",
+  "source": "visited",
+  "members": [
+   "g1_mech#1"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Backward-Recovery Residual Audit — Each derivation step is built from operations that can be run in reverse. Information a step cannot reverse is written to an explicit residual register instead ",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Observer-Partitioned State Copies — The system keeps one separate copy of the world state for each agent in a scene, plus one ground-truth copy. Events are sent through gated channels, and a copy ",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V26",
+  "desc": "Complementation-Driven Module Fission — Failures are logged as \"mutants,\" and pairs are crossed by swapping internal states between their runs. Pairs that fail to recover are grouped as sharing one un",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V27",
+  "desc": "Curl-Triggered Concept Splitting — The model learns transformation maps between concepts and contexts. It decomposes them by Hodge decomposition to find cycles whose sum is not zero. Where curl p",
+  "source": "visited",
+  "members": [
+   "g1_loop#2"
+  ]
+ },
+ {
+  "code": "V28",
+  "desc": "Gauge-R&R Feature Auditing — Each feature's variance is split into run-to-run noise, surface-form variance and content variance. Features above a GRR threshold are re-typed as nuisance chan",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
  }
 ]

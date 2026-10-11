@@ -1,0 +1,24 @@
+L01
+MECHANISM: Each derivation step is built from operations that can be run in reverse. Information a step cannot reverse is written to an explicit residual register instead of being thrown away. After producing an output, the system runs the chain backward to rebuild the inputs. Residual bits that the inputs cannot account for mark exactly the spans where new content was added rather than derived. Training lowers the count of unexplained residual bits for each claim, and outputs are labelled by how much residual they carry.
+VALUE: Each statement can be checked mechanically to show whether it follows from the given material or was made up.
+
+L02
+MECHANISM: The model learns transformation maps between concepts and contexts. It decomposes them by Hodge decomposition to find cycles whose sum is not zero. Where curl persists, it adds a new latent context dimension and splits the concept along it until the cycles close. The split concepts are stored with the cycle that triggered them.
+VALUE: The model finds ambiguities it was not told about and gives each meaning its own concept, instead of averaging two incompatible ones.
+
+L03
+MECHANISM: An internal concept is kept only if it passes a transmission test. The system compresses the concept into a short message, and a freshly initialised learner with a different architecture, given only that message plus a few examples, must succeed on held-out tasks. Concepts that fail are rewritten or dropped. The surviving messages are stored as the system's vocabulary of abstractions and get re-tested whenever the pool of naive learners is refreshed.
+VALUE: The system ends up holding abstractions that are explainable and transferable by construction, rather than private features entangled with one particular network.
+
+L04
+MECHANISM: Reasoning runs on a bijective (invertible-layer) network that keeps the full input-plus-scratch state rather than throwing information away. After producing an answer, the system runs the computation backward from the answer and its stated premises only, then measures how much of the original input it can reconstruct. Low reconstruction means the answer depended on something the premises do not contain, so the gap is surfaced as an unstated assumption. Training penalises those gaps, which pushes the model to make every load-bearing assumption explicit.
+VALUE: Hidden assumptions become detectable as missing information rather than through confidence scores, so it becomes visible when a conclusion really depends on something unsaid.
+
+L05
+MECHANISM: Each reasoning step is treated as a survey observation with a variance. The planner deliberately builds redundancy by deriving key quantities along independent routes so the steps form closed loops. Least-squares adjustment spreads each loop's misclosure across the steps, and Baarda's w-test flags the step with the largest standardized residual. Only that step is re-derived, and the planner adds redundancy where the redundancy numbers show steps that cannot be checked.
+VALUE: Long chains locate their own blunders and design themselves to be checkable, so errors do not silently compound.
+
+L06
+MECHANISM: Knowledge is stored as many small content-addressed entries rather than shared weights. Each entry holds monotone state: grow-only evidence counters, last-writer-wins registers with vector clocks, and sets of exceptions that support adding and removing. Each deployed copy updates its own replica from its own experience, and replicas combine through the lattice join, so merges never conflict and never depend on order. Retractions are tombstones, and prediction reads the joined state.
+VALUE: Millions of copies can learn from separate experiences and pool what they learned exactly, with no catastrophic interference.
+
