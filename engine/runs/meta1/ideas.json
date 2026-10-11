@@ -241,5 +241,50 @@
   "name": "Peer Uptake Count",
   "mech": "Fresh plain-answer agents, the same kind used in stage 1, are each given the question plus one survivor labeled only as \"a colleague's note.\" They write their own answer and may use the note or ignore it. A judge compares each of these answers with the stage-1 plain answers and records which specific steps from the note were taken up and kept intact. An idea's value is its uptake rate across 5 agents. Its originality must still show that the steps it contributed did not already appear in plain answers written without the note. Ideas that are never taken up go back to their generator with the agents' reasons for ignoring them.",
   "value": "Value comes from whether capable peers actually adopt and build on an idea, not from a judge's stated opinion. Because only the steps peers keep count, an idea must stay concrete to earn credit."
+ },
+ {
+  "id": "g2_evo1#1",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Downstream Convergence Gap Filling",
+  "mech": "Each step of a plain build plan is masked in turn, and N fresh agents rebuild it from the rest of the plan. Steps where the rebuilds disagree most are treated as the true gaps. A generated fill plus its 15-word hint is kept only if two conditions hold. Hint-given rebuilds of the gap step must agree while hint-free rebuilds stay scattered. Inserting the fill must also cut the disagreement among independent rebuilds of all later steps. Disagreement profiles for each step and the hints that worked are stored, so a later \"new\" fill that an old hint reproduces is flagged as already known.",
+  "value": "An idea is rewarded for being unreachable from the question and also for making the rest of a valuable plan buildable. This is measured by sampling, not by what the judges know."
+ },
+ {
+  "id": "g2_evo1#2",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Stall-Shift Slot Carving",
+  "mech": "Each plain answer is split into slots. The walker replays it on a concrete instance with one slot removed at a time and records how far the stall point moves. Slots whose removal moves the stall earlier are frozen. Slots that do not move it are marked dead weight, and only those may be rewritten off-attractor. Each rewrite must push the stall later on an unpassed instance drawn from the cross-run stall table. That table is indexed by slot type, so carving targets carry over between runs.",
+  "value": "Originality is spent only on slots whose replacement measurably gets the answer past real failure points. Value is therefore checked by execution, not by a judge's guess."
+ },
+ {
+  "id": "g2_evo1#3",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Contrast-Record Gap Derivation",
+  "mech": "For each recurring gap, an agent writes two dated records. One is the measured outcome when the gap is filled the vague default way. The other is a surprising, better outcome. A blind agent derives the smallest mechanism that explains the numeric difference between the two records. It is accepted only if re-expanding the plan removes the gap and a forward walk reproduces both numbers. Unexplained contrast pairs are stored as open targets for the next run, and explained mechanisms are stored as forbidden templates.",
+  "value": "Each original idea arrives as a concrete fill for a step that obvious plans skip, with a specific, checkable improvement over the default."
+ },
+ {
+  "id": "g2_evo2#1",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Surprise-Must-Carry-Value Map",
+  "mech": "Each survivor is split into 4-8 slots. Every slot gets two scores. The first is value sensitivity: judges score how much value drops when that one slot is removed. The second is derivability: the share of N fresh agents, given only the question, that rebuild that slot. The two scores steer each other. The 15-word hint may describe only high-sensitivity slots, so if the hint fails to rebuild a slot, that slot is flagged as unclear and sent for rewriting. Slots that are derivable get unfrozen and must be rewritten off-attractor, even when they are high-value. Selection keeps an idea only if most of its value drop sits in non-derivable slots. If an idea's value lives in derivable slots, it is re-labeled as a plain answer in disguise, with the family of its derivable core. Crossover may swap only slots that are both non-derivable and load-bearing. Derivable slot texts are stored per question type and given to the question-only rebuild agents in later runs, so the bar for \"obvious\" rises over time.",
+  "value": "Originality is only credited when the surprising parts are the parts that create the value, which raises originality and value together and catches NEW labels that are really known families."
+ },
+ {
+  "id": "g2_evo2#2",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Stall-Pinned Record Chains",
+  "mech": "A walker plays a plain answer out on one concrete instance and logs the first stall. A record writer then writes a dated success record for that same instance, whose \"before\" number is the measured state at the stall. A separate agent derives the smallest mechanism that could produce the record, without being shown the stall. The walker replays this mechanism on the same instance, and it passes only if it reaches the record's number. A mechanism that reaches the number by going around the stalled step, rather than patching it, is tagged as a new route. A mechanism that stalls later becomes the seed for the next record. An idea's score is how far its chain gets plus a bonus for new routes. Unreached records and their stalls are stored together as weighted open targets. Passed stalls are retired, and the route signatures that passed them become forbidden templates in later runs.",
+  "value": "Every idea is tied to a real failure point and a concrete measured target, with no outside verifier needed, so concreteness holds and value is measured on the exact step where plain answers fail."
  }
 ]

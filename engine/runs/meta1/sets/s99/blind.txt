@@ -1,0 +1,128 @@
+F01
+MECHANISM: An extractor agent breaks each idea into its rare mechanism parts, and the pipeline computes which ideas share the same rare parts. Any group sharing two or more becomes a new forbidden family at once, at the current layer, and crossover may only pair parents with no shared rare parts. Part frequencies are stored across runs, so parts that become common stop counting as rare.
+VALUE: Hidden attractors are caught at the layer where they appear instead of slipping through the judges' surface-level labels.
+
+F02
+MECHANISM: Each idea must come with a contract: typed slots (input, operation, stored state, feedback loop) plus 2-3 falsifiable checks the pipeline can run itself. Examples of checks: a search query with a predicted hit or no-hit, a Fermi estimate, or a small code simulation. A verifier agent with web and code tools runs the checks, and the score uses pass rates and evidence instead of judge opinion. Crossover swaps slots between parents. A child survives only if a compatibility checker accepts the combined slots and the child keeps at least one passed check from each parent.
+VALUE: Validity gets tested inside the pipeline rather than handed to an unspecified verifier, and crossover offspring stay concrete because they are built from verified parts.
+
+F03
+MECHANISM: A rewriter agent makes four copies of each survivor that keep the same steps but change the wording: flat bullet points, a hostile skeptic's voice, a 60-word terse version, and a version with every adjective and benefit claim removed. The judges score all four copies blind, and an idea's value is its lowest score across them, not the average. The gap between its highest and lowest score is stored as "rhetoric share." Ideas with a high rhetoric share are sent back to their generator with the stripped copy attached, and a technique's weight in later runs drops as its average rhetoric share rises.
+VALUE: Value judgments stop rewarding confident prose, which shared-family judges tend to over-credit. Scores also get less noisy, because only content that survives every wording change counts.
+
+F04
+MECHANISM: A first agent writes a dated, specific success record: who used it, the measured before and after numbers, and what changed. A judge accepts the record only if it would surprise someone holding the plain answers. A second agent sees only the record, not the forbidden families, and works out the smallest mechanism that could produce it. A third agent walks forward from that mechanism to see whether it really yields the record's numbers, and keeps only matching pairs. Records with no workable mechanism are stored as open targets and seeded into the next run. Mechanisms that worked are stored as templates that the next run must not repeat.
+VALUE: Concreteness and value are built in from the start, because every idea is derived backward from a specific measured payoff instead of having details added after the idea exists.
+
+F05
+MECHANISM: A new first stage rewrites the original question into many changed versions, each made by one rewrite operator: change the scale, the actor, the time horizon, the unit of analysis, or who pays. The forbidden-family check is applied to these rewritten questions instead of to the answers. Each kept question is answered by the ordinary plain-answer stage, and an agent then maps that answer back onto the original question. The pipeline stores which rewrite operators produced answers that kept their value after mapping back, and samples those operators more often in later runs.
+VALUE: Plain answers are already the most valuable and concrete outputs, so moving originality into the question gives answers that are both original and dependable.
+
+F06
+MECHANISM: For each surviving idea, an author agent writes a hint of at most 15 words. N fresh agents each get the question plus the hint and try to rebuild the full mechanism, and N other fresh agents get only the question. A comparer agent scores each rebuild against the original, field by field. Selection keeps ideas where rebuild success with the hint minus rebuild success without it is large. A high with-hint score means the idea is crisp enough to be compressed. A low without-hint score means it does not follow from the question alone. Ideas that score low with the hint are sent back for rewriting instead of being dropped. Hints that score well, and their ideas, are stored so later runs can tell whether a "new" idea rebuilds from an old hint.
+VALUE: One signal that comes from repeated sampling rewards ideas that are both unexpected and concretely specified, without depending on what the judges happen to know.
+
+F07
+MECHANISM: Before attractor mapping, a retrieval agent builds a dossier of real-world constraints for each question. It covers documented failed attempts, cost and scale limits, practitioner complaints, and open-problem statements, each with a source. Every generated idea must name the dossier constraint it removes and say how. Judges score value only against the cited constraint and its evidence, not their own intuition. The dossier persists across runs. Constraints that no idea has resolved gain weight and are handed to the generators as explicit targets.
+VALUE: Value is anchored in external evidence rather than the judges' shared knowledge gaps, which should close the value gap with plain answers while still pushing originality toward constraints that remain unsolved.
+
+F08
+MECHANISM: In every run, a separate "inventor" agent is given no question at all. It is only given random constraint tuples (one material, one actor, one timing rule, one quantity), and it builds fully specified mechanisms from them. These "orphan" mechanisms are stored in a persistent cross-run inventory. A "matchmaker" agent searches that inventory for orphans that answer the current question, and the judges score each match. An orphan's match history raises or lowers the chance that its constraint tuple is sampled again.
+VALUE: Over many runs the pipeline builds up a stock of concrete mechanisms made before any question existed, so it can answer future questions it has never seen using mechanisms that no question-driven search would have produced.
+
+F09
+MECHANISM: Each survivor is also judged, unchanged, as if it answered 3 decoy questions. A selector agent picks these from other hard open questions to be similar in form but different in substance. Specificity is the idea's value on the real question minus its average value on the decoys, and survivors are ranked by originality times that margin. Ideas with a small margin are labeled "portable generic," and the generator must say which part of the real question its mechanism depends on before it can be kept.
+VALUE: It filters out the vague, high-originality answers that score well on any question. That raises the value of the ideas that survive without adding any outside verifier.
+
+F10
+MECHANISM: A walker plays a plain answer out on one concrete instance and logs the first stall. A record writer then writes a dated success record for that same instance, whose "before" number is the measured state at the stall. A separate agent derives the smallest mechanism that could produce the record, without being shown the stall. The walker replays this mechanism on the same instance, and it passes only if it reaches the record's number. A mechanism that reaches the number by going around the stalled step, rather than patching it, is tagged as a new route. A mechanism that stalls later becomes the seed for the next record. An idea's score is how far its chain gets plus a bonus for new routes. Unreached records and their stalls are stored together as weighted open targets. Passed stalls are retired, and the route signatures that passed them become forbidden templates in later runs.
+VALUE: Every idea is tied to a real failure point and a concrete measured target, with no outside verifier needed, so concreteness holds and value is measured on the exact step where plain answers fail.
+
+F11
+MECHANISM: Each survivor must arrive with a pre-registered "kill test": the cheapest check whose failure would sink it, such as a back-of-envelope calculation, a search for a counterexample, or a conflict with a known constraint. A separate red-team agent role, rewarded in its prompt and scoring only for confirmed kills, runs that test and up to two of its own using web search and quantitative estimates. Value is then scored as surviving kill attempts multiplied by the size of the stated payoff, which replaces the judges' impression of usefulness. The test types that killed ideas are stored, and future generator prompts are seeded with that list so they avoid known failure patterns.
+VALUE: Validity is checked inside the pipeline instead of handed to an external verifier, so original ideas that are actually wrong are filtered out and average value can rise above plain answers.
+
+F12
+MECHANISM: After stage 3, each survivor is assumed to be fully adopted. Three inhabitant agents (an operator, a competitor and a bystander affected by it) each write a dated diary of the first year in that world. A "consequence miner" pulls out the second-order problems and opportunities from the diaries. Those become new seed prompts, which the portfolio answers in a follow-up generation pass. The resulting parent idea, consequence and child idea chains are stored and scored as one unit.
+VALUE: The pipeline can discover ideas that only make sense once another idea exists, so it produces linked sequences of ideas instead of standalone answers.
+
+F13
+MECHANISM: Each step of a plain build plan is masked in turn, and N fresh agents rebuild it from the rest of the plan. Steps where the rebuilds disagree most are treated as the true gaps. A generated fill plus its 15-word hint is kept only if two conditions hold. Hint-given rebuilds of the gap step must agree while hint-free rebuilds stay scattered. Inserting the fill must also cut the disagreement among independent rebuilds of all later steps. Disagreement profiles for each step and the hints that worked are stored, so a later "new" fill that an old hint reproduces is flagged as already known.
+VALUE: An idea is rewarded for being unreachable from the question and also for making the rest of a valuable plan buildable. This is measured by sampling, not by what the judges know.
+
+F14
+MECHANISM: Before generation, a walker agent takes each plain answer and plays it out step by step on one specific, concrete instance of the question. It records the first step where the walk stalls: what was missing, what contradicted what, or what cost exploded. Generators receive only these stall records, never the plain answers, and must produce an answer that gets past a named stall. The same walker then replays that instance to confirm the answer passes the step. A stall table is kept between runs, holding each stall, how often it was hit and how many answers got past it. Stalls nobody has passed get more sampling weight in the next run, and stalls that have been passed are retired.
+VALUE: Originality is pointed at the exact places where obvious answers break, so new ideas start from real failure points and are less likely to lose on value to the plain answers.
+
+F15
+MECHANISM: Keep a persistent ledger of every idea family detected at any layer, in any run, with descriptions and the layer where each family first appeared. Each new run starts with the whole ledger forbidden. Families that first appeared late in a run are fed back as seeds for the next run's attractor mapping. Final selection uses replicated scoring: three judge resamples with shuffled order and swapped judge roles. Ideas are ranked by the lower confidence bound of their score, not the mean, so only results that stay stable across judges are kept.
+VALUE: Each run starts beyond everything earlier runs found, and the ranking filters out wins that are just run-to-run noise. Improvements then add up across runs instead of being lost to variance.
+
+F16
+MECHANISM: Keep a persistent cross-run archive of every family and every idea, recording the layer where each family first appeared. Before a run, a forecaster agent reads the archive and the question and predicts the likely families. Originality is then scored as forecast failure plus distance from the nearest archive entry, not as a judge's raw impression. Families that first appeared in late layers are added to the next run's forbidden list from layer 1. Each configuration runs as paired replicates, and a bandit updates the technique weights only when an effect is larger than the measured replicate variance.
+VALUE: The pipeline gets a cumulative, measurable novelty baseline, so it stops rediscovering attractors and stops tuning itself on noise.
+
+F17
+MECHANISM: Each plain answer is split into 4–8 component slots. An ablation agent removes one slot at a time, and judges score how much value drops, which gives a value-sensitivity map. Slots with high sensitivity are frozen. Generators may rewrite only slots with low sensitivity, and only off-attractor. The cycle repeats with the map recomputed after each carve. Sensitivity maps are stored per question type across runs.
+VALUE: Originality goes only where it costs no value, so value stops falling below plain answers.
+
+F18
+MECHANISM: Crossover becomes asymmetric. The more concrete parent is the "stock" and is reduced to a fixed build sheet: its actors, inputs, steps, measurable output and first experiment. The other parent contributes exactly one "scion" mechanism, which must be grafted into a named step of that sheet. A checker agent rejects any offspring that removes or blurs a build-sheet field. The pipeline records which stock–scion pairings held up in final judging and uses that history to weight which families get paired in later runs.
+VALUE: Offspring gain novelty from distant families while keeping a runnable implementation, which removes the measured loss of concreteness in crossover.
+
+F19
+MECHANISM: Ideas are built backward from a stated target effect, such as "value at least the baseline" or "concreteness survives recombination." An agent proposes "reactions": each is a step that produces the effect from precursors. It recurses until every leaf is an available pipeline primitive. Trees with leaves that cannot be resolved are rejected. Validated reactions are stored as a library across runs, and novel reactions get a bonus.
+VALUE: Every idea comes out concrete and implementable by construction, not restored after the fact.
+
+F20
+MECHANISM: A mutator agent plants typed defects in copies of real answers: a broken causal step, an inflated value claim, a disguised known family, or a step that cannot be implemented. These go into each judging batch. The pipeline computes each judge's kill rate per defect type and weights each scoring criterion by that rate. Defect types with low kill rates are flagged so that idea must state its own evidence. The mutant library and kill rates persist across runs, and mutants judges keep missing are planted more often.
+VALUE: The judges' shared blind spots are measured and discounted instead of silently rewarded.
+
+F21
+MECHANISM: Move the literature stage to the front. A scout agent searches the web for documented, specific unsolved failures ("problem cards"), each with evidence of who it hurts and the cost. Attractor mapping and all five techniques then run per card, and every answer must name the card and the cost it reduces. Value is scored against that stated cost rather than in the abstract. Cards are kept between runs as solved, partial or open, and the scout gives priority to open cards that keep coming back.
+VALUE: Originality pressure works inside a value frame that is already anchored, so unusual ideas stop trading away usefulness.
+
+F22
+MECHANISM: Before writing any content, a generator is assigned a structural signature: who acts, what is stored, when it fires, and what is measured. Signatures are drawn from a grid of combinations, weighted toward combinations that past runs rarely produced. The generator must write an idea that fits that signature exactly. Judges classify ideas by signature rather than by meaning, which gives a fixed set of categories and stops new attractor families from appearing at every layer. How often each signature turns out valuable is stored, so later sampling moves toward rare combinations that are still valuable.
+VALUE: Novelty becomes a controlled, repeatable input rather than a lucky output, which cuts run-to-run variance and makes it clear which structures produce value.
+
+F23
+MECHANISM: Each plain answer is split into slots. The walker replays it on a concrete instance with one slot removed at a time and records how far the stall point moves. Slots whose removal moves the stall earlier are frozen. Slots that do not move it are marked dead weight, and only those may be rewritten off-attractor. Each rewrite must push the stall later on an unpassed instance drawn from the cross-run stall table. That table is indexed by slot type, so carving targets carry over between runs.
+VALUE: Originality is spent only on slots whose replacement measurably gets the answer past real failure points. Value is therefore checked by execution, not by a judge's guess.
+
+F24
+MECHANISM: Before generating, a "forecaster" agent is told the question and the technique, and writes 10 short predictions of what that technique will produce. Originality is then computed rather than judged: the score is the embedding distance from the answer to the nearest forecast and to all families in a cross-run attractor ledger. Each new family found at any layer is added to the ledger, which every later run loads as forbidden input from the start. Technique choice across runs uses Thompson sampling on the stored scores, and each run uses paired prompts so techniques are compared on the same inputs, which cancels out much of the run-to-run variance.
+VALUE: Originality is measured against the model's own predicted outputs, so judges who share the generators' blind spots can no longer reward the obvious, and attractors are pre-empted instead of rediscovered every run.
+
+F25
+MECHANISM: Fresh plain-answer agents, the same kind used in stage 1, are each given the question plus one survivor labeled only as "a colleague's note." They write their own answer and may use the note or ignore it. A judge compares each of these answers with the stage-1 plain answers and records which specific steps from the note were taken up and kept intact. An idea's value is its uptake rate across 5 agents. Its originality must still show that the steps it contributed did not already appear in plain answers written without the note. Ideas that are never taken up go back to their generator with the agents' reasons for ignoring them.
+VALUE: Value comes from whether capable peers actually adopt and build on an idea, not from a judge's stated opinion. Because only the steps peers keep count, an idea must stay concrete to earn credit.
+
+F26
+MECHANISM: For each layer and each technique, the pipeline counts families seen once and twice and computes Chao1 and Good-Turing coverage. Generation can't start until plain-answer coverage is at least 0.9. Techniques that keep adding families seen only once are split into versions with different seeds, and techniques whose estimate is flat are deleted.
+VALUE: The pipeline only starts generating once the plain-answer families are close to fully mapped, and it keeps only techniques that keep finding new families.
+
+F27
+MECHANISM: Each survivor is split into 4-8 slots. Every slot gets two scores. The first is value sensitivity: judges score how much value drops when that one slot is removed. The second is derivability: the share of N fresh agents, given only the question, that rebuild that slot. The two scores steer each other. The 15-word hint may describe only high-sensitivity slots, so if the hint fails to rebuild a slot, that slot is flagged as unclear and sent for rewriting. Slots that are derivable get unfrozen and must be rewritten off-attractor, even when they are high-value. Selection keeps an idea only if most of its value drop sits in non-derivable slots. If an idea's value lives in derivable slots, it is re-labeled as a plain answer in disguise, with the family of its derivable core. Crossover may swap only slots that are both non-derivable and load-bearing. Derivable slot texts are stored per question type and given to the question-only rebuild agents in later runs, so the bar for "obvious" rises over time.
+VALUE: Originality is only credited when the surprising parts are the parts that create the value, which raises originality and value together and catches NEW labels that are really known families.
+
+F28
+MECHANISM: For each recurring gap, an agent writes two dated records. One is the measured outcome when the gap is filled the vague default way. The other is a surprising, better outcome. A blind agent derives the smallest mechanism that explains the numeric difference between the two records. It is accepted only if re-expanding the plan removes the gap and a forward walk reproduces both numbers. Unexplained contrast pairs are stored as open targets for the next run, and explained mechanisms are stored as forbidden templates.
+VALUE: Each original idea arrives as a concrete fill for a step that obvious plans skip, with a specific, checkable improvement over the default.
+
+F29
+MECHANISM: A mutator agent plants specific defects (reversed causal claims, costs that can't be met, circular metrics) in copies of the survivors and mixes them blind into the judges' batches. For each kind of defect, the share the judges catch is recorded. Kinds they miss create a new scoring item and a checker role, and real ideas that look like missed defects lose their value score.
+VALUE: Judges' shared blind spots become checks the pipeline actually runs, which raises the real value of what survives.
+
+F30
+MECHANISM: Add a "kill-test engineer" agent after blind judging. For each survivor it writes the cheapest decisive test the pipeline can run itself: a short code simulation, an order-of-magnitude calculation, or a targeted search with a pre-registered expected result. The pipeline runs the test, and the judges' value score is multiplied by the outcome (pass, partial or fail). Failed tests and their reasons go into a persistent library. In later runs that library acts as a repulsion constraint for generation and crossover, and serves as reusable test templates. Crossover offspring must inherit at least one parent's passing test unchanged. This stops them from blending away concrete detail.
+VALUE: Validity moves inside the pipeline instead of going to an unnamed external verifier, so the ideas that rank highest have survived a real check and are not just plausible to the same model that wrote them.
+
+F31
+MECHANISM: Before attractor mapping, a "question mutator" agent applies named operators to the input question to produce 6-10 sibling questions: invert the goal, change the scale by 1000x, swap who benefits, remove the main resource, or ask what would make the question moot. Each sibling question runs through the normal generate-and-judge stages. A "porter" agent then translates each sibling's best answers back into the original question, and the judges score the ported answers against the original question. Each operator's record of producing ported answers classified NEW is stored across runs, and the operators are re-weighted so the mutator learns which reframings pay off for which kinds of question.
+VALUE: The pipeline delivers a map of neighbouring questions that are worth asking, each with its own answers, alongside answers to the question it was given.
+
+F32
+MECHANISM: Implementer agents take each plain answer and expand it into a detailed step-by-step build plan. They must mark every step where they cannot say exactly what is done ("then calibrate appropriately"). These gaps are collected across all the plain answers and grouped together, and generation then targets only the gaps that recur. A finished idea is a specific way to fill one gap, inserted into the plain plan it came from. The pipeline keeps a list of gaps that are still unfilled and checks whether each fill actually removes the gap when the plan is expanded again.
+VALUE: Originality goes into the step everyone skips, inside a plan that is already valuable, so the new ideas arrive concrete and buildable.
+

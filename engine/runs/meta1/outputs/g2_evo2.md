@@ -1,0 +1,16 @@
+Honesty check
+
+Offspring 1 is closest to two things: per-component ablation in EvoCause and AlphaEvolve's mutable blocks, and round-trip reconstruction fidelity (Gilbert et al. 2023). Those works measure either value per part or how compressible the whole idea is. None of them crosses the two per slot, and none uses that cross to re-label families. So this offspring is distinct from both and was not mutated again.
+
+Offspring 2 is closest to POET (problems and solutions evolved together), hindsight relabeling (AgentHER) and KILLTEST. It differs from all three in three ways. The pass criterion is a number taken from an accepted surprise record. The backward deriver never sees the stall. The check is a chain on a single instance, not pre-registered verifier tests. The first draft only patched the stall, which was too close to KILLTEST, so it was mutated to reward bypass routes and score by how deep the chain goes.
+
+=== IDEAS ===
+IDEA 1
+NAME: Surprise-Must-Carry-Value Map
+MECHANISM: Each survivor is split into 4-8 slots. Every slot gets two scores. The first is value sensitivity: judges score how much value drops when that one slot is removed. The second is derivability: the share of N fresh agents, given only the question, that rebuild that slot. The two scores steer each other. The 15-word hint may describe only high-sensitivity slots, so if the hint fails to rebuild a slot, that slot is flagged as unclear and sent for rewriting. Slots that are derivable get unfrozen and must be rewritten off-attractor, even when they are high-value. Selection keeps an idea only if most of its value drop sits in non-derivable slots. If an idea's value lives in derivable slots, it is re-labeled as a plain answer in disguise, with the family of its derivable core. Crossover may swap only slots that are both non-derivable and load-bearing. Derivable slot texts are stored per question type and given to the question-only rebuild agents in later runs, so the bar for "obvious" rises over time.
+VALUE: Originality is only credited when the surprising parts are the parts that create the value, which raises originality and value together and catches NEW labels that are really known families.
+
+IDEA 2
+NAME: Stall-Pinned Record Chains
+MECHANISM: A walker plays a plain answer out on one concrete instance and logs the first stall. A record writer then writes a dated success record for that same instance, whose "before" number is the measured state at the stall. A separate agent derives the smallest mechanism that could produce the record, without being shown the stall. The walker replays this mechanism on the same instance, and it passes only if it reaches the record's number. A mechanism that reaches the number by going around the stalled step, rather than patching it, is tagged as a new route. A mechanism that stalls later becomes the seed for the next record. An idea's score is how far its chain gets plus a bonus for new routes. Unreached records and their stalls are stored together as weighted open targets. Passed stalls are retired, and the route signatures that passed them become forbidden templates in later runs.
+VALUE: Every idea is tied to a real failure point and a concrete measured target, with no outside verifier needed, so concreteness holds and value is measured on the exact step where plain answers fail.
