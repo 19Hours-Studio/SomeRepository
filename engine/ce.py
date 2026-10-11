@@ -52,6 +52,9 @@ def transcript_text(p):
 def read_source(a):
     return transcript_text(a.transcript) if a.transcript else open(a.file).read()
 
+GENIUS_RUBRIC = ("- G = genius 1-10: 10 = one simple central move that makes the hard part of the question easy or dissolves it, "
+                 "surprising to experts yet obvious once seen, with consequences far beyond the question; 5 = clever but complicated, "
+                 "partial or built around the hard part; 1 = a pile of machinery or a re-skin. Be harsh: most answers should be <=4.")
 FRAG = re.compile(r"\b(?:idea|answer|offspring)\s*#?\s*\d\b|\b(?:as|see) above\b|\bthe above\b|\bprevious (?:idea|answer)\b", re.I)
 
 def parse_ideas(text):
@@ -98,7 +101,7 @@ def cmd_prompt(a):
     cfg = load(a.run, "config.json", None) or sys.exit("no run")
     extra = {}
     n = cfg["n"]
-    if a.tech == "evo":
+    if a.tech.startswith("evo"):
         pairs = load(a.run, "pairs.json", [])[a.pair_from:a.pair_from + a.pairs]
         if not pairs: sys.exit("no pairs: run `pairs` first")
         ideas = {i["id"]: i for i in load(a.run, "ideas.json", [])}; lit = load(a.run, "lit.json", {})
@@ -146,12 +149,15 @@ def cmd_set(a):
             sid = f"{a.prefix}{j:02d}"; key[sid] = i["id"]
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
-    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize"):
+    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         if kind == "judge" and getattr(a, "crux", False):
             crux = load(a.run, "config.json", {}).get("crux") or sys.exit("no crux recorded: run `family` with the v1.7 template first")
             s = s.replace("- closest = ", f"- X = Y if the answer attacks this crux directly with its own mechanism: \"{crux}\"; N if it delegates, assumes away or ignores it.\n- closest = ")
             s = s.replace("ID | O | C | V | R | BASIN | closest", "ID | O | C | V | R | BASIN | X | closest")
+        if kind == "judge" and getattr(a, "genius", False):
+            s = s.replace("- R = ", GENIUS_RUBRIC + "\n- R = ")
+            s = s.replace("ID | O | C | V | R | BASIN", "ID | O | C | V | G | R | BASIN")
         open(os.path.join(d, f"prompt_{kind}.txt"), "w").write(s)
     print(f"set {a.set}: {len(items)} items -> {d}/blind.txt (+ prompt_judge/family/lit.txt)")
 
@@ -179,10 +185,10 @@ def cmd_judge(a):
     text = read_source(a); key = setkey(a.run, a.set)
     open(path(a.run, "sets", a.set, f"judge_{a.judge}.md"), "w").write(text)
     sc = load(a.run, "scores.json", {}); n = 0
-    for sid, o, c, v, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| ([YN]) \| ([A-Z0-9_]+) \| (?:([YN]) \| )?(.+)$", text, re.M):
+    for sid, o, c, v, g, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| (?:(\d+) \| )?([YN]) \| ([A-Z0-9_]+) \| (?:([YN]) \| )?(.+)$", text, re.M):
         if sid not in key: continue
         sc.setdefault(key[sid], {})[f"{a.set}:{a.judge}"] = {"O": int(o), "C": int(c), "V": int(v), "R": r, "B": b, "closest": cl.strip(),
-                                                           **({"X": x} if x else {})}
+                                                           **({"X": x} if x else {}), **({"G": int(g)} if g else {})}
         n += 1
     save(a.run, "scores.json", sc); print(f"judge {a.judge} on {a.set}: {n}/{len(key)} parsed")
     if n < len(key): print("WARNING: missing lines — check sets/" + a.set + f"/judge_{a.judge}.md")
@@ -198,7 +204,8 @@ def agg(run, iid):
             "R_all": all(j["R"] == "Y" for j in js), "R_any": any(j["R"] == "Y" for j in js),
             "new_all": all(j["B"] == "NEW" for j in js), "new_frac": sum(j["B"] == "NEW" for j in js) / len(js),
             "basins": [j["B"] for j in js], "closest": js[0]["closest"], "closest_all": " ".join(j["closest"] for j in js),
-            "crux": (sum(j["X"] == "Y" for j in js if "X" in j) / sum("X" in j for j in js)) if any("X" in j for j in js) else None}
+            "crux": (sum(j["X"] == "Y" for j in js if "X" in j) / sum("X" in j for j in js)) if any("X" in j for j in js) else None,
+            "G": (sum(j["G"] for j in js if "G" in j) / sum("G" in j for j in js)) if any("G" in j for j in js) else None}
 
 def cmd_select(a):
     lit = load(a.run, "lit.json", {}); pool = []
@@ -213,7 +220,7 @@ def cmd_select(a):
             if not au: continue
             if au["spec"] is not None and au["spec"] <= 0: continue  # «подходит к любому вопросу» — отсев
             pool.append((g["OV"] * (0.5 + 0.5 * au["carried"]), i["id"], g)); continue
-        pool.append((g["OV"], i["id"], g))
+        pool.append((g["OV"] * (g["G"] if getattr(a, "by", "ov") == "ovg" and g["G"] is not None else 1), i["id"], g))
     pool.sort(key=lambda t: -t[0])
     if getattr(a, "diverse", False):  # v1.7: near-duplicates (same closest work) take one slot
         words = lambda g: set(re.findall(r"[a-z]{4,}", g["closest_all"].lower()))
@@ -469,11 +476,13 @@ def main():
     x.add_argument("--arms"); x.add_argument("--prefix", default="S")
     x.add_argument("--basin-sources", help="e.g. observed,predicted — exclude visited families from judge prompts (fair final comparison)")
     x.add_argument("--crux", action="store_true", help="v1.7: add the crux column X to the judge prompt")
+    x.add_argument("--genius", action="store_true", help="v1.7: add the genius score G to the judge prompt")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("judge"); x.add_argument("run"); x.add_argument("set"); x.add_argument("judge"); src(x)
     x = sp.add_parser("select"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--labels"); x.add_argument("--arms")
     x.add_argument("--k", type=int, default=6); x.add_argument("--drop-known-basins", action="store_true")
     x.add_argument("--diverse", action="store_true", help="v1.7: near-duplicates (same closest work) take one slot")
+    x.add_argument("--by", default="ov", choices=["ov", "ovg"], help="v1.7: ovg ranks by O*V*G (genius) when judges gave G")
     x.add_argument("--v2", action="store_true", help="score = O*V*(0.5+0.5*carried); drop ideas with decoy specificity <= 0 (needs audit)")
     x = sp.add_parser("lit"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("pairs"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--n", type=int, default=6)

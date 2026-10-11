@@ -1,0 +1,14 @@
+{QUESTION}
+Propose new answers by EVOLVING existing candidates. You get {N} parent pairs. For each pair produce ONE offspring:
+1. FIND THE SHARED MOVE: identify the single idea that makes BOTH parents work - the move underneath their machinery.
+2. SIMPLIFY: the offspring is that move, made stronger, with everything else removed. It must be SIMPLER than either parent (fewer parts, a shorter core sentence), yet do at least what both parents do. Stacking the parents' mechanisms together is forbidden.
+3. MUTATE AWAY: the offspring must clearly differ from the parents' nearest published work (listed) and from every known family below.
+4. KEEP IT IMPORTANT: it must serve something that genuinely matters for the question.
+5. HONESTY CHECK: before the final section, name the closest existing work for each offspring; if it is essentially that, mutate again.
+Describe mechanisms concretely; give the NAME last.
+
+Known families (forbidden, including re-skins):
+{BASINS}
+
+{PAIRS}
+{FORMAT}

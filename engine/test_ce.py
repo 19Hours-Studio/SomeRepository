@@ -114,16 +114,23 @@ def main():
             assert "crux:" in ce("family", R7, "s00", "--file", p)
             ce("setcfg", R7, "use_crux", "1"); ce("prompt", R7, "neg", "g1_neg")
             assert "judging validity of the unprecedented" in open(os.path.join(rd7, "prompts", "g1_neg.txt")).read()
-            ce("set", R7, "s01", "--labels", "g1_x", "--prefix", "A", "--crux"); k1 = json.load(open(os.path.join(rd7, "sets", "s01", "key.json")))
-            assert "| X |" in open(os.path.join(rd7, "sets", "s01", "prompt_judge.txt")).read()
+            ce("set", R7, "s01", "--labels", "g1_x", "--prefix", "A", "--crux", "--genius"); k1 = json.load(open(os.path.join(rd7, "sets", "s01", "key.json")))
+            pj = open(os.path.join(rd7, "sets", "s01", "prompt_judge.txt")).read()
+            assert "ID | O | C | V | G | R | BASIN | X | closest" in pj and "G = genius" in pj
+            assert "CRUX |" in open(os.path.join(rd7, "sets", "s01", "prompt_crux.txt")).read()
             closest = {"g1_x#1": "geodetic network adjustment", "g1_x#2": "geodetic network adjustment", "g1_x#3": "kinetic proofreading", "g1_x#4": "other thing"}
-            p = os.path.join(tmp, "j7"); open(p, "w").write("SCORES\n" + "\n".join(f"{sid} | 6 | 5 | 5 | N | NEW | Y | {closest[iid]}" for sid, iid in k1.items()))
+            gen = {"g1_x#1": 2, "g1_x#2": 3, "g1_x#3": 9, "g1_x#4": 9}
+            p = os.path.join(tmp, "j7"); open(p, "w").write("SCORES\n" + "\n".join(f"{sid} | 6 | 5 | 5 | {gen[iid]} | N | NEW | Y | {closest[iid]}" for sid, iid in k1.items()))
             assert "4/4" in ce("judge", R7, "s01", "J1", "--file", p)
             sys.path.insert(0, HERE); import ce as cem7
-            assert cem7.agg(R7, "g1_x#1")["crux"] == 1.0
-            ce("select", R7, "g1", "--k", "4", "--diverse")
+            assert cem7.agg(R7, "g1_x#1")["crux"] == 1.0 and cem7.agg(R7, "g1_x#3")["G"] == 9
+            ce("select", R7, "g1", "--k", "4", "--diverse", "--by", "ovg")
             surv7 = json.load(open(os.path.join(rd7, "survivors_g1.json")))
             assert "g1_x#4" not in surv7 and len(surv7) == 2, surv7  # fragment dropped, near-duplicates share one slot
+            assert surv7[0] == "g1_x#3" and surv7[1] == "g1_x#2", surv7  # ranked by O*V*G; of the duplicates the more genial one stays
+            ce("prompt", R7, "genius", "g1_genius"); ce("pairs", R7, "g1", "--n", "1")
+            ce("prompt", R7, "evo_simple", "g2_evo1", "--pairs", "1")
+            assert "SIMPLER than either parent" in open(os.path.join(rd7, "prompts", "g2_evo1.txt")).read()
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")

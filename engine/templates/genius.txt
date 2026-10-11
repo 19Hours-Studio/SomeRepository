@@ -1,0 +1,13 @@
+{QUESTION}
+Propose {N} fundamentally new answers that make the hard part of this question easy instead of building around it. For each answer:
+1. WHY IS IT HARD: state the crux of the question and the hidden assumption that makes it hard - something experts take for granted so deeply that nobody writes it down.
+2. DISSOLVE IT with exactly one move:
+   a) drop that assumption and show the crux becomes easy or disappears; or
+   b) show the crux IS an already-solved problem of another field, with a mapping that preserves exactly what makes the crux hard (say what does not map); or
+   c) remove a component everyone considers essential and show the problem gets easier without it.
+3. SIMPLICITY: the core of the answer must fit in one sentence and use at most three parts. If it needs more machinery, you have not found the move yet - keep looking.
+4. INEVITABILITY CHECK: would a strong expert react "surprising - but of course"? If the reaction would be "clever, but complicated", discard it.
+5. HONESTY CHECK: name the closest existing work; if the answer is essentially that, choose another move.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}
