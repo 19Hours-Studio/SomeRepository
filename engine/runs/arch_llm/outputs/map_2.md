@@ -1,0 +1,17 @@
+The core idea is to use the 32 GB of RAM and the CPU as model components, not just the GPU. A 200M-parameter transformer has to fit its memorized facts, skills and fast learning into the same few weights that the GPU must compute through for every token. The three mechanisms below separate those jobs. The GPU stays a small reasoning core, while capacity sits in RAM in forms that cost almost no GPU FLOPs.
+
+=== IDEAS ===
+IDEA 1
+NAME: Chunk-Paged RAM Expert Ocean
+MECHANISM: A 150M-parameter GPU core is paired with a bank of about 60,000 int8 low-rank expert blocks (rank-64 deltas for every core layer, about 15B parameters, about 15 GB) held in system RAM. A cheap pass over each 1,024-token chunk produces a product-key query that selects 64 experts for the whole chunk, not per token. Their roughly 250 MB of weights stream over PCIe (about 10 ms) while the previous chunk computes, using double buffering. In training, the GPU returns gradients only for the selected experts, and the CPU applies them with a factorized Adafactor-style optimizer whose state is a tiny fraction of the bank. The bank's FLOP cost per token therefore equals a 200M model's, while its stored capacity is about 75 times larger.
+VALUE: It gives the knowledge and skill capacity of a roughly 15B-parameter model at the training and inference compute of a 200M one, which a dense same-budget transformer cannot store at all.
+
+IDEA 2
+NAME: Corpus-Indexed Residual Language Model
+MECHANISM: The full training corpus, plus any user documents, is kept in RAM as a compressed FM-index (about 5 GB for 5B tokens). For every position, the CPU finds the longest matching suffix in the corpus and returns its continuation statistics: the top-16 next tokens with counts, the match length and the source offsets. These go into the network as input embeddings and as an additive logit prior. The network is trained only on the loss of the mixture, so its gradients go entirely to what exact lookup cannot predict: generalization, composition and paraphrase. Memorization moves out of the weights into an index the CPU queries for free, alongside the GPU.
+VALUE: It recalls billions of tokens verbatim with sources and absorbs new text instantly by appending to the index, with no retraining. A same-budget transformer must spend most of its 200M weights memorizing, and does so lossily.
+
+IDEA 3
+NAME: Fast-Weight Episodic Cortex with Sleep
+MECHANISM: Each attention layer carries rank-16 fast weights that are updated during inference by one gradient step per chunk on the model's own next-token loss. This is cheap because only about 1M parameters change, so effective context becomes unbounded and is held in weights rather than a KV cache. When the PC is idle, a "sleep" phase replays logged episodes. It distills fast weights that kept being useful into new or existing experts in the Idea 1 RAM bank, using a frozen 4-bit open-weight 7B model (about 5 GB) as a regularizing teacher to prevent drift and forgetting. A meta-learned learning-rate and gating network, trained offline on document sequences, decides what gets written and what gets consolidated.
+VALUE: The model keeps learning permanently from its owner's daily use on the same hardware, with no context-length limit and no catastrophic forgetting. A trained-once, frozen same-budget transformer cannot do this.

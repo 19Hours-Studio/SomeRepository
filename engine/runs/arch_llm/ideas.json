@@ -1,1 +1,83 @@
-[]
+[
+ {
+  "id": "map_1#1",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Self-Memoizing Depth Cache",
+  "mech": "Each token first passes through a 4-layer fast path. A learned locality-sensitive hash of its residual state then queries a RAM-resident table of up to about 1B int8 entries. Each entry stores a compressed delta (\"this is what layers 5–24 would have added\"). On a confident hit the 20 deep layers are skipped and the delta is added. On a miss the slow path runs and its delta is written back as a new entry. Training does three things together: it distills the slow path into the cache entries, it shapes the hash so that states with similar deltas share buckets, and it calibrates a hit-confidence gate. Lookups cost bytes rather than FLOPs, so the 32 GB of RAM becomes stored computation, and PCIe only carries the few kilobytes each token needs.",
+  "value": "Effective depth and throughput keep improving with use and data seen, not with parameters, so a fixed-FLOP transformer cannot match it on recurring computations."
+ },
+ {
+  "id": "map_1#2",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Foreign-Neuron Retrieval Model",
+  "mech": "Every feed-forward neuron of a frozen open 7B–13B model is extracted as a (key, value) pair and quantized to 4 bits. The roughly 2B-vector index lives in RAM, behind a product-quantized nearest-neighbour index. A trainable 200M \"host\" model learns per-layer projections from its own residual into the teacher's residual coordinates. With those it retrieves the top 2–8k neurons for each token, applies the teacher's activation function to those neurons only, and maps the summed values back into its own stream. The projections are trained by distillation: the retrieval-augmented output has to match the full teacher's output. The neuron selection is made differentiable through a straight-through top-k. Each token then costs only a few megabytes of RAM reads and about 2% of the teacher's feed-forward FLOPs.",
+  "value": "The model gets close to a 7–13B model's factual and associative capacity while training and running at roughly the compute and VRAM cost of a 200M model."
+ },
+ {
+  "id": "map_1#3",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Sleep-Consolidated Growing Slots",
+  "mech": "While the model is in use, any token span with high loss or user correction is stored in a RAM episodic buffer as compact latent states plus targets. During idle hours the GPU replays these episodes into a pool of sparse weight \"slots\": small rank-4 adapters keyed by a content hash, with up to millions of them in RAM. A slot is allocated only when its gradient conflicts with existing slots (measured as gradient cosine below zero), so new learning goes into new capacity instead of overwriting old capacity. While the model runs, a router loads only the 8–32 slots that match the current context into VRAM. The dense core stays mostly frozen, with interleaved replay from a reservoir sample of old episodes.",
+  "value": "The model keeps learning new facts and skills indefinitely after deployment without catastrophic forgetting or full retraining, while a same-budget transformer is fixed after its weekly training run."
+ },
+ {
+  "id": "map_2#1",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Chunk-Paged RAM Expert Ocean",
+  "mech": "A 150M-parameter GPU core is paired with a bank of about 60,000 int8 low-rank expert blocks (rank-64 deltas for every core layer, about 15B parameters, about 15 GB) held in system RAM. A cheap pass over each 1,024-token chunk produces a product-key query that selects 64 experts for the whole chunk, not per token. Their roughly 250 MB of weights stream over PCIe (about 10 ms) while the previous chunk computes, using double buffering. In training, the GPU returns gradients only for the selected experts, and the CPU applies them with a factorized Adafactor-style optimizer whose state is a tiny fraction of the bank. The bank's FLOP cost per token therefore equals a 200M model's, while its stored capacity is about 75 times larger.",
+  "value": "It gives the knowledge and skill capacity of a roughly 15B-parameter model at the training and inference compute of a 200M one, which a dense same-budget transformer cannot store at all."
+ },
+ {
+  "id": "map_2#2",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Corpus-Indexed Residual Language Model",
+  "mech": "The full training corpus, plus any user documents, is kept in RAM as a compressed FM-index (about 5 GB for 5B tokens). For every position, the CPU finds the longest matching suffix in the corpus and returns its continuation statistics: the top-16 next tokens with counts, the match length and the source offsets. These go into the network as input embeddings and as an additive logit prior. The network is trained only on the loss of the mixture, so its gradients go entirely to what exact lookup cannot predict: generalization, composition and paraphrase. Memorization moves out of the weights into an index the CPU queries for free, alongside the GPU.",
+  "value": "It recalls billions of tokens verbatim with sources and absorbs new text instantly by appending to the index, with no retraining. A same-budget transformer must spend most of its 200M weights memorizing, and does so lossily."
+ },
+ {
+  "id": "map_2#3",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Fast-Weight Episodic Cortex with Sleep",
+  "mech": "Each attention layer carries rank-16 fast weights that are updated during inference by one gradient step per chunk on the model's own next-token loss. This is cheap because only about 1M parameters change, so effective context becomes unbounded and is held in weights rather than a KV cache. When the PC is idle, a \"sleep\" phase replays logged episodes. It distills fast weights that kept being useful into new or existing experts in the Idea 1 RAM bank, using a frozen 4-bit open-weight 7B model (about 5 GB) as a regularizing teacher to prevent drift and forgetting. A meta-learned learning-rate and gating network, trained offline on document sequences, decides what gets written and what gets consolidated.",
+  "value": "The model keeps learning permanently from its owner's daily use on the same hardware, with no context-length limit and no catastrophic forgetting. A trained-once, frozen same-budget transformer cannot do this."
+ },
+ {
+  "id": "map_3#1",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Co-Access Paged Host Memory",
+  "mech": "A 200M-parameter GPU controller is paired with a sparse key-value memory of about 20B int8 rows kept in the 32 GB of host RAM. Rows are grouped into 64 KB pages. A cheap first pass over each 256-token chunk predicts which pages the chunk needs, about 64 pages or 4 MB. That set is copied over PCIe 4.0 (about 25 GB/s) while the GPU is still working on the previous chunk, so the transfer time is hidden. During training, only the rows that were touched get gradients, and CPU threads apply sparse Adam updates to them in RAM. Every night a CPU job re-clusters rows into pages using the co-access graph, so each page fetch serves many tokens. This keeps bandwidth use high while VRAM holds only the controller and the active pages.",
+  "value": "It gives the model a 20B-parameter knowledge store at the per-token compute cost of a 200M model, a capacity no dense same-budget transformer can hold in 12 GB."
+ },
+ {
+  "id": "map_3#2",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Frozen-Prior Surprise Delta Model",
+  "mech": "An open-weight 3B model quantized to 4-bit (about 2 GB VRAM) stays frozen and supplies a prior distribution plus hidden states at every position. The trainable network is a small recurrent side model (about 150M parameters). It reads those hidden states and outputs only a gated additive correction to the prior's logits. It is trained only on high-loss tokens, where the prior's loss is high and the corrected output could still improve. These tokens are found by running the frozen prior forward once at inference cost, and they are about 15% of the corpus. At inference a learned gate skips the side model on confident tokens, and on those tokens the prior's later layers exit early. As a result, the backward pass and most FLOPs go only to new information.",
+  "value": "The 5B-token weekly budget acts like roughly 30B tokens of useful signal on top of a stronger prior, without ever paying training cost for what the prior already knows."
+ },
+ {
+  "id": "map_3#3",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Idle-Time Sleep Consolidation",
+  "mech": "During use, the model writes episodic traces into a ring buffer in RAM: the context, its own outputs, user corrections and high-surprise spans. When the PC is idle, a \"sleep\" job replays these traces mixed with samples from its normal training data, which guards against forgetting. Any rewritten answers produced during replay are checked by the frozen open-weight model from Idea 2 before they are kept. The job then distils the result into the memory pages of Idea 1 and the side model's low-rank adapters. Updates are confined to sparse rows and adapters. That keeps a nightly session to a few GPU-hours and makes it reversible: the job keeps checkpoints, and a validation probe rolls back any update that hurts held-out perplexity.",
+  "value": "The model keeps learning the owner's documents and tasks on the same PC indefinitely, while a same-budget transformer stays frozen at the end of training."
+ }
+]
