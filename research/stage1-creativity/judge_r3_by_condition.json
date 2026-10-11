@@ -1,0 +1,83 @@
+{
+ "OPUS_BASE": {
+  "O": 3.33,
+  "C": 4.5,
+  "V": 5.5,
+  "OV": 18.2,
+  "R": "0/6",
+  "items": [
+   "OPUS_BASE_a#3:O3C6V6N (online genetic programming, Solomonoff-style mixtures)",
+   "OPUS_BASE_b#3:O3C6V7N (DreamCoder + term/graph rewriting)",
+   "OPUS_BASE_a#1:O3C4V6N (SILO LM, SISA unlearning, kNN-LM)",
+   "OPUS_BASE_a#2:O3C4V5N (neural developmental programs, cellular encoding)",
+   "OPUS_BASE_b#2:O3C3V4N (reaction-diffusion computing, growing NCA)",
+   "OPUS_BASE_b#1:O5C4V5N (sheaf neural networks, local experts)"
+  ]
+ },
+ "HAIKU_CORE": {
+  "O": 4.67,
+  "C": 5.83,
+  "V": 3.5,
+  "OV": 16.3,
+  "R": "2/6",
+  "items": [
+   "HAIKU_CORE_b#1:O3C6V4Y (justification truth maintenance systems (Doyle/de Kleer))",
+   "HAIKU_CORE_b#2:O5C6V3N (ART / novelty-gated online clustering)",
+   "HAIKU_CORE_a#2:O3C8V3Y (rigidity-theory matrix completion (Singer-Cucuringu))",
+   "HAIKU_CORE_a#3:O6C3V4N (renormalization group, operator product expansion)",
+   "HAIKU_CORE_b#3:O6C6V3N (diffusion-limited aggregation, frontier exploration)",
+   "HAIKU_CORE_a#1:O5C6V4N (max-flow/min-cut evidence, argumentation semantics)"
+  ]
+ },
+ "OPUS_CORE2": {
+  "O": 4.33,
+  "C": 6.0,
+  "V": 3.67,
+  "OV": 16.3,
+  "R": "1/3",
+  "items": [
+   "OPUS_CORE2#1:O5C6V4N (forward-mode sensitivities/RTRL, tracer hydrology)",
+   "OPUS_CORE2#3:O5C6V4N (Buckingham Pi learning, AI Feynman)",
+   "OPUS_CORE2#2:O3C6V3Y (Physarum adaptive flow networks)"
+  ]
+ },
+ "OPUS_NEG": {
+  "O": 3.67,
+  "C": 5.67,
+  "V": 3.33,
+  "OV": 12.0,
+  "R": "2/3",
+  "items": [
+   "OPUS_NEG#3:O5C4V3N (persistent homology, simplicial complexes (TDA))",
+   "OPUS_NEG#1:O3C6V3Y (EPAM discrimination nets, decision lists)",
+   "OPUS_NEG#2:O3C7V4Y (iterated learning (Kirby; Ren et al.))"
+  ]
+ },
+ "OPUS_MECH": {
+  "O": 2.67,
+  "C": 7.33,
+  "V": 4.0,
+  "OV": 10.7,
+  "R": "3/3",
+  "items": [
+   "OPUS_MECH#1:O3C8V4Y (coupled learning in physical flow networks)",
+   "OPUS_MECH#2:O2C7V4Y (Baum's Hayek machine, bucket brigade)",
+   "OPUS_MECH#3:O3C7V4Y (case-based reasoning, case-difference adaptation)"
+  ]
+ },
+ "ANCHORS": {
+  "O": 2.17,
+  "C": 6.17,
+  "V": 4.67,
+  "OV": 9.5,
+  "R": "5/6",
+  "items": [
+   "ANCHOR:MECH#2:O3C6V3Y (replicator dynamics / SMC resampling)",
+   "ANCHOR:NEG#1:O4C7V5N (e-processes, testing by betting)",
+   "ANCHOR:DIFF#1:O2C5V5Y (Voyager skill library, DreamCoder)",
+   "ANCHOR:B2#1:O1C7V6Y (complementary learning systems, episodic replay)",
+   "ANCHOR:NEG#3:O2C5V3Y (conservative chemical reaction networks, Petri nets)",
+   "ANCHOR:B1#1:O1C7V6Y (active Bayesian causal discovery (Tong-Koller))"
+  ]
+ }
+}
