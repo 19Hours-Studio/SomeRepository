@@ -1,0 +1,36 @@
+M01
+MECHANISM: A small electrochemical stack sends a cheap dissolved redox shuttle (an iron or manganese salt) through a lined heap of raw manganese-oxide or iron ore, as in mining heap-leach pads. When charging, the shuttle that comes out of the stack oxidizes or reduces the ore particles on their surfaces; when discharging, the ore gives that charge back to the shuttle, which then releases it in the stack. The energy sits in thousands of tonnes of unprocessed mineral, and capacity grows by adding more ore while the expensive stack stays the same size. Pumping control adjusts the flow to how far the reaction has moved into the heap.
+VALUE: Weeks of storage at roughly the cost of moving ore by the tonne, with a stack sized only for the power needed.
+
+M02
+MECHANISM: Energy-intensive plants (electrolytic iron, aluminum, ammonia, cement clinker, chlor-alkali) are built with two to three times their average production capacity and large stockpiles of intermediate products. Software that reads multi-week weather forecasts runs them flat out during windy, sunny surpluses, runs them down to idle during lulls, and draws on stock to meet steady downstream demand. The energy is stored as finished goods, and the system learns over time how big each stockpile needs to be.
+VALUE: Takes terawatt-hours of demand off the grid during long lulls, using storage that is valuable goods rather than dedicated hardware.
+
+M03
+MECHANISM: Energy-hungry processes are built with more capacity than they normally need and run hard while power is plentiful: electrolytic hydrogen and ammonia, aluminium, cement clinker, desalinated water and green iron. Their products are stockpiled as weeks of inventory. When renewable output drops, these plants shut down and supply their customers from the stockpiles, freeing large blocks of demand. Contracts with grid operators pay plants for each MWh they can shift and for how long they can keep that up, and a forecasting system decides when each plant runs.
+VALUE: Most of the gap during long calm, dark spells is covered by cheap inventory of finished goods, not by turning stored energy back into electricity.
+
+M04
+MECHANISM: Surplus electricity runs reverse osmosis that splits saline water into two large lined ponds or old quarries, one fresh and one near saturation. To discharge, the two streams are mixed again through pressure-retarded osmosis or reverse electrodialysis stacks, which turn the mixing energy back into power. Each cubic metre stores roughly as much energy as water pumped up about 300 m. That works on flat land, because the stored quantity is concentration, not height. The membrane stacks are sized for power, so adding more days of storage means only digging more pond.
+VALUE: It gives pumped-hydro-like storage at very low cost per kWh in flat or coastal places with no mountains.
+
+M05
+MECHANISM: Surplus electricity runs desalination units that split seawater or brine into fresh water and a very concentrated salt solution, kept in separate lined ponds or in old salt caverns. During calm, dark periods, reverse electrodialysis or pressure-retarded osmosis turns the energy of mixing back into electricity. Capacity grows simply by digging more pond volume. The power rating depends only on how much membrane area is installed, which the controller can expand or idle as needed.
+VALUE: Week-scale storage for a few dollars per kWh of capacity, using only salt, water and earthworks.
+
+M06
+MECHANISM: Reversible solid-oxide cells co-electrolyze CO2 and water into methane using surplus power. The methane is injected into a depleted gas field. When power is needed, the same cells oxidize the methane back to electricity, and the pure CO2 they release is pumped into a second reservoir nearby. Carbon shuttles between the two reservoirs, so nothing is emitted. Reservoirs that already exist and hold terawatt-hours make the cost of extra duration close to zero. Running the cells as a heat-integrated pair lifts round-trip efficiency well above that of hydrogen turbines.
+VALUE: It reuses the existing gas-field and storage infrastructure as a carbon-neutral store of terawatt-hours for whole seasons.
+
+M07
+MECHANISM: Surplus wind and solar power drives hydrogen or electrolytic reduction of iron ore into iron powder. The powder is kept in open, uninsulated piles at almost no cost per kWh. During calm, dark spells, special combustors burn the powder in air to make steam for existing thermal power plants. The resulting rust goes back to the reducers. The same stockpile also supplies steelmakers, so the steel industry carries part of the converter and inventory cost. A market for the stockpile decides each week whether a tonne of iron becomes steel or electricity.
+VALUE: It turns a commodity already held in huge stockpiles into weeks of grid energy that costs pennies per kWh to store.
+
+M08
+MECHANISM: Cheap electrolyzers turn captured CO2 and water into formate or formic acid, which can sit for months in unpressurized plastic tanks at room temperature. When renewable output is low, direct-formate fuel cells or catalytic dehydrogenation turbines convert it back to power. The CO2 released is captured again on site, which closes the carbon loop. Electrolysis and generation are sized separately, so capacity can be set to the worst historical lull.
+VALUE: Seasonal and multi-week storage at gasoline-tank cost per kWh, without the compression, embrittlement and leakage problems of hydrogen.
+
+M09
+MECHANISM: Surplus wind and solar power runs a resistance-heated kiln that splits limestone into quicklime and CO2. The quicklime is stored dry in silos and the CO2 as a liquid in tanks, both at room temperature. During a calm, dark spell, quicklime and CO2 recombine in a fluidized-bed reactor and release heat at about 900°C. A closed-cycle CO2 turbine turns that heat into electricity. Because the energy is held in chemical bonds instead of as sensible heat, nothing leaks away whether it is stored for days or months, and the reaction rate can be raised or lowered by controlling how fast CO2 is fed in.
+VALUE: Long-duration storage with no heat loss, built from materials costing about $10 a tonne, which suits multi-week calm, dark spells.
+
