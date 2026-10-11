@@ -40,5 +40,19 @@
   "Neurosymbolic program-synthesis library",
   "Episodic memory with sleep consolidation",
   "Explicit causal graph revised by surprise"
+ ],
+ "g2_evo1": [
+  "Hodge-weighted least-squares adjustment of reasoning loops",
+  "Conservation laws added as constraints in a rigidity matrix",
+  "Majority voting over the ensemble before each Kalman update",
+  "A graph neural network that predicts misclosures",
+  "An ensemble Kalman filter whose observations are reasoning steps"
+ ],
+ "g2_evo2": [
+  "Chain-of-thought verifier that checks conservation constraints",
+  "Majority vote over paraphrased reasoning paths",
+  "Sheaf neural network that enforces consistency of local reasoning",
+  "Graph of reasoning paths with consistency voting",
+  "Autoencoder that infers hidden variables from residuals"
  ]
 }
