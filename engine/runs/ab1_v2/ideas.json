@@ -214,5 +214,32 @@
   "name": "Wahlund-Split Module Growth",
   "mech": "For each module, the system tests whether paired feature co-activations match the products of their marginal frequencies. A heterozygote-like deficit indicates two pooled subpopulations, so the module splits in two, inputs are assigned by admixture inference, and a router is learned. Over time, splits build a lineage tree of specialized modules.",
   "value": "The architecture adds specialists when a statistic shows a module has been mixing two input types."
+ },
+ {
+  "id": "g2_imm#1",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Lineage Council of Past Selves",
+  "mech": "The system keeps a sparse set of frozen copies of its own weights from different points in its training history, chosen for maximal behavioural difference from each other. Before committing to an answer or an update, it asks a sample of these past selves to predict what the current self will say. It records where they diverge, and treats sudden divergence from all past selves at once as drift that needs justifying. An unjustified drift is rolled back for that input region, and a justified one is accepted and becomes a new council member.",
+  "value": "The system can notice and undo its own value or skill drift without an external grader."
+ },
+ {
+  "id": "g2_imm#2",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Cost-to-Break Belief Pricing",
+  "mech": "For each claim the system relies on, it spawns a tiny, freshly initialised adversary on a budget. The adversary searches for inputs, rephrasings or contexts in which the system contradicts that claim. The amount of compute the adversary needed before it succeeded is stored with the claim as a \"breaking price\". Downstream reasoning may only build on claims whose price is above a threshold set by how much is at stake. Claims that break cheaply are flagged for targeted retraining using the counterexamples the adversary found.",
+  "value": "Robustness becomes a quantity the system measures for each belief and can act on, instead of a property it hopes it has."
+ },
+ {
+  "id": "g2_imm#3",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Committed Prediction Escrow",
+  "mech": "Before an outcome is observable, the system publishes cryptographic hash commitments of its predictions to an append-only external log. It reveals the predictions only after the outcome has resolved. The resulting record cannot be altered after the fact, and the system uses it as its only source of reward: learning updates are weighted by forecasts that were verifiably committed in advance, never by hindsight explanations. Outside parties can stake on, or audit, any category of prediction. Their challenges become extra training signal.",
+  "value": "Trust and learning are anchored in a track record that neither the system nor its trainers can rewrite after the fact."
  }
 ]

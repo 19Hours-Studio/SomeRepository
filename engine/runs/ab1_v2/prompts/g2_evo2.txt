@@ -1,0 +1,60 @@
+What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.
+Propose new answers by EVOLVING existing candidates. You get 2 parent pairs. For each pair produce ONE offspring:
+1. CROSSOVER: fuse the two parents' core mechanisms into one mechanism in which each parent's mechanism changes the other's behaviour (not two modules side by side).
+2. MUTATE AWAY: the offspring must clearly differ from the parents' nearest published work (listed) and from every known family below.
+3. KEEP IT IMPORTANT: it must serve something that genuinely matters for the question.
+4. HONESTY CHECK: before the final section, name the closest existing work for each offspring; if it is essentially that, mutate again.
+Describe mechanisms concretely; give the NAME last.
+
+Known families (forbidden, including re-skins):
+PROGSYN: Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions
+CAUSGR: Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph
+COMPMAP: Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning
+MODMKT: Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement
+TMS: Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes
+CONSOL: Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting
+ENERGY: Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates
+WMPLAN: Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts
+ACTINF: Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience
+VSA: Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations
+CURIO: Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress
+GWS: Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control
+PLAST: Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference
+V14: Fully reversible uncomputable inference — Every layer and every reasoning step is a bijection, built from invertible couplings with explicit "garbage" registers, so each output can be run backward exact
+V15: Teach-to-retain transmission bottleneck — A capability counts as kept only if the system can write a short, human-readable lesson that lets a fresh, small, randomly initialized student reach the same be
+V16: Phase-interference evidence aggregation — Every derivation path to a candidate answer contributes a complex amplitude, and the path's phase is set by the assumptions it relies on. Paths that support an 
+V17: Guarded Trace Compilation of Skills — A slow, general deliberative solver handles new problems and records the step trace it executes. When a trace becomes hot, it is compiled into a fast specialize
+V18: Kinetic Proofreading Inference — A candidate inference step must survive K sequential, irreversible holding stages before it is committed. At each stage it is re-tested for match against an ind
+V19: Learned Dimensional Similarity Algebra — Every latent quantity carries a learned vector of integer "dimension" exponents. These are inferred so that every observed relation is dimensionally homogeneous
+V20: Shared False-Alarm Wealth Thresholds — Closes G4. Every cutoff (surprise, "similar enough", "least-supported", stopping tolerance) is replaced by an online conformal p-value. The p-value is computed 
+V21: Rescaling-Tested Kind Exponents — Every internal quantity carries an exponent vector over a growing set of base kinds, and operations may only combine compatible vectors. The system keeps rescal
+V22: Teach-Back Transfer Gap — Knowledge is also held as short, explicit lessons. Periodically a small, empty student is rebuilt using only those lessons and scored on held-out cases. Lessons
+V23: Rigidity-Braced Concept Frames — Concepts are joints and learned relations are bars. The system periodically computes the spectrum of the rigidity matrix. Floppy modes trigger acquisition of ne
+V24: Allan-Grown Memory Timescales — The system computes the Allan deviation of its prediction residuals across context lag. When the deviation rises at τ\*, it creates a new recurrent state with t
+V25: Wahlund-Split Module Growth — For each module, the system tests whether paired feature co-activations match the products of their marginal frequencies. A heterozygote-like deficit indicates 
+
+PAIR 1
+ Parent A: MECHANISM: Closes G2. For each real task type, the system builds twin tasks in the easy direction, where the answer is fixed first and the problem is generated from it: run a program and then ask for its output, hide a known span and then ask to reconstruct it, compose a plan and then ask what goal it achieves. A discriminator is trained adversarially until it cannot tell the twins from real tasks. The system stores per-twin-cluster accuracy for every checker and solver. On a real task with no oracle, the correctness estimate is the measured accuracy on the twins that match it most closely.
+   VALUE: It gives a calibrated, always-available correctness signal on tasks where no verified outcome will ever arrive.
+   nearest published work: Absolute Zero: Reinforced Self-play Reasoning with Zero Data (2025) https://neurips.cc/virtual/2025/poster/116121 ; Leveraging Unlabeled Data to Predict Out-of-Distribution Performance (2022) https://arxiv.org/pdf/2201.04234
+ Parent B: MECHANISM: Every internal quantity carries an exponent vector over a growing set of base kinds, and operations may only combine compatible vectors. The system keeps rescaling or swapping kinds in its own inputs and checks that its outputs change exactly as the exponents predict. Each failure splits a kind, adds a new one, or revises an exponent.
+   VALUE: Reliable extrapolation far beyond the magnitudes in its experience, plus automatic detection of answers that make no sense.
+   nearest published work: Dimensionally Consistent Learning with Buckingham Pi (2022) https://arxiv.org/pdf/2202.04643 ; Dimensionless machine learning: Imposing exact units equivariance (2022) https://arxiv.org/abs/2204.00887
+
+PAIR 2
+ Parent A: MECHANISM: Closes G1. The system does not parse the input directly. It applies a large set of small edits to the raw input (swapping a token or phrase, inpainting an image patch, shifting time) and records how each edit changes a frozen predictor's output distribution. Edits are clustered by their effect signature, and each cluster becomes one variable whose values are the observed edit outcomes. A typed link is added wherever a pair of clusters shows a non-additive second-order effect, meaning editing both does not equal the sum of editing each. The edit library and clusters are stored, and the clustering is refit as new inputs come in, so the structured form is built from the input itself rather than hand-specified.
+   VALUE: It turns "parse the input into the representation" into a measurable procedure that works the same way on text, pixels and sensor streams.
+   nearest published work: Automated Discovery of Pairwise Interactions from Unstructured Data (2024) https://arxiv.org/pdf/2409.07594 ; Discovering unexpected local nonlinear interactions in scientific black-box models (Hint, KDD 2019) https://cris.huji.ac.il/en/publications/discovering-unexpected-local-nonlinear-interactions-in-scientific/
+ Parent B: MECHANISM: A candidate inference step must survive K sequential, irreversible holding stages before it is committed. At each stage it is re-tested for match against an independently perturbed context, and if it detaches it resets to the beginning rather than to the previous stage. Errors therefore decay roughly as f^K. The number of stages a candidate survives gives a confidence score, and the system can raise K wherever stakes are high.
+   VALUE: Reasoning accuracy can be bought with compute in a predictable, near-exponential way, instead of being capped by a single forward pass.
+   nearest published work: Kinetic proofreading, Hopfield (1974) / Ninio (1975) https://en.wikipedia.org/wiki/Kinetic_proofreading ; Partially Correlated Verifier Cascades in LLM Harnesses (2026) https://arxiv.org/pdf/2607.13918
+
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 2 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+
