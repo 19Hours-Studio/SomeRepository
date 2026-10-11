@@ -15,10 +15,10 @@
 | g1_neg#3 | engine | 6.0 | 6.0 | 36.0 | NEW/NEW | PARTIAL | Surgical Ignorance and Rediscovery |
 | g1_reframe#2 | engine | 6.0 | 6.0 | 36.0 | NEW/NEW | PARTIAL | Desiderata Invention Engine |
 | g1_core#1 | engine | 7.0 | 5.0 | 35.0 | NEW/NEW | PARTIAL | Forcing-Style Diagonal Construction |
-| g1_loop#1 | engine | 7.0 | 5.0 | 35.0 | NEW/NEW | — | Gramian-Guided Actuator Growth |
+| g1_loop#1 | engine | 7.0 | 5.0 | 35.0 | NEW/NEW | PARTIAL | Gramian-Guided Actuator Growth |
 | g1_core#2 | engine | 6.5 | 5.0 | 32.5 | NEW/NEW | PARTIAL | Replication-Residual Idea Pricing |
-| g2_evo2#1 | engine | 6.5 | 5.0 | 32.5 | NEW/NEW | — | Absence-Driven Generic Forcing |
-| g2_evo2#2 | engine | 6.5 | 5.0 | 32.5 | NEW/NEW | — | Unhedgeable Floppy-Mode Eigensearch |
+| g2_evo2#1 | engine | 6.5 | 5.0 | 32.5 | NEW/NEW | NO-CLOSE-MATCH | Absence-Driven Generic Forcing |
+| g2_evo2#2 | engine | 6.5 | 5.0 | 32.5 | NEW/NEW | PARTIAL | Unhedgeable Floppy-Mode Eigensearch |
 | g2_evo2#3 | engine | 6.5 | 5.0 | 32.5 | NEW/NEW | — | Ablation-Born Values, Rebuilt Foundations |
 | g1_neg#2 | engine | 6.0 | 5.0 | 30.0 | NEW/NEW | — | Irrevocable Research-Programme Commitment |
 | g2_evo1#3 | engine | 6.0 | 5.0 | 30.0 | NEW/NEW | — | Co-Forced Artifact and Criterion |
