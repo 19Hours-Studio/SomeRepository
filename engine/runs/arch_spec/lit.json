@@ -1,1 +1,32 @@
-{}
+{
+ "g1_mech#1": {
+  "verdict": "PARTIAL",
+  "closest": "Deep learning technique for fast inference of large-scale riverine bathymetry, Ghorbanidehno et al., Adv. Water Resources (2021) https://wrrc.hawaii.edu/?p=7004 ; Variational encoder geostatistical analysis (VEGAS) with an application to large scale riverine bathymetry (2021) https://arxiv.org/pdf/2111.11719 (also USGS UAS-video PIV + depth retrieval for North Santiam River, Legleiter/Harrison, 2022 https://www.usgs.gov/data/video-acquired-uncrewed-aerial-system-uas-and-hydroacoustic-measurements-flow-velocity)",
+  "new": "Learning a bed map from surface velocity is established (but with simulated or flume training and calm rivers); new is the free self-supervised target (high-water phone video paired with low-water exposed bed), whitewater/foam tracking, and the rock-undercut probability output. No whitewater submerged-rock work found."
+ },
+ "g1_mech#2": {
+  "verdict": "PARTIAL",
+  "closest": "Rajs et al., latent fingerprint time-since-deposition by DESI-MS plus machine learning (Scientific Reports; 744 prints, r about 0.54) https://cris.huji.ac.il/en/publications/determining-time-since-deposition-of-latent-fingerprints-on-foren/ ; \"Deep learning analysis and age prediction from shoeprints\" (Univ. Missouri, title-only hit, content unverified) https://bondlsc.missouri.edu/?p=11401 (also fingerprint time-lapse imaging of degradation, 76-86% two-class accuracy; tracker field heuristics on edge sharpness)",
+  "new": "Learned dating of footprints in mud/sand/snow appears unpublished; what is new is the staked time-lapse capture of true-age prints, relief profiles (rim, wall, fill) scored against cumulative-weather-since-start-time, and the ordinal ordering penalty across later photos of the same print."
+ },
+ "g1_core2#2": {
+  "verdict": "PARTIAL",
+  "closest": "Spark imaging plus deep learning to predict carbon content in steel, Maribor/Stor Steel (2025) https://hrcak.srce.hr/clanak/478140 ; Spark test image regression, ResNet-18 + Grad-CAM, NTUST thesis (2023) https://etheses.lib.ntust.edu.tw/thesis/detail/529f625eee44a1c1599d3da166cdfafc/ (also spark length/spread/deviation-angle study https://jii.araku.ac.ir/article_727684_ada638d2da050cb74ecea592be55a6da.pdf ; ResNet18 spark-to-machinability, MDPI Metals 2024 https://www.mdpi.com/2075-4701/14/8/955)",
+  "new": "Inferring composition from spark images with CNNs is known; new is treating tracked burst genealogies as multitype Galton-Watson trees with timed delays and estimating offspring mean/delay by exact tree likelihood (phylodynamics-style) for grinder-invariant inference. No spark-as-branching-tree prior work found, but it depends on the unseen Idea 1 tracking."
+ },
+ "g1_core#1": {
+  "verdict": "PARTIAL",
+  "closest": "Badino and Chignola, Antro del Corchia, pressure as input and entrance wind as output, deconvolution, Helmholtz estimate that mapped volume is under half of the probable total, Frontiers in Earth Science (2019) https://www.frontiersin.org/journals/earth-science/articles/10.3389/feart.2019.00147/pdf ; Lang and Faimon, Is the Helmholtz resonator a suitable tool for prediction of the volumes of hidden cave spaces? (2013) https://www.ics.muni.cz/veda-a-vyzkum/publikace/1116771 (also barometric-airflow volume estimates at Jewel/Wind Cave, Wiles and Ohms 2010; Airflow dynamics in Wind Cave and Jewel Cave https://hss-opus.ub.ruhr-uni-bochum.de/opus4/frontdoor/index/index/docId/10013)",
+  "new": "Pressure-forced entrance-airflow transfer function for hidden volume is already done analytically; new is the lung-style forced-oscillation Otis multi-compartment posterior from a transformer trained on synthetic networks made by deleting passages from surveys, with uncertainty. I found no forced-oscillation-technique or learned-posterior cave work, and the Helmholtz approach has been criticised for unstable resonances."
+ },
+ "g1_loop#3": {
+  "verdict": "PARTIAL",
+  "closest": "Allred et al., Overall results and key findings on use of UAV visible, multispectral and thermal imagery for mapping agricultural drainage pipes, Agricultural Water Management (2020) https://pubs.usgs.gov/publication/70208285 ; Breitkopf et al., Advanced Deep Learning Architectures for Accurate Detection of Subsurface Tile Drainage Pipes from Remote Sensing Images (2022) https://arxiv.org/pdf/2210.02071 (also USGS satellite U-Net tile-drain delineation https://www.usgs.gov/publications/machine-learning-model-delineate-sub-surface-agricultural-drainage-satellite-imagery)",
+  "new": "Drone thermal drain mapping and U-Net drain segmentation are established, mostly supervised or manual; new is the label-free analysis-by-synthesis loop (U-Net surrogate of a Darcy solve, 3-sigma residual ridge/trough edits to a drain graph, accepted only if held-out-pixel R-free improves). I found no inverse-model or residual-edit drain inference, though the surrogate-inversion pattern is generic in subsurface hydrology, and the \"19th-century field drains\" framing is just a use case."
+ },
+ "g1_mech#3": {
+  "verdict": "PARTIAL",
+  "closest": "Shi et al., Automated non-invasive wooden pole health assessment (2026) https://strathprints.strath.ac.uk/96887/1/Shi-etal-2026-Automated-non-invasive-wooden-pole-health-assessment.pdf (hammer-test waveforms, classifiers, drill-test labels) ; Poole, Hartley et al., Force and sound data fusion for enhanced tap testing scanning of composites, IEEE Access (2023) https://strathprints.strath.ac.uk/85622/7/Poole_Hartley_IEEE_Access_2023_Force_and_sound_data_fusion_for_enhanced_tap_testing.pdf (also unsupervised autoencoder acoustic anomaly detection, Planing It by Ear, 2025 https://arxiv.org/abs/2501.04819v1)",
+  "new": "Tap-sound ML for wood and composites, and healthy-baseline anomaly detection, exist; new is per-hull self-baselining by predicting each tap's spectrum from its 8 spatial neighbours (masked-point training), with the residual as the rot map and a small second stage calibrated to awl-probe depths. No wooden-hull or neighbour-residual tap work found, but residual-from-baseline is an obvious idea in the field."
+ }
+}

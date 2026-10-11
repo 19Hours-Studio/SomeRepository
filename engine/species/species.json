@@ -30,6 +30,10 @@
    {
     "run": "arch_spec",
     "OV": 16.0
+   },
+   {
+    "run": "arch_llm",
+    "OV": 14.2
    }
   ]
  }

@@ -1,0 +1,43 @@
+Choose a task where AI has never been applied well - not a mainstream benchmark and not a field already served by strong specialized models - and design a specialized model architecture that would solve it remarkably well while being trained and run on one consumer PC: a single NVIDIA RTX 3060 (12 GB VRAM, about 25 TFLOPS dense FP16) and 32 GB of system RAM. Start each MECHANISM by naming the task and why AI has been absent or has failed there, then give the concrete architecture: inputs, outputs, structure, and training signal.
+Propose 3 fundamentally new answers.
+Hard constraint: you may NOT use any named concept, method, theory or buzzword from this problem's home field. Describe each answer ONLY in terms of: what quantities or objects exist, how they flow or interact, what rule changes them, and what signal drives the change. Fix the mechanics first; give the NAME last.
+Families that models have been observed to converge on (forbidden, including re-skins):
+RULESYN: an encoded expert rulebook (renderer, notator or differentiable rule layer) produces paired training data from an abundant adjacent corpus, with round-trip/cycle consistency and lattice or LM rescoring, for a notation or language that has no paired corpus
+SURRINV: a graph-network surrogate trained on mass FEM vibration simulations, then inverted by constrained optimization to give a material-removal (grinding/carving) map that hits target modal frequencies
+DIFFEM: phone photos are mapped to a 3D material-property field that drives a differentiable finite-element model, self-supervised by backpropagating measured real deformation through the physics
+CHEMINV: a frozen chemistry/stoichiometry front-end layer feeds a learned property predictor that is inverted by gradient search in recipe space under the user's material constraints
+FRACSEQ: a fracture-physics simulator generates synthetic training data, contrastively aligned to a few real scans, and a learned fracture field scores a beam search over removal order to reassemble fragments
+SERMATCH: a sequence is extracted from a photo with per-element uncertainty, trained on renders synthesized from a measured database, then dated by cross-correlation against a large reference library held in RAM
+STITCHPS: photo-to-program synthesis that infers a symbolic stitch graph or pattern (knitting, crochet, lace) and checks it with a differentiable yarn or render model
+GARMSIM: sewing-pattern drafting from body scans or measurements, optimized through a differentiable cloth simulator for fit and drape
+SIGNLR: low-resource minority sign-language translation through a pose-keypoint bottleneck, with synthetic avatar renders and self-training
+FERMODE: a world model of fermentation (sourdough, kombucha, compost) that fuses phone time-lapse and cheap sensors with a kinetic ODE layer to predict and control the process
+DECIPH: decipherment of an undeciphered script by unsupervised structural and cognate alignment against candidate related languages under combinatorial constraints
+HIVEAUD: self-supervised acoustic/vibration monitoring of niche living systems (beehives, livestock, soil fauna), fine-tuned on a few keeper-labelled events to forecast health states
+V13: Lighting Cues from Edit Logs — Task: programming lighting cues for live theatre. AI has never been used here, and DJ "sound-to-light" fails because it reacts to loudness and ignores the drama
+V14: Kitchen Firing Policy — Task: deciding when each dish on each order is started ("fired") in a small restaurant kitchen. Kitchen display systems use fixed timers, and no learning system
+V15: Bridge Partnership Misunderstanding Detector — Task: finding where two particular bridge partners interpret their bids differently. Existing bridge bots model a standard bidding system, not the private habit
+V16: Cave Impedance Plethysmograph — Natural changes in air pressure (barometric tides and weather fronts) serve as the forcing signal, and a cheap ultrasonic anemometer at each entrance records th
+V17: Passage Scaffolding From Mate-Evidence — Surveyed passage segments are treated like contigs (assembled genome fragments). "Mate-pair" links between separate passage ends come from dye traces, cave radi
+V18: ETAS Discovery Forecaster — Every dated survey leg is treated as an event in a self-exciting point process, as in aftershock forecasting. A background intensity field comes from a small CN
+V19: Spark Kalman Vertex Tracker — A tiny convolutional hit detector (~2M parameters) runs on each frame of 240 fps video and outputs streak-segment "hits" with position, direction and two-colour
+V20: Phylodynamic Spark Burst Inference — The tracked bursts from Idea 1 form genealogies: carrier line, first fork, second-generation forks. These are scored under a multitype Galton–Watson branching p
+V21: Mixed-Effects Session Calibration — Following population-pharmacokinetics practice, the branching and track parameters are modelled as composition fixed effects (shared across every user) plus ran
+V22: Seasonal Riverbed Reveal — The task is showing paddlers, before they commit, where submerged rocks, undercuts and trapped logs sit under fast whitewater. AI has been absent here because n
+V23: Footprint Decay Clock — The task is estimating how many hours ago a footprint was pressed into mud, sand or snow, so search-and-rescue teams can tell which trail is fresh. AI has faile
+V24: Neighbour-Predicted Tap Map — The task is finding hidden rot in wooden boat hulls and timber frames, where surveyors tap with a hammer and listen. AI is absent because every hull rings diffe
+V25: Residual-Tested Stratigraphy Builder — The task is building an archaeological Harris matrix, the ordering of soil layers, from trench photos, level readings and excavators' notes. AI has been absent 
+V26: Linkage-Split Axe Signatures — The task is attributing hand-hewn timber in historic buildings to individual axes and carpenters from phone photos of tool marks. AI has been absent because the
+V27: Difference-Map Field Drain Recovery — The task is mapping lost 19th-century clay field drains under farmland from drone RGB and thermal images taken after rain. AI has been absent because no ground 
+V28: Weathered Contact Ledger — Task: dry-stone walling, choosing the next stone from an irregular pile. AI is absent here because a wall's stability only shows over seasons, and no dataset or
+V29: Crackle-Gated Grain Map — Task: choosing hand-plane direction and depth on figured wood (curly or interlocked grain) without tear-out. AI is absent because the work is tactile, every boa
+V30: Breath-Locked Drone Swarm — Task: live accompaniment of unmetered, ornamented solo singing such as sean-nós or Persian āvāz, where beat- and score-based systems fail because there is no me
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (3-5 sentences: the concrete architecture - what is computed, what is stored, how it is trained, and why it fits the hardware budget)
+VALUE: (1 sentence: what it makes possible that a same-budget alternative cannot)
+(same for each further idea)
+Keep everything under 600 words.
+

@@ -85,5 +85,149 @@
   "desc": "self-supervised acoustic/vibration monitoring of niche living systems (beehives, livestock, soil fauna), fine-tuned on a few keeper-labelled events to forecast health states",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V13",
+  "desc": "Lighting Cues from Edit Logs — Task: programming lighting cues for live theatre. AI has never been used here, and DJ \"sound-to-light\" fails because it reacts to loudness and ignores the drama",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V14",
+  "desc": "Kitchen Firing Policy — Task: deciding when each dish on each order is started (\"fired\") in a small restaurant kitchen. Kitchen display systems use fixed timers, and no learning system",
+  "source": "visited",
+  "members": [
+   "g1_neg#2"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Bridge Partnership Misunderstanding Detector — Task: finding where two particular bridge partners interpret their bids differently. Existing bridge bots model a standard bidding system, not the private habit",
+  "source": "visited",
+  "members": [
+   "g1_neg#3"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Cave Impedance Plethysmograph — Natural changes in air pressure (barometric tides and weather fronts) serve as the forcing signal, and a cheap ultrasonic anemometer at each entrance records th",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Passage Scaffolding From Mate-Evidence — Surveyed passage segments are treated like contigs (assembled genome fragments). \"Mate-pair\" links between separate passage ends come from dye traces, cave radi",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "ETAS Discovery Forecaster — Every dated survey leg is treated as an event in a self-exciting point process, as in aftershock forecasting. A background intensity field comes from a small CN",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Spark Kalman Vertex Tracker — A tiny convolutional hit detector (~2M parameters) runs on each frame of 240 fps video and outputs streak-segment \"hits\" with position, direction and two-colour",
+  "source": "visited",
+  "members": [
+   "g1_core2#1"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Phylodynamic Spark Burst Inference — The tracked bursts from Idea 1 form genealogies: carrier line, first fork, second-generation forks. These are scored under a multitype Galton–Watson branching p",
+  "source": "visited",
+  "members": [
+   "g1_core2#2"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Mixed-Effects Session Calibration — Following population-pharmacokinetics practice, the branching and track parameters are modelled as composition fixed effects (shared across every user) plus ran",
+  "source": "visited",
+  "members": [
+   "g1_core2#3"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Seasonal Riverbed Reveal — The task is showing paddlers, before they commit, where submerged rocks, undercuts and trapped logs sit under fast whitewater. AI has been absent here because n",
+  "source": "visited",
+  "members": [
+   "g1_mech#1"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Footprint Decay Clock — The task is estimating how many hours ago a footprint was pressed into mud, sand or snow, so search-and-rescue teams can tell which trail is fresh. AI has faile",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Neighbour-Predicted Tap Map — The task is finding hidden rot in wooden boat hulls and timber frames, where surveyors tap with a hammer and listen. AI is absent because every hull rings diffe",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Residual-Tested Stratigraphy Builder — The task is building an archaeological Harris matrix, the ordering of soil layers, from trench photos, level readings and excavators' notes. AI has been absent ",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V26",
+  "desc": "Linkage-Split Axe Signatures — The task is attributing hand-hewn timber in historic buildings to individual axes and carpenters from phone photos of tool marks. AI has been absent because the",
+  "source": "visited",
+  "members": [
+   "g1_loop#2"
+  ]
+ },
+ {
+  "code": "V27",
+  "desc": "Difference-Map Field Drain Recovery — The task is mapping lost 19th-century clay field drains under farmland from drone RGB and thermal images taken after rain. AI has been absent because no ground ",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
+ },
+ {
+  "code": "V28",
+  "desc": "Weathered Contact Ledger — Task: dry-stone walling, choosing the next stone from an irregular pile. AI is absent here because a wall's stability only shows over seasons, and no dataset or",
+  "source": "visited",
+  "members": [
+   "g1_mechneg#1"
+  ]
+ },
+ {
+  "code": "V29",
+  "desc": "Crackle-Gated Grain Map — Task: choosing hand-plane direction and depth on figured wood (curly or interlocked grain) without tear-out. AI is absent because the work is tactile, every boa",
+  "source": "visited",
+  "members": [
+   "g1_mechneg#2"
+  ]
+ },
+ {
+  "code": "V30",
+  "desc": "Breath-Locked Drone Swarm — Task: live accompaniment of unmetered, ornamented solo singing such as sean-nós or Persian āvāz, where beat- and score-based systems fail because there is no me",
+  "source": "visited",
+  "members": [
+   "g1_mechneg#3"
+  ]
  }
 ]

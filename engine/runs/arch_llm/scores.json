@@ -1,1 +1,326 @@
-{}
+{
+ "g1_core2#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Closed-form piecewise least-squares distillation heads"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "closed-form least-squares distillation heads"
+  }
+ },
+ "g1_core2#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CacheGen-style delta KV-cache compression"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CacheGen-style KV cache codec compression"
+  }
+ },
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "K-FAC / EKF training plus iSAM2"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iSAM2 / K-FAC second-order training"
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 3,
+   "C": 8,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "RHO-LOSS plus learning-progress curriculum"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 8,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "RHO-LOSS reducible-loss data selection"
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "MMI reranking; Belief State Transformer"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "noisy-channel / MMI reverse reranking"
+  }
+ },
+ "g1_mechneg#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Markov Logic Networks / MaxWalkSAT"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "TOOLSYM",
+   "closest": "Markov logic networks, KB cleaning"
+  }
+ },
+ "g1_neg#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Reverse training; bidirectional consistency"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "reverse training; L2R/R2L agreement regularization"
+  }
+ },
+ "g1_core2#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "FrugalGPT / model-cascade routing"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "FrugalGPT / LLM cascade routing"
+  }
+ },
+ "g1_mechneg#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 3,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Kuramoto binding (AKOrN, temporal binding)"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "binding-by-synchrony, Kuramoto oscillatory neurons"
+  }
+ },
+ "g1_mechneg#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 3,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Example-based MT / analogical proportions"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "example-based MT, analogical proportions"
+  }
+ },
+ "g1_neg#2": {
+  "s01:J1": {
+   "O": 2,
+   "C": 8,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Interchange Intervention Training (Geiger)"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 8,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Interchange Intervention Training (Geiger)"
+  }
+ },
+ "g1_neg#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "EntNet / dynamic entity-state LMs"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "EntNet / dynamic entity memory"
+  }
+ },
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "LightRNN 2D softmax plus growing MoE"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "LightRNN 2D softmax, growing MoE"
+  }
+ },
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Relation-aware attention with cycle consistency"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "relational attention, group-structured embeddings"
+  }
+ },
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "LOOPDEPTH",
+   "closest": "DEQ plus Elser difference map"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "LOOPDEPTH",
+   "closest": "DEQ plus Elser difference map"
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Learned sparse attention via Granger tests"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "learned sparse attention structure"
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "PRANC / SeedLM / NOLA seed weights"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "PRANC / SeedLM / NOLA seed weights"
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Karbasi neural associative memory; memory layers"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "null-space associative memory, LDPC decoding"
+  }
+ }
+}
