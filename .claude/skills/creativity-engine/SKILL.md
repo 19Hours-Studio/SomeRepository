@@ -34,8 +34,10 @@ Literature checks use `subagent_type: general-purpose` (they need WebSearch) wit
 After an agent finishes, ingest from its transcript: `--transcript <output_file from the Agent launch result>`.
 Launch independent agents in one message; never read transcripts into your own context.
 
-## v1.7 options (A/B pending, see research/stage1-creativity/06-engine-v17.md)
-- Crux: the family judge now also outputs `CRUX | ...`; `setcfg R use_crux 1` makes every generator attack it; final sets with `--crux` get a column X (attacks the crux: Y/N).
+## v1.7 (default since the A/B in research/stage1-creativity/06-engine-v17.md §8: V +0.8…+1.7, G +1.0, O −0.6)
+- Gen 1 portfolio: neg, core, loop, mech, genius. Gen 2: `prompt R evo_simple g2_evo1|g2_evo2 ...` (simplifying crossover) + immigrant of the best technique. Parents: `select ... --drop-known-basins --diverse --by ovg`. Screening/final sets: `--crux --genius`.
+- ALWAYS add one plain judge (a set built without `--crux --genius`) to any A/B: the crux column primes judges' V (about half of the V gain in the v1.7 A/B was priming).
+- Crux: the family judge now also outputs `CRUX | ...` (or use `sets/<s>/prompt_crux.txt` on an existing map); `setcfg R use_crux 1` makes every generator attack it; final sets with `--crux` get a column X (attacks the crux: Y/N).
 - `select ... --diverse`: near-duplicates (same closest work) share one slot. Fragments (ideas citing "Idea 1") are never selected.
 - Portfolio by cross-run fitness: neg, core, core2, mech, loop (`mechneg` lost selection on 2 new questions).
 - Intent check: before gen 1, show the user 2-3 contrasting readings of the question from the map and confirm (a literal reading cost a whole run on arch_spec).
