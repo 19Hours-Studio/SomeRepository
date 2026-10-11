@@ -1,0 +1,108 @@
+Z01
+MECHANISM: The system keeps a population of thousands of small executable world-programs. Each one continuously predicts the incoming data stream and gains or loses credit based on accuracy and brevity. Outputs come from a credit-weighted ensemble, and disagreement among the programs serves as the uncertainty estimate. Learning happens online by mutating, recombining and pruning programs, with a neural proposer suggesting edits, and without any global retraining.
+DIFFERENCE: It can invent and adopt genuinely new discrete rules during deployment and hold several incompatible explanations at once, instead of averaging them into one frozen function.
+
+Z02
+MECHANISM: Each belief is a layer deposited into one append-only column, placed above the layers it rests on, so its depth is one more than its deepest support. Support chains therefore end at observations, and self-support cannot be written. A contradiction is logged as a dated intrusion that cuts an older layer without erasing it, and a conclusion is emitted only if no unresolved intrusion lies on its support chain; resolving one means depositing a new layer that rests on both sides.
+DIFFERENCE: Circular justification is impossible by construction, and every conclusion carries full provenance to observations, which a single forward pass re-deriving its own support cannot guarantee.
+
+Z03
+MECHANISM: Knowledge is stored as the shape of a growing cell complex: experiences add vertices, co-occurrences add edges and higher cells, and concepts are holes (cycles) that persist across many fillings. Inference asks topological questions, such as whether a query path can be shrunk to a point and which cycles it winds around and how often, using sparse linear algebra on boundary matrices with no message passing. Learning adds cells that fill spurious holes, so only persistent homology classes remain as concepts.
+DIFFERENCE: Its answers do not change under any continuous deformation of the data, so it directly counts loops, periodicity and winding, which architectures built on point embeddings can only approximate.
+
+Z04
+MECHANISM: Signals are a conserved quantity routed between units. Each unit holds the flow-weighted mix of its inflows, and each decision injects a unique tracer vector that mixes along conservatively. When an outcome arrives, the local tracer composition is unmixed by solving a small mass-balance system, giving each past decision's exact share. Each link then scales its routing fraction by (1 + rate × outcome × credited tracer it carried), and nodes renormalize.
+DIFFERENCE: Exact credit across arbitrarily long delays in one forward pass, with no backward sweep or decaying trace.
+
+Z05
+MECHANISM: The state is a set of proto-concepts, clusters of past examples each with a member count n. Each example joins its nearest cluster or seeds a new one, and every cluster loses members at a rate that rises as it shrinks. The example's surprise, meaning how badly existing clusters predicted it, sets a supersaturation S; a cluster reaching a critical size n*, which falls steeply as S rises, freezes into a stable concept, while smaller clusters dissolve.
+DIFFERENCE: A single highly surprising example can fix a concept, while unsurprising noise fades rather than accumulating, so the data needed is set by surprise rather than by a fixed learning rate.
+
+Z06
+MECHANISM: A fixed lattice of cells each holds a fluid level. Each link between neighboring cells holds a width, and the widths are the only thing the system stores. Input pours amounts into entry cells, and fluid moves along each link at a rate of width times level difference until nothing changes; the answer is how much has pooled in each outlet cell. To learn, each outlet's shortfall is poured in (and any excess drawn out) as a second settling run. Each width then changes by its forward flow times its second-run flow, is clipped at zero, and loses a small fixed amount.
+DIFFERENCE: Every answer is an exact redistribution of the input amount, so it can report precisely which part of the input ended up in which output, and it can never produce output with nothing behind it.
+
+Z07
+MECHANISM: The model's state is a typed graph of small symbolic programs and data nodes. Computation applies learned graph-rewrite rules over and over until the graph reaches a normal form, and that normal form is the answer. Rules live in a library and are scored by how much they compress observed experience (minimum description length). Gradient-free search proposes new rules by abstracting recurring rewrite sequences into single rules, while a small neural prior only ranks which rule to apply next.
+DIFFERENCE: Its computation depth is unbounded and depends on the input, every intermediate step can be checked exactly, and it can generalize to inputs of any size (for example, longer arithmetic) instead of only interpolating within its training distribution.
+
+Z08
+MECHANISM: Knowledge is not held in shared dense weights. It is stored as an append-only ledger of small, sparse "contribution" entries, and each entry is tagged with the data sources that created it. At inference, a learned routing operator retrieves the relevant entries and combines them, so every output carries a trace of where it came from. Learning adds or refines entries, and periodic consolidation merges entries while keeping their source tags, so each source's influence stays separable.
+DIFFERENCE: It can exactly and verifiably remove the influence of any training source and name the precise data behind an answer, which entangled dense weights fundamentally cannot do.
+
+Z09
+MECHANISM: Items are points, and each observed similarity is a rigid bar fixing one pairwise distance. The system keeps the rigid clusters of the bar graph current with a rank test on the rigidity matrix. It reports an unseen distance as a value only when the bars force it, and otherwise as undetermined.
+DIFFERENCE: It abstains exactly where the data do not determine an answer, while interpolating architectures return confident values for pairs no data constrains.
+
+Z10
+MECHANISM: The system holds a pool of small output rules that share one fixed budget, each rule carrying its own share. Each step every rule produces an output, and later observations update each rule's match record. Budget moves from rules below the pool's average match rate to those above it, so the total never changes. A rule whose share crosses a threshold splits into two rules taking half the share each, one slightly altered, and a rule whose share reaches zero is deleted. The driving signal is each rule's match rate relative to the pool average.
+DIFFERENCE: It spends more computation on hard inputs by growing more parallel lines of work under a fixed total budget, whereas current architectures run a fixed amount of computation per output.
+
+Z11
+MECHANISM: Each trader stores a cash balance, an asking price and a tiny rule that turns a few purchased numbers into one output number. At each step, traders buy other traders' outputs at their asking prices, compute, and sell their own output. The environment pays only the final seller, and only when the answer is correct, while every trader pays rent for each input it buys. A trader whose cash drops below zero is deleted. A trader whose cash goes above a threshold splits in two, each half taking half the cash, and the copy's rule is randomly perturbed. Prices rise when buyers compete and fall when nothing sells.
+DIFFERENCE: It grows, prunes and rewires itself continuously while it runs, driven by a single payoff number with no global derivative pass, so its size is set by what its computation earns rather than fixed in advance.
+
+Z12
+MECHANISM: The state is a wealth vector of e-processes, one per candidate answer. Each new observation multiplies each candidate's wealth by a likelihood ratio from a learned predictor, and compute is spent on the fastest-growing bets. An answer is committed when its wealth exceeds 1/α, and that error bound holds under any stopping rule.
+DIFFERENCE: It bounds the error of committed answers at any stopping time, which confidence scores and self-consistency voting cannot guarantee.
+
+Z13
+MECHANISM: The state is one effective coupling per operator in a vocabulary that is not fixed in advance. Each coarse-graining round rescales, then adds fusion-weighted products of existing couplings, so any operator produced by a product acquires a coupling. Operators whose couplings grow under rescaling (positive scaling dimension) become named variables, and the rest are dropped.
+DIFFERENCE: It creates variables absent from its input and reports which matter at each scale, whereas current architectures fix their feature set at design time.
+
+Z14
+MECHANISM: The model is one compact developmental program that every cell in a grid runs. Each cell reads local signals (error, activity, diffusing "chemical" fields) and decides whether to divide, connect, specialize or die. For each task, the network grows a task-specific circuit at inference time and prunes it afterward. Learning edits the shared developmental program through evolution plus meta-gradients, rather than tuning individual connections.
+DIFFERENCE: It builds new structure and compute on demand for each problem and repairs itself after damage, while fixed-topology networks are stuck with a size and wiring chosen before training.
+
+Z15
+MECHANISM: It stores solved cases as (input, answer) pairs, plus edit records. Each edit record pairs an input change with the answer change seen between two similar solved cases, and keeps a success count. To answer a new input, it finds a solved case and a chain of at most three records whose input changes turn that case's input into the new one. It then applies the matching answer changes to the case's answer. When the true answer arrives, each record that was used gains or loses count, records whose count falls below zero are deleted, records that keep appearing together are fused into one, and the new case adds fresh records against the closest stored cases.
+DIFFERENCE: It can answer inputs far from anything it has seen by chaining relative edits from a known case, and every answer is a derivation that can be replayed and corrected by deleting one record.
+
+Z16
+MECHANISM: Each raw input gets a small integer exponent vector over k hidden base dimensions. The exponents are chosen by discrete search (smallest k first) for the assignment under which data from all scales collapse onto one surface in dimensionless products. That surface is stored as a sparse table, filled in and interpolated from experience; only quantities with identical exponent vectors may be added or compared.
+DIFFERENCE: Predictions stay valid at magnitudes never seen, because the relation is built to be unchanged when any discovered dimension is rescaled.
+
+Z17
+MECHANISM: The model stores no feature weights. It keeps only a growing list of yes/no questions, and each question is a small executable probe that compares the input with a stored example, the environment, or the model's own earlier answers. An input's representation is its string of answers. Learning starts from confusion: when two inputs with different outcomes produce the same answer string, a search over probe programs adds one question that separates them, and old questions are never revised.
+DIFFERENCE: It can learn a concept from a single confusion without changing any earlier behavior, and every decision can be read as an explicit list of answered questions.
+
+Z18
+MECHANISM: The state is an aggregate of discovered items on a graph of candidate items. Random walkers launched from unexplored territory step between neighbors until they touch the aggregate and attach, adding one item and exposing new frontier. Growth concentrates at tips that screen the most unexplored territory, since walkers reach them first, so the aggregate branches fractally over the reachable space. Launch and attachment rules adapt to the yield of new items per walker.
+DIFFERENCE: It covers an unbounded space in proportion to the unexplored territory each frontier point screens, with no value function or novelty score, which current exploration bonuses must learn.
+
+Z19
+MECHANISM: The system is a chain of short-lived small learners instead of one long-lived network. Each learner is trained only on a tiny sample of its predecessor's input-output behavior, and then the predecessor is deleted. Only behavior that survives repeated handoffs through this bottleneck persists, which pushes knowledge toward compositional, compressible rules (as iterated-learning studies show). New world data is mixed into each handoff sample and competes with inherited behavior to be passed on, and there is no fitness selection.
+DIFFERENCE: Generalization comes from having to survive relearning, not from regularizing a fixed set of parameters, so everything it knows can be learned from few examples and moved to any substrate.
+
+Z20
+MECHANISM: Computation runs as reaction-diffusion dynamics on a continuous 2D or 3D field of chemical-like state variables. Inputs are injected as boundary conditions, and outputs are read from the stable patterns the field settles into. Memories are attractor patterns encoded in local reaction rules that every cell shares, like a genome. Learning adjusts those rules through local error signals that diffuse through the field, and the substrate grows new cells where unresolved error is steepest.
+DIFFERENCE: It repairs itself after arbitrary damage and gives more physical compute to hard sub-problems at runtime, with no fixed graph or parameter count.
+
+Z21
+MECHANISM: Premises are sources with fixed supply, and each inference rule is a conduit whose capacity equals its strength. A proposition's support is the maximum flow that can reach it, so parallel derivations share capacity and the minimum cut separating a conclusion from its premises bounds its support. That cut is stored with the conclusion as its certificate.
+DIFFERENCE: It cannot double-count shared evidence, and every confidence comes with the exact premises responsible for it, which current architectures cannot guarantee.
+
+Z22
+MECHANISM: Knowledge is a library of small executable programs keyed by invariant embeddings. Queries are routed by distance to the nearest programs, which run on demand; a new program is synthesized and verified only when none match. Learning adds or repairs programs and never edits shared weights.
+DIFFERENCE: It can add or verify skills without overwriting old ones, which shared-weight gradient updates fundamentally cannot guarantee.
+
+Z23
+MECHANISM: A fast sparse episodic store writes each experience in one shot, with no gradient step, so new information is retained immediately. A slow network is trained offline by replaying samples from that store and distilling them into its weights, after which the consolidated traces are pruned. Retrieval is sparse and indexed, so per-step cost does not scale with total history length.
+DIFFERENCE: It retains and updates knowledge from single exposures indefinitely without context growth or retraining, which a frozen-weight, fixed-window model cannot do.
+
+Z24
+MECHANISM: Knowledge is stored as thousands of small, separately trained local models. Each one is valid only on an overlapping region of context space (a "patch"), and learned restriction maps say how neighbouring patches must agree where they overlap. Inference searches for a global section: an assignment that satisfies all active patches at once, found by iterative consistency propagation instead of a single forward pass. Learning adds, splits or refits patches only where the measured disagreement (the obstruction to gluing them together) is high, and leaves every other patch untouched.
+DIFFERENCE: It can pinpoint and report exactly where its own knowledge contradicts itself, and it can learn new facts without overwriting old ones because no globally shared weights exist to interfere.
+
+Z25
+MECHANISM: The state is a nonnegative vector of species counts, and computation is a set of learned reactions with mass-action rates. Each reaction's stoichiometry must satisfy a fixed conservation law, so designated totals (resources, evidence, probability mass) move between species but are never created or destroyed. Learning tunes rates and reaction sets within those constraints.
+DIFFERENCE: It guarantees by construction that multi-step computation cannot invent budget, evidence, or probability mass, which approximators can only approximate.
+
+Z26
+MECHANISM: The model keeps a posterior over a population of candidate structural causal models, stored as sparse graphs with small learned mechanisms per node. For a query, it selects the action with the highest expected information gain, runs it in an environment or simulator, and updates the posterior by Bayesian model comparison, so the graph structure itself changes rather than only weights.
+DIFFERENCE: It can separate correlation from intervention and answer "what happens if I do X" after a few targeted experiments, which likelihood-trained next-token models do not represent.
+
+Z27
+MECHANISM: Knowledge is the link capacities in a graph. During learning, inputs supply flux, required outputs demand it, and flow settles by conservation at nodes; in use, outputs are left open and the flux they receive is the answer. Each link tracks a slow average strain (flux ÷ capacity): above an upper set point its capacity grows with the excess, below a lower one it slowly shrinks, and inside the band nothing changes.
+DIFFERENCE: New learning reshapes only links that are overloaded locally, so practiced skills are not worn down by a global error that touches everything.
+
