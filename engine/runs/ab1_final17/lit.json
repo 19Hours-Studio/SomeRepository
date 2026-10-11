@@ -1,1 +1,27 @@
-{}
+{
+ "v17:g2_evo2#1": {
+  "verdict": "PARTIAL",
+  "closest": "BeliefBank: Adding Memory to a Pre-Trained Language Model for a Systematic Notion of Belief (2021) https://arxiv.org/abs/2109.14723 ; Do Language Models Have Beliefs? Methods for Detecting, Updating, and Visualizing Model Beliefs (2021) https://arxiv.org/abs/2111.13654 (also Evaluating the Ripple Effects of Knowledge Editing in LMs (2023) https://arxiv.org/abs/2307.12976)",
+  "new": "Consistency-based error flagging and ripple/propagation testing are known, but I found nothing that plants graded known-size corruptions to measure a per-region restoring-force slope and uses it to decide where flagging is trustworthy."
+ },
+ "v17:g2_evo2#2": {
+  "verdict": "PARTIAL",
+  "closest": "Atlas: Few-shot Learning with Retrieval Augmented Language Models (2022), leave-one-out perplexity distillation (LOOP) https://arxiv.org/abs/2208.03299 ; ContextCite: Attributing Model Generation to Context (2024) https://arxiv.org/abs/2409.00729",
+  "new": "The masked-vs-full prediction-error difference as a document-level credit is essentially LOOP/leave-one-out attribution; what is new is using it as a continuously accumulated, streaming per-belief credit that governs belief weighting, overwrite rate, retraction and source down-weighting."
+ },
+ "v17:g2_evo1#1": {
+  "verdict": "NO-CLOSE-MATCH",
+  "closest": "Is Model Editing Built on Sand? Revealing Its Illusory Success and Fragile Foundation (2025) https://arxiv.org/pdf/2510.00625 (uses assert/negate edits only to evaluate editors, not to test truth) ; Language Models as Fact Checkers? (2020) https://arxiv.org/abs/2006.04102 (LM scoring of claims, no edit and no held-out-data test)",
+  "new": "Using a pair of assert/negate weight edits as competing hypotheses scored by held-out raw-data log-likelihood against a random-claim null, with an explicit \"uncontrolled by data\" outcome, is not something I found published."
+ },
+ "v17:g2_evo1#3": {
+  "verdict": "PARTIAL",
+  "closest": "Toolformer: Language Models Can Teach Themselves to Use Tools (2023) https://arxiv.org/abs/2302.04761 (tool-result loss as self-supervised filter) ; Foresight Learning / outcome-based RL for forecasting with proper scoring rules (2026) https://arxiv.org/abs/2601.06336 (also RLCR, Beyond Binary Rewards, 2025, https://arxiv.org/abs/2507.16806)",
+  "new": "Proper-score training on resolved outcomes and tool-loss signals both exist, but committing a distribution before every ordinary tool call and training only on those instantly settled scores, plus a per-topic and per-tool reliability ledger, is a new combination (the hash-commit is an integrity wrapper, not new learning)."
+ },
+ "v17:g2_imm#1": {
+  "verdict": "PARTIAL",
+  "closest": "Mitigating LLM sycophancy with RL-based fine-tuning: Bayesian Truth Serum approach (2026) https://arxiv.org/pdf/2608.25267 (BTS as GRPO reward from a model's own sampled answers) ; Truthfulness Despite Weak Supervision (ICLR 2026, peer-prediction reward) https://arxiv.org/abs/2601.20299 (also On the Truthfulness of \"Surprisingly Likely\" Responses of LLMs (2023) https://arxiv.org/abs/2311.07692)",
+  "new": "BTS/peer-prediction rewards for LLMs are already published, so the new part is casting shallow-budget and deep-budget runs of one model as the two asymmetric respondents and stopping training per domain when the asymmetry vanishes."
+ }
+}
