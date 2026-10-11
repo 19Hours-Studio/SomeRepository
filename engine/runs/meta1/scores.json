@@ -1,1 +1,272 @@
-{}
+{
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "mutation testing, gold-standard judge items"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "mutation testing; honeypot judge calibration"
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "PROBANCH",
+   "closest": "failure-mode walkthroughs, unsolved-problem lists"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "failure-mode walkthrough; TRIZ contradiction finding"
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "MDL / conditional compression novelty"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "MDL / conditional compression novelty"
+  }
+ },
+ "g1_reframe#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "futures wheel, scenario planning"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "futures wheel scenario planning"
+  }
+ },
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "LEDGER",
+   "closest": "novelty search, feature-based clustering"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "LEDGER",
+   "closest": "patent claim-element novelty analysis"
+  }
+ },
+ "g1_reframe#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "morphological analysis, solutions-seeking-problems"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "random-stimulus ideation; technology-push inventory"
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "mutation testing, honeypot evaluation items"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "mutation testing of evaluators"
+  }
+ },
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Chao1 species-richness estimators"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Chao1 species-richness coverage estimation"
+  }
+ },
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "retrosynthesis, backward-chaining planning"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "retrosynthesis / backward goal regression"
+  }
+ },
+ "g1_neg#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "PROBANCH",
+   "closest": "gap analysis of build plans"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "gap analysis via plan elaboration"
+  }
+ },
+ "g1_neg#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "problem reformulation, step-back prompting"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "problem reformulation; step-back prompting"
+  }
+ },
+ "g1_neg#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "QDMAP",
+   "closest": "Zwicky morphological box, MAP-Elites"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "QDMAP",
+   "closest": "Zwicky morphological box; descriptor-conditioned MAP-Elites"
+  }
+ },
+ "g1_reframe#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "problem reformulation operators, SCAMPER"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Polya/TRIZ problem reformulation operators"
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ablation-guided mutation, saliency"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ablation attribution; constrained mutation"
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Amazon working-backwards PR/FAQ"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Amazon working-backwards; backcasting"
+  }
+ }
+}

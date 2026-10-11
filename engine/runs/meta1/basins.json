@@ -78,5 +78,93 @@
   "desc": "Seed generation with retrieved cross-domain analogies or distant-field mechanisms, mapped onto the question to produce originality grounded in proven mechanisms",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V12",
+  "desc": "Odd Question, Plain Answer — A new first stage rewrites the original question into many changed versions, each made by one rewrite operator: change the scale, the actor, the time horizon, t",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V13",
+  "desc": "Sensitivity-Guided Answer Carving — Each plain answer is split into 4–8 component slots. An ablation agent removes one slot at a time, and judges score how much value drops, which gives a value-se",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V14",
+  "desc": "Mutation-Tested Judges — A mutator agent plants typed defects in copies of real answers: a broken causal step, an inflated value claim, a disguised known family, or a step that cannot b",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Retrosynthetic Idea Assembly — Ideas are built backward from a stated target effect, such as \"value at least the baseline\" or \"concreteness survives recombination.\" An agent proposes \"reactio",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Sibling-Question Expansion — Before attractor mapping, a \"question mutator\" agent applies named operators to the input question to produce 6-10 sibling questions: invert the goal, change th",
+  "source": "visited",
+  "members": [
+   "g1_reframe#1"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Adopted-World Diary Simulation — After stage 3, each survivor is assumed to be fully adopted. Three inhabitant agents (an operator, a competitor and a bystander affected by it) each write a dat",
+  "source": "visited",
+  "members": [
+   "g1_reframe#2"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Orphan Mechanism Inventory — In every run, a separate \"inventor\" agent is given no question at all. It is only given random constraint tuples (one material, one actor, one timing rule, one ",
+  "source": "visited",
+  "members": [
+   "g1_reframe#3"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Hint-Gap Selection — For each surviving idea, an author agent writes a hint of at most 15 words. N fresh agents each get the question plus the hint and try to rebuild the full mecha",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Outcome-First Reverse Build — A first agent writes a dated, specific success record: who used it, the measured before and after numbers, and what changed. A judge accepts the record only if ",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Mutant Ideas Test Judges — A mutator agent plants specific defects (reversed causal claims, costs that can't be met, circular metrics) in copies of the survivors and mixes them blind into",
+  "source": "visited",
+  "members": [
+   "g1_loop#2"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Unseen-Family Coverage Gate — For each layer and each technique, the pipeline counts families seen once and twice and computes Chao1 and Good-Turing coverage. Generation can't start until pl",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
  }
 ]

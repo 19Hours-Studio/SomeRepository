@@ -1,0 +1,24 @@
+L01
+MECHANISM: Implementer agents take each plain answer and expand it into a detailed step-by-step build plan. They must mark every step where they cannot say exactly what is done ("then calibrate appropriately"). These gaps are collected across all the plain answers and grouped together, and generation then targets only the gaps that recur. A finished idea is a specific way to fill one gap, inserted into the plain plan it came from. The pipeline keeps a list of gaps that are still unfilled and checks whether each fill actually removes the gap when the plan is expanded again.
+VALUE: Originality goes into the step everyone skips, inside a plan that is already valuable, so the new ideas arrive concrete and buildable.
+
+L02
+MECHANISM: Before generation, a walker agent takes each plain answer and plays it out step by step on one specific, concrete instance of the question. It records the first step where the walk stalls: what was missing, what contradicted what, or what cost exploded. Generators receive only these stall records, never the plain answers, and must produce an answer that gets past a named stall. The same walker then replays that instance to confirm the answer passes the step. A stall table is kept between runs, holding each stall, how often it was hit and how many answers got past it. Stalls nobody has passed get more sampling weight in the next run, and stalls that have been passed are retired.
+VALUE: Originality is pointed at the exact places where obvious answers break, so new ideas start from real failure points and are less likely to lose on value to the plain answers.
+
+L03
+MECHANISM: A mutator agent plants typed defects in copies of real answers: a broken causal step, an inflated value claim, a disguised known family, or a step that cannot be implemented. These go into each judging batch. The pipeline computes each judge's kill rate per defect type and weights each scoring criterion by that rate. Defect types with low kill rates are flagged so that idea must state its own evidence. The mutant library and kill rates persist across runs, and mutants judges keep missing are planted more often.
+VALUE: The judges' shared blind spots are measured and discounted instead of silently rewarded.
+
+L04
+MECHANISM: Each plain answer is split into 4–8 component slots. An ablation agent removes one slot at a time, and judges score how much value drops, which gives a value-sensitivity map. Slots with high sensitivity are frozen. Generators may rewrite only slots with low sensitivity, and only off-attractor. The cycle repeats with the map recomputed after each carve. Sensitivity maps are stored per question type across runs.
+VALUE: Originality goes only where it costs no value, so value stops falling below plain answers.
+
+L05
+MECHANISM: For each surviving idea, an author agent writes a hint of at most 15 words. N fresh agents each get the question plus the hint and try to rebuild the full mechanism, and N other fresh agents get only the question. A comparer agent scores each rebuild against the original, field by field. Selection keeps ideas where rebuild success with the hint minus rebuild success without it is large. A high with-hint score means the idea is crisp enough to be compressed. A low without-hint score means it does not follow from the question alone. Ideas that score low with the hint are sent back for rewriting instead of being dropped. Hints that score well, and their ideas, are stored so later runs can tell whether a "new" idea rebuilds from an old hint.
+VALUE: One signal that comes from repeated sampling rewards ideas that are both unexpected and concretely specified, without depending on what the judges happen to know.
+
+L06
+MECHANISM: A first agent writes a dated, specific success record: who used it, the measured before and after numbers, and what changed. A judge accepts the record only if it would surprise someone holding the plain answers. A second agent sees only the record, not the forbidden families, and works out the smallest mechanism that could produce it. A third agent walks forward from that mechanism to see whether it really yields the record's numbers, and keeps only matching pairs. Records with no workable mechanism are stored as open targets and seeded into the next run. Mechanisms that worked are stored as templates that the next run must not repeat.
+VALUE: Concreteness and value are built in from the start, because every idea is derived backward from a specific measured payoff instead of having details added after the idea exists.
+
