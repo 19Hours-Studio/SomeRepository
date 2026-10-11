@@ -1,0 +1,24 @@
+You are improving an automated pipeline that generates highly original ideas for hard open questions. The pipeline orchestrates LLM subagents (no access to model weights or training) in these stages: (1) attractor mapping: a few plain answers are clustered by a judge into idea families; (2) a portfolio of five prompt techniques generates answers while those families are forbidden; (3) two blind LLM judges score originality, concreteness and value and classify each answer into a family or NEW; (4) survivors get a web literature check; (5) survivors from different families are crossed over, with repulsion from known families and from the nearest literature; (6) final blind judging. Measured weaknesses: average value is lower than plain answers; crossover offspring lose concreteness; validity is usually delegated to an unspecified external verifier; the judges are the same model family as the generators and share its knowledge gaps; run-to-run variance is larger than most differences between techniques; new attractor families appear at every layer. How could this pipeline be changed so it produces ideas that are both more original and more valuable? Every mechanism must be implementable as a change to this pipeline: prompts, agent roles, stage order, selection or scoring rules, or data kept between runs.
+Propose 3 fundamentally new answers.
+First, honestly list the 12 answers that you (and most experts) would propose FIRST - your own most probable answers. Name in one sentence the paradigm they share. Then forbid that whole paradigm, those 12 answers, anything adjacent to them, and these families that models have been observed to converge on:
+LEDGER: Persistent cross-run ledger of every family found at any layer, all forbidden from the start of the next run, plus replicated, shuffled judge scoring ranked by lower confidence bound to filter out noise
+FORECAST: A forecaster agent predicts the likely outputs or families in advance; originality is computed as distance from those forecasts and from a cross-run archive, with paired replicates and bandit technique selection gated on variance
+PROBANCH: Literature or retrieval moved to the front to build evidence-backed problem cards or constraint dossiers; every idea must name the documented cost or constraint it removes, and value is scored against that evidence; unsolved items persist and gain weight across runs
+KILLTEST: In-pipeline falsification: each survivor carries cheap, pre-registered decisive checks (Fermi estimate, code simulation, search with a predicted result) that a verifier or red-team agent runs; value is weighted by survival, and failure patterns are stored to steer later runs and crossover
+GRAFT: Asymmetric crossover: the more concrete parent becomes a fixed build sheet, the other parent grafts exactly one mechanism into a named step, a checker rejects blurred fields, and successful pairings are remembered
+DIVJUDGE: Break the shared-blind-spot problem with heterogeneous judges (different model providers, simulated domain-expert personas, or adversarial judges with distinct knowledge prompts) and score on their disagreement or agreement
+TOURN: Replace absolute scores with pairwise or tournament (Elo or Bradley-Terry) comparisons against plain-answer baselines to reduce judge noise and calibrate value
+QDMAP: Quality-diversity archive (MAP-Elites style) over originality x value x family niches, keeping the best idea per cell instead of a single ranked list
+PARETO: Multi-objective selection with a hard value floor: only ideas that match or beat the plain-answer baseline on value are kept, then ranked by originality on the Pareto front
+REFINE: Add a critique-and-revise elaboration stage after generation or crossover that restores concreteness (implementation steps, metrics, first experiment) before final judging
+ANALOG: Seed generation with retrieved cross-domain analogies or distant-field mechanisms, mapped onto the question to produce originality grounded in proven mechanisms
+Only then propose answers that lie outside all of that.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+

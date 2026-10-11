@@ -2,3 +2,8 @@ map_1	ae3450d62546354fe	control	0
 map_2	a879efae2b06e3a49	control	0
 map_3	ad8277ad3c07fefaa	control	0
 FAMJ	aa1a1b6a76c69e9dd	judge	0
+g1_neg	aa8b37fccdc9e4f27	engine	1
+g1_core	a83d82486d9f586f6	engine	1
+g1_reframe	aef8199844d2ba377	engine	1
+g1_mech	aa81e8a1c048e50e9	engine	1
+g1_loop	ad338276b13ed434e	engine	1
