@@ -92,5 +92,117 @@
   "desc": "Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V14",
+  "desc": "Invertible Abductive Core — Every layer is an exact bijection, built from coupling flows that carry an explicit \"residual\" latent that keeps all discarded information, so any computation c",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Pre-committed Belief Hashing — Before the system sees evidence or produces a reasoning trace, it must publish a cryptographic hash of its quantized answer distribution, plus a salt, to an ext",
+  "source": "visited",
+  "members": [
+   "g1_neg#2"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Self-Built Instrument Channels — The input layer has a variable width. When the system cannot reduce its loss on some quantity from its existing inputs, it writes and deploys an external probe:",
+  "source": "visited",
+  "members": [
+   "g1_neg#3"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Localized Ensemble Kalman Learning — The system keeps an ensemble of perturbed copies of a set of adapter parameters. Each new observation is assimilated by a Kalman-gain update computed from the e",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Closure-Invariant Self-Calibration — Each query is answered through many short loops of different modules or routes (A→B, B→C, A→C, and inverse maps). For each loop the system computes the closure ",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Saturating Equivalence-Graph Reasoning — The reasoning state is an e-graph that holds all known equivalent descriptions of the problem at once, with no destructive rewriting. Rewrite rules mined from s",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Error-Estimated Adaptive Concept Mesh — The latent space is divided into cells, each holding its own local linear map. For each cell, a Zienkiewicz-Zhu-style estimator compares the cell's Jacobian wit",
+  "source": "visited",
+  "members": [
+   "g1_symptomport#1"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Homoplasy-Driven Taxonomy Regrafting — Concepts sit in a rooted tree with property characters at the leaves. The system computes the parsimony consistency index of each subtree. When convergent prope",
+  "source": "visited",
+  "members": [
+   "g1_symptomport#2"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Normalized-Residual Premise Re-typing — Premises and rule links are treated as redundant meters that fit one weighted least-squares situation estimate. For each premise, the system computes a residual",
+  "source": "visited",
+  "members": [
+   "g1_symptomport#3"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Conditioning-Triggered Chart Switching — During latent multi-step reasoning, the system computes the condition number of its step map's Jacobian. When it crosses a threshold, the system switches to a s",
+  "source": "visited",
+  "members": [
+   "g1_backloop#1"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Pharmacovigilance Rollback of Updates — Each weight update carries a provenance ID and is linked to the interactions it influenced. User corrections, re-asks and abandonments count as adverse events. ",
+  "source": "visited",
+  "members": [
+   "g1_backloop#2"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Path-Multiplicity Primitive Compilation — Background random walks keep re-deriving conclusions from stored facts along many different routes. A tally records how many independent routes reach each concl",
+  "source": "visited",
+  "members": [
+   "g1_mechneg#1"
+  ]
+ },
+ {
+  "code": "V26",
+  "desc": "Autocatalytic Concept Chemistry — Knowledge is a pool of symbolic \"species\" at varying concentrations, plus rewrite reactions that consume some species and produce others. Each cycle, every spec",
+  "source": "visited",
+  "members": [
+   "g1_mechneg#2"
+  ]
+ },
+ {
+  "code": "V27",
+  "desc": "Commutation-Carved Modularity — Each experience is logged as an ordered sequence of operations. A background process swaps neighbouring pairs and tests whether the resulting record is identica",
+  "source": "visited",
+  "members": [
+   "g1_mechneg#3"
+  ]
  }
 ]

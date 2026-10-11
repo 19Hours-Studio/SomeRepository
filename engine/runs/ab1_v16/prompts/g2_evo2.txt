@@ -1,0 +1,62 @@
+What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.
+Propose new answers by EVOLVING existing candidates. You get 2 parent pairs. For each pair produce ONE offspring:
+1. CROSSOVER: fuse the two parents' core mechanisms into one mechanism in which each parent's mechanism changes the other's behaviour (not two modules side by side).
+2. MUTATE AWAY: the offspring must clearly differ from the parents' nearest published work (listed) and from every known family below.
+3. KEEP IT IMPORTANT: it must serve something that genuinely matters for the question.
+4. HONESTY CHECK: before the final section, name the closest existing work for each offspring; if it is essentially that, mutate again.
+Describe mechanisms concretely; give the NAME last.
+
+Known families (forbidden, including re-skins):
+PROGSYN: Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions
+CAUSGR: Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph
+COMPMAP: Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning
+MODMKT: Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement
+TMS: Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes
+CONSOL: Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting
+ENERGY: Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates
+WMPLAN: Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts
+ACTINF: Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience
+VSA: Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations
+CURIO: Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress
+GWS: Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control
+PLAST: Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference
+V14: Invertible Abductive Core — Every layer is an exact bijection, built from coupling flows that carry an explicit "residual" latent that keeps all discarded information, so any computation c
+V15: Pre-committed Belief Hashing — Before the system sees evidence or produces a reasoning trace, it must publish a cryptographic hash of its quantized answer distribution, plus a salt, to an ext
+V16: Self-Built Instrument Channels — The input layer has a variable width. When the system cannot reduce its loss on some quantity from its existing inputs, it writes and deploys an external probe:
+V17: Localized Ensemble Kalman Learning — The system keeps an ensemble of perturbed copies of a set of adapter parameters. Each new observation is assimilated by a Kalman-gain update computed from the e
+V18: Closure-Invariant Self-Calibration — Each query is answered through many short loops of different modules or routes (A→B, B→C, A→C, and inverse maps). For each loop the system computes the closure 
+V19: Saturating Equivalence-Graph Reasoning — The reasoning state is an e-graph that holds all known equivalent descriptions of the problem at once, with no destructive rewriting. Rewrite rules mined from s
+V20: Error-Estimated Adaptive Concept Mesh — The latent space is divided into cells, each holding its own local linear map. For each cell, a Zienkiewicz-Zhu-style estimator compares the cell's Jacobian wit
+V21: Homoplasy-Driven Taxonomy Regrafting — Concepts sit in a rooted tree with property characters at the leaves. The system computes the parsimony consistency index of each subtree. When convergent prope
+V22: Normalized-Residual Premise Re-typing — Premises and rule links are treated as redundant meters that fit one weighted least-squares situation estimate. For each premise, the system computes a residual
+V23: Conditioning-Triggered Chart Switching — During latent multi-step reasoning, the system computes the condition number of its step map's Jacobian. When it crosses a threshold, the system switches to a s
+V24: Pharmacovigilance Rollback of Updates — Each weight update carries a provenance ID and is linked to the interactions it influenced. User corrections, re-asks and abandonments count as adverse events. 
+V25: Path-Multiplicity Primitive Compilation — Background random walks keep re-deriving conclusions from stored facts along many different routes. A tally records how many independent routes reach each concl
+V26: Autocatalytic Concept Chemistry — Knowledge is a pool of symbolic "species" at varying concentrations, plus rewrite reactions that consume some species and produce others. Each cycle, every spec
+V27: Commutation-Carved Modularity — Each experience is logged as an ordered sequence of operations. A background process swaps neighbouring pairs and tests whether the resulting record is identica
+
+PAIR 1
+ Parent A: MECHANISM: The input layer has a variable width. When the system cannot reduce its loss on some quantity from its existing inputs, it writes and deploys an external probe: a code instrumentation hook, a sensor configuration, a lab-assay protocol or a database query. Whatever stream the probe produces is attached as a new typed input channel with its own learned encoder. Channels whose removal does not hurt downstream performance are pruned, so over time the system's perceptual alphabet becomes a set of instruments it designed itself.
+   VALUE: It can perceive and reason about quantities that no human ever chose to give it, instead of being limited to the fixed modalities it was trained on.
+   nearest published work: Learning-To-Measure: In-Context Active Feature Acquisition (2025) https://arxiv.org/pdf/2510.12624 ; Modality Plug-and-Play: Elastic Modality Adaptation in Multimodal LLMs for Embodied AI / mPnP-LLM (2023) https://arxiv.org/abs/2312.07886 (also Perception Evolution Networks, which add input channels online: https://technav.ieee.org/topic/perception-evolution-networks/)
+ Parent B: MECHANISM: Background random walks keep re-deriving conclusions from stored facts along many different routes. A tally records how many independent routes reach each conclusion (routes sharing no intermediate fact count separately). When the tally passes a threshold, the conclusion is frozen into a new atomic primitive that later walks can use as one step. Primitives that are no longer reachable by several routes are dissolved back into their parts.
+   VALUE: It builds new concepts from how well a conclusion is held together by the rest of what it knows, with no outside feedback, so abstraction can grow in domains where nothing ever says "correct."
+   nearest published work: DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning (2020) https://arxiv.org/pdf/2006.08381 (abstraction sleep turns recurrent fragments into new library primitives) ; Chunking in Soar: The Anatomy of a General Learning Mechanism (1986) https://mlanthology.org/mlj/1986/laird1986mlj-chunking (also NELL, which promotes beliefs on multi-source agreement: https://papers.baulab.info/papers/knowledge/Carlson-2010.pdf; Lao, Mitchell, Cohen random-walk inference over a KB 2011: https://course.khoury.northeastern.edu/cs6200s14/ssl/paper/lao-emnlp11.pdf; TTRL, label-free agreement across sampled routes as signal: https://arxiv.org/pdf/2504.16084)
+
+PAIR 2
+ Parent A: MECHANISM: Each experience is logged as an ordered sequence of operations. A background process swaps neighbouring pairs and tests whether the resulting record is identical. Operations that always commute are split into separate parallel threads with no shared state. Operations that never commute are fused into one indivisible unit, so the system's architecture becomes a map of the world's independence structure.
+   VALUE: The system can split the world into independent parts and recombine them freely, which gives built-in compositional generalization.
+   nearest published work: Workflow mining / Alpha algorithm (2004) https://en.wikipedia.org/wiki/Alpha_algorithm (parallelism inferred when both event orders are observed) and Mazurkiewicz Trace theory https://en.wikipedia.org/wiki/Trace_theory (independence = swappable adjacent actions) ; Symmetry-Based Disentangled Representation Learning requires Interaction with Environments (2019) https://arxiv.org/pdf/1904.00243 (factors = commuting action subgroups learned from interaction)
+ Parent B: MECHANISM: Before the system sees evidence or produces a reasoning trace, it must publish a cryptographic hash of its quantized answer distribution, plus a salt, to an external log it cannot change. After the evidence arrives, it reveals the commitment. An independent verifier then checks whether the final answer departs from the committed one more than the evidence statistically justifies. Training penalizes departures without justification and rewards accurate commitments, so the architecture learns to keep "what I believed beforehand" separate from "what I can rationalize afterward".
+   VALUE: Third parties can check that the system is not rewriting its beliefs after the fact, which is a property no current LLM can prove about itself.
+   nearest published work: Measuring Faithfulness in Chain-of-Thought Reasoning (2023) https://arxiv.org/pdf/2307.13702 (early-answering test of whether the answer was already fixed before the reasoning) ; Utility-Aware Data Pricing: Token-Level Quality and Empirical Training Gain for LLMs (2026) https://arxiv.org/pdf/2604.22893 (hash commitments and hash-chained ledgers for tamper-evident model auditing; see also TensorCommitments https://arxiv.org/abs/2602.12630 and the generic commit-reveal scheme https://en.wikipedia.org/wiki/Commitment_scheme)
+
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 2 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+
