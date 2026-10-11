@@ -1,0 +1,28 @@
+B01
+MECHANISM: Trenches are filled with cheap biochar soaked in neutral brine and layered with metal collector meshes, storing charge on the char's huge internal surface. Electrical impedance tomography, used in intensive care to find collapsed lung regions, maps pockets of the bed that aren't charging. A pressure pulse of electrolyte tries to re-wet each dead pocket. Pockets that stay dead are disconnected and turned into insulating separators, splitting the bed into more series-connected cells and raising its working voltage.
+VALUE: Storage built from material priced like farm waste and installed with earthmoving equipment instead of factories.
+
+B02
+MECHANISM: Grids of electrodes are pushed into the ash ponds of retiring coal plants. The iron and manganese oxides and unburnt carbon in the ash, wetted by the pond's own water, form a large in-place electrode mass. The cap and liner required for closure contain it, and the plant's existing substation connects it to the grid. Each electrode zone records the charge it takes in against the charge it gives back. Zones that return little charge are disconnected, so the battery settles onto the parts of the ash that work.
+VALUE: Thousands of sites already have containment, land and grid connections paid for, so multi-day storage costs about as much as installing electrodes.
+
+B03
+MECHANISM: Surplus electricity reduces air oxygen to hydrogen peroxide on cheap carbon cathodes in soda-ash solution, and the peroxide is crystallized as sodium percarbonate, the same powder used in laundry detergent. The coated dry crystals are piled in ordinary warehouses or silos, where they lose almost nothing for months. During a lull, the powder is dissolved and fed to membraneless cells in which selective catalysts both oxidize and reduce the peroxide, and the carbonate liquor goes back to the charging plant. In theory this stores about 0.3 kWh/kg using only water, air and reusable soda ash. Round-trip efficiency is a low 25-35%, which matters less for storage that cycles only a few times a year.
+VALUE: Multi-week storage built from water, air and a bulk detergent chemical, at roughly $1-3/kWh of capacity.
+
+B04
+MECHANISM: Weather forecasts trigger charging a few days before a predicted lull. The store is a membraneless pit of mixed electrolyte, read by electrodes that each react with only one reactant. It loses its charge over a couple of weeks, which is acceptable because it only has to last through the predicted lull.
+VALUE: Accepting charge loss over about two weeks allows the cheapest possible containment for storage covering whole lulls.
+
+B05
+MECHANISM: Electric winches stretch long cords of a cheap polymer while it is warm, then cool them. The cooling locks the polymer chains in their stretched arrangement, so the cords keep their stored tension without clamps or any force holding them. The tensioned cords are wound onto reels and stacked in ordinary sheds. To get power back, a reel is warmed a little, for example with low-grade waste heat. The chains can move again and pull together with force, which drives a generator back through the same winch. The grid frequency signal sets how fast each reel is warmed, so the power released follows demand minute by minute.
+VALUE: Energy can sit for weeks in cheap stacked material with no leakage, no hazardous chemistry and no special site.
+
+B06
+MECHANISM: Cheap natural smectite clays store charge as reversible iron(III) to iron(II) changes in their crystal layers, pressed into large paste electrodes. Each clay lot is tracked as a cohort, and log-rank tests on capacity-fade curves pick out lots that are failing early. Failing lots are retired and reused as soil amendment, and their mineral fingerprints change the procurement spec. Lots that last longest set the standard for future sourcing.
+VALUE: Uses a mineral that costs tens of dollars per tonne as electrode material, and continually weeds out clay sources that fade fast.
+
+B07
+MECHANISM: Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried current collectors. During long lulls a grid-scarcity price signal draws charge down to a set structural depletion limit, as bone gives up calcium under PTH, and surplus power replaces the charge later. Load-bearing capacity is checked continuously and sets that limit.
+VALUE: Massive storage mass whose cost is already paid by construction, so equipment that cycles only a few times a year still pays off.
+

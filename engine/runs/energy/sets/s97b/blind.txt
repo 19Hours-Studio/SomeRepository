@@ -1,0 +1,32 @@
+B01
+MECHANISM: Large beds of cheap but leaky electrode material, such as iron and manganese oxides, are charged while flooded with electrolyte. The electrolyte is then pumped into a shared reservoir. The dry, sealed beds have no ion path, so self-discharge and side reactions stop. Refilling a bed brings it back to full power, and the controller rotates beds so only those about to be used are kept wet.
+VALUE: The cheapest high-leak chemistries can hold charge through long calm, dark spells, with one shared electrolyte volume serving many beds.
+
+B02
+MECHANISM: Gas distribution mains retired as heating goes electric are lined and filled with a harmless iron-chloride flow-battery electrolyte. This turns thousands of kilometres of existing buried pipe into a free tank network, with cell stacks at every substation. During idle hours, each valve-isolated segment is checked for volume loss and charge drift, the way water utilities find leaks from minimum night flow. Segments that leak or lose charge are automatically valved out and switched to inert fluid, and the rest are reconnected into new tank loops.
+VALUE: Multi-day storage at neighbourhood scale, where the most expensive item, the tank, is already buried and paid for.
+
+B03
+MECHANISM: An unlined, membraneless pond holds a cheap redox molecule and a dissolved, inexpensive polyelectrolyte. When charged, the molecule binds to the polymer into dense droplets that sink and merge into a viscous bottom phase. The discharged form stays in the clear water above, so the two states sort themselves by gravity and stop mixing. Mesh electrodes sit at the interface and draw charge from the dense phase. Polymer dose sets the trade-off between how fast charge stays in and how much power can be drawn.
+VALUE: The cheapest leaky redox chemistries can hold charge for weeks in an earthen basin with no tanks, pumps or separators.
+
+B04
+MECHANISM: Surplus current at an electrode rearranges a cheap, small organic liquid into a cramped, high-strain shape made of the same atoms. Nothing at room temperature can push it back over the barrier to relaxing, so it stays charged for as long as it is stored. The strained liquid sits in plain steel tanks. When power is needed, it flows past a catalytic electrode surface that lowers the barrier, and as each molecule snaps back to its relaxed shape it gives up electrons to the external circuit. The liquid changes colour as it relaxes, so the charged fraction can be read optically. Only the tank volume grows with extra days of backup.
+VALUE: Weeks of reserve come down to tank space for a liquid that is reused forever and uses up no air, ore or carbon.
+
+B05
+MECHANISM: A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting ions. Electrode meshes lie on either side of that zone. Each layer circulates within itself, so energy capacity grows with depth at the cost of earthworks.
+VALUE: Electrochemical storage lasting for weeks needs no tanks, pumps or membranes.
+
+B06
+MECHANISM: Electrode-separator laminates are made on existing paper machines, where retention-aid chemistry flocculates carbon and catalyst particles onto cellulose fibre webs at kilometres per minute. Because discharge stacks run only a few hundred hours a year, they are treated as consumables: they run in membraneless or laminar-flow configurations, are swapped every few years, and are then re-pulped to recover the catalyst.
+VALUE: Conversion hardware drops toward a few dollars per kW, so stacks that sit idle most of the year stop dominating the cost of storage.
+
+B07
+MECHANISM: Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a sugar glass in which those molecules can barely move, so self-discharge and breakdown almost stop. The glass is stored in bulk like grain and redissolved for discharge. Water content and glass-transition temperature are the control settings.
+VALUE: The cheapest redox chemistries, which normally leak charge, can hold it for weeks without tanks.
+
+B08
+MECHANISM: A static, water-saturated bed of waste lignin or humic solids is charged directly by buried electrodes, reducing quinone groups with no mediator and no pumping. During some charges, heavy water is added; quinones that get reduced take up deuterium, and NMR on core samples maps which parts of the bed actually store charge. Electrodes are added to dead zones and removed or rewired from saturated ones, so the electrode network keeps adapting to how the bed really behaves.
+VALUE: Turns a nearly free paper-industry byproduct into storage that runs for weeks, with very little hardware per kWh.
+

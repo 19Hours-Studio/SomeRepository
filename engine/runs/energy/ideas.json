@@ -259,5 +259,32 @@
   "name": "Drain-Locked Electrode Beds",
   "mech": "Large beds of cheap but leaky electrode material, such as iron and manganese oxides, are charged while flooded with electrolyte. The electrolyte is then pumped into a shared reservoir. The dry, sealed beds have no ion path, so self-discharge and side reactions stop. Refilling a bed brings it back to full power, and the controller rotates beds so only those about to be used are kept wet.",
   "value": "The cheapest high-leak chemistries can hold charge through long calm, dark spells, with one shared electrolyte volume serving many beds."
+ },
+ {
+  "id": "g2_imm#1",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Percarbonate Silo Battery",
+  "mech": "Surplus electricity reduces air oxygen to hydrogen peroxide on cheap carbon cathodes in soda-ash solution, and the peroxide is crystallized as sodium percarbonate, the same powder used in laundry detergent. The coated dry crystals are piled in ordinary warehouses or silos, where they lose almost nothing for months. During a lull, the powder is dissolved and fed to membraneless cells in which selective catalysts both oxidize and reduce the peroxide, and the carbonate liquor goes back to the charging plant. In theory this stores about 0.3 kWh/kg using only water, air and reusable soda ash. Round-trip efficiency is a low 25-35%, which matters less for storage that cycles only a few times a year.",
+  "value": "Multi-week storage built from water, air and a bulk detergent chemical, at roughly $1-3/kWh of capacity."
+ },
+ {
+  "id": "g2_imm#2",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Forecast-Prefetched Trickle Tier",
+  "mech": "Storage is split into a small fast tier (the existing daily batteries) and a huge cold tier deliberately built to discharge at only about C/500. Ensemble weather forecasts several days ahead trigger the cold tier to start a flat trickle and to keep the fast tier full. The trickle rate is set to the forecast total deficit spread over lead time plus lull duration, and the fast tier absorbs hour-by-hour mismatch. The rate is re-planned every forecast cycle.",
+  "value": "The power rating of long-duration storage falls from the peak deficit to roughly the mean deficit, so the cold tier can use very slow, nearly catalyst-free and extremely cheap hardware."
+ },
+ {
+  "id": "g2_imm#3",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Paper-Machine Throwaway Stacks",
+  "mech": "Electrode-separator laminates are made on existing paper machines, where retention-aid chemistry flocculates carbon and catalyst particles onto cellulose fibre webs at kilometres per minute. Because discharge stacks run only a few hundred hours a year, they are treated as consumables: they run in membraneless or laminar-flow configurations, are swapped every few years, and are then re-pulped to recover the catalyst.",
+  "value": "Conversion hardware drops toward a few dollars per kW, so stacks that sit idle most of the year stop dominating the cost of storage."
  }
 ]

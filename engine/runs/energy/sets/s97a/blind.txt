@@ -1,0 +1,32 @@
+B01
+MECHANISM: A cheap bulk storage medium is attached to the DC link of each wind or solar plant. During calm, dark spells it discharges through the plant's own generator electronics, inverter, transformer and grid line, which are otherwise idle at those times. Charging uses the same path when output would otherwise be curtailed. The store is sized by how often the plant's hardware sits idle.
+VALUE: Storage lasting for weeks then costs little more than its storage medium, because the power hardware and grid connection are already paid for.
+
+B02
+MECHANISM: Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one end and oxidizes it near the other, and groundwater carries the ions. Discharge reverses this, using the same conduction the ore already shows naturally. Electrode spacing and current are tuned from measurements of the rock's own voltage (self-potential) so the charged front spreads evenly.
+VALUE: Millions of tonnes of active mass that is never mined, moved or contained, so the capacity cost is mostly drilling.
+
+B03
+MECHANISM: Two flat electrode grids are laid metres apart in a lined trench filled with sand and soaked in cheap electrolyte. Charging makes a soluble oxidised species at one grid and a reduced species at the other. The sand stops convection, so the two can only meet by diffusion, which takes years over that distance. Grid spacing and current density are set to match the rate of self-discharge against the resistive loss for the target number of days.
+VALUE: Electrochemical storage for weeks becomes earthworks, sand and brine, with no membrane, tank or pump.
+
+B04
+MECHANISM: A solution-mined salt cavern holds a dense brine carrying a cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity separates them instead of a membrane, the cavern volume is the energy store, and both liquids circulate through contactors at the surface. The brine's cation-minus-anion gap is tracked continuously to detect charged redox molecules crossing into it. When the gap rises, a thin immiscible spacer liquid is injected at the interface, forming a new layer that traps the crossed molecules and is pumped off for cleaning.
+VALUE: Multi-week storage at gigawatt-hour scale with no membranes, no tanks and almost no container cost.
+
+B05
+MECHANISM: Surplus current at an electrode converts a cheap dissolved organic molecule into a strained isomer of itself. That isomer is insoluble, so it settles out and is shovelled onto covered heaps. A high energy barrier keeps it charged indefinitely. For discharge, the powder is fed into a slurry that runs past a catalytic electrode, which lowers the barrier. Each molecule snaps back, releases electrons and redissolves for reuse. The operator adds heaps for extra days and tracks the charged fraction by weighing the solids.
+VALUE: Weeks of reserve cost only the price of a covered dirt pad, with no tanks, mining or consumed fuel.
+
+B06
+MECHANISM: Surplus current runs through large beds of layered swelling clay and drags the water out from between the mineral sheets. The water drains away, and the dry, compacted clay can sit for weeks in sealed pits with no pressure on them and nothing to leak. When power is needed, water is let back into one bed section at a time. The first water layers pushing between the sheets force them apart very hard, and that pressure drives hydraulic rams connected to a generator. A controller decides how much water each section gets, using the power price and the measured swelling, so that it only uses the high-force early part of wetting.
+VALUE: The energy is held in the pull between water and mineral sheets, so storage capacity costs about as much as digging and moving earth.
+
+B07
+MECHANISM: Storage is split into a small fast tier (the existing daily batteries) and a huge cold tier deliberately built to discharge at only about C/500. Ensemble weather forecasts several days ahead trigger the cold tier to start a flat trickle and to keep the fast tier full. The trickle rate is set to the forecast total deficit spread over lead time plus lull duration, and the fast tier absorbs hour-by-hour mismatch. The rate is re-planned every forecast cycle.
+VALUE: The power rating of long-duration storage falls from the peak deficit to roughly the mean deficit, so the cold tier can use very slow, nearly catalyst-free and extremely cheap hardware.
+
+B08
+MECHANISM: Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing an electron-balance error: the charge passed minus the conversions of the couples it measures. A residual at a particular potential points to an unknown couple. A useful couple is split into its own stream with its own stack; a parasitic one is removed by precipitation. Over time the plant takes on the structure that its local waste chemistry supports.
+VALUE: Storage medium costs near zero because it is never purified, which is the main cost in today's flow electrolytes.
+
