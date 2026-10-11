@@ -1,0 +1,153 @@
+{
+ "ABSURD": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 0.67,
+  "clusters": [
+   "memory/continual",
+   "moe/modular/routing"
+  ],
+  "per_idea": [
+   [
+    "memory/continual"
+   ],
+   [],
+   [
+    "moe/modular/routing"
+   ]
+  ]
+ },
+ "ANOMALY": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 0.67,
+  "clusters": [
+   "causal/graph",
+   "memory/continual"
+  ],
+  "per_idea": [
+   [
+    "memory/continual"
+   ],
+   [
+    "causal/graph"
+   ],
+   []
+  ]
+ },
+ "AXIOM": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 2.0,
+  "clusters": [
+   "2nd_layer:physics_quantum_holo",
+   "memory/continual",
+   "multi_agent/society",
+   "spiking/neuromorphic",
+   "world_model/planning"
+  ],
+  "per_idea": [
+   [
+    "memory/continual",
+    "spiking/neuromorphic",
+    "2nd_layer:physics_quantum_holo"
+   ],
+   [
+    "world_model/planning"
+   ],
+   [
+    "memory/continual",
+    "multi_agent/society"
+   ]
+  ]
+ },
+ "B1": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 1.67,
+  "clusters": [
+   "causal/graph",
+   "memory/continual",
+   "moe/modular/routing",
+   "world_model/planning"
+  ],
+  "per_idea": [
+   [
+    "world_model/planning",
+    "causal/graph"
+   ],
+   [
+    "memory/continual",
+    "moe/modular/routing"
+   ],
+   [
+    "causal/graph"
+   ]
+  ]
+ },
+ "B2": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 1.33,
+  "clusters": [
+   "causal/graph",
+   "memory/continual",
+   "predictive_coding/free_energy",
+   "world_model/planning"
+  ],
+  "per_idea": [
+   [
+    "memory/continual"
+   ],
+   [
+    "world_model/planning",
+    "predictive_coding/free_energy",
+    "causal/graph"
+   ],
+   []
+  ]
+ },
+ "DIFF": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 0.0,
+  "clusters": [],
+  "per_idea": [
+   [],
+   [],
+   []
+  ]
+ },
+ "MECH": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 0.0,
+  "clusters": [],
+  "per_idea": [
+   [],
+   [],
+   []
+  ]
+ },
+ "NEG": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 0.33,
+  "clusters": [
+   "causal/graph"
+  ],
+  "per_idea": [
+   [],
+   [
+    "causal/graph"
+   ],
+   []
+  ]
+ },
+ "NOISE": {
+  "n_ideas": 3,
+  "avg_clusters_per_idea": 0.33,
+  "clusters": [
+   "causal/graph"
+  ],
+  "per_idea": [
+   [],
+   [],
+   [
+    "causal/graph"
+   ]
+  ]
+ }
+}

@@ -1,0 +1,108 @@
+X01
+MECHANISM: Each named principal (the "anibal" seed) owns a low-rank fast-weight adapter stored outside the frozen base model, and the base model reads it as conditioning on every forward pass. Incoming text is buffered and committed to the adapter only at comma boundaries, where a clause closes and the sentence is still open, so partial thoughts are never written. During silence, with no input from that principal, the adapter decays toward zero, so unused knowledge fades without explicit erasure.
+DIFFERENCE: It keeps a persistent, isolated, self-decaying parameter-level memory for each person it works with, changing during deployment without retraining, which frozen transformers can only imitate by stuffing context.
+
+X02
+MECHANISM: Raw continuous signals enter a recurrent field with no tokenization. Synapses are both the stored memory and the operator: each step produces output and applies local, decaying plasticity, while slow weights consolidate what fast weights retain. Experience is written into the parameters that do the computing, so no context is ever re-read.
+DIFFERENCE: It learns from an unbounded stream at constant cost per step, with no context window or retraining.
+
+X03
+MECHANISM: Rather than emitting answers directly, the model proposes candidate programs in an executable language, runs them in a sandbox, and keeps only those that pass a checker. Verified programs go into an embedding-indexed library, and new problems are solved by retrieving and composing library entries. The proposer is trained on successes, so the library grows without retraining the whole system.
+DIFFERENCE: Its outputs carry a machine-checked certificate on checkable tasks, and its knowledge accumulates as auditable, reusable procedures that a single forward pass can neither verify nor store as code.
+
+X04
+MECHANISM: The working state is a typed, variable-size graph, and a learned set of local rewrite rules is applied in parallel at each step until the graph stabilizes, which becomes the output. Rules are trained through a differentiable rewrite, and the graph grows or shrinks as needed instead of appending tokens to a context.
+DIFFERENCE: It can iterate on structured state for arbitrarily many steps without a growing context window, whereas attention cost rises with every token already seen.
+
+X05
+MECHANISM: The model keeps a population of candidate world-models and chooses the experiment that best splits them, maximizing expected information gain. Each observation reweights candidates by Bayesian evidence and proposes new ones by local mutation, keeping only those that shorten the description of its experience (minimum description length). No differentiable loss exists; its sole objective is measured learning progress.
+DIFFERENCE: It can answer questions no fixed dataset contains by generating its own training data, which a loss-minimizer handed data cannot do.
+
+X06
+MECHANISM: Each belief carries executable doctest-style checks and a histogram of its predictions. Live traffic validates every belief; drift from its histogram deprecates and terminates it, and its slot is rotated round-robin to a new hypothesis. Learning means adding, testing and retiring beliefs, not nudging shared parameters.
+DIFFERENCE: It can retract one specific piece of knowledge once its own tests fail, which static-weight models cannot isolate or delete.
+
+X07
+MECHANISM: The state is a wealth vector of e-processes, one per candidate answer. Each new observation multiplies each candidate's wealth by a likelihood ratio from a learned predictor, and compute is spent on the fastest-growing bets. An answer is committed when its wealth exceeds 1/α, and that error bound holds under any stopping rule.
+DIFFERENCE: It bounds the error of committed answers at any stopping time, which confidence scores and self-consistency voting cannot guarantee.
+
+X08
+MECHANISM: The system holds a pool of small output rules that share one fixed budget, each rule carrying its own share. Each step every rule produces an output, and later observations update each rule's match record. Budget moves from rules below the pool's average match rate to those above it, so the total never changes. A rule whose share crosses a threshold splits into two rules taking half the share each, one slightly altered, and a rule whose share reaches zero is deleted. The driving signal is each rule's match rate relative to the pool average.
+DIFFERENCE: It spends more computation on hard inputs by growing more parallel lines of work under a fixed total budget, whereas current architectures run a fixed amount of computation per output.
+
+X09
+MECHANISM: The system is a population of small specialists with fixed parameter budgets. Each input recruits a task-specific coalition by bidding, and their outputs are merged by learned message passing. A specialist splits when it covers two skills and is pruned when it duplicates another, so capacity goes only to non-redundant knowledge. There is no single parameter set: identity lives in the coalition, and one skill can be revised without touching the rest.
+DIFFERENCE: Capability can keep rising while total parameters and compute stay flat, and individual skills can be revised without catastrophic forgetting, which a monolithic model cannot do.
+
+X10
+MECHANISM: A fast episodic store records each training example verbatim on first exposure. A slow compressor runs offline, including after training loss reaches zero, searching for the shortest program that reproduces the store. Predictions come from that program once its description length beats the stored table.
+DIFFERENCE: It can detect when it has found a compact rule and switch from memory to rule explicitly, rather than relying on weight decay to slowly drive one parameter set toward generalization.
+
+X11
+MECHANISM: The model keeps a repository of learned solution slots partitioned by problem domain, and attention can read or write a partition only while a manager network holds a time-bounded lease on it for the current problem. Leases are granted at minimal scope as a problem opens, mirroring uaccess ACLs that exist only while a session is active, and are revoked when it closes. Training teaches the manager to issue the narrowest lease that still solves each problem.
+DIFFERENCE: It can revoke or audit one learned item instantly and enforce per-task isolation at access time, which transformers cannot because their knowledge is spread across shared weights with no per-item access control.
+
+X12
+MECHANISM: The network is a set of separately addressable modules. After a failure, a critic writes a natural-language diagnosis naming the responsible module and step; that diagnosis selects which parameters receive gradient and becomes a corrected trace in a replay buffer. Learning thus uses rich textual error signals to localize updates instead of one scalar backpropagated through everything.
+DIFFERENCE: It can repair a specific faulty capability from a handful of failures at deployment, with credit localized by explanation rather than by global gradient.
+
+X13
+MECHANISM: The model streams inputs into a fixed-size slot memory with no context window. When full, a learned scorer predicts each slot's future utility and evicts the lowest, while unretrieved slots decay. Frequently retrieved slots are periodically distilled into slow weights during an offline consolidation pass.
+DIFFERENCE: It learns continuously from an unbounded stream under an explicit memory budget, moving knowledge into parameters without catastrophic interference, which fixed-context models cannot do.
+
+X14
+MECHANISM: The model keeps a posterior over a population of candidate structural causal models, stored as sparse graphs with small learned mechanisms per node. For a query, it selects the action with the highest expected information gain, runs it in an environment or simulator, and updates the posterior by Bayesian model comparison, so the graph structure itself changes rather than only weights.
+DIFFERENCE: It can separate correlation from intervention and answer "what happens if I do X" after a few targeted experiments, which likelihood-trained next-token models do not represent.
+
+X15
+MECHANISM: A fast sparse episodic store writes each experience in one shot, with no gradient step, so new information is retained immediately. A slow network is trained offline by replaying samples from that store and distilling them into its weights, after which the consolidated traces are pruned. Retrieval is sparse and indexed, so per-step cost does not scale with total history length.
+DIFFERENCE: It retains and updates knowledge from single exposures indefinitely without context growth or retraining, which a frozen-weight, fixed-window model cannot do.
+
+X16
+MECHANISM: Specialist modules act as owners in an internal market. For each input, modules bid by predicted usefulness, the winners process it, and their credit is settled by downstream outcomes. Modules whose credit expires are pruned, and new specialists spawn where bids go unmet.
+DIFFERENCE: It reshapes its own capacity at inference time through price signals, which a fixed-depth architecture cannot do without full retraining.
+
+X17
+MECHANISM: An encoder reads the context examples once and emits a low-rank parameter delta for a small task module, held in a transient weight buffer separate from the main weights. Queries run through the compiled module at a cost that does not grow with context length. The buffer can then be saved, merged with others, or erased.
+DIFFERENCE: It makes a task a storable, composable, and removable object, whereas in-context learning leaves no reusable state and must re-attend over all examples on every query.
+
+X18
+MECHANISM: The state is a nonnegative vector of species counts, and computation is a set of learned reactions with mass-action rates. Each reaction's stoichiometry must satisfy a fixed conservation law, so designated totals (resources, evidence, probability mass) move between species but are never created or destroyed. Learning tunes rates and reaction sets within those constraints.
+DIFFERENCE: It guarantees by construction that multi-step computation cannot invent budget, evidence, or probability mass, which approximators can only approximate.
+
+X19
+MECHANISM: Knowledge is a weighted directed graph with learned edge costs, and inference is tropical (min-plus) relaxation: each conclusion's cost is the minimum over derivations of summed edge costs, with no softmax or matrix multiply. Learning is perceptron-style and updates only the edges on the argmin derivation, so credit is exact rather than gradient-approximated. Missing derivations trigger new edges.
+DIFFERENCE: Every output carries an exact, globally optimal derivation and exact sensitivity to each premise, which approximate networks can only explain post hoc.
+
+X20
+MECHANISM: Facts and skills live in a versioned library of executable programs, and a small neural router selects and composes them, so the weights hold routing rather than knowledge. Learning means writing a new program or patching an existing one, and an edit is committed only if it passes the regression tests attached to the entries it touches.
+DIFFERENCE: Individual behaviors can be corrected, audited, or removed exactly, with no catastrophic forgetting of unrelated skills, which gradient-updated weights cannot guarantee.
+
+X21
+MECHANISM: Instead of dense matrices, the model stores a library of reusable motifs plus a typed program that composes and parameterizes them into layers on demand. Training minimizes task loss plus the bit cost of the program, rewarding reusable structure. New skills are added by editing a few program fragments and fitting their few parameters rather than retraining everything.
+DIFFERENCE: Capability scales with program size rather than parameter count, and the structure stays discrete and inspectable, so it can extend itself through targeted edits that dense networks cannot make.
+
+X22
+MECHANISM: Each inferred cause-to-effect transition is stored as an immutable record keyed by a hash of its cause, which is safe as a lookup key only because it never changes, and each record links to its predecessor's hash. An external provider (the "tiscali" seed) signs the chain head periodically, so every causal claim can be checked against records the model cannot rewrite. A fixation detector counts how often one reasoning episode returns to the same record and, past a learned threshold, suppresses that record and forces retrieval of an alternative cause.
+DIFFERENCE: It can justify each causal belief against an unrewritable history and break its own repetitive reasoning loops structurally, which transformers cannot, since their beliefs have no verifiable provenance and nothing watches for repetition.
+
+X23
+MECHANISM: Reasoning is a directed graph of typed intermediate results, each computed by an explicit operation over its inputs. A verifier flags nodes that fail local checks, and only those nodes and their dependents are recomputed. Training intervenes on each node and measures the change in answer, so the model learns which steps are causally load-bearing.
+DIFFERENCE: It can localize and repair one wrong step without regenerating the whole trace, which a flat token stream cannot do because its steps have no separable causal identity.
+
+X24
+MECHANISM: Knowledge is a library of small executable programs keyed by invariant embeddings. Queries are routed by distance to the nearest programs, which run on demand; a new program is synthesized and verified only when none match. Learning adds or repairs programs and never edits shared weights.
+DIFFERENCE: It can add or verify skills without overwriting old ones, which shared-weight gradient updates fundamentally cannot guarantee.
+
+X25
+MECHANISM: The system keeps a fixed-size table of past inputs; each row stores its raw input, a score per candidate conclusion, and a reliability number. A new input is not merely appended. Instead, each row's scores move a fixed fraction toward the reliability-weighted average of rows whose raw inputs overlap its own, repeated in sweeps until changes fall below a tolerance. Reliability rises when a row's scores agree with the newcomer and falls when they clash, and it sets how strongly that row pulls the others. The driving signal is the gap between each row's stored scores and the scores the newest input alone would produce.
+DIFFERENCE: It can revise conclusions drawn from earlier inputs when later inputs contradict them, which frozen past states in current architectures cannot do without reprocessing the whole history.
+
+X26
+MECHANISM: The state is a set of rewrite rules, each mapping a short pattern to a replacement, plus a working string onto which inputs are appended. Rules are applied repeatedly to the working string until none fires, and the remainder is the output. After each input, the system tries merging pairs of rules into one rule, and accepts a merge only if the rule set gets smaller while still reproducing the recorded trace exactly. The driving signal is that size reduction, with exact reproduction as a hard requirement.
+DIFFERENCE: It can extract a general rule from a single example and leaves explicit, inspectable rules whose total size is measurable, which dense numerical state in current architectures cannot offer.
+
+X27
+MECHANISM: The model maintains an explicit, editable causal graph over latent variables, where each edge is a small learned mechanism. When a prediction fails, it chooses an intervention to run and updates only the edges that the observed surprise implicates. Answering a "what if" query means performing graph surgery on the chosen variable and simulating forward.
+DIFFERENCE: It answers interventional and counterfactual questions by construction, whereas models trained on observational text cannot separate correlation from the effect of an action.
+

@@ -1,0 +1,10 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Do NOT justify any idea by fixing a known weakness of current AI (catastrophic forgetting, interpretability/auditability, editability, context length/cost, verification/guarantees, efficiency, sample efficiency). Instead, the DIFFERENCE line must name a genuinely new capability or behaviour that nobody is currently asking AI for.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.

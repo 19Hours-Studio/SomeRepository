@@ -1,0 +1,13 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Hard, machine-checked constraint: the MECHANISM text of idea i must contain ALL 8 locked words of LOCK i, exactly as written, in the given order (fill the gaps between them with your own words). The locked words were drawn at random from unrelated files. A script will reject ideas that violate this, and the idea must still be a coherent, buildable architecture, with the locked words doing real work in it.
+LOCK 1: touch overwrite distinction formats frozen breakpoint adapters laforge
+LOCK 2: differs ltconfig whitespaces progname viewkeys running jupyter timely
+LOCK 3: khaled washington documented permutation guarantee lippitsch reduce operation
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.

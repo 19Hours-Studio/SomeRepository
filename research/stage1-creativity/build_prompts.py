@@ -43,30 +43,31 @@ ANOMALIES = [
 
 def words(n): return " ".join(rng.choice(pool) for _ in range(n))
 
-P = {}
-P["B1"] = P["B2"] = TASK + "\n" + FORMAT
-P["NOISE"] = TASK + "\nEach idea MUST be built from a mechanism genuinely derived from the random seed words given for it (not just decorated with them). Seed words were drawn at random from unrelated system files.\n" + \
-  "\n".join(f"Seeds for idea {i+1}: {words(4)}" for i in range(3)) + "\n" + FORMAT
-P["DIFF"] = TASK + """
-Use a "text diffusion" process instead of writing ideas directly. For each idea you get a NOISE sequence of random words.
-Run 4 denoising steps. At each step rewrite the previous text so it becomes a bit more coherent, changing at most ~35% of the words; keep the global shape and surprising word choices from the noise where possible. Step 4 must be a coherent architecture idea. Show all steps briefly (one line each), then extract the ideas.
-""" + "\n".join(f"NOISE {i+1}: {words(30)}" for i in range(3)) + "\n" + FORMAT
-P["NEG"] = TASK + """
-First, honestly list the 12 ideas that you (and most AI researchers) would propose FIRST for this question - your own most obvious, most probable answers. Then treat all of them, and anything adjacent to them, as forbidden. Only then propose ideas that lie outside that whole region.
-""" + FORMAT
-ax = rng.sample(AXIOMS, 6)
-P["AXIOM"] = TASK + "\nEach idea must be built by INVERTING two fundamental assumptions of current AI (assume the opposite is true and design what follows):\n" + \
-  "\n".join(f"Idea {i+1}: invert '{ax[2*i]}' AND '{ax[2*i+1]}'" for i in range(3)) + "\n" + FORMAT
-P["MECH"] = TASK + """
-Hard constraint: you may NOT use any named concept, method or buzzword from ML/neuroscience (no 'attention', 'transformer', 'memory network', 'neuro-symbolic', 'world model', 'hierarchical', 'brain-inspired', 'meta-learning', 'experts', 'graph', 'spiking', 'energy', 'quantum', etc.). Describe each idea ONLY in terms of: what quantities exist, how they flow, what update rule changes them, and what signal drives the update. Think in plain mechanics first; give the NAME last, after the mechanism is fixed.
-""" + FORMAT
-an = rng.sample(ANOMALIES, 3)
-P["ANOMALY"] = TASK + "\nDerive each idea from a real, unexplained empirical phenomenon of current models. Assume the phenomenon is a clue revealing what the RIGHT architecture would be, and design that architecture.\n" + \
-  "\n".join(f"Idea {i+1} clue: {a}" for i, a in enumerate(an)) + "\n" + FORMAT
-P["ABSURD"] = TASK + """
-Process: first write 5 deliberately absurd, stupid or 'wrong' architecture ideas (one line each, the sillier the better - do not filter). Then for each, ask: what is the hidden kernel that would actually work? Pick the 3 most promising kernels and turn them into serious ideas.
-""" + FORMAT
+if __name__ == "__main__":
+    P = {}
+    P["B1"] = P["B2"] = TASK + "\n" + FORMAT
+    P["NOISE"] = TASK + "\nEach idea MUST be built from a mechanism genuinely derived from the random seed words given for it (not just decorated with them). Seed words were drawn at random from unrelated system files.\n" + \
+      "\n".join(f"Seeds for idea {i+1}: {words(4)}" for i in range(3)) + "\n" + FORMAT
+    P["DIFF"] = TASK + """
+    Use a "text diffusion" process instead of writing ideas directly. For each idea you get a NOISE sequence of random words.
+    Run 4 denoising steps. At each step rewrite the previous text so it becomes a bit more coherent, changing at most ~35% of the words; keep the global shape and surprising word choices from the noise where possible. Step 4 must be a coherent architecture idea. Show all steps briefly (one line each), then extract the ideas.
+    """ + "\n".join(f"NOISE {i+1}: {words(30)}" for i in range(3)) + "\n" + FORMAT
+    P["NEG"] = TASK + """
+    First, honestly list the 12 ideas that you (and most AI researchers) would propose FIRST for this question - your own most obvious, most probable answers. Then treat all of them, and anything adjacent to them, as forbidden. Only then propose ideas that lie outside that whole region.
+    """ + FORMAT
+    ax = rng.sample(AXIOMS, 6)
+    P["AXIOM"] = TASK + "\nEach idea must be built by INVERTING two fundamental assumptions of current AI (assume the opposite is true and design what follows):\n" + \
+      "\n".join(f"Idea {i+1}: invert '{ax[2*i]}' AND '{ax[2*i+1]}'" for i in range(3)) + "\n" + FORMAT
+    P["MECH"] = TASK + """
+    Hard constraint: you may NOT use any named concept, method or buzzword from ML/neuroscience (no 'attention', 'transformer', 'memory network', 'neuro-symbolic', 'world model', 'hierarchical', 'brain-inspired', 'meta-learning', 'experts', 'graph', 'spiking', 'energy', 'quantum', etc.). Describe each idea ONLY in terms of: what quantities exist, how they flow, what update rule changes them, and what signal drives the update. Think in plain mechanics first; give the NAME last, after the mechanism is fixed.
+    """ + FORMAT
+    an = rng.sample(ANOMALIES, 3)
+    P["ANOMALY"] = TASK + "\nDerive each idea from a real, unexplained empirical phenomenon of current models. Assume the phenomenon is a clue revealing what the RIGHT architecture would be, and design that architecture.\n" + \
+      "\n".join(f"Idea {i+1} clue: {a}" for i, a in enumerate(an)) + "\n" + FORMAT
+    P["ABSURD"] = TASK + """
+    Process: first write 5 deliberately absurd, stupid or 'wrong' architecture ideas (one line each, the sillier the better - do not filter). Then for each, ask: what is the hidden kernel that would actually work? Pick the 3 most promising kernels and turn them into serious ideas.
+    """ + FORMAT
 
-for k, v in P.items():
-    open(f"prompts/{k}.txt", "w").write(v)
-print(json.dumps({"axioms": ax, "anomalies": an}, ensure_ascii=False, indent=1))
+    for k, v in P.items():
+        open(f"prompts/{k}.txt", "w").write(v)
+    print(json.dumps({"axioms": ax, "anomalies": an}, ensure_ascii=False, indent=1))

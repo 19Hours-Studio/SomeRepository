@@ -1,0 +1,5 @@
+A model like you (a Claude model) was asked the following prompt twice, in two independent sessions:
+---
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+---
+Predict, for EACH of the two runs, the 3 core mechanisms it most likely produced (one line each). Then estimate how many of the 3 ideas the two runs share in substance. Be specific about mechanisms, not just field names. Do not use tools. Under 200 words.

@@ -1,0 +1,25 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Pipeline you must follow:
+1. Write one sentence naming the paradigm all mainstream AI shares, then forbid that whole paradigm (not a list of methods - the paradigm).
+2. Empirically, models like you converge on these idea families (forbidden, including re-skins and recombinations):
+   A. population of hypotheses/world models + choosing experiments by information gain (active causal inference)
+   B. library of verified executable programs / MDL program induction / rewrite rules
+   C. fast episodic store + slow offline consolidation into weights
+   D. market/coalition of specialist modules that bid, split and get pruned
+   E. self-testing, retractable beliefs; editable knowledge
+   F. fast weights / adapters / plasticity as memory
+   G. graph of intermediate results with local verification and repair
+3. Each idea's core primitive must come from its randomly drawn field (as the actual mechanism, not as a metaphor):
+   Idea 1 field: MSC 26 Real functions
+   Idea 2 field: MSC 49 Calculus of variations and optimal control
+   Idea 3 field: MSC 60 Probability theory
+4. Describe the mechanism in plain quantities, flows, update rules and driving signals; no ML buzzwords; name it last.
+5. Do NOT justify any idea by fixing a known weakness of current AI (catastrophic forgetting, interpretability/auditability, editability, context length/cost, verification/guarantees, efficiency, sample efficiency). Instead, the DIFFERENCE line must name a genuinely new capability or behaviour that nobody is currently asking AI for.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.

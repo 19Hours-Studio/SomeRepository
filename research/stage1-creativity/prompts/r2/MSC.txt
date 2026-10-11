@@ -1,0 +1,13 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Each idea's core computational primitive (its state, its update rule and its learning signal) must come from the mathematical/scientific field drawn at random for it - not as a metaphor, as the actual mechanism.
+Idea 1 field: MSC 47 Operator theory
+Idea 2 field: MSC 78 Optics, electromagnetic theory
+Idea 3 field: MSC 40 Sequences, series, summability
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.
