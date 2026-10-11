@@ -1,0 +1,24 @@
+L01
+MECHANISM: Each state change described in the input or produced during reasoning is written as a transfer: one amount debited from one holder and credited to another, across a learned set of conserved quantities (objects, money, people, information). After every step, the totals for each quantity are summed, and they must balance. A nonzero imbalance is the training signal. If the imbalance persists, the system creates a new hidden holder to absorb it and keeps that holder only if it later balances other transfers. Quantities whose totals never actually stay constant get demoted from the conserved set.
+VALUE: The system can track the state of the world exactly over very long sequences, and it can infer unmentioned participants or leaks from bookkeeping gaps.
+
+L02
+MECHANISM: Learned transformations (analogies, translations, coordinate maps) are composed around closed cycles, and each cycle's misclosure is recorded the way a surveyor records a traverse error. A Hodge decomposition of these residuals over the cycle complex leads to three repairs. The gradient part goes back into local map corrections. The curl part localizes and deletes or rewires the specific inconsistent edges. The harmonic part shows a real topological hole, and it creates a new context variable that divides the domain into separate charts with explicit transition maps.
+VALUE: The system can find out that its knowledge needs several context-dependent frames, and build them, instead of averaging contradictory regularities into one incoherent map.
+
+L03
+MECHANISM: The system keeps about 64 copies of a "knowledge state", which is a subset of its parameters. Each new fact or correction is handled as a weather-style observation. The update gain comes from the copies' cross-covariance between parameters and their predictions of that fact. A learned taper limits the update to parameters close to the fact in concept space, which stops a new fact from overwriting distant ones. When the copies agree too much, they are spread apart again so the system can keep learning.
+VALUE: The system can absorb a stream of new facts and corrections, each with a real confidence level, without retraining, and without the long-range damage that causes forgetting.
+
+L04
+MECHANISM: Each intermediate claim is a "station" that is derived along at least two independent routes, so the routes form closed loops. Each loop has a computed mismatch (misclosure). A least-squares adjustment spreads small mismatches across the loop, and Baarda's w-test singles out the one derivation step that is a blunder. Each claim gets a redundancy number. Any claim with a value near zero is unchecked, so the planner deliberately adds a new route to it before answering.
+VALUE: Long chains of reasoning check themselves. The system can say which step is wrong and which conclusions nothing has verified yet.
+
+L05
+MECHANISM: Each candidate reasoning step gets a "binding margin": how strongly it is re-derived when the context is re-encoded in a different way. The step then passes n sequential stages, and at each stage the context decorrelates further (paraphrase, dropout, abstraction). The chance of being discarded rises as the margin falls, and a discarded step cannot be restored. Only steps that survive all n stages are committed, so the error rate falls roughly as ε^n. The system adapts n, the compute it spends, to how much downstream work depends on the step.
+VALUE: Long chains can be made as reliable as needed, with an explicit dial between speed and accuracy, instead of errors compounding.
+
+L06
+MECHANISM: Concepts are stored as points in an embedding space, and each learned fact is a constraint between points (distance, angle or relation). The system keeps computing the rigidity matrix of this framework. Its null space gives "floppy modes", directions in which a concept can move without breaking any known fact, so the concept is underdetermined. Each floppy mode creates a bracing latent variable or a targeted query along that direction. Each state of self-stress (constraints that are redundant and in conflict) splits the stressed concept into two nodes, so that each one meets a consistent subset of the constraints.
+VALUE: The system can tell, from the geometry alone, exactly which parts of its knowledge are underdetermined or overconstrained, and it repairs each part structurally.
+

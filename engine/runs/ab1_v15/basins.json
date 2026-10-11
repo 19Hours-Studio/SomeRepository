@@ -92,5 +92,275 @@
   "desc": "Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V14",
+  "desc": "Learned Dimensional Analysis Types — Every internal quantity carries a vector of integer exponents over learned base \"dimensions\", like units in physics. Operations that mix incompatible dimensions",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Reversible Core, Ancilla Tape — Every layer is a bijection, and any information a step would normally discard is written exactly to an ancilla tape. The tape's length measures how much was for",
+  "source": "visited",
+  "members": [
+   "g1_neg#2"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Entrained Oscillator Time Sense — A bank of coupled phase oscillators (Kuramoto dynamics) runs continuously, and timestamped events phase-reset or nudge them. Concepts and routines are stored as",
+  "source": "visited",
+  "members": [
+   "g1_neg#3"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Kinetic Proofreading Reasoning Cascade — Each candidate reasoning step gets a \"binding margin\": how strongly it is re-derived when the context is re-encoded in a different way. The step then passes n s",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Duplication-Degeneration Skill Growth — Each module stores a compact functional signature: its input-output behavior on a probe set. When the gradient from new data conflicts with that signature beyon",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Lock-In Concept Extraction — To learn a new concept from a few examples, the system modulates the hypothesized feature (present or absent, at varying strength) across its inputs following a",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Assimilated Knowledge Ensemble — The system keeps about 64 copies of a \"knowledge state\", which is a subset of its parameters. Each new fact or correction is handled as a weather-style observat",
+  "source": "visited",
+  "members": [
+   "g1_core2#1"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Survey-Adjusted Reasoning Networks — Each intermediate claim is a \"station\" that is derived along at least two independent routes, so the routes form closed loops. Each loop has a computed mismatch",
+  "source": "visited",
+  "members": [
+   "g1_core2#2"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Capture-Recapture Ignorance Estimator — For a given query, the system runs several retrieval or generation passes that are deliberately independent, each using different cues, sources or decomposition",
+  "source": "visited",
+  "members": [
+   "g1_core2#3"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Dimensional Exponent Tagging — Every internal quantity carries, alongside its real-valued vector, a short integer vector of exponents over a learned set of base \"kinds\" (like length, time, co",
+  "source": "visited",
+  "members": [
+   "g1_mech#1"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Double-Entry Conservation Ledger — Each state change described in the input or produced during reasoning is written as a transfer: one amount debited from one holder and credited to another, acro",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Self-Discovered Symmetry Harvesting — The system keeps a growing pool of candidate input transformations, built by composing primitive edits: relabel, permute, reflect, rescale, swap roles. At infer",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V26",
+  "desc": "Rigidity-Counted Concept Frameworks — Concepts are stored as points in an embedding space, and each learned fact is a constraint between points (distance, angle or relation). The system keeps comput",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V27",
+  "desc": "Wahlund Splitting of Representations — Each internal unit's discretized activation states are treated as alleles, and pairs of co-occurring contexts are treated as diploid genotypes. A running Hardy–",
+  "source": "visited",
+  "members": [
+   "g1_loop#2"
+  ]
+ },
+ {
+  "code": "V28",
+  "desc": "Misclosure-Driven Context Charts — Learned transformations (analogies, translations, coordinate maps) are composed around closed cycles, and each cycle's misclosure is recorded the way a surveyor",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
+ },
+ {
+  "code": "T29",
+  "desc": "A fast generator paired with a slow, deliberate verifier (dual-process)",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T30",
+  "desc": "A differentiable external read/write memory (Neural Turing Machine style)",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T31",
+  "desc": "Several agents that debate and reach consensus",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T32",
+  "desc": "A neural model coupled to a formal theorem prover",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T33",
+  "desc": "Looped recurrent latent depth that \"thinks longer\" on harder inputs",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T34",
+  "desc": "Latent world model with planning over imagined rollouts",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T35",
+  "desc": "Neurosymbolic program synthesis over a library of programs",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T36",
+  "desc": "Episodic memory with sleep-like consolidation",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T37",
+  "desc": "Energy-based iterative reasoning until a verifier passes",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T38",
+  "desc": "Curiosity-driven self-play curriculum",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T39",
+  "desc": "Neuro-symbolic program synthesis over a library of skills",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T40",
+  "desc": "Latent world model plus tree-search planning",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T41",
+  "desc": "Episodic memory plus sleep-like consolidation",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T42",
+  "desc": "Energy-based iterative reasoning with a verifier",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T43",
+  "desc": "Mixture of experts routed by uncertainty",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T44",
+  "desc": "A persistent external memory the system writes to and reads from at inference, consolidated later",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T45",
+  "desc": "A learned simulator of the environment used to imagine and search over futures before acting",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T46",
+  "desc": "Specialist sub-networks competing for a shared bottleneck that decides what gets processed next",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T47",
+  "desc": "A self-checking loop where outputs are verified by a separate checker and revised until they pass",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T48",
+  "desc": "Small symbolic programs induced from examples and executed instead of pattern-matched",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T49",
+  "desc": "A latent world model that plans over imagined rollouts (WMPLAN)",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T50",
+  "desc": "A library of small programs as causal simulators, revised by synthesis (PROGSYN)",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T51",
+  "desc": "An episodic memory consolidated offline through replay (CONSOL)",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T52",
+  "desc": "An explicit causal graph revised from prediction error (CAUSGR)",
+  "source": "self",
+  "members": []
+ },
+ {
+  "code": "T53",
+  "desc": "A competence map that routes between answering and abstaining (COMPMAP)",
+  "source": "self",
+  "members": []
  }
 ]

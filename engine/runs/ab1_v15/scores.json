@@ -1,1 +1,272 @@
-{}
+{
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "lock-in detection; activation patching"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "lock-in amplifier; activation-patching probes"
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AutoAugment plus test-time augmentation voting"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AutoAugment; ARC test-time augmentation voting"
+  }
+ },
+ "g1_neg#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AI Feynman; BuckiNet dimensionless learning"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AI Feynman; Buckingham-pi neural nets"
+  }
+ },
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "gene duplication DDC; progressive networks"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "PackNet/progressive nets; gene subfunctionalization"
+  }
+ },
+ "g1_core2#2": {
+  "s01:J1": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic network adjustment; self-consistency"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic network adjustment; self-consistency"
+  }
+ },
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 7,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank; sheaf Laplacian cycle consistency"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank; sheaf Laplacian cycle consistency"
+  }
+ },
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory; knowledge-graph embeddings"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "structural rigidity theory; KG embeddings"
+  }
+ },
+ "g1_core2#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ensemble Kalman inversion for networks"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ensemble Kalman inversion; ROME editing"
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "polysemantic neuron splitting; mixture tests"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "neuron splitting; polysemanticity/SAE features"
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "entity tracking; conservation-law networks"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Petri nets; entity state tracking"
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading; self-consistency"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading; self-consistency"
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "units-typed networks; AI Feynman"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis typing; AI Feynman"
+  }
+ },
+ "g1_neg#3": {
+  "s01:J1": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AKOrN; neural resonance theory"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "neural resonance theory; AKOrN oscillators"
+  }
+ },
+ "g1_core2#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 8,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "capture-recapture recall estimation (IR)"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 8,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "capture-recapture recall estimation (TAR)"
+  }
+ },
+ "g1_neg#2": {
+  "s01:J1": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "i-RevNet; Bennett reversible computing"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "i-RevNet; Bennett reversible computing"
+  }
+ }
+}
