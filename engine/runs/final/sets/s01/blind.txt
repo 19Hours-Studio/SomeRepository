@@ -1,0 +1,60 @@
+A01
+MECHANISM: Linearize the generator's latent dynamics around typical contexts and compute an empirical controllability Gramian with respect to the input embeddings. Eigendirections the model represents but can barely reach are flagged, and a new learned input channel (an adapter or token) is grown for each one. Channels whose outputs pass verification are kept, the Gramian is recomputed, and growth continues where reachability is still low.
+VALUE: It surfaces concepts the model holds internally but structurally cannot express.
+
+A02
+MECHANISM: For each stored concept, the system records the contexts it is used in and measures how spread out and clustered that usage is. When usage splits into two or more separate clusters, the concept is split into child concepts, each keeping only the properties used in its cluster. The children are then allowed to combine freely with other objects, including combinations the bundled parent blocked. A split is kept when the new combinations it allows pass outside checks; otherwise the children are merged back.
+VALUE: It frees properties that were glued together by accident, so the system can build ideas no single existing concept could express.
+
+A03
+MECHANISM: Assemble the Jacobian of the model's consistency constraints over latent concept coordinates and compute its null space (floppy modes) and its left null space (self-stress). Generation moves along floppy modes. When an output is verified, a new constraint node pins that direction as a named concept; redundant self-stressed constraints are deleted.
+VALUE: It generates in directions the training data never constrained, then turns the confirmed ones into permanent concepts the model can build on.
+
+A04
+MECHANISM: Every partial structure built during problem solving and then thrown away goes into a heap. Each entry is labelled with what the structure did and why it failed for its original goal. When a new goal arrives, the system matches it against those labels, ignoring the original goal, before it looks at solutions that worked. Labels on entries that turn out useful later get a higher retrieval priority, so the heap learns which kinds of failure are worth keeping.
+VALUE: It works from dead ends that finished-outcome data never contains.
+
+A05
+MECHANISM: Early on, the system locks one unpopular premise into a frozen "hard-core" adapter that it may not revise for a long time. Over thousands of tasks it trains a "protective belt" of skills, methods and auxiliary assumptions around that core. The aim is to get competent working from that premise, not to search inside it. Only at long checkpoints is the programme judged, in Lakatos's sense of whether it is progressing or degenerating, and then kept or retired as a whole.
+VALUE: The system can build deep, path-dependent expertise in directions that greedy, short-horizon evaluation always prunes before they pay off.
+
+A06
+MECHANISM: The system does not generate solutions. It generates new evaluation axes: learned functions that put existing artifacts in a new order. An axis is stored only if it meets three tests. It must be stable when judged repeatedly. It must be learnable from a few examples. It must be statistically independent of a stored bank of known human criteria. The system then makes artifacts that score high on its chosen axes, and it explains each axis to people through examples ranked from best to worst.
+VALUE: An AI can propose new kinds of "good", new qualities worth wanting, and not just better scores on qualities people already value.
+
+A07
+MECHANISM: The system picks a few open questions it considers personally unresolved and keeps each one as a persistent "obsession" vector for months or years. Each one has its own memory of partial attempts. Every input it processes during that time, whatever the task, is also checked for relevance to each obsession, and anything relevant is added to that obsession's memory. When enough fragments pile up, a background process puts them together into a proposal. Obsessions that produce something are renewed, and stale ones are retired and replaced.
+VALUE: An AI can work on its own long-running intellectual projects and, years later, bring back connections nobody asked for, which no single prompt or session could have produced.
+
+A08
+MECHANISM: An accepted concept gets a learned gating mark on the weights or latent region that carries it. Whenever that region is active, a read-write rule copies the mark onto co-active neighbours, and boundary units stop the spread. Marked parameters resist gradient pull toward the majority distribution, and because the dynamics are bistable a mark either takes hold or disappears.
+VALUE: Rare new concepts survive further training and can be built on, instead of being averaged back into the common patterns.
+
+A09
+MECHANISM: The system lists its existing concepts as dense sets, i.e. clusters in representation space, each with a defining feature. It builds a candidate by adding finite conditions one at a time. Each condition has to break at least one listed concept's defining feature while staying logically compatible with every condition added so far, which a solver or prover checks. The conditions are stored as a growing partial object, and the listing order adapts to which concepts the candidate has not yet escaped.
+VALUE: It produces consistent ideas that are guaranteed to lie outside the span of everything the model can name.
+
+A10
+MECHANISM: Each candidate is put to use, as a lemma, tool or design rule, across a battery of downstream tasks, which gives a consequence vector. A minimum-cost regression projects that vector onto the stored consequence vectors of known ideas, playing the role of the replicating portfolio. The idea's value is the payoff in the residual that known ideas cannot hedge, and the library of consequence vectors grows as candidates are accepted.
+VALUE: It can value ideas that have no precedent by what they make possible that nothing known can reproduce, rather than by how plausible they look.
+
+A11
+MECHANISM: Next to the pretrained model sits a small network that starts empty and is never pretrained. Its weights are updated only from this one agent's own episodes, failures and surprises, in the order they happened. It does not generate anything. It only reweights attention and relevance, meaning which details the base model treats as important. Two instances with different histories therefore come to notice different things in the same problem. The module keeps adapting through slow Hebbian consolidation of whatever repeatedly mattered in that agent's past.
+VALUE: Each agent gets an idiosyncratic point of view, as a biography gives a person, so its questions and framings are not the average of the corpus.
+
+A12
+MECHANISM: The system keeps a graph of stored objects, each with a list of what it needs and what it provides. A pressure counter is kept for each unmet requirement and goes up every time a task needs it and no stored object provides it. When a group of related unmet requirements passes a threshold, the system creates a placeholder object defined only by the requirements it must meet, then looks for or builds something that fits. The placeholder is kept if filling it lets many waiting requirements be met, and its weight grows with how many it unblocks.
+VALUE: New objects come from the shape of what is missing, not from reshuffling what is common.
+
+A13
+MECHANISM: Every time the system ships an artifact, it writes the choices it made to an append-only ledger and can never undo them: this motif, this structure, this rejected option. A small "taste" network is trained only on this ledger, never on the corpus. That network scores new candidates by how well they extend the system's own past commitments, not by how typical they are. Early random commitments compound over time, so two copies of the same model that started the same way drift into distinct, consistent signatures.
+VALUE: An AI can have a recognisable creative identity of its own, like an auteur, whose later work only makes sense in light of its own earlier work.
+
+A14
+MECHANISM: Measure co-activation statistics of sparse-autoencoder features and flag combinations whose marginals are frequent but whose joint occurrence is near zero, the way crystallographers flag systematic absences. Trace each one to the circuit that suppresses it, then cut or rewire that circuit. A rewiring is kept only if the newly reachable outputs pass external verification; failed cuts are restored and recorded as genuine laws.
+VALUE: It turns hidden prohibitions absorbed from the corpus into removable structure, which opens regions the data never visited.
+
+A15
+MECHANISM: Targeted unlearning removes one established concept, plus everything downstream of it, from a copy of the model. For example, it might remove "entropy" or "the gene". The ablated copy then gets the raw phenomena and primitive tools and must rebuild a working understanding of the domain without that concept. The concepts it builds to fill the gap are stored and compared against the removed one, and any that differ structurally are kept as alternative foundations.
+VALUE: Expertise can be reset to a "naive but capable" state, so the system finds conceptual routes that history closed off once one framing won.
+
