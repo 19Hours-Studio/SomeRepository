@@ -1,21 +1,21 @@
 {
  "canvas": [
-  "alphas",
-  "mazurs",
-  "testsuite",
-  "unlimited",
+  "Within",
+  "each",
+  "hive",
+  "insatiable",
   "curiosity",
-  "pidfile",
+  "drives",
   "daemon",
-  "disclaim",
-  "amejia",
-  "nature",
-  "producing",
+  "forages",
+  "raw",
+  "sensations",
+  "generating",
   "hypotheses",
-  "probably",
-  "passphrase",
-  "during",
-  "iptables",
+  "mostly",
+  "false",
+  "so",
+  "waking",
   "gate",
   "admits",
   "plastic",
@@ -24,14 +24,14 @@
   "while",
   "dreaming",
   "replicas",
-  "notify",
-  "finalize",
+  "debate",
+  "merging",
   "consolidated",
   "memories",
   "into",
   "shared",
   "schemas",
-  "downgrade"
+  "annually"
  ],
  "noise": [
   "alphas",
@@ -109,9 +109,11 @@
    25
   ]
  ],
- "step": 2,
+ "step": 4,
  "history": [
   "alphas mazurs testsuite unlimited asuraparaju pidfile autoload disclaim amejia nature producing hypotheses probably passphrase during iptables gate greenend changing weights seasonally yearly increment mimic notify finalize consolidated memories into typelib schemas downgrade",
-  "alphas mazurs testsuite unlimited curiosity pidfile daemon disclaim amejia nature producing hypotheses probably passphrase during iptables gate admits plastic weights seasonally while dreaming replicas notify finalize consolidated memories into shared schemas downgrade"
+  "alphas mazurs testsuite unlimited curiosity pidfile daemon disclaim amejia nature producing hypotheses probably passphrase during iptables gate admits plastic weights seasonally while dreaming replicas notify finalize consolidated memories into shared schemas downgrade",
+  "alphas mazurs testsuite unlimited curiosity drives daemon forages raw sensations generating hypotheses probably false during waking gate admits plastic weights seasonally while dreaming replicas notify finalize consolidated memories into shared schemas annually",
+  "Within each hive insatiable curiosity drives daemon forages raw sensations generating hypotheses mostly false so waking gate admits plastic weights seasonally while dreaming replicas debate merging consolidated memories into shared schemas annually"
  ]
 }

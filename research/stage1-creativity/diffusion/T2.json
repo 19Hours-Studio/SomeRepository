@@ -1,36 +1,36 @@
 {
  "canvas": [
-  "ltconfig",
-  "zipinfo",
-  "joining",
+  "Lossy",
+  "episodic",
+  "memory",
   "shards",
-  "clicking",
+  "settle",
   "into",
   "accumulators",
   "whose",
   "errors",
   "hire",
-  "distributing",
+  "rival",
   "credit",
   "lawyers",
   "casting",
   "votes",
-  "worker",
-  "started",
-  "glplatform",
-  "agreement",
-  "environ",
+  "until",
+  "workers",
+  "reach",
+  "consensus",
+  "sleep",
   "seasonally",
   "compresses",
   "growth",
   "rings",
-  "visible",
+  "legible",
   "to",
-  "management",
+  "auditors",
   "slowly",
   "lets",
-  "diminish",
-  "invalidate",
+  "dissent",
+  "overwrite",
   "priors"
  ],
  "noise": [
@@ -109,9 +109,11 @@
    6
   ]
  ],
- "step": 2,
+ "step": 4,
  "history": [
   "ltconfig zipinfo joining shards clicking deprecation accumulators platlibdir authorship article distributing linus lawyers spinner votes worker started glplatform agreement environ seasonally compresses yearly rings visible iterdir management slowly lets diminish invalidate priors",
-  "ltconfig zipinfo joining shards clicking into accumulators whose errors hire distributing credit lawyers casting votes worker started glplatform agreement environ seasonally compresses growth rings visible to management slowly lets diminish invalidate priors"
+  "ltconfig zipinfo joining shards clicking into accumulators whose errors hire distributing credit lawyers casting votes worker started glplatform agreement environ seasonally compresses growth rings visible to management slowly lets diminish invalidate priors",
+  "Lossy zipinfo memory shards clicking into accumulators whose errors hire distributing credit lawyers casting votes until workers reach agreement environ seasonally compresses growth rings visible to management slowly lets dissent overwrite priors",
+  "Lossy episodic memory shards settle into accumulators whose errors hire rival credit lawyers casting votes until workers reach consensus sleep seasonally compresses growth rings legible to auditors slowly lets dissent overwrite priors"
  ]
 }
