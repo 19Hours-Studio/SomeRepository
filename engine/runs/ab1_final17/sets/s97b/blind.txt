@@ -1,0 +1,32 @@
+V01
+MECHANISM: Each module stores a compact functional signature: its input-output behavior on a probe set. When the gradient from new data conflicts with that signature beyond a threshold, the module is duplicated rather than overwritten. Both copies then receive complementary sparse degeneration masks, so each loses a different subset of sub-functions while the pair together still reproduces the old signature. The new copy specializes on the new data. Copies that end up redundant are pruned.
+VALUE: New capabilities can grow after deployment, with old ones preserved in the network's structure rather than by penalties or replay.
+
+V02
+MECHANISM: The system continuously runs the four-point condition on embedding distances among concepts in its taxonomy. Quartets that violate it point to hybrid concepts, and those concepts are re-typed as reticulation nodes with two weighted parent lineages. Properties are then inherited from both parents. The violation magnitudes are stored, and edges are reweighted as evidence accumulates. First test: Using WordNet/Wiktionary-etymology concepts with ~200 labeled hybrids (loanword blends, hybrid species, fusion genres) and matched non-hybrids, compute four-point-condition violations on off-the-shelf embedding distances; success is AUROC ≥0.75 for flagging hybrids and higher property-prediction accuracy than single-parent tree inheritance.
+VALUE: The system can represent and reason about concepts that blend lineages, such as loanwords, hybrid organisms or mixed genres, which strictly tree-shaped hierarchies get wrong.
+
+V03
+MECHANISM: Each internal unit's discretized activation states are treated as alleles, and pairs of co-occurring contexts are treated as diploid genotypes. A running Hardy–Weinberg test compares how often mixed ("heterozygous") pairs actually occur with how often they would occur in one homogeneous population. A significant heterozygote deficit is the Wahlund signature that the unit merges hidden subpopulations. In that case the unit is split into typed children, and the F-statistics between those children decide the routing. Children that later come back into equilibrium with each other are merged again.
+VALUE: The model breaks apart conflated concepts while it runs, using an online statistical test instead of an analysis done after the fact.
+
+V04
+MECHANISM: Each state change described in the input or produced during reasoning is written as a transfer: one amount debited from one holder and credited to another, across a learned set of conserved quantities (objects, money, people, information). After every step, the totals for each quantity are summed, and they must balance. A nonzero imbalance is the training signal. If the imbalance persists, the system creates a new hidden holder to absorb it and keeps that holder only if it later balances other transfers. Quantities whose totals never actually stay constant get demoted from the conserved set.
+VALUE: The system can track the state of the world exactly over very long sequences, and it can infer unmentioned participants or leaks from bookkeeping gaps.
+
+V05
+MECHANISM: Each intermediate claim is a "station" that is derived along at least two independent routes, so the routes form closed loops. Each loop has a computed mismatch (misclosure). A least-squares adjustment spreads small mismatches across the loop, and Baarda's w-test singles out the one derivation step that is a blunder. Each claim gets a redundancy number. Any claim with a value near zero is unchecked, so the planner deliberately adds a new route to it before answering.
+VALUE: Long chains of reasoning check themselves. The system can say which step is wrong and which conclusions nothing has verified yet.
+
+V06
+MECHANISM: Holders are learned points, and each transfer is a bar between two of them. A balanced set of transfers is an equilibrium stress, so a quantity counts as conserved only while its transfers stay in that stress space. An imbalance that won't go away is treated as a load on the framework. The system adds a hidden holder at the position where the loose directions (floppy modes) can absorb that load. Where stresses conflict, the holder splits in two. First test: On synthetic ledger worlds with 10–30 holders where 1–3 holders are removed from the transfer log, fit the bar-framework stress model; success is ≥80% recovery of hidden-holder count and their transfer partners, beating a per-holder imbalance-threshold baseline.
+VALUE: The system can keep exact track of world state, and the geometry shows where unknown participants must be and which quantities are not really conserved.
+
+V07
+MECHANISM: Each proofreading stage re-encodes the context with a learned map (paraphrase, abstraction, dropout). A step's binding margins across these encodings therefore form edge flows on a cycle complex, and a Hodge decomposition splits them into three parts. The gradient part is encoder bias: correct the map and keep the step. The curl part is real fragility: discard the step irreversibly. The harmonic part means the step holds only in some contexts: commit it locally to a new chart, with an explicit context variable and a transition map. Later steps that cross chart boundaries face extra proofreading stages, scaled to the misclosure of the transition map they cross. A new chart is kept only if steps committed in it survive this proofreading. First test: On 500 GSM8K chains plus 200 synthetic problems whose steps hold only under one of two stated rule sets, score steps under four re-encodings and Hodge-split the margins; success is lower final-answer error than majority-vote proofreading while retaining ≥90% of context-conditional true steps.
+VALUE: Error rates in long reasoning drop exponentially without discarding conclusions that are true only in some contexts, and the system learns where its knowledge splits into separate frames.
+
+V08
+MECHANISM: Every layer is a bijection, and any information a step would normally discard is written exactly to an ancilla tape. The tape's length measures how much was forgotten. Abduction runs the network backward: fix the desired output, edit the ancilla, and recover exactly which inputs would produce it. Unlearning removes one example's influence by un-computing its trace.
+VALUE: Exact provenance, exact counterfactual inputs ("what would have had to be true?") and certified forgetting, none of which LLMs can do because they discard information at every layer.
+

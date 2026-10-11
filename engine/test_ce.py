@@ -131,6 +131,12 @@ def main():
             ce("prompt", R7, "genius", "g1_genius"); ce("pairs", R7, "g1", "--n", "1")
             ce("prompt", R7, "evo_simple", "g2_evo1", "--pairs", "1")
             assert "SIMPLER than either parent" in open(os.path.join(rd7, "prompts", "g2_evo1.txt")).read()
+            assert "ANCHOR" in open(os.path.join(rd7, "sets", "s01", "prompt_valorize.txt")).read()
+            p = os.path.join(tmp, "v7"); sid0, pid0 = list(k1.items())[0]
+            open(p, "w").write(f"=== VALORIZED {sid0} ===\nANCHOR: alpha\nNAME: better\nMECHANISM: alpha made simple\nVALUE: new ability\n")
+            assert "valorized 1/4" in ce("valorize", R7, "s01", "--arm", "v7V", "--file", p)
+            vi = [i for i in json.load(open(os.path.join(rd7, "ideas.json"))) if i["arm"] == "v7V"]
+            assert len(vi) == 1 and vi[0]["parent"] == pid0 and vi[0]["anchor"] == "alpha"
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")

@@ -1,0 +1,28 @@
+V01
+MECHANISM: For a given query, the system runs several retrieval or generation passes that are deliberately independent, each using different cues, sources or decompositions. It records which candidate facts or solutions each pass "captures". From the overlaps it computes Chao or Lincoln-Petersen estimates of how many relevant items are still missing, adjusting for the fact that some items are easier to capture than others. It keeps sampling until the estimated unseen share falls below a set threshold, and its answer states how complete it is.
+VALUE: The system can say "I have probably found 90% of the relevant cases" and know when to stop searching.
+
+V02
+MECHANISM: The system keeps a growing pool of candidate input transformations, built by composing primitive edits: relabel, permute, reflect, rescale, swap roles. At inference it answers both the original input and several transformed copies, maps each answer back through the inverse transformation, and measures how much the answers disagree. A transformation's score rises when answers agree on cases that were verified correct, and it falls when they diverge. High-scoring transformations are kept and used both to vote at inference and to enlarge the training data. Low scorers are discarded, and recombinations of kept ones are proposed as new candidates.
+VALUE: The system finds on its own which changes to an input must not change the answer, which gives it structured generalization far outside its training distribution.
+
+V03
+MECHANISM: For pairs of cues that compete over an internal feature, the system measures dose-response shifts, meaning how much more of cue A is needed as cue B increases, and fits a Schild slope. A slope of 1 confirms that one mechanism mediates both cues. If the slope differs from 1, the feature is split into two sites, each with its own learned gate. The slopes are stored per feature, and they are re-tested whenever new competing cues show up. First test: In a toy model with planted features (some single-mechanism, some secretly two superposed mechanisms), titrate competing cue pairs and fit Schild slopes on feature activation; success is ≥85% correct single-versus-composite classification (single-mechanism slopes within 0.9–1.1) and better causal-ablation faithfulness after splitting.
+VALUE: Features that are secretly several mechanisms get found and separated by a quantitative invariant, so the model's internals become more faithful and reasoning that combines cues becomes more reliable.
+
+V04
+MECHANISM: Learned transformations (analogies, translations, coordinate maps) are composed around closed cycles, and each cycle's misclosure is recorded the way a surveyor records a traverse error. A Hodge decomposition of these residuals over the cycle complex leads to three repairs. The gradient part goes back into local map corrections. The curl part localizes and deletes or rewires the specific inconsistent edges. The harmonic part shows a real topological hole, and it creates a new context variable that divides the domain into separate charts with explicit transition maps.
+VALUE: The system can find out that its knowledge needs several context-dependent frames, and build them, instead of averaging contradictory regularities into one incoherent map.
+
+V05
+MECHANISM: A new fact first goes into a queue. At each stage it is checked against a different, separate subset of the roughly 64 ensemble members, and only after other facts have been absorbed in between. Agreement between those members gives the fact's binding margin, and a fact rejected at any stage is gone for good. The number of stages grows with how much of the model the update would change. Facts that pass more stages get smaller observation noise, so the update counts them more. First test: Stream 1,000 factual updates (half correct, half deliberately false with broad downstream reach) from zsRE into a 64-member LoRA ensemble with staged disjoint-subset gating; success is ≥80% false-fact rejection at ≥90% true-fact acceptance, beating single-stage ensemble voting on neighborhood accuracy.
+VALUE: The system can keep learning from a stream of new facts, and wrong facts that would cause broad damage are stopped before they get in.
+
+V06
+MECHANISM: A bank of coupled phase oscillators (Kuramoto dynamics) runs continuously, and timestamped events phase-reset or nudge them. Concepts and routines are stored as stable phase-locking patterns between oscillators, not as static vectors. Each oscillator adapts its natural frequency to minimize phase error at event onsets, and an expectation is read out as the phase at which the next event should arrive.
+VALUE: A real sense of duration, rhythm, deadlines and "something is late", including discovering hidden periodicities in event streams. Token-sequence models have no clock, so they cannot do this.
+
+V07
+MECHANISM: To learn a new concept from a few examples, the system modulates the hypothesized feature (present or absent, at varying strength) across its inputs following a pseudo-random reference code. Per-channel integrators multiply each internal activation by the reference and low-pass the product, which pulls out the channels coherently locked to the concept even far below the noise. The locked channel set becomes a durable address for the concept. A new code then re-tests the address, and channels whose lock fades are dropped.
+VALUE: Concepts can be isolated precisely from very few, noisy examples, with a signal-to-noise level that can be measured.
+

@@ -149,7 +149,7 @@ def cmd_set(a):
             sid = f"{a.prefix}{j:02d}"; key[sid] = i["id"]
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
-    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux"):
+    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         if kind == "judge" and getattr(a, "crux", False):
             crux = load(a.run, "config.json", {}).get("crux") or sys.exit("no crux recorded: run `family` with the v1.7 template first")
@@ -347,6 +347,23 @@ def cmd_audit(a):
         au[iid] = {"slots": L, "carried": round(carried, 2), "decoy": v, "spec": None if spec is None else round(spec, 2)}
     save(a.run, "audit.json", au); print(f"audit: {len(au)} ideas ({len(slots)} with slots, {len(dec)} with decoys)")
 
+def cmd_valorize(a):
+    """Layer B (v1.8 idea): each original idea rebuilt for genius and value around its anchor -> new arm."""
+    text = read_source(a); key = setkey(a.run, a.set)
+    open(path(a.run, "sets", a.set, f"valorize_{a.arm}.md"), "w").write(text)
+    ideas = load(a.run, "ideas.json", []); byid = {i["id"]: i for i in ideas}; n = 0
+    for sid, body in re.findall(r"=== VALORIZED ([A-Z]+\d\d) ===\n(.*?)(?=\n=== VALORIZED|\Z)", text, re.S):
+        if sid not in key: continue
+        par = byid[key[sid]]
+        m = re.search(r"MECHANISM:\**\s*(.+?)\n\s*\**VALUE:\**\s*(.+)", body, re.S)
+        if not m: continue
+        nm = re.search(r"NAME:\**\s*(.+)", body); an = re.search(r"ANCHOR:\**\s*(.+)", body)
+        nid = f"{a.arm}:{par['id']}"; ideas = [i for i in ideas if i["id"] != nid]
+        ideas.append({"id": nid, "label": f"{a.arm}:{par['label']}", "arm": a.arm, "gen": par["gen"], "parent": par["id"],
+                      "name": nm.group(1).strip() if nm else "", "anchor": an.group(1).strip() if an else "",
+                      "mech": " ".join(m.group(1).split()), "value": " ".join(m.group(2).split())}); n += 1
+    save(a.run, "ideas.json", ideas); print(f"valorized {n}/{len(key)} -> arm {a.arm}")
+
 def cmd_setcfg(a):
     cfg = load(a.run, "config.json", {}); cfg[a.key] = json.loads(a.value) if a.value[:1] in "[{0123456789tf" else a.value
     save(a.run, "config.json", cfg); print(a.key, "=", cfg[a.key])
@@ -478,6 +495,7 @@ def main():
     x.add_argument("--crux", action="store_true", help="v1.7: add the crux column X to the judge prompt")
     x.add_argument("--genius", action="store_true", help="v1.7: add the genius score G to the judge prompt")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
+    x = sp.add_parser("valorize"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--arm", required=True); src(x)
     x = sp.add_parser("judge"); x.add_argument("run"); x.add_argument("set"); x.add_argument("judge"); src(x)
     x = sp.add_parser("select"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--labels"); x.add_argument("--arms")
     x.add_argument("--k", type=int, default=6); x.add_argument("--drop-known-basins", action="store_true")
@@ -501,7 +519,7 @@ def main():
     for name in ("gapwalk", "strip", "audit", "concretize"):
         x = sp.add_parser(name); x.add_argument("run"); x.add_argument("set"); src(x)
     a = p.parse_args()
-    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize", "species"):
+    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize", "species", "valorize"):
         sys.exit("need --transcript or --file")
     globals()["cmd_" + a.cmd.replace("-", "_")](a)
 
