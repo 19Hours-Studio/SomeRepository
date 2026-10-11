@@ -1,1 +1,32 @@
-{}
+{
+ "g1_neg#2": {
+  "verdict": "PARTIAL",
+  "closest": "Teaching LLMs to Ask: Self-Querying Category-Theoretic Planning for Under-Specified Reasoning (2026) https://arxiv.org/html/2601.20014v1 ; ResearchStudio-Idea: An Evidence-Grounded Research-Ideation Skill Suite from ML Conference Outcomes (2026) https://arxiv.org/pdf/2607.04439",
+  "new": "Pieces exist separately (flagging unspecified plan steps; gap-driven ideation from literature gaps), but I found nothing that pools \"cannot say exactly\" markers across many sampled plain answers, targets only the recurring ones, and re-expands the plan to test whether a fill really removes the gap."
+ },
+ "g1_mech#1": {
+  "verdict": "PARTIAL",
+  "closest": "Synthetic Cognitive Walkthrough: Aligning LLM Performance with Human Cognitive Walkthrough (2025) https://arxiv.org/pdf/2512.03568 ; Paired Open-Ended Trailblazer (POET) (2019) https://arxiv.org/pdf/1901.01753 (also the pre-mortem / prospective hindsight technique, Mitchell, Russo and Pennington 1989, many LLM \"premortem\" skill pages e.g. https://skillselion.com/skills/julianobarbosa/claude-code-skills/premortem)",
+  "new": "Walkthrough-to-first-failure, pre-mortem critique and challenge archives are each known, but generating from stall records only (plain answers hidden), replaying the same instance to confirm the stall is passed, and persisting a stall table that reweights sampling toward unpassed stalls was not found as a combination."
+ },
+ "g1_core#2": {
+  "verdict": "KNOWN",
+  "closest": "Breaking Models to Test the Judge: A Mutation Testing Approach for Semantic Evaluators of Domain Class Diagrams (2026) https://arxiv.org/pdf/2608.14315 ; Mutation Testing for LLM Judges: Scoring an Evaluator on Injected Defects (practitioner guide) https://agentpatterns.ai/verification/mutation-testing-llm-judges/ (also FLAWS: A Benchmark for Error Identification (2025) https://arxiv.org/html/2511.21843v1 and LLM4VV (2024) https://arxiv.org/pdf/2408.11729)",
+  "new": "The typed-defect injection and per-type kill-rate measurement is established; only the use of kill rates to reweight scoring criteria in an idea-ranking pipeline, the \"disguised known family / inflated value claim\" defect types, and replanting persistently-missed mutants across runs are not found, and these are minor extensions."
+ },
+ "g1_core#1": {
+  "verdict": "PARTIAL",
+  "closest": "AlphaEvolve (2025), only developer-marked EVOLVE-BLOCK regions are mutable https://composio.dev/blog/alphaevolve-evolutionary-agent-from-deepmind ; EvoCause: LLM-Guided Evolution of Causal Graphs for Root Cause Analysis (2026), per-component prompt ablations https://arxiv.org/pdf/2607.27290 (also Prompt Credit Assignment: Finding the Dead Weight in Your System Prompt, practitioner write-up https://tianpan.co/blog/2026-05-05-prompt-credit-assignment-system-prompt-dead-weight)",
+  "new": "Ablation-based importance and frozen versus editable regions are both known, but deriving the freeze map automatically from judge-scored value drops of an idea's own slots, restricting off-attractor rewrites to low-sensitivity slots, and storing sensitivity maps per question type was not found; note that ablation measures dependency rather than importance and low-sensitivity slots may yield only cosmetic novelty."
+ },
+ "g1_mech#2": {
+  "verdict": "PARTIAL",
+  "closest": "Semantic Compression With Large Language Models (Gilbert et al., 2023), round-trip reconstruction fidelity metrics https://cs.paperswithcode.com/paper/semantic-compression-with-large-language ; Thinking Outside the (Gray) Box: A Context-Based Score for Assessing Value and Originality in Neural Text Generation (2025) https://arxiv.org/html/2502.13207v1 (also LiveIdeaBench, single-keyword idea generation, https://www.catalyzex.com/paper/liveideabench-evaluating-llms-scientific)",
+  "new": "Hint-conditioned versus unconditioned reconstruction is essentially a pointwise-mutual-information style contrast, which is a known family of novelty and compression metrics, but using a short author-written hint as a crispness-plus-surprise selection score with a stored hint library to detect \"new\" ideas that rebuild from old hints was not found; the no-hint arm duplicates the existing sampling-frequency attractor signal and a hint can leak the idea."
+ },
+ "g1_mech#3": {
+  "verdict": "PARTIAL",
+  "closest": "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (2026) https://arxiv.org/pdf/2603.21357 ; Thinking Forward and Backward: Effective Backward Planning with Large Language Models (2024) https://arxiv.org/pdf/2411.01790 (also Amazon \"Working Backwards\" PR/FAQ method https://www.productplan.com/glossary/working-backward-amazon-method/)",
+  "new": "Backward-from-outcome planning with forward verification and outcome-first product ideation are known, but seeding ideation with an LLM-fabricated dated and measured success record gated by a \"would surprise the plain-answer holder\" judge, deriving the minimal mechanism blind to forbidden families, forward-checking the numbers, and storing unworkable records as open targets was not found; the fabricated numbers and the forward check are both produced by the same model family, so the verification is weak."
+ }
+}

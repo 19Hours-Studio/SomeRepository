@@ -218,6 +218,11 @@ def cmd_pairs(a):
         for y in surv:
             if len(pairs) >= a.n: break
             if ok(x, y) and uses[x] < 2 and uses[y] < 2 and frozenset((x, y)) not in seen: add(x, y)
+    # 3) если пар не хватает: разрешаем пары из одного запуска, но только между разными семействами
+    for x in surv:
+        for y in surv:
+            if len(pairs) >= a.n: break
+            if x != y and fam[x] != fam[y] and uses[x] < 2 and uses[y] < 2 and frozenset((x, y)) not in seen: add(x, y)
     unpaired = [s for s in surv if not uses[s]]
     if unpaired: print("WARNING: no valid partner for", unpaired)
     save(a.run, "pairs.json", pairs); [print(" x ".join(p)) for p in pairs]; print(f"-> pairs.json ({len(pairs)})")
