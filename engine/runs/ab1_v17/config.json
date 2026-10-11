@@ -1,5 +1,7 @@
 {
  "question": "What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.",
  "format": "value",
- "n": 3
+ "n": 3,
+ "crux": "Each architecture's self-improvement loop needs a trustworthy correctness signal: the \"realized uncertainty reduction\" bids are paid on, the prediction errors that trigger patches or graph revisions, the \"symbolic or learned checker\", the \"ground-truth-verified\" error map, the regression suite and the contradiction detector. None of the answers says where that signal comes from in open-ended, real-world domains, where there is no oracle and the system would end up grading itself with the same fallible model it is trying to correct.",
+ "use_crux": 1
 }
