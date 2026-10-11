@@ -1,0 +1,29 @@
+How could storing electricity for days to weeks become ten times cheaper than today, so that wind and solar can run a whole grid through long calm, dark spells? Propose fundamentally new mechanisms or system designs - not incremental improvements of existing battery chemistries.
+Propose 3 fundamentally new answers. Follow this pipeline:
+1. GOALS FROM THE CENTER: pick the 3 sub-problems that matter most here. Do not try to be original about the goals; pick what you honestly believe matters most.
+2. PARADIGM NEGATION: name in one sentence the paradigm that mainstream approaches share. Forbid it as the MECHANISM (it stays allowed as a goal).
+3. KNOWN FAMILIES ARE FORBIDDEN as mechanisms, including re-skins and recombinations:
+OREFLOW: Redox-mediator flow cell whose dissolved shuttle charges and discharges a huge heap of raw mineral ore, so energy capacity separates from the stack
+FLEXLOAD: Oversized energy-intensive industrial plants run hard during surplus and idle during lulls, with energy "stored" as product inventory
+SALINITY: Desalination splits water into fresh and brine ponds; pressure-retarded osmosis or reverse electrodialysis recovers the mixing energy
+CO2LOOP: Electrochemically reduce CO2 into a storable carbon fuel (methane or formate), then oxidize it back to power and recapture the CO2 in a closed loop
+IRONFUEL: Electrolytically or H2-reduced iron powder stored in piles, burned in air for steam power, with the rust re-reduced (metal-fuel cycle)
+CALOOP: Thermochemical calcium looping: power calcines limestone, then CaO and CO2 recombine to release high-temperature heat for a turbine
+THERMAL: Cheap sensible or latent heat storage (hot rock, sand, firebrick, molten salt, Carnot battery) with heat-to-power conversion
+CAES: Compressed or liquefied air or CO2 stored in caverns, aquifers, domes or tanks and expanded through turbines
+GEOMECH: Gravity or pumped-hydro variants (underground or seafloor pumped hydro, rock-fracture or geomechanical pressure storage, weights in shafts)
+H2GEO: Electrolytic hydrogen or ammonia stored in salt caverns or depleted fields and reconverted in turbines or fuel cells
+SUPERGRID: Continental or intercontinental HVDC grids that smooth weather across uncorrelated regions, plus overbuild and curtailment, so less storage is needed
+METALAIR: Ultra-cheap metal-air or rust-reversal batteries (iron-air, sulfur, zinc) built from abundant materials for multi-day duration
+4. MECHANISM FROM THE PERIPHERY: for each goal, find a field far from this problem's home field that has ALREADY SOLVED an analogous problem in its own domain, and port its actual mechanism (state, update rule, driving signal) - not a metaphor.
+5. HONESTY CHECK: name the closest existing work for each answer; if it is essentially that work, discard it and make another.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

@@ -19,5 +19,6 @@
    "crux": "The answers assume cheap bulk stores can be accessed fast enough and stay usable, leaving unsolved the transport and kinetics limits (reaction fronts moving through ore heaps, membrane fouling with raw brine, sintering of solids over many cycles, reservoir gas mixing) that decide whether cheap tonnes turn into usable megawatts."
   }
  ],
- "crux": "Every answer makes the energy reservoir (ore, ponds, piles, caverns, inventory) nearly free, but none shows how to make the charge and discharge converters (stacks, membranes, reversible cells, combustors, turbines, oversized plants) cheap per kW, durable, and efficient enough round-trip when they only run a few hundred hours a year, and that converter cost is what decides whether the system is ten times cheaper."
+ "crux": "The answers make the bulk medium nearly free (ore heaps, salt ponds, iron piles, quicklime, gas fields) but assume the power-conversion side (membrane and electrochemical stacks, reversible SOCs, iron combustors, CO2 turbines) is cheap and efficient, when at a handful of cycles a year that converter capex and 30-60% round-trip loss dominate the cost.",
+ "reading": "Cheaper hardware per delivered kWh"
 }

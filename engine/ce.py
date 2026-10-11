@@ -370,8 +370,12 @@ def cmd_intent(a):
     cfg = load(a.run, "config.json", {})
     if a.pick is not None:
         r = cfg.get("readings") or sys.exit("no readings stored: run `intent R <set> --transcript ...` first")
-        cfg["crux"] = r[a.pick]["crux"]; cfg["reading"] = r[a.pick]["label"]; save(a.run, "config.json", cfg)
-        print(f"crux <- reading {a.pick} ({r[a.pick]['label']}): {cfg['crux']}"); return
+        k = a.pick
+        if k == "auto":  # the asker does not care: take the reading whose crux best matches the family judge's crux
+            ws = lambda t: set(re.findall(r"[a-z]{4,}", t.lower())); ref = ws(cfg.get("crux", ""))
+            k = max(range(len(r)), key=lambda i: len(ws(r[i]["crux"]) & ref) / max(1, len(ws(r[i]["crux"]) | ref)))
+        k = int(k); cfg["crux"] = r[k]["crux"]; cfg["reading"] = r[k]["label"]; save(a.run, "config.json", cfg)
+        print(f"crux <- reading {k} ({r[k]['label']}): {cfg['crux']}"); return
     text = read_source(a); open(path(a.run, "sets", a.set, "intent.md"), "w").write(text)
     rs = [{"label": l.strip(), "goal": g.strip(), "crux": c.strip()}
           for l, g, c in re.findall(r"^READING \| (.+?) \| (.+?) \| CRUX:\s*(.+)$", text, re.M)]
@@ -536,7 +540,7 @@ def main():
     x.add_argument("--genius", action="store_true", help="v1.7: add the genius score G to the judge prompt")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("valorize"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--arm", required=True); src(x)
-    x = sp.add_parser("intent"); x.add_argument("run"); x.add_argument("set", nargs="?"); x.add_argument("--pick", type=int); src(x)
+    x = sp.add_parser("intent"); x.add_argument("run"); x.add_argument("set", nargs="?"); x.add_argument("--pick", help="reading number, or auto"); src(x)
     x = sp.add_parser("futurematch"); x.add_argument("run"); x.add_argument("--after", default="2607", help="arXiv YYMM after the knowledge cutoff")
     x = sp.add_parser("portfolio"); x.add_argument("--slots", type=int, default=5); x.add_argument("--c", type=float, default=0.15)
     x.add_argument("--exclude", default="mechneg,symptomport,backloop,reframe,gap", help="techniques retired by selection")
