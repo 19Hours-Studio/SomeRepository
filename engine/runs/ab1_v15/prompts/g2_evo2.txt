@@ -1,0 +1,90 @@
+What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.
+Propose new answers by EVOLVING existing candidates. You get 2 parent pairs. For each pair produce ONE offspring:
+1. CROSSOVER: fuse the two parents' core mechanisms into one mechanism in which each parent's mechanism changes the other's behaviour (not two modules side by side).
+2. MUTATE AWAY: the offspring must clearly differ from the parents' nearest published work (listed) and from every known family below.
+3. KEEP IT IMPORTANT: it must serve something that genuinely matters for the question.
+4. HONESTY CHECK: before the final section, name the closest existing work for each offspring; if it is essentially that, mutate again.
+Describe mechanisms concretely; give the NAME last.
+
+Known families (forbidden, including re-skins):
+PROGSYN: Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions
+CAUSGR: Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph
+COMPMAP: Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning
+MODMKT: Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement
+TMS: Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes
+CONSOL: Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting
+ENERGY: Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates
+WMPLAN: Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts
+ACTINF: Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience
+VSA: Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations
+CURIO: Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress
+GWS: Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control
+PLAST: Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference
+V14: Learned Dimensional Analysis Types — Every internal quantity carries a vector of integer exponents over learned base "dimensions", like units in physics. Operations that mix incompatible dimensions
+V15: Reversible Core, Ancilla Tape — Every layer is a bijection, and any information a step would normally discard is written exactly to an ancilla tape. The tape's length measures how much was for
+V16: Entrained Oscillator Time Sense — A bank of coupled phase oscillators (Kuramoto dynamics) runs continuously, and timestamped events phase-reset or nudge them. Concepts and routines are stored as
+V17: Kinetic Proofreading Reasoning Cascade — Each candidate reasoning step gets a "binding margin": how strongly it is re-derived when the context is re-encoded in a different way. The step then passes n s
+V18: Duplication-Degeneration Skill Growth — Each module stores a compact functional signature: its input-output behavior on a probe set. When the gradient from new data conflicts with that signature beyon
+V19: Lock-In Concept Extraction — To learn a new concept from a few examples, the system modulates the hypothesized feature (present or absent, at varying strength) across its inputs following a
+V20: Assimilated Knowledge Ensemble — The system keeps about 64 copies of a "knowledge state", which is a subset of its parameters. Each new fact or correction is handled as a weather-style observat
+V21: Survey-Adjusted Reasoning Networks — Each intermediate claim is a "station" that is derived along at least two independent routes, so the routes form closed loops. Each loop has a computed mismatch
+V22: Capture-Recapture Ignorance Estimator — For a given query, the system runs several retrieval or generation passes that are deliberately independent, each using different cues, sources or decomposition
+V23: Dimensional Exponent Tagging — Every internal quantity carries, alongside its real-valued vector, a short integer vector of exponents over a learned set of base "kinds" (like length, time, co
+V24: Double-Entry Conservation Ledger — Each state change described in the input or produced during reasoning is written as a transfer: one amount debited from one holder and credited to another, acro
+V25: Self-Discovered Symmetry Harvesting — The system keeps a growing pool of candidate input transformations, built by composing primitive edits: relabel, permute, reflect, rescale, swap roles. At infer
+V26: Rigidity-Counted Concept Frameworks — Concepts are stored as points in an embedding space, and each learned fact is a constraint between points (distance, angle or relation). The system keeps comput
+V27: Wahlund Splitting of Representations — Each internal unit's discretized activation states are treated as alleles, and pairs of co-occurring contexts are treated as diploid genotypes. A running Hardy–
+V28: Misclosure-Driven Context Charts — Learned transformations (analogies, translations, coordinate maps) are composed around closed cycles, and each cycle's misclosure is recorded the way a surveyor
+T29: A fast generator paired with a slow, deliberate verifier (dual-process)
+T30: A differentiable external read/write memory (Neural Turing Machine style)
+T31: Several agents that debate and reach consensus
+T32: A neural model coupled to a formal theorem prover
+T33: Looped recurrent latent depth that "thinks longer" on harder inputs
+T34: Latent world model with planning over imagined rollouts
+T35: Neurosymbolic program synthesis over a library of programs
+T36: Episodic memory with sleep-like consolidation
+T37: Energy-based iterative reasoning until a verifier passes
+T38: Curiosity-driven self-play curriculum
+T39: Neuro-symbolic program synthesis over a library of skills
+T40: Latent world model plus tree-search planning
+T41: Episodic memory plus sleep-like consolidation
+T42: Energy-based iterative reasoning with a verifier
+T43: Mixture of experts routed by uncertainty
+T44: A persistent external memory the system writes to and reads from at inference, consolidated later
+T45: A learned simulator of the environment used to imagine and search over futures before acting
+T46: Specialist sub-networks competing for a shared bottleneck that decides what gets processed next
+T47: A self-checking loop where outputs are verified by a separate checker and revised until they pass
+T48: Small symbolic programs induced from examples and executed instead of pattern-matched
+T49: A latent world model that plans over imagined rollouts (WMPLAN)
+T50: A library of small programs as causal simulators, revised by synthesis (PROGSYN)
+T51: An episodic memory consolidated offline through replay (CONSOL)
+T52: An explicit causal graph revised from prediction error (CAUSGR)
+T53: A competence map that routes between answering and abstaining (COMPMAP)
+
+PAIR 1
+ Parent A: MECHANISM: Each intermediate claim is a "station" that is derived along at least two independent routes, so the routes form closed loops. Each loop has a computed mismatch (misclosure). A least-squares adjustment spreads small mismatches across the loop, and Baarda's w-test singles out the one derivation step that is a blunder. Each claim gets a redundancy number. Any claim with a value near zero is unchecked, so the planner deliberately adds a new route to it before answering.
+   VALUE: Long chains of reasoning check themselves. The system can say which step is wrong and which conclusions nothing has verified yet.
+   nearest published work: Baarda's reliability theory (w-test, redundancy numbers), reviewed in A half century of Baarda's concept of reliability https://agrimensura.florianopolis.ifsc.edu.br/wp-content/uploads/2026/07/A-half-century-of-Baarda-s-concept-of-reliability-a-review-new-perspectives-and-applications.pdf ; NCV: Node-Wise Consistency Verification for Error Localization in LLM Reasoning (2025) https://arxiv.org/pdf/2510.02816 (also Graph of Verification, https://arxiv.org/abs/2506.12509)
+ Parent B: MECHANISM: Each state change described in the input or produced during reasoning is written as a transfer: one amount debited from one holder and credited to another, across a learned set of conserved quantities (objects, money, people, information). After every step, the totals for each quantity are summed, and they must balance. A nonzero imbalance is the training signal. If the imbalance persists, the system creates a new hidden holder to absorb it and keeps that holder only if it later balances other transfers. Quantities whose totals never actually stay constant get demoted from the conserved set.
+   VALUE: The system can track the state of the world exactly over very long sequences, and it can infer unmentioned participants or leaks from bookkeeping gaps.
+   nearest published work: Machine learning conservation laws from trajectories, Liu & Tegmark (2021) https://link.aps.org/accepted/10.1103/PhysRevLett.126.180604 ; Hidden particles from conservation patterns in reaction data, Schulte (IJCAI 2009) https://www.ijcai.org/Proceedings/09/Papers/248.pdf (also ConservNet, Ha & Jeong 2021, https://arxiv.org/abs/2102.04008)
+
+PAIR 2
+ Parent A: MECHANISM: Learned transformations (analogies, translations, coordinate maps) are composed around closed cycles, and each cycle's misclosure is recorded the way a surveyor records a traverse error. A Hodge decomposition of these residuals over the cycle complex leads to three repairs. The gradient part goes back into local map corrections. The curl part localizes and deletes or rewires the specific inconsistent edges. The harmonic part shows a real topological hole, and it creates a new context variable that divides the domain into separate charts with explicit transition maps.
+   VALUE: The system can find out that its knowledge needs several context-dependent frames, and build them, instead of averaging contradictory regularities into one incoherent map.
+   nearest published work: Statistical Ranking and Combinatorial Hodge Theory, Jiang, Lim, Yao & Ye (2011) https://arxiv.org/pdf/0811.1067 ; Sheaf Cohomology of Linear Predictive Coding Networks, Seely (2025/26) https://proceedings.mlr.press/v282/seely26a.html (also Topological Obstructions to Autoencoding, Batson et al. 2021, https://arxiv.org/pdf/2102.08380)
+ Parent B: MECHANISM: Each candidate reasoning step gets a "binding margin": how strongly it is re-derived when the context is re-encoded in a different way. The step then passes n sequential stages, and at each stage the context decorrelates further (paraphrase, dropout, abstraction). The chance of being discarded rises as the margin falls, and a discarded step cannot be restored. Only steps that survive all n stages are committed, so the error rate falls roughly as ε^n. The system adapts n, the compute it spends, to how much downstream work depends on the step.
+   VALUE: Long chains can be made as reliable as needed, with an explicit dial between speed and accuracy, instead of errors compounding.
+   nearest published work: Kinetic proofreading, Hopfield (1974) and Ninio (1975) https://en.wikipedia.org/wiki/Kinetic_proofreading ; Solving a Million-Step LLM Task with Zero Errors (MAKER), Meyerson et al. (2025) https://arxiv.org/html/2511.09030v1
+
+
+Before the final section, write a section that starts with the exact line `FIRST THOUGHTS:` and list the 5 answers that came to your mind FIRST, one line each, starting with "- ". Your final answers must not be any of these first thoughts or re-skins of them.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 2 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+

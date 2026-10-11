@@ -1,1 +1,32 @@
-{}
+{
+ "g1_mech#2": {
+  "verdict": "PARTIAL",
+  "closest": "Machine learning conservation laws from trajectories, Liu & Tegmark (2021) https://link.aps.org/accepted/10.1103/PhysRevLett.126.180604 ; Hidden particles from conservation patterns in reaction data, Schulte (IJCAI 2009) https://www.ijcai.org/Proceedings/09/Papers/248.pdf (also ConservNet, Ha & Jeong 2021, https://arxiv.org/abs/2102.04008)",
+  "new": "New is the use of a debit/credit ledger over learned conserved quantities as the per-step state tracker for language and reasoning, with the imbalance as the training signal and hidden holders spawned only if they later balance other transfers. Learned conserved quantities and hidden-particle inference from imbalance both already exist, in physics settings."
+ },
+ "g1_loop#3": {
+  "verdict": "PARTIAL",
+  "closest": "Statistical Ranking and Combinatorial Hodge Theory, Jiang, Lim, Yao & Ye (2011) https://arxiv.org/pdf/0811.1067 ; Sheaf Cohomology of Linear Predictive Coding Networks, Seely (2025/26) https://proceedings.mlr.press/v282/seely26a.html (also Topological Obstructions to Autoencoding, Batson et al. 2021, https://arxiv.org/pdf/2102.08380)",
+  "new": "New is closing the loop: using the curl and harmonic parts of the cycle residuals of learned maps to decide between deleting or rewiring edges and creating a context variable that splits the domain into charts with transition maps. Hodge decomposition of cyclic inconsistency, cohomology of learned restriction maps and multi-chart atlases all exist separately, but I found no work that chains them into one repair loop."
+ },
+ "g1_core2#1": {
+  "verdict": "PARTIAL",
+  "closest": "Ensemble Kalman Inversion: a derivative-free technique for machine learning tasks, Kovachki & Stuart (2019) https://arxiv.org/abs/1808.03620 ; Low-rank extended Kalman filtering for online learning of neural networks from streaming data, Chang et al. (2023) https://arxiv.org/pdf/2305.19535 (also LoKO, https://arxiv.org/pdf/2410.11551)",
+  "new": "New is the combination of an ensemble of about 64 copies of a parameter subset, a gain taken from the parameter-prediction cross-covariance, a concept-space localization taper, and re-spreading of the ensemble, applied to fact and correction updates. EnKF-style training and Kalman online learning of networks exist, but I found no Kalman-style knowledge editing for LLMs; current editing work, such as LyapLock and spectral collapse papers, uses preservation penalties or orthogonality constraints."
+ },
+ "g1_core2#2": {
+  "verdict": "PARTIAL",
+  "closest": "Baarda's reliability theory (w-test, redundancy numbers), reviewed in A half century of Baarda's concept of reliability https://agrimensura.florianopolis.ifsc.edu.br/wp-content/uploads/2026/07/A-half-century-of-Baarda-s-concept-of-reliability-a-review-new-perspectives-and-applications.pdf ; NCV: Node-Wise Consistency Verification for Error Localization in LLM Reasoning (2025) https://arxiv.org/pdf/2510.02816 (also Graph of Verification, https://arxiv.org/abs/2506.12509)",
+  "new": "New is importing least-squares adjustment, w-test blunder localization and redundancy numbers as the checking machinery for multi-route derivations of reasoning claims. The statistics are textbook geodesy, and LLM step-level checks exist, but I found none that use misclosure adjustment or redundancy numbers. Note that the w-test detects one outlier more reliably than it identifies it, and it degrades with several errors or correlated observations, which LLM errors usually are."
+ },
+ "g1_core#1": {
+  "verdict": "PARTIAL",
+  "closest": "Kinetic proofreading, Hopfield (1974) and Ninio (1975) https://en.wikipedia.org/wiki/Kinetic_proofreading ; Solving a Million-Step LLM Task with Zero Errors (MAKER), Meyerson et al. (2025) https://arxiv.org/html/2511.09030v1",
+  "new": "New is the LLM instantiation: staged re-encoding (paraphrase, dropout, abstraction) with irreversible discard of low-margin steps, and choosing n by how much downstream work depends on the step. The ε^n scaling from sequential irreversible discard stages is exactly kinetic proofreading, and MAKER already gets exponentially falling error per step from voting. The independence assumption behind ε^n is doubtful for LLMs because the Graduated Dissent preprint and the MAKER red-flagging results both point to correlated errors."
+ },
+ "g1_loop#1": {
+  "verdict": "PARTIAL",
+  "closest": "Uniqueness of Low-Rank Matrix Completion by Rigidity Theory, Singer & Cucuringu (2010) https://arxiv.org/pdf/0902.3846 ; Embeddability and Stresses of Graphs, Connelly and others, https://arxiv.org/pdf/math/0411009 (rigidity-matrix null space and stress space)",
+  "new": "New is applying rigidity analysis to concept embeddings built from learned facts, then turning each floppy mode into a latent variable or query and each self-stress into a node split. The rigidity-matrix test for under- and over-determination is established in matrix completion and sensor-network localization. I found no application to concept or knowledge-graph embeddings; the knowledge-graph results were only a spring-model embedding paper and a loose Ricci-flow mention. Splitting a conflicted concept into senses is also known from multi-sense embeddings, which I did not search."
+ }
+}

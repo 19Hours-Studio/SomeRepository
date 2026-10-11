@@ -214,5 +214,32 @@
   "name": "Misclosure-Driven Context Charts",
   "mech": "Learned transformations (analogies, translations, coordinate maps) are composed around closed cycles, and each cycle's misclosure is recorded the way a surveyor records a traverse error. A Hodge decomposition of these residuals over the cycle complex leads to three repairs. The gradient part goes back into local map corrections. The curl part localizes and deletes or rewires the specific inconsistent edges. The harmonic part shows a real topological hole, and it creates a new context variable that divides the domain into separate charts with explicit transition maps.",
   "value": "The system can find out that its knowledge needs several context-dependent frames, and build them, instead of averaging contradictory regularities into one incoherent map."
+ },
+ {
+  "id": "g2_imm#1",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Schild-Slope Feature Splitting",
+  "mech": "For pairs of cues that compete over an internal feature, the system measures dose-response shifts, meaning how much more of cue A is needed as cue B increases, and fits a Schild slope. A slope of 1 confirms that one mechanism mediates both cues. If the slope differs from 1, the feature is split into two sites, each with its own learned gate. The slopes are stored per feature, and they are re-tested whenever new competing cues show up.",
+  "value": "Features that are secretly several mechanisms get found and separated by a quantitative invariant, so the model's internals become more faithful and reasoning that combines cues becomes more reliable."
+ },
+ {
+  "id": "g2_imm#2",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Complementation-Group Remodularization",
+  "mech": "When a behavior fails, the system creates small parameter lesions that reproduce the failure. Pairs of lesions are \"crossed\" by mixing activations from the two lesioned copies. If the mix restores the behavior, the lesions sit in different functional units. If it doesn't, they sit in the same one. The groups found this way define module boundaries, and parameters are re-partitioned and re-routed to match. A map of the groups is stored and updated as new failures appear.",
+  "value": "The module structure comes from functional evidence, not from a design chosen in advance, so fixes, transfer and growth stay local to the unit that is actually responsible."
+ },
+ {
+  "id": "g2_imm#3",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Four-Point Reticulate Concept Hierarchy",
+  "mech": "The system continuously runs the four-point condition on embedding distances among concepts in its taxonomy. Quartets that violate it point to hybrid concepts, and those concepts are re-typed as reticulation nodes with two weighted parent lineages. Properties are then inherited from both parents. The violation magnitudes are stored, and edges are reweighted as evidence accumulates.",
+  "value": "The system can represent and reason about concepts that blend lineages, such as loanwords, hybrid organisms or mixed genres, which strictly tree-shaped hierarchies get wrong."
  }
 ]

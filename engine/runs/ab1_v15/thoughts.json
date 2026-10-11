@@ -33,5 +33,12 @@
   "An episodic memory consolidated offline through replay (CONSOL)",
   "An explicit causal graph revised from prediction error (CAUSGR)",
   "A competence map that routes between answering and abstaining (COMPMAP)"
+ ],
+ "g2_imm": [
+  "Fast generator plus slow verifier loop",
+  "Latent world model with planning",
+  "Neurosymbolic program-synthesis library",
+  "Episodic memory with sleep consolidation",
+  "Explicit causal graph revised by surprise"
  ]
 }
