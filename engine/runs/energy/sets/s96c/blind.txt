@@ -1,0 +1,28 @@
+C01
+MECHANISM: Cased boreholes connect to two separate conductive sulfide or magnetite ore lenses, with barren rock between them and groundwater as the electrolyte. Grid current reduces one lens and oxidizes the other. The lenses must not be electrically connected through rock, or the body shorts itself as natural geobatteries do. Each lens's own conduction spreads the reaction over millions of square metres of internal mineral surface, and the return current flows through the aquifer's whole cross-section. Charging or discharging over weeks therefore gives a tiny current density and low loss, with no catalyst or fabricated stack. Self-potential readings show where the charged front lags, and current is shifted between boreholes to even it out.
+VALUE: Millions of tonnes of active mass that is never mined become a battery whose only hardware is drilling and one inverter.
+
+C02
+MECHANISM: In a simple undivided cell, reduction turns a cheap dissolved organic molecule into a strained isomer that is insoluble, and the matching oxidation turns a partner molecule into a second insoluble solid, so both charged forms drop out of solution as they form. No charged species stays dissolved, so nothing can cross between the electrodes. The cell needs no membrane, and its electrolyte stays at a fixed saturated composition, which keeps the voltage steady and the overpotential low. The two powders sit on separate covered heaps, where the isomer's high energy barrier keeps them charged for months. To discharge, they are fed back as a slurry past electrodes coated with a catalyst that lowers that barrier, and the molecules snap back and redissolve.
+VALUE: Weeks of reserve cost a covered dirt pad plus a membrane-free tank cell, and the charged state cannot leak or cross over.
+
+C03
+MECHANISM: One membraneless carbon cell array runs in both directions: on surplus power it reduces air oxygen to peroxide in soda-ash solution, and during a lull it oxidizes and reduces that same peroxide back to oxygen and water. The converter is therefore bought once and used for both charging and discharging. The peroxide is crystallized into dry sodium percarbonate and stored in ordinary silos, so energy capacity grows by piling more powder while power capacity stays fixed. Round-trip efficiency remains low, but any stockpile left unused for power is a saleable bulk detergent chemical, so the stored inventory never becomes stranded capital.
+VALUE: Weeks of storage in a cheap, tradeable powder, served by a single bidirectional converter rather than two separate stacks.
+
+C04
+MECHANISM: Paper machines deposit carbon onto cellulose webs at kilometres per minute and lay down a cellulose separator in the same pass, so cell area costs about as much as paper. The stacks are built five to ten times larger than their rated power and run at a fraction of the usual current density. This turns cheap area into low overpotential and high round-trip efficiency, with no expensive catalysts or membranes. Used laminates are re-pulped every few years to recover the carbon.
+VALUE: The converter becomes both cheap and efficient, because area replaces catalyst quality, so stacks that sit idle most of the year stop dominating cost or losses.
+
+C05
+MECHANISM: When charged, the redox molecule binds a dissolved polyelectrolyte and sinks as a dense phase onto a carbon-felt liner on the pond floor, which acts as the positive electrode. The counter reaction plates a cheap metal from the clear water onto a floating carbon mat at the surface. The two charged states are held apart by gravity, so the phase boundary does the separator's job, and the reactive species cannot reach the plated metal. The electrodes span the entire pond, so a few watts per square metre is enough to discharge a 10-day store. That low current density keeps losses small, and electrode cost per kWh is tiny.
+VALUE: An earthen pond becomes the tank, the separator and the cell all at once, holding cheap leaky chemistry for weeks with a converter that costs about as much per square metre as a liner.
+
+C06
+MECHANISM: Thick paste electrodes of natural smectite clay store charge through the iron(III)/iron(II) reaction in their crystal layers, and discharging slowly over days lets these cheap, thick electrodes act as the converter without a high-performance stack. Each clay lot is tracked as a cohort, and log-rank tests rank lots on how long they keep their round-trip efficiency, not only their capacity. Lots that fail early are retired as soil amendment, and their mineral fingerprints tighten the procurement spec, so the fleet converges on clays that convert efficiently for decades.
+VALUE: Electrode and converter material at tens of dollars per tonne, with a sourcing loop that continually selects for low conversion loss.
+
+C07
+MECHANISM: Unpurified industrial or mining waste brine sits in lined ponds and cycles through electrochemical stacks. A controller tracks the electron-balance error, which is the charge passed minus the measured conversion of each known couple, broken down by electrode potential. That residual also shows exactly where charge is being lost: a parasitic couple is removed by precipitation, and a useful couple is split into its own stream. Stack area then goes only to streams whose measured charge return and voltage gap justify it. Converter money is spent only where efficiency is proven, and the plant grows into the structure its local chemistry supports.
+VALUE: Flow-battery storage with a near-free, never-purified electrolyte, where the plant's own accounting both finds the useful chemistry and cuts the round-trip loss.
+

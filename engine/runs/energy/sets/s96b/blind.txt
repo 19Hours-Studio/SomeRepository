@@ -1,0 +1,32 @@
+C01
+MECHANISM: Simple steel or graphite rod grids are driven into a closed coal-ash pond, and the oxides and unburnt carbon in the wet ash serve as the electrode mass. The pond is so large that multi-day discharge runs at a very low current density per rod, so cheap rods replace an engineered electrochemical stack and stay inefficient only where the chemistry itself is. Each zone counts the charge it takes in against the charge it returns and is disconnected when its return falls too low, so the battery keeps only its efficient zones. The plant's existing switchyard and grid connection carry the power, so the only new converter is an inverter sized in kW.
+VALUE: Thousands of sites with containment, land and grid connections already paid for become multi-day stores whose converter is just rods plus an inverter.
+
+C02
+MECHANISM: In a retired steel or cast-iron gas main, the pipe wall becomes the iron-plating negative electrode and its own current collector, and it stays cathodically protected while charged. A porous separator sleeve is pulled in using standard relining methods, and a carbon-fibre cable down the bore serves as the positive electrode in the iron-salt electrolyte. Each kilometre gives hundreds of square metres of electrode, so the cells run static, with no pumping and at very low current density. The existing night-time segment checks also measure each segment's open-circuit voltage, and the network automatically valves out segments that leak or drift.
+VALUE: Buried pipe that is already paid for becomes both the tank and the cell stack, so neighbourhood multi-day storage needs no substation stacks at all.
+
+C03
+MECHANISM: A solution-mined salt cavern holds a dense brine carrying one cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity keeps the two apart, so the cavern volume is the energy store with no tank. At the surface the two liquids flow into stacked shallow trays, where they settle again into layers a few millimetres thick between a bottom and a top electrode. The same immiscibility therefore replaces the membrane in the power stack too, which becomes plain carbon plates. Molecules that cross into the wrong layer collect at the interface, and that thin layer is skimmed off for cleaning.
+VALUE: Gigawatt-hour, multi-week storage in which neither the store nor the converter has a membrane or a purpose-built tank.
+
+C04
+MECHANISM: Days before a lull, ensemble weather forecasts start a huge cold storage tier on a flat trickle. The rate equals the forecast total deficit spread over the lead time plus the lull. The existing fast daily batteries absorb the hour-by-hour mismatch, and the rate is re-planned every forecast cycle. The cold tier only ever delivers the mean deficit and recharges just as slowly from weeks of surplus, so its converter needs a rating of only about one five-hundredth of its stored energy per hour. At that tiny current density, overpotential and resistive loss nearly vanish, so even crude electrodes without catalyst, or slow chemistries, reach high round-trip efficiency.
+VALUE: The power rating of long-duration storage falls from the peak deficit to the mean deficit, which cuts converter cost and round-trip loss together.
+
+C05
+MECHANISM: A water-saturated bed of waste lignin is charged directly through sparse buried carbon electrodes, with no pumps or mediators. During occasional charges, heavy water is added so that reduced quinones take up deuterium, and NMR on core samples shows exactly which zones store charge. Electrodes are then added only to dead zones and removed from saturated ones. Over time, electrode material per kWh falls to the minimum the bed needs, and every active zone stays within a short ion path, which keeps resistive losses low.
+VALUE: A nearly free industrial byproduct holds charge for weeks, with converter hardware placed according to the measured behaviour of the bed rather than worst-case spacing.
+
+C06
+MECHANISM: In a lined pond, a still salt-gradient zone separates a dense charged electrolyte layer below from a lighter one above. The zone conducts ions but blocks mixing, and pond-wide horizontal carbon meshes lie just above and below it. As in a solar pond, the same gradient traps sunlight as heat in the bottom layer, warming it by tens of degrees. That raises conductivity and electrode kinetics, so the ohmic and activation losses across the separator are offset by free heat. Because the electrode area equals the pond area, current density stays low, and capacity grows by digging deeper rather than by adding hardware.
+VALUE: Weeks of electrochemical storage with no tanks, membranes or stacks, where the separator also harvests the heat that keeps round-trip losses down.
+
+C07
+MECHANISM: A bank of static, thick-electrode cells sits directly on a wind or solar plant's DC link, with a voltage window that matches the link. That makes the plant's own inverter, transformer and grid line its only power electronics, and in a calm, dark spell all of that hardware would otherwise sit idle. A store holding weeks of energy delivers only a small fraction of its contents per hour, so the cells run at very low current density, where overpotential and resistive loss are small and no fabricated stack is needed. Charging uses output that would otherwise be curtailed, so the energy lost in the round trip was free energy that would have been thrown away.
+VALUE: Week-long storage costs little more than the cell material itself, because the conversion hardware, the grid connection and most of the charging energy are already paid for or would be wasted.
+
+C08
+MECHANISM: A winch stretches warm polymer cords that are then cooled, which locks in their tension so the reels can sit in sheds for weeks with no holding force and no leakage. One motor-generator winch per shed serves thousands of reels one after another, so the converter cost is spread over a very large stored mass. Because the cord's pull comes from chain entropy, gently warming a reel with low-grade waste heat releases it, and part of the output work is drawn from that heat, which offsets the conversion losses. The grid frequency signal sets the warming rate, so output follows demand.
+VALUE: Leak-free, non-hazardous weeks-long storage in stacked reels, with one shared electric machine per shed and part of the discharge energy supplied by waste heat.
+
