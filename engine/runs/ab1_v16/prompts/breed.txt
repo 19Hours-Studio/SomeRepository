@@ -1,0 +1,64 @@
+You design idea-generation TECHNIQUES: prompt templates that make a language model produce fundamentally new answers to a hard question. Each parent technique below is followed by what it actually produced on past runs of the same question. Those recurring outputs are the technique's niche (its attractor), which we want to escape.
+
+--- PARENT core ---
+{QUESTION}
+Propose {N} fundamentally new answers. Follow this pipeline:
+1. GOALS FROM THE CENTER: pick the {N} sub-problems that matter most here. Do not try to be original about the goals; pick what you honestly believe matters most.
+2. PARADIGM NEGATION: name in one sentence the paradigm that mainstream approaches share. Forbid it as the MECHANISM (it stays allowed as a goal).
+3. KNOWN FAMILIES ARE FORBIDDEN as mechanisms, including re-skins and recombinations:
+{BASINS}
+4. MECHANISM FROM THE PERIPHERY: for each goal, find a field far from this problem's home field that has ALREADY SOLVED an analogous problem in its own domain, and port its actual mechanism (state, update rule, driving signal) - not a metaphor.
+5. HONESTY CHECK: name the closest existing work for each answer; if it is essentially that work, discard it and make another.
+{FORMAT}
+
+Observed outputs on past runs (11): Assimilated Knowledge Ensemble; Capture-Recapture Ignorance Estimator; Duplication-Degeneration Skill Growth; Guarded Trace Compilation of Skills; Kinetic Proofreading Inference; Kinetic Proofreading Reasoning Cascade; Lattice-Merged Knowledge Replicas; Learned Dimensional Similarity Algebra; Lock-In Concept Extraction; Survey-Adjusted Reasoning Networks; Unseen-Mass Coverage Estimator
+
+--- PARENT loop ---
+{QUESTION}
+Propose {N} fundamentally new answers by closing a diagnostic loop. For each answer:
+1. Find a DIAGNOSTIC that a mature field far from this problem's home field uses to detect a hidden defect, inconsistency or missing ingredient in its own systems - a concrete measurement or invariant, not a metaphor.
+2. Port that diagnostic to this problem.
+3. CLOSE THE LOOP: make the diagnostic's output directly drive a structural change (create, split, delete, rewire or re-type something), not just report a problem.
+4. HONESTY CHECK: name the closest existing work; if the answer is essentially that, choose another diagnostic.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}
+
+Observed outputs on past runs (9): Allan-Grown Memory Timescales; Complementation-Driven Module Fission; Curl-Triggered Concept Splitting; Gauge-R&R Feature Auditing; Misclosure-Driven Context Charts; Rigidity-Braced Concept Frames; Rigidity-Counted Concept Frameworks; Wahlund Splitting of Representations; Wahlund-Split Module Growth
+
+--- PARENT mech ---
+{QUESTION}
+Propose {N} fundamentally new answers.
+Hard constraint: you may NOT use any named concept, method, theory or buzzword from this problem's home field. Describe each answer ONLY in terms of: what quantities or objects exist, how they flow or interact, what rule changes them, and what signal drives the change. Fix the mechanics first; give the NAME last.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}
+
+Observed outputs on past runs (9): Backward-Recovery Residual Audit; Dimensional Exponent Tagging; Double-Entry Conservation Ledger; Exponent-Tagged Quantity Arithmetic; Interference-Carved Resonance Grid; Observer-Partitioned State Copies; Rescaling-Tested Kind Exponents; Self-Discovered Symmetry Harvesting; Teach-Back Transfer Gap
+
+--- PARENT neg ---
+{QUESTION}
+Propose {N} fundamentally new answers.
+First, honestly list the 12 answers that you (and most experts) would propose FIRST - your own most probable answers. Name in one sentence the paradigm they share. Then forbid that whole paradigm, those 12 answers, anything adjacent to them, and these families that models have been observed to converge on:
+{BASINS}
+Only then propose answers that lie outside all of that.
+{FORMAT}
+
+Observed outputs on past runs (9): Entrained Oscillator Time Sense; Fully reversible uncomputable inference; Learned Dimensional Analysis Types; Phase-interference evidence aggregation; Reversible Core, Ancilla Tape; Reversible Inference with Uncompute; Source-Sharded Additive Weights; Teach-to-retain transmission bottleneck; Teachability Bottleneck
+
+Create exactly these new techniques:
+- cross loop+core
+- mutate loop
+- cross neg+mech
+
+Rules:
+- crossover A+B: fuse the parents' core moves into ONE procedure in which each parent's move changes how the other's works (not two steps glued in sequence).
+- mutate A: keep what made A productive, but change its procedure so that it cannot land in A's observed niche.
+- Each template must contain these four literal placeholders exactly as written: {QUESTION}, {N}, {BASINS} (where the list of forbidden known idea families will be inserted) and {FORMAT} (put it last; it holds the answer format).
+- Do NOT put example answers, example fields, example mechanisms or names of specific theories into the templates: examples get copied verbatim.
+- At most 220 words per template.
+
+Output ONLY, for each technique:
+=== SPECIES <short_lowercase_name> ===
+<template text>
+=== END ===

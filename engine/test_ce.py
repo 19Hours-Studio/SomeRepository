@@ -81,7 +81,24 @@ def main():
             assert f"concretized {len(k5)}/{len(k5)}" in ce("concretize", RUN2, "s05", "--file", cz)
             ii = [i for i in json.load(open(os.path.join(rd2, "ideas.json"))) if i["label"] == "g1_c"]
             assert all(i["mech"].endswith("metric Y.") and "mech_orig" in i for i in ii)
+            # --- v1.6: эволюция видов
+            bp = open(ce("breed", RUN2, "--from-runs", RUN2, "--ops", "cross:loop+core", "mutate:loop").strip()).read()
+            assert "PARENT loop" in bp and "PARENT core" in bp and "{QUESTION}" in bp and "Observed outputs" in bp
+            sp = os.path.join(tmp, "sp"); open(sp, "w").write(
+                "=== SPECIES _test_sp ===\n{QUESTION}\nPropose {N} answers. Forbidden: {BASINS}\n{FORMAT}\n=== END ===\n"
+                "=== SPECIES _test_bad ===\nno placeholders here\n=== END ===\n")
+            out = ce("species", RUN2, "--file", sp); assert "accepted 1/2" in out and "REJECTED _test_bad" in out
+            g = open(ce("prompt", RUN2, "_test_sp", "g1__test_sp").strip()).read(); assert "=== IDEAS ===" in g and "{" not in g
+            ce("fitness", RUN2)
         finally:
+            spd = os.path.join(HERE, "species")
+            for f in ("_test_sp.txt", "_test_bad.txt"):
+                if os.path.exists(os.path.join(spd, f)): os.remove(os.path.join(spd, f))
+            reg = os.path.join(spd, "species.json")
+            if os.path.exists(reg):
+                r = json.load(open(reg)); r.pop("_test_sp", None)
+                if r: json.dump(r, open(reg, "w"), indent=1)
+                else: os.remove(reg)
             shutil.rmtree(rd2, ignore_errors=True)
         print("OK: all engine commands passed")
     finally:

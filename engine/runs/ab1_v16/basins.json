@@ -1,0 +1,96 @@
+[
+ {
+  "code": "PROGSYN",
+  "desc": "Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions",
+  "source": "observed",
+  "members": [
+   "map_1#1",
+   "map_2#2"
+  ]
+ },
+ {
+  "code": "CAUSGR",
+  "desc": "Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph",
+  "source": "observed",
+  "members": [
+   "map_3#2"
+  ]
+ },
+ {
+  "code": "COMPMAP",
+  "desc": "Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning",
+  "source": "observed",
+  "members": [
+   "map_2#3"
+  ]
+ },
+ {
+  "code": "MODMKT",
+  "desc": "Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement",
+  "source": "observed",
+  "members": [
+   "map_1#3"
+  ]
+ },
+ {
+  "code": "TMS",
+  "desc": "Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes",
+  "source": "observed",
+  "members": [
+   "map_1#2"
+  ]
+ },
+ {
+  "code": "CONSOL",
+  "desc": "Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting",
+  "source": "observed",
+  "members": [
+   "map_2#1",
+   "map_3#1"
+  ]
+ },
+ {
+  "code": "ENERGY",
+  "desc": "Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates",
+  "source": "observed",
+  "members": [
+   "map_3#3"
+  ]
+ },
+ {
+  "code": "WMPLAN",
+  "desc": "Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "ACTINF",
+  "desc": "Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "VSA",
+  "desc": "Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "CURIO",
+  "desc": "Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "GWS",
+  "desc": "Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "PLAST",
+  "desc": "Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference",
+  "source": "predicted",
+  "members": []
+ }
+]

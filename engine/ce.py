@@ -14,6 +14,7 @@ from collections import Counter, defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TPL = os.path.join(HERE, "templates")
+SPECIES = os.path.join(HERE, "species")  # эволюционирующие техники («виды»): шаблоны + species.json (родословная, приспособленность)
 TECHS = ["plain", "neg", "core", "reframe", "mech", "loop", "evo", "gap"]
 VERDICT_ORDER = {"KNOWN": 0, "PARTIAL": 1, "NO-CLOSE-MATCH": 2}
 
@@ -26,7 +27,11 @@ def load(run, name, default):
     return json.load(open(f)) if os.path.exists(f) else default
 def save(run, name, obj):
     json.dump(obj, open(path(run, name), "w"), indent=1, ensure_ascii=False)
-def tpl(name): return open(os.path.join(TPL, name + ".txt")).read()
+def tpl(name):
+    for d in (TPL, SPECIES):
+        f = os.path.join(d, name + ".txt")
+        if os.path.exists(f): return open(f).read()
+    sys.exit(f"no template or species named {name!r}")
 
 
 # ---------- разбор текста ----------
@@ -334,6 +339,75 @@ def cmd_concretize(a):
             i.setdefault("mech_orig", i["mech"]); i["mech"] = i["mech_orig"] + " " + got[i["id"]]
     save(a.run, "ideas.json", ideas); print(f"concretized {len(got)}/{len(key)}")
 
+BREED = """You design idea-generation TECHNIQUES: prompt templates that make a language model produce fundamentally new answers to a hard question. Each parent technique below is followed by what it actually produced on past runs of the same question. Those recurring outputs are the technique's niche (its attractor), which we want to escape.
+
+{PARENTS}
+Create exactly these new techniques:
+{OPS}
+
+Rules:
+- crossover A+B: fuse the parents' core moves into ONE procedure in which each parent's move changes how the other's works (not two steps glued in sequence).
+- mutate A: keep what made A productive, but change its procedure so that it cannot land in A's observed niche.
+- Each template must contain these four literal placeholders exactly as written: {Q}, {N}, {B} (where the list of forbidden known idea families will be inserted) and {F} (put it last; it holds the answer format).
+- Do NOT put example answers, example fields, example mechanisms or names of specific theories into the templates: examples get copied verbatim.
+- At most 220 words per template.
+
+Output ONLY, for each technique:
+=== SPECIES <short_lowercase_name> ===
+<template text>
+=== END ===
+"""
+
+def cmd_breed(a):
+    """Промпт селекционера: родители (шаблоны) + что они выдавали в прошлых прогонах (их аттрактор)."""
+    names = defaultdict(list)
+    for r in a.from_runs.split(","):
+        for i in load(r, "ideas.json", []):
+            if i["gen"] == 1: names[i["label"].split(":")[-1].replace("g1_", "").rstrip("0123456789")].append(i["name"])
+    parents = sorted({p for op in a.ops for p in re.split(r"[:+]", op)[1:]})
+    blocks = []
+    for p in parents:
+        seen = sorted(set(names.get(p, [])))
+        blocks.append(f"--- PARENT {p} ---\n{tpl(p)}\nObserved outputs on past runs ({len(seen)}): " + "; ".join(seen) + "\n")
+    ops = "\n".join(f"- {op.replace(':', ' ')}" for op in a.ops)
+    s = BREED.replace("{PARENTS}", "\n".join(blocks)).replace("{OPS}", ops)
+    s = s.replace("{Q}", "{QUESTION}").replace("{N}", "{N}").replace("{B}", "{BASINS}").replace("{F}", "{FORMAT}")
+    p = path(a.run, "prompts", "breed.txt"); open(p, "w").write(s); print(p)
+
+def cmd_species(a):
+    """Принять новые виды от селекционера: проверка плейсхолдеров, запись шаблона и родословной."""
+    text = read_source(a); os.makedirs(SPECIES, exist_ok=True)
+    reg = json.load(open(os.path.join(SPECIES, "species.json"))) if os.path.exists(os.path.join(SPECIES, "species.json")) else {}
+    got = re.findall(r"=== SPECIES ([a-z0-9_]+) ===\n(.+?)\n=== END ===", text, re.S); ok = 0
+    for name, body in got:
+        missing = [ph for ph in ("{QUESTION}", "{N}", "{BASINS}", "{FORMAT}") if ph not in body]
+        if missing: print(f"REJECTED {name}: missing {missing}"); continue
+        open(os.path.join(SPECIES, name + ".txt"), "w").write(body.strip() + "\n")
+        reg[name] = {"born_in": a.run, "ops": a.ops, "fitness": reg.get(name, {}).get("fitness", [])}; ok += 1
+        print(f"species {name}: {len(body.split())} words")
+    json.dump(reg, open(os.path.join(SPECIES, "species.json"), "w"), indent=1); print(f"accepted {ok}/{len(got)}")
+
+def cmd_fitness(a):
+    """Приспособленность вида = средний O×V его идей gen1 в этом прогоне (по последнему набору судей)."""
+    regf = os.path.join(SPECIES, "species.json"); reg = json.load(open(regf)) if os.path.exists(regf) else {}
+    by = defaultdict(list)
+    for i in load(a.run, "ideas.json", []):
+        g = agg(a.run, i["id"])
+        if i["gen"] == 1 and g: by[i["label"].replace("g1_", "")].append(g["OV"])
+    for sp_, v in sorted(by.items(), key=lambda kv: -sum(kv[1]) / len(kv[1])):
+        f = round(sum(v) / len(v), 1); print(f"  {sp_:14s} fitness {f}")
+        if sp_ in reg: reg[sp_]["fitness"].append({"run": a.run, "OV": f})
+    json.dump(reg, open(regf, "w"), indent=1)
+
+def cmd_import_basins(a):
+    """Перенести семейства одного прогона в другой под новым источником (например, найденное ранее -> prior)."""
+    dst = load(a.dst, "basins.json", []); have = {b["code"] for b in dst}; k = 0
+    for b in load(a.src, "basins.json", []):
+        if b.get("source") == a.source:
+            code = "P" + b["code"]
+            if code not in have: dst.append({**b, "code": code, "source": a.as_}); k += 1
+    save(a.dst, "basins.json", dst); print(f"imported {k} basins as {a.as_}")
+
 def cmd_report(a):
     arms = defaultdict(list)
     for i in load(a.run, "ideas.json", []):
@@ -361,7 +435,7 @@ def main():
     x = sp.add_parser("init"); x.add_argument("run"); x.add_argument("--question", required=True)
     x.add_argument("--format", default="value", choices=["value", "difference"]); x.add_argument("--n", type=int, default=3)
     x.add_argument("--force", action="store_true")
-    x = sp.add_parser("prompt"); x.add_argument("run"); x.add_argument("tech", choices=TECHS); x.add_argument("label")
+    x = sp.add_parser("prompt"); x.add_argument("run"); x.add_argument("tech", help="technique template or evolved species name"); x.add_argument("label")
     x.add_argument("--pairs", type=int, default=3); x.add_argument("--pair-from", type=int, default=0)
     x = sp.add_parser("ingest"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--arm", required=True)
     x.add_argument("--gen", type=int, default=0); src(x)
@@ -379,14 +453,20 @@ def main():
     x = sp.add_parser("report"); x.add_argument("run"); x.add_argument("--top", type=int, default=10)
     x = sp.add_parser("fork"); x.add_argument("src"); x.add_argument("dst")
     x = sp.add_parser("import"); x.add_argument("dst"); x.add_argument("src"); x.add_argument("--arm", required=True)
+    x = sp.add_parser("breed"); x.add_argument("run"); x.add_argument("--from-runs", required=True)
+    x.add_argument("--ops", nargs="+", required=True, help='e.g. cross:loop+core mutate:loop')
+    x = sp.add_parser("species"); x.add_argument("run"); x.add_argument("--ops", default=""); src(x)
+    x = sp.add_parser("fitness"); x.add_argument("run")
+    x = sp.add_parser("import-basins"); x.add_argument("dst"); x.add_argument("src"); x.add_argument("--source", default="visited")
+    x.add_argument("--as", dest="as_", default="prior")
     x = sp.add_parser("setcfg"); x.add_argument("run"); x.add_argument("key"); x.add_argument("value")
     x = sp.add_parser("thoughts"); x.add_argument("run"); x.add_argument("--labels")
     for name in ("gapwalk", "strip", "audit", "concretize"):
         x = sp.add_parser(name); x.add_argument("run"); x.add_argument("set"); src(x)
     a = p.parse_args()
-    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize"):
+    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize", "species"):
         sys.exit("need --transcript or --file")
-    globals()["cmd_" + a.cmd](a)
+    globals()["cmd_" + a.cmd.replace("-", "_")](a)
 
 
 if __name__ == "__main__":
