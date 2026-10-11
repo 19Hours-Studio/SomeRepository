@@ -15,6 +15,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "bridge bidding belief/partner modeling"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bridge bidding belief models"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "bridge bidding inference bots"
   }
  },
  "g1_core2#1": {
@@ -33,6 +49,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "HEP Kalman tracking; spark-test classification"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Particle-physics Kalman track reconstruction"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HEP Kalman tracking, vertex finding"
   }
  },
  "g1_mech#3": {
@@ -51,6 +83,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "acoustic tap-test NDT, masked prediction"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Acoustic tap-test NDT anomaly detection"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "acoustic tap testing, masked anomaly detection"
   }
  },
  "g1_core#1": {
@@ -69,6 +117,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "cave barometric-breathing volume estimates"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Barometric cave-breathing volume estimates"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "barometric cave-breathing volume estimation"
   }
  },
  "g1_core#2": {
@@ -87,6 +151,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "ILP genome scaffolding"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Genome scaffolding (SSPACE, integer programs)"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genome scaffolding (SSPACE/BESST)"
   }
  },
  "g1_loop#2": {
@@ -105,6 +185,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "forensic toolmark striation matching"
+  },
+  "s99:F1": {
+   "O": 8,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Toolmark forensics, population-genetics LD"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "toolmark forensics, population genetics LD"
   }
  },
  "g1_core2#2": {
@@ -123,6 +219,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "phylodynamic branching-process inference"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Spark testing, phylodynamic branching likelihood"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "spark testing, phylodynamic branching"
   }
  },
  "g1_mech#2": {
@@ -141,6 +253,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "forensic footprint degradation studies"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Forensic footprint aging studies"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forensic footprint aging studies"
   }
  },
  "g1_mech#1": {
@@ -159,6 +287,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "bathymetry inversion from surface velocity"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Optical-flow river bathymetry"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "optical-flow river bathymetry"
   }
  },
  "g1_mechneg#2": {
@@ -177,6 +321,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Hebbian associative memory, grain imaging"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hebbian associative memory, random projection"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hebbian associative memory"
   }
  },
  "g1_core#3": {
@@ -195,6 +355,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "ETAS self-exciting point processes"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ETAS/Hawkes self-exciting processes"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ETAS/Hawkes point processes"
   }
  },
  "g1_loop#1": {
@@ -213,6 +389,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Harris matrix tools; grid bad-data detection"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Power-grid bad-data detection, Harris matrix"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "power-grid bad-data detection, Harris matrices"
   }
  },
  "g1_mechneg#3": {
@@ -228,6 +420,22 @@
    "O": 4,
    "C": 6,
    "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Large's GrFNN oscillator beat tracking"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "GrFNN neural-resonance beat tracking"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
    "R": "N",
    "B": "NEW",
    "closest": "Large's GrFNN oscillator beat tracking"
@@ -249,6 +457,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "NLME mixed-effects (pop-PK) modeling"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Population PK NLME, spark testing"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "NONMEM mixed-effects population PK"
   }
  },
  "g1_mechneg#1": {
@@ -267,6 +491,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "ETH robotic dry-stone walling"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Survival counting, geometric hashing"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "count-based associative survival ledger"
   }
  },
  "g1_loop#3": {
@@ -285,6 +525,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "UAV tile-drain mapping (Allred et al.)"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Drone thermal drain detection"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "drone field-drain detection, inverse modelling"
   }
  },
  "g1_neg#2": {
@@ -303,6 +559,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "KDS smart-fire; offline RL scheduling"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Offline RL scheduling (IQL)"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "offline RL scheduling (IQL)"
   }
  },
  "g1_neg#1": {
@@ -321,6 +593,328 @@
    "R": "N",
    "B": "NEW",
    "closest": "automatic stage-lighting generation"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Preference-tuned sequence models, lighting automation"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "transformer with preference fine-tuning"
+  }
+ },
+ "g2_evo2#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Thermal ice mapping, R-free refinement"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "thermal ice mapping, crystallographic refinement"
+  }
+ },
+ "map_3#1": {
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "CHEMINV",
+   "closest": "Glazy UMF calculators, inverse design"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "CHEMINV",
+   "closest": "Glazy UMF glaze property ML"
+  }
+ },
+ "g2_imm#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Functional-structural plant models (LIGNUM)"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "functional-structural plant models (LIGNUM)"
+  }
+ },
+ "g2_imm#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hawkear bell striking analysis"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ensemble phase-correction timing models"
+  }
+ },
+ "g2_evo1#1": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Forensic tracking, R-free model editing"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "track aging plus refinement loop"
+  }
+ },
+ "map_2#1": {
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "FRACSEQ",
+   "closest": "Lithic refitting, fracture-based reassembly"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "FRACSEQ",
+   "closest": "lithic refitting, fracture reassembly"
+  }
+ },
+ "map_3#3": {
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "SERMATCH",
+   "closest": "Dendro cross-dating (COFECHA), ring detection"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "SERMATCH",
+   "closest": "automated dendro crossdating (COFECHA)"
+  }
+ },
+ "g2_evo1#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Surface-velocity river bathymetry inversion"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "river bathymetry from surface video"
+  }
+ },
+ "map_1#3": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "DIFFEM",
+   "closest": "Orthotropic wood distortion FEM models"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "DIFFEM",
+   "closest": "wood distortion FE, log scanning"
+  }
+ },
+ "map_1#2": {
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "RULESYN",
+   "closest": "LabanEditor, motion-to-Labanotation conversion"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "RULESYN",
+   "closest": "motion-to-Labanotation (LabanEditor)"
+  }
+ },
+ "g2_evo1#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Impact-echo NDT, simulation-based inference"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "acoustic sounding, simulation-based inference"
+  }
+ },
+ "map_3#2": {
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "SURRINV",
+   "closest": "Violin plate FEM tuning optimization"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "SURRINV",
+   "closest": "violin plate FE tuning optimization"
+  }
+ },
+ "g2_imm#2": {
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Strombom shepherding model, interaction networks"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Strombom shepherding, learned interaction models"
+  }
+ },
+ "map_2#2": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "SURRINV",
+   "closest": "Bell/bar tuning FEM optimization"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "SURRINV",
+   "closest": "bell/bar tuning FE optimization"
+  }
+ },
+ "map_1#1": {
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "RULESYN",
+   "closest": "Synthetic-data HTR with FST decoding"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "RULESYN",
+   "closest": "synthetic-data HTR, Pitman recognition"
+  }
+ },
+ "map_2#3": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "RULESYN",
+   "closest": "Whistled-speech phonetics, cycle-consistent ASR"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "RULESYN",
+   "closest": "whistled speech phonetics (Meyer)"
+  }
+ },
+ "g2_evo2#1": {
+  "s99:F1": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fungal growth models, phylodynamic dating"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "phylodynamic dating, fungal growth models"
   }
  }
 }
