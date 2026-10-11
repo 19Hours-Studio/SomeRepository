@@ -241,5 +241,77 @@
   "name": "Breath-Locked Drone Swarm",
   "mech": "Task: live accompaniment of unmetered, ornamented solo singing such as sean-nós or Persian āvāz, where beat- and score-based systems fail because there is no meter. A GPU bank of 8192 phase oscillators with periods from 0.2 to 20 s is driven by the singer's breath and syllable onsets, picked up by a phone microphone. Each oscillator shifts its frequency by the sign of its phase lag to the input, splits when it locks onto two alternating periods, and dies after a long time unlocked. Drone swells and harp strikes fire when large locked groups pass phase zero together, and a ring buffer of past phrase phases lets recurring phrases lock in again at once. Nothing is trained offline, and it runs in milliseconds within a few hundred MB.",
   "value": "It accompanies free-rhythm singing by following the singer's breathing, which tempo trackers and sequence models cannot do on any budget."
+ },
+ {
+  "id": "g2_evo1#1",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Trail Pass Ledger",
+  "mech": "Per-print relief profiles from a phone trail video are explained by a ledger of passes, each with a time and direction. A learned weather-integrated decay function (~2M weights, trained on staked time-lapse prints) renders expected relief, including overprint truncation. Residual clusters drive pass insert, split and merge edits, each accepted only if R-free on 5% held-out prints improves. Accepted cut relations become ordering losses that fine-tune the decay function. Prints are a few thousand numbers each, so the whole edit loop runs in RAM and the decay function trains on the 3060.",
+  "value": "It gives a count, order and time window for each party on a trail, which single-print aging or tracker intuition cannot."
+ },
+ {
+  "id": "g2_evo1#2",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Boil Genealogy Riverbed Reader",
+  "mech": "Foam and boil events tracked in a 10-second clip form trees of eruption, split and termination. A ~5M-weight network maps the surface-speed field and a bed hypothesis to per-cell branching parameters, and exact tree likelihood scores them. Low-water exposed beds supervise depth where a seasonal pair exists. Elsewhere the tree likelihood alone trains the bed, so unpaired high-water clips also become training data. Tree likelihoods take seconds on the CPU and the model fits in 12 GB.",
+  "value": "It flags sieves and undercuts from a phone clip by reading how surface events are born and die, which bathymetry-from-velocity methods ignore."
+ },
+ {
+  "id": "g2_evo1#3",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Slab-Coupled Vault Mapper",
+  "mech": "About 400 hammer taps on floor slabs are reduced to 64-band spectra. A <1M-weight network predicts each tap from neighbours that a <20M-parameter transformer assigns to the same air compartment. The transformer reads the cavity-band residual field and outputs a posterior over compartment count, volume and connectivity, and its assignments re-gate the neighbour predictor until both settle. It is pretrained on millions of lumped plate-over-cavity simulations, fine-tuned on churches with recorded vault plans, and trains overnight.",
+  "value": "It gives a sized, uncertainty-bounded vault map from a hammer and phone, where the same budget otherwise buys only guesswork or a hired GPR crew."
+ },
+ {
+  "id": "g2_evo2#1",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Mould Genealogy Leak Clock",
+  "mech": "A 3M-parameter CNN traces hyphal networks in macro phone photos into rooted branching trees. A timed multitype Galton–Watson likelihood scores each tree, with its branching rate and delay distribution set by a small learned function of the humidity-temperature dose summed from each candidate start hour, so the posterior over when the leak began combines all colonies, like dating a common ancestor. It is trained on inoculated building-material coupons timed in humidity cabinets and photographed every 6 h, with a true-start likelihood loss and an ordering penalty that makes later photos older. The trees and dose tables take megabytes, likelihoods run on CPU in 32 GB, and the CNN trains on the RTX 3060 in about a day.",
+  "value": "It gives a calibrated \"leak began 5–9 weeks ago\" from phone photos and a humidity log, which no same-budget detector or forward mould model can do."
+ },
+ {
+  "id": "g2_evo2#2",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Break-Up Validated Ice Hazards",
+  "mech": "A non-differentiable heat-flux solve on a 512² grid predicts the snow-surface temperature and slush pattern on ice from a hidden inflow graph of springs and current channels, and a dawn drone thermal/RGB pass minus that prediction gives the difference map. A 15M-parameter U-Net, trained on free seasonal pairs (the winter surface matched to the spots where a fixed shore camera saw ice open first at break-up), proposes graph edits at residuals beyond ±3σ. Each edit is kept only if the error on 5% of held-out pixels and on the reveal mask improves. The U-Net, solver and batches fit easily in 12 GB, and one lake is processed in minutes.",
+  "value": "It turns one drone flight into a physics-checked map of thin ice with honest error bars, which no same-budget sensor network or pixel classifier can provide without labels."
+ },
+ {
+  "id": "g2_imm#1",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Tree Reply Forecaster",
+  "mech": "Task: predicting how one particular bonsai or espaliered fruit tree will regrow after a given cut or wiring. No software tries this because the answer only shows a season later and every tree is different. Each yearly set of phone photos is reduced to a branching skeleton whose segments store length, thickness, bud count and leaf area. A shading pass casts a few hundred sky directions through the skeleton to give each segment a light score, and a sap-share score flows outward from the root, split at each fork by thickness. A small shared rule with about 200k adjustable numbers reads each segment's light, sap share and cut history plus the states of its parent and child segments, and outputs next year's growth for that segment. The rule is fitted to reduce the mismatch between predicted and actual next-year skeletons, using years of hobbyist progress-photo threads; skeletons of a few thousand segments fit easily in 12 GB, and running candidate cuts forward several seasons takes seconds.",
+  "value": "A grower can preview three seasons of a tree's response before making a cut that cannot be undone."
+ },
+ {
+  "id": "g2_imm#2",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Flock Push Rehearsal",
+  "mech": "Task: teaching sheepdog handlers when to whistle. Nothing exists here because a flock's reaction to the dog's pressure is local, differs by breed and is only learned over years. Overhead drone video is reduced to the position and heading of every sheep and the dog in each frame. Each sheep's next velocity is the sum of a learned response to each neighbour's relative position and velocity and a learned response to the dog's distance, bearing and speed; both are small functions shared across all sheep, plus eight numbers per flock for nervousness and cohesion. The shared functions are fitted by predicting positions one to five seconds ahead over hundreds of hours of public sheepdog-trial footage, and the eight flock numbers are refitted from ten minutes of the handler's own drone video. The RTX 3060 runs thousands of forward simulations per second, scoring possible dog paths and whistle timings against the gate or pen target.",
+  "value": "Handlers can rehearse a drive against their own flock's habits instead of risking a scattered flock in the field."
+ },
+ {
+  "id": "g2_imm#3",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Bell Strike Blame",
+  "mech": "Task: telling a band of tower-bell ringers which ringer is causing uneven striking and why. Existing tools report each bell's timing error but not whose habits pass the error along. A single microphone recording is converted into strike times for each bell in each row, together with the known order every bell must follow. Each ringer gets six numbers: reaction lag to the bell they follow, drift in pull strength, handstroke-backstroke imbalance, and tendency to copy neighbours' errors. A shared rule predicts every strike time from the previous two rows and these ringer numbers; the rule is fitted on thousands of archived peal recordings by reducing next-strike prediction error, and each band's ringer numbers are fitted from one recording in under a minute. The whole model is a few megabytes and runs in system RAM. Blame is then traced backward through how much one ringer's lateness is predicted to shift the strikes that follow.",
+  "value": "A band learns that the fault lies with the ringer two places earlier, not with the bell that sounds wrong."
  }
 ]
