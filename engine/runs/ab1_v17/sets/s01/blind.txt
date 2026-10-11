@@ -1,0 +1,60 @@
+A01
+MECHANISM: The system turns each belief into a falsifiable prediction about future raw data streams, such as sensor feeds, registries, prices or archives. It hash-commits the prediction together with a resolver: a small, deterministic parsing predicate frozen at commit time. Weights may learn only from predictions that have matured, and each one is scored by its frozen resolver against data that did not exist when the model made the claim. The escrow ledger stores calibration per domain and per horizon, and resolvers that drift or turn out ambiguous are retired.
+VALUE: The current model cannot shape its own grade, because the world settles the score later through a judge fixed before the outcome existed.
+
+A02
+MECHANISM: The system injects graded perturbations into live tasks, and the correct effect of each one is known by construction: inserted facts with fixed consequences, unit rescalings, swapped entities, planted sub-results. It fits a line of output shift against spike size. The slope gives recovery for that input type, and extrapolating the line to zero spike gives a bias-corrected answer. Input types with low or uneven recovery get their own adapter modules, and an adapter is deleted if recovery does not improve. The system only grades known differences, never its own absolute answers.
+VALUE: Context-specific distortions are measured and corrected on real inputs where no answer key exists.
+
+A03
+MECHANISM: Several critics trained on disjoint views of the data flag suspected errors in the system's outputs. A latent-class capture-recapture model fits the overlaps between their flags and estimates each critic's false-flag rate, how strongly the critics depend on each other, and how many errors went uncaught in each input region. Where the estimated uncaught errors are high, the system trains a new critic on a fresh disjoint view. Where critics have become too similar, it retrains one of them to make them independent again, and it deletes critics whose catches the others already cover.
+VALUE: The system can measure what it fails to notice and grow detectors exactly there, without an oracle.
+
+A04
+MECHANISM: Three or more predictor lineages are trained on disjoint evidence channels about the same events, such as text reports, numeric logs and imagery. The channels are chosen so that their errors are conditionally independent. From the pairwise and three-way rates at which the lineages agree, a latent-class (Dawid-Skene-style) estimator recovers each lineage's accuracy per region without any labels. The system trains only on events where the triangulated posterior is confident. It runs higher-order agreement tests to detect when independence has broken down and then splits or reroutes channels.
+VALUE: It gives label-free, mathematically identifiable accuracy estimates in open domains, derived from how independent views agree rather than from any one model judging itself.
+
+A05
+MECHANISM: Whenever the system makes a claim, it also writes down concrete, checkable predictions about data that has not arrived yet: future entries in incoming streams, logs, measurements or published records that the system cannot write to. Each prediction is stored with a fingerprint and a deadline so it cannot be changed afterwards. When the data arrives, a fixed string or number comparison settles the prediction mechanically. Only settled predictions change the parameters, and each update is weighted by how surprising the outcome was. The claims that produced wrong forecasts lose influence on future answers.
+VALUE: The system can correct itself in open-ended domains with no oracle, because the world's future acts as the grader and that grader cannot be flattered or influenced.
+
+A06
+MECHANISM: The system corrupts known-true items to create canary errors whose falsehood it knows by construction, and mixes them into its normal stream of claims. Two error-detection procedures with different mechanisms flag suspect claims. Their catch rates on canaries measure each procedure's recall. The overlap of their real-error catches, combined with that recall, gives a Lincoln-Petersen estimate of how many errors went undetected in each domain. The canary generator adapts its corruptions so that, statistically, canaries cannot be told apart from the real errors detected so far. Learning budget goes to domains whose estimated hidden-error mass is largest.
+VALUE: The system can measure the errors it has not caught, using ground truth it planted itself, instead of trusting its own sense of being right.
+
+A07
+MECHANISM: The raw evidence is split into partitions that do not overlap, and a separate copy of the system is trained on each one. The copies answer the same question independently. Agreement counts as a label only when the copies' evidence is disjoint. Its weight shrinks by how correlated their errors are, which is measured by quietly corrupting one partition and seeing whether the other copies follow the corruption. A ledger stores, for each pair of copies, how often they agree by chance and how often their errors move together. Copies whose dissent later turns out justified get more weight.
+VALUE: Copies that saw different evidence can label each other's work, and the ledger keeps them from passing shared bias off as truth.
+
+A08
+MECHANISM: A small rule set, checked once by hand, holds transformations whose effect on the correct answer is fixed by construction. Examples: swapping units should rescale a number, reordering items should leave a count unchanged, duplicating a list should double a sum, and negating a premise should flip a conclusion. The system answers both the original question and its transformed version. Any answer pair that breaks the known relationship is certainly wrong, whatever the true answer is. The violation rate is stored for each pair of topic and transformation, and the parameters are pushed toward restoring the relationship. Topics with high violation rates get the most new transformations.
+VALUE: The system finds certain errors on questions nobody knows the answer to, because the error signal comes from fixed algebra rather than from the model's opinion.
+
+A09
+MECHANISM: The system keeps snapshot copies of itself, each trained only on data before a strict cutoff date, and asks them questions that the archive settled after that date. The archive grades their answers with no model judgment involved. The system stores which reasoning strategies and update rules improved these later-verified answers and transfers only those to the present model. Contamination audits drop any snapshot whose training data leaked material from after its cutoff.
+VALUE: It turns the passage of time into an oracle for open-ended domains, so improvement is graded by the world rather than by the model itself.
+
+A10
+MECHANISM: A problem is decomposed in two deliberately different orders (an interleaver). This produces two reasoning chains whose intermediate claims are scored as log-likelihood ratios against parity-like constraints (units, conservation laws, cited values). On each pass, a chain subtracts the belief it received from the other chain before sending its own update. Only extrinsic evidence crosses over, so neither chain counts its own conclusions twice. Mutual-information transfer (EXIT) curves are stored per problem type. They predict whether the exchange will converge, and when it will not, the answer is withheld and the system goes looking for more constraints.
+VALUE: Long reasoning chains can correct each other without an echo chamber, and the system can tell beforehand when internal checking cannot reach a reliable answer.
+
+A11
+MECHANISM: Every quantitative or relational claim the system holds is treated as a surveyed observation with a variance, and it is linked to independent observations (retrieved sources, tool outputs, sensor readings) through closed constraint loops. Weighted least-squares adjustment spreads each loop's misclosure across its claims. Baarda's normalized-residual test then names the specific claim that is most likely a blunder, which gets revised or discarded. For each claim the system stores a redundancy number that says how far other observations control it. Claims with near-zero redundancy are marked as structurally unverifiable rather than as trusted.
+VALUE: The system can locate and fix its own errors, and knows which beliefs nothing can currently check, without an oracle or a self-grading model.
+
+A12
+MECHANISM: The model's beliefs act as a background state. Each new datum from a document, user, instrument or tool is an observation, and the system computes the innovation (observation minus prediction) and the analysis residual. Desroziers consistency identities over these statistics give separate estimates of the model's error covariance and of each source's error covariance, so no labels are needed. These estimates set the gain that decides how much each observation changes the stored beliefs and parameters. A source whose estimated error grows is down-weighted automatically, and so is a model region whose estimated error grows.
+VALUE: The system learns continuously from noisy, adversarial real-world streams while measuring its own reliability and each source's reliability from the data alone.
+
+A13
+MECHANISM: Each claim or explanation the system produces is given to a small, freshly initialized student model. The claim is scored by how much it improves the student's prediction of held-out raw observations from the domain, compared with a student that did not receive it. The system stores these gains per claim and trains itself toward claims with high gains, while claims with no gain are demoted.
+VALUE: It grounds correctness in abundant unlabeled data, which exists everywhere, instead of in the system's own fallible judgment.
+
+A14
+MECHANISM: Every quantity or claim the system asserts is computed along several derivation paths that share no sources, linked by arithmetic, unit and accounting identities. Weighted least squares adjusts the estimates so the identities hold, a chi-square test checks how far they fail to close, and a per-path test isolates the path most likely to carry a gross error. That path is retired, given a learned bias term, or split by context where its errors cluster. Agreement between independent paths under fixed identities is the correctness signal, so no oracle or self-judgment is needed.
+VALUE: Faulty knowledge sources can be found and repaired in open domains without ground truth.
+
+A15
+MECHANISM: The system keeps a growing library of input transformations, each paired with a relation its outputs must provably satisfy: unit changes rescale answers, irrelevant permutations leave them unchanged, and counterfactual edits move them in a known direction. Each answer is re-asked under these transformations, and violations of the relations are the training loss. New relations are kept only if they are derivable a priori, for example from symmetry, dimensional analysis or the structure of the edit.
+VALUE: It detects and corrects errors without ever knowing the true answer, as metamorphic testing does for programs that have no test oracle.
+
