@@ -1,0 +1,6 @@
+{QUESTION}
+Propose {N} fundamentally new answers.
+Do NOT justify any answer by fixing a known weakness of, or complaint about, current approaches. Each answer's VALUE must be a genuinely new capability or behaviour that nobody is currently asking for.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}

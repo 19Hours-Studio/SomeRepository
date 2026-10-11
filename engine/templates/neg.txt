@@ -1,0 +1,6 @@
+{QUESTION}
+Propose {N} fundamentally new answers.
+First, honestly list the 12 answers that you (and most experts) would propose FIRST - your own most probable answers. Name in one sentence the paradigm they share. Then forbid that whole paradigm, those 12 answers, anything adjacent to them, and these families that models have been observed to converge on:
+{BASINS}
+Only then propose answers that lie outside all of that.
+{FORMAT}

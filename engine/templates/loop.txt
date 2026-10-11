@@ -1,0 +1,9 @@
+{QUESTION}
+Propose {N} fundamentally new answers by closing a diagnostic loop. For each answer:
+1. Find a DIAGNOSTIC that a mature field far from this problem's home field uses to detect a hidden defect, inconsistency or missing ingredient in its own systems - a concrete measurement or invariant, not a metaphor.
+2. Port that diagnostic to this problem.
+3. CLOSE THE LOOP: make the diagnostic's output directly drive a structural change (create, split, delete, rewire or re-type something), not just report a problem.
+4. HONESTY CHECK: name the closest existing work; if the answer is essentially that, choose another diagnostic.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}

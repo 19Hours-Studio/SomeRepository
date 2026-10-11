@@ -1,0 +1,9 @@
+{QUESTION}
+Propose {N} fundamentally new answers. Follow this pipeline:
+1. GOALS FROM THE CENTER: pick the {N} sub-problems that matter most here. Do not try to be original about the goals; pick what you honestly believe matters most.
+2. PARADIGM NEGATION: name in one sentence the paradigm that mainstream approaches share. Forbid it as the MECHANISM (it stays allowed as a goal).
+3. KNOWN FAMILIES ARE FORBIDDEN as mechanisms, including re-skins and recombinations:
+{BASINS}
+4. MECHANISM FROM THE PERIPHERY: for each goal, find a field far from this problem's home field that has ALREADY SOLVED an analogous problem in its own domain, and port its actual mechanism (state, update rule, driving signal) - not a metaphor.
+5. HONESTY CHECK: name the closest existing work for each answer; if it is essentially that work, discard it and make another.
+{FORMAT}

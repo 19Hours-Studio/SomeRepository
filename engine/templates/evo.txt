@@ -1,0 +1,13 @@
+{QUESTION}
+Propose new answers by EVOLVING existing candidates. You get {N} parent pairs. For each pair produce ONE offspring:
+1. CROSSOVER: fuse the two parents' core mechanisms into one mechanism in which each parent's mechanism changes the other's behaviour (not two modules side by side).
+2. MUTATE AWAY: the offspring must clearly differ from the parents' nearest published work (listed) and from every known family below.
+3. KEEP IT IMPORTANT: it must serve something that genuinely matters for the question.
+4. HONESTY CHECK: before the final section, name the closest existing work for each offspring; if it is essentially that, mutate again.
+Describe mechanisms concretely; give the NAME last.
+
+Known families (forbidden, including re-skins):
+{BASINS}
+
+{PAIRS}
+{FORMAT}

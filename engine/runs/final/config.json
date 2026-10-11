@@ -1,0 +1,5 @@
+{
+ "question": "How could an AI system come up with genuinely original ideas - ideas that are not recombinations of what is common in its training data? Propose fundamentally new mechanisms (architectural or algorithmic, not prompting tricks).",
+ "format": "value",
+ "n": 3
+}

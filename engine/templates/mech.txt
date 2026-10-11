@@ -1,0 +1,6 @@
+{QUESTION}
+Propose {N} fundamentally new answers.
+Hard constraint: you may NOT use any named concept, method, theory or buzzword from this problem's home field. Describe each answer ONLY in terms of: what quantities or objects exist, how they flow or interact, what rule changes them, and what signal drives the change. Fix the mechanics first; give the NAME last.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}

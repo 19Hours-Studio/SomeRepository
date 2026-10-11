@@ -1,0 +1,3 @@
+{QUESTION}
+Propose {N} fundamentally new answers (not incremental variations of existing approaches).
+{FORMAT}
