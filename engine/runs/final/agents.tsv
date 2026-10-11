@@ -7,3 +7,8 @@ ctrl_3	a0933b6d1f15de5c3	control	0
 ctrl_4	aef6c19096527a0d1	control	0
 ctrl_5	a0d52d20ea754cbb0	control	0
 FAMJ	a9934ada4e5b6429e	judge	0
+g1_neg	af636eb8ddfad2647	engine	1
+g1_core	ac62e6961c3e155d4	engine	1
+g1_reframe	a19b3a29d4b8e219d	engine	1
+g1_mech	a24aeaa634a1135fd	engine	1
+g1_loop	af09b50e133940d46	engine	1

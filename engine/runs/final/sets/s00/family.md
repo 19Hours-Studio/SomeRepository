@@ -1,0 +1,11 @@
+FAMILY | CFWORLD | Copy the world model with selected causal laws or axioms changed, search inside each altered world, then map the results back and keep only what passes real-world verification | M01, M08
+FAMILY | MDLREFAC | Propose new primitives or representations, accept those that shorten descriptions (MDL) across the knowledge base, then refactor the library or frame so the next search starts from the new one | M02, M05
+FAMILY | ANOMALY | Find disagreements or inconsistencies in the system's own predictions and invent new latent variables or structural edits that resolve as many as possible at the lowest complexity cost | M04, M07
+FAMILY | ANTIPRED | Reward outputs that a continually updated density model or predictor finds improbable, but that verifiers judge valid, so that past novelty stops earning reward | M03, M06
+FAMILY | EMERGLANG | Multi-agent populations co-evolve their own symbolic languages without human priors, keep abstractions that compress solutions, and translate them for humans only afterwards | M09
+FAMILY | EVOSRCH | Evolutionary or quality-diversity program search (LLM as mutation operator, automated evaluators, MAP-Elites style archives) that grows open-ended populations of solutions | predicted
+FAMILY | SELFPLAY | Self-play reinforcement learning against verifiable rewards (games, theorem provers, code execution) so that capability and strategies go beyond the human data, as in AlphaZero or AlphaProof | predicted
+FAMILY | EMBODY | Active, embodied or closed-loop experimentation (robot labs, simulators, real-world probes) that gathers new data the training corpus never contained | predicted
+FAMILY | ANALOGY | Explicit structure mapping between distant domains (bisociation, conceptual blending over relational graphs) to transfer deep structure rather than surface features | predicted
+FAMILY | NOISE | Inject controlled noise, chaos or attractor dynamics into latent activations, followed by selection, to escape high-probability modes (stochastic resonance, annealing) | predicted
+FAMILY | DEBATE | An adversarial society of agents (generator vs. critic, debate, a market of ideas) whose competing perspectives and critique push past consensus outputs | predicted

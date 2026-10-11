@@ -1,0 +1,27 @@
+How could an AI system come up with genuinely original ideas - ideas that are not recombinations of what is common in its training data? Propose fundamentally new mechanisms (architectural or algorithmic, not prompting tricks).
+Propose 3 fundamentally new answers by closing a diagnostic loop. For each answer:
+1. Find a DIAGNOSTIC that a mature field far from this problem's home field uses to detect a hidden defect, inconsistency or missing ingredient in its own systems - a concrete measurement or invariant, not a metaphor.
+2. Port that diagnostic to this problem.
+3. CLOSE THE LOOP: make the diagnostic's output directly drive a structural change (create, split, delete, rewire or re-type something), not just report a problem.
+4. HONESTY CHECK: name the closest existing work; if the answer is essentially that, choose another diagnostic.
+Families that models have been observed to converge on (forbidden, including re-skins):
+CFWORLD: Copy the world model with selected causal laws or axioms changed, search inside each altered world, then map the results back and keep only what passes real-world verification
+MDLREFAC: Propose new primitives or representations, accept those that shorten descriptions (MDL) across the knowledge base, then refactor the library or frame so the next search starts from the new one
+ANOMALY: Find disagreements or inconsistencies in the system's own predictions and invent new latent variables or structural edits that resolve as many as possible at the lowest complexity cost
+ANTIPRED: Reward outputs that a continually updated density model or predictor finds improbable, but that verifiers judge valid, so that past novelty stops earning reward
+EVOSRCH: Evolutionary or quality-diversity program search (LLM as mutation operator, automated evaluators, MAP-Elites style archives) that grows open-ended populations of solutions
+SELFPLAY: Self-play reinforcement learning against verifiable rewards (games, theorem provers, code execution) so that capability and strategies go beyond the human data, as in AlphaZero or AlphaProof
+EMBODY: Active, embodied or closed-loop experimentation (robot labs, simulators, real-world probes) that gathers new data the training corpus never contained
+ANALOGY: Explicit structure mapping between distant domains (bisociation, conceptual blending over relational graphs) to transfer deep structure rather than surface features
+NOISE: Inject controlled noise, chaos or attractor dynamics into latent activations, followed by selection, to escape high-probability modes (stochastic resonance, annealing)
+DEBATE: An adversarial society of agents (generator vs. critic, debate, a market of ideas) whose competing perspectives and critique push past consensus outputs
+EMERGLANG: Multi-agent populations co-evolve their own symbolic languages without human priors, keep abstractions that compress solutions, and translate them for humans only afterwards
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+

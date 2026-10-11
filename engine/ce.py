@@ -138,7 +138,10 @@ def cmd_family(a):
     text = read_source(a); key = setkey(a.run, a.set)
     open(path(a.run, "sets", a.set, "family.md"), "w").write(text)
     basins = load(a.run, "basins.json", []); have = {b["code"] for b in basins}; added = 0
-    for code, desc, mem in re.findall(r"^FAMILY \| ([A-Z0-9]{2,8}) \| (.+?) \| (.+)$", text, re.M):
+    fam_lines = [l for l in text.splitlines() if l.startswith("FAMILY |")]
+    parsed = re.findall(r"^FAMILY \| ([A-Z0-9_]{2,16}) \| (.+?) \| (.+)$", text, re.M)
+    if len(parsed) < len(fam_lines): print(f"WARNING: {len(fam_lines) - len(parsed)} FAMILY lines not parsed")
+    for code, desc, mem in parsed:
         if code in have: continue
         members = [] if mem.strip().lower().startswith("predicted") else [key.get(x.strip(), x.strip()) for x in mem.split(",")]
         basins.append({"code": code, "desc": desc.strip(), "source": "predicted" if not members else "observed", "members": members})
@@ -149,7 +152,7 @@ def cmd_judge(a):
     text = read_source(a); key = setkey(a.run, a.set)
     open(path(a.run, "sets", a.set, f"judge_{a.judge}.md"), "w").write(text)
     sc = load(a.run, "scores.json", {}); n = 0
-    for sid, o, c, v, r, b, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| ([YN]) \| ([A-Z0-9]+) \| (.+)$", text, re.M):
+    for sid, o, c, v, r, b, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| ([YN]) \| ([A-Z0-9_]+) \| (.+)$", text, re.M):
         if sid not in key: continue
         sc.setdefault(key[sid], {})[f"{a.set}:{a.judge}"] = {"O": int(o), "C": int(c), "V": int(v), "R": r, "B": b, "closest": cl.strip()}
         n += 1
