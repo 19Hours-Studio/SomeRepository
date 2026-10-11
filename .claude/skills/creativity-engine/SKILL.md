@@ -34,7 +34,14 @@ Literature checks use `subagent_type: general-purpose` (they need WebSearch) wit
 After an agent finishes, ingest from its transcript: `--transcript <output_file from the Agent launch result>`.
 Launch independent agents in one message; never read transcripts into your own context.
 
-## v1.7 (default since the A/B in research/stage1-creativity/06-engine-v17.md §8: V +0.8…+1.7, G +1.0, O −0.6)
+## Default: layered engine v1.8-L (research/stage1-creativity/06-engine-v17.md §9)
+Layer A = originality: the v1.5 procedure below (no crux in generators). Layer B = genius + value: get the crux
+(`set R sXX --labels map_1,map_2,map_3` then one agent on `prompt_crux.txt`, `family R sXX ...`), then split all engine
+ideas into sets of ~8 (`set R s97a --ids ...`), one agent per set on `prompt_valorize.txt`, `valorize R s97a --arm E2 ...`.
+The rewritten ideas form a new arm with `parent` links. Then concretize them and judge both arms (always with one plain judge).
+In the A/B, layer B raised O by +0.7 (never lowered it for any of 23 ideas), G by +1.0, and dropped rediscoveries to 0; V barely moved.
+
+## v1.7 option (crux in generation: best V, but O -1.0 vs layered)
 - Gen 1 portfolio: neg, core, loop, mech, genius. Gen 2: `prompt R evo_simple g2_evo1|g2_evo2 ...` (simplifying crossover) + immigrant of the best technique. Parents: `select ... --drop-known-basins --diverse --by ovg`. Screening/final sets: `--crux --genius`.
 - ALWAYS add one plain judge (a set built without `--crux --genius`) to any A/B: the crux column primes judges' V (about half of the V gain in the v1.7 A/B was priming).
 - Crux: the family judge now also outputs `CRUX | ...` (or use `sets/<s>/prompt_crux.txt` on an existing map); `setcfg R use_crux 1` makes every generator attack it; final sets with `--crux` get a column X (attacks the crux: Y/N).

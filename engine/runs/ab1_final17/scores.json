@@ -45,6 +45,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "explanation simulatability, learning to teach"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Prequential MDL, information gain",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15:g1_core2#3": {
@@ -93,6 +103,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "capture-recapture recall estimation (IR)"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Capture-recapture in IR evaluation",
+   "X": "N",
+   "G": 4
   }
  },
  "v17:g1_core#3": {
@@ -141,6 +161,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "turbo decoding, EXIT charts"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Turbo decoding, EXIT charts",
+   "X": "Y",
+   "G": 6
   }
  },
  "map_1#2": {
@@ -189,6 +219,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Doyle truth maintenance system"
+  },
+  "s99v:GX": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "TMS",
+   "closest": "Doyle truth maintenance systems",
+   "X": "N",
+   "G": 2
   }
  },
  "v17:g2_evo1#3": {
@@ -237,6 +277,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Toolformer; proper scoring rules"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Proper scoring rules, tool learning",
+   "X": "Y",
+   "G": 5
   }
  },
  "v17:g1_loop#1": {
@@ -285,6 +335,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "data reconciliation, truth discovery"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Data reconciliation (process engineering)",
+   "X": "Y",
+   "G": 5
   }
  },
  "v17:g1_neg#3": {
@@ -333,6 +393,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Mills software error seeding"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Lincoln-Petersen, fault seeding",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15:g1_neg#3": {
@@ -381,6 +451,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "neural oscillator timing models"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Oscillatory neural networks",
+   "X": "N",
+   "G": 3
   }
  },
  "map_2#1": {
@@ -429,6 +509,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "CLS replay, GEM"
+  },
+  "s99v:GX": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "Complementary learning systems, replay",
+   "X": "N",
+   "G": 2
   }
  },
  "v15:g1_core#3": {
@@ -477,6 +567,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "lock-in amplifier; causal probing"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Lock-in amplifier, causal probing",
+   "X": "N",
+   "G": 5
   }
  },
  "v17:g2_imm#3": {
@@ -525,6 +625,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "capture-recapture; consistency probes"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Chao estimator, consistency probes",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15:g1_core#1": {
@@ -573,6 +683,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Hopfield kinetic proofreading"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Kinetic proofreading",
+   "X": "N",
+   "G": 4
   }
  },
  "map_2#2": {
@@ -621,6 +741,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "DreamCoder, probabilistic program induction"
+  },
+  "s99v:GX": {
+   "O": 3,
+   "C": 3,
+   "V": 7,
+   "R": "Y",
+   "B": "PROGSYN",
+   "closest": "DreamCoder, probabilistic programming",
+   "X": "N",
+   "G": 3
   }
  },
  "map_3#3": {
@@ -669,6 +799,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "energy-based models, belief propagation"
+  },
+  "s99v:GX": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "ENERGY",
+   "closest": "Energy-based models, constraint propagation",
+   "X": "N",
+   "G": 2
   }
  },
  "v15:g1_neg#2": {
@@ -717,6 +857,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Bennett reversible computing, invertible nets"
+  },
+  "s99v:GX": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "RevNets, reversible computing",
+   "X": "N",
+   "G": 4
   }
  },
  "v17:g1_mech#2": {
@@ -765,6 +915,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "co-training, agreement-based accuracy"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Co-training, Dawid-Skene",
+   "X": "Y",
+   "G": 4
   }
  },
  "v17:g2_evo2#2": {
@@ -813,6 +973,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "leave-one-out influence, prequential scoring"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Ablation credit, prequential scoring",
+   "X": "Y",
+   "G": 6
   }
  },
  "map_1#3": {
@@ -861,6 +1031,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Baum Hayek machine, classifier systems"
+  },
+  "s99v:GX": {
+   "O": 3,
+   "C": 3,
+   "V": 5,
+   "R": "Y",
+   "B": "MODMKT",
+   "closest": "Baum's Hayek machine",
+   "X": "N",
+   "G": 2
   }
  },
  "v15:g1_core2#2": {
@@ -909,6 +1089,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "geodetic adjustment, Baarda testing"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Survey network adjustment",
+   "X": "N",
+   "G": 5
   }
  },
  "v15:g1_neg#1": {
@@ -957,6 +1147,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "AI Feynman, Buckingham-Pi learning"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AI Feynman, Buckingham pi",
+   "X": "N",
+   "G": 4
   }
  },
  "v17:g1_loop#3": {
@@ -1005,6 +1205,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "spike recovery; zero-noise extrapolation"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Spike-recovery calibration (analytical chemistry)",
+   "X": "Y",
+   "G": 5
   }
  },
  "v17:g1_core#2": {
@@ -1053,6 +1263,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Desroziers diagnostics, adaptive Kalman"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Desroziers diagnostics, data assimilation",
+   "X": "Y",
+   "G": 5
   }
  },
  "v17:g1_mech#1": {
@@ -1101,6 +1321,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "forecasting tournaments, prequential learning"
+  },
+  "s99v:GX": {
+   "O": 4,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Forecast scoring, commit-reveal",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15:g1_loop#1": {
@@ -1149,6 +1379,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "rigidity theory, graph realization"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Rigidity theory, KG embeddings",
+   "X": "N",
+   "G": 5
   }
  },
  "v15:g1_mech#2": {
@@ -1197,6 +1437,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "conservation-law nets, Petri nets"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Double-entry bookkeeping, state tracking",
+   "X": "Y",
+   "G": 4
   }
  },
  "v15:g1_mech#3": {
@@ -1245,6 +1495,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "AutoAugment, Augerino, test-time augmentation"
+  },
+  "s99v:GX": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AutoAugment, test-time augmentation",
+   "X": "N",
+   "G": 3
   }
  },
  "v15:g2_evo1#2": {
@@ -1293,6 +1553,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "rigidity theory, flux balance"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Rigidity theory, latent entity inference",
+   "X": "N",
+   "G": 4
   }
  },
  "v15:g2_evo1#1": {
@@ -1341,6 +1611,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "geodetic adjustment plus HodgeRank"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Baarda reliability, HodgeRank",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15:g2_imm#2": {
@@ -1389,6 +1669,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "genetic complementation; mech-interp ablation"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Genetic complementation, activation patching",
+   "X": "N",
+   "G": 5
   }
  },
  "map_1#1": {
@@ -1437,6 +1727,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Bayesian experimental design, DreamCoder"
+  },
+  "s99v:GX": {
+   "O": 3,
+   "C": 4,
+   "V": 7,
+   "R": "Y",
+   "B": "PROGSYN",
+   "closest": "Bayesian program learning, active learning",
+   "X": "N",
+   "G": 3
   }
  },
  "v17:g2_evo2#1": {
@@ -1485,6 +1785,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "error seeding, sensitivity analysis"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Spike-recovery, fault injection",
+   "X": "Y",
+   "G": 5
   }
  },
  "v17:g1_genius#2": {
@@ -1533,6 +1843,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "metamorphic testing, consistency regularization"
+  },
+  "s99v:GX": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Metamorphic testing",
+   "X": "Y",
+   "G": 4
   }
  },
  "v15:g2_evo2#1": {
@@ -1581,6 +1901,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "geodetic adjustment, Baarda testing"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Survey adjustment, self-calibration",
+   "X": "Y",
+   "G": 5
   }
  },
  "v17:g2_imm#1": {
@@ -1629,6 +1959,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Bayesian Truth Serum, surprisingly popular"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bayesian Truth Serum",
+   "X": "Y",
+   "G": 6
   }
  },
  "v17:g1_genius#1": {
@@ -1677,6 +2017,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "temporal backtesting forecasting benchmarks"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Temporal backtesting, forecasting benchmarks",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15:g2_evo2#2": {
@@ -1725,6 +2075,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "kinetic proofreading plus HodgeRank"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hodge decomposition, kinetic proofreading",
+   "X": "N",
+   "G": 4
   }
  },
  "v17:g1_neg#2": {
@@ -1773,6 +2133,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Platanios agreement-based accuracy, Dawid-Skene"
+  },
+  "s99v:GX": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Platanios unlabeled accuracy estimation, Dawid-Skene",
+   "X": "Y",
+   "G": 4
   }
  },
  "v15:g2_imm#3": {
@@ -1821,6 +2191,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "phylogenetic networks, delta-hyperbolicity"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Phylogenetic networks, NeighborNet",
+   "X": "N",
+   "G": 3
   }
  },
  "v17:g2_imm#2": {
@@ -1869,6 +2249,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Dong copy-detection truth discovery (ACCU)"
+  },
+  "s99v:GX": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Copy-aware truth discovery (ACCU)",
+   "X": "Y",
+   "G": 4
   }
  },
  "v15:g1_loop#2": {
@@ -1917,6 +2307,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Wahlund effect; polysemantic neuron splitting"
+  },
+  "s99v:GX": {
+   "O": 8,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Polysemantic neuron splitting, SAEs",
+   "X": "N",
+   "G": 5
   }
  },
  "v15:g1_core2#1": {
@@ -1965,6 +2365,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "ensemble Kalman filter NN training"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Ensemble Kalman filter training",
+   "X": "N",
+   "G": 4
   }
  },
  "v17:g2_evo1#2": {
@@ -2013,6 +2423,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Kalman innovation whiteness tests"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Truth discovery, adaptive learning rates",
+   "X": "Y",
+   "G": 4
   }
  },
  "v15:g2_evo1#3": {
@@ -2061,6 +2481,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "knowledge editing, ensemble voting"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Ensemble knowledge editing",
+   "X": "N",
+   "G": 3
   }
  },
  "v17:g1_core#1": {
@@ -2109,6 +2539,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "geodetic adjustment, Baarda testing"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Survey least-squares adjustment",
+   "X": "Y",
+   "G": 5
   }
  },
  "map_3#2": {
@@ -2157,6 +2597,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "schema networks, causal discovery"
+  },
+  "s99v:GX": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "CAUSGR",
+   "closest": "Object-centric causal world models",
+   "X": "N",
+   "G": 2
   }
  },
  "v15:g1_mech#1": {
@@ -2205,6 +2655,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "units-of-measure type systems"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Dimensional analysis, type inference",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15:g1_loop#3": {
@@ -2253,6 +2713,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "HodgeRank, sheaf-cohomology synchronization"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Cycle consistency, sheaf cohomology",
+   "X": "N",
+   "G": 5
   }
  },
  "map_3#1": {
@@ -2301,6 +2771,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "GRACE, T-Patcher editing"
+  },
+  "s99v:GX": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "GRACE/MELO key-value editing adapters",
+   "X": "N",
+   "G": 2
   }
  },
  "map_2#3": {
@@ -2349,6 +2829,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "selective prediction, conformal abstention"
+  },
+  "s99v:GX": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "COMPMAP",
+   "closest": "Selective prediction, abstention",
+   "X": "N",
+   "G": 2
   }
  },
  "v15:g2_imm#1": {
@@ -2397,6 +2887,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Schild regression; SAE feature splitting"
+  },
+  "s99v:GX": {
+   "O": 8,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Schild regression, SAE features",
+   "X": "N",
+   "G": 5
   }
  },
  "v17:g2_evo1#1": {
@@ -2445,6 +2945,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "ROME editing, CounterFact"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 8,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ROME editing, prequential likelihood",
+   "X": "Y",
+   "G": 7
   }
  },
  "v17:g1_loop#2": {
@@ -2493,6 +3003,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "latent-class capture-recapture, Dawid-Skene"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Latent-class capture-recapture",
+   "X": "Y",
+   "G": 5
   }
  },
  "v17:g1_neg#1": {
@@ -2541,6 +3061,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "forecasting tournaments, prediction markets"
+  },
+  "s99v:GX": {
+   "O": 5,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Forecasting tournaments, prediction escrow",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15:g1_core#2": {
@@ -2589,6 +3119,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "subfunctionalization; PackNet, progressive nets"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Gene duplication subfunctionalization",
+   "X": "N",
+   "G": 4
   }
  },
  "v17:g1_mech#3": {
@@ -2637,6 +3177,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "metamorphic testing"
+  },
+  "s99v:GX": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Metamorphic testing for LLMs",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_neg#1": {
@@ -2647,6 +3197,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Buckingham-Pi learning (Bakarji 2022)"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Buckingham pi, scale transfer",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g2_imm#3": {
@@ -2657,6 +3217,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "phylogenetic networks, admixture graphs"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Phylogenetic networks, admixture",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g2_imm#1": {
@@ -2667,6 +3237,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Schild regression; SAE feature splitting"
+  },
+  "s99v:GX": {
+   "O": 8,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Schild analysis, pA2 null method",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g2_evo1#3": {
@@ -2677,6 +3257,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "prequential evaluation, A/B testing"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Prequential A/B fact admission",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15V:v15:g2_evo1#1": {
@@ -2687,6 +3277,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "geodetic adjustment plus HodgeRank"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank plus Baarda reliability theory",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15V:v15:g1_loop#1": {
@@ -2697,6 +3297,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "rigidity theory, graph realization"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Rigidity theory, self-stress",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g2_evo2#2": {
@@ -2707,6 +3317,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "HodgeRank, self-consistency"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank, held-out validation",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15V:v15:g2_evo2#1": {
@@ -2717,6 +3337,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "geodetic adjustment, Baarda testing"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Survey adjustment, Baarda w-test",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_loop#3": {
@@ -2727,6 +3357,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "map synchronization, HodgeRank"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Geodetic network adjustment, sheaf cohomology",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15V:v15:g1_loop#2": {
@@ -2737,6 +3377,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Wahlund effect, F-statistics"
+  },
+  "s99v:GX": {
+   "O": 8,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Wahlund effect, F-statistics",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g2_imm#2": {
@@ -2747,6 +3397,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "genetic complementation; mech-interp ablation"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Complementation tests, activation patching",
+   "X": "N",
+   "G": 5
   }
  },
  "v15V:v15:g1_neg#3": {
@@ -2757,6 +3417,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "neural oscillator timing models"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Kuramoto oscillator timing models",
+   "X": "Y",
+   "G": 4
   }
  },
  "v15V:v15:g1_core2#1": {
@@ -2767,6 +3437,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "EnKF data assimilation, Desroziers diagnostics"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Ensemble Kalman inversion, data assimilation",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_core#1": {
@@ -2777,6 +3457,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "kinetic proofreading; self-consistency"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Kinetic proofreading, self-consistency",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_core2#2": {
@@ -2787,6 +3477,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "geodetic adjustment, minimal detectable bias"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Baarda reliability, control networks",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15V:v15:g1_neg#2": {
@@ -2797,6 +3497,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "reversible computing, invertible nets"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Reversible networks, MDL",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15V:v15:g1_core#3": {
@@ -2807,6 +3517,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "lock-in amplifier; causal probing"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Lock-in detection with decoy references",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_core#2": {
@@ -2817,6 +3537,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "subfunctionalization; prequential bets"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Subfunctionalization, prediction markets",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_mech#2": {
@@ -2827,6 +3557,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "double-entry bookkeeping, conservation nets"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Double-entry bookkeeping, entity state tracking",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_mech#1": {
@@ -2837,6 +3577,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "units-of-measure type inference"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Dimensional type inference",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_core2#3": {
@@ -2847,6 +3597,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "log-linear capture-recapture"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Latent-class capture-recapture",
+   "X": "Y",
+   "G": 5
   }
  },
  "v15V:v15:g1_mech#3": {
@@ -2857,6 +3617,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Augerino, learned symmetry discovery"
+  },
+  "s99v:GX": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Metamorphic testing, learned invariances",
+   "X": "Y",
+   "G": 6
   }
  },
  "v15V:v15:g2_evo1#2": {
@@ -2867,6 +3637,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "rigidity theory, Maxwell counting"
+  },
+  "s99v:GX": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Rigidity theory, equilibrium stresses",
+   "X": "Y",
+   "G": 4
   }
  }
 }
