@@ -149,7 +149,7 @@ def cmd_set(a):
             sid = f"{a.prefix}{j:02d}"; key[sid] = i["id"]
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
-    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize", "value"):
+    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize", "value", "intent"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         if kind == "judge" and getattr(a, "crux", False):
             crux = load(a.run, "config.json", {}).get("crux") or sys.exit("no crux recorded: run `family` with the v1.7 template first")
@@ -365,6 +365,19 @@ def cmd_valorize(a):
                       "mech": " ".join(m.group(1).split()), "value": " ".join(m.group(2).split())}); n += 1
     save(a.run, "ideas.json", ideas); print(f"valorized {n}/{len(key)} -> arm {a.arm}")
 
+def cmd_intent(a):
+    """Intent check (v1.8): store 3 readings of the question, each with its crux; `--pick N` makes reading N the crux."""
+    cfg = load(a.run, "config.json", {})
+    if a.pick is not None:
+        r = cfg.get("readings") or sys.exit("no readings stored: run `intent R <set> --transcript ...` first")
+        cfg["crux"] = r[a.pick]["crux"]; cfg["reading"] = r[a.pick]["label"]; save(a.run, "config.json", cfg)
+        print(f"crux <- reading {a.pick} ({r[a.pick]['label']}): {cfg['crux']}"); return
+    text = read_source(a); open(path(a.run, "sets", a.set, "intent.md"), "w").write(text)
+    rs = [{"label": l.strip(), "goal": g.strip(), "crux": c.strip()}
+          for l, g, c in re.findall(r"^READING \| (.+?) \| (.+?) \| CRUX:\s*(.+)$", text, re.M)]
+    cfg["readings"] = rs; save(a.run, "config.json", cfg)
+    for k, r in enumerate(rs): print(f"[{k}] {r['label']}: {r['goal']}\n    CRUX: {r['crux']}")
+
 def cmd_futurematch(a):
     """External validity: share of literature-checked ideas whose closest work appeared after the model's knowledge
     cutoff (arXiv ids YYMM >= --after). Such ideas could not be copied, yet people later found them worth doing."""
@@ -523,6 +536,7 @@ def main():
     x.add_argument("--genius", action="store_true", help="v1.7: add the genius score G to the judge prompt")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("valorize"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--arm", required=True); src(x)
+    x = sp.add_parser("intent"); x.add_argument("run"); x.add_argument("set", nargs="?"); x.add_argument("--pick", type=int); src(x)
     x = sp.add_parser("futurematch"); x.add_argument("run"); x.add_argument("--after", default="2607", help="arXiv YYMM after the knowledge cutoff")
     x = sp.add_parser("portfolio"); x.add_argument("--slots", type=int, default=5); x.add_argument("--c", type=float, default=0.15)
     x.add_argument("--exclude", default="mechneg,symptomport,backloop,reframe,gap", help="techniques retired by selection")
@@ -549,7 +563,8 @@ def main():
     for name in ("gapwalk", "strip", "audit", "concretize"):
         x = sp.add_parser(name); x.add_argument("run"); x.add_argument("set"); src(x)
     a = p.parse_args()
-    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize", "species", "valorize"):
+    needs_src = a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize", "species", "valorize") or (a.cmd == "intent" and a.pick is None)
+    if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and needs_src:
         sys.exit("need --transcript or --file")
     globals()["cmd_" + a.cmd.replace("-", "_")](a)
 

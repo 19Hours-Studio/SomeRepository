@@ -143,6 +143,10 @@ def main():
             json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Some work https://arxiv.org/abs/2608.01234"}}, open(os.path.join(rd7, "lit.json"), "w"))
             assert "future-match 1/1" in ce("futurematch", R7)
             assert "portfolio:" in ce("portfolio")
+            open(p, "w").write("READING | alpha | deliver a | CRUX: crux a\nREADING | beta | deliver b | CRUX: crux b\nREADING | gamma | deliver c | CRUX: crux c\n")
+            assert "[2] gamma" in ce("intent", R7, "s01", "--file", p)
+            assert "crux b" in ce("intent", R7, "--pick", "1")
+            assert json.load(open(os.path.join(rd7, "config.json")))["crux"] == "crux b"
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")
