@@ -1,0 +1,60 @@
+A01
+MECHANISM: Trenches are filled with cheap biochar soaked in neutral brine and layered with metal collector meshes, storing charge on the char's huge internal surface. Electrical impedance tomography, used in intensive care to find collapsed lung regions, maps pockets of the bed that aren't charging. A pressure pulse of electrolyte tries to re-wet each dead pocket. Pockets that stay dead are disconnected and turned into insulating separators, splitting the bed into more series-connected cells and raising its working voltage.
+VALUE: Storage built from material priced like farm waste and installed with earthmoving equipment instead of factories.
+
+A02
+MECHANISM: Electric winches stretch long cords of a cheap polymer while it is warm, then cool them. The cooling locks the polymer chains in their stretched arrangement, so the cords keep their stored tension without clamps or any force holding them. The tensioned cords are wound onto reels and stacked in ordinary sheds. To get power back, a reel is warmed a little, for example with low-grade waste heat. The chains can move again and pull together with force, which drives a generator back through the same winch. The grid frequency signal sets how fast each reel is warmed, so the power released follows demand minute by minute.
+VALUE: Energy can sit for weeks in cheap stacked material with no leakage, no hazardous chemistry and no special site.
+
+A03
+MECHANISM: Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a sugar glass in which those molecules can barely move, so self-discharge and breakdown almost stop. The glass is stored in bulk like grain and redissolved for discharge. Water content and glass-transition temperature are the control settings.
+VALUE: The cheapest redox chemistries, which normally leak charge, can hold it for weeks without tanks.
+
+A04
+MECHANISM: Cheap natural smectite clays store charge as reversible iron(III) to iron(II) changes in their crystal layers, pressed into large paste electrodes. Each clay lot is tracked as a cohort, and log-rank tests on capacity-fade curves pick out lots that are failing early. Failing lots are retired and reused as soil amendment, and their mineral fingerprints change the procurement spec. Lots that last longest set the standard for future sourcing.
+VALUE: Uses a mineral that costs tens of dollars per tonne as electrode material, and continually weeds out clay sources that fade fast.
+
+A05
+MECHANISM: A solution-mined salt cavern holds a dense brine carrying a cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity separates them instead of a membrane, the cavern volume is the energy store, and both liquids circulate through contactors at the surface. The brine's cation-minus-anion gap is tracked continuously to detect charged redox molecules crossing into it. When the gap rises, a thin immiscible spacer liquid is injected at the interface, forming a new layer that traps the crossed molecules and is pumped off for cleaning.
+VALUE: Multi-week storage at gigawatt-hour scale with no membranes, no tanks and almost no container cost.
+
+A06
+MECHANISM: A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting ions. Electrode meshes lie on either side of that zone. Each layer circulates within itself, so energy capacity grows with depth at the cost of earthworks.
+VALUE: Electrochemical storage lasting for weeks needs no tanks, pumps or membranes.
+
+A07
+MECHANISM: A static, water-saturated bed of waste lignin or humic solids is charged directly by buried electrodes, reducing quinone groups with no mediator and no pumping. During some charges, heavy water is added; quinones that get reduced take up deuterium, and NMR on core samples maps which parts of the bed actually store charge. Electrodes are added to dead zones and removed or rewired from saturated ones, so the electrode network keeps adapting to how the bed really behaves.
+VALUE: Turns a nearly free paper-industry byproduct into storage that runs for weeks, with very little hardware per kWh.
+
+A08
+MECHANISM: A cheap bulk storage medium is attached to the DC link of each wind or solar plant. During calm, dark spells it discharges through the plant's own generator electronics, inverter, transformer and grid line, which are otherwise idle at those times. Charging uses the same path when output would otherwise be curtailed. The store is sized by how often the plant's hardware sits idle.
+VALUE: Storage lasting for weeks then costs little more than its storage medium, because the power hardware and grid connection are already paid for.
+
+A09
+MECHANISM: Weather forecasts trigger charging a few days before a predicted lull. The store is a membraneless pit of mixed electrolyte, read by electrodes that each react with only one reactant. It loses its charge over a couple of weeks, which is acceptable because it only has to last through the predicted lull.
+VALUE: Accepting charge loss over about two weeks allows the cheapest possible containment for storage covering whole lulls.
+
+A10
+MECHANISM: Surplus current at an electrode rearranges a cheap, small organic liquid into a cramped, high-strain shape made of the same atoms. Nothing at room temperature can push it back over the barrier to relaxing, so it stays charged for as long as it is stored. The strained liquid sits in plain steel tanks. When power is needed, it flows past a catalytic electrode surface that lowers the barrier, and as each molecule snaps back to its relaxed shape it gives up electrons to the external circuit. The liquid changes colour as it relaxes, so the charged fraction can be read optically. Only the tank volume grows with extra days of backup.
+VALUE: Weeks of reserve come down to tank space for a liquid that is reused forever and uses up no air, ore or carbon.
+
+A11
+MECHANISM: Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried current collectors. During long lulls a grid-scarcity price signal draws charge down to a set structural depletion limit, as bone gives up calcium under PTH, and surplus power replaces the charge later. Load-bearing capacity is checked continuously and sets that limit.
+VALUE: Massive storage mass whose cost is already paid by construction, so equipment that cycles only a few times a year still pays off.
+
+A12
+MECHANISM: Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing an electron-balance error: the charge passed minus the conversions of the couples it measures. A residual at a particular potential points to an unknown couple. A useful couple is split into its own stream with its own stack; a parasitic one is removed by precipitation. Over time the plant takes on the structure that its local waste chemistry supports.
+VALUE: Storage medium costs near zero because it is never purified, which is the main cost in today's flow electrolytes.
+
+A13
+MECHANISM: Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one end and oxidizes it near the other, and groundwater carries the ions. Discharge reverses this, using the same conduction the ore already shows naturally. Electrode spacing and current are tuned from measurements of the rock's own voltage (self-potential) so the charged front spreads evenly.
+VALUE: Millions of tonnes of active mass that is never mined, moved or contained, so the capacity cost is mostly drilling.
+
+A14
+MECHANISM: Gas distribution mains retired as heating goes electric are lined and filled with a harmless iron-chloride flow-battery electrolyte. This turns thousands of kilometres of existing buried pipe into a free tank network, with cell stacks at every substation. During idle hours, each valve-isolated segment is checked for volume loss and charge drift, the way water utilities find leaks from minimum night flow. Segments that leak or lose charge are automatically valved out and switched to inert fluid, and the rest are reconnected into new tank loops.
+VALUE: Multi-day storage at neighbourhood scale, where the most expensive item, the tank, is already buried and paid for.
+
+A15
+MECHANISM: Surplus current runs through large beds of layered swelling clay and drags the water out from between the mineral sheets. The water drains away, and the dry, compacted clay can sit for weeks in sealed pits with no pressure on them and nothing to leak. When power is needed, water is let back into one bed section at a time. The first water layers pushing between the sheets force them apart very hard, and that pressure drives hydraulic rams connected to a generator. A controller decides how much water each section gets, using the power price and the measured swelling, so that it only uses the high-force early part of wetting.
+VALUE: The energy is held in the pull between water and mineral sheets, so storage capacity costs about as much as digging and moving earth.
+

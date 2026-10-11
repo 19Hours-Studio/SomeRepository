@@ -187,5 +187,32 @@
   "name": "Forecast-charged leaky storage pits",
   "mech": "Weather forecasts trigger charging a few days before a predicted lull. The store is a membraneless pit of mixed electrolyte, read by electrodes that each react with only one reactant. It loses its charge over a couple of weeks, which is acceptable because it only has to last through the predicted lull.",
   "value": "Accepting charge loss over about two weeks allows the cheapest possible containment for storage covering whole lulls."
+ },
+ {
+  "id": "g1_loop#1",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Self-stratifying cavern redox cell",
+  "mech": "A solution-mined salt cavern holds a dense brine carrying a cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity separates them instead of a membrane, the cavern volume is the energy store, and both liquids circulate through contactors at the surface. The brine's cation-minus-anion gap is tracked continuously to detect charged redox molecules crossing into it. When the gap rises, a thin immiscible spacer liquid is injected at the interface, forming a new layer that traps the crossed molecules and is pumped off for cleaning.",
+  "value": "Multi-week storage at gigawatt-hour scale with no membranes, no tanks and almost no container cost."
+ },
+ {
+  "id": "g1_loop#2",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Gas-mains electrolyte reservoir",
+  "mech": "Gas distribution mains retired as heating goes electric are lined and filled with a harmless iron-chloride flow-battery electrolyte. This turns thousands of kilometres of existing buried pipe into a free tank network, with cell stacks at every substation. During idle hours, each valve-isolated segment is checked for volume loss and charge drift, the way water utilities find leaks from minimum night flow. Segments that leak or lose charge are automatically valved out and switched to inert fluid, and the rest are reconnected into new tank loops.",
+  "value": "Multi-day storage at neighbourhood scale, where the most expensive item, the tank, is already buried and paid for."
+ },
+ {
+  "id": "g1_loop#3",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Self-partitioning buried carbon capacitor",
+  "mech": "Trenches are filled with cheap biochar soaked in neutral brine and layered with metal collector meshes, storing charge on the char's huge internal surface. Electrical impedance tomography, used in intensive care to find collapsed lung regions, maps pockets of the bed that aren't charging. A pressure pulse of electrolyte tries to re-wet each dead pocket. Pockets that stay dead are disconnected and turned into insulating separators, splitting the bed into more series-connected cells and raising its working voltage.",
+  "value": "Storage built from material priced like farm waste and installed with earthmoving equipment instead of factories."
  }
 ]
