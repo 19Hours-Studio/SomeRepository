@@ -1,1 +1,662 @@
-{}
+{
+ "v17:g1_genius#3": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "MDL; explanation utility via student",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "v15:g1_core2#3": {
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "capture-recapture recall estimation in IR",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "v17:g1_core#3": {
+  "s99:F2": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "turbo decoding; extrinsic belief propagation",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "map_1#2": {
+  "s99:F2": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "TMS",
+   "closest": "Doyle truth maintenance systems",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "v17:g2_evo1#3": {
+  "s99:F2": {
+   "O": 5,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Toolformer loss filtering; proper scoring",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "v17:g1_loop#1": {
+  "s99:F2": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "data reconciliation, gross error detection",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v17:g1_neg#3": {
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mills error seeding; capture-recapture",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v15:g1_neg#3": {
+  "s99:F2": {
+   "O": 5,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "oscillator beat-frequency timing models",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "map_2#1": {
+  "s99:F2": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "complementary learning systems, replay",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "v15:g1_core#3": {
+  "s99:F2": {
+   "O": 7,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "lock-in amplifier; perturbation probing",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "v17:g2_imm#3": {
+  "s99:F2": {
+   "O": 6,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "consistency probes; Chao estimator",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v15:g1_core#1": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading; self-consistency",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "map_2#2": {
+  "s99:F2": {
+   "O": 2,
+   "C": 4,
+   "V": 7,
+   "R": "Y",
+   "B": "PROGSYN",
+   "closest": "DreamCoder; probabilistic program world models",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "map_3#3": {
+  "s99:F2": {
+   "O": 2,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "ENERGY",
+   "closest": "energy-based constraint propagation",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "v15:g1_neg#2": {
+  "s99:F2": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bennett reversible computing; i-RevNets",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "v17:g1_mech#2": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "co-training; disagreement-based learning",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v17:g2_evo2#2": {
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "data attribution; prequential MDL",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "map_1#3": {
+  "s99:F2": {
+   "O": 3,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "MODMKT",
+   "closest": "Baum's Hayek machine; agoric systems",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "v15:g1_core2#2": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic network adjustment; Baarda",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v15:g1_neg#1": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis; AI Feynman",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "v17:g1_loop#3": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "spike-recovery; zero-noise extrapolation",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v17:g1_core#2": {
+  "s99:F2": {
+   "O": 7,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Desroziers diagnostics; Kalman filtering",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "v17:g1_mech#1": {
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forecasting tournaments; prequential evaluation",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "v15:g1_loop#1": {
+  "s99:F2": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory; KG embeddings",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "v15:g1_mech#2": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "double-entry bookkeeping; entity state tracking",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "v15:g1_mech#3": {
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "test-time augmentation; metamorphic testing",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "v15:g2_evo1#2": {
+  "s99:F2": {
+   "O": 7,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory; flow conservation",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "v15:g2_evo1#1": {
+  "s99:F2": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank; geodetic blunder detection",
+   "X": "Y",
+   "G": 4
+  }
+ },
+ "v15:g2_imm#2": {
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genetic complementation test; mech interp",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "map_1#1": {
+  "s99:F2": {
+   "O": 2,
+   "C": 4,
+   "V": 7,
+   "R": "Y",
+   "B": "PROGSYN",
+   "closest": "Bayesian experimental design; DreamCoder",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "v17:g2_evo2#1": {
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "error seeding; data reconciliation",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v17:g1_genius#2": {
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "metamorphic testing; consistency regularization",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v15:g2_evo2#1": {
+  "s99:F2": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment; Baarda reliability",
+   "X": "Y",
+   "G": 4
+  }
+ },
+ "v17:g2_imm#1": {
+  "s99:F2": {
+   "O": 7,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bayesian Truth Serum; surprisingly popular",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "v17:g1_genius#1": {
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "temporal backtesting; ForecastBench",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v15:g2_evo2#2": {
+  "s99:F2": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading; HodgeRank",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "v17:g1_neg#2": {
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Dawid-Skene; Platanios unlabeled accuracy estimation",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v15:g2_imm#3": {
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "phylogenetic networks; NeighborNet",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "v17:g2_imm#2": {
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Dong copy-aware truth discovery",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v15:g1_loop#2": {
+  "s99:F2": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Wahlund effect; polysemantic neuron splitting",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "v15:g1_core2#1": {
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "ensemble Kalman inversion; localization",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "v17:g2_evo1#2": {
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "innovation whiteness; adaptive learning rates",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v15:g2_evo1#3": {
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading; knowledge editing",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "v17:g1_core#1": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Baarda network adjustment; data reconciliation",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "map_3#2": {
+  "s99:F2": {
+   "O": 2,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "CAUSGR",
+   "closest": "causal discovery; object-centric world models",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "v15:g1_mech#1": {
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional-analysis type systems",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "v15:g1_loop#3": {
+  "s99:F2": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank; cycle consistency; sheaves",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "map_3#1": {
+  "s99:F2": {
+   "O": 3,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "GRACE/MEMIT patches; CLS replay",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "map_2#3": {
+  "s99:F2": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "COMPMAP",
+   "closest": "selective prediction; abstention",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "v15:g2_imm#1": {
+  "s99:F2": {
+   "O": 8,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Schild regression; SAE feature splitting",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "v17:g2_evo1#1": {
+  "s99:F2": {
+   "O": 6,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ROME editing; likelihood-ratio testing",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "v17:g1_loop#2": {
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "capture-recapture; Dawid-Skene",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "v17:g1_neg#1": {
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "prediction markets; forecasting escrow",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "v15:g1_core#2": {
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "gene duplication (DDC); progressive nets",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "v17:g1_mech#3": {
+  "s99:F2": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "metamorphic testing",
+   "X": "Y",
+   "G": 4
+  }
+ }
+}
