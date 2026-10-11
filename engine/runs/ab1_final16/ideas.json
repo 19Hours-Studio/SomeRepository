@@ -1,0 +1,298 @@
+[
+ {
+  "id": "map_1#1",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Experimenting Causal Program Library",
+  "mech": "The system keeps a growing library of small probabilistic programs, each encoding a candidate causal mechanism (e.g., \"pressure causes leak if seal is worn\"). When several programs explain the observations equally well, it computes which intervention (real action, simulator query or tool call) would best tell them apart, runs it, and reweights or deletes programs based on the result. New programs are synthesized by recombining fragments of programs that survived, so the library compresses over time.",
+  "value": "It can discover and reliably use real cause-and-effect structure, including in situations that never appeared in its data."
+ },
+ {
+  "id": "map_1#2",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Self-Revising Provenance Belief Ledger",
+  "mech": "Every assertion the system adopts becomes a node in a persistent graph that stores its source, confidence and the nodes it was derived from. On each inference step a constraint checker scans for contradictions. Conflicts are resolved by retracting the least-supported justification, and the retraction automatically propagates to all dependent conclusions (truth maintenance). Generation is restricted to drawing on the active ledger and has to cite node IDs.",
+  "value": "It enables lifelong learning without catastrophic forgetting, with traceable reasoning and instant correction of any fact and everything derived from it."
+ },
+ {
+  "id": "map_1#3",
+  "label": "map_1",
+  "arm": "control",
+  "gen": 0,
+  "name": "Information-Priced Compute Market",
+  "mech": "Many heterogeneous modules (search, simulation, symbolic solvers, small neural nets) bid for slices of a shared compute budget. A bid is priced by the expected reduction in task uncertainty, and the payout is the realized reduction. Modules that bid well gain budget and get copied with mutations, while chronically bad bidders are retired. The architecture is therefore an evolving economy rather than a fixed graph.",
+  "value": "It makes possible adaptive, open-ended allocation of reasoning effort and self-directed architectural growth after deployment."
+ },
+ {
+  "id": "map_2#1",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Audited Sleep Consolidation",
+  "mech": "Surprising experiences go verbatim into a fast episodic buffer. During offline phases the system replays them to propose weight deltas inside a sandboxed copy of its slow network. Each delta is accepted only if a self-maintained regression suite of past skills shows no loss, and rejected deltas are stored as interference records that shape later proposals.",
+  "value": "It enables continual lifelong learning after deployment without catastrophic forgetting."
+ },
+ {
+  "id": "map_2#2",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Evolving Executable World Simulators",
+  "mech": "The system maintains a population of small probabilistic programs, each a candidate simulator of some part of the environment. Queries are answered by running or intervening on the best-scoring simulators. Prediction errors drive program-synthesis mutations, and simulators are selected by how well they compress observations and predict accurately.",
+  "value": "It gives explicit causal and counterfactual reasoning and lets the system discover new models that can be inspected."
+ },
+ {
+  "id": "map_2#3",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Verified Competence Cartography",
+  "mech": "An embedding-indexed map stores the system's ground-truth-verified error statistics for each region of problem space, updated whenever an outcome is checked. Before answering, the system looks up the query's region. It then answers, abstains, asks for information, or routes the region to the learning loop, depending on the measured reliability and the cost of being wrong.",
+  "value": "It gives reliable self-knowledge of where the system is competent, so it can abstain and direct its own learning based on its actual track record."
+ },
+ {
+  "id": "map_3#1",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Surprise-Gated Synaptic Patch Memory",
+  "mech": "When prediction error on an input crosses a learned threshold, the system writes a small key-value module next to the frozen core. The key is the context embedding and the value is a low-rank change to the core's weights. Those changes take effect only when a later context is similar to that key. During an offline phase, the system replays old episodes against the patches. It merges patches that do the same thing and deletes ones that conflict, using how often they agree as the score. Each patch keeps a count of how often it was used and how often it was confirmed, and patches that stop earning their place are removed.",
+  "value": "The system could learn permanently from a single experience without forgetting what it already knows or needing retraining."
+ },
+ {
+  "id": "map_3#2",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Falsifiable Causal World-Graph",
+  "mech": "Perception updates a running graph of objects, their attributes and typed causal links. Each link carries a probability and a count of how many times its predictions came true. Before each step the system simulates what it expects to observe, then compares that with what it actually observes. When they differ, it traces the error back through the graph to the links most to blame and revises them: it adds hidden variables, splits links or reverses their direction. It can also run interventions inside the graph to test competing explanations before acting.",
+  "value": "The system could know when its beliefs are wrong, reason about counterfactuals, and keep a consistent, inspectable model of the world over long periods."
+ },
+ {
+  "id": "map_3#3",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Verifier-Halted Constraint Relaxation",
+  "mech": "A query is turned into a set of variables, which are partial answers and sub-goals, plus constraints between them that are learned or extracted from the query. Local update rules pass messages between these units, and the system keeps iterating until either a symbolic checker or a learned checker confirms that every constraint is met, or the energy of the system stops falling. When progress stalls, the system adds intermediate variables, for example lemmas or sub-plans, and stores successful arrangements as reusable templates.",
+  "value": "The system could spend compute in proportion to how hard a problem is and solve multi-step problems it cannot solve in one pass, with a clear signal for when it has succeeded and when it has failed."
+ },
+ {
+  "id": "v15:g1_neg#1",
+  "label": "v15:g1_neg",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Learned Dimensional Analysis Types",
+  "mech": "Every internal quantity carries a vector of integer exponents over learned base \"dimensions\", like units in physics. Operations that mix incompatible dimensions are masked out. When data forces an inconsistent assignment, the system solves the integer linear system (Smith normal form) and adds a new base dimension. Predictions are made only through dimensionless groups found automatically, in the style of the Buckingham-pi theorem.",
+  "value": "Built-in sanity checks and principled extrapolation far outside the training range, because laws written in dimensionless form transfer across scales."
+ },
+ {
+  "id": "v15:g1_neg#2",
+  "label": "v15:g1_neg",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Reversible Core, Ancilla Tape",
+  "mech": "Every layer is a bijection, and any information a step would normally discard is written exactly to an ancilla tape. The tape's length measures how much was forgotten. Abduction runs the network backward: fix the desired output, edit the ancilla, and recover exactly which inputs would produce it. Unlearning removes one example's influence by un-computing its trace.",
+  "value": "Exact provenance, exact counterfactual inputs (\"what would have had to be true?\") and certified forgetting, none of which LLMs can do because they discard information at every layer."
+ },
+ {
+  "id": "v15:g1_neg#3",
+  "label": "v15:g1_neg",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Entrained Oscillator Time Sense",
+  "mech": "A bank of coupled phase oscillators (Kuramoto dynamics) runs continuously, and timestamped events phase-reset or nudge them. Concepts and routines are stored as stable phase-locking patterns between oscillators, not as static vectors. Each oscillator adapts its natural frequency to minimize phase error at event onsets, and an expectation is read out as the phase at which the next event should arrive.",
+  "value": "A real sense of duration, rhythm, deadlines and \"something is late\", including discovering hidden periodicities in event streams. Token-sequence models have no clock, so they cannot do this."
+ },
+ {
+  "id": "v15:g1_core#1",
+  "label": "v15:g1_core",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Kinetic Proofreading Reasoning Cascade",
+  "mech": "Each candidate reasoning step gets a \"binding margin\": how strongly it is re-derived when the context is re-encoded in a different way. The step then passes n sequential stages, and at each stage the context decorrelates further (paraphrase, dropout, abstraction). The chance of being discarded rises as the margin falls, and a discarded step cannot be restored. Only steps that survive all n stages are committed, so the error rate falls roughly as ε^n. The system adapts n, the compute it spends, to how much downstream work depends on the step.",
+  "value": "Long chains can be made as reliable as needed, with an explicit dial between speed and accuracy, instead of errors compounding."
+ },
+ {
+  "id": "v15:g1_core#2",
+  "label": "v15:g1_core",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Duplication-Degeneration Skill Growth",
+  "mech": "Each module stores a compact functional signature: its input-output behavior on a probe set. When the gradient from new data conflicts with that signature beyond a threshold, the module is duplicated rather than overwritten. Both copies then receive complementary sparse degeneration masks, so each loses a different subset of sub-functions while the pair together still reproduces the old signature. The new copy specializes on the new data. Copies that end up redundant are pruned.",
+  "value": "New capabilities can grow after deployment, with old ones preserved in the network's structure rather than by penalties or replay."
+ },
+ {
+  "id": "v15:g1_core#3",
+  "label": "v15:g1_core",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Lock-In Concept Extraction",
+  "mech": "To learn a new concept from a few examples, the system modulates the hypothesized feature (present or absent, at varying strength) across its inputs following a pseudo-random reference code. Per-channel integrators multiply each internal activation by the reference and low-pass the product, which pulls out the channels coherently locked to the concept even far below the noise. The locked channel set becomes a durable address for the concept. A new code then re-tests the address, and channels whose lock fades are dropped.",
+  "value": "Concepts can be isolated precisely from very few, noisy examples, with a signal-to-noise level that can be measured."
+ },
+ {
+  "id": "v15:g1_core2#1",
+  "label": "v15:g1_core2",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Assimilated Knowledge Ensemble",
+  "mech": "The system keeps about 64 copies of a \"knowledge state\", which is a subset of its parameters. Each new fact or correction is handled as a weather-style observation. The update gain comes from the copies' cross-covariance between parameters and their predictions of that fact. A learned taper limits the update to parameters close to the fact in concept space, which stops a new fact from overwriting distant ones. When the copies agree too much, they are spread apart again so the system can keep learning.",
+  "value": "The system can absorb a stream of new facts and corrections, each with a real confidence level, without retraining, and without the long-range damage that causes forgetting."
+ },
+ {
+  "id": "v15:g1_core2#2",
+  "label": "v15:g1_core2",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Survey-Adjusted Reasoning Networks",
+  "mech": "Each intermediate claim is a \"station\" that is derived along at least two independent routes, so the routes form closed loops. Each loop has a computed mismatch (misclosure). A least-squares adjustment spreads small mismatches across the loop, and Baarda's w-test singles out the one derivation step that is a blunder. Each claim gets a redundancy number. Any claim with a value near zero is unchecked, so the planner deliberately adds a new route to it before answering.",
+  "value": "Long chains of reasoning check themselves. The system can say which step is wrong and which conclusions nothing has verified yet."
+ },
+ {
+  "id": "v15:g1_core2#3",
+  "label": "v15:g1_core2",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Capture-Recapture Ignorance Estimator",
+  "mech": "For a given query, the system runs several retrieval or generation passes that are deliberately independent, each using different cues, sources or decompositions. It records which candidate facts or solutions each pass \"captures\". From the overlaps it computes Chao or Lincoln-Petersen estimates of how many relevant items are still missing, adjusting for the fact that some items are easier to capture than others. It keeps sampling until the estimated unseen share falls below a set threshold, and its answer states how complete it is.",
+  "value": "The system can say \"I have probably found 90% of the relevant cases\" and know when to stop searching."
+ },
+ {
+  "id": "v15:g1_mech#1",
+  "label": "v15:g1_mech",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Dimensional Exponent Tagging",
+  "mech": "Every internal quantity carries, alongside its real-valued vector, a short integer vector of exponents over a learned set of base \"kinds\" (like length, time, count, agent). When two quantities are multiplied or divided, their exponent vectors add or subtract. When they are added or compared, the exponents must match, and any mismatch produces an imbalance residual. That residual is the learning signal. Persistent mismatches over many examples cause a new base kind or a conversion constant to be created, and kinds that never constrain anything are merged away.",
+  "value": "Reasoning steps that make no physical or logical sense get rejected because their kinds don't match, and the system can extrapolate to unseen magnitudes by scaling rules instead of memorized examples."
+ },
+ {
+  "id": "v15:g1_mech#2",
+  "label": "v15:g1_mech",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Double-Entry Conservation Ledger",
+  "mech": "Each state change described in the input or produced during reasoning is written as a transfer: one amount debited from one holder and credited to another, across a learned set of conserved quantities (objects, money, people, information). After every step, the totals for each quantity are summed, and they must balance. A nonzero imbalance is the training signal. If the imbalance persists, the system creates a new hidden holder to absorb it and keeps that holder only if it later balances other transfers. Quantities whose totals never actually stay constant get demoted from the conserved set.",
+  "value": "The system can track the state of the world exactly over very long sequences, and it can infer unmentioned participants or leaks from bookkeeping gaps."
+ },
+ {
+  "id": "v15:g1_mech#3",
+  "label": "v15:g1_mech",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Self-Discovered Symmetry Harvesting",
+  "mech": "The system keeps a growing pool of candidate input transformations, built by composing primitive edits: relabel, permute, reflect, rescale, swap roles. At inference it answers both the original input and several transformed copies, maps each answer back through the inverse transformation, and measures how much the answers disagree. A transformation's score rises when answers agree on cases that were verified correct, and it falls when they diverge. High-scoring transformations are kept and used both to vote at inference and to enlarge the training data. Low scorers are discarded, and recombinations of kept ones are proposed as new candidates.",
+  "value": "The system finds on its own which changes to an input must not change the answer, which gives it structured generalization far outside its training distribution."
+ },
+ {
+  "id": "v15:g1_loop#1",
+  "label": "v15:g1_loop",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Rigidity-Counted Concept Frameworks",
+  "mech": "Concepts are stored as points in an embedding space, and each learned fact is a constraint between points (distance, angle or relation). The system keeps computing the rigidity matrix of this framework. Its null space gives \"floppy modes\", directions in which a concept can move without breaking any known fact, so the concept is underdetermined. Each floppy mode creates a bracing latent variable or a targeted query along that direction. Each state of self-stress (constraints that are redundant and in conflict) splits the stressed concept into two nodes, so that each one meets a consistent subset of the constraints.",
+  "value": "The system can tell, from the geometry alone, exactly which parts of its knowledge are underdetermined or overconstrained, and it repairs each part structurally."
+ },
+ {
+  "id": "v15:g1_loop#2",
+  "label": "v15:g1_loop",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Wahlund Splitting of Representations",
+  "mech": "Each internal unit's discretized activation states are treated as alleles, and pairs of co-occurring contexts are treated as diploid genotypes. A running Hardy–Weinberg test compares how often mixed (\"heterozygous\") pairs actually occur with how often they would occur in one homogeneous population. A significant heterozygote deficit is the Wahlund signature that the unit merges hidden subpopulations. In that case the unit is split into typed children, and the F-statistics between those children decide the routing. Children that later come back into equilibrium with each other are merged again.",
+  "value": "The model breaks apart conflated concepts while it runs, using an online statistical test instead of an analysis done after the fact."
+ },
+ {
+  "id": "v15:g1_loop#3",
+  "label": "v15:g1_loop",
+  "arm": "v15",
+  "gen": 1,
+  "name": "Misclosure-Driven Context Charts",
+  "mech": "Learned transformations (analogies, translations, coordinate maps) are composed around closed cycles, and each cycle's misclosure is recorded the way a surveyor records a traverse error. A Hodge decomposition of these residuals over the cycle complex leads to three repairs. The gradient part goes back into local map corrections. The curl part localizes and deletes or rewires the specific inconsistent edges. The harmonic part shows a real topological hole, and it creates a new context variable that divides the domain into separate charts with explicit transition maps.",
+  "value": "The system can find out that its knowledge needs several context-dependent frames, and build them, instead of averaging contradictory regularities into one incoherent map."
+ },
+ {
+  "id": "v15:g2_imm#1",
+  "label": "v15:g2_imm",
+  "arm": "v15",
+  "gen": 2,
+  "name": "Schild-Slope Feature Splitting",
+  "mech": "For pairs of cues that compete over an internal feature, the system measures dose-response shifts, meaning how much more of cue A is needed as cue B increases, and fits a Schild slope. A slope of 1 confirms that one mechanism mediates both cues. If the slope differs from 1, the feature is split into two sites, each with its own learned gate. The slopes are stored per feature, and they are re-tested whenever new competing cues show up. First test: In a toy model with planted features (some single-mechanism, some secretly two superposed mechanisms), titrate competing cue pairs and fit Schild slopes on feature activation; success is ≥85% correct single-versus-composite classification (single-mechanism slopes within 0.9–1.1) and better causal-ablation faithfulness after splitting.",
+  "value": "Features that are secretly several mechanisms get found and separated by a quantitative invariant, so the model's internals become more faithful and reasoning that combines cues becomes more reliable.",
+  "mech_orig": "For pairs of cues that compete over an internal feature, the system measures dose-response shifts, meaning how much more of cue A is needed as cue B increases, and fits a Schild slope. A slope of 1 confirms that one mechanism mediates both cues. If the slope differs from 1, the feature is split into two sites, each with its own learned gate. The slopes are stored per feature, and they are re-tested whenever new competing cues show up."
+ },
+ {
+  "id": "v15:g2_imm#2",
+  "label": "v15:g2_imm",
+  "arm": "v15",
+  "gen": 2,
+  "name": "Complementation-Group Remodularization",
+  "mech": "When a behavior fails, the system creates small parameter lesions that reproduce the failure. Pairs of lesions are \"crossed\" by mixing activations from the two lesioned copies. If the mix restores the behavior, the lesions sit in different functional units. If it doesn't, they sit in the same one. The groups found this way define module boundaries, and parameters are re-partitioned and re-routed to match. A map of the groups is stored and updated as new failures appear. First test: On a small transformer trained with planted, block-sparse modules for four synthetic subtasks, generate failure-reproducing lesions, cross pairs via activation mixing, and cluster; success is adjusted Rand index ≥0.7 against planted modules, exceeding activation-correlation clustering.",
+  "value": "The module structure comes from functional evidence, not from a design chosen in advance, so fixes, transfer and growth stay local to the unit that is actually responsible.",
+  "mech_orig": "When a behavior fails, the system creates small parameter lesions that reproduce the failure. Pairs of lesions are \"crossed\" by mixing activations from the two lesioned copies. If the mix restores the behavior, the lesions sit in different functional units. If it doesn't, they sit in the same one. The groups found this way define module boundaries, and parameters are re-partitioned and re-routed to match. A map of the groups is stored and updated as new failures appear."
+ },
+ {
+  "id": "v15:g2_imm#3",
+  "label": "v15:g2_imm",
+  "arm": "v15",
+  "gen": 2,
+  "name": "Four-Point Reticulate Concept Hierarchy",
+  "mech": "The system continuously runs the four-point condition on embedding distances among concepts in its taxonomy. Quartets that violate it point to hybrid concepts, and those concepts are re-typed as reticulation nodes with two weighted parent lineages. Properties are then inherited from both parents. The violation magnitudes are stored, and edges are reweighted as evidence accumulates. First test: Using WordNet/Wiktionary-etymology concepts with ~200 labeled hybrids (loanword blends, hybrid species, fusion genres) and matched non-hybrids, compute four-point-condition violations on off-the-shelf embedding distances; success is AUROC ≥0.75 for flagging hybrids and higher property-prediction accuracy than single-parent tree inheritance.",
+  "value": "The system can represent and reason about concepts that blend lineages, such as loanwords, hybrid organisms or mixed genres, which strictly tree-shaped hierarchies get wrong.",
+  "mech_orig": "The system continuously runs the four-point condition on embedding distances among concepts in its taxonomy. Quartets that violate it point to hybrid concepts, and those concepts are re-typed as reticulation nodes with two weighted parent lineages. Properties are then inherited from both parents. The violation magnitudes are stored, and edges are reweighted as evidence accumulates."
+ },
+ {
+  "id": "v15:g2_evo1#1",
+  "label": "v15:g2_evo1",
+  "arm": "v15",
+  "gen": 2,
+  "name": "Hole-Filling Derivation Probes",
+  "mech": "Claims are nodes, and derivations are edges that carry transformations; whatever error is left after going round a loop is that loop's misclosure. When the Hodge split finds a harmonic residual, the system doesn't accept it as a real gap straight away. First it builds bridging derivations across the gap, choosing them with Baarda's minimal-detectable-bias so that each new derivation best tells the possible explanations apart. If the new pieces bring the error back to zero, it was a mistake, and the w-test finds the bad step. If the error survives every bridge, the system creates a new context variable that splits the claims into separate frames. First test: Build 300 synthetic claim graphs of unit-conversion derivations whose loops misclose either from one injected wrong step or from a hidden two-frame split (two exchange-rate regimes); success is ≥85% correct mistake-versus-frame verdicts with correct step localization, beating treating every harmonic residual as a gap.",
+  "value": "The system can tell a mistake in its own reasoning apart from a real need for separate frames, and it finds out by running its own test.",
+  "mech_orig": "Claims are nodes, and derivations are edges that carry transformations; whatever error is left after going round a loop is that loop's misclosure. When the Hodge split finds a harmonic residual, the system doesn't accept it as a real gap straight away. First it builds bridging derivations across the gap, choosing them with Baarda's minimal-detectable-bias so that each new derivation best tells the possible explanations apart. If the new pieces bring the error back to zero, it was a mistake, and the w-test finds the bad step. If the error survives every bridge, the system creates a new context variable that splits the claims into separate frames."
+ },
+ {
+  "id": "v15:g2_evo1#2",
+  "label": "v15:g2_evo1",
+  "arm": "v15",
+  "gen": 2,
+  "name": "Stress-Space Bookkeeping",
+  "mech": "Holders are learned points, and each transfer is a bar between two of them. A balanced set of transfers is an equilibrium stress, so a quantity counts as conserved only while its transfers stay in that stress space. An imbalance that won't go away is treated as a load on the framework. The system adds a hidden holder at the position where the loose directions (floppy modes) can absorb that load. Where stresses conflict, the holder splits in two. First test: On synthetic ledger worlds with 10–30 holders where 1–3 holders are removed from the transfer log, fit the bar-framework stress model; success is ≥80% recovery of hidden-holder count and their transfer partners, beating a per-holder imbalance-threshold baseline.",
+  "value": "The system can keep exact track of world state, and the geometry shows where unknown participants must be and which quantities are not really conserved.",
+  "mech_orig": "Holders are learned points, and each transfer is a bar between two of them. A balanced set of transfers is an equilibrium stress, so a quantity counts as conserved only while its transfers stay in that stress space. An imbalance that won't go away is treated as a load on the framework. The system adds a hidden holder at the position where the loose directions (floppy modes) can absorb that load. Where stresses conflict, the holder splits in two."
+ },
+ {
+  "id": "v15:g2_evo1#3",
+  "label": "v15:g2_evo1",
+  "arm": "v15",
+  "gen": 2,
+  "name": "Delayed Proofreading Assimilation",
+  "mech": "A new fact first goes into a queue. At each stage it is checked against a different, separate subset of the roughly 64 ensemble members, and only after other facts have been absorbed in between. Agreement between those members gives the fact's binding margin, and a fact rejected at any stage is gone for good. The number of stages grows with how much of the model the update would change. Facts that pass more stages get smaller observation noise, so the update counts them more. First test: Stream 1,000 factual updates (half correct, half deliberately false with broad downstream reach) from zsRE into a 64-member LoRA ensemble with staged disjoint-subset gating; success is ≥80% false-fact rejection at ≥90% true-fact acceptance, beating single-stage ensemble voting on neighborhood accuracy.",
+  "value": "The system can keep learning from a stream of new facts, and wrong facts that would cause broad damage are stopped before they get in.",
+  "mech_orig": "A new fact first goes into a queue. At each stage it is checked against a different, separate subset of the roughly 64 ensemble members, and only after other facts have been absorbed in between. Agreement between those members gives the fact's binding margin, and a fact rejected at any stage is gone for good. The number of stages grows with how much of the model the update would change. Facts that pass more stages get smaller observation noise, so the update counts them more."
+ },
+ {
+  "id": "v15:g2_evo2#1",
+  "label": "v15:g2_evo2",
+  "arm": "v15",
+  "gen": 2,
+  "name": "Self-Calibrating Ledger Adjustment",
+  "mech": "Every double-entry balance identity is treated as a surveying condition equation. A least-squares adjustment runs over all transfers, and Baarda w-tests compare two kinds of explanation: \"a blunder in step k\" (a residual pattern local to one step) and \"an unseen holder h\" (one systematic pattern shared across many balance loops). Hidden holders are added the way self-calibration adds parameters: only when they pass a significance test and lower the minimal detectable bias of other claims. Variance-component estimation learns a reliability weight for each quantity, which continuously demotes a quantity toward \"approximately conserved\". Redundancy numbers point the planner to the claims nothing checks yet, and it then asks for or derives the one extra count that would close a loop around them. First test: Generate 500 synthetic multi-step transfer stories (bAbI-style ledgers) with one injected arithmetic blunder or one omitted holder each; run the adjustment with w-tests; success is ≥85% correct blunder-versus-holder classification and step localization, beating a largest-residual baseline by ≥15 points.",
+  "value": "The system can track world state over very long texts and say which step is wrong or which unmentioned participant must exist, with a stated confidence in each verdict.",
+  "mech_orig": "Every double-entry balance identity is treated as a surveying condition equation. A least-squares adjustment runs over all transfers, and Baarda w-tests compare two kinds of explanation: \"a blunder in step k\" (a residual pattern local to one step) and \"an unseen holder h\" (one systematic pattern shared across many balance loops). Hidden holders are added the way self-calibration adds parameters: only when they pass a significance test and lower the minimal detectable bias of other claims. Variance-component estimation learns a reliability weight for each quantity, which continuously demotes a quantity toward \"approximately conserved\". Redundancy numbers point the planner to the claims nothing checks yet, and it then asks for or derives the one extra count that would close a loop around them."
+ },
+ {
+  "id": "v15:g2_evo2#2",
+  "label": "v15:g2_evo2",
+  "arm": "v15",
+  "gen": 2,
+  "name": "Hodge-Sorted Chart Proofreading",
+  "mech": "Each proofreading stage re-encodes the context with a learned map (paraphrase, abstraction, dropout). A step's binding margins across these encodings therefore form edge flows on a cycle complex, and a Hodge decomposition splits them into three parts. The gradient part is encoder bias: correct the map and keep the step. The curl part is real fragility: discard the step irreversibly. The harmonic part means the step holds only in some contexts: commit it locally to a new chart, with an explicit context variable and a transition map. Later steps that cross chart boundaries face extra proofreading stages, scaled to the misclosure of the transition map they cross. A new chart is kept only if steps committed in it survive this proofreading. First test: On 500 GSM8K chains plus 200 synthetic problems whose steps hold only under one of two stated rule sets, score steps under four re-encodings and Hodge-split the margins; success is lower final-answer error than majority-vote proofreading while retaining ≥90% of context-conditional true steps.",
+  "value": "Error rates in long reasoning drop exponentially without discarding conclusions that are true only in some contexts, and the system learns where its knowledge splits into separate frames.",
+  "mech_orig": "Each proofreading stage re-encodes the context with a learned map (paraphrase, abstraction, dropout). A step's binding margins across these encodings therefore form edge flows on a cycle complex, and a Hodge decomposition splits them into three parts. The gradient part is encoder bias: correct the map and keep the step. The curl part is real fragility: discard the step irreversibly. The harmonic part means the step holds only in some contexts: commit it locally to a new chart, with an explicit context variable and a transition map. Later steps that cross chart boundaries face extra proofreading stages, scaled to the misclosure of the transition map they cross. A new chart is kept only if steps committed in it survive this proofreading."
+ }
+]

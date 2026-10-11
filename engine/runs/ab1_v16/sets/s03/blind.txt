@@ -1,0 +1,32 @@
+K01
+MECHANISM: Background walks count the routes to each conclusion, but routes are independent only if they rest on disjoint instrument lineages. When a conclusion is reached by many routes but relies on few instruments, the system writes and deploys a new probe (code hook, sensor setup, assay, query) designed to give a disjoint derivation path. Primitives are frozen only once they span ≥3 instruments. They store their instrument support and dissolve when a channel they depend on is pruned. Robust primitives are promoted into virtual input channels.
+VALUE: Without any external labels, it builds abstractions that are confirmed by independent measurement, and it designs its own instruments to check what it believes.
+
+K02
+MECHANISM: A background process fits small Lie-algebra generators (infinitesimal transformations) to the system's own learned input-output dynamics and keeps those under which predictions stay unchanged. For each symmetry that survives, it derives the matching conserved quantity, stores it as a named variable, and enforces it as a hard projection on every later output. When new data breaks a conserved quantity, the system demotes that symmetry and searches for a narrower one that still holds.
+VALUE: Lets the system extrapolate far outside its training distribution by reasoning from discovered conservation laws instead of memorized patterns.
+
+K03
+MECHANISM: Swap tests on logged operation sequences split the system into commuting threads. Each thread publishes its own salted hash of its quantized beliefs before evidence arrives. After the reveal, a verifier flags any thread whose beliefs moved on evidence routed to a different thread, then re-runs commutation tests on that pair. If the pair does not commute, the threads are fused and the shift is legitimized. If it does commute, the shift is penalized as rationalization. The module map and the honesty training thus revise each other.
+VALUE: Third parties can verify that evidence about one part of the world changed only the beliefs it should have, and the system's modular decomposition becomes auditable and self-correcting.
+
+K04
+MECHANISM: Provenance links every weight update to the user cohorts whose interactions it touched. Cohort adverse-event rates (corrections, re-asks, abandonments) become redundant meters in a weighted least-squares estimate of each update's harm coefficient. The largest normalized residual above 3 is attributed either to an update, which is scaled back in proportion to its estimated harm, or to a reporter cohort, which is re-typed as suspect and down-weighted. The system then re-estimates until all residuals pass.
+VALUE: A continually learning model can roll back genuinely bad lessons while staying robust to coordinated or corrupt feedback that tries to trigger false rollbacks.
+
+K05
+MECHANISM: Before each background walk derives from a random fact partition, it publishes a salted hash of its forecast endpoint to an append-only log. The walk then reveals the forecast once it finishes. A conclusion's tally counts only confirmations of forecasts that were sealed by walks drawing on disjoint partitions, and passing the threshold freezes the conclusion into a primitive. A verifier dissolves primitives whose use correlates with forecast departures beyond what the evidence justifies.
+VALUE: Abstractions can grow without outside labels yet stay auditably free of self-confirming circular support.
+
+K06
+MECHANISM: The system logs experience as operation sequences and tests adjacent swaps. When a pair's commutation can't be decided from current inputs, it designs a probe (hook, query, sensor setting) that observes the intermediate state, and attaches the probe as a typed channel. Deployed probes are themselves logged as operations. A probe that fails to commute with what it observes is marked invasive and fused with that process, while non-invasive probes stay as free parallel channels. A channel is pruned when removing it leaves every commutation verdict unchanged.
+VALUE: The system builds its own perception around the world's independence structure and knows which of its measurements disturb what they measure.
+
+K07
+MECHANISM: Hidden states are trained to lie on codewords of a learned algebraic error-correcting code that has redundant parity components. At every layer the system computes the syndrome, a check value that is nonzero when the state is not a valid codeword. A nonzero syndrome locates the corrupted components, which are corrected by decoding before computation continues. Syndrome statistics are logged per layer and per topic to learn where errors originate.
+VALUE: Lets the system detect and repair its own internal errors, such as confabulated facts or drifting chains of reasoning, during computation, before they reach the output.
+
+K08
+MECHANISM: For each concept, the system repeatedly searches for the smallest set of examples that teaches the concept to a freshly initialized small student network up to a set accuracy. The size of this set, the concept's teaching dimension, is stored as the measure of understanding. Concepts with large or unstable teaching sets are marked shallow and are rebuilt or split until a compact teaching set exists.
+VALUE: Gives the system an operational, self-checkable sense of what it really understands, and lets it explain any concept to a human or another agent through a few well-chosen examples.
+
