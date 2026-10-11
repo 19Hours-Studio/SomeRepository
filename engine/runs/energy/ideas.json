@@ -160,5 +160,32 @@
   "name": "Survival-screened iron-clay electrodes",
   "mech": "Cheap natural smectite clays store charge as reversible iron(III) to iron(II) changes in their crystal layers, pressed into large paste electrodes. Each clay lot is tracked as a cohort, and log-rank tests on capacity-fade curves pick out lots that are failing early. Failing lots are retired and reused as soil amendment, and their mineral fingerprints change the procurement spec. Lots that last longest set the standard for future sourcing.",
   "value": "Uses a mineral that costs tens of dollars per tonne as electrode material, and continually weeds out clay sources that fade fast."
+ },
+ {
+  "id": "g1_genius#1",
+  "label": "g1_genius",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Lull-idle converters do discharge",
+  "mech": "A cheap bulk storage medium is attached to the DC link of each wind or solar plant. During calm, dark spells it discharges through the plant's own generator electronics, inverter, transformer and grid line, which are otherwise idle at those times. Charging uses the same path when output would otherwise be curtailed. The store is sized by how often the plant's hardware sits idle.",
+  "value": "Storage lasting for weeks then costs little more than its storage medium, because the power hardware and grid connection are already paid for."
+ },
+ {
+  "id": "g1_genius#2",
+  "label": "g1_genius",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Density-stratified pond battery",
+  "mech": "A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting ions. Electrode meshes lie on either side of that zone. Each layer circulates within itself, so energy capacity grows with depth at the cost of earthworks.",
+  "value": "Electrochemical storage lasting for weeks needs no tanks, pumps or membranes."
+ },
+ {
+  "id": "g1_genius#3",
+  "label": "g1_genius",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Forecast-charged leaky storage pits",
+  "mech": "Weather forecasts trigger charging a few days before a predicted lull. The store is a membraneless pit of mixed electrolyte, read by electrodes that each react with only one reactant. It loses its charge over a couple of weeks, which is acceptable because it only has to last through the predicted lull.",
+  "value": "Accepting charge loss over about two weeks allows the cheapest possible containment for storage covering whole lulls."
  }
 ]
