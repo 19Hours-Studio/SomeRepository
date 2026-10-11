@@ -124,6 +124,19 @@ def main():
             assert "4/4" in ce("judge", R7, "s01", "J1", "--file", p)
             sys.path.insert(0, HERE); import ce as cem7
             assert cem7.agg(R7, "g1_x#1")["crux"] == 1.0 and cem7.agg(R7, "g1_x#3")["G"] == 9
+            ce("set", R7, "s02f", "--labels", "g1_x", "--prefix", "A", "--genius", "--feasible"); k2 = json.load(open(os.path.join(rd7, "sets", "s02f", "key.json")))
+            assert "ID | O | C | V | G | F | R | BASIN | closest" in open(os.path.join(rd7, "sets", "s02f", "prompt_judge.txt")).read()
+            open(p, "w").write("SCORES\n" + "\n".join(f"{sid} | 6 | 5 | 5 | 7 | 2 | N | NEW | x" for sid in k2))
+            assert "4/4" in ce("judge", R7, "s02f", "J9", "--file", p)
+            j9 = json.load(open(os.path.join(rd7, "scores.json")))["g1_x#1"]["s02f:J9"]; assert j9["G"] == 7 and j9["F"] == 2, j9
+            ce("set", R7, "s03f", "--labels", "g1_x", "--prefix", "A", "--feasible"); k3 = json.load(open(os.path.join(rd7, "sets", "s03f", "key.json")))
+            assert "ID | O | C | V | F | R | BASIN | closest" in open(os.path.join(rd7, "sets", "s03f", "prompt_judge.txt")).read()
+            open(p, "w").write("SCORES\n" + "\n".join(f"{sid} | 6 | 5 | 5 | 3 | N | NEW | x" for sid in k3))
+            assert "4/4" in ce("judge", R7, "s03f", "J9", "--file", p)
+            j9 = json.load(open(os.path.join(rd7, "scores.json")))["g1_x#1"]["s03f:J9"]; assert j9["F"] == 3 and "G" not in j9, j9
+            sc7 = json.load(open(os.path.join(rd7, "scores.json")))  # keep later selection on the s01 scores
+            for v in sc7.values(): v.pop("s02f:J9", None); v.pop("s03f:J9", None)
+            json.dump(sc7, open(os.path.join(rd7, "scores.json"), "w"))
             ce("select", R7, "g1", "--k", "4", "--diverse", "--by", "ovg")
             surv7 = json.load(open(os.path.join(rd7, "survivors_g1.json")))
             assert "g1_x#4" not in surv7 and len(surv7) == 2, surv7  # fragment dropped, near-duplicates share one slot

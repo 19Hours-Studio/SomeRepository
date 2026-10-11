@@ -55,6 +55,10 @@ def read_source(a):
 GENIUS_RUBRIC = ("- G = genius 1-10: 10 = one simple central move that makes the hard part of the question easy or dissolves it, "
                  "surprising to experts yet obvious once seen, with consequences far beyond the question; 5 = clever but complicated, "
                  "partial or built around the hard part; 1 = a pile of machinery or a re-skin. Be harsh: most answers should be <=4.")
+FEASIBLE_RUBRIC = ("- F = feasibility 1-10: do a quick order-of-magnitude check of the ONE quantity that decides whether it works "
+                   "at the scale it claims (useful rate per area or volume under the allowed loss, leak against useful rate, stress the "
+                   "containment must carry, energy or information per unit of material, cost of the dominating part); 10 = the numbers "
+                   "clearly work; 5 = off by about 3-10x but fixable; 1 = off by orders of magnitude. Judge the physics, not the tone.")
 FRAG = re.compile(r"\b(?:idea|answer|offspring)\s*#?\s*\d\b|\b(?:as|see) above\b|\bthe above\b|\bprevious (?:idea|answer)\b", re.I)
 
 def parse_ideas(text):
@@ -158,7 +162,11 @@ def cmd_set(a):
         if kind == "judge" and getattr(a, "genius", False):
             s = s.replace("- R = ", GENIUS_RUBRIC + "\n- R = ")
             s = s.replace("ID | O | C | V | R | BASIN", "ID | O | C | V | G | R | BASIN")
+        if kind == "judge" and getattr(a, "feasible", False):
+            s = s.replace("- R = ", FEASIBLE_RUBRIC + "\n- R = ")
+            s = re.sub(r"(ID \| O \| C \| V(?: \| G)?)", r"\1 | F", s, count=1)
         open(os.path.join(d, f"prompt_{kind}.txt"), "w").write(s)
+    json.dump([c for c, f in (("G", "genius"), ("F", "feasible")) if getattr(a, f, False)], open(os.path.join(d, "extra_cols.json"), "w"))
     print(f"set {a.set}: {len(items)} items -> {d}/blind.txt (+ prompt_judge/family/lit.txt)")
 
 def setkey(run, s): return json.load(open(path(run, "sets", s, "key.json")))
@@ -185,10 +193,12 @@ def cmd_judge(a):
     text = read_source(a); key = setkey(a.run, a.set)
     open(path(a.run, "sets", a.set, f"judge_{a.judge}.md"), "w").write(text)
     sc = load(a.run, "scores.json", {}); n = 0
-    for sid, o, c, v, g, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| (?:(\d+) \| )?([YN]) \| ([A-Z0-9_]+) \| (?:([YN]) \| )?(.+)$", text, re.M):
+    xf = path(a.run, "sets", a.set, "extra_cols.json"); cols = json.load(open(xf)) if os.path.exists(xf) else ["G"]
+    for sid, o, c, v, e1, e2, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| (?:(\d+) \| )?(?:(\d+) \| )?([YN]) \| ([A-Z0-9_]+) \| (?:([YN]) \| )?(.+)$", text, re.M):
         if sid not in key: continue
+        extra = {k: int(e) for k, e in zip(cols, [e for e in (e1, e2) if e])}
         sc.setdefault(key[sid], {})[f"{a.set}:{a.judge}"] = {"O": int(o), "C": int(c), "V": int(v), "R": r, "B": b, "closest": cl.strip(),
-                                                           **({"X": x} if x else {}), **({"G": int(g)} if g else {})}
+                                                           **({"X": x} if x else {}), **extra}
         n += 1
     save(a.run, "scores.json", sc); print(f"judge {a.judge} on {a.set}: {n}/{len(key)} parsed")
     if n < len(key): print("WARNING: missing lines — check sets/" + a.set + f"/judge_{a.judge}.md")
@@ -543,6 +553,7 @@ def main():
     x.add_argument("--basin-sources", help="e.g. observed,predicted — exclude visited families from judge prompts (fair final comparison)")
     x.add_argument("--crux", action="store_true", help="v1.7: add the crux column X to the judge prompt")
     x.add_argument("--genius", action="store_true", help="v1.7: add the genius score G to the judge prompt")
+    x.add_argument("--feasible", action="store_true", help="v1.9: add the feasibility score F (order-of-magnitude check) to the judge prompt")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("valorize"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--arm", required=True); src(x)
     x = sp.add_parser("intent"); x.add_argument("run"); x.add_argument("set", nargs="?"); x.add_argument("--pick", help="reading number, or auto"); src(x)
