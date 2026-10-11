@@ -85,5 +85,133 @@
   "desc": "Neurosymbolic coupling: the model emits programs/tool calls executed by an interpreter, solver or verifier, so exact computation and search are offloaded from weights",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V13",
+  "desc": "Typed Relational State Machine — Next to a small transformer, the model keeps an explicit per-context graph of at most 64 entity slots, each with a typed attribute vector, plus a sparse relatio",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V14",
+  "desc": "Counterfactually Factorized Hidden State — The residual stream is split into named subspaces such as tense, number, speaker, topic, numeric value and polarity. Training adds interchange-intervention loss",
+  "source": "visited",
+  "members": [
+   "g1_neg#2"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Bidirectional Joint-Likelihood Consistency — One shared network is trained to factorise each sequence both left-to-right and right-to-left, with a learned direction embedding selecting the order. A consist",
+  "source": "visited",
+  "members": [
+   "g1_neg#3"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "LDPC-Coded Fact Memory — Facts are stored as sparse binary words (8192 bits, 64 active). Together they form the null space of a large sparse constraint graph held in host RAM (10-20 GB ",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Incremental-Smoothing Weight Estimation — Weight blocks (heads, FFN slabs) are treated as SLAM variables. Each batch adds a linearized factor (Kronecker-factored information plus residual) to a sparse s",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Helmert-Blocked Closed-Form Training — A briefly trained 120M trunk is frozen, and above it sits a head of 4096 cells, each a 512×256 linear map. Each token is routed to one cell by k-means on the tr",
+  "source": "visited",
+  "members": [
+   "g1_core2#1"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Motion-Compensated KV Coding — The context is split into 64-token chunks grouped into GOPs. I-chunks keep their full fp16 K/V. Each P-chunk stores, per head, a motion vector (a reference chun",
+  "source": "visited",
+  "members": [
+   "g1_core2#2"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Merit-Order Compute Dispatch — Three units share one tokenizer: a 200M student (baseload), a 1.5B open model (mid-merit) and a 4-bit 8B open model (peaker). A 5M forecaster reads the student'",
+  "source": "visited",
+  "members": [
+   "g1_core2#3"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Seed-Regrown Weight Blocks — Each large weight matrix is never stored. It is rebuilt on the chip, block by block, as a weighted sum of K pseudorandom matrices, each fully determined by a 32",
+  "source": "visited",
+  "members": [
+   "g1_mech#1"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Reducibility-Priced Text Diet — Before training, a frozen 4-bit open-weight model makes one pass over the corpus and stores one number per 512-piece span in RAM: its own prediction error, in b",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Backward-Recovery Self-Audit — One shared stack of layers feeds two readouts: one predicts the next piece left to right, and the other predicts the previous piece right to left. They are trai",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Wahlund-Split Factorized Decoder — The 64k vocabulary is arranged as a 256×256 grid. A ~150M local-context network predicts the row and column codes independently, conditioned on a deme chosen by",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Granger-Wired Lag Heads — The base model attends only within a 256-token window, so it is fast and small. Periodically the CPU runs Granger F-tests on logged batches. For each pair of hi",
+  "source": "visited",
+  "members": [
+   "g1_loop#2"
+  ]
+ },
+ {
+  "code": "V26",
+  "desc": "Misclosure-Retyped Relation Algebra — Attention scores are computed as q_iᵀ R_c k_j. Here c is a relation type chosen by Gumbel-softmax from a codebook of 64 small orthogonal block matrices. During ",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
+ },
+ {
+  "code": "V27",
+  "desc": "Closure-Merged Rewrite Algebra — The stored objects are edit operators: span-level rewrite transforms taken from aligned sentence pairs, such as a tense change, a negation or swapping roles. Th",
+  "source": "visited",
+  "members": [
+   "g1_mechneg#2"
+  ]
+ },
+ {
+  "code": "V28",
+  "desc": "Phase-Locked Entity Binding — Each entity and attribute mentioned in a long document gets a complex-valued oscillator, with up to millions of them in VRAM. Links found by a frozen small pars",
+  "source": "visited",
+  "members": [
+   "g1_mechneg#3"
+  ]
  }
 ]
