@@ -1,5 +1,23 @@
 {
  "question": "How could storing electricity for days to weeks become ten times cheaper than today, so that wind and solar can run a whole grid through long calm, dark spells? Propose fundamentally new mechanisms or system designs - not incremental improvements of existing battery chemistries.",
  "format": "value",
- "n": 3
+ "n": 3,
+ "readings": [
+  {
+   "label": "Cheaper hardware per delivered kWh",
+   "goal": "A storage device whose total cost (energy store plus charge and discharge conversion plus round-trip losses) per kWh actually delivered over a few cycles a year is ten times lower than today's.",
+   "crux": "The answers make the bulk medium nearly free (ore heaps, salt ponds, iron piles, quicklime, gas fields) but assume the power-conversion side (membrane and electrochemical stacks, reversible SOCs, iron combustors, CO2 turbines) is cheap and efficient, when at a handful of cycles a year that converter capex and 30-60% round-trip loss dominate the cost."
+  },
+  {
+   "label": "Firm grid through dunkelflaute economics",
+   "goal": "A system and market design where keeping a wind and solar grid reliable through rare multi-week lulls costs ten times less, whether by storage, flexible demand or some mix.",
+   "crux": "The answers rely on assets that sit idle or under-used most years (overbuilt factories, stacks used once a season) and wave at \"contracts\" or \"markets\" to pay for them, without solving who funds and guarantees capacity whose value shows up only in rare, uncertain extreme events."
+  },
+  {
+   "label": "Bulk media that really deliver power",
+   "goal": "A physical mechanism where cheap, abundant bulk material at TWh scale can be charged and discharged at grid power rates reliably after weeks or months of idling.",
+   "crux": "The answers assume cheap bulk stores can be accessed fast enough and stay usable, leaving unsolved the transport and kinetics limits (reaction fronts moving through ore heaps, membrane fouling with raw brine, sintering of solids over many cycles, reservoir gas mixing) that decide whether cheap tonnes turn into usable megawatts."
+  }
+ ],
+ "crux": "Every answer makes the energy reservoir (ore, ponds, piles, caverns, inventory) nearly free, but none shows how to make the charge and discharge converters (stacks, membranes, reversible cells, combustors, turbines, oversized plants) cheap per kW, durable, and efficient enough round-trip when they only run a few hundred hours a year, and that converter cost is what decides whether the system is ten times cheaper."
 }

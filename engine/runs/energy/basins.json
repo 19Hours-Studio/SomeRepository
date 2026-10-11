@@ -1,1 +1,89 @@
-[]
+[
+ {
+  "code": "OREFLOW",
+  "desc": "Redox-mediator flow cell whose dissolved shuttle charges and discharges a huge heap of raw mineral ore, so energy capacity separates from the stack",
+  "source": "observed",
+  "members": [
+   "map_1#1"
+  ]
+ },
+ {
+  "code": "FLEXLOAD",
+  "desc": "Oversized energy-intensive industrial plants run hard during surplus and idle during lulls, with energy \"stored\" as product inventory",
+  "source": "observed",
+  "members": [
+   "map_2#2",
+   "map_1#3"
+  ]
+ },
+ {
+  "code": "SALINITY",
+  "desc": "Desalination splits water into fresh and brine ponds; pressure-retarded osmosis or reverse electrodialysis recovers the mixing energy",
+  "source": "observed",
+  "members": [
+   "map_3#2",
+   "map_2#1"
+  ]
+ },
+ {
+  "code": "CO2LOOP",
+  "desc": "Electrochemically reduce CO2 into a storable carbon fuel (methane or formate), then oxidize it back to power and recapture the CO2 in a closed loop",
+  "source": "observed",
+  "members": [
+   "map_3#3",
+   "map_2#3"
+  ]
+ },
+ {
+  "code": "IRONFUEL",
+  "desc": "Electrolytically or H2-reduced iron powder stored in piles, burned in air for steam power, with the rust re-reduced (metal-fuel cycle)",
+  "source": "observed",
+  "members": [
+   "map_3#1"
+  ]
+ },
+ {
+  "code": "CALOOP",
+  "desc": "Thermochemical calcium looping: power calcines limestone, then CaO and CO2 recombine to release high-temperature heat for a turbine",
+  "source": "observed",
+  "members": [
+   "map_1#2"
+  ]
+ },
+ {
+  "code": "THERMAL",
+  "desc": "Cheap sensible or latent heat storage (hot rock, sand, firebrick, molten salt, Carnot battery) with heat-to-power conversion",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "CAES",
+  "desc": "Compressed or liquefied air or CO2 stored in caverns, aquifers, domes or tanks and expanded through turbines",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "GEOMECH",
+  "desc": "Gravity or pumped-hydro variants (underground or seafloor pumped hydro, rock-fracture or geomechanical pressure storage, weights in shafts)",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "H2GEO",
+  "desc": "Electrolytic hydrogen or ammonia stored in salt caverns or depleted fields and reconverted in turbines or fuel cells",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "SUPERGRID",
+  "desc": "Continental or intercontinental HVDC grids that smooth weather across uncorrelated regions, plus overbuild and curtailment, so less storage is needed",
+  "source": "predicted",
+  "members": []
+ },
+ {
+  "code": "METALAIR",
+  "desc": "Ultra-cheap metal-air or rust-reversal batteries (iron-air, sulfur, zinc) built from abundant materials for multi-day duration",
+  "source": "predicted",
+  "members": []
+ }
+]
