@@ -1,0 +1,32 @@
+What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.
+Propose 3 fundamentally new answers. Obvious answers to this question were expanded into concrete build plans; these are the RECURRING GAPS where they stall or hand-wave:
+G1: No answer says how raw perception or natural-language input gets turned into the structured form the mechanism runs on (program variables, graph objects and typed links, ledger assertions, constraint variables), so the build plan stalls at its first step: "parse the input into the representation".
+G2: The answers rely on a trustworthy correctness signal (verified outcomes, "confirmed" counts, realized payouts, symbolic or learned checkers, regression-suite ground truth) that does not exist, arrives late or is itself unreliable for most real tasks, and none of them says where it comes from when no oracle is available.
+G3: Creating new structure (synthesizing or recombining programs, adding hidden variables or splitting links, mutating modules, inventing lemmas or sub-plans, choosing the most informative intervention over the hypothesis set) is a combinatorial search whose cost explodes, and none of the answers gives a proposal mechanism or a bound on that cost.
+G4: Key cutoffs and similarity boundaries are left as "set appropriately": what counts as surprising, the learned error threshold, "similar enough" context, region boundaries in embedding space, "least-supported", "energy stops falling", "no loss" tolerance. None says how they are set or calibrated, and the behavior depends heavily on them.
+G5: The stored state grows without bound over the system's lifetime (program libraries, causal graphs, assertion ledgers, regression suites, patch stores), and the per-step cost of checking, replaying, consolidating or scanning it for contradictions grows with it. None gives a pruning, indexing or amortization scheme that keeps lifelong operation tractable.
+G6: Scoring needs a common currency that is never defined: expected information or uncertainty reduction, cost of being wrong, compression versus predictive accuracy, bid prices across different modules. These quantities cannot be computed or compared as stated, and a novel situation with no history (the case that matters most) has no basis for them at all.
+Each answer must close one named gap with a concrete mechanism that the obvious answers lack, and say which gap it closes inside its MECHANISM.
+Families that models have been observed to converge on (forbidden, including re-skins):
+PROGSYN: Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions
+CAUSGR: Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph
+COMPMAP: Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning
+MODMKT: Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement
+TMS: Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes
+CONSOL: Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting
+ENERGY: Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates
+WMPLAN: Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts
+ACTINF: Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience
+VSA: Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations
+CURIO: Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress
+GWS: Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control
+PLAST: Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+
