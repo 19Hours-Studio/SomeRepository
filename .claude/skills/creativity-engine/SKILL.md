@@ -1,6 +1,6 @@
 ---
 name: creativity-engine
-description: Run the evidence-based creativity engine (protocol v2) to generate genuinely unusual, valuable ideas for a hard open question - empirical attractor mapping, a portfolio of de-biasing techniques, two blind judges, literature check, evolution with attractor memory, and a best-of-N control. Use when the user wants maximally original ideas, not a quick brainstorm.
+description: Run the evidence-based creativity engine (protocol v1.5) to generate genuinely unusual, valuable ideas for a hard open question - empirical attractor mapping, a portfolio of de-biasing techniques, two blind judges, literature check, evolution with attractor memory, and a best-of-N control. Use when the user wants maximally original ideas, not a quick brainstorm.
 ---
 
 # Creativity engine
@@ -18,6 +18,9 @@ Why each step exists: `engine/README.md` and `research/stage1-creativity/03-deep
 - Never relax the known-basin filter when choosing parents: the v2 A/B showed known-basin parents weaken generation 2.
 - v2 options (`gapwalk`/`gap`, `strip`, `audit`, `select --v2`) exist but did NOT beat v1 in A/B; do not use them by default.
 - For A/B tests of engine changes use `fork` (shared attractor map, isolated memory) and `import` (shared final judging).
+- Species evolution (`breed` -> `species` -> `prompt R <species> g1_<species>` -> `fitness`) is an option, not default:
+  in A/B it cut repeats of earlier findings by 15 pp but lowered O and V (a technique's recurring niche can be its value peak).
+- Re-running a question and want NEW ground (coverage, not best ideas)? Before gen 1: `import-basins R <previous run> --source visited --as prior`.
 
 ## Launching subagents
 Generator / judge prompt files are produced by `ce.py`. Launch each with the Agent tool:
