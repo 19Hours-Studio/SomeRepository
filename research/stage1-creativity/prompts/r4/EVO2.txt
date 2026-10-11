@@ -1,0 +1,44 @@
+Propose 3 fundamentally new AI architecture ideas by EVOLVING existing candidates.
+You get 3 parent pairs. For each pair produce ONE offspring:
+1. CROSSOVER: fuse the two parents' core mechanisms into one mechanism (a genuine fusion where each parent's mechanism changes the other's behaviour - not two modules side by side).
+2. MUTATE AWAY: the offspring must be clearly different from the parents' nearest published work (listed) and from every known family below.
+3. KEEP IT IMPORTANT: it must serve a problem that genuinely matters for more capable intelligence.
+4. HONESTY CHECK: before the final section, for each offspring name the closest existing work you know; if the offspring is essentially that, mutate again.
+Describe mechanisms in plain quantities, update rules and driving signals; name last.
+
+Known idea families (offspring must NOT fall into any of them, including re-skins):
+L1: active hypothesis/world-model populations choosing experiments by information gain; libraries of verified programs / MDL program induction; fast episodic store + slow consolidation; markets/coalitions of specialist modules that bid, split, get pruned; self-testing retractable beliefs / provenance ledgers; fast weights / adapters as memory; graphs of intermediate results with local repair.
+L2: coupled oscillators/synchrony; cellular automata / morphogenetic or reaction-diffusion substrates; invertible networks; wave/optical/physical computing; linear-recurrent state memories; permutation-invariant set pooling.
+L3 (already over-visited escape routes): computation as conserved flow (fluids, reactions, max-flow, Physarum); scaling/renormalization variable discovery; AI with its own aesthetic desires.
+
+PAIR 1
+ Parent A: MECHANISM: The state is a wealth vector of e-processes, one per candidate answer. Each new observation multiplies each candidate's wealth by a likelihood ratio from a learned predictor, and compute is spent on the fastest-growing bets. An answer is committed when its wealth exceeds 1/α, and that error bound holds under any stopping rule.
+   DIFFERENCE: It bounds the error of committed answers at any stopping time, which confidence scores and self-consistency voting cannot guarantee.
+   nearest published work: anytime-valid LLM stopping rules / testing by betting for self-consistency (2025-2026)
+ Parent B: MECHANISM: The state is an aggregate of discovered items on a graph of candidate items. Random walkers launched from unexplored territory step between neighbors until they touch the aggregate and attach, adding one item and exposing new frontier. Growth concentrates at tips that screen the most unexplored territory, since walkers reach them first, so the aggregate branches fractally over the reachable space. Launch and attachment rules adapt to the yield of new items per walker.
+   DIFFERENCE: It covers an unbounded space in proportion to the unexplored territory each frontier point screens, with no value function or novelty score, which current exploration bonuses must learn.
+   nearest published work: frontier/count-based exploration
+
+PAIR 2
+ Parent A: MECHANISM: Knowledge is stored as thousands of small, separately trained local models. Each one is valid only on an overlapping region of context space (a "patch"), and learned restriction maps say how neighbouring patches must agree where they overlap. Inference searches for a global section: an assignment that satisfies all active patches at once, found by iterative consistency propagation instead of a single forward pass. Learning adds, splits or refits patches only where the measured disagreement (the obstruction to gluing them together) is high, and leaves every other patch untouched.
+   DIFFERENCE: It can pinpoint and report exactly where its own knowledge contradicts itself, and it can learn new facts without overwriting old ones because no globally shared weights exist to interfere.
+   nearest published work: sheaf neural nets / local-to-global computation (Bosca & Ghrist 2026), LWPR
+ Parent B: MECHANISM: Signals are a conserved quantity routed between units. Each unit holds the flow-weighted mix of its inflows, and each decision injects a unique tracer vector that mixes along conservatively. When an outcome arrives, the local tracer composition is unmixed by solving a small mass-balance system, giving each past decision's exact share. Each link then scales its routing fraction by (1 + rate × outcome × credited tracer it carried), and nodes renormalize.
+   DIFFERENCE: Exact credit across arbitrarily long delays in one forward pass, with no backward sweep or decaying trace.
+   nearest published work: GFlowNet flow-conservation credit, RTRL / forward-mode sensitivities
+
+PAIR 3
+ Parent A: MECHANISM: The state is a set of proto-concepts, clusters of past examples each with a member count n. Each example joins its nearest cluster or seeds a new one, and every cluster loses members at a rate that rises as it shrinks. The example's surprise, meaning how badly existing clusters predicted it, sets a supersaturation S; a cluster reaching a critical size n*, which falls steeply as S rises, freezes into a stable concept, while smaller clusters dissolve.
+   DIFFERENCE: A single highly surprising example can fix a concept, while unsurprising noise fades rather than accumulating, so the data needed is set by surprise rather than by a fixed learning rate.
+   nearest published work: SUSTAIN, latent-cause models, ART vigilance
+ Parent B: MECHANISM: Each raw input gets a small integer exponent vector over k hidden base dimensions. The exponents are chosen by discrete search (smallest k first) for the assignment under which data from all scales collapse onto one surface in dimensionless products. That surface is stored as a sparse table, filled in and interpolated from experience; only quantities with identical exponent vectors may be added or compared.
+   DIFFERENCE: Predictions stay valid at magnitudes never seen, because the relation is built to be unchanged when any discovered dimension is rescaled.
+   nearest published work: BuckiNet (Bakarji 2022), AI Feynman
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.
