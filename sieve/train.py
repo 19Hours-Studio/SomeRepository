@@ -102,7 +102,7 @@ def main():
             opt.zero_grad(set_to_none=True); loss.backward(); torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0); opt.step()
         if r % a.eval_every == 0 or r == a.rounds:
             m = evaluate(model, val, dev); m.update(round=r, calls=calls, labels=labels, labels_per_call=round(labels / calls, 2),
-                                                    loss=round(float(loss), 4), sec=round(time.time() - t0, 1))
+                                                    loss=round(loss.item(), 4), sec=round(time.time() - t0, 1))
             print(json.dumps(m), flush=True); log.write(json.dumps(m) + "\n"); log.flush()
             torch.save({"model": model.state_dict(), "config": a.config, "args": vars(a)}, os.path.join(a.out, "sieve.pt"))
 
