@@ -137,6 +137,12 @@ def main():
             assert "valorized 1/4" in ce("valorize", R7, "s01", "--arm", "v7V", "--file", p)
             vi = [i for i in json.load(open(os.path.join(rd7, "ideas.json"))) if i["arm"] == "v7V"]
             assert len(vi) == 1 and vi[0]["parent"] == pid0 and vi[0]["anchor"] == "alpha"
+            assert "BOTTLENECK" in open(os.path.join(rd7, "sets", "s01", "prompt_value.txt")).read()
+            open(p, "w").write(f"=== VALUED {sid0} ===\nANCHOR: alpha\nNAME: valuable\nMECHANISM: alpha at the core\nVALUE: big gain\n")
+            assert "valorized 1/4" in ce("valorize", R7, "s01", "--arm", "v7C", "--file", p)
+            json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Some work https://arxiv.org/abs/2608.01234"}}, open(os.path.join(rd7, "lit.json"), "w"))
+            assert "future-match 1/1" in ce("futurematch", R7)
+            assert "portfolio:" in ce("portfolio")
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")

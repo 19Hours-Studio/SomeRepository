@@ -9,7 +9,7 @@ Claude по .claude/skills/creativity-engine/SKILL.md.
 Состояние: engine/runs/<RUN>/
   config.json  ideas.json  basins.json  scores.json  lit.json  prompts/  outputs/  sets/
 """
-import argparse, json, os, re, secrets, sys
+import argparse, math, json, os, re, secrets, sys
 from collections import Counter, defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -149,7 +149,7 @@ def cmd_set(a):
             sid = f"{a.prefix}{j:02d}"; key[sid] = i["id"]
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
-    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize"):
+    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize", "value"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         if kind == "judge" and getattr(a, "crux", False):
             crux = load(a.run, "config.json", {}).get("crux") or sys.exit("no crux recorded: run `family` with the v1.7 template first")
@@ -348,11 +348,12 @@ def cmd_audit(a):
     save(a.run, "audit.json", au); print(f"audit: {len(au)} ideas ({len(slots)} with slots, {len(dec)} with decoys)")
 
 def cmd_valorize(a):
-    """Layer B (v1.8 idea): each original idea rebuilt for genius and value around its anchor -> new arm."""
+    """Layers B and C (v1.8): each idea rebuilt around its anchor - for genius (prompt_valorize) or for value
+    (prompt_value) -> a new arm whose ideas keep a `parent` link."""
     text = read_source(a); key = setkey(a.run, a.set)
     open(path(a.run, "sets", a.set, f"valorize_{a.arm}.md"), "w").write(text)
     ideas = load(a.run, "ideas.json", []); byid = {i["id"]: i for i in ideas}; n = 0
-    for sid, body in re.findall(r"=== VALORIZED ([A-Z]+\d\d) ===\n(.*?)(?=\n=== VALORIZED|\Z)", text, re.S):
+    for sid, body in re.findall(r"=== (?:VALORIZED|VALUED) ([A-Z]+\d\d) ===\n(.*?)(?=\n=== (?:VALORIZED|VALUED)|\Z)", text, re.S):
         if sid not in key: continue
         par = byid[key[sid]]
         m = re.search(r"MECHANISM:\**\s*(.+?)\n\s*\**VALUE:\**\s*(.+)", body, re.S)
@@ -363,6 +364,32 @@ def cmd_valorize(a):
                       "name": nm.group(1).strip() if nm else "", "anchor": an.group(1).strip() if an else "",
                       "mech": " ".join(m.group(1).split()), "value": " ".join(m.group(2).split())}); n += 1
     save(a.run, "ideas.json", ideas); print(f"valorized {n}/{len(key)} -> arm {a.arm}")
+
+def cmd_futurematch(a):
+    """External validity: share of literature-checked ideas whose closest work appeared after the model's knowledge
+    cutoff (arXiv ids YYMM >= --after). Such ideas could not be copied, yet people later found them worth doing."""
+    ideas = {i["id"]: i for i in load(a.run, "ideas.json", [])}; lit = load(a.run, "lit.json", {}); by = defaultdict(lambda: [0, 0])
+    for iid, v in lit.items():
+        arm = ideas.get(iid, {}).get("arm", "?"); late = [x for x in re.findall(r"arxiv\.org/(?:abs|pdf|html)/(\d{4})\.\d{4,5}", json.dumps(v)) if x >= a.after]
+        by[arm][0] += 1; by[arm][1] += bool(late)
+    for arm, (n, k) in sorted(by.items()): print(f"  {arm:10s} future-match {k}/{n} = {k / n:.0%}")
+
+def cmd_portfolio(a):
+    """Technique bandit across all runs: fitness = gen-1 O*V relative to the run's gen-1 mean; UCB bonus for rarely
+    tried techniques; the best one gets a second slot."""
+    stats = defaultdict(list)
+    for r in sorted(os.listdir(os.path.join(HERE, "runs"))):
+        if r.startswith("_") or not os.path.exists(path(r, "ideas.json")): continue
+        g1 = [(i, agg(r, i["id"])) for i in load(r, "ideas.json", []) if i["gen"] == 1]; g1 = [(i, g) for i, g in g1 if g]
+        if len(g1) < 6: continue
+        m = sum(g["OV"] for _, g in g1) / len(g1); by = defaultdict(list)
+        for i, g in g1: by[re.sub(r"\d+$", "", i["label"].split(":")[-1].replace("g1_", ""))].append(g["OV"])
+        for t, v in by.items(): stats[t].append(sum(v) / len(v) / m)
+    total = sum(len(v) for v in stats.values())
+    ucb = {t: sum(v) / len(v) + a.c * math.sqrt(math.log(total) / len(v)) for t, v in stats.items() if t not in a.exclude.split(",")}
+    order = sorted(ucb, key=lambda t: -ucb[t]); pick = order[:a.slots - 1] + order[:1]
+    for t in order: print(f"  {t:12s} runs {len(stats[t]):2d}  mean {sum(stats[t]) / len(stats[t]):.2f}  ucb {ucb[t]:.2f}")
+    print("portfolio:", " ".join(f"g1_{t}" + ("2" if k == a.slots - 1 else "") for k, t in enumerate(pick)))
 
 def cmd_setcfg(a):
     cfg = load(a.run, "config.json", {}); cfg[a.key] = json.loads(a.value) if a.value[:1] in "[{0123456789tf" else a.value
@@ -496,6 +523,9 @@ def main():
     x.add_argument("--genius", action="store_true", help="v1.7: add the genius score G to the judge prompt")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("valorize"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--arm", required=True); src(x)
+    x = sp.add_parser("futurematch"); x.add_argument("run"); x.add_argument("--after", default="2607", help="arXiv YYMM after the knowledge cutoff")
+    x = sp.add_parser("portfolio"); x.add_argument("--slots", type=int, default=5); x.add_argument("--c", type=float, default=0.15)
+    x.add_argument("--exclude", default="mechneg,symptomport,backloop,reframe,gap", help="techniques retired by selection")
     x = sp.add_parser("judge"); x.add_argument("run"); x.add_argument("set"); x.add_argument("judge"); src(x)
     x = sp.add_parser("select"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--labels"); x.add_argument("--arms")
     x.add_argument("--k", type=int, default=6); x.add_argument("--drop-known-basins", action="store_true")
