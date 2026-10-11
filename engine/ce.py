@@ -201,12 +201,25 @@ def cmd_pairs(a):
         known = [b for b in (agg(a.run, s) or {}).get("basins", []) if b != "NEW"]
         return Counter(known).most_common(1)[0][0] if known else "NEW:" + s
     fam = {s: family(s) for s in surv}; label = {s: s.split("#")[0] for s in surv}
+    # приоритет родителя: сначала вердикт литературы (новее — лучше), затем O×V
+    prio = {s: (VERDICT_ORDER.get(lit.get(s, {}).get("verdict"), 1), (agg(a.run, s) or {}).get("OV", 0)) for s in surv}
+    surv = sorted(surv, key=lambda s: prio[s], reverse=True)
+    ok = lambda x, y: x != y and fam[x] != fam[y] and label[x] != label[y]
     uses, pairs, seen = Counter(), [], set()
-    for x in surv:  # жадно: сильный с сильным из ДРУГОГО семейства и другого запуска; родитель не более 2 раз
+    def add(x, y):
+        pairs.append([x, y]); seen.add(frozenset((x, y))); uses[x] += 1; uses[y] += 1
+    # 1) покрытие: каждый родитель (по приоритету) получает пару с наименее использованным допустимым партнёром
+    for x in surv:
+        if uses[x] or len(pairs) >= a.n: continue
+        cand = [y for y in surv if ok(x, y) and uses[y] < 2 and frozenset((x, y)) not in seen]
+        if cand: add(x, min(cand, key=lambda y: (uses[y], surv.index(y))))
+    # 2) добор лучшими оставшимися парами; каждый родитель не более 2 раз
+    for x in surv:
         for y in surv:
             if len(pairs) >= a.n: break
-            if x == y or fam[x] == fam[y] or label[x] == label[y] or uses[x] >= 2 or uses[y] >= 2 or frozenset((x, y)) in seen: continue
-            pairs.append([x, y]); seen.add(frozenset((x, y))); uses[x] += 1; uses[y] += 1
+            if ok(x, y) and uses[x] < 2 and uses[y] < 2 and frozenset((x, y)) not in seen: add(x, y)
+    unpaired = [s for s in surv if not uses[s]]
+    if unpaired: print("WARNING: no valid partner for", unpaired)
     save(a.run, "pairs.json", pairs); [print(" x ".join(p)) for p in pairs]; print(f"-> pairs.json ({len(pairs)})")
 
 def cmd_remember(a):

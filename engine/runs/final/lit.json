@@ -1,1 +1,32 @@
-{}
+{
+ "g1_loop#3": {
+  "verdict": "NO-CLOSE-MATCH",
+  "closest": "Modular representation and control of floppy networks (2022) https://arxiv.org/abs/2202.03150 (rigidity floppy modes and self-stress in physical networks, no ML generation) ; Latent Constraints: Learning to Generate Conditionally from Unconditional Generative Models (2017) https://arxiv.org/abs/1711.05772",
+  "new": "Applying Maxwell-Calladine rigidity analysis (Jacobian null and left-null space) to a model's concept-constraint graph, moving generation along floppy modes, and pinning verified directions as new constraint nodes while pruning self-stressed ones; I found no ML precedent, only generic null-space and tangent-space sampling in diffusion and latent models."
+ },
+ "g1_core#2": {
+  "verdict": "PARTIAL",
+  "closest": "DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning (2020) https://arxiv.org/abs/2006.08381 (a growing library scored by downstream usefulness) ; OMNI-EPIC: Open-endedness via Models of human Notions of Interestingness with Environments Programmed in Code (2024) https://arxiv.org/abs/2405.15568 (archive of past tasks plus interestingness filter; novelty-search lineage also scores behaviour descriptors against an archive)",
+  "new": "Valuing an idea by the unhedgeable residual left after regressing its downstream consequence vector onto the stored vectors of known ideas, which is a finance-style replicating-portfolio novelty score that I could not find in the AI-novelty or library-learning literature."
+ },
+ "g1_core#1": {
+  "verdict": "PARTIAL",
+  "closest": "Denial Prompting / \"Benchmarking Language Model Creativity: A Case Study on Code Generation\" (2024) https://arxiv.org/abs/2407.09007 (iteratively forbids a technique from the previous solution while keeping constraints satisfied; prompting-based, test-case checked) ; Transformational creativity as changing the rules of a conceptual space (Boden/Wiggins; Schapiro, Black, Varshney, ICCC 2025) https://arxiv.org/abs/2504.18687 and CAN: Creative Adversarial Networks (2017) https://arxiv.org/abs/1706.07068 (deviate from known style clusters)",
+  "new": "Building a candidate as a growing partial object where each added condition must break a listed concept cluster's defining feature while a solver or prover certifies joint consistency, with the ordering adapting to which concepts are not yet escaped; the generic \"violate a rule yet stay valid\" idea is old, the solver-checked cluster-escape loop is not."
+ },
+ "g1_loop#2": {
+  "verdict": "NO-CLOSE-MATCH",
+  "closest": "Sign-Aware Gated Sparse Autoencoders: Modeling Anticorrelated Features with Bi-Jump-ReLU Activations (2026) https://arxiv.org/abs/2605.28149 (anticorrelated SAE features, treated as a modelling problem) ; Steering Large Language Models to Evaluate and Amplify Creativity (2024) https://arxiv.org/abs/2412.06060 (internal-direction intervention to raise creativity); also A is for Absorption (2024) https://arxiv.org/abs/2409.14507",
+  "new": "Mining SAE joint-versus-marginal co-activation for \"systematic absences\", tracing each to its suppressing circuit, cutting it, and keeping the cut only if newly reachable outputs pass external verification; the pieces (co-occurrence analysis, circuit ablation, creativity steering) exist separately but I found no paper combining them, and no one treating absences as removable prohibitions."
+ },
+ "g1_neg#3": {
+  "verdict": "PARTIAL",
+  "closest": "Unlearning as Ablation: Toward a Falsifiable Benchmark for Generative Scientific Discovery (2025) https://arxiv.org/abs/2508.17681 (remove a target result plus its lemmas and entailments, then test re-derivation from permitted axioms and tools) ; AInstein: Can AI Rediscover Scientific Concepts from First Principles? (2025) https://neurips.cc/virtual/2025/133960",
+  "new": "The unlearn-then-rederive setup is already published, as a benchmark; new here is using it as a generator, i.e. collecting the replacement concepts the ablated copy builds, comparing them structurally with the removed concept, and keeping those that differ as alternative foundations."
+ },
+ "g1_reframe#2": {
+  "verdict": "PARTIAL",
+  "closest": "From Weights to Words: Expressing and Editing Preference Model Inferences in Natural Language (2026) https://arxiv.org/abs/2607.16232 (LLM-proposed pool of candidate preference dimensions, selected by projection variance) ; Sampling Reveals Style: Unsupervised, Training-Free Discovery of Prompt-Conditional Stylistic Axes in LLM Activations (2026) https://arxiv.org/abs/2609.19150 ; also EvalAgent: Discovering Implicit Evaluation Criteria from the Web (2025) https://arxiv.org/abs/2504.15219 and CAN (2017) https://arxiv.org/abs/1706.07068",
+  "new": "Admitting an axis only if it is stable, few-shot learnable, and statistically independent of a bank of known human criteria, then optimizing artifacts against it and explaining it by ranked examples; existing work discovers criteria but validates them against, not away from, human ones."
+ }
+}

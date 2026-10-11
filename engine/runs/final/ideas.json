@@ -349,5 +349,32 @@
   "name": "Rigidity-Matrix Floppy-Mode Exploration",
   "mech": "Assemble the Jacobian of the model's consistency constraints over latent concept coordinates and compute its null space (floppy modes) and its left null space (self-stress). Generation moves along floppy modes. When an output is verified, a new constraint node pins that direction as a named concept; redundant self-stressed constraints are deleted.",
   "value": "It generates in directions the training data never constrained, then turns the confirmed ones into permanent concepts the model can build on."
+ },
+ {
+  "id": "g2_imm#1",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Mass-Balance Concept Minting",
+  "mech": "Activations are decomposed into a dictionary of sparse concept features, and the unexplained residual \"mass\" is tracked per context class. When the residual is large, structured (low-entropy) and recurrent, it becomes a new dictionary atom and a new vocabulary token. The generator is then fine-tuned to produce and compose with that token. The ledger of residual mass is recomputed after every mint.",
+  "value": "It turns representational content that has no human name into usable building blocks for generation."
+ },
+ {
+  "id": "g2_imm#2",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Linkage-Disequilibrium Concept Unbundling",
+  "mech": "The system computes D = P(a,b) − P(a)P(b) over pairs of internal features. For strongly linked pairs it asks a verifier whether outputs with one feature but not the other are valid. If they are, the shared units are split into two independently addressable units and each is retyped. The resulting set of primitives is recorded, and LD is re-estimated over time.",
+  "value": "The model can think with distinctions that its training data always merged."
+ },
+ {
+  "id": "g2_imm#3",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Coverage-Saturation Support Closure",
+  "mech": "Outputs are clustered per concept region, and Good-Turing/Chao1 coverage is estimated from singleton and doubleton counts. When coverage saturates, the system inserts a permanent projection gate that removes that region's dominant output directions. It then grows an orthogonally initialised adapter that is trained only on verified outputs beyond the closed support. The gates and adapters build up as a map of regions that have been exhausted.",
+  "value": "The model stops resampling familiar ground and gains new capacity exactly where its corpus-derived repertoire has run out."
  }
 ]

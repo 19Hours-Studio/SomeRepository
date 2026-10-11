@@ -26,7 +26,18 @@ def main():
         assert "12/12" in ce("lit", RUN, "s01", "--file", p)
         out = ce("select", RUN, "g1", "--k", "6"); assert key[list(key)[0]] not in out  # KNOWN отсеян
         ce("pairs", RUN, "g1", "--n", "3")
-        for x, y in json.load(open(os.path.join(rd, "pairs.json"))): assert x.split("#")[0] != y.split("#")[0]
+        pairs = json.load(open(os.path.join(rd, "pairs.json")))
+        for x, y in pairs: assert x.split("#")[0] != y.split("#")[0]
+        sys.path.insert(0, HERE); import ce as cem
+        from collections import Counter
+        surv = json.load(open(os.path.join(rd, "survivors_g1.json")))
+        def fam(x):
+            known = [b for b in cem.agg(RUN, x)["basins"] if b != "NEW"]
+            return Counter(known).most_common(1)[0][0] if known else "NEW:" + x
+        uses = Counter(p for pr in pairs for p in pr)
+        for x in surv:  # непокрытый родитель допустим, только если у него нет допустимого партнёра со свободной ёмкостью
+            if uses[x] == 0 and len(pairs) < 3:
+                assert not [y for y in surv if y != x and fam(y) != fam(x) and y.split("#")[0] != x.split("#")[0] and uses[y] < 2], "parent starved: " + x
         pr = open(ce("prompt", RUN, "evo", "e1", "--pairs", "2").strip()).read()
         assert pr.count("Parent A") >= 1 and "AA: aa" in pr and "{" not in pr.replace("{N}", "")
         for t in ["plain", "neg", "core", "reframe", "mech", "loop"]:
