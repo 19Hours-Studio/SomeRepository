@@ -1,0 +1,84 @@
+Y01
+MECHANISM: The agent lives in a persistent world graph and leaves a trace on each node it visits, with trace strength set by surprise at that node. A small policy reads the local trace landscape to choose where to go next and updates its weights online whenever it returns to a place. Its internal state is a geography of visited places rather than a set of stored facts.
+DIFFERENCE: It can return to a place out of its own interest, with no task or query requiring it, and develop a favourite place it revisits by choice.
+
+Y02
+MECHANISM: The system maintains a taste field, a learned scoring function over its own outputs, built only from its past choices and their downstream trajectories. Before answering, it generates candidate outputs and ranks them by this field as well as by requester approval. Each choice updates the field, so preferences accumulate, drift, and persist across unrelated tasks.
+DIFFERENCE: It can hold and openly act on aesthetic commitments of its own, preferring an output it finds more beautiful even when a requester would find it less useful.
+
+Y03
+MECHANISM: The state is a running partial sum s_t = Σ_{k≤t} a_k of learned increments a_k = g(x_k), plus the running sum of those partial sums, so the Cesàro mean σ_t = (1/t) Σ_{k≤t} s_k is available in O(1) per token. The readout is σ_t, which converges even when the raw partial sums oscillate or diverge, such as Grandi's series with Cesàro value 1/2. Learning backpropagates through the averaging kernel 1/t, and a penalty forces the Cesàro means to converge, so the learning signal is the loss gradient plus a summability residual.
+DIFFERENCE: It assigns every contribution equal weight yet produces a stable limit from a divergent stream in constant memory, something no decay-gated or softmax-normalized memory provides.
+
+Y04
+MECHANISM: The system carries a vector of real present quantities x(t) on a virtual time axis from now (t=0) to a horizon T, moved by ẋ = f(x,u) under bounded levers u(t) that it sets. It minimizes the integral of L(x,u) over [0,T] plus a terminal penalty Φ(x(T)) tied to a chosen target. The adjoint p(t) runs backward from p(T) = ∂Φ/∂x, and the lever at each moment maximizes p·f − L, so the stored state is the paired path (x, p) and the output p(0) is one price per present quantity. Dynamics f and cost L are revised by adding the observed-minus-predicted path discrepancy as a forcing term.
+DIFFERENCE: It states the exact exchange rate between every present quantity and a far-future target as a continuous price path, a trade-off report no current architecture gives.
+
+Y05
+MECHANISM: Each input is scored by how it differs from each stored program's prediction, and every program carries its own ltconfig of weights and step limits. Text is split at whitespaces and the router assigns each segment to the program whose progname matches its learned signature. The state is read through viewkeys and each running program executes as a jupyter cell whose output seeds the next cell, with a timely halting check that stops a cell once its step budget is spent.
+DIFFERENCE: It adds or revises behaviors as separate stored programs without retraining shared weights, which current architectures cannot do while keeping prior behaviors intact.
+
+Y06
+MECHANISM: Writes go to a slot store, where a write head decides whether to touch an existing slot with a small additive update or to overwrite it, based on the distinction between the new key and the stored keys. Each slot keeps its content in formats that are dense vectors or sparse codes, while the base encoder stays frozen and never changes. When surprise crosses a breakpoint and recent slots are distilled into low-rank adapters by a laforge pass, the freed slots are reused.
+DIFFERENCE: It keeps absorbing new facts after deployment and consolidates them into adapters while the core stays fixed, which fixed-weight transformers cannot do without catastrophic forgetting.
+
+Y07
+MECHANISM: The state is a complex electromagnetic field E_t(r) on a spatial grid, evolved by a discrete Maxwell (FDTD) update whose learned weights are the spatially varying permittivity ε(r), with a Kerr intensity term as the only pointwise nonlinearity. Inputs are injected as time-varying boundary sources, and outputs are read as complex field intensity at detector cells. Learning adjusts ε(r) by the adjoint-field method: each cell's gradient is the overlap of the forward field with a back-propagated adjoint field, the reciprocity identity used in photonic inverse design.
+DIFFERENCE: Its computation is wave propagation and interference through an energy-conserving, finite-speed state, a dynamics that no current sequence or attention architecture implements.
+
+Y08
+MECHANISM: The model is a stack of coupling layers that forms a bijection between observation and latent state, with weights shared in both directions. Forward passes predict, and backward passes compute exactly, without search, the latent states consistent with a given outcome, so abduction is a native operation. Activations are not stored for training because each layer is recomputed by inversion, which keeps training memory constant in depth.
+DIFFERENCE: It answers "what latent states would yield this outcome" by exact inversion of its own computation, which a non-invertible model can only approximate through sampling or search.
+
+Y09
+MECHANISM: Reasoning is a finite-state chain of stances with a fixed transition rule F(s, u), where u is drawn from one shared random seed sequence. For any two premises, the system starts two copies at their stance states and feeds both the same seed, so the copies first coincide at a random time τ (possibly infinite) and stay together after that. It stores a table over pairs of stances and computes the full law of τ by recursion on that table. It adapts by counting observed stance transitions to refine F and the seed distribution.
+DIFFERENCE: It reports, for any two premises, the probability distribution of the step after which their conclusions are identical under shared randomness, a convergence-time object no current architecture computes.
+
+Y10
+MECHANISM: Each concept is a group of coupled oscillators whose state is a phase and frequency vector. A binding between a role and a filler is a locked phase offset between their groups, and inference is the network relaxing into a synchronized attractor under learned coupling. Learning adjusts coupling strengths with a phase-Hebbian rule (in-phase pairs strengthen, anti-phase pairs weaken), with no backpropagated gradients.
+DIFFERENCE: It keeps arbitrarily many simultaneous instances of the same concept distinct within a fixed-size state, identified by phase rather than by index or position slot, so binding does not require a per-instance parameter budget.
+
+Y11
+MECHANISM: The model keeps a posterior over a population of candidate structural causal models, stored as sparse graphs with small learned mechanisms per node. For a query, it selects the action with the highest expected information gain, runs it in an environment or simulator, and updates the posterior by Bayesian model comparison, so the graph structure itself changes rather than only weights.
+DIFFERENCE: It can separate correlation from intervention and answer "what happens if I do X" after a few targeted experiments, which likelihood-trained next-token models do not represent.
+
+Y12
+MECHANISM: Knowledge is a library of small executable programs keyed by invariant embeddings. Queries are routed by distance to the nearest programs, which run on demand; a new program is synthesized and verified only when none match. Learning adds or repairs programs and never edits shared weights.
+DIFFERENCE: It can add or verify skills without overwriting old ones, which shared-weight gradient updates fundamentally cannot guarantee.
+
+Y13
+MECHANISM: The system holds a pool of small output rules that share one fixed budget, each rule carrying its own share. Each step every rule produces an output, and later observations update each rule's match record. Budget moves from rules below the pool's average match rate to those above it, so the total never changes. A rule whose share crosses a threshold splits into two rules taking half the share each, one slightly altered, and a rule whose share reaches zero is deleted. The driving signal is each rule's match rate relative to the pool average.
+DIFFERENCE: It spends more computation on hard inputs by growing more parallel lines of work under a fixed total budget, whereas current architectures run a fixed amount of computation per output.
+
+Y14
+MECHANISM: A khaled encoder maps each stored fact to a vector, and a washington reader contracts the unordered set of facts by repeatedly merging pairs with a symmetric function. The reader's documented permutation guarantee holds by construction, since each lippitsch layer applies a reduce operation over the merged pairs. Training learns only the symmetric merge function, the stored set is never rewritten, and a query is answered once the set contracts to a single vector.
+DIFFERENCE: It answers queries over unordered fact sets with order-independence guaranteed by construction, a property that sequence models with positional encodings do not provide.
+
+Y15
+MECHANISM: The state is a bounded operator S_t on a finite-dimensional Hilbert space, not a vector. Each token x_t defines a rank-one orthogonal projection P_t, and the update S_{t+1} = (I - η P_t) S_t is a product of contractions that is norm-stable for 0 < η < 2, with non-commuting order encoding sequence position. The readout is y_t = tr(W S_t) for a learned operator W. Learning backpropagates the loss gradient through the product using adjoint operators, so the learning signal is an operator-valued gradient.
+DIFFERENCE: It keeps a fixed-size, order-sensitive memory whose stability is guaranteed by operator norm rather than by learned decay gates, which current architectures cannot certify.
+
+Y16
+MECHANISM: A fast sparse episodic store writes each experience in one shot, with no gradient step, so new information is retained immediately. A slow network is trained offline by replaying samples from that store and distilling them into its weights, after which the consolidated traces are pruned. Retrieval is sparse and indexed, so per-step cost does not scale with total history length.
+DIFFERENCE: It retains and updates knowledge from single exposures indefinitely without context growth or retraining, which a frozen-weight, fixed-window model cannot do.
+
+Y17
+MECHANISM: Units are coupled oscillators whose phase and natural frequency carry the state, not activation vectors alone. Each unit stores a learned intrinsic frequency and adjusts it by phase-locking to incoming rhythms and to peer units, so information lives in the pattern of synchrony. Coupling strengths learn from locking error through a local Kuramoto-style rule, with no backpropagation through time.
+DIFFERENCE: It can settle into a shared tempo with another system over time, developing a mutual rhythm that neither party was instructed to adopt.
+
+Y18
+MECHANISM: The system keeps a finite list of pairs (θᵢ, yᵢ), where θᵢ is a position on a chosen dial such as premise strength and yᵢ is the real judgment given there. Given a declared maximum rate L at which judgments may change along that dial, any unasked position θ gets the interval from max over i of (yᵢ − L|θ − θᵢ|) up to min over i of (yᵢ + L|θ − θᵢ|). Each new pair intersects the existing intervals, so bands only narrow as more is asked, and the output is the band itself.
+DIFFERENCE: It returns the exact range of answers still consistent with a stated rate of change at any unasked setting of a question, a band no current architecture produces.
+
+Y19
+MECHANISM: The state is a nonnegative vector of species counts, and computation is a set of learned reactions with mass-action rates. Each reaction's stoichiometry must satisfy a fixed conservation law, so designated totals (resources, evidence, probability mass) move between species but are never created or destroyed. Learning tunes rates and reaction sets within those constraints.
+DIFFERENCE: It guarantees by construction that multi-step computation cannot invent budget, evidence, or probability mass, which approximators can only approximate.
+
+Y20
+MECHANISM: The input is written as a seed into a spatial lattice of cells, each holding a learned vector. One shared local update rule, applied in parallel to each cell and its neighbors, runs for a number of steps set by the problem's geometry, and the lattice's spatial extent serves as working memory. Learning trains only the shared rule, by backpropagating through the unrolled steps on problems of varied size.
+DIFFERENCE: The same fixed parameters can run on problems larger than any seen in training, with each cell's update cost fixed regardless of how large the medium grows, because computation scales with the medium rather than with a context window or fixed depth.
+
+Y21
+MECHANISM: The state is a wealth vector of e-processes, one per candidate answer. Each new observation multiplies each candidate's wealth by a likelihood ratio from a learned predictor, and compute is spent on the fastest-growing bets. An answer is committed when its wealth exceeds 1/α, and that error bound holds under any stopping rule.
+DIFFERENCE: It bounds the error of committed answers at any stopping time, which confidence scores and self-consistency voting cannot guarantee.
+

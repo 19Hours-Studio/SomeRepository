@@ -1,0 +1,23 @@
+{
+ "Y01": "REFRAME#3",
+ "Y02": "REFRAME#2",
+ "Y03": "MSC#3",
+ "Y04": "STACK#2",
+ "Y05": "LOCK#2",
+ "Y06": "LOCK#1",
+ "Y07": "MSC#2",
+ "Y08": "MAP#2",
+ "Y09": "STACK#3",
+ "Y10": "MAP#1",
+ "Y11": "ANCHOR:B1#1",
+ "Y12": "ANCHOR:DIFF#1",
+ "Y13": "ANCHOR:MECH#2",
+ "Y14": "LOCK#3",
+ "Y15": "MSC#1",
+ "Y16": "ANCHOR:B2#1",
+ "Y17": "REFRAME#1",
+ "Y18": "STACK#1",
+ "Y19": "ANCHOR:NEG#3",
+ "Y20": "MAP#3",
+ "Y21": "ANCHOR:NEG#1"
+}
