@@ -214,5 +214,32 @@
   "name": "Gauge-R&R Feature Auditing",
   "mech": "Each feature's variance is split into run-to-run noise, surface-form variance and content variance. Features above a GRR threshold are re-typed as nuisance channels. Downstream reads move to rebuilt content-only features, and GRR scores are stored and checked again over time.",
   "value": "Reasoning runs only on features shown to measure content, which removes failures caused by sensitivity to phrasing."
+ },
+ {
+  "id": "g2_imm#1",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Type-Specimen Concept Nomenclature",
+  "mech": "Every learned concept gets an identifier tied to a frozen type specimen: one stored input plus the internal state it produced. Concept regions may drift, split or merge as new data arrives. On a split, the identifier follows the part that contains the type specimen, and the other part gets a new identifier. On a merge, the older identifier wins. Downstream skills cite identifiers, not weights, so they re-resolve through the types and keep working after revisions.",
+  "value": "It allows open-ended concept revision without silently breaking the skills and inferences built on older concepts."
+ },
+ {
+  "id": "g2_imm#2",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Kinetic Proofreading Decoder",
+  "mech": "A candidate step does not commit right away. It passes through k timed holding stages, and each stage re-scores it under a freshly perturbed context. A candidate drops out at each stage with an off-rate that grows exponentially as its support margin falls; a candidate that drops out restarts from scratch rather than going back one stage. The value of k and the compute spent per stage are set according to how much is at stake in the step.",
+  "value": "Error per step falls exponentially with the compute spent, so long chains of reasoning stay reliable instead of degrading."
+ },
+ {
+  "id": "g2_imm#3",
+  "label": "g2_imm",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Pedigree-BLUP Knowledge Reliability",
+  "mech": "Each acquired fact, rule or skill is logged with its parents, meaning the items it was derived or distilled from. This builds a sparse relationship matrix. Reliability is solved as a breeding value with Henderson's mixed-model equations, so an item with almost no direct checks borrows strength from its relatives. A single new check updates the whole family through A⁻¹.",
+  "value": "Reliability estimates for brand-new knowledge become usable after one or a few observations, because they draw on where that knowledge came from."
  }
 ]

@@ -1,1 +1,272 @@
-{}
+{
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading; self-consistency"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading; self-consistency checks"
+  }
+ },
+ "g1_gap#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "CAUSGR",
+   "closest": "interventional causal abstraction, activation patching"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "CAUSGR",
+   "closest": "interventional causal abstraction, activation patching"
+  }
+ },
+ "g1_neg#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "quantum cognition; complex-valued networks"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "quantum-probability cognition, complex-valued networks"
+  }
+ },
+ "g1_neg#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "RevNets, reversible learning, machine unlearning"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "RevNets plus machine unlearning (SISA)"
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "multi-timescale RNNs, constructive networks"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "multi-timescale RNNs, constructive growth"
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "tracing JIT; SOAR chunking"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "tracing JIT side-exits; SOAR chunking"
+  }
+ },
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Wahlund effect; growing mixture-of-experts"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "STRUCTURE admixture; MoE expert splitting"
+  }
+ },
+ "g1_gap#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "COMPMAP",
+   "closest": "accuracy prediction without labels; backtranslation"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "COMPMAP",
+   "closest": "synthetic tasks, covariate-shift accuracy estimation"
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis typing; metamorphic testing"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "units type systems, metamorphic testing"
+  }
+ },
+ "g1_gap#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "alpha-investing plus online conformal prediction"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "online conformal plus alpha-investing"
+  }
+ },
+ "g1_neg#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning; teachability distillation"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning; teachability bottleneck distillation"
+  }
+ },
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 7,
+   "C": 3,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "structural rigidity theory on graphs"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "structural rigidity theory on graphs"
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning; prompt/lesson optimization"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning; textual prompt optimization"
+  }
+ },
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AI Feynman; Buckingham-Pi dimensionless learning"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Buckingham Pi symbolic regression (AI Feynman)"
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 3,
+   "V": 3,
+   "R": "N",
+   "B": "ENERGY",
+   "closest": "oscillatory Ising machines; Physarum networks"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 3,
+   "V": 3,
+   "R": "N",
+   "B": "ENERGY",
+   "closest": "oscillatory Ising machines, Physarum reinforcement"
+  }
+ }
+}

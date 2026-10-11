@@ -1,1 +1,32 @@
-{}
+{
+ "g1_mech#2": {
+  "verdict": "PARTIAL",
+  "closest": "i-RevNet: Deep Invertible Networks (2018) https://arxiv.org/pdf/1802.07088 ; Large Language Models are Better Reasoners with Self-Verification (2022) https://arxiv.org/pdf/2212.09561 (also RevNet, Gomez et al. 2017 https://papers.NeurIPS.cc/paper_files/paper/2017/file/f9be311e65d81a9ad8150a60844bb94c-Paper.pdf; Bennett-style reversible computing, from memory, not surfaced in search)",
+  "new": "Invertible layers and backward verification both exist separately, but nothing found uses an explicit residual register whose unexplained bits mark invented spans and are minimised in training."
+ },
+ "g1_loop#2": {
+  "verdict": "PARTIAL",
+  "closest": "Statistical Ranking and Combinatorial Hodge Theory / HodgeRank (2008) https://arxiv.org/pdf/0811.1067 ; On the Quantum-like Contextuality of Ambiguous Phrases (2021) https://arxiv.org/pdf/2107.14589",
+  "new": "Hodge curl as an inconsistency detector and sheaf-style contextuality of ambiguity are both known, but no source uses persistent curl in learned concept-context maps to add a latent context dimension and split the concept."
+ },
+ "g1_neg#3": {
+  "verdict": "PARTIAL",
+  "closest": "Ease-of-Teaching and Language Structure from Emergent Communication (2019) https://arxiv.org/abs/1906.02403v2 ; Emergent Communication at Scale (2022) https://iclr.cc/virtual/2022/poster/6459 (also compression-based library learning, babble (2022) https://ar5iv.labs.arxiv.org/html/2212.04596)",
+  "new": "Fresh-learner transmission pressure and compression-based abstraction learning exist, but not a per-concept gate using a different-architecture naive learner, with a stored vocabulary re-tested whenever the learner pool is refreshed."
+ },
+ "g1_neg#2": {
+  "verdict": "PARTIAL",
+  "closest": "i-RevNet: Deep Invertible Networks (2018) https://arxiv.org/pdf/1802.07088 ; Reverse Thinking Makes LLMs Stronger Reasoners (2024) https://arxiv.org/pdf/2411.19865v1 (also Self-Verification (2022) https://arxiv.org/pdf/2212.09561)",
+  "new": "Backward-pass reconstruction from the answer plus premises only, with the reconstruction gap read as an unstated assumption and penalised in training, was not found; it is nearly the same mechanism as L01."
+ },
+ "g1_core#2": {
+  "verdict": "NO-CLOSE-MATCH",
+  "closest": "A half century of Baarda's concept of reliability: a review (2018) https://doi.org/10.1080/00396265.2018.1548118 ; Temporal Consistency for LLM Reasoning Process Error Identification (2025) https://arxiv.org/pdf/2503.14495",
+  "new": "No source applies least-squares loop adjustment, the w-test or redundancy numbers to reasoning steps, though step-level error localisation by self-consistency or verifier voting is established; the independence assumption behind the w-test is a real weakness for correlated reasoning steps."
+ },
+ "g1_core#1": {
+  "verdict": "PARTIAL",
+  "closest": "MELD: A Protocol for Merging Knowledge Across Distributed Agentic Memories (2026) https://arxiv.org/pdf/2608.16357 ; Conflict-Free Replicated Data Types for Neural Network Model Merging (2026) https://arxiv.org/pdf/2605.19373 (also StateFuse (2026) https://arxiv.org/abs/2607.05844; CRDT overview, Shapiro et al. https://arxiv.org/pdf/1806.10254)",
+  "new": "CRDTs for agent memory and for weight merging both exist, but not a model whose learned knowledge is itself a join-semilattice store (evidence counters, tombstoned exceptions) that prediction reads directly."
+ }
+}
