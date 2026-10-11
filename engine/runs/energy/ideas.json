@@ -241,5 +241,23 @@
   "name": "Retired Ash-Pond Batteries",
   "mech": "Grids of electrodes are pushed into the ash ponds of retiring coal plants. The iron and manganese oxides and unburnt carbon in the ash, wetted by the pond's own water, form a large in-place electrode mass. The cap and liner required for closure contain it, and the plant's existing substation connects it to the grid. Each electrode zone records the charge it takes in against the charge it gives back. Zones that return little charge are disconnected, so the battery settles onto the parts of the ash that work.",
   "value": "Thousands of sites already have containment, land and grid connections paid for, so multi-day storage costs about as much as installing electrodes."
+ },
+ {
+  "id": "g2_evo2#1",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Sand-Stilled Distance Cell",
+  "mech": "Two flat electrode grids are laid metres apart in a lined trench filled with sand and soaked in cheap electrolyte. Charging makes a soluble oxidised species at one grid and a reduced species at the other. The sand stops convection, so the two can only meet by diffusion, which takes years over that distance. Grid spacing and current density are set to match the rate of self-discharge against the resistive loss for the target number of days.",
+  "value": "Electrochemical storage for weeks becomes earthworks, sand and brine, with no membrane, tank or pump."
+ },
+ {
+  "id": "g2_evo2#2",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Drain-Locked Electrode Beds",
+  "mech": "Large beds of cheap but leaky electrode material, such as iron and manganese oxides, are charged while flooded with electrolyte. The electrolyte is then pumped into a shared reservoir. The dry, sealed beds have no ion path, so self-discharge and side reactions stop. Refilling a bed brings it back to full power, and the controller rotates beds so only those about to be used are kept wet.",
+  "value": "The cheapest high-leak chemistries can hold charge through long calm, dark spells, with one shared electrolyte volume serving many beds."
  }
 ]
