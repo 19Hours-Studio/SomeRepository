@@ -1,0 +1,312 @@
+F01
+MECHANISM: In a simple undivided cell, reduction turns a cheap dissolved organic molecule into a strained isomer that is insoluble, and the matching oxidation turns a partner molecule into a second insoluble solid, so both charged forms drop out of solution as they form. No charged species stays dissolved, so nothing can cross between the electrodes. The cell needs no membrane, and its electrolyte stays at a fixed saturated composition, which keeps the voltage steady and the overpotential low. The two powders sit on separate covered heaps, where the isomer's high energy barrier keeps them charged for months. To discharge, they are fed back as a slurry past electrodes coated with a catalyst that lowers that barrier, and the molecules snap back and redissolve.
+VALUE: Weeks of reserve cost a covered dirt pad plus a membrane-free tank cell, and the charged state cannot leak or cross over.
+
+F02
+MECHANISM: A lined pit of mixed electrolyte, with no membrane, holds both reactants, and simple electrodes dipped into it each react with only one reactant, so the dipped electrode array is the whole converter, with no stack, membrane or pumps. Charging starts only when a weather forecast shows a lull a few days ahead. Because charge is held just for the forecast gap plus the lull, the self-discharge that crossover causes in such a crude design costs only a few percent. The same electrodes are used for charging and discharging and are sized to average lull demand, not peak surplus.
+VALUE: Whole-lull storage in a hole in the ground, where forecast timing turns cheap, leaky containment and electrodes into an acceptable round-trip loss.
+
+F03
+MECHANISM: Surplus wind and solar power drives hydrogen or electrolytic reduction of iron ore into iron powder. The powder is kept in open, uninsulated piles at almost no cost per kWh. During calm, dark spells, special combustors burn the powder in air to make steam for existing thermal power plants. The resulting rust goes back to the reducers. The same stockpile also supplies steelmakers, so the steel industry carries part of the converter and inventory cost. A market for the stockpile decides each week whether a tonne of iron becomes steel or electricity.
+VALUE: It turns a commodity already held in huge stockpiles into weeks of grid energy that costs pennies per kWh to store.
+
+F04
+MECHANISM: Two buried magnetite lenses with barren rock between them become the two electrodes. A borehole ring injects a carbonate-buffered alkaline brine so that both charged states stay in place as insoluble solids: magnetite oxidizes to maghemite/hematite on one side and reduces to ferrous hydroxide/green rust on the other. Nothing dissolves, migrates or becomes acid drainage. The same perimeter boreholes pump a slight inward hydraulic gradient, which keeps oxygen-bearing outside water from discharging the store. Self-potential mapping shows where the charged front lags, and current is moved between boreholes to keep the front even. Because each lens spreads the reaction over millions of square metres of mineral surface, current density stays tiny and voltage losses stay small. The only fabricated converter is the inverter.
+VALUE: Owners of magnetite deposits and flooded iron-mine voids gain a reversible, non-polluting seasonal store whose cost per kWh is drilling plus an inverter, aimed at utilities that need to cover multi-week lulls.
+
+F05
+MECHANISM: An iron oxide ore heap and a manganese oxide ore heap, threaded with steel mesh and separated by sand, form a sealed cell that a shared alkaline reservoir floods only to charge or discharge and drains afterwards, which stops iron's hydrogen-evolving self-discharge. The iron heap is mixed with a few percent of sulfide ore, which suppresses hydrogen evolution during charging and coats grains with conductive films, and the first slow formation charge reduces the hematite to a connected magnetite-iron network, so the whole heap conducts and not just the ore touching the mesh. Hectare-wide beds then run at very low current density, keeping voltage losses small.
+VALUE: Grid operators get weeks of storage whose power converter is an idle, dry ore heap that is fully used and efficient on charge, so both energy and power cost about as much as mined ore.
+
+F06
+MECHANISM: Surplus current runs through large beds of layered swelling clay and drags the water out from between the mineral sheets. The water drains away, and the dry, compacted clay can sit for weeks in sealed pits with no pressure on them and nothing to leak. When power is needed, water is let back into one bed section at a time. The first water layers pushing between the sheets force them apart very hard, and that pressure drives hydraulic rams connected to a generator. A controller decides how much water each section gets, using the power price and the measured swelling, so that it only uses the high-force early part of wetting.
+VALUE: The energy is held in the pull between water and mineral sheets, so storage capacity costs about as much as digging and moving earth.
+
+F07
+MECHANISM: A closed coal-ash pond runs as one very large iron-air cell. Steel rod grids reduce the ash's own iron-oxide fraction to iron, with the wet, lime-alkaline pore water as the electrolyte and the unburnt carbon as the conductive network. Regulations already require a closure cap, and here its drainage gravel carries a steel-mesh layer that serves as the air-breathing positive electrode. Each zone's charge in is metered against its charge out, zones below a set efficiency are disconnected, and power flows through the retired plant's switchyard and grid connection, which stay in service.
+VALUE: Retired coal plants turn ash-pond closures they must carry out anyway, and their idle grid connections, into multi-gigawatt-hour stores that last for weeks, where the only new hardware is rods, a cap mesh and an inverter, and the low efficiency is paid for with surplus power that would otherwise be curtailed.
+
+F08
+MECHANISM: A paper machine lays down carbon electrodes and a cellulose separator in one pass at kilometres per minute. The laminate is then wound with mesh spacers into spiral cartridges like reverse-osmosis elements, so thousands of square metres fit into one mass-produced pressure tube with no frames, bipolar plates or gaskets. The cartridges are oversized five to ten times and paired with a fast outer-sphere redox couple that has no oxygen-evolution step. At that low current density the voltage loss is mostly ohmic and falls in proportion, giving high round-trip efficiency without catalysts or ion-exchange membranes. Spent cartridges are re-pulped to recover the carbon.
+VALUE: Any cheap-tank flow chemistry gains a converter that is both near paper cost per square metre and highly efficient, removing the stack cost and loss that dominate long-duration storage economics.
+
+F09
+MECHANISM: A water-saturated bed of waste lignin is charged in place through sparse buried carbon electrodes, against a cheap counter-electrode layer laid over the bed. Kept mildly alkaline, the bed dissolves its own small lignin fragments, which carry charge between the electrodes and the solid lignin, so the bed mediates itself and its insulating bulk becomes active with no added chemical. Occasional heavy-water charges tag the cycling quinones with deuterium, NMR on cores measures how far this native shuttle really carries charge, and electrode spacing is set to that measured reach, with electrodes added to dead zones and removed from saturated ones.
+VALUE: Pulp and biorefinery sites turn a nearly free byproduct into storage that lasts for weeks, in which most of the bed's mass stores charge and electrodes sit only as close together as the bed's own measured shuttle range requires.
+
+F10
+MECHANISM: Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried current collectors. During long lulls a grid-scarcity price signal draws charge down to a set structural depletion limit, as bone gives up calcium under PTH, and surplus power replaces the charge later. Load-bearing capacity is checked continuously and sets that limit.
+VALUE: Massive storage mass whose cost is already paid by construction, so equipment that cycles only a few times a year still pays off.
+
+F11
+MECHANISM: Electric winches stretch long cords of a cheap polymer while it is warm, then cool them. The cooling locks the polymer chains in their stretched arrangement, so the cords keep their stored tension without clamps or any force holding them. The tensioned cords are wound onto reels and stacked in ordinary sheds. To get power back, a reel is warmed a little, for example with low-grade waste heat. The chains can move again and pull together with force, which drives a generator back through the same winch. The grid frequency signal sets how fast each reel is warmed, so the power released follows demand minute by minute.
+VALUE: Energy can sit for weeks in cheap stacked material with no leakage, no hazardous chemistry and no special site.
+
+F12
+MECHANISM: Weather forecasts trigger charging a few days before a predicted lull. The store is a membraneless pit of mixed electrolyte, read by electrodes that each react with only one reactant. It loses its charge over a couple of weeks, which is acceptable because it only has to last through the predicted lull.
+VALUE: Accepting charge loss over about two weeks allows the cheapest possible containment for storage covering whole lulls.
+
+F13
+MECHANISM: A single membraneless carbon cell array reduces air oxygen to peroxide in soda-ash solution. The peroxide is crystallized into sodium percarbonate and stored in silos. In normal months the cell runs as a merchant electrochemical peroxide plant, ramping up on cheap surplus power and selling percarbonate to pulp-bleaching, water-treatment and detergent buyers. A strategic silo stockpile is held back and, during a dark calm spell, discharged through the same cell back to oxygen and water. Because the converter earns chemical revenue at a high capacity factor, its capex is not stranded across a year with few cycles. Low discharge efficiency matters less because the stockpile was made from near-zero-price power and costs only powder and silo space.
+VALUE: Regions with surplus renewables gain a chemical business whose inventory doubles as a weeks-long power reserve, so storage converter capex is paid by product sales rather than by rare discharges.
+
+F14
+MECHANISM: Cased boreholes connect to two separate conductive sulfide or magnetite ore lenses, with barren rock between them and groundwater as the electrolyte. Grid current reduces one lens and oxidizes the other. The lenses must not be electrically connected through rock, or the body shorts itself as natural geobatteries do. Each lens's own conduction spreads the reaction over millions of square metres of internal mineral surface, and the return current flows through the aquifer's whole cross-section. Charging or discharging over weeks therefore gives a tiny current density and low loss, with no catalyst or fabricated stack. Self-potential readings show where the charged front lags, and current is shifted between boreholes to even it out.
+VALUE: Millions of tonnes of active mass that is never mined become a battery whose only hardware is drilling and one inverter.
+
+F15
+MECHANISM: The strained isomer oxidizes at a lower potential than its relaxed partner, and once it is oxidized it snaps open to the relaxed radical cation. That radical cation is then reduced at a second electrode at a higher potential, so relaxing the molecule yields a cell voltage of up to about the strain energy per electron. Charging runs through the radical-anion route instead, where the strained form is the downhill product, so charge and discharge each follow their own one-way path. Because each electrode selects its reactant by potential, both electrodes sit in the same liquid in a short, membraneless channel fed from steel tanks. Radical ions exist only in that channel, so the tank cannot self-discharge through a chain reaction.
+VALUE: The whole system is one cheap liquid in plain tanks plus a membraneless two-electrode channel, so adding days of storage costs only tank volume and the converter has no membrane or second electrolyte.
+
+F16
+MECHANISM: A bank of static thick-electrode cells sits on a wind or solar plant's DC link, so the plant's own inverter, transformer and grid line, which sit idle in a calm, dark spell, are its only power electronics. Contactors switch how many cells are in series, as a transformer tap changer does, so the bank follows the voltage the plant's power tracking asks for instead of clamping it, and the taps change rarely because state of charge drifts over days. Sized for weeks at a few percent of plant rating, the cells run at very low current density with small losses and charge only from output that would otherwise be curtailed.
+VALUE: Plant owners add week-long storage that costs little more than cell material and contactors, because the conversion hardware, the grid connection and the charging energy are already paid for or would otherwise be wasted.
+
+F17
+MECHANISM: Reversible solid-oxide cells co-electrolyze CO2 and water into methane using surplus power. The methane is injected into a depleted gas field. When power is needed, the same cells oxidize the methane back to electricity, and the pure CO2 they release is pumped into a second reservoir nearby. Carbon shuttles between the two reservoirs, so nothing is emitted. Reservoirs that already exist and hold terawatt-hours make the cost of extra duration close to zero. Running the cells as a heat-integrated pair lifts round-trip efficiency well above that of hydrogen turbines.
+VALUE: It reuses the existing gas-field and storage infrastructure as a carbon-neutral store of terawatt-hours for whole seasons.
+
+F18
+MECHANISM: Large beds of cheap but leaky electrode material, such as iron and manganese oxides, are charged while flooded with electrolyte. The electrolyte is then pumped into a shared reservoir. The dry, sealed beds have no ion path, so self-discharge and side reactions stop. Refilling a bed brings it back to full power, and the controller rotates beds so only those about to be used are kept wet.
+VALUE: The cheapest high-leak chemistries can hold charge through long calm, dark spells, with one shared electrolyte volume serving many beds.
+
+F19
+MECHANISM: A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting ions. Electrode meshes lie on either side of that zone. Each layer circulates within itself, so energy capacity grows with depth at the cost of earthworks.
+VALUE: Electrochemical storage lasting for weeks needs no tanks, pumps or membranes.
+
+F20
+MECHANISM: A solution-mined salt cavern holds a dense brine carrying one cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity keeps the two apart, so the cavern volume is the energy store with no tank. At the surface the two liquids flow into stacked shallow trays, where they settle again into layers a few millimetres thick between a bottom and a top electrode. The same immiscibility therefore replaces the membrane in the power stack too, which becomes plain carbon plates. Molecules that cross into the wrong layer collect at the interface, and that thin layer is skimmed off for cleaning.
+VALUE: Gigawatt-hour, multi-week storage in which neither the store nor the converter has a membrane or a purpose-built tank.
+
+F21
+MECHANISM: Surplus power drives a reversible hydraulic pump-motor that presses water out of the interlayers of thin swelling-clay beds, so energy sits as unmet hydration energy in dry clay rather than as stress, with no pressure vessel. The clay never moves: it lies in fixed earthen columns, each under its own passive steel plate, and all columns share one pump-motor through a valve manifold, so only one column at a time is pressed or wetted. Each column runs only inside the high-pressure first-water-layer window where compression and swelling curves nearly coincide, so most energy returns. Adding days of storage means adding clay columns and plates, while the single hydraulic machine is sized only for power.
+VALUE: Grid operators get week-long storage whose capacity costs about as much as earthworks and steel plate, with standard hydraulic machinery as the only converter.
+
+F22
+MECHANISM: A retired steel or cast-iron gas main is relined with a porous separator sleeve. Its wall becomes the iron-plating negative electrode and its own current collector, and a carbon-fibre cable down the bore is the positive. A cheap complexing agent holds the iron-salt electrolyte near neutral pH, so the plated iron neither gives off hydrogen nor eats away the wall during weeks at rest. Each segment connects at the street transformer it passes through an inverter that also does daily peak-shaving and voltage support for that feeder, so the converter earns its keep every day, while night-time open-circuit checks valve out segments that leak or drift.
+VALUE: Distribution utilities get weeks of storage at every street transformer with no new land, tank or stack, using an inverter that its everyday work on the feeder already pays for.
+
+F23
+MECHANISM: Gas distribution mains retired as heating goes electric are lined and filled with a harmless iron-chloride flow-battery electrolyte. This turns thousands of kilometres of existing buried pipe into a free tank network, with cell stacks at every substation. During idle hours, each valve-isolated segment is checked for volume loss and charge drift, the way water utilities find leaks from minimum night flow. Segments that leak or lose charge are automatically valved out and switched to inert fluid, and the rest are reconnected into new tank loops.
+VALUE: Multi-day storage at neighbourhood scale, where the most expensive item, the tank, is already buried and paid for.
+
+F24
+MECHANISM: Two cheap ore heaps, one iron oxide and one manganese oxide, each threaded with plain steel mesh and separated by a layer of sand, form the cell. The ore heaps themselves are the electrodes. A shared alkaline reservoir floods a bed pair only when it is about to charge or discharge, and drains it afterwards. Draining stops iron's hydrogen-evolving self-discharge, so there is no need for a costly, lossy air electrode or membrane. Because the electrode area is just more ore, the beds can be made hectares wide and run at very low current density, which keeps voltage losses small and round-trip efficiency high.
+VALUE: The power converter turns into a cheap heap of ore that sits dry and idle at no cost, giving weeks of storage that is cheap and efficient on both the energy side and the power side.
+
+F25
+MECHANISM: Two flat electrode grids are laid metres apart in a lined trench filled with sand and soaked in cheap electrolyte. Charging makes a soluble oxidised species at one grid and a reduced species at the other. The sand stops convection, so the two can only meet by diffusion, which takes years over that distance. Grid spacing and current density are set to match the rate of self-discharge against the resistive loss for the target number of days.
+VALUE: Electrochemical storage for weeks becomes earthworks, sand and brine, with no membrane, tank or pump.
+
+F26
+MECHANISM: Charged redox molecules are dissolved in a water-free trehalose-based eutectic that is liquid just above room temperature at the stack and is quenched into a glass for storage, so no water ever has to be evaporated. In the glass even highly reactive, high-voltage, fast-kinetics molecules such as organic radicals barely move, so a small plain carbon stack can run at low overpotential with chemistry chosen for speed, not shelf life. Granules are remelted only as discharge needs them, with a counterflow exchanger passing heat from the outgoing melt to the incoming glass and the stack's own loss heat covering the rest.
+VALUE: Grid operators get weeks of charge stored like grain in silos, feeding a small, fast and efficient stack, without spending stored energy on drying or redissolving.
+
+F27
+MECHANISM: A bank of static, thick-electrode cells sits directly on a wind or solar plant's DC link, with a voltage window that matches the link. That makes the plant's own inverter, transformer and grid line its only power electronics, and in a calm, dark spell all of that hardware would otherwise sit idle. A store holding weeks of energy delivers only a small fraction of its contents per hour, so the cells run at very low current density, where overpotential and resistive loss are small and no fabricated stack is needed. Charging uses output that would otherwise be curtailed, so the energy lost in the round trip was free energy that would have been thrown away.
+VALUE: Week-long storage costs little more than the cell material itself, because the conversion hardware, the grid connection and most of the charging energy are already paid for or would be wasted.
+
+F28
+MECHANISM: Surplus power drives a reversible hydraulic pump-motor and rams that squeeze thin, drained beds of swelling clay, pressing the water out from between the mineral sheets. The water drains away, and the dry clay then sits unloaded in a sealed pit. Its energy is held as unmet hydration energy, not as stress, so it needs no pressure vessel. To discharge, water is let back into one section at a time under the same rams, and the very high swelling pressure of the first water layers drives the pump-motor in reverse as a generator. One cheap, mature hydraulic machine handles both directions. The controller works only in the high-force early stage of wetting, where the compression and swelling curves lie close together, so most of the energy comes back.
+VALUE: Storage capacity costs about as much as moving earth, and the only converter is standard hydraulic machinery.
+
+F29
+MECHANISM: A lined pit holds horizontal layers of brine-soaked sand about a decimetre thick, separated by cheap bipolar carbon sheets. Charging makes a soluble oxidized species on one face of each sheet and a reduced species on the other, and the sand stops convection, so the two meet only by diffusion. Diffusion time grows with the square of the layer thickness, while resistance grows only with the thickness. At decimetre spacing the charge therefore holds for months, and a discharge spread over days loses only a few percent to resistance. Stacking the layers in series raises the voltage. The carbon sheets are the whole converter, and because they run at a few amps per square metre they can be the cheapest grade.
+VALUE: Membrane-free electrochemical storage for weeks, where both the energy and the power side are earthworks, sand, brine and carbon sheet.
+
+F30
+MECHANISM: Surplus wind and solar power runs a resistance-heated kiln that splits limestone into quicklime and CO2. The quicklime is stored dry in silos and the CO2 as a liquid in tanks, both at room temperature. During a calm, dark spell, quicklime and CO2 recombine in a fluidized-bed reactor and release heat at about 900°C. A closed-cycle CO2 turbine turns that heat into electricity. Because the energy is held in chemical bonds instead of as sensible heat, nothing leaks away whether it is stored for days or months, and the reaction rate can be raised or lowered by controlling how fast CO2 is fed in.
+VALUE: Long-duration storage with no heat loss, built from materials costing about $10 a tonne, which suits multi-week calm, dark spells.
+
+F31
+MECHANISM: Raw mine or industrial waste brine flows through a cascade of cheap cells, each held at a stepped electrode potential. The charge each stage passes, minus the conversion measured there, tells it which couple it is working on. Stages whose residual shows a parasitic couple precipitate it out. Stages whose residual shows a reversible couple, usually iron or manganese, split it into its own purified stream, which becomes a flow-battery electrolyte with no separate purification plant. When it is not storing power, the cascade keeps treating brine for remediation fees, so stack area earns money year-round. New stack area is added only where measured charge return justifies it.
+VALUE: Mine operators and nearby grids gain storage electrolyte that is effectively free, made inside a water-treatment plant whose remediation revenue carries the converter capex.
+
+F32
+MECHANISM: Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one end and oxidizes it near the other, and groundwater carries the ions. Discharge reverses this, using the same conduction the ore already shows naturally. Electrode spacing and current are tuned from measurements of the rock's own voltage (self-potential) so the charged front spreads evenly.
+VALUE: Millions of tonnes of active mass that is never mined, moved or contained, so the capacity cost is mostly drilling.
+
+F33
+MECHANISM: The long-duration tier gets a converter rated at about its yearly mean flow, roughly one five-hundredth of its stored energy per hour, and that converter runs nearly all year instead of waiting for rare lulls. Each forecast cycle, ensemble weather forecasts reset one flat rate: slow charging through weeks of surplus, and discharge that starts days before a forecast lull at a high-percentile deficit spread over the lead time plus the lull, so later forecast revisions change the rate only slightly. The fast daily batteries absorb the hour-by-hour mismatch, and at such a tiny, steady current density even catalyst-free electrodes and slow, cheap chemistries reach high round-trip efficiency.
+VALUE: Grid planners get a long-duration tier whose converter is sized to the mean deficit rather than the peak and stays busy most hours of the year, which removes both the idle-converter cost and most of the round-trip loss that make multi-week storage expensive.
+
+F34
+MECHANISM: Paper machines deposit carbon onto cellulose webs at kilometres per minute and lay down a cellulose separator in the same pass, so cell area costs about as much as paper. The stacks are built five to ten times larger than their rated power and run at a fraction of the usual current density. This turns cheap area into low overpotential and high round-trip efficiency, with no expensive catalysts or membranes. Used laminates are re-pulped every few years to recover the carbon.
+VALUE: The converter becomes both cheap and efficient, because area replaces catalyst quality, so stacks that sit idle most of the year stop dominating cost or losses.
+
+F35
+MECHANISM: Surplus electricity runs desalination units that split seawater or brine into fresh water and a very concentrated salt solution, kept in separate lined ponds or in old salt caverns. During calm, dark periods, reverse electrodialysis or pressure-retarded osmosis turns the energy of mixing back into electricity. Capacity grows simply by digging more pond volume. The power rating depends only on how much membrane area is installed, which the controller can expand or idle as needed.
+VALUE: Week-scale storage for a few dollars per kWh of capacity, using only salt, water and earthworks.
+
+F36
+MECHANISM: Cheap electrolyzers turn captured CO2 and water into formate or formic acid, which can sit for months in unpressurized plastic tanks at room temperature. When renewable output is low, direct-formate fuel cells or catalytic dehydrogenation turbines convert it back to power. The CO2 released is captured again on site, which closes the carbon loop. Electrolysis and generation are sized separately, so capacity can be set to the worst historical lull.
+VALUE: Seasonal and multi-week storage at gasoline-tank cost per kWh, without the compression, embrittlement and leakage problems of hydrogen.
+
+F37
+MECHANISM: A lined pit holds one membraneless electrolyte with both reactants, and plain dipped electrodes each react with only one of them, so the electrode array is the whole converter. The reactant pair is chosen so the charged oxidized form is dense and sinks while the charged reduced form is light and floats, with the charging electrodes placed at the bottom and at the top. The pit stratifies on its own and the two charged forms meet only across a thin mixed layer in the middle, which stretches holding time from days to weeks. Charging is still timed by the weather forecast so that the remaining self-discharge costs only a few percent, and the electrodes are sized to average lull demand.
+VALUE: Grid operators can ride through lulls longer than any forecast horizon with a hole in the ground, liquid and dipped electrodes, and nothing else.
+
+F38
+MECHANISM: Electrode-separator laminates are made on existing paper machines, where retention-aid chemistry flocculates carbon and catalyst particles onto cellulose fibre webs at kilometres per minute. Because discharge stacks run only a few hundred hours a year, they are treated as consumables: they run in membraneless or laminar-flow configurations, are swapped every few years, and are then re-pulped to recover the catalyst.
+VALUE: Conversion hardware drops toward a few dollars per kW, so stacks that sit idle most of the year stop dominating the cost of storage.
+
+F39
+MECHANISM: Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a sugar glass in which those molecules can barely move, so self-discharge and breakdown almost stop. The glass is stored in bulk like grain and redissolved for discharge. Water content and glass-transition temperature are the control settings.
+VALUE: The cheapest redox chemistries, which normally leak charge, can hold it for weeks without tanks.
+
+F40
+MECHANISM: In a retired steel or cast-iron gas main, the pipe wall becomes the iron-plating negative electrode and its own current collector, and it stays cathodically protected while charged. A porous separator sleeve is pulled in using standard relining methods, and a carbon-fibre cable down the bore serves as the positive electrode in the iron-salt electrolyte. Each kilometre gives hundreds of square metres of electrode, so the cells run static, with no pumping and at very low current density. The existing night-time segment checks also measure each segment's open-circuit voltage, and the network automatically valves out segments that leak or drift.
+VALUE: Buried pipe that is already paid for becomes both the tank and the cell stack, so neighbourhood multi-day storage needs no substation stacks at all.
+
+F41
+MECHANISM: A static, water-saturated bed of waste lignin or humic solids is charged directly by buried electrodes, reducing quinone groups with no mediator and no pumping. During some charges, heavy water is added; quinones that get reduced take up deuterium, and NMR on core samples maps which parts of the bed actually store charge. Electrodes are added to dead zones and removed or rewired from saturated ones, so the electrode network keeps adapting to how the bed really behaves.
+VALUE: Turns a nearly free paper-industry byproduct into storage that runs for weeks, with very little hardware per kWh.
+
+F42
+MECHANISM: A trench of biochar soaked in neutral brine is both the energy store and its own power converter, because charge sits on the char's internal surface right where the current flows, so no separate stack or membrane has to be built. Impedance tomography maps pockets that will not charge, and those pockets are dried and left as insulating walls. This splits the bed into many series cells, so its voltage climbs to the DC input level of a standard grid inverter, and the inverter is the only power hardware left. Discharging over days keeps current density in the bulk tiny, so resistive loss stays small even in a thick, crude bed, and the low voltage per cell in neutral brine limits self-discharge.
+VALUE: Multi-day storage whose cell, separators and voltage stacking are all dug with earthmoving equipment, leaving only an off-the-shelf inverter as factory-made converter cost.
+
+F43
+MECHANISM: Trenches are filled with cheap biochar soaked in neutral brine and layered with metal collector meshes, storing charge on the char's huge internal surface. Electrical impedance tomography, used in intensive care to find collapsed lung regions, maps pockets of the bed that aren't charging. A pressure pulse of electrolyte tries to re-wet each dead pocket. Pockets that stay dead are disconnected and turned into insulating separators, splitting the bed into more series-connected cells and raising its working voltage.
+VALUE: Storage built from material priced like farm waste and installed with earthmoving equipment instead of factories.
+
+F44
+MECHANISM: Storage is split into a small fast tier (the existing daily batteries) and a huge cold tier deliberately built to discharge at only about C/500. Ensemble weather forecasts several days ahead trigger the cold tier to start a flat trickle and to keep the fast tier full. The trickle rate is set to the forecast total deficit spread over lead time plus lull duration, and the fast tier absorbs hour-by-hour mismatch. The rate is re-planned every forecast cycle.
+VALUE: The power rating of long-duration storage falls from the peak deficit to roughly the mean deficit, so the cold tier can use very slow, nearly catalyst-free and extremely cheap hardware.
+
+F45
+MECHANISM: A salt cavern holds a dense brine carrying one cheap redox couple beneath an immiscible organic liquid carrying the other. At the surface the two flow through stacked shallow trays, where they settle into millimetre layers between plain carbon plates, so there is no membrane anywhere. The cavern is layered by state of charge as well as by phase: charged brine is drawn from the floor and charged organic from the roof, while spent liquid from the trays returns right at the interface, so metres of spent liquid always shield the interface and the charged bulks lose only what diffuses through that buffer over weeks. Liquid stays in the trays for only a few minutes, less than freshly charged molecules need to diffuse across a millimetre layer, and any crossed molecules that collect at the interface are skimmed off for cleaning.
+VALUE: Grid operators get gigawatt-hour storage lasting several weeks in which neither the store nor the converter needs a membrane or tank, and the cavern's own spent-liquid buffer holds off the self-discharge that normally ruins membraneless designs.
+
+F46
+MECHANISM: A dissolved organic molecule is reduced, and a partner molecule is oxidized, into strained isomers that crystallize after a delay, so they nucleate on seed crystals in a downstream settling basin rather than on the electrodes. Charging and discharging both happen in one membrane-free open channel lined with carbon. The electrolyte stays at a fixed saturated composition, so the voltage stays flat. The carbon floor carries a potential-gated catalyst that speeds up the snap back only when the floor is held at discharge potential. As a result, the same cheap area charges without reverting its own product and discharges by redissolving slurry fed back up the channel. The two powders sit on covered heaps for months. The converter is a lined ditch run at very low current density, so it is both cheap and low-loss.
+VALUE: Grid operators get weeks of storage where the bulk medium and the single bidirectional converter both cost about as much as earthworks, with no crossover and no electrode fouling.
+
+F47
+MECHANISM: In a lined pond, a still salt-gradient zone separates a dense charged electrolyte layer below from a lighter one above. The zone conducts ions but blocks mixing, and pond-wide horizontal carbon meshes lie just above and below it. As in a solar pond, the same gradient traps sunlight as heat in the bottom layer, warming it by tens of degrees. That raises conductivity and electrode kinetics, so the ohmic and activation losses across the separator are offset by free heat. Because the electrode area equals the pond area, current density stays low, and capacity grows by digging deeper rather than by adding hardware.
+VALUE: Weeks of electrochemical storage with no tanks, membranes or stacks, where the separator also harvests the heat that keeps round-trip losses down.
+
+F48
+MECHANISM: Energy-intensive plants (electrolytic iron, aluminum, ammonia, cement clinker, chlor-alkali) are built with two to three times their average production capacity and large stockpiles of intermediate products. Software that reads multi-week weather forecasts runs them flat out during windy, sunny surpluses, runs them down to idle during lulls, and draws on stock to meet steady downstream demand. The energy is stored as finished goods, and the system learns over time how big each stockpile needs to be.
+VALUE: Takes terawatt-hours of demand off the grid during long lulls, using storage that is valuable goods rather than dedicated hardware.
+
+F49
+MECHANISM: One membraneless carbon cell array runs in both directions: on surplus power it reduces air oxygen to peroxide in soda-ash solution, and during a lull it oxidizes and reduces that same peroxide back to oxygen and water. The converter is therefore bought once and used for both charging and discharging. The peroxide is crystallized into dry sodium percarbonate and stored in ordinary silos, so energy capacity grows by piling more powder while power capacity stays fixed. Round-trip efficiency remains low, but any stockpile left unused for power is a saleable bulk detergent chemical, so the stored inventory never becomes stranded capital.
+VALUE: Weeks of storage in a cheap, tradeable powder, served by a single bidirectional converter rather than two separate stacks.
+
+F50
+MECHANISM: A winch stretches warm polymer cords that are then cooled, which locks in their tension so the reels can sit in sheds for weeks with no holding force and no leakage. One motor-generator winch per shed serves thousands of reels one after another, so the converter cost is spread over a very large stored mass. Because the cord's pull comes from chain entropy, gently warming a reel with low-grade waste heat releases it, and part of the output work is drawn from that heat, which offsets the conversion losses. The grid frequency signal sets the warming rate, so output follows demand.
+VALUE: Leak-free, non-hazardous weeks-long storage in stacked reels, with one shared electric machine per shed and part of the discharge energy supplied by waste heat.
+
+F51
+MECHANISM: Days before a lull, ensemble weather forecasts start a huge cold storage tier on a flat trickle. The rate equals the forecast total deficit spread over the lead time plus the lull. The existing fast daily batteries absorb the hour-by-hour mismatch, and the rate is re-planned every forecast cycle. The cold tier only ever delivers the mean deficit and recharges just as slowly from weeks of surplus, so its converter needs a rating of only about one five-hundredth of its stored energy per hour. At that tiny current density, overpotential and resistive loss nearly vanish, so even crude electrodes without catalyst, or slow chemistries, reach high round-trip efficiency.
+VALUE: The power rating of long-duration storage falls from the peak deficit to the mean deficit, which cuts converter cost and round-trip loss together.
+
+F52
+MECHANISM: Thick paste electrodes of natural smectite clay store charge through the iron(III)/iron(II) reaction in their crystal layers, and discharging slowly over days lets these cheap, thick electrodes act as the converter without a high-performance stack. Each clay lot is tracked as a cohort, and log-rank tests rank lots on how long they keep their round-trip efficiency, not only their capacity. Lots that fail early are retired as soil amendment, and their mineral fingerprints tighten the procurement spec, so the fleet converges on clays that convert efficiently for decades.
+VALUE: Electrode and converter material at tens of dollars per tonne, with a sourcing loop that continually selects for low conversion loss.
+
+F53
+MECHANISM: Road bases and embankments are built from redox-active iron or manganese slag aggregate in a damp, ion-conducting binder, with current collectors buried in them, so the construction budget pays for the storage mass. Spread over kilometres, multi-day discharge runs at very low current density, which keeps conversion loss low without an engineered stack. The structure feeds DC directly to the roadside loads and chargers it already powers, so it reuses their existing power electronics. Continuous load-bearing measurements set how far charge may be drawn down before strength suffers.
+VALUE: Massive storage mass and much of its power electronics are already paid for by roads and their roadside equipment, so cycling only a few times a year still pays off.
+
+F54
+MECHANISM: Surplus electricity reduces air oxygen to hydrogen peroxide on cheap carbon cathodes in soda-ash solution, and the peroxide is crystallized as sodium percarbonate, the same powder used in laundry detergent. The coated dry crystals are piled in ordinary warehouses or silos, where they lose almost nothing for months. During a lull, the powder is dissolved and fed to membraneless cells in which selective catalysts both oxidize and reduce the peroxide, and the carbonate liquor goes back to the charging plant. In theory this stores about 0.3 kWh/kg using only water, air and reusable soda ash. Round-trip efficiency is a low 25-35%, which matters less for storage that cycles only a few times a year.
+VALUE: Multi-week storage built from water, air and a bulk detergent chemical, at roughly $1-3/kWh of capacity.
+
+F55
+MECHANISM: Simple steel or graphite rod grids are driven into a closed coal-ash pond, and the oxides and unburnt carbon in the wet ash serve as the electrode mass. The pond is so large that multi-day discharge runs at a very low current density per rod, so cheap rods replace an engineered electrochemical stack and stay inefficient only where the chemistry itself is. Each zone counts the charge it takes in against the charge it returns and is disconnected when its return falls too low, so the battery keeps only its efficient zones. The plant's existing switchyard and grid connection carry the power, so the only new converter is an inverter sized in kW.
+VALUE: Thousands of sites with containment, land and grid connections already paid for become multi-day stores whose converter is just rods plus an inverter.
+
+F56
+MECHANISM: A water-saturated bed of waste lignin is charged directly through sparse buried carbon electrodes, with no pumps or mediators. During occasional charges, heavy water is added so that reduced quinones take up deuterium, and NMR on core samples shows exactly which zones store charge. Electrodes are then added only to dead zones and removed from saturated ones. Over time, electrode material per kWh falls to the minimum the bed needs, and every active zone stays within a short ion path, which keeps resistive losses low.
+VALUE: A nearly free industrial byproduct holds charge for weeks, with converter hardware placed according to the measured behaviour of the bed rather than worst-case spacing.
+
+F57
+MECHANISM: Surplus current at an electrode rearranges a cheap, small organic liquid into a cramped, high-strain shape made of the same atoms. Nothing at room temperature can push it back over the barrier to relaxing, so it stays charged for as long as it is stored. The strained liquid sits in plain steel tanks. When power is needed, it flows past a catalytic electrode surface that lowers the barrier, and as each molecule snaps back to its relaxed shape it gives up electrons to the external circuit. The liquid changes colour as it relaxes, so the charged fraction can be read optically. Only the tank volume grows with extra days of backup.
+VALUE: Weeks of reserve come down to tank space for a liquid that is reused forever and uses up no air, ore or carbon.
+
+F58
+MECHANISM: A lined pit holds stacked brine-soaked sand layers between cheap bipolar carbon sheets, and each layer has three zones: carbon-coated conductive sand against each sheet, where the soluble charged species form throughout the zone, and a plain-sand barrier zone between them. The species are therefore made where they are stored instead of having to diffuse in, while crossover must still cross the barrier, whose diffusion time grows with its thickness squared but whose resistance grows only linearly. A decimetre barrier holds charge for months, and the conductive sand grains give enough surface for days-long discharge at a few amps per square metre, with series stacking raising the voltage.
+VALUE: Grid operators get membrane-free storage for weeks in which the whole layer holds charge and both energy and power sides are earthworks, sand, brine and carbon sheet.
+
+F59
+MECHANISM: Surplus electricity runs reverse osmosis that splits saline water into two large lined ponds or old quarries, one fresh and one near saturation. To discharge, the two streams are mixed again through pressure-retarded osmosis or reverse electrodialysis stacks, which turn the mixing energy back into power. Each cubic metre stores roughly as much energy as water pumped up about 300 m. That works on flat land, because the stored quantity is concentration, not height. The membrane stacks are sized for power, so adding more days of storage means only digging more pond.
+VALUE: It gives pumped-hydro-like storage at very low cost per kWh in flat or coastal places with no mountains.
+
+F60
+MECHANISM: A winch stretches warm bands cut from scrap truck tyres rich in natural rubber, which sites are paid to accept, and cooling them lets strain-induced crystallites lock the stretch, so racks of bands can sit for weeks with no holding force and no leakage. One motor-generator winch per shed serves thousands of racks in turn, so a single shared converter is spread over a very large mass of nearly free medium. Gently warming a rack with low-grade waste heat melts the crystallites and the bands contract, drawing part of their output work from that heat to offset conversion losses, while the grid frequency signal sets the warming rate.
+VALUE: Industrial sites with waste heat get leak-free, non-hazardous storage lasting weeks whose medium comes with a disposal fee instead of a price, so its low energy density no longer makes it expensive.
+
+F61
+MECHANISM: Two excavated beds form the cell: iron-rich smectite clay, whose layer iron switches between Fe(III) and Fe(II), as the negative bed, and cheap manganese-oxide ore as the positive bed. A compacted bentonite barrier layer, a standard landfill liner, separates them. A dissolved mediator in the pore water carries electrons from embedded carbon rods to every clay platelet, so beds metres thick work as electrodes at days-long discharge rates despite clay's insulation. Electrodes, separator and store are all bulk earth at tens of dollars per tonne. The only fabricated parts are carbon rods and an inverter.
+VALUE: Utilities and landowners gain a weeks-long store built with earthmoving equipment from local clay, in which the electrode itself is the converter, so there is no stack capex to idle through the year.
+
+F62
+MECHANISM: Cheap natural smectite clays store charge as reversible iron(III) to iron(II) changes in their crystal layers, pressed into large paste electrodes. Each clay lot is tracked as a cohort, and log-rank tests on capacity-fade curves pick out lots that are failing early. Failing lots are retired and reused as soil amendment, and their mineral fingerprints change the procurement spec. Lots that last longest set the standard for future sourcing.
+VALUE: Uses a mineral that costs tens of dollars per tonne as electrode material, and continually weeds out clay sources that fade fast.
+
+F63
+MECHANISM: Energy-hungry processes are built with more capacity than they normally need and run hard while power is plentiful: electrolytic hydrogen and ammonia, aluminium, cement clinker, desalinated water and green iron. Their products are stockpiled as weeks of inventory. When renewable output drops, these plants shut down and supply their customers from the stockpiles, freeing large blocks of demand. Contracts with grid operators pay plants for each MWh they can shift and for how long they can keep that up, and a forecasting system decides when each plant runs.
+VALUE: Most of the gap during long calm, dark spells is covered by cheap inventory of finished goods, not by turning stored energy back into electricity.
+
+F64
+MECHANISM: A trench of biochar soaked in neutral brine is both store and converter, and impedance tomography maps pockets that will not charge, which are dried into insulating walls that split the bed into series cells reaching a standard inverter's DC voltage. The char's micropores are loaded with redox-active compounds from its own pyrolysis liquor (quinone-type tars), so charge is held chemically in the pores and not only as a leaky double layer, raising energy per tonne several-fold and stopping capacitive self-discharge. Discharge over days keeps bulk current density tiny, so resistive loss stays small even in a crude bed.
+VALUE: Farms and grid operators get weeks of storage dug with earthmoving equipment from char and its own by-products, with an off-the-shelf inverter as the only factory-made part.
+
+F65
+MECHANISM: The strained isomer oxidizes at a lower potential than its relaxed partner and then snaps open to the relaxed radical cation, which is reduced at a higher potential, so relaxation gives a cell voltage close to the strain energy per electron. The liquid passes once through a thick, cheap carbon-felt anode at very low current density, so radical cations stay too dilute to oxidize neighbouring strained molecules in a heat-wasting chain, and the stream then carries only relaxed cations on to a downstream carbon cathode. Charging uses a separate radical-anion channel where the strained form is the downhill product, and the neutral liquid sits inert in plain steel tanks.
+VALUE: Grid operators get storage where extra days cost only tank volume of one liquid, and the strain energy comes back as electricity instead of heat through a membraneless carbon-felt channel.
+
+F66
+MECHANISM: Road bases and embankments are built from redox-active iron or manganese slag aggregate in a damp, ion-conducting binder, so the construction budget pays for the storage mass and its housing. Each slab of embankment is cast as one cell with buried collectors and dry, insulating joints, and kilometres of slabs are wired in series until the string reaches the kilovolt DC input of one grid-tie inverter at each interchange or substation the road passes. Discharge over days at very low current density across hectares of aggregate keeps conversion loss low without an engineered stack. Continuous load-bearing measurements set how deep each segment may be cycled.
+VALUE: Grid operators get multi-day storage along every new road corridor, where the storage mass, cell housing and land are already paid for by the road budget and the only factory-made converter is one inverter per many kilometres.
+
+F67
+MECHANISM: An unlined, membraneless pond holds a cheap redox molecule and a dissolved, inexpensive polyelectrolyte. When charged, the molecule binds to the polymer into dense droplets that sink and merge into a viscous bottom phase. The discharged form stays in the clear water above, so the two states sort themselves by gravity and stop mixing. Mesh electrodes sit at the interface and draw charge from the dense phase. Polymer dose sets the trade-off between how fast charge stays in and how much power can be drawn.
+VALUE: The cheapest leaky redox chemistries can hold charge for weeks in an earthen basin with no tanks, pumps or separators.
+
+F68
+MECHANISM: Charged electrolyte is dried with trehalose into a glass, using waste heat from the charging stack. In the glass, even highly reactive molecules barely move, so the store can use high-voltage, fast-kinetics redox molecules such as organic radicals that would normally decompose within days. Their fast electron transfer and high voltage per electron let a small plain carbon stack with no catalyst deliver high power at low overpotential. The glass is stored in bulk like grain and redissolved only as discharge needs it.
+VALUE: Vitrification lets the chemistry be chosen for converter speed and efficiency rather than shelf life, which shrinks the stack and its losses while weeks of charge sit in a grain silo.
+
+F69
+MECHANISM: A small electrochemical stack sends a cheap dissolved redox shuttle (an iron or manganese salt) through a lined heap of raw manganese-oxide or iron ore, as in mining heap-leach pads. When charging, the shuttle that comes out of the stack oxidizes or reduces the ore particles on their surfaces; when discharging, the ore gives that charge back to the shuttle, which then releases it in the stack. The energy sits in thousands of tonnes of unprocessed mineral, and capacity grows by adding more ore while the expensive stack stays the same size. Pumping control adjusts the flow to how far the reaction has moved into the heap.
+VALUE: Weeks of storage at roughly the cost of moving ore by the tonne, with a stack sized only for the power needed.
+
+F70
+MECHANISM: Grids of electrodes are pushed into the ash ponds of retiring coal plants. The iron and manganese oxides and unburnt carbon in the ash, wetted by the pond's own water, form a large in-place electrode mass. The cap and liner required for closure contain it, and the plant's existing substation connects it to the grid. Each electrode zone records the charge it takes in against the charge it gives back. Zones that return little charge are disconnected, so the battery settles onto the parts of the ash that work.
+VALUE: Thousands of sites already have containment, land and grid connections paid for, so multi-day storage costs about as much as installing electrodes.
+
+F71
+MECHANISM: When charged, the redox molecule binds a dissolved polyelectrolyte and sinks as a dense phase onto a carbon-felt liner on the pond floor, which acts as the positive electrode. The counter reaction plates a cheap metal from the clear water onto a floating carbon mat at the surface. The two charged states are held apart by gravity, so the phase boundary does the separator's job, and the reactive species cannot reach the plated metal. The electrodes span the entire pond, so a few watts per square metre is enough to discharge a 10-day store. That low current density keeps losses small, and electrode cost per kWh is tiny.
+VALUE: An earthen pond becomes the tank, the separator and the cell all at once, holding cheap leaky chemistry for weeks with a converter that costs about as much per square metre as a liner.
+
+F72
+MECHANISM: A lined solar pond keeps a standard metre-thick salt gradient near its top as an insulating heat trap, so the whole bottom zone warms by tens of degrees. Inside that hot zone, a dense charged electrolyte lies beneath a lighter one, separated only by a thin salt step about a decimetre thick: enough to stop mixing for weeks, yet short enough to keep the ion-path resistance low, with pond-wide carbon meshes just above and below it. Both electrolytes therefore run hot, which raises conductivity and electrode kinetics on both sides, and capacity is set by pond area and by a layer depth chosen so that the pond's power matches a discharge lasting several weeks.
+VALUE: Grid operators get weeks of electrochemical storage with no tanks, membranes or stacks, where the pond's own salt layering both separates the electrolytes and supplies the free heat that keeps round-trip losses down.
+
+F73
+MECHANISM: When charged, a redox molecule binds a polyelectrolyte and sinks as a dense phase onto a carbon-felt pond floor, which is the positive electrode. A cheap metal plates onto a floating carbon mat. Gravity and the phase boundary replace the separator. The mat's buoyancy holds it a constant few centimetres above the rising dense layer, which keeps the ionic path, and so the ohmic loss, small. Photovoltaic modules are mounted on the floating mat and feed DC straight into the pond, so charging needs no inverter. Electrode area automatically equals panel area, so current density stays low and losses small over a 10-day discharge.
+VALUE: Solar farms gain week-long storage inside the land they already occupy, with a cell that costs about as much as a pond liner and a float.
+
+F74
+MECHANISM: Unpurified industrial or mining waste brine sits in lined ponds and cycles through electrochemical stacks. A controller tracks the electron-balance error, which is the charge passed minus the measured conversion of each known couple, broken down by electrode potential. That residual also shows exactly where charge is being lost: a parasitic couple is removed by precipitation, and a useful couple is split into its own stream. Stack area then goes only to streams whose measured charge return and voltage gap justify it. Converter money is spent only where efficiency is proven, and the plant grows into the structure its local chemistry supports.
+VALUE: Flow-battery storage with a near-free, never-purified electrolyte, where the plant's own accounting both finds the useful chemistry and cuts the round-trip loss.
+
+F75
+MECHANISM: A solution-mined salt cavern holds a dense brine carrying a cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity separates them instead of a membrane, the cavern volume is the energy store, and both liquids circulate through contactors at the surface. The brine's cation-minus-anion gap is tracked continuously to detect charged redox molecules crossing into it. When the gap rises, a thin immiscible spacer liquid is injected at the interface, forming a new layer that traps the crossed molecules and is pumped off for cleaning.
+VALUE: Multi-week storage at gigawatt-hour scale with no membranes, no tanks and almost no container cost.
+
+F76
+MECHANISM: A cheap bulk storage medium is attached to the DC link of each wind or solar plant. During calm, dark spells it discharges through the plant's own generator electronics, inverter, transformer and grid line, which are otherwise idle at those times. Charging uses the same path when output would otherwise be curtailed. The store is sized by how often the plant's hardware sits idle.
+VALUE: Storage lasting for weeks then costs little more than its storage medium, because the power hardware and grid connection are already paid for.
+
+F77
+MECHANISM: Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing an electron-balance error: the charge passed minus the conversions of the couples it measures. A residual at a particular potential points to an unknown couple. A useful couple is split into its own stream with its own stack; a parasitic one is removed by precipitation. Over time the plant takes on the structure that its local waste chemistry supports.
+VALUE: Storage medium costs near zero because it is never purified, which is the main cost in today's flow electrolytes.
+
+F78
+MECHANISM: Surplus current at an electrode converts a cheap dissolved organic molecule into a strained isomer of itself. That isomer is insoluble, so it settles out and is shovelled onto covered heaps. A high energy barrier keeps it charged indefinitely. For discharge, the powder is fed into a slurry that runs past a catalytic electrode, which lowers the barrier. Each molecule snaps back, releases electrons and redissolves for reuse. The operator adds heaps for extra days and tracks the charged fraction by weighing the solids.
+VALUE: Weeks of reserve cost only the price of a covered dirt pad, with no tanks, mining or consumed fuel.
+
