@@ -114,6 +114,24 @@ class Stmt:
         i = int(np.argmin(ok)); return False, (int(x[i]), int(y[i]))
 
 
+    def _domain(self):
+        if self.inst: return X1, ev(INSTS[self.inst], X1, X1)
+        return XS, YS
+
+    def violation_rate(self):
+        """Share of in-domain points (pre holds) that are counterexamples: how rare a refutation is."""
+        x, y = self._domain(); bad = ev(self.lhs, x, y) != ev(self.rhs, x, y)
+        if self.pre: dom = PRES[self.pre](x, y); return float(bad[dom].mean()) if dom.any() else 0.0
+        return float(bad.mean())
+
+    def is_cex(self, x, y):
+        """Is the point (x, y) a counterexample? For instantiated statements y is forced to s(x)."""
+        xa = np.array([x & MASK], dtype=np.uint16)
+        ya = ev(INSTS[self.inst], xa, xa) if self.inst else np.array([y & MASK], dtype=np.uint16)
+        if self.pre and not PRES[self.pre](xa, ya)[0]: return False
+        return bool(ev(self.lhs, xa, ya)[0] != ev(self.rhs, xa, ya)[0])
+
+
 def make_family(rng, fam_id, n_grand=6):
     """Seed + weakenings. Returns (stmts, edges) with edges (i, j): stmts[i] => stmts[j]."""
     name, lhs, rhs, _ = rng.choice(RULES)
