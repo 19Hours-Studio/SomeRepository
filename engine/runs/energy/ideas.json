@@ -79,5 +79,32 @@
   "name": "Closed-Loop Geologic Carbon Battery",
   "mech": "Reversible solid-oxide cells co-electrolyze CO2 and water into methane using surplus power. The methane is injected into a depleted gas field. When power is needed, the same cells oxidize the methane back to electricity, and the pure CO2 they release is pumped into a second reservoir nearby. Carbon shuttles between the two reservoirs, so nothing is emitted. Reservoirs that already exist and hold terawatt-hours make the cost of extra duration close to zero. Running the cells as a heat-integrated pair lifts round-trip efficiency well above that of hydrogen turbines.",
   "value": "It reuses the existing gas-field and storage infrastructure as a carbon-neutral store of terawatt-hours for whole seasons."
+ },
+ {
+  "id": "g1_core#1",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "In-place ore body geobattery",
+  "mech": "Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one end and oxidizes it near the other, and groundwater carries the ions. Discharge reverses this, using the same conduction the ore already shows naturally. Electrode spacing and current are tuned from measurements of the rock's own voltage (self-potential) so the charged front spreads evenly.",
+  "value": "Millions of tonnes of active mass that is never mined, moved or contained, so the capacity cost is mostly drilling."
+ },
+ {
+  "id": "g1_core#2",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Vitrified charged electrolyte stockpile",
+  "mech": "Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a sugar glass in which those molecules can barely move, so self-discharge and breakdown almost stop. The glass is stored in bulk like grain and redissolved for discharge. Water content and glass-transition temperature are the control settings.",
+  "value": "The cheapest redox chemistries, which normally leak charge, can hold it for weeks without tanks."
+ },
+ {
+  "id": "g1_core#3",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Remodeling structural energy reserve",
+  "mech": "Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried current collectors. During long lulls a grid-scarcity price signal draws charge down to a set structural depletion limit, as bone gives up calcium under PTH, and surplus power replaces the charge later. Load-bearing capacity is checked continuously and sets that limit.",
+  "value": "Massive storage mass whose cost is already paid by construction, so equipment that cycles only a few times a year still pays off."
  }
 ]
