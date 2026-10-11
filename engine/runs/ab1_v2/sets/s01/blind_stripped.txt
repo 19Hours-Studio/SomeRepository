@@ -1,0 +1,45 @@
+A01
+MECHANISM: A candidate inference step passes through K stages in sequence before it is committed, and a stage cannot be undone. At each stage the step is re-tested for match against a context that is perturbed independently. If it fails, it returns to stage 1. Error falls as f^K. The number of stages survived is stored as a confidence score. K is raised for inputs with high stakes.
+
+A02
+MECHANISM: The system applies edits to the input (swap a token or phrase, inpaint an image patch, shift time) and records how each edit changes a frozen predictor's output distribution. Edits are clustered by effect signature. Each cluster becomes a variable whose values are the edit outcomes. A typed link joins two clusters when editing both differs from the sum of editing each. The edit library and clusters are stored and refit per new input.
+
+A03
+MECHANISM: Each derivation path to a candidate answer contributes a complex amplitude. The phase is set by the assumptions the path uses. Amplitudes are summed per answer, so paths with incompatible assumptions cancel and paths that agree add. Confidence equals the squared magnitude of the sum. Phase assignments are learned so that conflicting assumption pairs that recur receive orthogonal or opposite phases.
+
+A04
+MECHANISM: Every layer and reasoning step is a bijection built from invertible couplings with garbage registers, so each output can be run backward to the inputs and training examples that produced it. Learning updates are reversible and logged as inverse operations. To forget a datum or undo a conclusion, the system uncomputes the matching update chain instead of retraining. No information is erased.
+
+A05
+MECHANISM: The system computes the Allan deviation of its prediction residuals as a function of context lag. When the deviation rises at lag τ*, it adds a recurrent state with time constant τ*. The state is kept only if the deviation stops rising afterward.
+
+A06
+MECHANISM: A deliberative solver handles new problems and records each step trace it executes. When a trace is executed often, it is compiled into a routine with guard predicates that state the input conditions the trace assumed. At runtime a failed guard falls back to the solver and increments a counter for that exit. An exit that keeps failing is compiled into a child trace. Existing traces are not overwritten.
+
+A07
+MECHANISM: For each module, the system tests whether the co-activation frequency of each feature pair equals the product of their marginal frequencies. A deficit is taken as two pooled subpopulations. The module is split in two, inputs are assigned to each half by admixture inference, and a router is learned. Repeated splits form a lineage tree of modules.
+
+A08
+MECHANISM: Per task type, twin tasks are generated answer-first: run a program, then ask its output; hide a known span, then ask for it; compose a plan, then ask its goal. A discriminator is trained adversarially until it cannot separate twins from real tasks. Each checker's and solver's accuracy is stored per twin cluster. For a real task without an oracle, estimated correctness is the accuracy on its nearest twins.
+
+A09
+MECHANISM: Every internal quantity carries an exponent vector over a set of base kinds. Operations may combine only quantities with compatible vectors. The system rescales or swaps kinds in its inputs and checks whether the outputs change as the exponents predict. Each failed check causes a kind to be split, a kind to be added, or an exponent to be revised.
+
+A10
+MECHANISM: Each cutoff (surprise, "similar enough", "least-supported", stopping tolerance) is replaced by an online conformal p-value. The p-value is computed against a null distribution built from shuffled, time-reversed or context-permuted copies of the system's recent data stream. All tests share one error budget under alpha-investing: a test spends budget to fire and earns budget when downstream prediction gain confirms the firing. Stored state: per-test null samples and the current wealth balance.
+
+A11
+MECHANISM: A capability is retained only if the system writes a human-readable lesson of bounded length that lets a small, randomly initialized student reach the same behavior within a fixed example budget. Capabilities that fail this test are pruned each generation cycle. Surviving lessons become the training core for the next generation. Adaptation is done by changing the lessons taught.
+
+A12
+MECHANISM: Concepts are represented as joints and learned relations as bars. The system periodically computes the spectrum of the rigidity matrix. Each floppy mode triggers acquisition of a new bracing relation. Each self-stress state splits the involved node along the stress eigenvector. The concept frame is stored and grows or splits as these tests fire.
+
+A13
+MECHANISM: Knowledge is also stored as text lessons. Periodically an empty student is built from only those lessons and scored on held-out cases. Lessons linked to the student's failures are rewritten or split. Lessons whose removal leaves the score unchanged are deleted. The accuracy gap between the system and the student sets the amount of rewriting.
+
+A14
+MECHANISM: Every latent quantity carries a learned vector of integer dimension exponents. The vectors are inferred so that each observed relation is dimensionally homogeneous, by keeping the integer nullspace of the dimension matrix consistent across relations. Learned laws are stored only as functions of the dimensionless groups derived from that matrix via the Pi theorem. When no consistent assignment exists, the system adds a hidden quantity.
+
+A15
+MECHANISM: Candidate partial answers are injected as phase-coded waves into a grid of oscillating cells. Contradictory candidates are assigned opposite phase and cancel. Consistent candidates add into standing peaks. Cells that repeatedly hold amplitude above a level stiffen and form channels that bias later propagation. The stable peak pattern is read out as the answer.
+
