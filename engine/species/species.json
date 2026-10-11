@@ -1,17 +1,32 @@
 {
  "symptomport": {
   "born_in": "ab1_v16",
-  "ops": "cross:loop+core mutate:loop cross:neg+mech",
-  "fitness": []
+  "ops": "cross:loop+core",
+  "fitness": [
+   {
+    "run": "ab1_v16",
+    "OV": 21.7
+   }
+  ]
  },
  "backloop": {
   "born_in": "ab1_v16",
-  "ops": "cross:loop+core mutate:loop cross:neg+mech",
-  "fitness": []
+  "ops": "mutate:loop",
+  "fitness": [
+   {
+    "run": "ab1_v16",
+    "OV": 24.0
+   }
+  ]
  },
  "mechneg": {
   "born_in": "ab1_v16",
-  "ops": "cross:loop+core mutate:loop cross:neg+mech",
-  "fitness": []
+  "ops": "cross:neg+mech",
+  "fitness": [
+   {
+    "run": "ab1_v16",
+    "OV": 25.0
+   }
+  ]
  }
 }

@@ -1,1 +1,272 @@
-{}
+{
+ "g1_neg#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Invertible neural nets for inverse problems"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Invertible NNs for inverse problems"
+  }
+ },
+ "g1_backloop#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "COMPMAP",
+   "closest": "Epidemic models of misinformation spread"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "COMPMAP",
+   "closest": "Model-collapse feedback loops; epidemic R_t"
+  }
+ },
+ "g1_symptomport#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Phylogenetic SPR, ontology repair"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Phylogenetic parsimony; ontology repair"
+  }
+ },
+ "g1_symptomport#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Adaptive mesh refinement, LOLIMOT"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Adaptive mesh refinement; piecewise-linear trees"
+  }
+ },
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Geodetic loop-closure adjustment, cycle-consistency"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Cycle consistency; survey network adjustment"
+  }
+ },
+ "g1_mechneg#2": {
+  "s01:J1": {
+   "O": 3,
+   "C": 4,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Fontana AlChemy, chemical organization theory"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 4,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Fontana AlChemy; autocatalytic sets"
+  }
+ },
+ "g1_mechneg#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SOAR chunking, self-consistency"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SOAR chunking; DreamCoder library learning"
+  }
+ },
+ "g1_mechneg#3": {
+  "s01:J1": {
+   "O": 7,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mazurkiewicz traces, partial-order reduction"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mazurkiewicz traces; partial-order reduction"
+  }
+ },
+ "g1_neg#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Active feature acquisition, constructive networks"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Active sensing; tool-using agents"
+  }
+ },
+ "g1_backloop#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Pharmacovigilance PRR, task-vector negation"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Pharmacovigilance PRR; task-arithmetic unlearning"
+  }
+ },
+ "g1_backloop#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "KS regularization, manifold atlases"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "KS regularization; manifold chart atlases"
+  }
+ },
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "egg equality saturation, Ruler"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "egg equality saturation; Babble"
+  }
+ },
+ "g1_neg#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Commit-reveal schemes, CoT faithfulness"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Commit-reveal schemes; CoT faithfulness"
+  }
+ },
+ "g1_symptomport#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Power-system bad-data detection"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Power-system bad-data detection (LNR test)"
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Ensemble Kalman inversion for NNs"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Ensemble Kalman inversion (Kovachki-Stuart)"
+  }
+ }
+}

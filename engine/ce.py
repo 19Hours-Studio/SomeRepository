@@ -379,11 +379,12 @@ def cmd_species(a):
     text = read_source(a); os.makedirs(SPECIES, exist_ok=True)
     reg = json.load(open(os.path.join(SPECIES, "species.json"))) if os.path.exists(os.path.join(SPECIES, "species.json")) else {}
     got = re.findall(r"=== SPECIES ([a-z0-9_]+) ===\n(.+?)\n=== END ===", text, re.S); ok = 0
-    for name, body in got:
+    ops = a.ops.split()  # селекционер выдаёт виды в порядке операций: k-й вид рождён k-й операцией
+    for k, (name, body) in enumerate(got):
         missing = [ph for ph in ("{QUESTION}", "{N}", "{BASINS}", "{FORMAT}") if ph not in body]
         if missing: print(f"REJECTED {name}: missing {missing}"); continue
         open(os.path.join(SPECIES, name + ".txt"), "w").write(body.strip() + "\n")
-        reg[name] = {"born_in": a.run, "ops": a.ops, "fitness": reg.get(name, {}).get("fitness", [])}; ok += 1
+        reg[name] = {"born_in": a.run, "ops": ops[k] if len(ops) == len(got) else a.ops, "fitness": reg.get(name, {}).get("fitness", [])}; ok += 1
         print(f"species {name}: {len(body.split())} words")
     json.dump(reg, open(os.path.join(SPECIES, "species.json"), "w"), indent=1); print(f"accepted {ok}/{len(got)}")
 

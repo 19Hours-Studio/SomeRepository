@@ -1,0 +1,24 @@
+L01
+MECHANISM: The input layer has a variable width. When the system cannot reduce its loss on some quantity from its existing inputs, it writes and deploys an external probe: a code instrumentation hook, a sensor configuration, a lab-assay protocol or a database query. Whatever stream the probe produces is attached as a new typed input channel with its own learned encoder. Channels whose removal does not hurt downstream performance are pruned, so over time the system's perceptual alphabet becomes a set of instruments it designed itself.
+VALUE: It can perceive and reason about quantities that no human ever chose to give it, instead of being limited to the fixed modalities it was trained on.
+
+L02
+MECHANISM: Each weight update carries a provenance ID and is linked to the interactions it influenced. User corrections, re-asks and abandonments count as adverse events. A proportional reporting ratio with the Evans thresholds flags harmful updates, which are subtracted partially or fully in proportion to the signal.
+VALUE: A continually learning system can withdraw its own bad lessons, judged by evidence from real use.
+
+L03
+MECHANISM: Each experience is logged as an ordered sequence of operations. A background process swaps neighbouring pairs and tests whether the resulting record is identical. Operations that always commute are split into separate parallel threads with no shared state. Operations that never commute are fused into one indivisible unit, so the system's architecture becomes a map of the world's independence structure.
+VALUE: The system can split the world into independent parts and recombine them freely, which gives built-in compositional generalization.
+
+L04
+MECHANISM: Premises and rule links are treated as redundant meters that fit one weighted least-squares situation estimate. For each premise, the system computes a residual against the others, normalized by its residual covariance. If the largest is above 3, that premise is re-typed as suspect, or a rule link's applies/doesn't-apply status is flipped, and the estimate is recomputed until every residual passes.
+VALUE: A single corrupt input can no longer quietly distort the whole conclusion, because redundancy finds it and isolates it.
+
+L05
+MECHANISM: Before the system sees evidence or produces a reasoning trace, it must publish a cryptographic hash of its quantized answer distribution, plus a salt, to an external log it cannot change. After the evidence arrives, it reveals the commitment. An independent verifier then checks whether the final answer departs from the committed one more than the evidence statistically justifies. Training penalizes departures without justification and rewards accurate commitments, so the architecture learns to keep "what I believed beforehand" separate from "what I can rationalize afterward".
+VALUE: Third parties can check that the system is not rewriting its beliefs after the fact, which is a property no current LLM can prove about itself.
+
+L06
+MECHANISM: Background random walks keep re-deriving conclusions from stored facts along many different routes. A tally records how many independent routes reach each conclusion (routes sharing no intermediate fact count separately). When the tally passes a threshold, the conclusion is frozen into a new atomic primitive that later walks can use as one step. Primitives that are no longer reachable by several routes are dissolved back into their parts.
+VALUE: It builds new concepts from how well a conclusion is held together by the rest of what it knows, with no outside feedback, so abstraction can grow in domains where nothing ever says "correct."
+
