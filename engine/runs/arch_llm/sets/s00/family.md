@@ -1,0 +1,12 @@
+FAMILY | NGRAMIDX | CPU-side FM-index/suffix-match over the whole corpus feeds exact-continuation statistics as embeddings and a logit prior, so the network learns only the residual that lookup cannot predict | M01
+FAMILY | SLEEP | Logs episodes or fast-weight/test-time updates during use, then replays them in idle "sleep" phases into sparse new capacity (adapters, slots, memory rows) with anti-forgetting replay or a teacher, for lifelong on-device learning | M02,M03,M06
+FAMILY | COMPCACHE | LSH-keyed RAM table of cached deep-layer residual deltas lets tokens skip most layers on a confident hit and writes back on a miss, turning RAM into stored computation | M04
+FAMILY | RAMBANK | Huge sparse parameter/expert bank kept in host RAM; a cheap chunk-level router picks pages/experts that are prefetched over PCIe with double buffering, and the CPU applies sparse optimizer updates, giving billions of parameters at small-model compute | M05,M08
+FAMILY | NEURORET | Extracts a frozen open 7-13B model's FFN neurons as a RAM-resident ANN key-value index; a small host model learns projections to retrieve and apply only the top-k teacher neurons per token, trained by distillation | M07
+FAMILY | PRIORRES | Frozen quantized open-weight model supplies logits and hidden states; a small trainable side model learns only a gated additive logit correction on high-loss tokens, with confidence-gated skipping and early exit | M09
+FAMILY | SSM | Replace attention with linear-time recurrent/state-space layers (Mamba/RWKV-style) for constant-memory unbounded context and higher training throughput | predicted
+FAMILY | LOWBIT | Native ternary/1-bit or low-precision weights trained from scratch (BitNet-style) so many more parameters fit and train in 12 GB | predicted
+FAMILY | LOOPDEPTH | Weight-shared looped/recurrent-depth blocks with adaptive computation time, so reasoning depth scales at inference without more parameters | predicted
+FAMILY | DIFFUSE | Non-autoregressive discrete diffusion or latent-diffusion language generation with parallel iterative refinement | predicted
+FAMILY | HIERLAT | Tokenizer-free byte-level model with dynamic entropy-based patching or hierarchical latent-concept prediction, so the large model runs on far fewer units | predicted
+FAMILY | TOOLSYM | Neurosymbolic coupling: the model emits programs/tool calls executed by an interpreter, solver or verifier, so exact computation and search are offloaded from weights | predicted

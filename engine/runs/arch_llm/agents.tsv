@@ -2,3 +2,9 @@ map_1	a4eeccf731c55dfcc	control	0
 map_2	a4ef87c76ef3bf37a	control	0
 map_3	af70b7c6b4e2dc2ff	control	0
 FAM	a42f6cc2773efccd1	judge	0
+g1_neg	a879f65dfcf6545a1	engine	1
+g1_core	a2d5332669b41948c	engine	1
+g1_core2	a3c3c5fe5c96782e4	engine	1
+g1_mech	a628732b1a6015203	engine	1
+g1_loop	ad0e82b7513ea0c6e	engine	1
+g1_mechneg	ac4cb04e2111dc098	engine	1

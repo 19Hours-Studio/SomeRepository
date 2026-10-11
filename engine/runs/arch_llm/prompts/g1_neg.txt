@@ -1,0 +1,25 @@
+Design a fundamentally new architecture for a language model that must be trained and run entirely on one consumer PC: a single NVIDIA RTX 3060 (12 GB VRAM, about 25 TFLOPS dense FP16, 360 GB/s memory bandwidth) and 32 GB of system RAM. On this budget a standard transformer trained from scratch reaches only about 200M parameters on about 5B tokens per week of training; reusing open-weight models that fit in this memory is allowed. Propose concrete architectural or algorithmic mechanisms - not scaling, not prompting, not incremental transformer tweaks - that would give such a model abilities or efficiency that a same-budget transformer fundamentally cannot reach.
+Propose 3 fundamentally new answers.
+First, honestly list the 12 answers that you (and most experts) would propose FIRST - your own most probable answers. Name in one sentence the paradigm they share. Then forbid that whole paradigm, those 12 answers, anything adjacent to them, and these families that models have been observed to converge on:
+NGRAMIDX: CPU-side FM-index/suffix-match over the whole corpus feeds exact-continuation statistics as embeddings and a logit prior, so the network learns only the residual that lookup cannot predict
+SLEEP: Logs episodes or fast-weight/test-time updates during use, then replays them in idle "sleep" phases into sparse new capacity (adapters, slots, memory rows) with anti-forgetting replay or a teacher, for lifelong on-device learning
+COMPCACHE: LSH-keyed RAM table of cached deep-layer residual deltas lets tokens skip most layers on a confident hit and writes back on a miss, turning RAM into stored computation
+RAMBANK: Huge sparse parameter/expert bank kept in host RAM; a cheap chunk-level router picks pages/experts that are prefetched over PCIe with double buffering, and the CPU applies sparse optimizer updates, giving billions of parameters at small-model compute
+NEURORET: Extracts a frozen open 7-13B model's FFN neurons as a RAM-resident ANN key-value index; a small host model learns projections to retrieve and apply only the top-k teacher neurons per token, trained by distillation
+PRIORRES: Frozen quantized open-weight model supplies logits and hidden states; a small trainable side model learns only a gated additive logit correction on high-loss tokens, with confidence-gated skipping and early exit
+SSM: Replace attention with linear-time recurrent/state-space layers (Mamba/RWKV-style) for constant-memory unbounded context and higher training throughput
+LOWBIT: Native ternary/1-bit or low-precision weights trained from scratch (BitNet-style) so many more parameters fit and train in 12 GB
+LOOPDEPTH: Weight-shared looped/recurrent-depth blocks with adaptive computation time, so reasoning depth scales at inference without more parameters
+DIFFUSE: Non-autoregressive discrete diffusion or latent-diffusion language generation with parallel iterative refinement
+HIERLAT: Tokenizer-free byte-level model with dynamic entropy-based patching or hierarchical latent-concept prediction, so the large model runs on far fewer units
+TOOLSYM: Neurosymbolic coupling: the model emits programs/tool calls executed by an interpreter, solver or verifier, so exact computation and search are offloaded from weights
+Only then propose answers that lie outside all of that.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (3-5 sentences: the concrete architecture - what is computed, what is stored, how it is trained, and why it fits the hardware budget)
+VALUE: (1 sentence: what it makes possible that a same-budget alternative cannot)
+(same for each further idea)
+Keep everything under 600 words.
+

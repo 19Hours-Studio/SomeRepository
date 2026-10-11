@@ -1,0 +1,12 @@
+FAMILY | RULESYN | an encoded expert rulebook (renderer, notator or differentiable rule layer) produces paired training data from an abundant adjacent corpus, with round-trip/cycle consistency and lattice or LM rescoring, for a notation or language that has no paired corpus | M01, M06, M07
+FAMILY | SURRINV | a graph-network surrogate trained on mass FEM vibration simulations, then inverted by constrained optimization to give a material-removal (grinding/carving) map that hits target modal frequencies | M05, M09
+FAMILY | DIFFEM | phone photos are mapped to a 3D material-property field that drives a differentiable finite-element model, self-supervised by backpropagating measured real deformation through the physics | M08
+FAMILY | CHEMINV | a frozen chemistry/stoichiometry front-end layer feeds a learned property predictor that is inverted by gradient search in recipe space under the user's material constraints | M03
+FAMILY | FRACSEQ | a fracture-physics simulator generates synthetic training data, contrastively aligned to a few real scans, and a learned fracture field scores a beam search over removal order to reassemble fragments | M02
+FAMILY | SERMATCH | a sequence is extracted from a photo with per-element uncertainty, trained on renders synthesized from a measured database, then dated by cross-correlation against a large reference library held in RAM | M04
+FAMILY | STITCHPS | photo-to-program synthesis that infers a symbolic stitch graph or pattern (knitting, crochet, lace) and checks it with a differentiable yarn or render model | predicted
+FAMILY | GARMSIM | sewing-pattern drafting from body scans or measurements, optimized through a differentiable cloth simulator for fit and drape | predicted
+FAMILY | SIGNLR | low-resource minority sign-language translation through a pose-keypoint bottleneck, with synthetic avatar renders and self-training | predicted
+FAMILY | FERMODE | a world model of fermentation (sourdough, kombucha, compost) that fuses phone time-lapse and cheap sensors with a kinetic ODE layer to predict and control the process | predicted
+FAMILY | DECIPH | decipherment of an undeciphered script by unsupervised structural and cognate alignment against candidate related languages under combinatorial constraints | predicted
+FAMILY | HIVEAUD | self-supervised acoustic/vibration monitoring of niche living systems (beehives, livestock, soil fauna), fine-tuned on a few keeper-labelled events to forecast health states | predicted
