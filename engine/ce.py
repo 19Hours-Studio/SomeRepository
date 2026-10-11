@@ -59,8 +59,8 @@ def parse_ideas(text):
                     "value": " ".join(m.group(2).split())})
     return out
 
-def basins_block(run):
-    b = load(run, "basins.json", [])
+def basins_block(run, sources=None):
+    b = [x for x in load(run, "basins.json", []) if not sources or x.get("source") in sources]
     return "\n".join(f"{x['code']}: {x['desc']}" for x in b) if b else "(none recorded yet)"
 
 
@@ -73,11 +73,11 @@ def cmd_init(a):
     for f, v in [("ideas.json", []), ("basins.json", []), ("scores.json", {}), ("lit.json", {})]: save(a.run, f, v)
     print("initialized", rdir(a.run))
 
-def fill(run, body, n, extra=None):
+def fill(run, body, n, extra=None, sources=None):
     cfg = load(run, "config.json", {})
     fmt = tpl("_format_" + cfg["format"]).replace("{N}", str(n))
     s = body.replace("{QUESTION}", cfg["question"]).replace("{FORMAT}", fmt).replace("{N}", str(n))
-    s = s.replace("{BASINS}", basins_block(run))
+    s = s.replace("{BASINS}", basins_block(run, sources))
     for k, v in (extra or {}).items(): s = s.replace("{" + k + "}", v)
     return s
 
@@ -128,7 +128,7 @@ def cmd_set(a):
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
     for kind in ("judge", "family", "lit"):
-        s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")})
+        s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         open(os.path.join(d, f"prompt_{kind}.txt"), "w").write(s)
     print(f"set {a.set}: {len(items)} items -> {d}/blind.txt (+ prompt_judge/family/lit.txt)")
 
@@ -266,6 +266,7 @@ def main():
     x.add_argument("--gen", type=int, default=0); src(x)
     x = sp.add_parser("set"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--labels"); x.add_argument("--ids")
     x.add_argument("--arms"); x.add_argument("--prefix", default="S")
+    x.add_argument("--basin-sources", help="e.g. observed,predicted — exclude visited families from judge prompts (fair final comparison)")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("judge"); x.add_argument("run"); x.add_argument("set"); x.add_argument("judge"); src(x)
     x = sp.add_parser("select"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--labels"); x.add_argument("--arms")
