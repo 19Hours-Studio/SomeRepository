@@ -1,0 +1,47 @@
+=== VALUED C01 ===
+ANCHOR: double-entry postings over learned conserved quantities
+NAME: Double-Entry World State Memory
+MECHANISM: The model's working memory is a ledger. It holds accounts for every participant over a learned set of conserved quantities such as money, objects, permissions, obligations and who-knows-what. Each step the model takes must be written as a balanced debit and credit, and generation reads its state only from these balances, never from free-floating activations. The posting rule is part of the architecture, so a nonzero sum is a built-in training loss that needs no oracle, because balance is algebra and not a judgment. When an imbalance persists, the system creates a hidden holder, but only as a forecast of which future transfers will settle it. If those transfers never arrive, or if a total stated in the input (a count, a balance, a census) contradicts the holder, it is deleted. A quantity is dropped from the conserved set when stated totals for it keep failing to reconcile.
+VALUE: Agents, auditors and analysts get a system that keeps exact world state across very long documents, transactions or action sequences. It can name unmentioned participants or leaks, and later input can disprove each one.
+
+=== VALUED C02 ===
+ANCHOR: Wahlund-certified unit splits under Hardy-Weinberg null
+NAME: Population-Genetic Concept Growth
+MECHANISM: The network grows its own concepts with a population-genetics test. Each unit's discretized states are treated as alleles over co-occurring context pairs. If a unit shows fewer heterozygotes than Hardy-Weinberg predicts, it is split into child units, and each child gets its own routing and downstream weights. A split is kept only if the Wahlund identity holds on new context pairs: each child must return to equilibrium (F_IS near 0), and the variance in allele frequency between the children (F_ST) must numerically explain the parent's deficit. Otherwise the children are merged back. The test is against a calibrated statistical null with known false-positive rates, not against the model's opinion of its outputs. That makes it a safe way to add capacity during deployment.
+VALUE: When a model has merged two things into one concept (two word senses, two patient subpopulations, two failure modes of a machine), it discovers this and grows separate structure for them. Scientists and engineers get each new distinction backed by a statistical guarantee rather than the model's own judgment.
+
+=== VALUED C03 ===
+ANCHOR: reversible network, ancilla bits count unsupported content
+NAME: Reversible Bit-Accounted Generator
+MECHANISM: Every layer is a bijection, and every bit a step would discard goes to an ancilla tape, checkpointed at segment boundaries so it can be recomputed instead of stored. While generating, the model runs backward on each segment from the fixed input and the output so far. The number of ancilla bits it must invent to reconcile them is an exact measure of how much of that output the input does not support. That count is both the training loss and a decoding budget the output must declare and stay within. Removing an example's influence means uncomputing its trace. The count separates grounded content from invented content, but it does not certify that the input itself is true.
+VALUE: Lawyers, clinicians and anyone summarizing or answering from sources get an exact count of unsupported bits for every sentence, plus certified deletion of training data. An LLM cannot provide either, because it throws information away at every layer.
+
+=== VALUED C04 ===
+ANCHOR: Hodge decomposition of margins across encodings
+NAME: Hodge Atlas Reasoner
+MECHANISM: The model contains several internal encoders, each trained on a different kind of source (paraphrase, formal translation, tool traces, a separately trained model). Each reasoning step's margins across these encoders are treated as edge flows and decomposed in the forward pass. The gradient part is a per-encoder bias, learned across all steps and subtracted. The curl part is inconsistency, and the step is rejected. The harmonic part is written to memory as a local chart with an explicit context variable, so knowledge is stored as an atlas rather than one flat space. A chart is trusted only if, after fitting on k encoders, it predicts the margin of a held-out encoder before that encoder is scored. Charts whose transition maps keep mispredicting are dissolved.
+VALUE: Scientists, lawyers and policy analysts get reasoning that keeps conclusions that hold only in some frames, such as one regime, jurisdiction or theory, and states which frame each one holds in, instead of averaging the frames together or dropping them.
+
+=== VALUED C05 ===
+ANCHOR: survey adjustment with minimal detectable bias
+NAME: Geodetic Claim Network Memory
+MECHANISM: Every claim the system derives becomes a station in one persistent network that is kept across all queries. A least-squares adjustment with Baarda's w-test finds the faulty step in any loop that fails to close. The adjustment carries a covariance between routes, estimated from shared premises, sub-steps and tools, so routes produced by the same model cannot certify each other just by agreeing. From this the system computes each claim's minimal detectable bias: the largest error that could still be hiding in it. Answering is gated on that bound. When it is too large, the planner adds a route to a control station, meaning a value fixed outside the model (a measurement, an executed computation, a cited source). It picks the control that most reduces the total minimal detectable bias across the whole network, so each scarce external check tightens many stored claims at once.
+VALUE: Engineers, analysts and researchers get a knowledge base that states, for every claim, how large an undetected error could be, and that spends scarce real-world verification where it tightens the most claims.
+
+=== VALUED C06 ===
+ANCHOR: reticulation accepted only if admixture overdetermined
+NAME: Phylogenetic Network Concept Store
+MECHANISM: Concepts are stored as nodes in a lineage network rather than as points in one embedding space, and properties are inherited along weighted edges. Every structural edit (a new branch, a re-parenting, or a two-parent reticulation) is tested in several distance metrics, each built from independent evidence: co-occurrence, shared properties, form or etymology, perception. An edit is accepted only if every metric shows the same four-point-condition violation and yields the same admixture weight. An artifact of one embedding fails this check because it shows up in only one metric. The weights are re-solved as evidence arrives, and nodes whose weights drift apart across metrics are demoted.
+VALUE: Chemists, biologists, linguists and product analysts get a model that reasons about inheritance and blends (hybrid species, loanwords, new compounds, fusion categories), can say which parent each belief came from, and can tell real hybrids from artifacts of its own embeddings without a labeled oracle.
+
+=== VALUED C07 ===
+ANCHOR: rigidity framework, Maxwell counting places hidden holders
+NAME: Rigidity-Theoretic World Model
+MECHANISM: The world model's state is a bar framework: entities are points and observed interactions are bars, and generation and prediction read from it. A quantity counts as conserved exactly when its observed transfers lie in the framework's equilibrium-stress space, which linear algebra checks without the model's judgment. A persistent imbalance is treated as a load, and a hidden entity is placed where floppy modes can carry it. Maxwell counting then fixes how many new bars it needs and to which entities, which predicts specific interactions that have not yet been observed. The entity is kept only if later observations fall on those predicted bars and the dimension of the stress space changes as counted. Where the predicted stresses conflict, the entity splits in two.
+VALUE: Investigators, auditors and biologists get exact state tracking over money flows, supply chains or signaling networks. The system also locates unseen actors and predicts their connections in a way later observations can confirm or refute.
+
+=== VALUED C08 ===
+ANCHOR: complementary-mask twins settle by pre-registered bets
+NAME: Twin-Split Continual Learner
+MECHANISM: All post-deployment learning works the same way. Whenever new data's gradient conflicts with a module's frozen probe signature, the module splits into two twins with complementary sparse masks, so that only the pair together reproduces the old signature. Neither twin can win by rewriting past behavior. Wherever the twins disagree, each places a bet before the outcome is known, and the world settles it later: the next item in a stream, a tool result, the user's next turn, a later document. Such outcomes arrive constantly during ordinary use. A twin's sub-functions are pruned only after it loses bets it placed itself. A pair whose winner is clear collapses into a single module, keeping the parameter count bounded.
+VALUE: Deployed assistants and agents keep learning new skills from their own use without forgetting old ones. Every update is checked against outcomes the world later produced, never against the model's own grading.
