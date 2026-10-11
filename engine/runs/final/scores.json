@@ -15,6 +15,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Control theory of LLM prompting"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "controllability Gramian; soft prompt tuning"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "controllability Gramians, soft prompts"
   }
  },
  "g1_mech#3": {
@@ -33,6 +49,22 @@
    "R": "N",
    "B": "MDLREFAC",
    "closest": "Word-sense induction; conceptual clustering"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "word sense induction; concept splitting"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "word sense induction"
   }
  },
  "g1_loop#3": {
@@ -51,6 +83,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Rigidity theory; null-space latent steering"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory; null-space steering"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory, null-space steering"
   }
  },
  "g1_mech#2": {
@@ -69,6 +117,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Hindsight experience replay; case-based reasoning"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "hindsight replay; case-based reasoning"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "hindsight experience replay"
   }
  },
  "g1_neg#2": {
@@ -87,6 +151,22 @@
    "R": "N",
    "B": "CFWORLD",
    "closest": "NEAT speciation; Lakatos research programmes"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Lakatos programmes; commitment exploration"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Lakatos research programmes"
   }
  },
  "g1_reframe#2": {
@@ -105,6 +185,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "AURORA learned QD behaviour descriptors"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "OMNI interestingness; learned metrics"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AURORA learned behavior descriptors"
   }
  },
  "g1_reframe#3": {
@@ -123,6 +219,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Opportunistic assimilation; persistent agent memory"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "persistent memory agents; incubation"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "incubation, long-term memory agents"
   }
  },
  "g1_core#3": {
@@ -141,6 +253,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Synaptic tagging; EWC/PackNet"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "EWC; synaptic tagging and capture"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 3,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "EWC, synaptic tagging"
   }
  },
  "g1_core#1": {
@@ -159,6 +287,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Cohen forcing; constraint-based novelty generation"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Cohen forcing; diagonalization"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Cohen forcing, diagonalization"
   }
  },
  "g1_core#2": {
@@ -177,6 +321,22 @@
    "R": "N",
    "B": "ANTIPRED",
    "closest": "Novelty search in behaviour space"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "option replication; novelty valuation"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "replicating portfolio, novelty valuation"
   }
  },
  "g1_neg#1": {
@@ -195,6 +355,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Fast weights; personalized adapters"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "fast weights; personalized memory"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "fast weights, episodic personalization"
   }
  },
  "g1_mech#1": {
@@ -213,6 +389,22 @@
    "R": "N",
    "B": "ANOMALY",
    "closest": "Predicate invention; Mendeleev-style gap filling"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "typed holes; demand-driven predicate invention"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "Drescher schema mechanism synthetic items"
   }
  },
  "g1_reframe#1": {
@@ -231,6 +423,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Self-conditioned style models; computational persona"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "path dependence; style models"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "path-dependent style, preference learning"
   }
  },
  "g1_loop#2": {
@@ -249,6 +457,22 @@
    "R": "N",
    "B": "CFWORLD",
    "closest": "SAE feature steering; refusal-direction ablation"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SAE circuit ablation; feature steering"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SAE features, circuit ablation"
   }
  },
  "g1_neg#3": {
@@ -267,6 +491,616 @@
    "R": "N",
    "B": "CFWORLD",
    "closest": "Machine unlearning; rediscovery from knowledge cutoff"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "machine unlearning; rediscovery experiments"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "machine unlearning, counterfactual rediscovery"
+  }
+ },
+ "g2_imm#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Good-Turing coverage; orthogonal LoRA adapters"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "ANTIPRED",
+   "closest": "Good-Turing coverage, orthogonal adapters"
+  }
+ },
+ "map_1#3": {
+  "s99:F1": {
+   "O": 2,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "EMERGLANG",
+   "closest": "emergent communication; DreamCoder abstraction"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "EMERGLANG",
+   "closest": "emergent communication plus DreamCoder"
+  }
+ },
+ "ctrl_3#3": {
+  "s99:F1": {
+   "O": 4,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "POET open-ended environment generation"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "POET open-ended environment generation"
+  }
+ },
+ "ctrl_2#2": {
+  "s99:F1": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Gradient Projection Memory; progressive nets"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "progressive nets, orthogonal subspace learning"
+  }
+ },
+ "ctrl_4#1": {
+  "s99:F1": {
+   "O": 4,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "counterfactual world models"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "counterfactual world-model simulation"
+  }
+ },
+ "g2_evo2#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "constrained null-space optimization"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "constrained null-space latent steering"
+  }
+ },
+ "map_1#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "theory revision; automated scientific discovery"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "theory revision, abductive predicate invention"
+  }
+ },
+ "g2_imm#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SAE dark matter; vocabulary expansion"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "MDLREFAC",
+   "closest": "SAE dark matter, vocabulary expansion"
+  }
+ },
+ "ctrl_4#3": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "DEBATE",
+   "closest": "negative correlation learning; boosting"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "DEBATE",
+   "closest": "negative correlation learning ensembles"
+  }
+ },
+ "map_3#3": {
+  "s99:F1": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "ANTIPRED",
+   "closest": "RND curiosity; novelty search"
+  },
+  "s99:F2": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "ANTIPRED",
+   "closest": "Schmidhuber curiosity, RND"
+  }
+ },
+ "ctrl_3#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "ANTIPRED",
+   "closest": "novelty search; creative adversarial networks"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "ANTIPRED",
+   "closest": "novelty search with density models"
+  }
+ },
+ "ctrl_1#2": {
+  "s99:F1": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "ANALOGY",
+   "closest": "POET; Lenia; structure mapping"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "ANALOGY",
+   "closest": "Wolfram rule-space exploration, POET"
+  }
+ },
+ "g2_evo2#1": {
+  "s99:F1": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "set-theoretic forcing; SAE ablation"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SAE steering plus forcing construction"
+  }
+ },
+ "g2_evo2#3": {
+  "s99:F1": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "machine unlearning; learned metrics"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "unlearning plus learned quality axes"
+  }
+ },
+ "ctrl_2#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "MDL theory revision; AI scientist"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "ensemble disagreement, MDL predicate invention"
+  }
+ },
+ "g2_evo1#1": {
+  "s99:F1": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SAE ablation; replicating portfolio"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "circuit dose-response, replicating portfolios"
+  }
+ },
+ "ctrl_4#2": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "predicate invention; residual learning"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "Drescher synthetic items, modular growth"
+  }
+ },
+ "ctrl_5#2": {
+  "s99:F1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "ANALOGY",
+   "closest": "automated theorem discovery; structure mapping"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "ANALOGY",
+   "closest": "structure-mapping engine, POET"
+  }
+ },
+ "g2_evo1#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory; machine unlearning"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory plus concept unlearning"
+  }
+ },
+ "map_3#2": {
+  "s99:F1": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "MDLREFAC",
+   "closest": "DreamCoder library learning"
+  },
+  "s99:F2": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "MDLREFAC",
+   "closest": "DreamCoder, Stitch library learning"
+  }
+ },
+ "map_2#2": {
+  "s99:F1": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "MDLREFAC",
+   "closest": "DreamCoder; representation change"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "MDLREFAC",
+   "closest": "DreamCoder, representation change"
+  }
+ },
+ "map_1#2": {
+  "s99:F1": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "ANTIPRED",
+   "closest": "density-based novelty search"
+  },
+  "s99:F2": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "ANTIPRED",
+   "closest": "novelty search, count-based exploration"
+  }
+ },
+ "ctrl_5#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "EVOSRCH",
+   "closest": "SAE features; evolutionary search"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "EVOSRCH",
+   "closest": "SAE plus evolutionary ontology search"
+  }
+ },
+ "map_2#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "ensemble disagreement; MDL latent invention"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "ensemble disagreement, latent variable invention"
+  }
+ },
+ "map_2#3": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "counterfactual simulation; domain randomization"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "counterfactual simulation, sim-to-real transfer"
+  }
+ },
+ "ctrl_3#2": {
+  "s99:F1": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "ILP predicate invention; ontology revision"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "predicate invention, ontology revision"
+  }
+ },
+ "ctrl_1#3": {
+  "s99:F1": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "mixture of experts; anomaly modules"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "mixture of experts growth"
+  }
+ },
+ "ctrl_5#3": {
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "DEBATE",
+   "closest": "prediction markets; Hayek machine"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "DEBATE",
+   "closest": "Baum Hayek machine, prediction markets"
+  }
+ },
+ "ctrl_1#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "activation steering; SAE dictionary growth"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NOISE",
+   "closest": "activation steering, SAE"
+  }
+ },
+ "map_3#1": {
+  "s99:F1": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "counterfactual world models; bandits"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "counterfactual causal model search"
+  }
+ },
+ "ctrl_2#3": {
+  "s99:F1": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "EVOSRCH",
+   "closest": "OMNI interestingness; quality diversity"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "EVOSRCH",
+   "closest": "OMNI, learned intrinsic rewards"
+  }
+ },
+ "g2_imm#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "linkage disequilibrium; SAE feature splitting"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "linkage disequilibrium, SAE feature splitting"
+  }
+ },
+ "g2_evo1#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forcing construction; learned metrics"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forcing plus learned quality axes"
   }
  }
 }

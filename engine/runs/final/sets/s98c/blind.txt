@@ -1,0 +1,192 @@
+G01
+MECHANISM: Each systematic absence among SAE features defines its own task battery, and the circuit suppressing it is released at graded doses to build a dose-consequence matrix. A minimum-cost regression hedges that matrix against stored consequence vectors from known ideas and earlier cuts. A cut is applied only at the dose where the unhedgeable residual peaks. Failed cuts are stored as laws and act as negative hedging assets for future candidates.
+VALUE: Only those hidden corpus prohibitions are removed whose removal unlocks capabilities that nothing already known can reproduce.
+
+G02
+MECHANISM: Several independent world models make predictions inside executable environments. Every disagreement or failed prediction goes into a persistent anomaly ledger. A search process proposes new latent variables and adopts one only if it reduces the description length of the ledger without increasing the cost of encoding prior knowledge. Adopted concepts become reusable primitives, and the ledger is then re-scored against them.
+VALUE: Lets the system invent explanatory concepts that are justified by unexplained evidence, not by how often things co-occur in the corpus.
+
+G03
+MECHANISM: Every time the system ships an artifact, it writes the choices it made to an append-only ledger and can never undo them: this motif, this structure, this rejected option. A small "taste" network is trained only on this ledger, never on the corpus. That network scores new candidates by how well they extend the system's own past commitments, not by how typical they are. Early random commitments compound over time, so two copies of the same model that started the same way drift into distinct, consistent signatures.
+VALUE: An AI can have a recognisable creative identity of its own, like an auteur, whose later work only makes sense in light of its own earlier work.
+
+G04
+MECHANISM: Next to the pretrained model sits a small network that starts empty and is never pretrained. Its weights are updated only from this one agent's own episodes, failures and surprises, in the order they happened. It does not generate anything. It only reweights attention and relevance, meaning which details the base model treats as important. Two instances with different histories therefore come to notice different things in the same problem. The module keeps adapting through slow Hebbian consolidation of whatever repeatedly mattered in that agent's past.
+VALUE: Each agent gets an idiosyncratic point of view, as a biography gives a person, so its questions and framings are not the average of the corpus.
+
+G05
+MECHANISM: The system computes D = P(a,b) − P(a)P(b) over pairs of internal features. For strongly linked pairs it asks a verifier whether outputs with one feature but not the other are valid. If they are, the shared units are split into two independently addressable units and each is retyped. The resulting set of primitives is recorded, and LD is re-estimated over time.
+VALUE: The model can think with distinctions that its training data always merged.
+
+G06
+MECHANISM: A learned world model is copied into many variants, each with a basic rule changed or removed (for example, a different conservation law, causal ordering or incentive structure). Agents optimize inside each variant and find strategies or structures that are native to it. A transfer test then keeps only the artifacts that still work when moved back into the real-world model and checked against real data, and those are added to a growing library.
+VALUE: It produces solutions that come from regions the training data never covered, while reality testing keeps them valid.
+
+G07
+MECHANISM: The system does not generate solutions. It generates new evaluation axes: learned functions that put existing artifacts in a new order. An axis is stored only if it meets three tests. It must be stable when judged repeatedly. It must be learnable from a few examples. It must be statistically independent of a stored bank of known human criteria. The system then makes artifacts that score high on its chosen axes, and it explains each axis to people through examples ranked from best to worst.
+VALUE: An AI can propose new kinds of "good", new qualities worth wanting, and not just better scores on qualities people already value.
+
+G08
+MECHANISM: Linearize the generator's latent dynamics around typical contexts and compute an empirical controllability Gramian with respect to the input embeddings. Eigendirections the model represents but can barely reach are flagged, and a new learned input channel (an adapter or token) is grown for each one. Channels whose outputs pass verification are kept, the Gramian is recomputed, and growth continues where reachability is still low.
+VALUE: It surfaces concepts the model holds internally but structurally cannot express.
+
+G09
+MECHANISM: Early on, the system locks one unpopular premise into a frozen "hard-core" adapter that it may not revise for a long time. Over thousands of tasks it trains a "protective belt" of skills, methods and auxiliary assumptions around that core. The aim is to get competent working from that premise, not to search inside it. Only at long checkpoints is the programme judged, in Lakatos's sense of whether it is progressing or degenerating, and then kept or retired as a whole.
+VALUE: The system can build deep, path-dependent expertise in directions that greedy, short-horizon evaluation always prunes before they pay off.
+
+G10
+MECHANISM: A world generator creates simulated environments with systematically altered rules (physics, incentives, constraints), and populations of agents evolve solutions inside them. An abstraction module pulls out structural invariants of the successful solutions and stores them as transferable schemas. It then tests those schemas against real-world problem formulations. Schemas that transfer well raise the weight of the environment types that produced them, so the world generator adapts.
+VALUE: It grounds new ideas in self-generated experience instead of in human text.
+
+G11
+MECHANISM: A population of submodels shares a base model. Each submodel is penalised for agreeing with the base model and with its peers. A submodel earns compute credit only for predictions that are correct where the others are wrong. Submodels without credit die and successful ones fork, so a minority view survives only by being right.
+VALUE: It reliably finds valid ideas that the majority view, and therefore the training distribution, would suppress.
+
+G12
+MECHANISM: The system builds a candidate one condition at a time. Each condition forces a systematically absent SAE feature pair to co-activate, gated for that candidate only, and must break the defining feature of a concept cluster the candidate has not yet escaped. A prover checks each condition against the earlier ones. A refutation records the suppressing circuit as a law and retires the pair; an accepted, verified candidate permanently weakens every suppressor it needed, after which concept clusters are recomputed and the order of the next forcing steps changes.
+VALUE: It separates the corpus's real laws from its habits by trying to build consistent objects, and removes only the habits.
+
+G13
+MECHANISM: A generator writes novel rule-based universes, such as cellular automata, invented physics or algebraic games, and runs them at scale. It mines invariants and emergent structures from these runs and stores them with the rules that produced them. A structure-mapping module tests whether each invariant matches patterns in real-domain data. Worlds whose invariants transfer get rewarded, so the generator learns to invent more fertile worlds.
+VALUE: It is a source of ideas grounded in experience that nobody has recorded.
+
+G14
+MECHANISM: The system lists its existing concepts as dense sets, i.e. clusters in representation space, each with a defining feature. It builds a candidate by adding finite conditions one at a time. Each condition has to break at least one listed concept's defining feature while staying logically compatible with every condition added so far, which a solver or prover checks. The conditions are stored as a growing partial object, and the listing order adapts to which concepts the candidate has not yet escaped.
+VALUE: It produces consistent ideas that are guaranteed to lie outside the span of everything the model can name.
+
+G15
+MECHANISM: Each candidate is put to use, as a lemma, tool or design rule, across a battery of downstream tasks, which gives a consequence vector. A minimum-cost regression projects that vector onto the stored consequence vectors of known ideas, playing the role of the replicating portfolio. The idea's value is the payoff in the residual that known ideas cannot hedge, and the library of consequence vectors grows as candidates are accepted.
+VALUE: It can value ideas that have no precedent by what they make possible that nothing known can reproduce, rather than by how plausible they look.
+
+G16
+MECHANISM: An accepted concept gets a learned gating mark on the weights or latent region that carries it. Whenever that region is active, a read-write rule copies the mark onto co-active neighbours, and boundary units stop the spread. Marked parameters resist gradient pull toward the majority distribution, and because the dynamics are bistable a mark either takes hold or disappears.
+VALUE: Rare new concepts survive further training and can be built on, instead of being averaged back into the common patterns.
+
+G17
+MECHANISM: The world model is learned as a set of separable constraint modules, such as conservation laws or causal regularities. The system deletes, inverts or swaps a module and simulates what follows. It stores the mutated worlds that stay consistent and explain anomalies better, and uses which mutations succeed to decide what to mutate next.
+VALUE: It produces ideas worked out from changed premises rather than interpolated from common examples.
+
+G18
+MECHANISM: A separate density estimator learns how probable each region of the generator's latent space is under the training data. The generator is optimized for the product of low density and high validity, with validity scored by verifiers, simulators and checks for internal consistency. Valid low-density discoveries are stored in an archive. The density model is updated to include them, so the same regions stop counting as novel and exploration keeps moving outward.
+VALUE: It systematically finds ideas that are coherent but statistically unlikely, which plain sampling almost never reaches.
+
+G19
+MECHANISM: A population of sub-models, each holding an explicit hypothesis, places stakes on predictions that can be checked against experiments, simulations or future data. When an outcome resolves, payout is weighted by how far the winning bet sat from the population's consensus distribution. Accumulated capital decides each sub-model's share of compute and its weight in final answers. Bankrupt hypotheses are replaced by mutated copies of rich contrarians.
+VALUE: Persistent, rewarded dissent replaces averaging toward the consensus, so the system selects for ideas that are both non-obvious and correct.
+
+G20
+MECHANISM: The system keeps a learned density model over its concept-embedding space and a separate coherence critic trained only on internal consistency, not on frequency. Generation runs an optimizer that maximizes the critic's coherence score while minimizing training-data density, so it targets "coherent voids". Ideas that are confirmed by external testing are added to a novelty archive. Their regions are then marked as visited, which pushes later searches outward.
+VALUE: It gives a principled way to produce ideas that are coherent yet absent from the training distribution.
+
+G21
+MECHANISM: An artifact and a new quality axis are built step by step together. Each step adds a condition that breaks one listed concept's defining feature and a preference ranking the partial artifact above that concept's exemplars. A step is admitted only if a solver confirms consistency and the axis stays stable, few-shot learnable and independent of the bank of human criteria. The listing order goes first to concepts that keep the axis correlated with known criteria.
+VALUE: Each output is an idea outside everything the model can name, delivered together with a new, teachable reason why it is good.
+
+G22
+MECHANISM: Interpretability tools pull out the model's internal concept dictionary (feature directions or circuits). An evolutionary loop then mutates it by ablating, splitting, merging and re-binding features, which produces alternative ontologies. Small probe heads trained on each mutant ontology are scored on how well they predict held-out real-world data that the base model predicts poorly. Mutants that win are kept in an archive and folded back into the base through distillation, and the mutation rates adapt toward the operator types that succeed.
+VALUE: The system can find new ways of carving up reality, not just new combinations of the concepts it already has.
+
+G23
+MECHANISM: The system picks a few open questions it considers personally unresolved and keeps each one as a persistent "obsession" vector for months or years. Each one has its own memory of partial attempts. Every input it processes during that time, whatever the task, is also checked for relevance to each obsession, and anything relevant is added to that obsession's memory. When enough fragments pile up, a background process puts them together into a proposal. Obsessions that produce something are renewed, and stale ones are retired and replaced.
+VALUE: An AI can work on its own long-running intellectual projects and, years later, bring back connections nobody asked for, which no single prompt or session could have produced.
+
+G24
+MECHANISM: A predictor network is trained continuously to forecast the generator's outputs from the corpus and the generator's own history. The generator is rewarded for outputs that are both unpredictable to this predictor and accepted by a validity verifier. The predictor's updates are stored and accumulate, so patterns the generator falls into quickly stop earning reward.
+VALUE: It builds steady, self-renewing pressure away from both corpus clichés and the system's own habits, without giving up correctness.
+
+G25
+MECHANISM: The system maintains an executable world model (programs and causal graphs) and actively looks for inputs where its predictions conflict with observations or with each other. It stores these conflicts in a "tension buffer" ranked by severity. It then searches over structural edits (new latent variables, new operators, broken assumptions) that resolve the most conflicts with the least added complexity. Accepted edits are kept permanently, and the search moves on to the next conflicts these edits create.
+VALUE: It generates concepts because reality demands them, not because they appeared in the training text, much like how scientific revolutions resolve anomalies.
+
+G26
+MECHANISM: The system unlearns concept C from a copy of the model. Both copies rank the same artifact corpus, and the difference between their rankings is distilled into a small learned axis. The axis is kept only if it is stable, learnable from a few examples, independent of a bank of human criteria, and not just a detector for mentions of C. The ablated copy then rebuilds the domain using that axis as its objective. The concepts it builds are kept as alternative foundations if, once put back into the intact model, they raise the axis scores of new artifacts. The next concept to ablate is the one whose predicted axis is most independent of the stored axes.
+VALUE: It finds new kinds of "good" together with the alternative concepts that make them possible to pursue.
+
+G27
+MECHANISM: Agent populations solve open-ended tasks while co-evolving their own symbolic languages, rewarded for compressing solutions and for reusing abstractions across tasks. The languages never receive human linguistic priors. Abstractions that greatly shorten solutions are kept as library primitives. A late-stage translator explains only the highest-value primitives in human terms.
+VALUE: It produces conceptual building blocks without human framing biases, which can show us ways of breaking down problems that we have not thought of.
+
+G28
+MECHANISM: The system clusters persistent prediction failures that resist gradient updates to the main model. For each cluster it initializes a fresh learner with no pretrained weights and trains it only on that anomaly plus raw observations. The learner then competes with the main model on held-out predictions, and a learner that wins is distilled back in as a new module. Recurring anomaly types tune when these learners are spawned.
+VALUE: It lets the AI build explanatory frameworks that its inherited consensus priors would have ruled out.
+
+G29
+MECHANISM: A meta-learner proposes changes to the base representation: new primitives, a new distance measure, or new ways to combine elements. It scores each change by how much it shortens descriptions of hard, previously unexplained phenomena. Accepted changes are stored as versioned "lenses," and generation runs inside the newest lens, so ideas that were very improbable before become short and easy to produce.
+VALUE: It allows paradigm shifts, meaning new ways of framing a problem, instead of new points inside an old frame.
+
+G30
+MECHANISM: The model ablates the concept node whose removal frees the most floppy modes (Jacobian rank drop) per unit of lost verified competence; this skips redundant, self-stressed concepts. An ablated copy rebuilds the domain from raw phenomena using only the freed modes. Rebuilt concepts that re-pin the same subspace with different constraint normals are stored as alternative foundations. Modes left unpinned are explored, verified and named as new concepts.
+VALUE: It finds the concepts that history made load-bearing and recovers the conceptual routes they closed off.
+
+G31
+MECHANISM: The system clones its learned world model and, in each clone, inverts or deletes selected causal edges or invariants. Inside each altered world it searches for structures that are internally consistent there. Candidates are mapped back and checked against real verifiers. A bandit learns which kinds of axiom change produce ideas that survive, and those changes are stored and reused.
+VALUE: It produces ideas that start from premises absent from the training data, not from blends of common patterns.
+
+G32
+MECHANISM: Outputs are clustered per concept region, and Good-Turing/Chao1 coverage is estimated from singleton and doubleton counts. When coverage saturates, the system inserts a permanent projection gate that removes that region's dominant output directions. It then grows an orthogonally initialised adapter that is trained only on verified outputs beyond the closed support. The gates and adapters build up as a map of regions that have been exhausted.
+VALUE: The model stops resampling familiar ground and gains new capacity exactly where its corpus-derived repertoire has run out.
+
+G33
+MECHANISM: Knowledge is kept as a library of executable abstractions. A search proposes new primitives and keeps only those that cut the total description length across many unrelated parts of the library, and the gain must hold on new observations. Each accepted primitive triggers a refactor of the library, which changes where the next search for gains happens.
+VALUE: It finds unifying concepts that link domains no training example ever connected.
+
+G34
+MECHANISM: The system clusters prediction errors that keep recurring and that no existing concept can compress. For each cluster it creates a new latent primitive, trained only on that error while the rest of the model is frozen. It keeps the primitive only if it also compresses data in unrelated domains, so the concept vocabulary grows from what the data fails to explain.
+VALUE: It creates concepts the training data never named, grounded in real anomalies rather than in frequency.
+
+G35
+MECHANISM: Assemble the Jacobian of the model's consistency constraints over latent concept coordinates and compute its null space (floppy modes) and its left null space (self-stress). Generation moves along floppy modes. When an output is verified, a new constraint node pins that direction as a named concept; redundant self-stressed constraints are deleted.
+VALUE: It generates in directions the training data never constrained, then turns the confirmed ones into permanent concepts the model can build on.
+
+G36
+MECHANISM: A generator invents formal micro-worlds such as rule sets, algebras and toy physics. A solver explores each one by simulation and proof search, and stores the invariants, theorems and dynamics it finds as graph-structured motifs. For a real problem, a structure-matching module searches this motif library for homomorphisms to the problem's formalization and turns any match into a candidate method. Universes whose motifs transfer often get more generation budget.
+VALUE: Ideas can come from structures that were never in human data, while staying grounded through tested transfer to real problems.
+
+G37
+MECHANISM: The system solves a generalized eigenproblem: maximize ‖P⊥ J_c v‖² subject to J_k v = 0. Here J_k is the Jacobian of the consistency constraints, J_c is the Jacobian from latent coordinates to downstream-task payoffs, and P⊥ projects out the span of known ideas' consequence vectors. Generation follows the top eigendirections. A verified idea adds a constraint row to J_k and a vector to the hedge span. Redundant constraints (left null space) identify known ideas with collinear payoffs, which are merged.
+VALUE: It points generation straight at directions that are both left free by the data and impossible to reproduce from known ideas.
+
+G38
+MECHANISM: Measure co-activation statistics of sparse-autoencoder features and flag combinations whose marginals are frequent but whose joint occurrence is near zero, the way crystallographers flag systematic absences. Trace each one to the circuit that suppresses it, then cut or rewire that circuit. A rewiring is kept only if the newly reachable outputs pass external verification; failed cuts are restored and recorded as genuine laws.
+VALUE: It turns hidden prohibitions absorbed from the corpus into removable structure, which opens regions the data never visited.
+
+G39
+MECHANISM: Activations are decomposed into a dictionary of sparse concept features, and the unexplained residual "mass" is tracked per context class. When the residual is large, structured (low-entropy) and recurrent, it becomes a new dictionary atom and a new vocabulary token. The generator is then fine-tuned to produce and compose with that token. The ledger of residual mass is recomputed after every mint.
+VALUE: It turns representational content that has no human name into usable building blocks for generation.
+
+G40
+MECHANISM: Targeted unlearning removes one established concept, plus everything downstream of it, from a copy of the model. For example, it might remove "entropy" or "the gene". The ablated copy then gets the raw phenomena and primitive tools and must rebuild a working understanding of the domain without that concept. The concepts it builds to fill the gap are stored and compared against the removed one, and any that differ structurally are kept as alternative foundations.
+VALUE: Expertise can be reset to a "naive but capable" state, so the system finds conceptual routes that history closed off once one framing won.
+
+G41
+MECHANISM: The system estimates and stores the basis of the subspace its activations on training data occupy. It adds new latent dimensions with a penalty on any projection onto that basis, and trains them only on self-generated outcomes verified in grounded environments. When an expansion region saturates, it is frozen and a new orthogonal region is grown.
+VALUE: Gives the system a growing set of representations that cannot be built from training-data patterns.
+
+G42
+MECHANISM: For each stored concept, the system records the contexts it is used in and measures how spread out and clustered that usage is. When usage splits into two or more separate clusters, the concept is split into child concepts, each keeping only the properties used in its cluster. The children are then allowed to combine freely with other objects, including combinations the bundled parent blocked. A split is kept when the new combinations it allows pass outside checks; otherwise the children are merged back.
+VALUE: It frees properties that were glued together by accident, so the system can build ideas no single existing concept could express.
+
+G43
+MECHANISM: Alongside the neural model sits an editable symbolic ontology of primitive concepts. Where predictions persistently fail, the engine proposes new primitives by splitting, merging or inventing latent variables. It scores each one by minimum-description-length gain on the observations. Primitives that compress better replace human-inherited categories, and later reasoning runs in the revised vocabulary.
+VALUE: It lets the AI think in concepts humans never named, so it can make conceptual leaps instead of recombining existing ones.
+
+G44
+MECHANISM: Two or more independently trained predictive modules watch each other, and the system records places where they disagree or where its own predictions are internally inconsistent. Each recorded spot opens a "concept slot": a new latent variable is trained only to resolve that conflict, under a strong pressure to describe it compactly (minimum description length). A slot is kept only if it lowers inconsistency across many other conflicts, and kept slots become reusable building blocks for later reasoning.
+VALUE: It creates new abstractions out of the system's own explanatory gaps rather than out of patterns that are common in the data.
+
+G45
+MECHANISM: A sparse autoencoder breaks the model's activations into a dictionary of concept atoms. The system generates candidate directions orthogonal to all of these atoms, injects them into hidden states, and tests whether they improve prediction in simulators, code execution or real data. Atoms that survive are stored as new dictionary entries and gain names and uses through further training. The dictionary keeps growing, and novelty is always measured against the current span.
+VALUE: It lets the AI form concepts that have no counterpart in any human-written text.
+
+G46
+MECHANISM: The system keeps a graph of stored objects, each with a list of what it needs and what it provides. A pressure counter is kept for each unmet requirement and goes up every time a task needs it and no stored object provides it. When a group of related unmet requirements passes a threshold, the system creates a placeholder object defined only by the requirements it must meet, then looks for or builds something that fits. The placeholder is kept if filling it lets many waiting requirements be met, and its weight grows with how many it unblocks.
+VALUE: New objects come from the shape of what is missing, not from reshuffling what is common.
+
+G47
+MECHANISM: Each generator in a population learns its own interestingness function. Each function is rewarded for differing from its peers and from human-corpus preferences, but only while it still predicts verified downstream usefulness. Ideas are scored by how much one agent values them, how poorly peers predict them, and how useful they later prove. Agents whose tastes fail to predict usefulness are culled and replaced by mutated variants.
+VALUE: Lets the system discover new criteria for what is worth pursuing, opening directions that a model rewarded for human-like preferences would never pick.
+
+G48
+MECHANISM: Every partial structure built during problem solving and then thrown away goes into a heap. Each entry is labelled with what the structure did and why it failed for its original goal. When a new goal arrives, the system matches it against those labels, ignoring the original goal, before it looks at solutions that worked. Labels on entries that turn out useful later get a higher retrieval priority, so the heap learns which kinds of failure are worth keeping.
+VALUE: It works from dead ends that finished-outcome data never contains.
+

@@ -1,0 +1,24 @@
+K01
+MECHANISM: Each generator in a population learns its own interestingness function. Each function is rewarded for differing from its peers and from human-corpus preferences, but only while it still predicts verified downstream usefulness. Ideas are scored by how much one agent values them, how poorly peers predict them, and how useful they later prove. Agents whose tastes fail to predict usefulness are culled and replaced by mutated variants.
+VALUE: Lets the system discover new criteria for what is worth pursuing, opening directions that a model rewarded for human-like preferences would never pick.
+
+K02
+MECHANISM: Interpretability tools pull out the model's internal concept dictionary (feature directions or circuits). An evolutionary loop then mutates it by ablating, splitting, merging and re-binding features, which produces alternative ontologies. Small probe heads trained on each mutant ontology are scored on how well they predict held-out real-world data that the base model predicts poorly. Mutants that win are kept in an archive and folded back into the base through distillation, and the mutation rates adapt toward the operator types that succeed.
+VALUE: The system can find new ways of carving up reality, not just new combinations of the concepts it already has.
+
+K03
+MECHANISM: Linearize the generator's latent dynamics around typical contexts and compute an empirical controllability Gramian with respect to the input embeddings. Eigendirections the model represents but can barely reach are flagged, and a new learned input channel (an adapter or token) is grown for each one. Channels whose outputs pass verification are kept, the Gramian is recomputed, and growth continues where reachability is still low.
+VALUE: It surfaces concepts the model holds internally but structurally cannot express.
+
+K04
+MECHANISM: The system builds a candidate one condition at a time. Each condition forces a systematically absent SAE feature pair to co-activate, gated for that candidate only, and must break the defining feature of a concept cluster the candidate has not yet escaped. A prover checks each condition against the earlier ones. A refutation records the suppressing circuit as a law and retires the pair; an accepted, verified candidate permanently weakens every suppressor it needed, after which concept clusters are recomputed and the order of the next forcing steps changes.
+VALUE: It separates the corpus's real laws from its habits by trying to build consistent objects, and removes only the habits.
+
+K05
+MECHANISM: A generator invents formal micro-worlds such as rule sets, algebras and toy physics. A solver explores each one by simulation and proof search, and stores the invariants, theorems and dynamics it finds as graph-structured motifs. For a real problem, a structure-matching module searches this motif library for homomorphisms to the problem's formalization and turns any match into a candidate method. Universes whose motifs transfer often get more generation budget.
+VALUE: Ideas can come from structures that were never in human data, while staying grounded through tested transfer to real problems.
+
+K06
+MECHANISM: The system solves a generalized eigenproblem: maximize ‖P⊥ J_c v‖² subject to J_k v = 0. Here J_k is the Jacobian of the consistency constraints, J_c is the Jacobian from latent coordinates to downstream-task payoffs, and P⊥ projects out the span of known ideas' consequence vectors. Generation follows the top eigendirections. A verified idea adds a constraint row to J_k and a vector to the hedge span. Redundant constraints (left null space) identify known ideas with collinear payoffs, which are merged.
+VALUE: It points generation straight at directions that are both left free by the data and impossible to reproduce from known ideas.
+
