@@ -1,0 +1,41 @@
+=== VALORIZED V01 ===
+ANCHOR: capture-recapture estimate of unseen items
+NAME: Capture-Recapture Self-Census
+MECHANISM: Several retrieval or generation passes, built to fail in different ways (different sources, cues and decompositions), each "capture" candidate items, and every item gets a capture history: the set of passes that found it. A latent-class log-linear capture-recapture model fitted to these histories does two things. It estimates how many real items are still unseen, and it separates real items, which independent passes recapture, from phantoms, which stay confined to one pass or one correlated group of passes. The pass-interaction terms show where passes share a bias, and the system then adds a pass that breaks that dependence. Sampling stops when both the estimated unseen share and the estimated phantom share fall below a threshold.
+VALUE: Without any oracle, the system can say both "I have probably found 90% of the relevant items" and "about 5% of what I listed is probably spurious", and it knows when to stop searching.
+
+=== VALORIZED V02 ===
+ANCHOR: evolving pool of composed answer-preserving transformations
+NAME: Self-Discovered Symmetry Group
+MECHANISM: The system grows a pool of candidate input transformations by composing primitive edits (relabel, permute, reflect, rescale, swap roles). A candidate earns credit only if mapped-back answers agree under it more than they agree under random control edits of matched size, so a transformation that does nothing, or a model that ignores its input, earns no credit. Kept transformations must also close under composition: if T1 and T2 are kept, T1∘T2 must preserve answers too, and a failure of closure removes the weakest member. Answers that stay unchanged across the whole learned group become pseudo-labels for training and voting, and answers that break under it are flagged. The signal is the internal structure of the group, not verified cases.
+VALUE: The system discovers for itself which changes to an input must not change the answer, and uses that structure both to check its own answers without an oracle and to generalize far outside its training distribution.
+
+=== VALORIZED V03 ===
+ANCHOR: Schild-slope titration of competing cues
+NAME: Schild Analysis Feature Surgery
+MECHANISM: For cues that compete over an internal feature, the system titrates one cue against increasing amounts of the other and fits a Schild slope to the dose-ratio shifts. It also checks the pharmacological null-method invariant: a true single site gives the same antagonist affinity (pA2) whatever agonist cue is used. A slope away from 1, or a pA2 that depends on the agonist, triggers a split into gated sub-sites. The split is kept only if each new sub-site then passes both tests itself, so a mathematical invariant of the model's own activations grades the repair, not a fallible judge.
+VALUE: Features that are secretly several mechanisms are found and separated, and the result is checked by a quantitative law, so the model's internals become more faithful and reasoning that combines cues becomes more reliable.
+
+=== VALORIZED V04 ===
+ANCHOR: Hodge decomposition of cycle misclosures
+NAME: Surveyor's Hodge Network Adjustment
+MECHANISM: Learned maps (analogies, translations, coordinate transforms) are composed around every independent cycle, and the misclosures are Hodge-decomposed. The gradient part is spread back over edges by least-squares network adjustment. The curl part is pinned to specific edges by a redundancy blunder test: an edge is condemned when the cycles that pass through it disagree with the cycles that avoid it. The harmonic part, which no local edit can remove, is treated as a real topological hole and gets a new context variable with separate charts and transition maps. Correctness comes from redundancy alone: a map is trusted in proportion to how many independent cycles close through it, as in surveying without a known benchmark.
+VALUE: The system can find out on its own whether a contradiction in its knowledge is an error to delete or a sign that it needs several context-dependent frames, and it builds those frames instead of averaging contradictory regularities into one incoherent map.
+
+=== VALORIZED V05 ===
+ANCHOR: staged, delayed gating on disjoint ensemble subsets
+NAME: Staged Prequential Fact Quarantine
+MECHANISM: A new fact waits in a queue. At each stage, one disjoint subset of ensemble members provisionally absorbs it (treatment) and a matched subset does not (control). The fact's binding margin is how much better the treatment subset predicts the facts that arrive in the stream during the delay, measured before those facts are absorbed. The number of stages grows with how much of the model the fact would change, a fact with a negative margin at any stage is gone for good, and survivors are weighted by their accumulated margin. The world's later data, not the ensemble's opinion, grades each fact.
+VALUE: The system can keep learning from a stream of claims and admit only those that make it better at predicting what it encounters next, so wrong facts that would cause broad damage are stopped before they get in.
+
+=== VALORIZED V06 ===
+ANCHOR: Kuramoto oscillator bank storing phase-locked patterns
+NAME: Phase-Locked Event Clockwork
+MECHANISM: A bank of coupled phase oscillators runs continuously, timestamped events phase-reset or nudge it, and each oscillator adapts its natural frequency to reduce phase error at event onsets. Expectations are read out as the phase at which the next event should arrive. A phase-locking pattern is consolidated as a concept or routine only if its onset predictions on future events beat the same bank driven by jittered surrogate streams. The correctness signal is the actual arrival time of the next event, which the world supplies with no judge.
+VALUE: The system gets a real sense of duration, rhythm, deadlines and "something is late", and can discover hidden periodicities in event streams, which clockless token-sequence models cannot do.
+
+=== VALORIZED V07 ===
+ANCHOR: lock-in amplification with pseudo-random reference codes
+NAME: Lock-In Concept Isolation
+MECHANISM: The system presents a few examples of a concept and matched non-examples in an order set by a pseudo-random reference code that it controls, and per-channel integrators multiply each internal activation by the code and low-pass the product. Several orthogonal decoy codes that drove nothing are demodulated at the same time, giving a measured noise floor and false-lock rate. Only channels locked above that floor form the concept's address. The address is re-tested with a fresh code and fading channels are dropped, so correctness rests on a causal fact the system knows for certain (what it varied), not on its own judgement.
+VALUE: Concepts can be isolated from very few noisy examples with a measured signal-to-noise ratio and false-detection rate, so the system knows how much to trust a concept it has just learned.
