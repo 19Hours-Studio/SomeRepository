@@ -15,8 +15,8 @@
 ```
 python3 test_sieve.py                                                  # тесты (torch-часть пропускается без torch)
 python3 train.py --config tiny --rounds 20 --device cpu                # проверка цикла на CPU
-python3 train.py --config small --rounds 3000 --device cuda --amp      # RTX 3060, ~25M параметров
-python3 train.py --config small --rounds 3000 --device cuda --amp --acq random --no-prop --out runs/baseline   # контроль
+python3 train.py --preset 3060                                         # RTX 3060: ~25M параметров, 500 раундов, около часа
+python3 train.py --preset 3060 --acq random --no-prop --out runs/baseline   # контроль без решётки (столько же проверок)
 python3 experiment_ablation.py --seeds 3                               # абляция на CPU (~10 мин)
 ```
 

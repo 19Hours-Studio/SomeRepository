@@ -5,6 +5,7 @@ Heads (read from the CLS position):
   witness  - per-variable, per-bit logits of a counterexample (x, y); trained on found counterexamples
 Configs: tiny (CPU tests), small (~25M), base (~85M) for an RTX 3060.
 """
+import numpy as np
 import torch
 import torch.nn as nn
 from bitworld import W, UN, BIN
@@ -20,8 +21,8 @@ MAX_DEPTH = 16
 
 CONFIGS = {
     "tiny": dict(d=64, layers=2, heads=4, max_len=96),
-    "small": dict(d=512, layers=8, heads=8, max_len=128),
-    "base": dict(d=768, layers=12, heads=12, max_len=128),
+    "small": dict(d=512, layers=8, heads=8, max_len=128, dropout=0.1),
+    "base": dict(d=768, layers=12, heads=12, max_len=128, dropout=0.1),
 }
 
 
@@ -46,6 +47,21 @@ def encode(stmt, max_len):
     dep = [min(r[2], MAX_DEPTH - 1) for r in rows]; chi = [min(r[3], 2) for r in rows]
     cst = [[(r[4] >> b) & 1 for b in range(W)] for r in rows]
     return tok, seg, dep, chi, cst
+
+
+def encode_np(stmt, max_len):
+    """Compact cached encoding: int16 array (4 + W, L) = token, segment, depth, child, constant bits."""
+    tok, seg, dep, chi, cst = encode(stmt, max_len)
+    return np.array([tok, seg, dep, chi] + [list(c) for c in zip(*cst)], dtype=np.int16)
+
+
+def collate(arrs, device="cpu"):
+    """Pad cached encodings to the longest in the batch and move to device."""
+    n = max(a.shape[1] for a in arrs); out = np.zeros((len(arrs), 4 + W, n), dtype=np.int64)
+    for k, a in enumerate(arrs): out[k, :, :a.shape[1]] = a
+    t = torch.from_numpy(out).to(device, non_blocking=True)
+    tok = t[:, 0]; return dict(tok=tok, seg=t[:, 1], dep=t[:, 2], chi=t[:, 3],
+                               cst=t[:, 4:].transpose(1, 2).float(), mask=tok.eq(0))
 
 
 def batch_encode(stmts, max_len, device="cpu"):

@@ -18,14 +18,17 @@ class Lattice:
             self.down[i].append(j); self.up[j].append(i)
         self.label = np.full(n, -1, dtype=np.int8)   # -1 unknown, 0 false, 1 true
         self.verified = np.zeros(n, dtype=bool)
+        self._cd, self._ca = {}, {}  # cone caches (the DAG is fixed)
 
     def _cone(self, i, nbr):
+        cache = self._cd if nbr is self.down else self._ca
+        if i in cache: return cache[i]
         seen, stack = set(), [i]
         while stack:
             k = stack.pop()
             for m in nbr[k]:
                 if m not in seen: seen.add(m); stack.append(m)
-        return seen
+        cache[i] = np.fromiter(seen, dtype=np.int64, count=len(seen)); return cache[i]
 
     def descendants(self, i): return self._cone(i, self.down)
     def ancestors(self, i): return self._cone(i, self.up)
@@ -34,8 +37,8 @@ class Lattice:
         """Record a verified verdict; with propagate, label the implied cone. Returns #new labels."""
         new = int(self.label[i] < 0); self.label[i] = int(truth); self.verified[i] = True
         if propagate:
-            for k in (self.descendants(i) if truth else self.ancestors(i)):
-                if self.label[k] < 0: self.label[k] = int(truth); new += 1
+            cone = self.descendants(i) if truth else self.ancestors(i)
+            fresh = cone[self.label[cone] < 0]; self.label[fresh] = int(truth); new += len(fresh)
         return new
 
     def misclosure(self, p):
@@ -53,7 +56,7 @@ class Lattice:
         q = np.clip(p, 1e-6, 1 - 1e-6); h = -(q * np.log(q) + (1 - q) * np.log(1 - q)); h[~unl] = 0
         out = np.empty(len(cand))
         for t, i in enumerate(cand):
-            d = sum(h[k] for k in self.descendants(i)); a = sum(h[k] for k in self.ancestors(i))
+            d = h[self.descendants(i)].sum(); a = h[self.ancestors(i)].sum()
             out[t] = h[i] + q[i] * d + (1 - q[i]) * a
         return out
 
