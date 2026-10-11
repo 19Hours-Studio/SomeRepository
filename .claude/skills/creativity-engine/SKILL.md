@@ -15,6 +15,9 @@ Why each step exists: `engine/README.md` and `research/stage1-creativity/03-deep
 - Process constraints must be enforced by `ce.py`, not requested in a prompt.
 - Keep every generator on the same model and effort level within a run.
 - Set names must sort chronologically (`s00`, `s01`, ..., `s99`): scores come from the latest set.
+- Never relax the known-basin filter when choosing parents: the v2 A/B showed known-basin parents weaken generation 2.
+- v2 options (`gapwalk`/`gap`, `strip`, `audit`, `select --v2`) exist but did NOT beat v1 in A/B; do not use them by default.
+- For A/B tests of engine changes use `fork` (shared attractor map, isolated memory) and `import` (shared final judging).
 
 ## Launching subagents
 Generator / judge prompt files are produced by `ce.py`. Launch each with the Agent tool:

@@ -1,1 +1,1432 @@
-{}
+{
+ "v2:g2_imm#2": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "adversarial robustness certification, red-teaming budgets"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "adversarial red-teaming, robustness certification"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "adversarial robustness; red-teaming"
+  }
+ },
+ "map_3#3": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "ENERGY",
+   "closest": "energy-based models, belief propagation solvers"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "ENERGY",
+   "closest": "energy-based models, belief propagation"
+  },
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "energy-based models; belief propagation"
+  }
+ },
+ "map_3#2": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "CAUSGR",
+   "closest": "causal discovery, object-centric world models"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "CAUSGR",
+   "closest": "causal discovery, object-centric world models"
+  },
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "causal model learning; schema networks"
+  }
+ },
+ "v2:g1_mech#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis, metamorphic testing"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis, AI Feynman"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis; metamorphic testing"
+  }
+ },
+ "v2:g2_evo1#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "perturbation attribution plus dimensional analysis"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "causal representation learning, intervention probing"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis; perturbation probing"
+  }
+ },
+ "map_2#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 6,
+   "V": 7,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "complementary learning systems, GEM replay"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 6,
+   "V": 7,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "complementary learning systems, GEM"
+  },
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "complementary learning systems; GEM"
+  }
+ },
+ "v1:g2_evo1#2": {
+  "s99:F1": {
+   "O": 8,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank, invertible neural networks"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank, invertible networks"
+  },
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank; invertible neural networks"
+  }
+ },
+ "v1:g1_neg#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 8,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SISA unlearning, Branch-Train-Merge, SILO"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 8,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SISA unlearning, SILO LM, BTM"
+  },
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SILO; Branch-Train-Merge"
+  }
+ },
+ "map_3#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "GRACE/MELO key-value model-editing adaptors"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "GRACE editing codebook, MEMIT"
+  },
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "GRACE / WISE model editing"
+  }
+ },
+ "map_1#2": {
+  "s99:F1": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "TMS",
+   "closest": "Doyle TMS / de Kleer ATMS"
+  },
+  "s99:F2": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "TMS",
+   "closest": "Doyle truth maintenance systems"
+  },
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Doyle truth maintenance systems"
+  }
+ },
+ "v2:g1_loop#3": {
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Wahlund effect; growing mixture-of-experts"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Wahlund effect, mixture-of-experts growth"
+  },
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Wahlund effect; growing MoE"
+  }
+ },
+ "v2:g1_core#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading, self-consistency"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading"
+  }
+ },
+ "v1:g1_mech#3": {
+  "s99:F1": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SymbolicToM per-agent belief tracking"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SymbolicToM per-character belief tracking"
+  },
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SymbolicToM belief graphs"
+  }
+ },
+ "v1:g2_imm#2": {
+  "s99:F1": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading (duplicate of F12)"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading"
+  }
+ },
+ "v2:g1_mech#1": {
+  "s99:F1": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "oscillatory/holographic networks, Physarum reinforcement"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "oscillatory/holographic neural computing"
+  },
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 2,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "wave computing; Physarum networks"
+  }
+ },
+ "v2:g1_loop#1": {
+  "s99:F1": {
+   "O": 8,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "structural rigidity theory, KG completion"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "structural rigidity theory"
+  },
+  "s98c:CLEAN": {
+   "O": 8,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "structural rigidity theory"
+  }
+ },
+ "v1:g1_core#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic least-squares adjustment, Baarda testing"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic least-squares network adjustment"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "least-squares geodetic network adjustment"
+  }
+ },
+ "v1:g1_reframe#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "task arithmetic, Branch-Train-Merge experts"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "task arithmetic, SILO LM"
+  },
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "LoRA task arithmetic; SILO"
+  }
+ },
+ "v1:g1_core#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Good-Turing/Chao1 species richness estimation"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Chao1 species richness estimation"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Chao1 species richness estimation"
+  }
+ },
+ "map_1#3": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "MODMKT",
+   "closest": "Baum's Hayek machine, bucket brigade"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "MODMKT",
+   "closest": "Baum Hayek machine, classifier systems"
+  },
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Baum Hayek machine; agoric computing"
+  }
+ },
+ "map_1#1": {
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "Y",
+   "B": "PROGSYN",
+   "closest": "probabilistic program induction, WorldCoder, active learning"
+  },
+  "s99:F2": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "PROGSYN",
+   "closest": "Bayesian program learning, active learning"
+  },
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 6,
+   "V": 7,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "DreamCoder; Bayesian experimental design"
+  }
+ },
+ "v2:g2_imm#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal forecasting, prediction markets"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal, forecasting tournaments"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal forecasting tournaments"
+  }
+ },
+ "v1:g1_neg#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning, emergent communication"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning, emergent communication"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning; teachability"
+  }
+ },
+ "v2:g1_loop#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Allan variance; multi-timescale RNNs"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Allan variance, multi-timescale RNNs"
+  },
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Allan variance; multi-timescale RNNs"
+  }
+ },
+ "v1:g1_core#1": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CRDTs, federated learning"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CRDTs, federated learning"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CRDTs; federated learning"
+  }
+ },
+ "v1:g1_mech#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bennett reversible computing, invertible networks"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "reversible computing, invertible networks"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "reversible computing; hallucination detection"
+  }
+ },
+ "v2:g1_gap#2": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "COMPMAP",
+   "closest": "backward task generation, selective prediction"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "answer-first synthetic data, backtranslation"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "backtranslation synthetic tasks; calibration"
+  }
+ },
+ "v2:g2_evo2#1": {
+  "s99:F1": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "metamorphic testing plus dimensional analysis"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis, synthetic verification"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "metamorphic testing; synthetic calibration"
+  }
+ },
+ "v2:g2_evo1#1": {
+  "s99:F1": {
+   "O": 6,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning, synthetic calibration tasks"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning, synthetic task generation"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "synthetic calibration; teachability"
+  }
+ },
+ "v1:g1_loop#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank, sheaf neural networks"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank, sheaf inconsistency detection"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank; sheaf cohomology"
+  }
+ },
+ "v1:g2_evo2#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 3,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "reversible computing, abductive premise recovery"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "reversible computing, abductive reasoning"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 3,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "reversible computing; abductive inference"
+  }
+ },
+ "v2:g1_neg#3": {
+  "s99:F1": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "quantum probability cognition models"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "quantum cognition, complex-valued networks"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "quantum-like Bayesian networks"
+  }
+ },
+ "v2:g2_evo2#2": {
+  "s99:F1": {
+   "O": 7,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading plus invariance testing"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading, invariance testing"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading; invariant causal prediction"
+  }
+ },
+ "map_2#3": {
+  "s99:F1": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "COMPMAP",
+   "closest": "selective prediction, conformal abstention"
+  },
+  "s99:F2": {
+   "O": 2,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "COMPMAP",
+   "closest": "selective prediction, conformal abstention"
+  },
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 8,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "selective prediction; competence maps"
+  }
+ },
+ "v2:g2_evo1#3": {
+  "s99:F1": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading plus distillation students"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading, distillation"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading; teachability"
+  }
+ },
+ "map_2#2": {
+  "s99:F1": {
+   "O": 3,
+   "C": 4,
+   "V": 7,
+   "R": "Y",
+   "B": "PROGSYN",
+   "closest": "probabilistic program induction (Tenenbaum lab)"
+  },
+  "s99:F2": {
+   "O": 2,
+   "C": 4,
+   "V": 7,
+   "R": "Y",
+   "B": "PROGSYN",
+   "closest": "Bayesian program learning, DreamCoder"
+  },
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "probabilistic program induction world models"
+  }
+ },
+ "v1:g1_reframe#3": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal schemes, zkML"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal, zkML, program equilibrium"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "zkML; commit-reveal schemes"
+  }
+ },
+ "v1:g2_evo1#3": {
+  "s99:F1": {
+   "O": 7,
+   "C": 2,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated learning plus CRDT lattices"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CRDT lattices, iterated learning"
+  },
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "CRDT lattices; iterated learning"
+  }
+ },
+ "v1:g2_evo2#1": {
+  "s99:F1": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment plus Hodge curl"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment, HodgeRank"
+  },
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment; sheaf/Hodge cycles"
+  }
+ },
+ "v2:g1_gap#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "interventional causal representation learning"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "causal representation learning, interaction attribution"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "perturbation attribution; causal representation learning"
+  }
+ },
+ "v1:g1_loop#1": {
+  "s99:F1": {
+   "O": 8,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genetic complementation tests, activation patching"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genetic complementation, activation patching"
+  },
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genetic complementation; activation patching"
+  }
+ },
+ "v1:g2_evo1#1": {
+  "s99:F1": {
+   "O": 7,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment plus reversible computing"
+  },
+  "s99:F2": {
+   "O": 7,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "reversible computing, geodetic adjustment"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment; reversible computing"
+  }
+ },
+ "v2:g1_neg#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "RevNets, Maclaurin reversible learning"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "RevNets, reversible learning (Maclaurin)"
+  },
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "RevNets; reversible SGD unlearning"
+  }
+ },
+ "v2:g1_gap#3": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "alpha-investing, online conformal prediction"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "alpha-investing, online conformal prediction"
+  },
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "online conformal; alpha-investing (Foster-Stine)"
+  }
+ },
+ "v2:g1_mech#3": {
+  "s99:F1": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "distillation, iterated learning"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rule distillation, iterated learning"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "explanation distillation; iterated learning"
+  }
+ },
+ "v1:g1_loop#3": {
+  "s99:F1": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Gauge R&R measurement-system analysis"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "gauge R&R, invariant risk minimization"
+  },
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "gauge R&R; invariance learning"
+  }
+ },
+ "v2:g1_core#3": {
+  "s99:F1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AI Feynman, Buckingham Pi theorem"
+  },
+  "s99:F2": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Buckingham Pi dimensionless learning"
+  },
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensionless learning; AI Feynman"
+  }
+ },
+ "v1:g2_imm#1": {
+  "s99:F1": {
+   "O": 8,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "biological nomenclature type specimens"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "zoological type-specimen nomenclature"
+  },
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "zoological nomenclature type specimens"
+  }
+ },
+ "v2:g1_core#1": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "tracing JIT compilers, Voyager skill library"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "tracing JIT compilers, Soar chunking"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "tracing JIT; Soar chunking"
+  }
+ },
+ "v1:g1_reframe#2": {
+  "s99:F1": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Kuramoto oscillators, neural entrainment"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "neural oscillators, beat tracking"
+  },
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "neural resonance theory; Kuramoto networks"
+  }
+ },
+ "v1:g1_mech#1": {
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "units-of-measure type systems, dimensional analysis"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AI Feynman, dimensional analysis"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AI Feynman; Buckingham Pi"
+  }
+ },
+ "v2:g1_neg#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated cultural learning"
+  },
+  "s99:F2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated cultural learning, distillation"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "iterated cultural learning"
+  }
+ },
+ "v2:g2_imm#1": {
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "checkpoint ensembles, drift detection"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "checkpoint ensembles, drift detection"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "checkpoint ensembles; drift detection"
+  }
+ },
+ "v1:g1_neg#2": {
+  "s99:F1": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "invertible networks, entailment checking"
+  },
+  "s99:F2": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "invertible networks, reconstruction-based attribution"
+  },
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "invertible networks; reconstruction gap"
+  }
+ },
+ "v1:g2_imm#3": {
+  "s99:F1": {
+   "O": 8,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "BLUP animal breeding values"
+  },
+  "s99:F2": {
+   "O": 8,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "animal-breeding BLUP, hierarchical Bayes"
+  },
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "BLUP animal breeding values"
+  }
+ }
+}
