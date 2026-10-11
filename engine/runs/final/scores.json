@@ -1,1 +1,272 @@
-{}
+{
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "LLM control theory, activation steering"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Control theory of LLM prompting"
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "MDLREFAC",
+   "closest": "word-sense induction, category splitting"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "MDLREFAC",
+   "closest": "Word-sense induction; conceptual clustering"
+  }
+ },
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory, null-space exploration"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Rigidity theory; null-space latent steering"
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 3,
+   "C": 7,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Hindsight Experience Replay, case-based reasoning"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 7,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Hindsight experience replay; case-based reasoning"
+  }
+ },
+ "g1_neg#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "Lakatos programmes, NEAT speciation protection"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "NEAT speciation; Lakatos research programmes"
+  }
+ },
+ "g1_reframe#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AURORA learned descriptors, OMNI interestingness"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AURORA learned QD behaviour descriptors"
+  }
+ },
+ "g1_reframe#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "long-term memory agents, incubation"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Opportunistic assimilation; persistent agent memory"
+  }
+ },
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 3,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "EWC/PackNet, synaptic tagging"
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 5,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Synaptic tagging; EWC/PackNet"
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Cohen forcing, diagonalization"
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Cohen forcing; constraint-based novelty generation"
+  }
+ },
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "replicating portfolio, data valuation residuals"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "ANTIPRED",
+   "closest": "Novelty search in behaviour space"
+  }
+ },
+ "g1_neg#1": {
+  "s01:J1": {
+   "O": 3,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "fast weights, personalized adapters"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fast weights; personalized adapters"
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "Mendeleev gaps, typed-hole program synthesis"
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "ANOMALY",
+   "closest": "Predicate invention; Mendeleev-style gap filling"
+  }
+ },
+ "g1_reframe#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "self-conditioning on own outputs, style models"
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Self-conditioned style models; computational persona"
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SAE feature steering, circuit ablation"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "SAE feature steering; refusal-direction ablation"
+  }
+ },
+ "g1_neg#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "machine unlearning plus rediscovery experiments"
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "CFWORLD",
+   "closest": "Machine unlearning; rediscovery from knowledge cutoff"
+  }
+ }
+}

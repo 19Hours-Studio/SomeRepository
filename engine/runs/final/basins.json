@@ -78,5 +78,77 @@
   "members": [
    "map_1#3"
   ]
+ },
+ {
+  "code": "V12",
+  "desc": "Lifetime-Individuated Salience Module — Next to the pretrained model sits a small network that starts empty and is never pretrained. Its weights are updated only from this one agent's own episodes, fa",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V13",
+  "desc": "Forcing-Style Diagonal Construction — The system lists its existing concepts as dense sets, i.e. clusters in representation space, each with a defining feature. It builds a candidate by adding finit",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V14",
+  "desc": "Self-Propagating Concept Marks — An accepted concept gets a learned gating mark on the weights or latent region that carries it. Whenever that region is active, a read-write rule copies the mar",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Irreversible Auteur Commitment Ledger — Every time the system ships an artifact, it writes the choices it made to an append-only ledger and can never undo them: this motif, this structure, this reject",
+  "source": "visited",
+  "members": [
+   "g1_reframe#1"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Desiderata Invention Engine — The system does not generate solutions. It generates new evaluation axes: learned functions that put existing artifacts in a new order. An axis is stored only i",
+  "source": "visited",
+  "members": [
+   "g1_reframe#2"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Lifelong Obsession Filters — The system picks a few open questions it considers personally unresolved and keeps each one as a persistent \"obsession\" vector for months or years. Each one has",
+  "source": "visited",
+  "members": [
+   "g1_reframe#3"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Discarded-Intermediate Reuse Heap — Every partial structure built during problem solving and then thrown away goes into a heap. Each entry is labelled with what the structure did and why it failed",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Gramian-Guided Actuator Growth — Linearize the generator's latent dynamics around typical contexts and compute an empirical controllability Gramian with respect to the input embeddings. Eigendi",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Rigidity-Matrix Floppy-Mode Exploration — Assemble the Jacobian of the model's consistency constraints over latent concept coordinates and compute its null space (floppy modes) and its left null space (",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
  }
 ]

@@ -1,0 +1,24 @@
+L01
+MECHANISM: Assemble the Jacobian of the model's consistency constraints over latent concept coordinates and compute its null space (floppy modes) and its left null space (self-stress). Generation moves along floppy modes. When an output is verified, a new constraint node pins that direction as a named concept; redundant self-stressed constraints are deleted.
+VALUE: It generates in directions the training data never constrained, then turns the confirmed ones into permanent concepts the model can build on.
+
+L02
+MECHANISM: Each candidate is put to use, as a lemma, tool or design rule, across a battery of downstream tasks, which gives a consequence vector. A minimum-cost regression projects that vector onto the stored consequence vectors of known ideas, playing the role of the replicating portfolio. The idea's value is the payoff in the residual that known ideas cannot hedge, and the library of consequence vectors grows as candidates are accepted.
+VALUE: It can value ideas that have no precedent by what they make possible that nothing known can reproduce, rather than by how plausible they look.
+
+L03
+MECHANISM: The system lists its existing concepts as dense sets, i.e. clusters in representation space, each with a defining feature. It builds a candidate by adding finite conditions one at a time. Each condition has to break at least one listed concept's defining feature while staying logically compatible with every condition added so far, which a solver or prover checks. The conditions are stored as a growing partial object, and the listing order adapts to which concepts the candidate has not yet escaped.
+VALUE: It produces consistent ideas that are guaranteed to lie outside the span of everything the model can name.
+
+L04
+MECHANISM: Measure co-activation statistics of sparse-autoencoder features and flag combinations whose marginals are frequent but whose joint occurrence is near zero, the way crystallographers flag systematic absences. Trace each one to the circuit that suppresses it, then cut or rewire that circuit. A rewiring is kept only if the newly reachable outputs pass external verification; failed cuts are restored and recorded as genuine laws.
+VALUE: It turns hidden prohibitions absorbed from the corpus into removable structure, which opens regions the data never visited.
+
+L05
+MECHANISM: Targeted unlearning removes one established concept, plus everything downstream of it, from a copy of the model. For example, it might remove "entropy" or "the gene". The ablated copy then gets the raw phenomena and primitive tools and must rebuild a working understanding of the domain without that concept. The concepts it builds to fill the gap are stored and compared against the removed one, and any that differ structurally are kept as alternative foundations.
+VALUE: Expertise can be reset to a "naive but capable" state, so the system finds conceptual routes that history closed off once one framing won.
+
+L06
+MECHANISM: The system does not generate solutions. It generates new evaluation axes: learned functions that put existing artifacts in a new order. An axis is stored only if it meets three tests. It must be stable when judged repeatedly. It must be learnable from a few examples. It must be statistically independent of a stored bank of known human criteria. The system then makes artifacts that score high on its chosen axes, and it explains each axis to people through examples ranked from best to worst.
+VALUE: An AI can propose new kinds of "good", new qualities worth wanting, and not just better scores on qualities people already value.
+
