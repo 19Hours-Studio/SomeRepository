@@ -241,5 +241,50 @@
   "name": "Committed Prediction Escrow",
   "mech": "Before an outcome is observable, the system publishes cryptographic hash commitments of its predictions to an append-only external log. It reveals the predictions only after the outcome has resolved. The resulting record cannot be altered after the fact, and the system uses it as its only source of reward: learning updates are weighted by forecasts that were verifiably committed in advance, never by hindsight explanations. Outside parties can stake on, or audit, any category of prediction. Their challenges become extra training signal.",
   "value": "Trust and learning are anchored in a track record that neither the system nor its trainers can rewrite after the fact."
+ },
+ {
+  "id": "g2_evo1#1",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Lessons That Forge Their Exams",
+  "mech": "Every retained lesson must also run as an answer-first generator of twin tasks, and a fresh student taught only that lesson is scored on them. A discriminator assigns each real task to the lesson whose twins it cannot tell apart from it, and that student's twin accuracy is the correctness estimate for the real task. Lessons with twins that are easy to distinguish are rewritten or pruned. Real tasks that no lesson can imitate are marked as untaught territory for writing new lessons.",
+  "value": "It gives a calibrated correctness signal with no oracle, together with a map of what the system's explicit knowledge does not yet cover."
+ },
+ {
+  "id": "g2_evo1#2",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Graded-Edit Scaling Kinds",
+  "mech": "Input edits are applied at graded strengths, and each edit-effect cluster gets a kind-exponent vector inferred from the log-log slope of the frozen predictor's response. Clusters cannot mix incompatible exponents. Each second-order interaction is checked for multiplicative composition: a pass makes a typed link, and a failure splits the cluster into two new kinds. The stored kinds, exponents and edit library are refit as new inputs arrive.",
+  "value": "It finds dimension-like variables directly in raw text, pixels or sensor data, which supports extrapolation and sanity checks on answers in domains that have no unit system."
+ },
+ {
+  "id": "g2_evo1#3",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Shrinking-Student Proofreading Ladder",
+  "mech": "A candidate reasoning step with its one-line justification is committed only after K fresh students in a row, each smaller than the last, reproduce it from the current lessons alone. Any failure resets the step to stage 0 and forces its justification to be rewritten. The number of stages survived is stored as a graded legibility and confidence score, and K is raised for steps that many later steps depend on.",
+  "value": "Accuracy can be bought with compute while keeping every committed step explicit and teachable to a small mind."
+ },
+ {
+  "id": "g2_evo2#1",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Covariant Orbit Twin Calibration",
+  "mech": "Known-answer twins are generated from fixed answers. Each twin is then pushed through the learned kind-exponent algebra (rescalings and kind swaps) to make an orbit of further known-answer twins at magnitudes the system has not seen. Accuracy is stored per twin cluster and per orbit distance. When a real task's output breaks the change its exponents predict, the matched twin decides the cause: a correct twin that still breaks it means the algebra is wrong (split a kind or revise an exponent), and a wrongly solved twin means the solver is wrong (lower that cell's accuracy).",
+  "value": "Calibrated correctness estimates that reach into extrapolation regimes, plus a units algebra that can tell its own errors apart from solver errors."
+ },
+ {
+  "id": "g2_evo2#2",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Scope-Earning Perturbation Ratchet",
+  "mech": "Before an inference step is committed, it must survive K irreversible stages. Each stage applies an edit from a different discovered effect cluster, going from far to near in the link graph, and any detachment resets the step to stage one. Each committed step stores its survival profile as a scope, meaning the variables it has been shown not to depend on, and steps can combine only when their scopes are compatible. When an edit keeps detaching steps even though the clustering marked its cluster as unlinked, the clustering is refit: that cluster is split or a typed link is added.",
+  "value": "Reasoning steps that come with an explicit, tested record of what they do not depend on, while the input's variable structure keeps getting corrected by the reasoning's own failures."
  }
 ]
