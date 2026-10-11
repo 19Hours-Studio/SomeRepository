@@ -133,5 +133,32 @@
   "name": "Frozen-Stretch Polymer Reels",
   "mech": "Electric winches stretch long cords of a cheap polymer while it is warm, then cool them. The cooling locks the polymer chains in their stretched arrangement, so the cords keep their stored tension without clamps or any force holding them. The tensioned cords are wound onto reels and stacked in ordinary sheds. To get power back, a reel is warmed a little, for example with low-grade waste heat. The chains can move again and pull together with force, which drives a generator back through the same winch. The grid frequency signal sets how fast each reel is warmed, so the power released follows demand minute by minute.",
   "value": "Energy can sit for weeks in cheap stacked material with no leakage, no hazardous chemistry and no special site."
+ },
+ {
+  "id": "g1_loop2#1",
+  "label": "g1_loop2",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Self-sorting waste-brine flow storage",
+  "mech": "Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing an electron-balance error: the charge passed minus the conversions of the couples it measures. A residual at a particular potential points to an unknown couple. A useful couple is split into its own stream with its own stack; a parasitic one is removed by precipitation. Over time the plant takes on the structure that its local waste chemistry supports.",
+  "value": "Storage medium costs near zero because it is never purified, which is the main cost in today's flow electrolytes."
+ },
+ {
+  "id": "g1_loop2#2",
+  "label": "g1_loop2",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Isotope-mapped lignin bed battery",
+  "mech": "A static, water-saturated bed of waste lignin or humic solids is charged directly by buried electrodes, reducing quinone groups with no mediator and no pumping. During some charges, heavy water is added; quinones that get reduced take up deuterium, and NMR on core samples maps which parts of the bed actually store charge. Electrodes are added to dead zones and removed or rewired from saturated ones, so the electrode network keeps adapting to how the bed really behaves.",
+  "value": "Turns a nearly free paper-industry byproduct into storage that runs for weeks, with very little hardware per kWh."
+ },
+ {
+  "id": "g1_loop2#3",
+  "label": "g1_loop2",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Survival-screened iron-clay electrodes",
+  "mech": "Cheap natural smectite clays store charge as reversible iron(III) to iron(II) changes in their crystal layers, pressed into large paste electrodes. Each clay lot is tracked as a cohort, and log-rank tests on capacity-fade curves pick out lots that are failing early. Failing lots are retired and reused as soil amendment, and their mineral fingerprints change the procurement spec. Lots that last longest set the standard for future sourcing.",
+  "value": "Uses a mineral that costs tens of dollars per tonne as electrode material, and continually weeds out clay sources that fade fast."
  }
 ]
