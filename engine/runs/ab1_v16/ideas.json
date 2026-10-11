@@ -221,8 +221,9 @@
   "arm": "engine",
   "gen": 2,
   "name": "Back-Action Instrument Algebra",
-  "mech": "The system logs experience as operation sequences and tests adjacent swaps. When a pair's commutation can't be decided from current inputs, it designs a probe (hook, query, sensor setting) that observes the intermediate state, and attaches the probe as a typed channel. Deployed probes are themselves logged as operations. A probe that fails to commute with what it observes is marked invasive and fused with that process, while non-invasive probes stay as free parallel channels. A channel is pruned when removing it leaves every commutation verdict unchanged.",
-  "value": "The system builds its own perception around the world's independence structure and knows which of its measurements disturb what they measure."
+  "mech": "The system logs experience as operation sequences and tests adjacent swaps. When a pair's commutation can't be decided from current inputs, it designs a probe (hook, query, sensor setting) that observes the intermediate state, and attaches the probe as a typed channel. Deployed probes are themselves logged as operations. A probe that fails to commute with what it observes is marked invasive and fused with that process, while non-invasive probes stay as free parallel channels. A channel is pruned when removing it leaves every commutation verdict unchanged. First test: Simulate a pipeline of 12 processes with known commuting structure, where some states are visible only through optional probes and two probes perturb state, and run swap tests with probe design. Success: the true commutation graph is recovered and both invasive probes are flagged with zero false positives.",
+  "value": "The system builds its own perception around the world's independence structure and knows which of its measurements disturb what they measure.",
+  "mech_orig": "The system logs experience as operation sequences and tests adjacent swaps. When a pair's commutation can't be decided from current inputs, it designs a probe (hook, query, sensor setting) that observes the intermediate state, and attaches the probe as a typed channel. Deployed probes are themselves logged as operations. A probe that fails to commute with what it observes is marked invasive and fused with that process, while non-invasive probes stay as free parallel channels. A channel is pruned when removing it leaves every commutation verdict unchanged."
  },
  {
   "id": "g2_evo1#2",
@@ -230,8 +231,9 @@
   "arm": "engine",
   "gen": 2,
   "name": "Sealed-Forecast Concept Minting",
-  "mech": "Before each background walk derives from a random fact partition, it publishes a salted hash of its forecast endpoint to an append-only log. The walk then reveals the forecast once it finishes. A conclusion's tally counts only confirmations of forecasts that were sealed by walks drawing on disjoint partitions, and passing the threshold freezes the conclusion into a primitive. A verifier dissolves primitives whose use correlates with forecast departures beyond what the evidence justifies.",
-  "value": "Abstractions can grow without outside labels yet stay auditably free of self-confirming circular support."
+  "mech": "Before each background walk derives from a random fact partition, it publishes a salted hash of its forecast endpoint to an append-only log. The walk then reveals the forecast once it finishes. A conclusion's tally counts only confirmations of forecasts that were sealed by walks drawing on disjoint partitions, and passing the threshold freezes the conclusion into a primitive. A verifier dissolves primitives whose use correlates with forecast departures beyond what the evidence justifies. First test: On a synthetic knowledge base with planted circular-support conclusions (derivable only through mutually dependent rules), run hashed-forecast walks over random partitions. Success: disjoint-partition tallying rejects ≥90% of circular conclusions and freezes ≥80% of genuinely supported ones, against naive confirmation counting.",
+  "value": "Abstractions can grow without outside labels yet stay auditably free of self-confirming circular support.",
+  "mech_orig": "Before each background walk derives from a random fact partition, it publishes a salted hash of its forecast endpoint to an append-only log. The walk then reveals the forecast once it finishes. A conclusion's tally counts only confirmations of forecasts that were sealed by walks drawing on disjoint partitions, and passing the threshold freezes the conclusion into a primitive. A verifier dissolves primitives whose use correlates with forecast departures beyond what the evidence justifies."
  },
  {
   "id": "g2_evo1#3",
@@ -239,8 +241,9 @@
   "arm": "engine",
   "gen": 2,
   "name": "Update-Harm State Estimation",
-  "mech": "Provenance links every weight update to the user cohorts whose interactions it touched. Cohort adverse-event rates (corrections, re-asks, abandonments) become redundant meters in a weighted least-squares estimate of each update's harm coefficient. The largest normalized residual above 3 is attributed either to an update, which is scaled back in proportion to its estimated harm, or to a reporter cohort, which is re-typed as suspect and down-weighted. The system then re-estimates until all residuals pass.",
-  "value": "A continually learning model can roll back genuinely bad lessons while staying robust to coordinated or corrupt feedback that tries to trigger false rollbacks."
+  "mech": "Provenance links every weight update to the user cohorts whose interactions it touched. Cohort adverse-event rates (corrections, re-asks, abandonments) become redundant meters in a weighted least-squares estimate of each update's harm coefficient. The largest normalized residual above 3 is attributed either to an update, which is scaled back in proportion to its estimated harm, or to a reporter cohort, which is re-typed as suspect and down-weighted. The system then re-estimates until all residuals pass. First test: Simulate continual LM fine-tuning over 50 updates and 200 synthetic cohorts, with 5 planted harmful updates and 3 colluding cohorts filing false adverse events. Success: WLS residual attribution finds both at F1 ≥0.9, scale-back restores held-out quality, and there are no false rollbacks.",
+  "value": "A continually learning model can roll back genuinely bad lessons while staying robust to coordinated or corrupt feedback that tries to trigger false rollbacks.",
+  "mech_orig": "Provenance links every weight update to the user cohorts whose interactions it touched. Cohort adverse-event rates (corrections, re-asks, abandonments) become redundant meters in a weighted least-squares estimate of each update's harm coefficient. The largest normalized residual above 3 is attributed either to an update, which is scaled back in proportion to its estimated harm, or to a reporter cohort, which is re-typed as suspect and down-weighted. The system then re-estimates until all residuals pass."
  },
  {
   "id": "g2_evo2#1",
@@ -248,8 +251,9 @@
   "arm": "engine",
   "gen": 2,
   "name": "Consilience-Seeking Instrument Forge",
-  "mech": "Background walks count the routes to each conclusion, but routes are independent only if they rest on disjoint instrument lineages. When a conclusion is reached by many routes but relies on few instruments, the system writes and deploys a new probe (code hook, sensor setup, assay, query) designed to give a disjoint derivation path. Primitives are frozen only once they span ≥3 instruments. They store their instrument support and dissolve when a channel they depend on is pruned. Robust primitives are promoted into virtual input channels.",
-  "value": "Without any external labels, it builds abstractions that are confirmed by independent measurement, and it designs its own instruments to check what it believes."
+  "mech": "Background walks count the routes to each conclusion, but routes are independent only if they rest on disjoint instrument lineages. When a conclusion is reached by many routes but relies on few instruments, the system writes and deploys a new probe (code hook, sensor setup, assay, query) designed to give a disjoint derivation path. Primitives are frozen only once they span ≥3 instruments. They store their instrument support and dissolve when a channel they depend on is pruned. Robust primitives are promoted into virtual input channels. First test: In a synthetic world with 10 latent variables seen through 20 channels that share injected lineage-specific artifacts, compare instrument-disjoint freezing plus probe synthesis with route-count freezing. Success: frozen primitives are at least 20 points more precise against the ground-truth latents.",
+  "value": "Without any external labels, it builds abstractions that are confirmed by independent measurement, and it designs its own instruments to check what it believes.",
+  "mech_orig": "Background walks count the routes to each conclusion, but routes are independent only if they rest on disjoint instrument lineages. When a conclusion is reached by many routes but relies on few instruments, the system writes and deploys a new probe (code hook, sensor setup, assay, query) designed to give a disjoint derivation path. Primitives are frozen only once they span ≥3 instruments. They store their instrument support and dissolve when a channel they depend on is pruned. Robust primitives are promoted into virtual input channels."
  },
  {
   "id": "g2_evo2#2",
@@ -257,8 +261,9 @@
   "arm": "engine",
   "gen": 2,
   "name": "Committed Thread-Locality Ledger",
-  "mech": "Swap tests on logged operation sequences split the system into commuting threads. Each thread publishes its own salted hash of its quantized beliefs before evidence arrives. After the reveal, a verifier flags any thread whose beliefs moved on evidence routed to a different thread, then re-runs commutation tests on that pair. If the pair does not commute, the threads are fused and the shift is legitimized. If it does commute, the shift is penalized as rationalization. The module map and the honesty training thus revise each other.",
-  "value": "Third parties can verify that evidence about one part of the world changed only the beliefs it should have, and the system's modular decomposition becomes auditable and self-correcting."
+  "mech": "Swap tests on logged operation sequences split the system into commuting threads. Each thread publishes its own salted hash of its quantized beliefs before evidence arrives. After the reveal, a verifier flags any thread whose beliefs moved on evidence routed to a different thread, then re-runs commutation tests on that pair. If the pair does not commute, the threads are fused and the shift is legitimized. If it does commute, the shift is penalized as rationalization. The module map and the honesty training thus revise each other. First test: Give an RNN agent two independent gridworld rooms plus one coupled pair, and run swap tests with commit-reveal belief hashes. Success: the verifier recovers the true coupling graph (F1 ≥0.9) and flags injected cross-module belief leaks with ≥90% recall.",
+  "value": "Third parties can verify that evidence about one part of the world changed only the beliefs it should have, and the system's modular decomposition becomes auditable and self-correcting.",
+  "mech_orig": "Swap tests on logged operation sequences split the system into commuting threads. Each thread publishes its own salted hash of its quantized beliefs before evidence arrives. After the reveal, a verifier flags any thread whose beliefs moved on evidence routed to a different thread, then re-runs commutation tests on that pair. If the pair does not commute, the threads are fused and the shift is legitimized. If it does commute, the shift is penalized as rationalization. The module map and the honesty training thus revise each other."
  },
  {
   "id": "g2_imm#1",
@@ -266,8 +271,9 @@
   "arm": "engine",
   "gen": 2,
   "name": "Noether Invariant Mining",
-  "mech": "A background process fits small Lie-algebra generators (infinitesimal transformations) to the system's own learned input-output dynamics and keeps those under which predictions stay unchanged. For each symmetry that survives, it derives the matching conserved quantity, stores it as a named variable, and enforces it as a hard projection on every later output. When new data breaks a conserved quantity, the system demotes that symmetry and searches for a narrower one that still holds.",
-  "value": "Lets the system extrapolate far outside its training distribution by reasoning from discovered conservation laws instead of memorized patterns."
+  "mech": "A background process fits small Lie-algebra generators (infinitesimal transformations) to the system's own learned input-output dynamics and keeps those under which predictions stay unchanged. For each symmetry that survives, it derives the matching conserved quantity, stores it as a named variable, and enforces it as a hard projection on every later output. When new data breaks a conserved quantity, the system demotes that symmetry and searches for a narrower one that still holds. First test: Train an MLP dynamics model on short-horizon 2D spring-mass and N-body trajectories, fit Lie generators and project outputs onto the conserved quantities found. Success: rollout error at 10x horizon and at unseen energies is at least 5x below unprojected and HNN baselines.",
+  "value": "Lets the system extrapolate far outside its training distribution by reasoning from discovered conservation laws instead of memorized patterns.",
+  "mech_orig": "A background process fits small Lie-algebra generators (infinitesimal transformations) to the system's own learned input-output dynamics and keeps those under which predictions stay unchanged. For each symmetry that survives, it derives the matching conserved quantity, stores it as a named variable, and enforces it as a hard projection on every later output. When new data breaks a conserved quantity, the system demotes that symmetry and searches for a narrower one that still holds."
  },
  {
   "id": "g2_imm#2",
@@ -275,8 +281,9 @@
   "arm": "engine",
   "gen": 2,
   "name": "Minimal Teaching-Set Understanding",
-  "mech": "For each concept, the system repeatedly searches for the smallest set of examples that teaches the concept to a freshly initialized small student network up to a set accuracy. The size of this set, the concept's teaching dimension, is stored as the measure of understanding. Concepts with large or unstable teaching sets are marked shallow and are rebuilt or split until a compact teaching set exists.",
-  "value": "Gives the system an operational, self-checkable sense of what it really understands, and lets it explain any concept to a human or another agent through a few well-chosen examples."
+  "mech": "For each concept, the system repeatedly searches for the smallest set of examples that teaches the concept to a freshly initialized small student network up to a set accuracy. The size of this set, the concept's teaching dimension, is stored as the measure of understanding. Concepts with large or unstable teaching sets are marked shallow and are rebuilt or split until a compact teaching set exists. First test: For 20 MNIST or synthetic concepts labeled by the model, greedily search minimal teaching sets that bring fresh small MLPs to 90% accuracy across seeds. Success: teaching-set size and its seed variance correlate (Spearman ≥0.6) with the model's held-out concept error and with human-rated difficulty.",
+  "value": "Gives the system an operational, self-checkable sense of what it really understands, and lets it explain any concept to a human or another agent through a few well-chosen examples.",
+  "mech_orig": "For each concept, the system repeatedly searches for the smallest set of examples that teaches the concept to a freshly initialized small student network up to a set accuracy. The size of this set, the concept's teaching dimension, is stored as the measure of understanding. Concepts with large or unstable teaching sets are marked shallow and are rebuilt or split until a compact teaching set exists."
  },
  {
   "id": "g2_imm#3",
@@ -284,7 +291,8 @@
   "arm": "engine",
   "gen": 2,
   "name": "Syndrome-Decoded Thought States",
-  "mech": "Hidden states are trained to lie on codewords of a learned algebraic error-correcting code that has redundant parity components. At every layer the system computes the syndrome, a check value that is nonzero when the state is not a valid codeword. A nonzero syndrome locates the corrupted components, which are corrected by decoding before computation continues. Syndrome statistics are logged per layer and per topic to learn where errors originate.",
-  "value": "Lets the system detect and repair its own internal errors, such as confabulated facts or drifting chains of reasoning, during computation, before they reach the output."
+  "mech": "Hidden states are trained to lie on codewords of a learned algebraic error-correcting code that has redundant parity components. At every layer the system computes the syndrome, a check value that is nonzero when the state is not a valid codeword. A nonzero syndrome locates the corrupted components, which are corrected by decoding before computation continues. Syndrome statistics are logged per layer and per topic to learn where errors originate. First test: Train a small transformer on a synthetic fact-recall task with hidden states constrained to a learned code, inject activation corruptions and use known-confabulation prompts. Success: syndrome decoding restores ≥50% of corruption-induced errors, and syndrome magnitude predicts confabulations at AUROC ≥0.8.",
+  "value": "Lets the system detect and repair its own internal errors, such as confabulated facts or drifting chains of reasoning, during computation, before they reach the output.",
+  "mech_orig": "Hidden states are trained to lie on codewords of a learned algebraic error-correcting code that has redundant parity components. At every layer the system computes the syndrome, a check value that is nonzero when the state is not a valid codeword. A nonzero syndrome locates the corrupted components, which are corrected by decoding before computation continues. Syndrome statistics are logged per layer and per topic to learn where errors originate."
  }
 ]
