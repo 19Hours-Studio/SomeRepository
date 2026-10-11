@@ -1,0 +1,24 @@
+L01
+MECHANISM: Surplus current at an electrode rearranges a cheap, small organic liquid into a cramped, high-strain shape made of the same atoms. Nothing at room temperature can push it back over the barrier to relaxing, so it stays charged for as long as it is stored. The strained liquid sits in plain steel tanks. When power is needed, it flows past a catalytic electrode surface that lowers the barrier, and as each molecule snaps back to its relaxed shape it gives up electrons to the external circuit. The liquid changes colour as it relaxes, so the charged fraction can be read optically. Only the tank volume grows with extra days of backup.
+VALUE: Weeks of reserve come down to tank space for a liquid that is reused forever and uses up no air, ore or carbon.
+
+L02
+MECHANISM: Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing an electron-balance error: the charge passed minus the conversions of the couples it measures. A residual at a particular potential points to an unknown couple. A useful couple is split into its own stream with its own stack; a parasitic one is removed by precipitation. Over time the plant takes on the structure that its local waste chemistry supports.
+VALUE: Storage medium costs near zero because it is never purified, which is the main cost in today's flow electrolytes.
+
+L03
+MECHANISM: Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a sugar glass in which those molecules can barely move, so self-discharge and breakdown almost stop. The glass is stored in bulk like grain and redissolved for discharge. Water content and glass-transition temperature are the control settings.
+VALUE: The cheapest redox chemistries, which normally leak charge, can hold it for weeks without tanks.
+
+L04
+MECHANISM: Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one end and oxidizes it near the other, and groundwater carries the ions. Discharge reverses this, using the same conduction the ore already shows naturally. Electrode spacing and current are tuned from measurements of the rock's own voltage (self-potential) so the charged front spreads evenly.
+VALUE: Millions of tonnes of active mass that is never mined, moved or contained, so the capacity cost is mostly drilling.
+
+L05
+MECHANISM: Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried current collectors. During long lulls a grid-scarcity price signal draws charge down to a set structural depletion limit, as bone gives up calcium under PTH, and surplus power replaces the charge later. Load-bearing capacity is checked continuously and sets that limit.
+VALUE: Massive storage mass whose cost is already paid by construction, so equipment that cycles only a few times a year still pays off.
+
+L06
+MECHANISM: A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting ions. Electrode meshes lie on either side of that zone. Each layer circulates within itself, so energy capacity grows with depth at the cost of earthworks.
+VALUE: Electrochemical storage lasting for weeks needs no tanks, pumps or membranes.
+

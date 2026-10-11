@@ -85,5 +85,125 @@
   "desc": "Ultra-cheap metal-air or rust-reversal batteries (iron-air, sulfur, zinc) built from abundant materials for multi-day duration",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V13",
+  "desc": "In-place ore body geobattery — Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one e",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V14",
+  "desc": "Vitrified charged electrolyte stockpile — Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a su",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Remodeling structural energy reserve — Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried ",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Thirsty Clay Piston Beds — Surplus current runs through large beds of layered swelling clay and drags the water out from between the mineral sheets. The water drains away, and the dry, co",
+  "source": "visited",
+  "members": [
+   "g1_mech#1"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Spring-Loaded Molecule Tanks — Surplus current at an electrode rearranges a cheap, small organic liquid into a cramped, high-strain shape made of the same atoms. Nothing at room temperature c",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Frozen-Stretch Polymer Reels — Electric winches stretch long cords of a cheap polymer while it is warm, then cool them. The cooling locks the polymer chains in their stretched arrangement, so",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Self-sorting waste-brine flow storage — Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing",
+  "source": "visited",
+  "members": [
+   "g1_loop2#1"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Isotope-mapped lignin bed battery — A static, water-saturated bed of waste lignin or humic solids is charged directly by buried electrodes, reducing quinone groups with no mediator and no pumping.",
+  "source": "visited",
+  "members": [
+   "g1_loop2#2"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Survival-screened iron-clay electrodes — Cheap natural smectite clays store charge as reversible iron(III) to iron(II) changes in their crystal layers, pressed into large paste electrodes. Each clay lo",
+  "source": "visited",
+  "members": [
+   "g1_loop2#3"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Lull-idle converters do discharge — A cheap bulk storage medium is attached to the DC link of each wind or solar plant. During calm, dark spells it discharges through the plant's own generator ele",
+  "source": "visited",
+  "members": [
+   "g1_genius#1"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Density-stratified pond battery — A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting io",
+  "source": "visited",
+  "members": [
+   "g1_genius#2"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Forecast-charged leaky storage pits — Weather forecasts trigger charging a few days before a predicted lull. The store is a membraneless pit of mixed electrolyte, read by electrodes that each react ",
+  "source": "visited",
+  "members": [
+   "g1_genius#3"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Self-stratifying cavern redox cell — A solution-mined salt cavern holds a dense brine carrying a cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity separate",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V26",
+  "desc": "Gas-mains electrolyte reservoir — Gas distribution mains retired as heating goes electric are lined and filled with a harmless iron-chloride flow-battery electrolyte. This turns thousands of kil",
+  "source": "visited",
+  "members": [
+   "g1_loop#2"
+  ]
+ },
+ {
+  "code": "V27",
+  "desc": "Self-partitioning buried carbon capacitor — Trenches are filled with cheap biochar soaked in neutral brine and layered with metal collector meshes, storing charge on the char's huge internal surface. Elec",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
  }
 ]

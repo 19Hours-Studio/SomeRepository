@@ -1,1 +1,182 @@
-{}
+{
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "biochar supercapacitors, in-situ electrode beds",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "shape-memory polymer elastic energy storage",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "trehalose vitrification; solid-state charged electrolytes",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "g1_loop2#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fe-smectite redox clay electrodes",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "cavern flow battery; biphasic membraneless cells",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_genius#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "stratified membraneless battery; salt-gradient ponds",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "g1_loop2#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "lignin/quinone organic flow batteries",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_genius#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "DC-coupled co-located hybrid storage",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_genius#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "mixed-reactant membraneless flow cells",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "MOST norbornadiene–quadricyclane, electrocatalytic back-conversion",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "structural concrete batteries",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_loop2#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "waste-derived flow battery electrolytes",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geobattery; in-situ ore electrochemistry",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 4,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "pipeline repurposing; iron-chloride flow batteries",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "clay swelling pressure; electro-osmotic dewatering",
+   "X": "N",
+   "G": 3
+  }
+ }
+}

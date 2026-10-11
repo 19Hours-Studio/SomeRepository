@@ -1,0 +1,72 @@
+How could storing electricity for days to weeks become ten times cheaper than today, so that wind and solar can run a whole grid through long calm, dark spells? Propose fundamentally new mechanisms or system designs - not incremental improvements of existing battery chemistries.
+Propose new answers by EVOLVING existing candidates. You get 3 parent pairs. For each pair produce ONE offspring:
+1. FIND THE SHARED MOVE: identify the single idea that makes BOTH parents work - the move underneath their machinery.
+2. SIMPLIFY: the offspring is that move, made stronger, with everything else removed. It must be SIMPLER than either parent (fewer parts, a shorter core sentence), yet do at least what both parents do. Stacking the parents' mechanisms together is forbidden.
+3. MUTATE AWAY: the offspring must clearly differ from the parents' nearest published work (listed) and from every known family below.
+4. KEEP IT IMPORTANT: it must serve something that genuinely matters for the question.
+5. HONESTY CHECK: before the final section, name the closest existing work for each offspring; if it is essentially that, mutate again.
+Describe mechanisms concretely; give the NAME last.
+
+Known families (forbidden, including re-skins):
+OREFLOW: Redox-mediator flow cell whose dissolved shuttle charges and discharges a huge heap of raw mineral ore, so energy capacity separates from the stack
+FLEXLOAD: Oversized energy-intensive industrial plants run hard during surplus and idle during lulls, with energy "stored" as product inventory
+SALINITY: Desalination splits water into fresh and brine ponds; pressure-retarded osmosis or reverse electrodialysis recovers the mixing energy
+CO2LOOP: Electrochemically reduce CO2 into a storable carbon fuel (methane or formate), then oxidize it back to power and recapture the CO2 in a closed loop
+IRONFUEL: Electrolytically or H2-reduced iron powder stored in piles, burned in air for steam power, with the rust re-reduced (metal-fuel cycle)
+CALOOP: Thermochemical calcium looping: power calcines limestone, then CaO and CO2 recombine to release high-temperature heat for a turbine
+THERMAL: Cheap sensible or latent heat storage (hot rock, sand, firebrick, molten salt, Carnot battery) with heat-to-power conversion
+CAES: Compressed or liquefied air or CO2 stored in caverns, aquifers, domes or tanks and expanded through turbines
+GEOMECH: Gravity or pumped-hydro variants (underground or seafloor pumped hydro, rock-fracture or geomechanical pressure storage, weights in shafts)
+H2GEO: Electrolytic hydrogen or ammonia stored in salt caverns or depleted fields and reconverted in turbines or fuel cells
+SUPERGRID: Continental or intercontinental HVDC grids that smooth weather across uncorrelated regions, plus overbuild and curtailment, so less storage is needed
+METALAIR: Ultra-cheap metal-air or rust-reversal batteries (iron-air, sulfur, zinc) built from abundant materials for multi-day duration
+V13: In-place ore body geobattery — Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one e
+V14: Vitrified charged electrolyte stockpile — Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a su
+V15: Remodeling structural energy reserve — Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried 
+V16: Thirsty Clay Piston Beds — Surplus current runs through large beds of layered swelling clay and drags the water out from between the mineral sheets. The water drains away, and the dry, co
+V17: Spring-Loaded Molecule Tanks — Surplus current at an electrode rearranges a cheap, small organic liquid into a cramped, high-strain shape made of the same atoms. Nothing at room temperature c
+V18: Frozen-Stretch Polymer Reels — Electric winches stretch long cords of a cheap polymer while it is warm, then cool them. The cooling locks the polymer chains in their stretched arrangement, so
+V19: Self-sorting waste-brine flow storage — Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing
+V20: Isotope-mapped lignin bed battery — A static, water-saturated bed of waste lignin or humic solids is charged directly by buried electrodes, reducing quinone groups with no mediator and no pumping.
+V21: Survival-screened iron-clay electrodes — Cheap natural smectite clays store charge as reversible iron(III) to iron(II) changes in their crystal layers, pressed into large paste electrodes. Each clay lo
+V22: Lull-idle converters do discharge — A cheap bulk storage medium is attached to the DC link of each wind or solar plant. During calm, dark spells it discharges through the plant's own generator ele
+V23: Density-stratified pond battery — A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting io
+V24: Forecast-charged leaky storage pits — Weather forecasts trigger charging a few days before a predicted lull. The store is a membraneless pit of mixed electrolyte, read by electrodes that each react 
+V25: Self-stratifying cavern redox cell — A solution-mined salt cavern holds a dense brine carrying a cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity separate
+V26: Gas-mains electrolyte reservoir — Gas distribution mains retired as heating goes electric are lined and filled with a harmless iron-chloride flow-battery electrolyte. This turns thousands of kil
+V27: Self-partitioning buried carbon capacitor — Trenches are filled with cheap biochar soaked in neutral brine and layered with metal collector meshes, storing charge on the char's huge internal surface. Elec
+
+PAIR 1
+ Parent A: MECHANISM: Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one end and oxidizes it near the other, and groundwater carries the ions. Discharge reverses this, using the same conduction the ore already shows naturally. Electrode spacing and current are tuned from measurements of the rock's own voltage (self-potential) so the charged front spreads evenly.
+   VALUE: Millions of tonnes of active mass that is never mined, moved or contained, so the capacity cost is mostly drilling.
+   nearest published work: unknown
+ Parent B: MECHANISM: Surplus current at an electrode rearranges a cheap, small organic liquid into a cramped, high-strain shape made of the same atoms. Nothing at room temperature can push it back over the barrier to relaxing, so it stays charged for as long as it is stored. The strained liquid sits in plain steel tanks. When power is needed, it flows past a catalytic electrode surface that lowers the barrier, and as each molecule snaps back to its relaxed shape it gives up electrons to the external circuit. The liquid changes colour as it relaxes, so the charged fraction can be read optically. Only the tank volume grows with extra days of backup.
+   VALUE: Weeks of reserve come down to tank space for a liquid that is reused forever and uses up no air, ore or carbon.
+   nearest published work: unknown
+
+PAIR 2
+ Parent A: MECHANISM: A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting ions. Electrode meshes lie on either side of that zone. Each layer circulates within itself, so energy capacity grows with depth at the cost of earthworks.
+   VALUE: Electrochemical storage lasting for weeks needs no tanks, pumps or membranes.
+   nearest published work: unknown
+ Parent B: MECHANISM: Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a sugar glass in which those molecules can barely move, so self-discharge and breakdown almost stop. The glass is stored in bulk like grain and redissolved for discharge. Water content and glass-transition temperature are the control settings.
+   VALUE: The cheapest redox chemistries, which normally leak charge, can hold it for weeks without tanks.
+   nearest published work: unknown
+
+PAIR 3
+ Parent A: MECHANISM: Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried current collectors. During long lulls a grid-scarcity price signal draws charge down to a set structural depletion limit, as bone gives up calcium under PTH, and surplus power replaces the charge later. Load-bearing capacity is checked continuously and sets that limit.
+   VALUE: Massive storage mass whose cost is already paid by construction, so equipment that cycles only a few times a year still pays off.
+   nearest published work: unknown
+ Parent B: MECHANISM: Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing an electron-balance error: the charge passed minus the conversions of the couples it measures. A residual at a particular potential points to an unknown couple. A useful couple is split into its own stream with its own stack; a parasitic one is removed by precipitation. Over time the plant takes on the structure that its local waste chemistry supports.
+   VALUE: Storage medium costs near zero because it is never purified, which is the main cost in today's flow electrolytes.
+   nearest published work: unknown
+
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+
