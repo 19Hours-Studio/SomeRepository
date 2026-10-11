@@ -149,7 +149,7 @@ def cmd_set(a):
             sid = f"{a.prefix}{j:02d}"; key[sid] = i["id"]
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
-    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize", "value", "intent"):
+    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize", "value", "fermi", "intent"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         if kind == "judge" and getattr(a, "crux", False):
             crux = load(a.run, "config.json", {}).get("crux") or sys.exit("no crux recorded: run `family` with the v1.7 template first")
@@ -348,12 +348,12 @@ def cmd_audit(a):
     save(a.run, "audit.json", au); print(f"audit: {len(au)} ideas ({len(slots)} with slots, {len(dec)} with decoys)")
 
 def cmd_valorize(a):
-    """Layers B and C (v1.8): each idea rebuilt around its anchor - for genius (prompt_valorize) or for value
-    (prompt_value) -> a new arm whose ideas keep a `parent` link."""
+    """Layers B, C (v1.8) and D (v1.9): each idea rebuilt around its anchor - for genius (prompt_valorize), value
+    (prompt_value) or a quantitative check (prompt_fermi) -> a new arm whose ideas keep a `parent` link."""
     text = read_source(a); key = setkey(a.run, a.set)
     open(path(a.run, "sets", a.set, f"valorize_{a.arm}.md"), "w").write(text)
     ideas = load(a.run, "ideas.json", []); byid = {i["id"]: i for i in ideas}; n = 0
-    for sid, body in re.findall(r"=== (?:VALORIZED|VALUED) ([A-Z]+\d\d) ===\n(.*?)(?=\n=== (?:VALORIZED|VALUED)|\Z)", text, re.S):
+    for sid, body in re.findall(r"=== (?:VALORIZED|VALUED|CHECKED) ([A-Z]+\d\d) ===\n(.*?)(?=\n=== (?:VALORIZED|VALUED|CHECKED)|\Z)", text, re.S):
         if sid not in key: continue
         par = byid[key[sid]]
         m = re.search(r"MECHANISM:\**\s*(.+?)\n\s*\**VALUE:\**\s*(.+)", body, re.S)
@@ -363,7 +363,11 @@ def cmd_valorize(a):
         ideas.append({"id": nid, "label": f"{a.arm}:{par['label']}", "arm": a.arm, "gen": par["gen"], "parent": par["id"],
                       "name": nm.group(1).strip() if nm else "", "anchor": an.group(1).strip() if an else "",
                       "mech": " ".join(m.group(1).split()), "value": " ".join(m.group(2).split())}); n += 1
-    save(a.run, "ideas.json", ideas); print(f"valorized {n}/{len(key)} -> arm {a.arm}")
+        vd = re.search(r"VERDICT:\**\s*(PASS|FIX|FAIL)", body); es = re.search(r"ESTIMATE:\**\s*(.+?)\n\s*\**NAME:", body, re.S)
+        if vd: ideas[-1]["verdict"] = vd.group(1)
+        if es: ideas[-1]["estimate"] = " ".join(es.group(1).split())
+    save(a.run, "ideas.json", ideas); vs = Counter(i.get("verdict") for i in ideas if i["arm"] == a.arm and i.get("verdict"))
+    print(f"valorized {n}/{len(key)} -> arm {a.arm}" + (f"  verdicts {dict(vs)}" if vs else ""))
 
 def cmd_intent(a):
     """Intent check (v1.8): store 3 readings of the question, each with its crux; `--pick N` makes reading N the crux."""

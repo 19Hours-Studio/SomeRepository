@@ -140,6 +140,12 @@ def main():
             assert "BOTTLENECK" in open(os.path.join(rd7, "sets", "s01", "prompt_value.txt")).read()
             open(p, "w").write(f"=== VALUED {sid0} ===\nANCHOR: alpha\nNAME: valuable\nMECHANISM: alpha at the core\nVALUE: big gain\n")
             assert "valorized 1/4" in ce("valorize", R7, "s01", "--arm", "v7C", "--file", p)
+            assert "the layer that COUNTS" in open(os.path.join(rd7, "sets", "s01", "prompt_fermi.txt")).read()
+            open(p, "w").write(f"=== CHECKED {sid0} ===\nANCHOR: alpha\nVERDICT: FIX\nESTIMATE: 1 W/m2 vs 100 needed; thinner gap\nNAME: counted\nMECHANISM: alpha at 100 W/m2\nVALUE: real gain\n")
+            out = ce("valorize", R7, "s01", "--arm", "v7D", "--file", p)
+            assert "valorized 1/4" in out and "'FIX': 1" in out, out
+            vd = [i for i in json.load(open(os.path.join(rd7, "ideas.json"))) if i["arm"] == "v7D"][0]
+            assert vd["verdict"] == "FIX" and vd["estimate"].startswith("1 W/m2"), vd
             json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Some work https://arxiv.org/abs/2608.01234"}}, open(os.path.join(rd7, "lit.json"), "w"))
             assert "future-match 1/1" in ce("futurematch", R7)
             json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Journal work (2026-09) https://doi.org/x ; older (2019-03)"},

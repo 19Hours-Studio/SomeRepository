@@ -1,0 +1,10 @@
+{
+ "D01": "EC:EB:g1_core#2",
+ "D02": "EC:EB:g1_loop2#2",
+ "D03": "EC:EB:g2_imm#1",
+ "D04": "EC:EB:g1_mech#1",
+ "D05": "EC:EB:g1_loop#2",
+ "D06": "EC:EB:g1_mech#2",
+ "D07": "EC:EB:g1_loop2#3",
+ "D08": "EC:EB:g1_mech#3"
+}
