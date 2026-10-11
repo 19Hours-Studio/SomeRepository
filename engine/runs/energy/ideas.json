@@ -363,5 +363,93 @@
   "anchor": "load-bearing infrastructure as the battery mass",
   "mech": "Road bases and embankments are built from redox-active iron or manganese slag aggregate in a damp, ion-conducting binder, with current collectors buried in them, so the construction budget pays for the storage mass. Spread over kilometres, multi-day discharge runs at very low current density, which keeps conversion loss low without an engineered stack. The structure feeds DC directly to the roadside loads and chargers it already powers, so it reuses their existing power electronics. Continuous load-bearing measurements set how far charge may be drawn down before strength suffers.",
   "value": "Massive storage mass and much of its power electronics are already paid for by roads and their roadside equipment, so cycling only a few times a year still pays off."
+ },
+ {
+  "id": "EB:g1_genius#1",
+  "label": "EB:g1_genius",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_genius#1",
+  "name": "Inverter-sharing DC-link store",
+  "anchor": "borrowing the plant's idle power hardware",
+  "mech": "A bank of static, thick-electrode cells sits directly on a wind or solar plant's DC link, with a voltage window that matches the link. That makes the plant's own inverter, transformer and grid line its only power electronics, and in a calm, dark spell all of that hardware would otherwise sit idle. A store holding weeks of energy delivers only a small fraction of its contents per hour, so the cells run at very low current density, where overpotential and resistive loss are small and no fabricated stack is needed. Charging uses output that would otherwise be curtailed, so the energy lost in the round trip was free energy that would have been thrown away.",
+  "value": "Week-long storage costs little more than the cell material itself, because the conversion hardware, the grid connection and most of the charging energy are already paid for or would be wasted."
+ },
+ {
+  "id": "EB:g1_core#1",
+  "label": "EB:g1_core",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_core#1",
+  "name": "Two-lens in-situ ore battery",
+  "anchor": "unmined ore body as electrode",
+  "mech": "Cased boreholes connect to two separate conductive sulfide or magnetite ore lenses, with barren rock between them and groundwater as the electrolyte. Grid current reduces one lens and oxidizes the other. The lenses must not be electrically connected through rock, or the body shorts itself as natural geobatteries do. Each lens's own conduction spreads the reaction over millions of square metres of internal mineral surface, and the return current flows through the aquifer's whole cross-section. Charging or discharging over weeks therefore gives a tiny current density and low loss, with no catalyst or fabricated stack. Self-potential readings show where the charged front lags, and current is shifted between boreholes to even it out.",
+  "value": "Millions of tonnes of active mass that is never mined become a battery whose only hardware is drilling and one inverter."
+ },
+ {
+  "id": "EB:g2_evo2#1",
+  "label": "EB:g2_evo2",
+  "arm": "EB",
+  "gen": 2,
+  "parent": "g2_evo2#1",
+  "name": "Stacked sand diffusion cells",
+  "anchor": "sand as diffusion-only separator",
+  "mech": "A lined pit holds horizontal layers of brine-soaked sand about a decimetre thick, separated by cheap bipolar carbon sheets. Charging makes a soluble oxidized species on one face of each sheet and a reduced species on the other, and the sand stops convection, so the two meet only by diffusion. Diffusion time grows with the square of the layer thickness, while resistance grows only with the thickness. At decimetre spacing the charge therefore holds for months, and a discharge spread over days loses only a few percent to resistance. Stacking the layers in series raises the voltage. The carbon sheets are the whole converter, and because they run at a few amps per square metre they can be the cheapest grade.",
+  "value": "Membrane-free electrochemical storage for weeks, where both the energy and the power side are earthworks, sand, brine and carbon sheet."
+ },
+ {
+  "id": "EB:g1_loop#1",
+  "label": "EB:g1_loop",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_loop#1",
+  "name": "Cavern-and-tray biphasic battery",
+  "anchor": "gravity-layered immiscible electrolytes in a cavern",
+  "mech": "A solution-mined salt cavern holds a dense brine carrying one cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity keeps the two apart, so the cavern volume is the energy store with no tank. At the surface the two liquids flow into stacked shallow trays, where they settle again into layers a few millimetres thick between a bottom and a top electrode. The same immiscibility therefore replaces the membrane in the power stack too, which becomes plain carbon plates. Molecules that cross into the wrong layer collect at the interface, and that thin layer is skimmed off for cleaning.",
+  "value": "Gigawatt-hour, multi-week storage in which neither the store nor the converter has a membrane or a purpose-built tank."
+ },
+ {
+  "id": "EB:g2_evo1#1",
+  "label": "EB:g2_evo1",
+  "arm": "EB",
+  "gen": 2,
+  "parent": "g2_evo1#1",
+  "name": "Precipitating strained-isomer heaps",
+  "anchor": "charge frozen as an insoluble strained isomer",
+  "mech": "In a simple undivided cell, reduction turns a cheap dissolved organic molecule into a strained isomer that is insoluble, and the matching oxidation turns a partner molecule into a second insoluble solid, so both charged forms drop out of solution as they form. No charged species stays dissolved, so nothing can cross between the electrodes. The cell needs no membrane, and its electrolyte stays at a fixed saturated composition, which keeps the voltage steady and the overpotential low. The two powders sit on separate covered heaps, where the isomer's high energy barrier keeps them charged for months. To discharge, they are fed back as a slurry past electrodes coated with a catalyst that lowers that barrier, and the molecules snap back and redissolve.",
+  "value": "Weeks of reserve cost a covered dirt pad plus a membrane-free tank cell, and the charged state cannot leak or cross over."
+ },
+ {
+  "id": "EB:g1_mech#1",
+  "label": "EB:g1_mech",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_mech#1",
+  "name": "Hydraulic clay hydration spring",
+  "anchor": "clay interlayer swelling pressure",
+  "mech": "Surplus power drives a reversible hydraulic pump-motor and rams that squeeze thin, drained beds of swelling clay, pressing the water out from between the mineral sheets. The water drains away, and the dry clay then sits unloaded in a sealed pit. Its energy is held as unmet hydration energy, not as stress, so it needs no pressure vessel. To discharge, water is let back into one section at a time under the same rams, and the very high swelling pressure of the first water layers drives the pump-motor in reverse as a generator. One cheap, mature hydraulic machine handles both directions. The controller works only in the high-force early stage of wetting, where the compression and swelling curves lie close together, so most of the energy comes back.",
+  "value": "Storage capacity costs about as much as moving earth, and the only converter is standard hydraulic machinery."
+ },
+ {
+  "id": "EB:g2_imm#2",
+  "label": "EB:g2_imm",
+  "arm": "EB",
+  "gen": 2,
+  "parent": "g2_imm#2",
+  "name": "Forecast-paced slow storage tier",
+  "anchor": "forecast-triggered C/500 trickle tier",
+  "mech": "Days before a lull, ensemble weather forecasts start a huge cold storage tier on a flat trickle. The rate equals the forecast total deficit spread over the lead time plus the lull. The existing fast daily batteries absorb the hour-by-hour mismatch, and the rate is re-planned every forecast cycle. The cold tier only ever delivers the mean deficit and recharges just as slowly from weeks of surplus, so its converter needs a rating of only about one five-hundredth of its stored energy per hour. At that tiny current density, overpotential and resistive loss nearly vanish, so even crude electrodes without catalyst, or slow chemistries, reach high round-trip efficiency.",
+  "value": "The power rating of long-duration storage falls from the peak deficit to the mean deficit, which cuts converter cost and round-trip loss together."
+ },
+ {
+  "id": "EB:g1_loop2#1",
+  "label": "EB:g1_loop2",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_loop2#1",
+  "name": "Self-assembling waste-brine flow plant",
+  "anchor": "electron-balance residual discovering unknown couples",
+  "mech": "Unpurified industrial or mining waste brine sits in lined ponds and cycles through electrochemical stacks. A controller tracks the electron-balance error, which is the charge passed minus the measured conversion of each known couple, broken down by electrode potential. That residual also shows exactly where charge is being lost: a parasitic couple is removed by precipitation, and a useful couple is split into its own stream. Stack area then goes only to streams whose measured charge return and voltage gap justify it. Converter money is spent only where efficiency is proven, and the plant grows into the structure its local chemistry supports.",
+  "value": "Flow-battery storage with a near-free, never-purified electrolyte, where the plant's own accounting both finds the useful chemistry and cuts the round-trip loss."
  }
 ]
