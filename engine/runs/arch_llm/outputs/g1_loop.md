@@ -1,0 +1,23 @@
+Three diagnostic loops, each taken from a field far from machine learning.
+
+**Loop 1: population genetics (Wahlund effect).** The diagnostic is the heterozygote deficit, F = 1 − H_obs/H_exp, a measured gap from Hardy–Weinberg expectations. A significant deficit shows that what looks like one population is really a hidden mixture of sub-populations ("demes"). Ported here, a factorized decoder predicts a row code and a column code independently within each context deme. A large gap between the joint counts and the product of the marginals means that deme is really a mixture. Closing the loop: the deme is split in two, and sibling demes that show no difference (F_ST ≈ 0) are merged. Closest work: hierarchical/factorized softmax and MoE expert splitting by load. Neither splits on a failed independence test of the decoder.
+
+**Loop 2: econometrics (Granger causality and the Ljung–Box residual-whiteness test).** Ported here, the test asks whether a hidden-state cluster seen L tokens back predicts the current surprisal residual. Closing the loop: a significant result creates a sparse wire that looks back exactly that far, and wires whose residual turns white are deleted. Closest work: fixed sparse attention patterns (Longformer, BigBird) and routing attention. Those learn dense or fixed patterns, not grown wires that each pass a statistical test.
+
+**Loop 3: geodesy (traverse misclosure in network adjustment).** Ported here, relation operators are composed around triangles of token positions. Closing the loop: persistent misclosure splits a relation type into two or creates a composite type. Closest work: cycle-consistency losses and RotatE path composition. They penalize misclosure but never change the relation types.
+
+=== IDEAS ===
+IDEA 1
+NAME: Wahlund-Split Factorized Decoder
+MECHANISM: The 64k vocabulary is arranged as a 256×256 grid. A ~150M local-context network predicts the row and column codes independently, conditioned on a deme chosen by a binary router tree, and each leaf of the tree owns a small low-rank modulation. The CPU keeps a joint-count table for each leaf in RAM (a few hundred MB) and computes the heterozygote-deficit statistic F from joint versus product-of-marginal frequencies. A leaf with significant F is split by 2-means over its routed hidden states, with the child adapters copied from the parent. Sibling leaves with F_ST ≈ 0 are merged. Two 256-way softmaxes replace the 64k softmax, which frees compute and VRAM for the base network.
+VALUE: Output capacity and the number of experts grow exactly where the cheap independence assumption fails, so the model gets a large-vocabulary decoder for a fraction of the cost of a full softmax.
+
+IDEA 2
+NAME: Granger-Wired Lag Heads
+MECHANISM: The base model attends only within a 256-token window, so it is fast and small. Periodically the CPU runs Granger F-tests on logged batches. For each pair of hidden-state cluster (out of 1024 k-means codes) and lag band, it tests whether that cluster appearing in that band explains variance in the current per-token surprisal residual, with Bonferroni correction. Each significant pair creates a "wire": a single-query head that attends only to the positions where that cluster fired inside that lag band, initialized from the regression coefficients. Wires whose Ljung–Box test later comes back white are pruned.
+VALUE: Long-range dependencies use compute only where the data statistically requires them, giving long effective context that a same-budget dense-attention transformer has to truncate.
+
+IDEA 3
+NAME: Misclosure-Retyped Relation Algebra
+MECHANISM: Attention scores are computed as q_iᵀ R_c k_j. Here c is a relation type chosen by Gumbel-softmax from a codebook of 64 small orthogonal block matrices. During training the model samples token triangles (i,j,k), measures the misclosure ‖R_c(i,j) R_c(j,k) − R_c(i,k)‖, and accumulates it per type triple, as in a surveyor's network adjustment. A type with persistent bimodal misclosure is split into two. A composition that consistently closes onto no existing type creates a new type initialized to the product of the two operators, and types never used in closed loops are deleted. The operators are tiny, so sampling triangles adds under 5% compute.
+VALUE: The model builds a closed, compositional vocabulary of relations, which supports multi-hop relational generalization that a same-size transformer's unconstrained attention cannot guarantee.

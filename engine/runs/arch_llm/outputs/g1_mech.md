@@ -1,0 +1,17 @@
+All three ideas avoid every listed family. I describe each by its quantities, how they flow, the rule that changes them and the signal that drives the change, and give the name last.
+
+=== IDEAS ===
+IDEA 1
+NAME: Seed-Regrown Weight Blocks
+MECHANISM: Each large weight matrix is never stored. It is rebuilt on the chip, block by block, as a weighted sum of K pseudorandom matrices, each fully determined by a 32-bit integer seed, plus a small dense correction. The card regenerates a block's values from a counter hash inside fast on-chip memory just before it multiplies with that block. Only the seeds, the mixing coefficients and the small correction are stored and updated by the prediction-error signal. Every few thousand steps, seeds whose coefficients have stayed near zero are swapped for fresh random seeds, so the basis is gradually searched rather than fixed. The card does about 70 arithmetic operations for every byte it can fetch, so trading spare arithmetic for scarce memory traffic and storage lets a network with roughly 10-20B virtual weights train and run in 12 GB, with update bookkeeping about 1000 times smaller.
+VALUE: The width and depth of the network are set by the arithmetic budget instead of the 12 GB memory ceiling, which a stored-weight model of the same budget cannot escape.
+
+IDEA 2
+NAME: Reducibility-Priced Text Diet
+MECHANISM: Before training, a frozen 4-bit open-weight model makes one pass over the corpus and stores one number per 512-piece span in RAM: its own prediction error, in bits per piece. During training, the CPU keeps a short history of the small model's error on each span. It then computes two things: the gap (small error minus frozen error) and the slope (how fast that gap has shrunk over recent visits). Spans are sampled in proportion to gap times slope. Spans where even the frozen model's error is high are treated as noise and dropped, and spans whose gap has closed are retired. The frozen model never touches the small model's outputs or internal states. It only sets prices, so the weekly 5B-piece budget goes to content that can be learned but has not been learned yet.
+VALUE: Each week's compute buys several times more learnable signal per piece than a model that sees the corpus uniformly or by plain error ranking.
+
+IDEA 3
+NAME: Backward-Recovery Self-Audit
+MECHANISM: One shared stack of layers feeds two readouts: one predicts the next piece left to right, and the other predicts the previous piece right to left. They are trained jointly on reversed and unreversed copies of the same spans, at almost no extra memory cost. During generation, the system samples several candidate continuations. For each one it measures how many bits the right-to-left readout needs to recover the prompt from that continuation, and it keeps the candidate that needs the fewest. During training, positions where the two directions assign strongly different probabilities to the same middle span get extra weight. This pushes the shared layers to hold facts that work in both directions instead of one-way surface habits. All of this fits easily on a 12 GB card, because the second readout is small and the checking is batched candidate passes.
+VALUE: The model gets a built-in signal for spotting continuations that aren't supported by the prompt, and a forward-only model of the same size has no internal way to compute that.
