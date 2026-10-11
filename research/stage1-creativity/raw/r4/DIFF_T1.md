@@ -1,0 +1,5 @@
+=== IDEAS ===
+IDEA 1
+NAME: Seasonal Hive of Dreaming Replicas
+MECHANISM: Each hive has a waking curiosity daemon that forages raw sensations and generates hypotheses. It expects most of them to be false, so a waking gate keeps the plastic weights shut and admits changes only on a seasonal schedule. Between gate openings, dreaming replicas of the hive replay what the daemon foraged and debate the hypotheses against one another. Only the claims that survive the debate become consolidated memories. Once a year (in model time), the hives merge their consolidated memories into shared schemas. This gives three timescales: foraging is fast, plastic-weight updates are seasonal, and schema merges are annual.
+DIFFERENCE: Unlike current models, which either update their weights from every gradient or stay frozen, this design keeps acting on hypotheses it assumes are mostly false while it is awake. It lets a hypothesis change its weights only after an adversarial debate among offline replicas, and it shares knowledge across agents by merging schemas, not by averaging parameters.

@@ -1,0 +1,22 @@
+{
+ "W01": "CTRL_CORE2#3",
+ "W02": "EVO1#1",
+ "W03": "DIFF_T1#1",
+ "W04": "EVO3#1",
+ "W05": "EVO1#3",
+ "W06": "ANCHOR:DIFF#1",
+ "W07": "ANCHOR:B1#1",
+ "W08": "EVO2#2",
+ "W09": "EVO3#3",
+ "W10": "EVO2#1",
+ "W11": "ANCHOR:CORE_a#3",
+ "W12": "CTRL_CORE2#1",
+ "W13": "DIFF_T2#1",
+ "W14": "ANCHOR:NEG#1",
+ "W15": "EVO2#3",
+ "W16": "CTRL_CORE2#2",
+ "W17": "ANCHOR:OPUS_BASE_b#1",
+ "W18": "EVO1#2",
+ "W19": "EVO3#2",
+ "W20": "ANCHOR:OPUS_MECH#2"
+}

@@ -1,0 +1,80 @@
+W01
+MECHANISM: Input is split into sources (sensors, regions or speakers), and each pair gives a complex correlation V_ij, corrupted by unknown factors g_i·conj(g_j). Only loop quantities pass onward: closure phases arg(V_ij·V_jk·V_ki) and closure amplitudes |V_ij·V_kl|/|V_ik·V_jl|, in which every g cancels. Stored category templates are running averages of these. For each input, self-calibration alternates template matching with closed-form solves for each g_i, and returns both the content and the corruptions.
+DIFFERENCE: Its answers are guaranteed not to change under any independent recalibration of any subset of sources; current models only approximate this by training on augmented data.
+
+W02
+MECHANISM: Knowledge sits in local patches. Examples that land where overlapping patches disagree are grouped by the loop of overlaps around which agreement fails, and each group grows a candidate restriction map (a "twist") with member count n that decays faster as it shrinks. The loop's gluing obstruction acts as supersaturation S: a twist freezes into a permanent gluing rule once n exceeds n*(S), which falls steeply with S, and weak candidates dissolve. Frozen twists change which global sections exist, which lowers obstruction on neighbouring loops and suppresses redundant nucleation there.
+DIFFERENCE: It learns a new relation between two already-stable bodies of knowledge from one sharp contradiction, without refitting either of them.
+
+W03
+MECHANISM: Each hive has a waking curiosity daemon that forages raw sensations and generates hypotheses. It expects most of them to be false, so a waking gate keeps the plastic weights shut and admits changes only on a seasonal schedule. Between gate openings, dreaming replicas of the hive replay what the daemon foraged and debate the hypotheses against one another. Only the claims that survive the debate become consolidated memories. Once a year (in model time), the hives merge their consolidated memories into shared schemas. This gives three timescales: foraging is fast, plastic-weight updates are seasonal, and schema merges are annual.
+DIFFERENCE: Unlike current models, which either update their weights from every gradient or stay frozen, this design keeps acting on hypotheses it assumes are mostly false while it is awake. It lets a hypothesis change its weights only after an adversarial debate among offline replicas, and it shares knowledge across agents by merging schemas, not by averaging parameters.
+
+W04
+MECHANISM: The model stores a cell complex over rewrite states: rule applications are edges, and proven joins of two rewrite paths are 2-cells. A query's rewrite path is classified by sparse boundary-matrix algebra, and its homology class picks the next rule. New rules are kept when they kill transient 1-cycles cheaply. Cycles that persist across many inputs become typed choice variables.
+DIFFERENCE: It can certify that an answer does not depend on reasoning order, or list exactly the independent choices it does depend on.
+
+W05
+MECHANISM: Computation rewrites a typed graph of symbols with learned rules. Each symbol carries a small integer grade vector over k hidden bases, chosen with the smallest k first so that every observed rewrite conserves total grade. Grades act as types: any proposed rewrite or plan that changes total grade is rejected without being run, and a sparse table indexed by grade records which normal forms have been reached. When an observed rewrite breaks conservation, the system splits a grade or raises k, so the invariants are revised.
+DIFFERENCE: It can certify that a goal is unreachable at any search depth, which gives provable negative knowledge that sampling-based models cannot produce.
+
+W06
+MECHANISM: Knowledge is a library of small executable programs keyed by invariant embeddings. Queries are routed by distance to the nearest programs, which run on demand; a new program is synthesized and verified only when none match. Learning adds or repairs programs and never edits shared weights.
+DIFFERENCE: It can add or verify skills without overwriting old ones, which shared-weight gradient updates fundamentally cannot guarantee.
+
+W07
+MECHANISM: The model keeps a posterior over a population of candidate structural causal models, stored as sparse graphs with small learned mechanisms per node. For a query, it selects the action with the highest expected information gain, runs it in an environment or simulator, and updates the posterior by Bayesian model comparison, so the graph structure itself changes rather than only weights.
+DIFFERENCE: It can separate correlation from intervention and answer "what happens if I do X" after a few targeted experiments, which likelihood-trained next-token models do not represent.
+
+W08
+MECHANISM: Thousands of local patch models are reconciled by consistency propagation, and every message carries one tracer coordinate per patch, mixed by normalized restriction-map weights. Where an overlap still disagrees, a small linear solve splits the tracers into each patch's exact share of the obstruction. If the blame is concentrated in one patch, that patch is refitted or split. If the blame is spread around a cycle of patches that are each consistent on their own, it is treated as a missing variable, and a new context coordinate is added to separate them.
+DIFFERENCE: It can tell "one of my models is wrong" apart from "my description of the world is missing a variable," and it creates that variable; gradient-trained networks cannot tell the two apart.
+
+W09
+MECHANISM: Betting wealth is routed conservatively through the units, and each decision tags its share with a tracer. When an outcome arrives, a mass-balance solve gives each past decision its credited wealth. That multiplies the decision's e-process (null hypothesis: the decision had no effect on the outcome). A link's routing fraction is updated only after its e-process exceeds 1/α.
+DIFFERENCE: It learns from arbitrarily delayed outcomes while bounding the fraction of credited causal links that are spurious, at any stopping time.
+
+W10
+MECHANISM: Random walkers start from unexplored regions of a graph of candidates with capital 1 and multiply that capital by a learned predictor's likelihood ratio at each node they visit. A walker that touches the discovered aggregate attaches with probability min(1, capital), so growth happens at tips that both screen the most unexplored territory and have the most evidence. Each attached candidate keeps a product of returned capital as an e-process, and an answer is committed once that exceeds 1/α. Launch rates move toward the regions whose capital grows fastest.
+DIFFERENCE: It searches an unbounded answer space that is never listed out, while keeping an error bound on its committed answers that holds under any stopping rule.
+
+W11
+MECHANISM: The state is one effective coupling per operator in a vocabulary that is not fixed in advance. Each coarse-graining round rescales, then adds fusion-weighted products of existing couplings, so any operator produced by a product acquires a coupling. Operators whose couplings grow under rescaling (positive scaling dimension) become named variables, and the rest are dropped.
+DIFFERENCE: It creates variables absent from its input and reports which matter at each scale, whereas current architectures fix their feature set at design time.
+
+W12
+MECHANISM: Each part stores only an interface law for each port: effort = Z·flow + source. Z and source are fitted by local least squares from probing that part's terminals. A situation is a wiring diagram of parts, and prediction solves for efforts and flows so that flows sum to zero at every junction and efforts agree across joined ports, re-linearizing any nonlinear parts. Adding a new part never changes the others.
+DIFFERENCE: It predicts the behavior of new assemblies of known parts without retraining, because conservation laws fix how parts combine instead of examples teaching it.
+
+W13
+MECHANISM: Experiences are stored as lossy episodic memory shards, which settle into a set of accumulators (slow-moving parameter pools). When an accumulator produces an error, it does not receive a single backpropagated gradient. Instead it "hires" rival credit lawyers: competing attribution modules, each arguing that a different shard or accumulator is to blame. Worker units then cast votes on these arguments, and the update is applied only once the workers reach consensus. During periodic sleep phases, the system seasonally compresses its accumulated updates into append-only "growth rings": layered, dated summaries of what changed and why, legible to auditors. A prior is overwritten only slowly, when dissenting votes keep winning across several rings, so a belief changes only after repeated, recorded disagreement rather than after one large error.
+DIFFERENCE: Credit assignment becomes an adversarial, voted process, and every belief change leaves a permanent, time-stratified record you can inspect, so the model can show which argument changed which prior and when. Gradient-based architectures cannot provide that history, since they overwrite weights silently.
+
+W14
+MECHANISM: The state is a wealth vector of e-processes, one per candidate answer. Each new observation multiplies each candidate's wealth by a likelihood ratio from a learned predictor, and compute is spent on the fastest-growing bets. An answer is committed when its wealth exceeds 1/α, and that error bound holds under any stopping rule.
+DIFFERENCE: It bounds the error of committed answers at any stopping time, which confidence scores and self-consistency voting cannot guarantee.
+
+W15
+MECHANISM: Every item carries a small integer vector over k learned base kinds. Only items with identical vectors can be compared or clustered, and composing items adds their vectors. Each example joins its nearest compatible cluster, clusters shed members faster as they shrink, and the example's surprise sets a supersaturation S. A cluster that reaches the critical size n*(S) freezes into a new base kind (k grows to k+1), and a discrete search then changes as few vector entries as possible so that every frozen relation still type-checks.
+DIFFERENCE: It builds its own type system from a few surprising examples and then refuses generalizations that mix incompatible types, a hard constraint that statistical networks cannot enforce.
+
+W16
+MECHANISM: Units on a lattice each hold an elevation. Input falls as "rain", and each unit passes its accumulated load to its steepest downhill neighbor, merging tributaries, until the load reaches an outlet (an output). Elevation changes as dz/dt = U − K·A^m·S^n, where A is accumulated flux, S is slope and U is slow uplift: paths many inputs share deepen into durable trunks, while unused terrain rises back as free capacity. Teaching lowers the base level at the correct outlet, and that drop travels upstream as a knickpoint and captures headwaters.
+DIFFERENCE: It grows its own hierarchy of shared subcomputations, and new tasks join and deepen old channels instead of overwriting shared parameters.
+
+W17
+MECHANISM: Knowledge is stored as thousands of small, separately trained local models. Each one is valid only on an overlapping region of context space (a "patch"), and learned restriction maps say how neighbouring patches must agree where they overlap. Inference searches for a global section: an assignment that satisfies all active patches at once, found by iterative consistency propagation instead of a single forward pass. Learning adds, splits or refits patches only where the measured disagreement (the obstruction to gluing them together) is high, and leaves every other patch untouched.
+DIFFERENCE: It can pinpoint and report exactly where its own knowledge contradicts itself, and it can learn new facts without overwriting old ones because no globally shared weights exist to interfere.
+
+W18
+MECHANISM: Experienced transitions build a cell complex. Each edge holds a credit value, and every delayed outcome adds one linear constraint: the summed credit along that trajectory chain equals the outcome. Solving these sparse boundary-matrix systems splits credit into a gradient part (ordinary state value), a curl part (local noise) and a harmonic part (the net gain per winding around each hole). Holes with near-zero harmonic credit are filled with 2-cells, and holes with persistent non-zero circulation are kept as concepts, which are repeatable strategies.
+DIFFERENCE: It represents and exploits cyclic, non-transitive gains (loops that pay off on every pass), which a scalar value function cannot express because it is a pure gradient with zero circulation.
+
+W19
+MECHANISM: Random walkers launched from unvisited context carry a hypothesis vector through the learned restriction maps between overlapping local models. Each walker accumulates a holonomy residual, and when that residual crosses a threshold the walker attaches by spawning or splitting a patch at that spot. Because frontier patches screen walkers, growth branches toward the contradictions that face the most unexplored context. The launch rate adapts to new patches per walker.
+DIFFERENCE: It decides where to add knowledge from the geometry of its own contradictions, with no learned uncertainty, value or novelty estimator.
+
+W20
+MECHANISM: Each trader stores a cash balance, an asking price and a tiny rule that turns a few purchased numbers into one output number. At each step, traders buy other traders' outputs at their asking prices, compute, and sell their own output. The environment pays only the final seller, and only when the answer is correct, while every trader pays rent for each input it buys. A trader whose cash drops below zero is deleted. A trader whose cash goes above a threshold splits in two, each half taking half the cash, and the copy's rule is randomly perturbed. Prices rise when buyers compete and fall when nothing sells.
+DIFFERENCE: It grows, prunes and rewires itself continuously while it runs, driven by a single payoff number with no global derivative pass, so its size is set by what its computation earns rather than fixed in advance.
+

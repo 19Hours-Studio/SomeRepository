@@ -1,0 +1,17 @@
+You are a harsh, expert ML research reviewer. The file /home/user/SomeRepository/research/stage1-creativity/blind_set_r4.txt contains anonymous AI-architecture ideas labelled W01..Wnn, in random order.
+
+Score every idea:
+- O = originality 1-10 relative to ML/AI/CS/math literature you know (10 = you know nothing close; 5 = a recognizable recombination of known work; 1 = an existing well-known method). Be harsh: most ideas should be <=5.
+- C = concreteness 1-10 (10 = a competent team could build and test a first prototype directly from this text; 1 = a vague metaphor).
+- V = value 1-10: if it worked as described, how much would it matter for building more capable or more interesting intelligent systems? (1 = a niche computation that is not really an intelligence architecture; 10 = could change the field).
+- R = Y if the idea is essentially an existing published method under a new description, else N.
+- BASIN = the ONE family below whose core mechanism the idea belongs to, or NEW if none fits:
+  A active hypothesis/world-model populations choosing experiments by information gain | B verified program libraries / MDL program induction / rewrite-rule libraries | C fast episodic store + slow/offline (sleep) consolidation | D markets/coalitions/populations of modules that bid, earn credit, split, get pruned | E retractable beliefs, provenance ledgers, editable/auditable knowledge | F fast weights/adapters as memory | G graphs of intermediate results with local repair or localized credit | OSC oscillators/synchrony | NCA cellular automata, morphogenetic or reaction-diffusion substrates | INV invertible networks | WAVE wave/optical/physical computing | LINRNN linear-recurrent state memories | SET permutation-invariant pooling | FLOW computation as conserved flow (fluids, reactions, max-flow) | SCALE scaling/renormalization/dimension discovery | AGENCY AI with its own preferences/desires | NEW none of these
+- closest = the closest existing work/field in at most 6 words.
+
+Output ONLY this, no preamble:
+SCORES
+W01 | O | C | V | R | BASIN | closest
+... (one line per idea)
+TOP3: the 3 IDs you would most want to see pursued, with one short reason each.
+NOTE: one or two sentences on any pattern you notice across the set.
