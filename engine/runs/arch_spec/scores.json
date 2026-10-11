@@ -1,1 +1,326 @@
-{}
+{
+ "g1_neg#3": {
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "bridge bots, opponent/partner modelling"
+  },
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "bridge bidding belief/partner modeling"
+  }
+ },
+ "g1_core2#1": {
+  "s01:J2": {
+   "O": 6,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HEP Kalman track reconstruction, spark testing"
+  },
+  "s01:J1": {
+   "O": 6,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HEP Kalman tracking; spark-test classification"
+  }
+ },
+ "g1_mech#3": {
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "tap testing, masked-prediction anomaly detection"
+  },
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "acoustic tap-test NDT, masked prediction"
+  }
+ },
+ "g1_core#1": {
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "cave barometric breathing, simulation-based inference"
+  },
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "cave barometric-breathing volume estimates"
+  }
+ },
+ "g1_core#2": {
+  "s01:J2": {
+   "O": 6,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genome scaffolding, graph link prediction"
+  },
+  "s01:J1": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ILP genome scaffolding"
+  }
+ },
+ "g1_loop#2": {
+  "s01:J2": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "toolmark forensics, linkage disequilibrium"
+  },
+  "s01:J1": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forensic toolmark striation matching"
+  }
+ },
+ "g1_core2#2": {
+  "s01:J2": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "phylodynamics branching processes, spark testing"
+  },
+  "s01:J1": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "phylodynamic branching-process inference"
+  }
+ },
+ "g1_mech#2": {
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "track-aging studies, ordinal survival regression"
+  },
+  "s01:J1": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forensic footprint degradation studies"
+  }
+ },
+ "g1_mech#1": {
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "bathymetry inversion from LSPIV surface velocity"
+  },
+  "s01:J1": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "bathymetry inversion from surface velocity"
+  }
+ },
+ "g1_mechneg#2": {
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hebbian associative memory, sparse coding"
+  },
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hebbian associative memory, grain imaging"
+  }
+ },
+ "g1_core#3": {
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ETAS/Hawkes self-exciting point processes"
+  },
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ETAS self-exciting point processes"
+  }
+ },
+ "g1_loop#1": {
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "power-grid bad-data detection, Harris matrix"
+  },
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Harris matrix tools; grid bad-data detection"
+  }
+ },
+ "g1_mechneg#3": {
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Large's neural resonance oscillator banks"
+  },
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Large's GrFNN oscillator beat tracking"
+  }
+ },
+ "g1_core2#3": {
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "NLME population pharmacokinetic mixed effects"
+  },
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "NLME mixed-effects (pop-PK) modeling"
+  }
+ },
+ "g1_mechneg#1": {
+  "s01:J2": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "survival analysis, locality-sensitive hashing"
+  },
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ETH robotic dry-stone walling"
+  }
+ },
+ "g1_loop#3": {
+  "s01:J2": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "crystallographic R-free refinement, tile-drain detection"
+  },
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "UAV tile-drain mapping (Allred et al.)"
+  }
+ },
+ "g1_neg#2": {
+  "s01:J2": {
+   "O": 3,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "offline RL scheduling (IQL)"
+  },
+  "s01:J1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "KDS smart-fire; offline RL scheduling"
+  }
+ },
+ "g1_neg#1": {
+  "s01:J2": {
+   "O": 3,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "preference-tuned transformer, auto lighting design"
+  },
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "automatic stage-lighting generation"
+  }
+ }
+}
