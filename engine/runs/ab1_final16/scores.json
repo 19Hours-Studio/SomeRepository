@@ -1,1 +1,992 @@
-{}
+{
+ "v16:g1_symptomport#2": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "phylogenetic SPR applied to ontology repair"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "phylogenetic SPR, ontology repair"
+  }
+ },
+ "v16:g2_evo2#2": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal plus causal modularity testing"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal plus trace commutation"
+  }
+ },
+ "v16:g1_backloop#3": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "epidemic models of misinformation spread"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 3,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "epidemic R_t, model collapse"
+  }
+ },
+ "v15:g2_evo1#3": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading; ensemble knowledge editing"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading, LoRA ensembles"
+  }
+ },
+ "v15:g1_loop#2": {
+  "s98c:CLEAN": {
+   "O": 8,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "polysemantic neuron splitting / detection"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Wahlund effect, polysemantic neuron splitting"
+  }
+ },
+ "v16:g2_imm#2": {
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "machine teaching, teaching dimension"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "PV16",
+   "closest": "teaching dimension, machine teaching"
+  }
+ },
+ "v16:g1_neg#1": {
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "RevNets / i-RevNet, normalizing flows"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "PV15",
+   "closest": "i-RevNet, normalizing flows"
+  }
+ },
+ "map_2#2": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Bayesian program learning world models"
+  },
+  "s99:F1": {
+   "O": 2,
+   "C": 4,
+   "V": 7,
+   "R": "Y",
+   "B": "PROGSYN",
+   "closest": "Bayesian program learning, DreamCoder"
+  }
+ },
+ "v15:g1_mech#3": {
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AutoAugment, test-time augmentation voting"
+  },
+  "s99:F1": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "test-time augmentation, AutoAugment"
+  }
+ },
+ "v15:g1_loop#3": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank, sheaf cohomology, cycle consistency"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "PV27",
+   "closest": "HodgeRank, sheaf cohomology"
+  }
+ },
+ "v16:g2_imm#3": {
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "error-correcting codes in neural networks"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "error-correcting codes, ECOC networks"
+  }
+ },
+ "v15:g2_imm#2": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "genetic complementation; activation patching"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "PV26",
+   "closest": "genetic complementation, activation patching"
+  }
+ },
+ "v16:g1_symptomport#3": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "power-system state estimation bad-data detection"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "PV18",
+   "closest": "state-estimation bad-data detection"
+  }
+ },
+ "v15:g1_core#1": {
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "kinetic proofreading; self-consistency verification"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hopfield kinetic proofreading, self-consistency"
+  }
+ },
+ "v15:g1_mech#2": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "conservation-constrained entity state tracking"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "conservation priors, entity-state tracking"
+  }
+ },
+ "v15:g1_core2#3": {
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "capture-recapture for search completeness"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "PV19",
+   "closest": "Chao capture-recapture estimators"
+  }
+ },
+ "v15:g2_imm#1": {
+  "s98c:CLEAN": {
+   "O": 8,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Schild analysis; superposition interpretability"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Schild regression, SAE feature splitting"
+  }
+ },
+ "v15:g1_mech#1": {
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dimensional analysis type systems"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "PV23",
+   "closest": "dimensional type systems, AI Feynman"
+  }
+ },
+ "v15:g1_core#2": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "gene duplication subfunctionalization; progressive nets"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "gene duplication subfunctionalization (DDC)"
+  }
+ },
+ "v15:g1_neg#1": {
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AI Feynman, Buckingham-pi networks"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "PV23",
+   "closest": "Buckingham-pi, AI Feynman"
+  }
+ },
+ "v15:g1_neg#2": {
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Bennett reversible computing; RevNets"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "PV15",
+   "closest": "reversible computing, i-RevNet"
+  }
+ },
+ "v15:g1_core#3": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "lock-in amplification; causal probing"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "lock-in amplification, causal probing"
+  }
+ },
+ "v15:g1_neg#3": {
+  "s98c:CLEAN": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "oscillator timing models, Kuramoto neurons"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "PV21",
+   "closest": "Kuramoto nets, AKOrN, oscillator timing"
+  }
+ },
+ "map_1#3": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Baum's Hayek machine, agoric systems"
+  },
+  "s99:F1": {
+   "O": 2,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "MODMKT",
+   "closest": "Baum Hayek machine, agoric computing"
+  }
+ },
+ "v15:g2_evo2#1": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment, Baarda testing"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "PV18",
+   "closest": "geodetic network adjustment, Baarda testing"
+  }
+ },
+ "v16:g1_neg#3": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 3,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "active sensing, tool-augmented agents"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 3,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "active sensing, tool-use agents"
+  }
+ },
+ "v16:g2_evo1#2": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal; circular justification detection"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal, circular-reasoning detection"
+  }
+ },
+ "v16:g1_core#2": {
+  "s98c:CLEAN": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "cycle consistency, bundle adjustment"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "PV18",
+   "closest": "cycle consistency, loop-closure calibration"
+  }
+ },
+ "v15:g1_loop#1": {
+  "s98c:CLEAN": {
+   "O": 8,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory, embedding constraints"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory, knowledge graph embeddings"
+  }
+ },
+ "map_2#1": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "complementary learning systems, replay"
+  },
+  "s99:F1": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "CLS replay, regression-gated updates"
+  }
+ },
+ "v16:g2_evo2#1": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "triangulation, multi-method validation"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "triangulation, robustness analysis, active sensing"
+  }
+ },
+ "v16:g2_evo1#3": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "WLS bad-data detection, data attribution"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "PV20",
+   "closest": "power-system bad-data detection"
+  }
+ },
+ "v16:g1_backloop#1": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "KS regularization, atlas manifolds"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 3,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "KS regularization, manifold atlases"
+  }
+ },
+ "v16:g1_mechneg#1": {
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SOAR chunking, DreamCoder abstraction"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "consilience counting, DreamCoder abstraction"
+  }
+ },
+ "map_3#1": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "GRACE / WISE editing adapters"
+  },
+  "s99:F1": {
+   "O": 3,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "CONSOL",
+   "closest": "GRACE / SERAC memory editing"
+  }
+ },
+ "map_3#3": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "energy-based constraint message passing"
+  },
+  "s99:F1": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "ENERGY",
+   "closest": "energy-based models, constraint propagation"
+  }
+ },
+ "v16:g1_mechneg#3": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mazurkiewicz traces, partial-order reduction"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "trace theory, causal disentanglement"
+  }
+ },
+ "map_2#3": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 7,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "selective prediction, conformal abstention"
+  },
+  "s99:F1": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "COMPMAP",
+   "closest": "selective prediction, competence maps"
+  }
+ },
+ "map_3#2": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "causal world-model graph learning"
+  },
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "CAUSGR",
+   "closest": "schema networks, causal discovery"
+  }
+ },
+ "v15:g2_imm#3": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 8,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "phylogenetic networks, four-point condition"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "phylogenetic networks, four-point condition"
+  }
+ },
+ "v16:g1_core#1": {
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ensemble Kalman inversion for NNs"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ensemble Kalman inversion for NNs"
+  }
+ },
+ "v16:g2_evo1#1": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "partial-order reduction; observer effect"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mazurkiewicz traces, observer effect"
+  }
+ },
+ "v16:g1_backloop#2": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "pharmacovigilance PRR signal detection"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "PV20",
+   "closest": "pharmacovigilance PRR, model editing rollback"
+  }
+ },
+ "v16:g1_neg#2": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commit-reveal schemes; CoT faithfulness"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "PV22",
+   "closest": "commit-reveal schemes, forecasting calibration"
+  }
+ },
+ "v16:g2_imm#1": {
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "LieGAN, Noether networks"
+  },
+  "s99:F1": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LieGAN, Noether networks, AI Poincare"
+  }
+ },
+ "map_1#1": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Bayesian experimental design, program induction"
+  },
+  "s99:F1": {
+   "O": 3,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "PROGSYN",
+   "closest": "DreamCoder plus Bayesian experimental design"
+  }
+ },
+ "v15:g2_evo2#2": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HodgeRank plus kinetic proofreading"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "PV27",
+   "closest": "kinetic proofreading plus HodgeRank"
+  }
+ },
+ "map_1#2": {
+  "s98c:CLEAN": {
+   "O": 1,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Doyle truth maintenance system"
+  },
+  "s99:F1": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "TMS",
+   "closest": "Doyle JTMS / de Kleer ATMS"
+  }
+ },
+ "v15:g1_core2#1": {
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "localized ensemble Kalman filter"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ensemble Kalman filter, localization"
+  }
+ },
+ "v16:g1_core#3": {
+  "s98c:CLEAN": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "equality saturation, learned extraction"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "equality saturation (egg), DreamCoder"
+  }
+ },
+ "v16:g1_mechneg#2": {
+  "s98c:CLEAN": {
+   "O": 2,
+   "C": 4,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Fontana AlChemy, autocatalytic sets"
+  },
+  "s99:F1": {
+   "O": 3,
+   "C": 3,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Fontana AlChemy, chemical organization theory"
+  }
+ },
+ "v15:g1_core2#2": {
+  "s98c:CLEAN": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic network adjustment, Baarda"
+  },
+  "s99:F1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "PV18",
+   "closest": "geodetic least-squares adjustment"
+  }
+ },
+ "v15:g2_evo1#2": {
+  "s98c:CLEAN": {
+   "O": 8,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "rigidity theory equilibrium stresses"
+  },
+  "s99:F1": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "bar-framework rigidity, stress spaces"
+  }
+ },
+ "v16:g1_symptomport#1": {
+  "s98c:CLEAN": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Zienkiewicz-Zhu adaptive mesh refinement"
+  },
+  "s99:F1": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "adaptive mesh refinement, local linear experts"
+  }
+ },
+ "v15:g2_evo1#1": {
+  "s98c:CLEAN": {
+   "O": 8,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Hodge decomposition plus Baarda reliability"
+  },
+  "s99:F1": {
+   "O": 7,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "PV27",
+   "closest": "HodgeRank plus geodetic blunder detection"
+  }
+ }
+}
