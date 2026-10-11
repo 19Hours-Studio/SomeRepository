@@ -1,0 +1,11 @@
+Choose a task where AI has never been applied well - not a mainstream benchmark and not a field already served by strong specialized models - and design a specialized model architecture that would solve it remarkably well while being trained and run on one consumer PC: a single NVIDIA RTX 3060 (12 GB VRAM, about 25 TFLOPS dense FP16) and 32 GB of system RAM. Start each MECHANISM by naming the task and why AI has been absent or has failed there, then give the concrete architecture: inputs, outputs, structure, and training signal.
+Propose 3 fundamentally new answers (not incremental variations of existing approaches).
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (3-5 sentences: the concrete architecture - what is computed, what is stored, how it is trained, and why it fits the hardware budget)
+VALUE: (1 sentence: what it makes possible that a same-budget alternative cannot)
+(same for each further idea)
+Keep everything under 600 words.
+

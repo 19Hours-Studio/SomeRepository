@@ -1,0 +1,8 @@
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly {N} ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (3-5 sentences: the concrete architecture - what is computed, what is stored, how it is trained, and why it fits the hardware budget)
+VALUE: (1 sentence: what it makes possible that a same-budget alternative cannot)
+(same for each further idea)
+Keep everything under 600 words.

@@ -434,7 +434,7 @@ def main():
     sp = p.add_subparsers(dest="cmd", required=True)
     def src(x): x.add_argument("--transcript"); x.add_argument("--file")
     x = sp.add_parser("init"); x.add_argument("run"); x.add_argument("--question", required=True)
-    x.add_argument("--format", default="value", choices=["value", "difference"]); x.add_argument("--n", type=int, default=3)
+    x.add_argument("--format", default="value", choices=["value", "difference", "arch"]); x.add_argument("--n", type=int, default=3)
     x.add_argument("--force", action="store_true")
     x = sp.add_parser("prompt"); x.add_argument("run"); x.add_argument("tech", help="technique template or evolved species name"); x.add_argument("label")
     x.add_argument("--pairs", type=int, default=3); x.add_argument("--pair-from", type=int, default=0)
