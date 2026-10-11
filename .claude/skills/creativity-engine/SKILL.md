@@ -31,14 +31,17 @@ Launch independent agents in one message; never read transcripts into your own c
 0. `python3 engine/ce.py init R --question "<question>"`
 1. **Attractor map.** `prompt R plain map_1` (… `map_3`); run 3 generators; `ingest R map_k --arm C --gen 0 --transcript …`.
    `set R s00 --labels map_1,map_2,map_3 --prefix M`; run one judge on `sets/s00/prompt_family.txt`; `family R s00 --transcript …`.
-2. **Variation (gen 1).** `prompt R <tech> g1_<tech>` for tech in neg, core, reframe, mech, loop; run 5 generators;
-   `ingest … --arm E --gen 1`.
-3. **Screening.** `set R s01 --labels g1_neg,g1_core,g1_reframe,g1_mech,g1_loop --prefix A`; run 2 judges on `sets/s01/prompt_judge.txt`;
+2. **Variation (gen 1).** `prompt R <tech> g1_<tech>` for neg, core, mech, loop, plus a second core run as `g1_core2`
+   (v1.5: REFRAME was the weakest technique in three runs); run 5 generators; `ingest … --arm E --gen 1`.
+3. **Screening.** `set R s01 --labels g1_neg,g1_core,g1_core2,g1_mech,g1_loop --prefix A`; run 2 judges on `sets/s01/prompt_judge.txt`;
    `judge R s01 J1 …`, `judge R s01 J2 …`; `select R g1 --labels <gen1 labels> --k 6 --drop-known-basins`.
 4. **Literature.** `set R s02 --ids <survivor ids> --prefix L`; run one lit agent on `sets/s02/prompt_lit.txt`; `lit R s02 …`.
    `remember R --labels <gen1 labels>` (attractor memory: next generation is repelled from what was just found).
 5. **Evolution (gen 2).** `pairs R g1 --n 6`; `prompt R evo g2_evo1 --pairs 3 --pair-from 0`, `prompt R evo g2_evo2 --pairs 3 --pair-from 3`;
    immigration: re-run the best gen-1 technique as `g2_imm` (fresh prompt picks up the updated basin map). Ingest with `--arm E --gen 2`.
+   **Concretize (v1.5):** `set R s03 --labels g2_evo1,g2_evo2,g2_imm --prefix K`; one agent on `sets/s03/prompt_concretize.txt`;
+   `concretize R s03 --transcript …` (adds a first decisive test to each offspring; gen-2 concreteness +2.4…+3.1 in A/B).
+   Optional: `setcfg R thoughts 1` before gen 1 and `thoughts R` before gen 2 (self-reported first thoughts; small effect, primed by the basin list).
 6. **Control (best-of-N).** Plain prompts until the control arm has as many generator calls as the engine arm
    (map runs count): `prompt R plain ctrl_k`, `ingest … --arm C`.
 7. **Final judging.** `set R s99 --arms E,C --prefix F`; 2 judges on `sets/s99/prompt_judge.txt`; `report R`.
