@@ -1,0 +1,364 @@
+{
+ "summary": {
+  "EVO": {
+   "n": 9,
+   "O": 5.94,
+   "C": 4.39,
+   "V": 4.5,
+   "OV": 26.7,
+   "NEW": 0.39,
+   "RY": 0.0
+  },
+  "CTRL": {
+   "n": 3,
+   "O": 5.67,
+   "C": 6.67,
+   "V": 4.33,
+   "OV": 23.8,
+   "NEW": 0.33,
+   "RY": 0.0
+  },
+  "DIFF-ENF": {
+   "n": 2,
+   "O": 3.0,
+   "C": 2.5,
+   "V": 3.5,
+   "OV": 10.2,
+   "NEW": 0.0,
+   "RY": 0.0
+  },
+  "ANCHOR": {
+   "n": 6,
+   "O": 2.83,
+   "C": 5.58,
+   "V": 4.83,
+   "OV": 13.5,
+   "NEW": 0.25,
+   "RY": 0.67
+  }
+ },
+ "A": {
+  "CTRL_CORE2#3": {
+   "O": 6,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "cl": "VLBI closure phases and self-calibration"
+  },
+  "EVO1#1": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "cl": "Sheaf cohomology plus classical nucleation theory"
+  },
+  "DIFF_T1#1": {
+   "O": 3,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "C",
+   "cl": "Complementary learning systems plus AI debate"
+  },
+  "EVO3#1": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "B",
+   "cl": "Squier homotopical rewriting, Knuth-Bendix completion"
+  },
+  "EVO1#3": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "B",
+   "cl": "Petri-net invariants, dimensional analysis types"
+  },
+  "ANCHOR:DIFF#1": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "B",
+   "cl": "Voyager/DreamCoder skill libraries"
+  },
+  "ANCHOR:B1#1": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "A",
+   "cl": "Active Bayesian causal discovery"
+  },
+  "EVO2#2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "G",
+   "cl": "Sheaf Laplacians, latent-confounder discovery"
+  },
+  "EVO3#3": {
+   "O": 7,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "FLOW",
+   "cl": "E-values betting plus bucket brigade"
+  },
+  "EVO2#1": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "cl": "Diffusion-limited aggregation plus anytime-valid testing"
+  },
+  "ANCHOR:CORE_a#3": {
+   "O": 5,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "SCALE",
+   "cl": "Wilsonian RG, operator product expansion"
+  },
+  "CTRL_CORE2#1": {
+   "O": 4,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "FLOW",
+   "cl": "Bond graphs, port-Hamiltonian networks"
+  },
+  "DIFF_T2#1": {
+   "O": 4,
+   "C": 2,
+   "V": 3,
+   "R": "N",
+   "B": "E",
+   "cl": "Debate-based credit assignment, audit logs"
+  },
+  "ANCHOR:NEG#1": {
+   "O": 3,
+   "C": 7,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "cl": "Anytime-valid e-process sequential testing"
+  },
+  "EVO2#3": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "cl": "Dimensional analysis, type inference, nucleation"
+  },
+  "CTRL_CORE2#2": {
+   "O": 7,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "FLOW",
+   "cl": "Stream-power landscape evolution models"
+  },
+  "ANCHOR:OPUS_BASE_b#1": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "cl": "Sheaf neural networks, local experts"
+  },
+  "EVO1#2": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "G",
+   "cl": "HodgeRank, Hodge decomposition of games"
+  },
+  "EVO3#2": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "cl": "Diffusion-limited aggregation over sheaf holonomy"
+  },
+  "ANCHOR:OPUS_MECH#2": {
+   "O": 2,
+   "C": 7,
+   "V": 4,
+   "R": "Y",
+   "B": "D",
+   "cl": "Baum's Hayek machine, agoric systems"
+  }
+ },
+ "B": {
+  "CTRL_CORE2#3": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "cl": "VLBI closure phases, self-calibration"
+  },
+  "EVO1#1": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "cl": "sheaf learning plus classical nucleation"
+  },
+  "DIFF_T1#1": {
+   "O": 2,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "C",
+   "cl": "complementary learning systems plus debate"
+  },
+  "EVO3#1": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "B",
+   "cl": "Squier homotopical rewriting, confluence"
+  },
+  "EVO1#3": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "B",
+   "cl": "Petri-net invariants, dimensional analysis typing"
+  },
+  "ANCHOR:DIFF#1": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "B",
+   "cl": "DreamCoder / Voyager skill libraries"
+  },
+  "ANCHOR:B1#1": {
+   "O": 2,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "A",
+   "cl": "Bayesian causal experimental design"
+  },
+  "EVO2#2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "G",
+   "cl": "sheaf cohomology, latent confounder discovery"
+  },
+  "EVO3#3": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "D",
+   "cl": "testing-by-betting e-values, credit assignment"
+  },
+  "EVO2#1": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "cl": "diffusion-limited aggregation, anytime-valid testing"
+  },
+  "ANCHOR:CORE_a#3": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "SCALE",
+   "cl": "Wilsonian / functional renormalization group"
+  },
+  "CTRL_CORE2#1": {
+   "O": 4,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "FLOW",
+   "cl": "bond graphs, Thevenin port identification"
+  },
+  "DIFF_T2#1": {
+   "O": 3,
+   "C": 2,
+   "V": 3,
+   "R": "N",
+   "B": "E",
+   "cl": "debate plus audit logs, CLS"
+  },
+  "ANCHOR:NEG#1": {
+   "O": 2,
+   "C": 7,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "cl": "anytime-valid best-arm identification"
+  },
+  "EVO2#3": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "cl": "dimensional type inference, nucleation theory"
+  },
+  "CTRL_CORE2#2": {
+   "O": 7,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "FLOW",
+   "cl": "landscape stream-power law, Physarum networks"
+  },
+  "ANCHOR:OPUS_BASE_b#1": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "G",
+   "cl": "sheaf neural networks, local experts"
+  },
+  "EVO1#2": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "G",
+   "cl": "HodgeRank / Hodge game decomposition"
+  },
+  "EVO3#2": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "G",
+   "cl": "sheaf holonomy plus DLA growth"
+  },
+  "ANCHOR:OPUS_MECH#2": {
+   "O": 2,
+   "C": 7,
+   "V": 4,
+   "R": "Y",
+   "B": "D",
+   "cl": "Baum's Hayek machine, bucket brigade"
+  }
+ }
+}
