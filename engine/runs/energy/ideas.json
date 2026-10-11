@@ -214,5 +214,32 @@
   "name": "Self-partitioning buried carbon capacitor",
   "mech": "Trenches are filled with cheap biochar soaked in neutral brine and layered with metal collector meshes, storing charge on the char's huge internal surface. Electrical impedance tomography, used in intensive care to find collapsed lung regions, maps pockets of the bed that aren't charging. A pressure pulse of electrolyte tries to re-wet each dead pocket. Pockets that stay dead are disconnected and turned into insulating separators, splitting the bed into more series-connected cells and raising its working voltage.",
   "value": "Storage built from material priced like farm waste and installed with earthmoving equipment instead of factories."
+ },
+ {
+  "id": "g2_evo1#1",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Heaped Strained-Molecule Powder",
+  "mech": "Surplus current at an electrode converts a cheap dissolved organic molecule into a strained isomer of itself. That isomer is insoluble, so it settles out and is shovelled onto covered heaps. A high energy barrier keeps it charged indefinitely. For discharge, the powder is fed into a slurry that runs past a catalytic electrode, which lowers the barrier. Each molecule snaps back, releases electrons and redissolves for reuse. The operator adds heaps for extra days and tracks the charged fraction by weighing the solids.",
+  "value": "Weeks of reserve cost only the price of a covered dirt pad, with no tanks, mining or consumed fuel."
+ },
+ {
+  "id": "g2_evo1#2",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Charge-Sinking Coacervate Pond",
+  "mech": "An unlined, membraneless pond holds a cheap redox molecule and a dissolved, inexpensive polyelectrolyte. When charged, the molecule binds to the polymer into dense droplets that sink and merge into a viscous bottom phase. The discharged form stays in the clear water above, so the two states sort themselves by gravity and stop mixing. Mesh electrodes sit at the interface and draw charge from the dense phase. Polymer dose sets the trade-off between how fast charge stays in and how much power can be drawn.",
+  "value": "The cheapest leaky redox chemistries can hold charge for weeks in an earthen basin with no tanks, pumps or separators."
+ },
+ {
+  "id": "g2_evo1#3",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Retired Ash-Pond Batteries",
+  "mech": "Grids of electrodes are pushed into the ash ponds of retiring coal plants. The iron and manganese oxides and unburnt carbon in the ash, wetted by the pond's own water, form a large in-place electrode mass. The cap and liner required for closure contain it, and the plant's existing substation connects it to the grid. Each electrode zone records the charge it takes in against the charge it gives back. Zones that return little charge are disconnected, so the battery settles onto the parts of the ash that work.",
+  "value": "Thousands of sites already have containment, land and grid connections paid for, so multi-day storage costs about as much as installing electrodes."
  }
 ]
