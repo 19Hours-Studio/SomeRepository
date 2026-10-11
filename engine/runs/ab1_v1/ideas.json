@@ -79,5 +79,140 @@
   "name": "Verifier-Halted Constraint Relaxation",
   "mech": "A query is turned into a set of variables, which are partial answers and sub-goals, plus constraints between them that are learned or extracted from the query. Local update rules pass messages between these units, and the system keeps iterating until either a symbolic checker or a learned checker confirms that every constraint is met, or the energy of the system stops falling. When progress stalls, the system adds intermediate variables, for example lemmas or sub-plans, and stores successful arrangements as reusable templates.",
   "value": "The system could spend compute in proportion to how hard a problem is and solve multi-step problems it cannot solve in one pass, with a clear signal for when it has succeeded and when it has failed."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Source-Sharded Additive Weights",
+  "mech": "Training data is split into hashed provenance shards (one per source or document cluster). Each shard trains its own low-rank weight delta on a frozen base. At inference the deltas are combined additively, with input-dependent coefficients produced by a small probe. That probe is trained on held-out data to predict which shard's evidence an answer actually needs, so each output carries a list of the shards that contributed. A source is removed by deleting its delta, and a disputed fact can be re-checked by switching shards off and seeing whether the answer survives.",
+  "value": "Knowledge becomes traceable to its sources and exactly removable, so the system can say where a belief came from and forget it on demand without retraining."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Reversible Inference with Uncompute",
+  "mech": "Reasoning runs on a bijective (invertible-layer) network that keeps the full input-plus-scratch state rather than throwing information away. After producing an answer, the system runs the computation backward from the answer and its stated premises only, then measures how much of the original input it can reconstruct. Low reconstruction means the answer depended on something the premises do not contain, so the gap is surfaced as an unstated assumption. Training penalises those gaps, which pushes the model to make every load-bearing assumption explicit.",
+  "value": "Hidden assumptions become detectable as missing information rather than through confidence scores, so it becomes visible when a conclusion really depends on something unsaid."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Teachability Bottleneck",
+  "mech": "An internal concept is kept only if it passes a transmission test. The system compresses the concept into a short message, and a freshly initialised learner with a different architecture, given only that message plus a few examples, must succeed on held-out tasks. Concepts that fail are rewritten or dropped. The surviving messages are stored as the system's vocabulary of abstractions and get re-tested whenever the pool of naive learners is refreshed.",
+  "value": "The system ends up holding abstractions that are explainable and transferable by construction, rather than private features entangled with one particular network."
+ },
+ {
+  "id": "g1_core#1",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Lattice-Merged Knowledge Replicas",
+  "mech": "Knowledge is stored as many small content-addressed entries rather than shared weights. Each entry holds monotone state: grow-only evidence counters, last-writer-wins registers with vector clocks, and sets of exceptions that support adding and removing. Each deployed copy updates its own replica from its own experience, and replicas combine through the lattice join, so merges never conflict and never depend on order. Retractions are tombstones, and prediction reads the joined state.",
+  "value": "Millions of copies can learn from separate experiences and pool what they learned exactly, with no catastrophic interference."
+ },
+ {
+  "id": "g1_core#2",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Survey-Adjusted Reasoning Networks",
+  "mech": "Each reasoning step is treated as a survey observation with a variance. The planner deliberately builds redundancy by deriving key quantities along independent routes so the steps form closed loops. Least-squares adjustment spreads each loop's misclosure across the steps, and Baarda's w-test flags the step with the largest standardized residual. Only that step is re-derived, and the planner adds redundancy where the redundancy numbers show steps that cannot be checked.",
+  "value": "Long chains locate their own blunders and design themselves to be checkable, so errors do not silently compound."
+ },
+ {
+  "id": "g1_core#3",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Unseen-Mass Coverage Estimator",
+  "mech": "For each query, the system draws several decorrelated derivations, each with a different decomposition, persona, or retrieval seed. It clusters the considerations, candidate answers and counterexamples they produce, then computes Chao1 and Good–Turing estimates from the singleton and doubleton counts. The result is an estimate of the probability mass of relevant items it has not yet seen. Search continues until estimated coverage passes a target, and the output reports that remaining unseen mass.",
+  "value": "It gives the system a quantitative sense of how much it has not yet considered, which tells it when to stop searching and when to flag an answer as incomplete."
+ },
+ {
+  "id": "g1_reframe#1",
+  "label": "g1_reframe",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Subtractable Upbringing Ledger",
+  "mech": "During training, each distinct data stream (a corpus, a school of thought, a language community) writes into its own separate low-rank weight delta, so the model is stored as a base plus a ledger of experience deltas. At inference the system can add, remove or reweight deltas to bring up \"counterfactual selves\" that would have existed under a different upbringing. It runs these selves side by side and computes a structured diff of their beliefs. The ledger keeps growing as new streams arrive, and each stream stays a separable entry.",
+  "value": "It can answer \"what would I believe if I had never read X, or had grown up on Y instead?\", tracing a conclusion back to the experiences that formed it."
+ },
+ {
+  "id": "g1_reframe#2",
+  "label": "g1_reframe",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Oscillator-Entrained Timing Core",
+  "mech": "Representations are held as the phases and amplitudes of a large bank of coupled oscillators, not as static vectors. Inputs drive phase-locking, and the outputs are emitted at moments set by phase alignment rather than by a request-response cycle. Coupling strengths adapt from phase error against external rhythms such as speech cadence, music or other agents' actions. Learned coupling patterns are stored as reusable \"groove\" templates.",
+  "value": "It can act as a real-time timing partner that shares tempo with humans or other agents in improvisation, joint movement and overlapping conversation, not just answer prompts."
+ },
+ {
+  "id": "g1_reframe#3",
+  "label": "g1_reframe",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Sealed Commitment Register",
+  "mech": "Inference runs deterministically on quantized arithmetic, so any internal state can be replayed exactly. A commitment register stores cryptographic hashes of chosen latent plans, predictions or intentions at the moment they are formed. A policy layer is trained to be penalized for actions that conflict with open commitments. Later the system can reveal a commitment and prove by replay, or with a zero-knowledge proof, what it believed or intended at that earlier time.",
+  "value": "It lets an AI make credible precommitments, sealed bets and verifiable promises to people or other AIs, opening up negotiation, contracts and game-theoretic coordination it cannot take part in today."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Exponent-Tagged Quantity Arithmetic",
+  "mech": "Every internal numeric slot carries a short integer vector of exponents over a few base \"kinds\". Multiplying two slots adds their vectors. Adding or comparing two slots is only allowed when their vectors are identical, and a mismatch stops the step and raises a flag. Tag vectors are not hand-assigned. Across many episodes the system searches for products of observed quantities that stay constant, and it solves an integer linear system so that those products come out with a zero vector. Each repeated mismatch flag is a signal to refine the base kinds, by splitting one or adding one.",
+  "value": "Reasoning can no longer produce results that combine incompatible kinds of quantity, and the system finds conserved combinations in raw measurements on its own."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Backward-Recovery Residual Audit",
+  "mech": "Each derivation step is built from operations that can be run in reverse. Information a step cannot reverse is written to an explicit residual register instead of being thrown away. After producing an output, the system runs the chain backward to rebuild the inputs. Residual bits that the inputs cannot account for mark exactly the spans where new content was added rather than derived. Training lowers the count of unexplained residual bits for each claim, and outputs are labelled by how much residual they carry.",
+  "value": "Each statement can be checked mechanically to show whether it follows from the given material or was made up."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Observer-Partitioned State Copies",
+  "mech": "The system keeps one separate copy of the world state for each agent in a scene, plus one ground-truth copy. Events are sent through gated channels, and a copy is updated only if a learned visibility function says that agent saw or was told about the event. Unseen events leave the copy stale on purpose. Nested copies, meaning what agent A holds about agent B's copy, are created on demand down to a fixed depth. The visibility function is trained on the mismatch between the actions a copy predicts for its agent and the actions that agent actually takes.",
+  "value": "The system can track false and nested beliefs reliably across long stories, negotiations and deception."
+ },
+ {
+  "id": "g1_loop#1",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Complementation-Driven Module Fission",
+  "mech": "Failures are logged as \"mutants,\" and pairs are crossed by swapping internal states between their runs. Pairs that fail to recover are grouped as sharing one unit. A unit that holds failures from unrelated groups is split and its connections are reassigned. The stored complementation table grows over time and guides later splits.",
+  "value": "The modular structure follows the real fault lines of what the model can and cannot do, so a fix in one place does not break something else."
+ },
+ {
+  "id": "g1_loop#2",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Curl-Triggered Concept Splitting",
+  "mech": "The model learns transformation maps between concepts and contexts. It decomposes them by Hodge decomposition to find cycles whose sum is not zero. Where curl persists, it adds a new latent context dimension and splits the concept along it until the cycles close. The split concepts are stored with the cycle that triggered them.",
+  "value": "The model finds ambiguities it was not told about and gives each meaning its own concept, instead of averaging two incompatible ones."
+ },
+ {
+  "id": "g1_loop#3",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Gauge-R&R Feature Auditing",
+  "mech": "Each feature's variance is split into run-to-run noise, surface-form variance and content variance. Features above a GRR threshold are re-typed as nuisance channels. Downstream reads move to rebuilt content-only features, and GRR scores are stored and checked again over time.",
+  "value": "Reasoning runs only on features shown to measure content, which removes failures caused by sensitivity to phrasing."
  }
 ]

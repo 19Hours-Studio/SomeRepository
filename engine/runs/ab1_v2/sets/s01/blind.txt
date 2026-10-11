@@ -1,0 +1,60 @@
+A01
+MECHANISM: A candidate inference step must survive K sequential, irreversible holding stages before it is committed. At each stage it is re-tested for match against an independently perturbed context, and if it detaches it resets to the beginning rather than to the previous stage. Errors therefore decay roughly as f^K. The number of stages a candidate survives gives a confidence score, and the system can raise K wherever stakes are high.
+VALUE: Reasoning accuracy can be bought with compute in a predictable, near-exponential way, instead of being capped by a single forward pass.
+
+A02
+MECHANISM: Closes G1. The system does not parse the input directly. It applies a large set of small edits to the raw input (swapping a token or phrase, inpainting an image patch, shifting time) and records how each edit changes a frozen predictor's output distribution. Edits are clustered by their effect signature, and each cluster becomes one variable whose values are the observed edit outcomes. A typed link is added wherever a pair of clusters shows a non-additive second-order effect, meaning editing both does not equal the sum of editing each. The edit library and clusters are stored, and the clustering is refit as new inputs come in, so the structured form is built from the input itself rather than hand-specified.
+VALUE: It turns "parse the input into the representation" into a measurable procedure that works the same way on text, pixels and sensor streams.
+
+A03
+MECHANISM: Every derivation path to a candidate answer contributes a complex amplitude, and the path's phase is set by the assumptions it relies on. Paths that support an answer through incompatible assumptions cancel each other out, while paths that agree reinforce each other. The final confidence is the squared magnitude after summing. The phase assignments are learned, so that recurring conflicting assumption pairs become orthogonal or opposed.
+VALUE: The system can represent "many reasons that cancel out" as real uncertainty, which averaging probabilities cannot express, so it stops being overconfident when it has many weak, conflicting justifications.
+
+A04
+MECHANISM: Every layer and every reasoning step is a bijection, built from invertible couplings with explicit "garbage" registers, so each output can be run backward exactly to the inputs and training examples that produced it. Learning is done as reversible updates that are logged as compact inverse operations. To forget a datum, or to undo a conclusion, the system uncomputes the matching update chain instead of retraining. Nothing is erased irreversibly, so in principle the system also runs near the thermodynamic limit.
+VALUE: Exact, verifiable unlearning and bit-level provenance for any output, which approximate gradient-based models cannot give.
+
+A05
+MECHANISM: The system computes the Allan deviation of its prediction residuals across context lag. When the deviation rises at τ\*, it creates a new recurrent state with time constant τ\*. It keeps that state only if the rise in deviation flattens afterwards.
+VALUE: Memory gets exactly the timescales that the data's hidden drift requires.
+
+A06
+MECHANISM: A slow, general deliberative solver handles new problems and records the step trace it executes. When a trace becomes hot, it is compiled into a fast specialized routine with explicit guard predicates, which are the input conditions the trace assumed. At runtime, a failed guard falls back to the solver and increments a counter on that exit. An exit that keeps failing is compiled into its own child trace, so the trace tree grows and existing traces are never overwritten.
+VALUE: The system gains new skills from a few experiences, with no gradient retraining and no forgetting, because old traces stay intact behind their guards.
+
+A07
+MECHANISM: For each module, the system tests whether paired feature co-activations match the products of their marginal frequencies. A heterozygote-like deficit indicates two pooled subpopulations, so the module splits in two, inputs are assigned by admixture inference, and a router is learned. Over time, splits build a lineage tree of specialized modules.
+VALUE: The architecture adds specialists when a statistic shows a module has been mixing two input types.
+
+A08
+MECHANISM: Closes G2. For each real task type, the system builds twin tasks in the easy direction, where the answer is fixed first and the problem is generated from it: run a program and then ask for its output, hide a known span and then ask to reconstruct it, compose a plan and then ask what goal it achieves. A discriminator is trained adversarially until it cannot tell the twins from real tasks. The system stores per-twin-cluster accuracy for every checker and solver. On a real task with no oracle, the correctness estimate is the measured accuracy on the twins that match it most closely.
+VALUE: It gives a calibrated, always-available correctness signal on tasks where no verified outcome will ever arrive.
+
+A09
+MECHANISM: Every internal quantity carries an exponent vector over a growing set of base kinds, and operations may only combine compatible vectors. The system keeps rescaling or swapping kinds in its own inputs and checks that its outputs change exactly as the exponents predict. Each failure splits a kind, adds a new one, or revises an exponent.
+VALUE: Reliable extrapolation far beyond the magnitudes in its experience, plus automatic detection of answers that make no sense.
+
+A10
+MECHANISM: Closes G4. Every cutoff (surprise, "similar enough", "least-supported", stopping tolerance) is replaced by an online conformal p-value. The p-value is computed against a null distribution built from shuffled, time-reversed or context-permuted copies of the system's own recent data stream. All thresholds draw on one global error budget using alpha-investing. Each test spends some of that budget to fire, and it earns budget back when a firing is later confirmed useful by downstream prediction gain, so cutoffs tighten or loosen automatically as conditions change. The stored state is only the per-test null samples and the current wealth balance.
+VALUE: Behavior that used to depend on hand-tuned constants becomes self-calibrating with a guaranteed bound on the total false-alarm rate, including in a new domain with no history.
+
+A11
+MECHANISM: A capability counts as kept only if the system can write a short, human-readable lesson that lets a fresh, small, randomly initialized student reach the same behavior within a fixed budget of examples. Anything that cannot be transmitted this way is pruned on each generation cycle, and the surviving lessons become the next generation's training core (iterated cultural learning). The system adapts by changing what it teaches, not by refining a model of the world.
+VALUE: Knowledge becomes explicit, portable and auditable by design, and opaque shortcuts that cannot be taught are removed systematically.
+
+A12
+MECHANISM: Concepts are joints and learned relations are bars. The system periodically computes the spectrum of the rigidity matrix. Floppy modes trigger acquisition of new bracing relations, and self-stress states split the node along the eigenvector of the stress. The concept frame is stored, and it grows or splits as these spectral tests fire.
+VALUE: The system can find for itself which concepts are underdetermined and which are conflated, and repair them.
+
+A13
+MECHANISM: Knowledge is also held as short, explicit lessons. Periodically a small, empty student is rebuilt using only those lessons and scored on held-out cases. Lessons linked to the student's failures are rewritten or split, and lessons whose removal leaves the score unchanged are deleted. The size of the gap between the system's accuracy and the student's drives the rewriting.
+VALUE: Unspoken, unexplainable competence becomes explicit, checkable knowledge that can be passed on, so the system knows which of its skills it actually understands.
+
+A14
+MECHANISM: Every latent quantity carries a learned vector of integer "dimension" exponents. These are inferred so that every observed relation is dimensionally homogeneous, by keeping the dimension matrix's integer nullspace consistent across relations. Learned laws are stored only as functions of the dimensionless groups the Pi theorem derives from that matrix. When no consistent assignment exists, the system takes it as a sign of a missing hidden quantity and introduces one.
+VALUE: A relation learned in one regime transfers exactly to unseen scales and configurations that share the same dimensionless groups.
+
+A15
+MECHANISM: Candidate partial answers are injected as phase-coded waves into a grid of oscillating cells. Contradictory candidates get opposite phase and cancel, while mutually consistent ones reinforce into standing peaks. Cells that repeatedly hold strong amplitude stiffen, cutting lasting channels that bias future propagation. The stable peak pattern is read out as the answer.
+VALUE: Many alternatives can be searched at the same time, with inconsistency removed physically rather than candidate by candidate.
+
