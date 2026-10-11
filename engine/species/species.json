@@ -1,0 +1,17 @@
+{
+ "symptomport": {
+  "born_in": "ab1_v16",
+  "ops": "cross:loop+core mutate:loop cross:neg+mech",
+  "fitness": []
+ },
+ "backloop": {
+  "born_in": "ab1_v16",
+  "ops": "cross:loop+core mutate:loop cross:neg+mech",
+  "fitness": []
+ },
+ "mechneg": {
+  "born_in": "ab1_v16",
+  "ops": "cross:loop+core mutate:loop cross:neg+mech",
+  "fitness": []
+ }
+}

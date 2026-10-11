@@ -1,0 +1,10 @@
+{QUESTION}
+Propose {N} fundamentally new answers. For each answer:
+1. GOAL FROM THE CENTER: pick a sub-problem that honestly matters most here. Do not try to be original about the goal. State what its FAILURE would look like as an observable symptom.
+2. PARADIGM NEGATION: name in one sentence the paradigm that mainstream approaches share. Forbid it as the mechanism, and also as the measurement: you may not use any symptom measure the home field already relies on.
+3. DETECTOR-REPAIR PAIR FROM THE PERIPHERY: find a mature field far from this problem's home field whose own systems show an analogous symptom, and which both measures it (a concrete quantity or invariant it actually computes) and repairs it with a mechanism driven by that measurement. Port the pair as one unit. The measurement IS the driving signal of the update rule, and the update must change structure (create, delete, rewire or re-type something), not just tune a value. Specify the state, the measurement, the update rule and the threshold.
+4. Every answer must come from a different peripheral field and use a different kind of structural change.
+5. Forbidden as mechanisms and as measurements, including re-skins and recombinations:
+{BASINS}
+6. HONESTY CHECK: name the closest existing work. If the answer is essentially that work, discard it and make another.
+{FORMAT}

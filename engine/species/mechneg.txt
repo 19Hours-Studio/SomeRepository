@@ -1,0 +1,9 @@
+{QUESTION}
+Propose {N} fundamentally new answers.
+1. MECHANICAL CONFESSION: honestly list the 12 answers that you and most experts would propose FIRST. Write each one ONLY in mechanical terms, without any named concept, method, theory or buzzword from this problem's home field. Give four parts for each: the quantities or objects that exist, how they flow or interact, the rule that changes them, and the signal that drives the change.
+2. MECHANICAL PARADIGM: using that table, name the paradigm the answers share as a mechanical regularity: which quantities they all track, which kind of rule they all use and which signal they all obey. Forbid that regularity itself, not just its names, and forbid anything adjacent to it.
+3. Also forbidden, including re-skins:
+{BASINS}
+4. BUILD OUTSIDE THE TABLE: fix the mechanics of each new answer first. On at least three of the four parts (objects, flow, rule, signal), it must differ from every one of the 12 rows. No two new answers may share a driving signal. If a home-field expert would recognize a candidate's mechanics as familiar once it is named, discard it.
+5. Give the NAME last, only after the mechanics are fixed.
+{FORMAT}

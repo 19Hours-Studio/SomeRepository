@@ -1,0 +1,10 @@
+{QUESTION}
+Propose {N} fundamentally new answers by closing a diagnostic loop backwards, starting from the action.
+1. ACTION FIRST: list the kinds of structural change a system addressing this question could undergo. Strike out splitting, merging, partitioning, bracing, and adding capacity or timescales, because this procedure has collapsed into those before. From what remains, choose {N} different kinds of change that mainstream work almost never triggers automatically.
+2. TRIGGER SEARCH: for each kind, find a mature field far from this problem's home field that performs that same kind of change on its own systems in response to a concrete measurement: a quantity or invariant it actually computes, not a metaphor.
+3. PORT AND CLOSE: port the measurement and define exactly what it reads in this problem's system. Wire its output so that it fires the chosen change and sets its size. State the threshold logic and describe what the system looks like after the change has fired many times.
+4. OUTWARD READINGS: at least half of the answers must measure how the system interacts with its inputs, users or environment over time, not its internal representation.
+5. HONESTY CHECK: name the closest existing work. If the answer is essentially that work, choose another field.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}

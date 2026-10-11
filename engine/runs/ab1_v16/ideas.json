@@ -79,5 +79,140 @@
   "name": "Verifier-Halted Constraint Relaxation",
   "mech": "A query is turned into a set of variables, which are partial answers and sub-goals, plus constraints between them that are learned or extracted from the query. Local update rules pass messages between these units, and the system keeps iterating until either a symbolic checker or a learned checker confirms that every constraint is met, or the energy of the system stops falling. When progress stalls, the system adds intermediate variables, for example lemmas or sub-plans, and stores successful arrangements as reusable templates.",
   "value": "The system could spend compute in proportion to how hard a problem is and solve multi-step problems it cannot solve in one pass, with a clear signal for when it has succeeded and when it has failed."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Invertible Abductive Core",
+  "mech": "Every layer is an exact bijection, built from coupling flows that carry an explicit \"residual\" latent that keeps all discarded information, so any computation can be run backward without loss. To answer \"what must have been true for X to happen?\", the system fixes the output and samples the residual latent while running backward. This gives the full set of inputs that are exactly consistent with X. Because the mapping can be reversed, the system can also take one training example's contribution back out of the weights by applying its inverse update exactly. Approximate fine-tuning is not needed for this.",
+  "value": "Exact abduction and exact, provable unlearning and provenance, which a forward-only network that discards information cannot provide."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Pre-committed Belief Hashing",
+  "mech": "Before the system sees evidence or produces a reasoning trace, it must publish a cryptographic hash of its quantized answer distribution, plus a salt, to an external log it cannot change. After the evidence arrives, it reveals the commitment. An independent verifier then checks whether the final answer departs from the committed one more than the evidence statistically justifies. Training penalizes departures without justification and rewards accurate commitments, so the architecture learns to keep \"what I believed beforehand\" separate from \"what I can rationalize afterward\".",
+  "value": "Third parties can check that the system is not rewriting its beliefs after the fact, which is a property no current LLM can prove about itself."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Self-Built Instrument Channels",
+  "mech": "The input layer has a variable width. When the system cannot reduce its loss on some quantity from its existing inputs, it writes and deploys an external probe: a code instrumentation hook, a sensor configuration, a lab-assay protocol or a database query. Whatever stream the probe produces is attached as a new typed input channel with its own learned encoder. Channels whose removal does not hurt downstream performance are pruned, so over time the system's perceptual alphabet becomes a set of instruments it designed itself.",
+  "value": "It can perceive and reason about quantities that no human ever chose to give it, instead of being limited to the fixed modalities it was trained on."
+ },
+ {
+  "id": "g1_core#1",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Localized Ensemble Kalman Learning",
+  "mech": "The system keeps an ensemble of perturbed copies of a set of adapter parameters. Each new observation is assimilated by a Kalman-gain update computed from the ensemble's covariance between parameters and predictions; no gradients are used. The gain is tapered by distance in representation space, so an update only shifts parameters that covary with nearby inputs. Inflation keeps the ensemble's spread from collapsing.",
+  "value": "The system can learn continuously from single examples while deployed, with interference limited by construction rather than by replay."
+ },
+ {
+  "id": "g1_core#2",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Closure-Invariant Self-Calibration",
+  "mech": "Each query is answered through many short loops of different modules or routes (A→B, B→C, A→C, and inverse maps). For each loop the system computes the closure residual, in which each module's systematic error cancels. A least-squares solve over thousands of these triangles estimates and stores a bias term for each module. Those terms correct later outputs, and a large residual that remains after correction flags an unreliable answer.",
+  "value": "Error detection and correction become intrinsic and need no labels, because errors are attributed to specific components."
+ },
+ {
+  "id": "g1_core#3",
+  "label": "g1_core",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Saturating Equivalence-Graph Reasoning",
+  "mech": "The reasoning state is an e-graph that holds all known equivalent descriptions of the problem at once, with no destructive rewriting. Rewrite rules mined from solved episodes are applied until saturation or until a budget runs out. The system then extracts the representation with the lowest cost under a learned \"solvability\" cost. New rules are added when an extracted form leads to success.",
+  "value": "Unfamiliar problems become solvable when some equivalent re-description reaches already-mastered territory, and rules combine across domains."
+ },
+ {
+  "id": "g1_symptomport#1",
+  "label": "g1_symptomport",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Error-Estimated Adaptive Concept Mesh",
+  "mech": "The latent space is divided into cells, each holding its own local linear map. For each cell, a Zienkiewicz-Zhu-style estimator compares the cell's Jacobian with the Jacobian recovered from its neighbours. Cells whose discrepancy is above 2x the mean are split into children with new maps, and calm siblings are merged. Resolution grows only where distinctions actually change.",
+  "value": "It can tell apart near-identical cases with different outcomes, without uniform scaling or labelled error."
+ },
+ {
+  "id": "g1_symptomport#2",
+  "label": "g1_symptomport",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Homoplasy-Driven Taxonomy Regrafting",
+  "mech": "Concepts sit in a rooted tree with property characters at the leaves. The system computes the parsimony consistency index of each subtree. When convergent properties push the index below 0.6, it prunes that subtree and regrafts it where the total tree length is smallest. Inheritance inference only runs over the repaired tree.",
+  "value": "Properties inferred down the hierarchy stay valid, and the system restructures its own categories when inheritance fails."
+ },
+ {
+  "id": "g1_symptomport#3",
+  "label": "g1_symptomport",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Normalized-Residual Premise Re-typing",
+  "mech": "Premises and rule links are treated as redundant meters that fit one weighted least-squares situation estimate. For each premise, the system computes a residual against the others, normalized by its residual covariance. If the largest is above 3, that premise is re-typed as suspect, or a rule link's applies/doesn't-apply status is flipped, and the estimate is recomputed until every residual passes.",
+  "value": "A single corrupt input can no longer quietly distort the whole conclusion, because redundancy finds it and isolates it."
+ },
+ {
+  "id": "g1_backloop#1",
+  "label": "g1_backloop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Conditioning-Triggered Chart Switching",
+  "mech": "During latent multi-step reasoning, the system computes the condition number of its step map's Jacobian. When it crosses a threshold, the system switches to a stored invertible reparameterization (a chart) and rescales its step size as celestial mechanics does with KS regularization. New charts and transition maps are learned where singularities keep recurring, building an atlas.",
+  "value": "Reasoning stays stable through near-singular regions, where today's models silently degrade."
+ },
+ {
+  "id": "g1_backloop#2",
+  "label": "g1_backloop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Pharmacovigilance Rollback of Updates",
+  "mech": "Each weight update carries a provenance ID and is linked to the interactions it influenced. User corrections, re-asks and abandonments count as adverse events. A proportional reporting ratio with the Evans thresholds flags harmful updates, which are subtracted partially or fully in proportion to the signal.",
+  "value": "A continually learning system can withdraw its own bad lessons, judged by evidence from real use."
+ },
+ {
+  "id": "g1_backloop#3",
+  "label": "g1_backloop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Error Reproduction-Number Quarantine",
+  "mech": "The system tracks how its emitted claims come back to it through user prompts and documents. For refuted claims it estimates R_t in each embedding region. If R_t > 1, the region is sealed for generation-interval × log(R_t), and it may answer only from fresh external sources.",
+  "value": "The system can contain errors that spread through its users before they turn into consensus it has fed back to itself."
+ },
+ {
+  "id": "g1_mechneg#1",
+  "label": "g1_mechneg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Path-Multiplicity Primitive Compilation",
+  "mech": "Background random walks keep re-deriving conclusions from stored facts along many different routes. A tally records how many independent routes reach each conclusion (routes sharing no intermediate fact count separately). When the tally passes a threshold, the conclusion is frozen into a new atomic primitive that later walks can use as one step. Primitives that are no longer reachable by several routes are dissolved back into their parts.",
+  "value": "It builds new concepts from how well a conclusion is held together by the rest of what it knows, with no outside feedback, so abstraction can grow in domains where nothing ever says \"correct.\""
+ },
+ {
+  "id": "g1_mechneg#2",
+  "label": "g1_mechneg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Autocatalytic Concept Chemistry",
+  "mech": "Knowledge is a pool of symbolic \"species\" at varying concentrations, plus rewrite reactions that consume some species and produce others. Each cycle, every species is diluted at a fixed rate. It survives only if the reactions it takes part in regenerate it. New reactions come from random recombination, and the set that persists is whatever forms closed, self-maintaining loops.",
+  "value": "Concepts are defined by the network of processes that keep producing them, which gives self-sustaining, open-ended structure without any objective."
+ },
+ {
+  "id": "g1_mechneg#3",
+  "label": "g1_mechneg",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Commutation-Carved Modularity",
+  "mech": "Each experience is logged as an ordered sequence of operations. A background process swaps neighbouring pairs and tests whether the resulting record is identical. Operations that always commute are split into separate parallel threads with no shared state. Operations that never commute are fused into one indivisible unit, so the system's architecture becomes a map of the world's independence structure.",
+  "value": "The system can split the world into independent parts and recombine them freely, which gives built-in compositional generalization."
  }
 ]

@@ -1,0 +1,30 @@
+What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.
+Propose 3 fundamentally new answers by closing a diagnostic loop backwards, starting from the action.
+1. ACTION FIRST: list the kinds of structural change a system addressing this question could undergo. Strike out splitting, merging, partitioning, bracing, and adding capacity or timescales, because this procedure has collapsed into those before. From what remains, choose 3 different kinds of change that mainstream work almost never triggers automatically.
+2. TRIGGER SEARCH: for each kind, find a mature field far from this problem's home field that performs that same kind of change on its own systems in response to a concrete measurement: a quantity or invariant it actually computes, not a metaphor.
+3. PORT AND CLOSE: port the measurement and define exactly what it reads in this problem's system. Wire its output so that it fires the chosen change and sets its size. State the threshold logic and describe what the system looks like after the change has fired many times.
+4. OUTWARD READINGS: at least half of the answers must measure how the system interacts with its inputs, users or environment over time, not its internal representation.
+5. HONESTY CHECK: name the closest existing work. If the answer is essentially that work, choose another field.
+Families that models have been observed to converge on (forbidden, including re-skins):
+PROGSYN: Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions
+CAUSGR: Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph
+COMPMAP: Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning
+MODMKT: Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement
+TMS: Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes
+CONSOL: Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting
+ENERGY: Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates
+WMPLAN: Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts
+ACTINF: Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience
+VSA: Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations
+CURIO: Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress
+GWS: Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control
+PLAST: Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Keep everything under 500 words.
+
