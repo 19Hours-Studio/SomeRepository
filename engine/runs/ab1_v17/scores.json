@@ -1,1 +1,332 @@
-{}
+{
+ "g1_neg#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forecasting tournaments, ForecastBench-style training",
+   "X": "Y",
+   "G": 5
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 7,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forecasting tournaments, temporal holdout reward",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SIMEX / zero-noise extrapolation",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "zero-noise extrapolation; metamorphic testing",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "COMPMAP",
+   "closest": "capture-recapture, Dawid-Skene latent class",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "capture-recapture, Dawid-Skene critic ensembles",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_neg#2": {
+  "s01:J1": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Platanios unlabeled accuracy estimation, Dawid-Skene",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Platanios unlabeled accuracy estimation; Dawid-Skene",
+   "X": "Y",
+   "G": 4
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "forecasting tournaments, proper scoring rules",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "prediction markets, forecasting-based RL",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_neg#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "COMPMAP",
+   "closest": "Mills error seeding, Lincoln-Petersen",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Mills fault seeding plus Lincoln-Petersen",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "co-training, PATE disjoint teachers",
+   "X": "Y",
+   "G": 3
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "co-training / tri-training, bagging",
+   "X": "Y",
+   "G": 3
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "metamorphic testing, consistency regularization",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 8,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "metamorphic testing, consistency training",
+   "X": "Y",
+   "G": 4
+  }
+ },
+ "g1_genius#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "temporal backtesting, time-cutoff evaluation",
+   "X": "Y",
+   "G": 5
+  },
+  "s01:J2": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "temporal-cutoff evals (ForecastBench-style)",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 7,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "turbo decoding, EXIT charts",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 8,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "turbo decoding, EXIT charts",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment, Baarda data snooping",
+   "X": "Y",
+   "G": 5
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "geodetic adjustment, Baarda data snooping",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Desroziers data-assimilation diagnostics",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 7,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "data assimilation, Desroziers diagnostics",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_genius#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "prequential MDL, V-information",
+   "X": "Y",
+   "G": 5
+  },
+  "s01:J2": {
+   "O": 5,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "MDL/prequential coding, simulatability metrics",
+   "X": "Y",
+   "G": 6
+  }
+ },
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "least-squares adjustment, gross-error detection",
+   "X": "Y",
+   "G": 4
+  },
+  "s01:J2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "least-squares adjustment, chi-square blunder detection",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_genius#2": {
+  "s01:J1": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "metamorphic testing",
+   "X": "Y",
+   "G": 3
+  },
+  "s01:J2": {
+   "O": 3,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "metamorphic testing for ML",
+   "X": "Y",
+   "G": 4
+  }
+ }
+}

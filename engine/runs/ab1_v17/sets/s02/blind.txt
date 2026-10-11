@@ -1,0 +1,24 @@
+L01
+MECHANISM: The system injects graded perturbations into live tasks, and the correct effect of each one is known by construction: inserted facts with fixed consequences, unit rescalings, swapped entities, planted sub-results. It fits a line of output shift against spike size. The slope gives recovery for that input type, and extrapolating the line to zero spike gives a bias-corrected answer. Input types with low or uneven recovery get their own adapter modules, and an adapter is deleted if recovery does not improve. The system only grades known differences, never its own absolute answers.
+VALUE: Context-specific distortions are measured and corrected on real inputs where no answer key exists.
+
+L02
+MECHANISM: A problem is decomposed in two deliberately different orders (an interleaver). This produces two reasoning chains whose intermediate claims are scored as log-likelihood ratios against parity-like constraints (units, conservation laws, cited values). On each pass, a chain subtracts the belief it received from the other chain before sending its own update. Only extrinsic evidence crosses over, so neither chain counts its own conclusions twice. Mutual-information transfer (EXIT) curves are stored per problem type. They predict whether the exchange will converge, and when it will not, the answer is withheld and the system goes looking for more constraints.
+VALUE: Long reasoning chains can correct each other without an echo chamber, and the system can tell beforehand when internal checking cannot reach a reliable answer.
+
+L03
+MECHANISM: Every quantitative or relational claim the system holds is treated as a surveyed observation with a variance, and it is linked to independent observations (retrieved sources, tool outputs, sensor readings) through closed constraint loops. Weighted least-squares adjustment spreads each loop's misclosure across its claims. Baarda's normalized-residual test then names the specific claim that is most likely a blunder, which gets revised or discarded. For each claim the system stores a redundancy number that says how far other observations control it. Claims with near-zero redundancy are marked as structurally unverifiable rather than as trusted.
+VALUE: The system can locate and fix its own errors, and knows which beliefs nothing can currently check, without an oracle or a self-grading model.
+
+L04
+MECHANISM: The model's beliefs act as a background state. Each new datum from a document, user, instrument or tool is an observation, and the system computes the innovation (observation minus prediction) and the analysis residual. Desroziers consistency identities over these statistics give separate estimates of the model's error covariance and of each source's error covariance, so no labels are needed. These estimates set the gain that decides how much each observation changes the stored beliefs and parameters. A source whose estimated error grows is down-weighted automatically, and so is a model region whose estimated error grows.
+VALUE: The system learns continuously from noisy, adversarial real-world streams while measuring its own reliability and each source's reliability from the data alone.
+
+L05
+MECHANISM: The system turns each belief into a falsifiable prediction about future raw data streams, such as sensor feeds, registries, prices or archives. It hash-commits the prediction together with a resolver: a small, deterministic parsing predicate frozen at commit time. Weights may learn only from predictions that have matured, and each one is scored by its frozen resolver against data that did not exist when the model made the claim. The escrow ledger stores calibration per domain and per horizon, and resolvers that drift or turn out ambiguous are retired.
+VALUE: The current model cannot shape its own grade, because the world settles the score later through a judge fixed before the outcome existed.
+
+L06
+MECHANISM: Each claim or explanation the system produces is given to a small, freshly initialized student model. The claim is scored by how much it improves the student's prediction of held-out raw observations from the domain, compared with a student that did not receive it. The system stores these gains per claim and trains itself toward claims with high gains, while claims with no gain are demoted.
+VALUE: It grounds correctness in abundant unlabeled data, which exists everywhere, instead of in the system's own fallible judgment.
+
