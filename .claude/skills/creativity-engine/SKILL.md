@@ -34,12 +34,17 @@ Literature checks use `subagent_type: general-purpose` (they need WebSearch) wit
 After an agent finishes, ingest from its transcript: `--transcript <output_file from the Agent launch result>`.
 Launch independent agents in one message; never read transcripts into your own context.
 
-## Default: layered engine v1.8-L (research/stage1-creativity/06-engine-v17.md §9)
-Layer A = originality: the v1.5 procedure below (no crux in generators). Layer B = genius + value: get the crux
-(`set R sXX --labels map_1,map_2,map_3` then one agent on `prompt_crux.txt`, `family R sXX ...`), then split all engine
-ideas into sets of ~8 (`set R s97a --ids ...`), one agent per set on `prompt_valorize.txt`, `valorize R s97a --arm E2 ...`.
-The rewritten ideas form a new arm with `parent` links. Then concretize them and judge both arms (always with one plain judge).
-In the A/B, layer B raised O by +0.7 (never lowered it for any of 23 ideas), G by +1.0, and dropped rediscoveries to 0; V barely moved.
+## Default: engine v1.8 = layers A -> B -> C (research/stage1-creativity/06-engine-v17.md §9-10)
+- Layer A (originality): `python3 engine/ce.py portfolio` gives the gen-1 portfolio (bandit over all past runs);
+  run the procedure below without the crux in generators.
+- Crux: `set R s00c --labels map_1,map_2,map_3`, one agent on `prompt_crux.txt`, then `family R s00c ...`.
+- Layer B (genius): split the final engine ideas into sets of ~8 (`set R s97a --ids ...`), one agent per set on
+  `prompt_valorize.txt`, `valorize R s97a --arm EB --transcript ...`.
+- Layer C (value): same on the EB ideas with `prompt_value.txt` (`set R s96a --ids ...`), `valorize R s96a --arm EC ...`.
+- Judging: one judge on a set built with `--crux --genius` plus one PLAIN judge (set without them); report paired
+  child-vs-parent deltas (each layer's ideas keep a `parent` link) and `ce.py futurematch R` for literature-checked ideas.
+- Measured: B gives O +0.7, G +1.0; C gives V +0.2..+0.3; no idea ever lost V, almost none lost O. A->B->C matches
+  v1.7 on V and G with O +1.4. Biggest remaining lever: the crux decides what all ideas are about, so do the intent check.
 
 ## v1.7 option (crux in generation: best V, but O -1.0 vs layered)
 - Gen 1 portfolio: neg, core, loop, mech, genius. Gen 2: `prompt R evo_simple g2_evo1|g2_evo2 ...` (simplifying crossover) + immigrant of the best technique. Parents: `select ... --drop-known-basins --diverse --by ovg`. Screening/final sets: `--crux --genius`.
