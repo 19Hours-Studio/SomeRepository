@@ -1,0 +1,67 @@
+What fundamentally new architecture could give an AI system abilities that today's large language models fundamentally lack? Propose concrete architectural or algorithmic mechanisms - not scaling, and not incremental improvements of transformers.
+Propose new answers by EVOLVING existing candidates. You get 2 parent pairs. For each pair produce ONE offspring:
+1. FIND THE SHARED MOVE: identify the single idea that makes BOTH parents work - the move underneath their machinery.
+2. SIMPLIFY: the offspring is that move, made stronger, with everything else removed. It must be SIMPLER than either parent (fewer parts, a shorter core sentence), yet do at least what both parents do. Stacking the parents' mechanisms together is forbidden.
+3. MUTATE AWAY: the offspring must clearly differ from the parents' nearest published work (listed) and from every known family below.
+4. KEEP IT IMPORTANT: it must serve something that genuinely matters for the question.
+5. HONESTY CHECK: before the final section, name the closest existing work for each offspring; if it is essentially that, mutate again.
+Describe mechanisms concretely; give the NAME last.
+
+Known families (forbidden, including re-skins):
+PROGSYN: Library or population of small probabilistic programs as causal simulators, revised by program synthesis and chosen by compression, prediction and discriminating interventions
+CAUSGR: Explicit object/causal graph that predicts observations and revises its structure from prediction error (hidden variables, link splits, reversals), with interventions inside the graph
+COMPMAP: Embedding-indexed map of verified per-region error rates, used to choose between answering, abstaining, asking, or routing the region to learning
+MODMKT: Internal economy where different modules bid for compute, are paid by realized uncertainty reduction, and evolve through copying with mutation and retirement
+TMS: Persistent justification graph with contradiction checking and truth-maintenance retraction that propagates to dependent conclusions; generation must cite ledger nodes
+CONSOL: Surprise-triggered fast episodic store or weight patches, consolidated offline through replay, gated by interference and regression checks to avoid catastrophic forgetting
+ENERGY: Iterative energy-minimizing constraint satisfaction over variables and sub-goals, run until a checker confirms success, adding intermediate variables and storing templates
+WMPLAN: Learned latent predictive world model (JEPA-style) used for model-predictive planning and search over imagined rollouts
+ACTINF: Embodied active-inference agent that minimizes free energy through perception and action loops, grounding concepts in sensorimotor experience
+VSA: Vector-symbolic or hyperdimensional binding that gives compositional, variable-binding symbolic structure inside distributed representations
+CURIO: Intrinsically motivated, open-ended self-play that generates its own goals and curriculum through curiosity and learning progress
+GWS: Global-workspace architecture where specialist modules compete for a limited-capacity broadcast bottleneck, giving serial conscious-like control
+PLAST: Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference
+V14: Time-Sealed Commitment Escrow — The system turns each belief into a falsifiable prediction about future raw data streams, such as sensor feeds, registries, prices or archives. It hash-commits 
+V15: Triangulated Independent-View Accuracy — Three or more predictor lineages are trained on disjoint evidence channels about the same events, such as text reports, numeric logs and imagery. The channels a
+V16: Survey-Adjusted Belief Network — Every quantitative or relational claim the system holds is treated as a surveyed observation with a variance, and it is linked to independent observations (retr
+V17: Innovation-Diagnosed Continual Assimilation — The model's beliefs act as a background state. Each new datum from a document, user, instrument or tool is an observation, and the system computes the innovatio
+V18: Extrinsic-Exchange Turbo Reasoning — A problem is decomposed in two deliberately different orders (an interleaver). This produces two reasoning chains whose intermediate claims are scored as log-li
+V19: Reconciliation-Driven Derivation Pruning — Every quantity or claim the system asserts is computed along several derivation paths that share no sources, linked by arithmetic, unit and accounting identitie
+V20: Standard-Addition Matrix Calibration — The system injects graded perturbations into live tasks, and the correct effect of each one is known by construction: inserted facts with fixed consequences, un
+V21: Sealed Forecasts Against Time — Whenever the system makes a claim, it also writes down concrete, checkable predictions about data that has not arrived yet: future entries in incoming streams, 
+V22: Disjoint-Evidence Agreement Ledger — The raw evidence is split into partitions that do not overlap, and a separate copy of the system is trained on each one. The copies answer the same question ind
+V23: Known-Effect Transformation Audits — A small rule set, checked once by hand, holds transformations whose effect on the correct answer is fixed by construction. Examples: swapping units should resca
+V24: Walk-Forward Self-Backtesting — The system keeps snapshot copies of itself, each trained only on data before a strict cutoff date, and asks them questions that the archive settled after that d
+V25: Metamorphic-Relation Correctness Oracle — The system keeps a growing library of input transformations, each paired with a relation its outputs must provably satisfy: unit changes rescale answers, irrele
+V26: Teachability-Graded Claims — Each claim or explanation the system produces is given to a small, freshly initialized student model. The claim is scored by how much it improves the student's 
+
+PAIR 1
+ Parent A: MECHANISM: Every quantitative or relational claim the system holds is treated as a surveyed observation with a variance, and it is linked to independent observations (retrieved sources, tool outputs, sensor readings) through closed constraint loops. Weighted least-squares adjustment spreads each loop's misclosure across its claims. Baarda's normalized-residual test then names the specific claim that is most likely a blunder, which gets revised or discarded. For each claim the system stores a redundancy number that says how far other observations control it. Claims with near-zero redundancy are marked as structurally unverifiable rather than as trusted.
+   VALUE: The system can locate and fix its own errors, and knows which beliefs nothing can currently check, without an oracle or a self-grading model.
+   nearest published work: Baarda data snooping and reliability/redundancy theory in geodetic least-squares adjustment (1968/1977; review "A half century of Baarda's concept of reliability" https://agrimensura.florianopolis.ifsc.edu.br/wp-content/uploads/2026/07/A-half-century-of-Baarda-s-concept-of-reliability-a-review-new-perspectives-and-applications.pdf) ; ConCoRD: Enhancing Self-Consistency and Performance of Pre-Trained Language Models through Natural Language Inference (2022) https://arxiv.org/abs/2211.11875 (also Belief Tree Propagation (2025) https://arxiv.org/html/2406.06950v2)
+ Parent B: MECHANISM: The system injects graded perturbations into live tasks, and the correct effect of each one is known by construction: inserted facts with fixed consequences, unit rescalings, swapped entities, planted sub-results. It fits a line of output shift against spike size. The slope gives recovery for that input type, and extrapolating the line to zero spike gives a bias-corrected answer. Input types with low or uneven recovery get their own adapter modules, and an adapter is deleted if recovery does not improve. The system only grades known differences, never its own absolute answers.
+   VALUE: Context-specific distortions are measured and corrected on real inputs where no answer key exists.
+   nearest published work: Standard addition method (analytical chemistry, long-established; spike known amounts, regress response, extrapolate to zero) https://en.wikipedia.org/wiki/Standard_addition ; LLMORPH: Automated Metamorphic Testing of Large Language Models (2026) https://arxiv.org/abs/2603.23611 (also Yee et al. error-injection recovery tests on chain of thought, found via search but not opened)
+
+PAIR 2
+ Parent A: MECHANISM: The model's beliefs act as a background state. Each new datum from a document, user, instrument or tool is an observation, and the system computes the innovation (observation minus prediction) and the analysis residual. Desroziers consistency identities over these statistics give separate estimates of the model's error covariance and of each source's error covariance, so no labels are needed. These estimates set the gain that decides how much each observation changes the stored beliefs and parameters. A source whose estimated error grows is down-weighted automatically, and so is a model region whose estimated error grows.
+   VALUE: The system learns continuously from noisy, adversarial real-world streams while measuring its own reliability and each source's reliability from the data alone.
+   nearest published work: Desroziers et al., Diagnosis of observation, background and analysis error statistics in observation space (2005) https://bibliotheque.meteo.fr/pub/DOC00017306-diagnosis-observation-background-and-analysis-erro.html ; Knowledge-Based Trust: Estimating the Trustworthiness of Web Sources (2015) https://arxiv.org/pdf/1502.03519 (Kalman-style LLM work: Filtering Beats Fine-Tuning: A Bayesian Kalman View of In-Context Learning (2026) https://arxiv.org/abs/2601.06100v1)
+ Parent B: MECHANISM: Each claim or explanation the system produces is given to a small, freshly initialized student model. The claim is scored by how much it improves the student's prediction of held-out raw observations from the domain, compared with a student that did not receive it. The system stores these gains per claim and trains itself toward claims with high gains, while claims with no gain are demoted.
+   VALUE: It grounds correctness in abundant unlabeled data, which exists everywhere, instead of in the system's own fallible judgment.
+   nearest published work: Can LLMs Learn by Teaching for Better Reasoning? A Preliminary Study (2024) https://arxiv.org/pdf/2406.14629 ; Can Language Models Teach Weaker Agents? Teacher Explanations Improve Students via Personalization (2023) https://arxiv.org/pdf/2306.09299 (also Sakana RLT https://sakana.ai/rlt/ and Schmidhuber's Driven by Compression Progress (2009) https://arxiv.org/pdf/0812.4360)
+
+
+The CRUX of this question - the hard part that typical answers delegate, assume away or leave unsolved - is:
+Each architecture's self-improvement loop needs a trustworthy correctness signal: the "realized uncertainty reduction" bids are paid on, the prediction errors that trigger patches or graph revisions, the "symbolic or learned checker", the "ground-truth-verified" error map, the regression suite and the contradiction detector. None of the answers says where that signal comes from in open-ended, real-world domains, where there is no oracle and the system would end up grading itself with the same fallible model it is trying to correct.
+Every answer must attack this crux directly with its own mechanism. An answer that hands the crux to an unspecified external verifier, component or future step does not count, however original it is.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 2 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

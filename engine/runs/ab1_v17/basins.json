@@ -92,5 +92,109 @@
   "desc": "Meta-learned local synaptic plasticity rules (fast weights, Hebbian) that let the network keep rewiring itself during inference",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V14",
+  "desc": "Time-Sealed Commitment Escrow — The system turns each belief into a falsifiable prediction about future raw data streams, such as sensor feeds, registries, prices or archives. It hash-commits ",
+  "source": "visited",
+  "members": [
+   "g1_neg#1"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Triangulated Independent-View Accuracy — Three or more predictor lineages are trained on disjoint evidence channels about the same events, such as text reports, numeric logs and imagery. The channels a",
+  "source": "visited",
+  "members": [
+   "g1_neg#2"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Survey-Adjusted Belief Network — Every quantitative or relational claim the system holds is treated as a surveyed observation with a variance, and it is linked to independent observations (retr",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Innovation-Diagnosed Continual Assimilation — The model's beliefs act as a background state. Each new datum from a document, user, instrument or tool is an observation, and the system computes the innovatio",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Extrinsic-Exchange Turbo Reasoning — A problem is decomposed in two deliberately different orders (an interleaver). This produces two reasoning chains whose intermediate claims are scored as log-li",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Reconciliation-Driven Derivation Pruning — Every quantity or claim the system asserts is computed along several derivation paths that share no sources, linked by arithmetic, unit and accounting identitie",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Standard-Addition Matrix Calibration — The system injects graded perturbations into live tasks, and the correct effect of each one is known by construction: inserted facts with fixed consequences, un",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Sealed Forecasts Against Time — Whenever the system makes a claim, it also writes down concrete, checkable predictions about data that has not arrived yet: future entries in incoming streams, ",
+  "source": "visited",
+  "members": [
+   "g1_mech#1"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Disjoint-Evidence Agreement Ledger — The raw evidence is split into partitions that do not overlap, and a separate copy of the system is trained on each one. The copies answer the same question ind",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Known-Effect Transformation Audits — A small rule set, checked once by hand, holds transformations whose effect on the correct answer is fixed by construction. Examples: swapping units should resca",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Walk-Forward Self-Backtesting — The system keeps snapshot copies of itself, each trained only on data before a strict cutoff date, and asks them questions that the archive settled after that d",
+  "source": "visited",
+  "members": [
+   "g1_genius#1"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Metamorphic-Relation Correctness Oracle — The system keeps a growing library of input transformations, each paired with a relation its outputs must provably satisfy: unit changes rescale answers, irrele",
+  "source": "visited",
+  "members": [
+   "g1_genius#2"
+  ]
+ },
+ {
+  "code": "V26",
+  "desc": "Teachability-Graded Claims — Each claim or explanation the system produces is given to a small, freshly initialized student model. The claim is scored by how much it improves the student's ",
+  "source": "visited",
+  "members": [
+   "g1_genius#3"
+  ]
  }
 ]
