@@ -1,0 +1,13 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Derive each idea from a real, unexplained empirical phenomenon of current models. Assume the phenomenon is a clue revealing what the RIGHT architecture would be, and design that architecture.
+Idea 1 clue: grokking: generalization appears suddenly long after the training loss reached zero
+Idea 2 clue: chain-of-thought helps even when the written reasoning is partly wrong
+Idea 3 clue: in-context learning: models learn new tasks from examples without any weight update
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.

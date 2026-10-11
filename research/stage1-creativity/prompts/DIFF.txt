@@ -1,0 +1,14 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Use a "text diffusion" process instead of writing ideas directly. For each idea you get a NOISE sequence of random words.
+Run 4 denoising steps. At each step rewrite the previous text so it becomes a bit more coherent, changing at most ~35% of the words; keep the global shape and surprising word choices from the noise where possible. Step 4 must be a coherent architecture idea. Show all steps briefly (one line each), then extract the ideas.
+NOISE 1: distance workaround markos queasysnail magenta utime markos lazily redirects rubini jmorris assume bmasia finditer baumann matches sipsolutions usability invariant analysis importing exchange seeking change payment closure devnull unavailable occurs kernellabs
+NOISE 2: lennart strategy devised involve declaration infos another cargo aware clever market requesting superblocks libfile ready owners likely intervening question convenience entities expires square difference adaptor adrian creations unlink linbit urandom
+NOISE 3: audience traffic processing behaves validates deprecation mismatches helpers kierank tdbtool distort terminology pixelstore definitions actively michael histogram development concat terminate terminated higdon roundrobin issued lawyer corporation doctest solution voluntarily rotate
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.

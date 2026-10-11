@@ -1,0 +1,13 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Each idea must be built by INVERTING two fundamental assumptions of current AI (assume the opposite is true and design what follows):
+Idea 1: invert 'input is processed as a sequence of discrete tokens' AND 'memory and computation are separate (weights vs. context)'
+Idea 2: invert 'learning is driven by minimizing a loss via gradients' AND 'the model does not choose what data it learns from'
+Idea 3: invert 'more parameters/data = more capability' AND 'a model is a single entity with one set of parameters'
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.

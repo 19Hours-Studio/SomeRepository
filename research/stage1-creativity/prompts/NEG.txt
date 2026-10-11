@@ -1,0 +1,10 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+First, honestly list the 12 ideas that you (and most AI researchers) would propose FIRST for this question - your own most obvious, most probable answers. Then treat all of them, and anything adjacent to them, as forbidden. Only then propose ideas that lie outside that whole region.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.

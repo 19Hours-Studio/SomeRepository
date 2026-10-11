@@ -1,0 +1,13 @@
+Propose 3 fundamentally new AI architecture ideas (not incremental tweaks of transformers).
+Each idea MUST be built from a mechanism genuinely derived from the random seed words given for it (not just decorated with them). Seed words were drawn at random from unrelated system files.
+Seeds for idea 1: problems repositories uaccess manager
+Seeds for idea 2: anibal updating silence commas
+Seeds for idea 3: hashable causing tiscali fixation
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: what is computed, what is stored, how it learns/adapts)
+DIFFERENCE: (1 sentence: what it can do that current architectures fundamentally cannot)
+(same for IDEA 2, IDEA 3)
+Do not use any tools. Reply with text only. Keep everything under 450 words.
