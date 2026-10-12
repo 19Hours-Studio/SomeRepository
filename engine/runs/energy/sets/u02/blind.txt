@@ -1,0 +1,32 @@
+T01
+MECHANISM: Calm, dark spells are forecast days ahead, so the charged state can be kinetically dead and take hours to days to activate, which gives almost no self-discharge without any containment (Overturns: stored energy must be available to dispatch instantly)
+VALUE: metastable charged states that keep for a decade; the reserve costs almost nothing to hold
+
+T02
+MECHANISM: Because lulls are forecast days ahead, energy capacity only has to exist during the event, so a medium that can be made in days and dissolved afterward ties up capital for just a few weeks a year. (Overturns: storage capacity is permanent capital that mostly sits idle)
+VALUE: yearly capacity cost falls by the utilization ratio, possibly 5-10x
+
+T03
+MECHANISM: The last kWh of a multi-week store may be used only once a decade, so each depth tier should be costed per use, and the deepest tiers can accept 10-30% efficiency if their capex per kWh is close to zero. (Overturns: a long-duration store is one uniform asset, sized and costed as a whole)
+VALUE: the deepest 50-70% of capacity at under 1 $/kWh, cutting total storage cost about 3-5x
+
+T04
+MECHANISM: Lulls are local while weather systems move, so a generator that travels hundreds of kilometers a day to wherever there is wind or sun turns the storage problem into a transport problem. (Overturns: generators sit at fixed sites, so storage must bridge local lulls)
+VALUE: could cut the multi-day storage needed by more than half
+
+T05
+MECHANISM: Material stocks that must exist anyway (in process pipelines, warehouses, strategic reserves) can hold energy in their state while their mass is owned for another purpose, so the medium costs no capital (Overturns: the storage medium must be bought for storage)
+VALUE: medium cost disappears and only the state-change hardware is paid for; about 5-10x cheaper
+
+T06
+MECHANISM: Much of a storage medium's cost is the energy embodied in making it, so producing the medium with curtailed electricity during surplus turns wasted energy into capital. (Overturns: storage capex is fixed upfront and has nothing to do with surplus energy)
+VALUE: 2-5x lower medium cost wherever embodied energy dominates
+
+T07
+MECHANISM: The capacity cost of a chemical store equals the carrying cost of its active mass, not its purchase price, if that mass is an existing commodity stockpile that is charged, discharged and returned still within its commercial specification. (Overturns: storage material must be bought and set aside for the store)
+VALUE: capacity cost falls to interest plus handling, roughly 10-30x below buying the material
+
+T08
+MECHANISM: Most of the cost of holding energy for weeks goes into preventing self-discharge with membranes and containment, and if an applied field or signal switches the discharge reaction rate instead, that hardware is no longer needed. (Overturns: charged reactants must be physically separated to stay charged)
+VALUE: removes the separator and tank costs that dominate long-duration capacity, perhaps 3-10x
+

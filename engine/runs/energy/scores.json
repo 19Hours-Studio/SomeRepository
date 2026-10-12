@@ -2875,5 +2875,485 @@
    "closest": "co-laminar membraneless Fe-Cr flow",
    "F": 5
   }
+ },
+ "pr_dissolve#2": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 2,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Form Energy/DAYS low-rate chemistry rationale"
+  }
+ },
+ "pr_assume#3": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 3,
+   "V": 3,
+   "R": "Y",
+   "B": "THERMAL",
+   "closest": "ambient-sink heat engines, ORC"
+  }
+ },
+ "pr_tail#5": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 3,
+   "V": 3,
+   "R": "N",
+   "B": "SUPERGRID",
+   "closest": "battery tankers, mobile storage"
+  }
+ },
+ "pr_dissolve#6": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 2,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "metal fuels, molecular solar thermal"
+  }
+ },
+ "pr_transfer#11": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "square-cube law, heap storage"
+  }
+ },
+ "pr_dissolve#1": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 2,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LDES cycle-life targets (DOE, Form)"
+  }
+ },
+ "pr_assume#8": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 2,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "power-to-X embodied energy, curtailment use"
+  }
+ },
+ "pr_tail#4": {
+  "s05p:J6": {
+   "O": 6,
+   "C": 2,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "just-in-time fuel synthesis"
+  }
+ },
+ "pr_transfer#1": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "metastable storage, molecular solar thermal"
+  }
+ },
+ "pr_assume#4": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "THERMAL",
+   "closest": "ATES / solar-assisted heat pumps"
+  }
+ },
+ "pr_assume#6": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 2,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "slow-start thermal plants, reserve tiers"
+  }
+ },
+ "pr_dissolve#9": {
+  "s05p:J6": {
+   "O": 6,
+   "C": 2,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "structural batteries, V2G"
+  }
+ },
+ "pr_tail#12": {
+  "s05p:J6": {
+   "O": 5,
+   "C": 1,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "photoswitches, gated catalysis"
+  }
+ },
+ "pr_transfer#12": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "FLEXLOAD",
+   "closest": "interruptible tariffs, demand response"
+  }
+ },
+ "pr_assume#7": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 3,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "asymmetric power-to-gas sizing"
+  }
+ },
+ "pr_tail#2": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 2,
+   "V": 4,
+   "R": "Y",
+   "B": "THERMAL",
+   "closest": "geothermal-assisted heat pump storage"
+  }
+ },
+ "pr_assume#9": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "seasonal pit thermal storage scaling"
+  }
+ },
+ "pr_transfer#4": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 2,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "power-to-X embodied energy, curtailment use"
+  }
+ },
+ "pr_dissolve#10": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 2,
+   "V": 6,
+   "R": "Y",
+   "B": "H2GEO",
+   "closest": "strategic fuel reserves, e-fuel stockpile"
+  }
+ },
+ "pr_transfer#7": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 2,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "redundancy/reliability engineering"
+  }
+ },
+ "pr_tail#7": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 2,
+   "V": 2,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Znamya, Reflect Orbital"
+  }
+ },
+ "pr_transfer#5": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Sepulveda 2021 LDES design space"
+  }
+ },
+ "pr_dissolve#5": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "square-cube law, seasonal stores"
+  }
+ },
+ "pr_transfer#8": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "spectral decomposition of storage needs"
+  }
+ },
+ "pr_transfer#10": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "V14",
+   "closest": "redox-targeting solid boosters"
+  }
+ },
+ "pr_dissolve#3": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "V23",
+   "closest": "membraneless biphasic/stratified batteries"
+  }
+ },
+ "pr_transfer#9": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 2,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LDES cycle-life targets"
+  }
+ },
+ "pr_dissolve#8": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 2,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "hydro reservoir/geothermal dispatch"
+  }
+ },
+ "pr_tail#6": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 2,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Farwind energy ships"
+  }
+ },
+ "pr_tail#11": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "METALAIR",
+   "closest": "seawater/metal-air batteries"
+  }
+ },
+ "pr_dissolve#7": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 2,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "thermochemical / metal-fuel cycles"
+  }
+ },
+ "pr_assume#2": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Sepulveda 2021 LDES design space"
+  }
+ },
+ "pr_transfer#3": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 3,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Form Energy low-rate chemistry rationale"
+  }
+ },
+ "pr_transfer#2": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "V23",
+   "closest": "membraneless stratified cells"
+  }
+ },
+ "pr_tail#9": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Sepulveda 2021 LDES design space"
+  }
+ },
+ "pr_assume#1": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 2,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "tiered reserves, strategic stockpiles"
+  }
+ },
+ "pr_assume#10": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 2,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "pumped hydro infrastructure financing"
+  }
+ },
+ "pr_tail#8": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 3,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "airborne wind energy"
+  }
+ },
+ "pr_transfer#6": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 2,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "strategic reserves, heavy-tail sizing"
+  }
+ },
+ "pr_tail#10": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 1,
+   "V": 2,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Hf-178m2 isomer battery"
+  }
+ },
+ "pr_dissolve#4": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 2,
+   "V": 5,
+   "R": "N",
+   "B": "IRONFUEL",
+   "closest": "open-air metal fuel stockpiles"
+  }
+ },
+ "pr_assume#12": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 3,
+   "V": 3,
+   "R": "Y",
+   "B": "THERMAL",
+   "closest": "CHP/district heating waste-heat reuse"
+  }
+ },
+ "pr_tail#3": {
+  "s05p:J6": {
+   "O": 3,
+   "C": 3,
+   "V": 3,
+   "R": "Y",
+   "B": "THERMAL",
+   "closest": "low-temperature ORC, ambient-sink engines"
+  }
+ },
+ "pr_dissolve#11": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 3,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Sepulveda 2021 LDES design space"
+  }
+ },
+ "pr_tail#1": {
+  "s05p:J6": {
+   "O": 6,
+   "C": 2,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "commodity-stockpile financing, structural storage"
+  }
+ },
+ "pr_dissolve#12": {
+  "s05p:J6": {
+   "O": 2,
+   "C": 2,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "seasonal H2 electrolyzer sizing"
+  }
+ },
+ "pr_assume#11": {
+  "s05p:J6": {
+   "O": 1,
+   "C": 3,
+   "V": 6,
+   "R": "Y",
+   "B": "FLEXLOAD",
+   "closest": "sector coupling, power-to-heat"
+  }
+ },
+ "pr_assume#5": {
+  "s05p:J6": {
+   "O": 4,
+   "C": 2,
+   "V": 4,
+   "R": "N",
+   "B": "SALINITY",
+   "closest": "evaporation-driven salinity cycles, biomass"
+  }
  }
 }
