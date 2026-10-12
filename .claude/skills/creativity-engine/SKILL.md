@@ -54,6 +54,14 @@ Launch independent agents in one message; never read transcripts into your own c
   FAIL ideas shrink their claims honestly, V -1.0), O·V·F +31%. Judges alone put ideas that fail by orders of
   magnitude in their TOP3, so never report physical-world winners without D or an F judge.
 
+## Tested and NOT better (07-v18-full-run.md, v2.0-v2.1) - do not use by default
+- Principles as the search unit (`pr_assume`, `pr_transfer`, `pr_dissolve`, `pr_tail` + `prompt_truth` + `prompt_derive`):
+  69% of principles already known, 0 of 8 best were new and true.
+- Verbalized tail sampling of designs (`tail`): O 3.25 vs layer A 5.61, 8/8 known (rare-to-propose != unknown).
+  Self-reported typicality P only weakly predicts O (-0.3..-0.5).
+- Second D pass (D2): F +0.17 only. One D pass gives most of the repair.
+- The judge column P (`--principle`, single principle) measures form, not novelty (corr with O 0.04).
+
 ## Option (not default): count -> law -> invent loop
 - `laws R --arm ED` + one agent on `laws/prompt_laws.txt` + `laws R --transcript ...`; then `prompt R law g3_law1`.
 - Measured on energy: V +0.8 and (after D) F +0.5, but O -1.8: a law's favorable regime is usually already occupied by
