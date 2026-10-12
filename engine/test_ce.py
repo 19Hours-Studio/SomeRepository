@@ -159,6 +159,11 @@ def main():
             assert "valorized 1/4" in out and "'FIX': 1" in out, out
             vd = [i for i in json.load(open(os.path.join(rd7, "ideas.json"))) if i["arm"] == "v7D"][0]
             assert vd["verdict"] == "FIX" and vd["estimate"].startswith("1 W/m2"), vd
+            ce("laws", R7, "--arm", "v7D"); assert "COUNTS" not in open(os.path.join(rd7, "laws", "prompt_laws.txt")).read()
+            assert "ESTIMATE: 1 W/m2" in open(os.path.join(rd7, "laws", "blind.txt")).read()
+            open(p, "w").write("LAW | gap cancels: leak x loss = nFDc/s, membraneless cells | RULES OUT: thick gaps | OPENS: slow carriers\n")
+            assert "laws: 1 stored" in ce("laws", R7, "--file", p)
+            ce("prompt", R7, "law", "g3_law"); assert "gap cancels" in open(os.path.join(rd7, "prompts", "g3_law.txt")).read()
             json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Some work https://arxiv.org/abs/2608.01234"}}, open(os.path.join(rd7, "lit.json"), "w"))
             assert "future-match 1/1" in ce("futurematch", R7)
             json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Journal work (2026-09) https://doi.org/x ; older (2019-03)"},

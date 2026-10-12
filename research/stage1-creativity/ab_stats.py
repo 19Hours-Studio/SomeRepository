@@ -85,6 +85,11 @@ def main():
         for (arm, lab), rows in sorted(by_tech.items(), key=lambda kv: -mean([r["OV"] for r in kv[1]])):
             print(f"   {arm + ':' + lab:24s} {len(rows)} {mean([r['O'] for r in rows]):5.2f} {mean([r['C'] for r in rows]):5.2f} "
                   f"{mean([r['V'] for r in rows]):5.2f} {mean([r['OV'] for r in rows]):6.1f} {100 * mean([r['prior'] for r in rows]):5.0f}% {mean([r['G'] for r in rows]):5.2f}")
+        if any(r["F"] == r["F"] for rows in by_arm.values() for r in rows):
+            print("-- frontier O>=7 and F>=4 (original AND feasible), per arm")
+            for arm, rows in sorted(by_arm.items()):
+                fr = [r for r in rows if r["O"] >= 7 and r["F"] >= 4]
+                print(f"   {arm:10s} {len(fr)}/{len(rows)}  " + "; ".join(r["name"] for r in fr))
         print("-- top 6")
         allr = sorted((r for rows in by_arm.values() for r in rows), key=lambda r: -r["OV"])[:6]
         for r in allr: print(f"   {r['OV']:5.1f} O{r['O']:.1f} V{r['V']:.1f} G{r['G']:.1f} {r['id']:24s} {r['name']}")

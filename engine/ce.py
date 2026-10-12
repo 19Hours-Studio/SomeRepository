@@ -95,6 +95,7 @@ def fill(run, body, n, extra=None, sources=None):
     s = body.replace("{QUESTION}", cfg["question"]).replace("{FORMAT}", fmt).replace("{N}", str(n))
     s = s.replace("{CRUX}", cfg.get("crux", "(no crux recorded)"))
     s = s.replace("{BASINS}", basins_block(run, sources))
+    s = s.replace("{LAWS}", "\n".join(f"- {l['law']} (rules out: {l['out']}; opens: {l['opens']})" for l in cfg.get("laws", [])) or "(no laws recorded)")
     gaps = load(run, "gaps.json", [])
     s = s.replace("{GAPS}", "\n".join(f"{g['code']}: {g['desc']}" for g in gaps) if gaps else "(no gaps recorded)")
     s = s.replace("{PLAINFILE}", path(run, "sets", "s00", "blind.txt"))
@@ -215,7 +216,8 @@ def agg(run, iid):
             "new_all": all(j["B"] == "NEW" for j in js), "new_frac": sum(j["B"] == "NEW" for j in js) / len(js),
             "basins": [j["B"] for j in js], "closest": js[0]["closest"], "closest_all": " ".join(j["closest"] for j in js),
             "crux": (sum(j["X"] == "Y" for j in js if "X" in j) / sum("X" in j for j in js)) if any("X" in j for j in js) else None,
-            "G": (sum(j["G"] for j in js if "G" in j) / sum("G" in j for j in js)) if any("G" in j for j in js) else None}
+            "G": (sum(j["G"] for j in js if "G" in j) / sum("G" in j for j in js)) if any("G" in j for j in js) else None,
+            "F": (sum(j["F"] for j in js if "F" in j) / sum("F" in j for j in js)) if any("F" in j for j in js) else None}
 
 def cmd_select(a):
     lit = load(a.run, "lit.json", {}); pool = []
@@ -230,7 +232,8 @@ def cmd_select(a):
             if not au: continue
             if au["spec"] is not None and au["spec"] <= 0: continue  # «подходит к любому вопросу» — отсев
             pool.append((g["OV"] * (0.5 + 0.5 * au["carried"]), i["id"], g)); continue
-        pool.append((g["OV"] * (g["G"] if getattr(a, "by", "ov") == "ovg" and g["G"] is not None else 1), i["id"], g))
+        by = getattr(a, "by", "ov"); w = {"ovg": g["G"], "ovf": g["F"]}.get(by)
+        pool.append((g["OV"] * (w if w is not None else 1), i["id"], g))
     pool.sort(key=lambda t: -t[0])
     if getattr(a, "diverse", False):  # v1.7: near-duplicates (same closest work) take one slot
         words = lambda g: set(re.findall(r"[a-z]{4,}", g["closest_all"].lower()))
@@ -378,6 +381,24 @@ def cmd_valorize(a):
         if es: ideas[-1]["estimate"] = " ".join(es.group(1).split())
     save(a.run, "ideas.json", ideas); vs = Counter(i.get("verdict") for i in ideas if i["arm"] == a.arm and i.get("verdict"))
     print(f"valorized {n}/{len(key)} -> arm {a.arm}" + (f"  verdicts {dict(vs)}" if vs else ""))
+
+def cmd_laws(a):
+    """v2.0 loop "count -> law -> invent": without a source, write the layer-D estimates of --arm to laws/blind.txt and
+    build laws/prompt_laws.txt; with --transcript/--file, store the distilled LAW lines in config (used by `prompt R law`)."""
+    cfg = load(a.run, "config.json", {})
+    if a.transcript or a.file:
+        laws = [{"law": l.strip(), "out": o.strip(), "opens": p.strip()} for l, o, p in
+                re.findall(r"^\**LAW\** \| (.+?) \| RULES OUT:\s*(.+?) \| OPENS:\s*(.+)$", read_source(a), re.M)]
+        if not laws: sys.exit("no LAW lines found")
+        cfg["laws"] = laws; save(a.run, "config.json", cfg); print(f"laws: {len(laws)} stored"); return
+    est = [i for i in load(a.run, "ideas.json", []) if i["arm"] == a.arm and i.get("estimate")]
+    if not est: sys.exit(f"no estimates in arm {a.arm}: run layer D (prompt_fermi + valorize --arm {a.arm}) first")
+    d = path(a.run, "laws"); os.makedirs(d, exist_ok=True); bf = os.path.join(d, "blind.txt")
+    with open(bf, "w") as f:
+        for k, i in enumerate(secrets.SystemRandom().sample(est, len(est)), 1):
+            f.write(f"E{k:02d} ({i.get('verdict', '?')})\nESTIMATE: {i['estimate']}\n\n")
+    open(os.path.join(d, "prompt_laws.txt"), "w").write(fill(a.run, tpl("laws"), 0, {"SETFILE": bf}))
+    print(f"laws: {len(est)} estimates -> {bf} (+ prompt_laws.txt)")
 
 def cmd_intent(a):
     """Intent check (v1.8): store 3 readings of the question, each with its crux; `--pick N` makes reading N the crux."""
@@ -557,6 +578,7 @@ def main():
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("valorize"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--arm", required=True); src(x)
     x = sp.add_parser("intent"); x.add_argument("run"); x.add_argument("set", nargs="?"); x.add_argument("--pick", help="reading number, or auto"); src(x)
+    x = sp.add_parser("laws"); x.add_argument("run"); x.add_argument("--arm", default="ED"); src(x)
     x = sp.add_parser("futurematch"); x.add_argument("run"); x.add_argument("--after", default="2607", help="arXiv YYMM after the knowledge cutoff")
     x = sp.add_parser("portfolio"); x.add_argument("--slots", type=int, default=5); x.add_argument("--c", type=float, default=0.15)
     x.add_argument("--exclude", default="mechneg,symptomport,backloop,reframe,gap", help="techniques retired by selection")
@@ -564,7 +586,7 @@ def main():
     x = sp.add_parser("select"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--labels"); x.add_argument("--arms")
     x.add_argument("--k", type=int, default=6); x.add_argument("--drop-known-basins", action="store_true")
     x.add_argument("--diverse", action="store_true", help="v1.7: near-duplicates (same closest work) take one slot")
-    x.add_argument("--by", default="ov", choices=["ov", "ovg"], help="v1.7: ovg ranks by O*V*G (genius) when judges gave G")
+    x.add_argument("--by", default="ov", choices=["ov", "ovg", "ovf"], help="ovg: O*V*G (v1.7); ovf: O*V*F, feasibility (v1.9)")
     x.add_argument("--v2", action="store_true", help="score = O*V*(0.5+0.5*carried); drop ideas with decoy specificity <= 0 (needs audit)")
     x = sp.add_parser("lit"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("pairs"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--n", type=int, default=6)

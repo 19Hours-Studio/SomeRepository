@@ -1,0 +1,11 @@
+{QUESTION}
+Counting many earlier attempts at this question revealed these quantitative laws (each holds for any design of the kind it names):
+{LAWS}
+Propose {N} fundamentally new answers that are BUILT ON these laws: each answer sits deep inside the regime a law makes favorable, or turns a bound itself into its working principle - so a law that sinks typical answers is exactly what makes this one work. For each answer:
+1. LAW: which law, which favorable regime you exploit, and the number that puts the design there.
+2. MECHANISM: the simplest design that lives in that regime; its core fits in one sentence and uses at most three parts.
+3. COUNT: one line of order-of-magnitude arithmetic showing that the decisive quantity meets what the question needs.
+4. HONESTY CHECK: name the closest existing work; if the answer is essentially that, choose another design. Two answers must not exploit the same law in the same way.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}
