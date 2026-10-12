@@ -1091,5 +1091,59 @@
   "value": "Grid operators get three-week electrochemical storage built from a salt pond, carbon mesh and a plastic honeycomb, with free solar heat speeding the electrodes and no tanks, membranes or pumps.",
   "verdict": "FIX",
   "estimate": "At ~70 °C (D ≈ 2e-9 m²/s, σ ≈ 30 S/m), a 0.1 m step leaks 2F·D·c/L ≈ 3.9 A/m² at 1 M. Running at ~38 A/m² therefore balances ~10% leak against ~10% ohmic loss, with ~0.7 m layers for a three-week discharge, so the electrochemistry passes. But a pond-wide mesh must carry that current sideways: the drop is ≈ i·R_s·W²/8 ≈ 475 V across a 100 m pond with a 0.01 Ω/sq graphite mesh, against ~0.03 V allowed. Pond width, not depth or step thickness, controls the limit, and W must be ≤ ~0.8 m."
+ },
+ {
+  "id": "g3_law1#1",
+  "label": "g3_law1",
+  "arm": "EL",
+  "gen": 3,
+  "name": "Centimetre Iron-Manganese Slabs",
+  "mech": "Alkaline iron anode slabs and MnO₂ cathode slabs, each about 3 cm thick and filled with coke, sit in 12 S/m KOH across a single separator. The slab thickness is chosen from the 250-hour discharge time, since the ion-conduction length grows with the square root of time. The result stores about 1 V per electron pair, using roughly 1 kg Fe and 3 kg MnO₂ per kWh.",
+  "value": "About 50× less collector and separator per kWh, with materials near $8/kWh, makes ten-day storage cheap."
+ },
+ {
+  "id": "g3_law1#2",
+  "label": "g3_law1",
+  "arm": "EL",
+  "gen": 3,
+  "name": "Sand-Gapped Polymer Flow Cell",
+  "mech": "Lignin-derived quinone macromolecules (D ≈ 1e-13) in 4 M NaCl flow on both sides of a centimetre-wide bed of packed sand, with no membrane. Crossover fraction times ohmic fraction is fixed at about 5e-7, so 0.5% resistive loss comes with only 0.01% crossover. Capacity scales with tank volume.",
+  "value": "It removes the costliest flow-battery part, the ion-exchange membrane, while keeping crossover negligible."
+ },
+ {
+  "id": "g3_law1#3",
+  "label": "g3_law1",
+  "arm": "EL",
+  "gen": 3,
+  "name": "Spent-Sheath Iron-Chromium Flow",
+  "mech": "The charged Fe³⁺ stream and the charged Cr²⁺ stream run side by side down a cheap plastic channel. A 1.5 mm sheath of their own discharged mixed electrolyte separates them, and they stay in contact for about two minutes. Diffusive leak through the sheath falls as exp(−s²/4Dt), to about 1%, while ions conduct across it with only about 10 mV of loss.",
+  "value": "An iron-chromium flow battery with no membrane and chemicals near $10/kWh."
+ },
+ {
+  "id": "g3_law2#1",
+  "label": "g3_law2",
+  "arm": "EL",
+  "gen": 3,
+  "name": "Poured-slab multi-day electrodes",
+  "mech": "Iron-oxide paste and manganese-ore paste, each made conductive with coke, are cast in centimetre-thick layers with a KOH gel between them, in cheap trays. A 100-hour discharge lets ions cross 1.5 cm of electrode, so foil, separator and housing per kWh drop about 50x. Bi₂S₃ added to the iron layer suppresses hydrogen evolution during weeks of holding.",
+  "value": "Batteries stamped out like concrete paving, at under $10/kWh, sized for week-long lulls."
+ },
+ {
+  "id": "g3_law2#2",
+  "label": "g3_law2",
+  "arm": "EL",
+  "gen": 3,
+  "name": "Three-lamina falling-film cell",
+  "mech": "Charged ferric chloride, spent ferrous chloride and an iron-plating wall share one membraneless gap that the liquids fall through. The 1.5 mm spent middle layer gives charged species too little time to diffuse across it. A splitter at the bottom separates the streams back into their tanks.",
+  "value": "Membrane-free flow storage that uses only iron salt as the medium."
+ },
+ {
+  "id": "g3_law2#3",
+  "label": "g3_law2",
+  "arm": "EL",
+  "gen": 3,
+  "name": "Sand-divided dilute-brine flow cell",
+  "mech": "Dilute iron and chromium chlorides (0.2 M) ride in concentrated sodium chloride brine, which carries most of the current. Because the salt is much more mobile than the actives, a plain sand layer keeps crossover and resistance both near 2%. The same mixed electrolyte is stored in lined ponds on both sides.",
+  "value": "Flow storage at about $12/kWh using only commodity salt, iron, chromium and sand."
  }
 ]
