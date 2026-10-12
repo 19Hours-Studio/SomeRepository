@@ -1,0 +1,192 @@
+N01
+MECHANISM: When discharge takes 100 hours or more, current density can be about 100x lower, so conductivity, catalysis and overpotential stop mattering, and slow, poorly conducting, impure media become usable (Overturns: active materials must be fast, conductive and catalysed)
+VALUE: no precious catalysts or engineered nanostructures; cost per kWh down about 5x
+
+N02
+MECHANISM: Winter calm, dark spells bring cold surface air and strong temperature inversions, so a heat-to-power store needs to hold only one temperature reservoir because the weather of the lull supplies the other for free. (Overturns: a thermal store must create and hold both its hot and cold sides)
+VALUE: halves reservoir hardware, and mild low-grade stores deliver work exactly when needed, about 2x cheaper exergy
+
+N03
+MECHANISM: When lulls in distant regions rarely overlap, one store that is physically moved to each region in turn divides its capacity cost by the number of regions it serves. (Overturns: storage is fixed to the grid it serves)
+VALUE: about 3-5x less capacity per region for rare multi-day events
+
+N04
+MECHANISM: Calm, dark spells are forecast days ahead, so the charged state can be kinetically dead and take hours to days to activate, which gives almost no self-discharge without any containment (Overturns: stored energy must be available to dispatch instantly)
+VALUE: metastable charged states that keep for a decade; the reserve costs almost nothing to hold
+
+N05
+MECHANISM: Liners, covers and land scale with footprint while capacity scales with volume, so containment cost per kWh falls as 1/height, and a 30 m heap at 50 kWh/m^3 under a $2/m^2 film costs about $0.001/kWh to contain (Overturns: containment is a major cost of bulk storage)
+VALUE: containment drops from dollars to fractions of a cent per kWh
+
+N06
+MECHANISM: A multi-day store cycles only 10-30 times a year, so over 30 years it needs only 300-900 deep cycles plus shelf stability, not thousands of cycles (Overturns: grid storage must survive thousands of cycles like daily batteries)
+VALUE: brings back cheap chemistries rejected for poor cycle life; active-material cost could fall 3-10x
+
+N07
+MECHANISM: Much of a storage medium's cost is the energy embodied in making it, so producing the medium with curtailed electricity during surplus turns wasted energy into capital. (Overturns: storage capex is fixed upfront and has nothing to do with surplus energy)
+VALUE: 2-5x lower medium cost wherever embodied energy dominates
+
+N08
+MECHANISM: Because lulls are forecast days ahead, energy capacity only has to exist during the event, so a medium that can be made in days and dissolved afterward ties up capital for just a few weeks a year. (Overturns: storage capacity is permanent capital that mostly sits idle)
+VALUE: yearly capacity cost falls by the utilization ratio, possibly 5-10x
+
+N09
+MECHANISM: Self-discharge time is roughly 1e-13 s x exp(Ea/kT), so a charged state guarded by an intrinsic activation barrier of about 1.2-1.3 eV or more lasts months to decades at ambient temperature with no vessel, insulation or membrane, and storage cost falls to the bare medium (Overturns: holding energy needs engineered containment against leakage)
+VALUE: removes containment and separation hardware, often 30-60% of capacity cost; about 2-3x cheaper
+
+N10
+MECHANISM: Raising a heat pump's source temperature from about -5 °C to +20 °C during a lull roughly doubles its COP, so a cheap low-grade warm store cuts lull electricity demand with leverage instead of replacing it one for one. (Overturns: the lull deficit must be met with stored electricity or high-grade heat)
+VALUE: 30-50% less winter-lull electricity demand, using storage about 10x cheaper per kWh
+
+N11
+MECHANISM: Calm, dark spells can be forecast days ahead, so discharge converters can take hours or days to start, which allows large, slow, high-inertia converters that cost far less per kW than fast ones. (Overturns: storage must be dispatchable within seconds or minutes)
+VALUE: discharge power cost about 2-4x lower
+
+N12
+MECHANISM: Material stocks that must exist anyway (in process pipelines, warehouses, strategic reserves) can hold energy in their state while their mass is owned for another purpose, so the medium costs no capital (Overturns: the storage medium must be bought for storage)
+VALUE: medium cost disappears and only the state-change hardware is paid for; about 5-10x cheaper
+
+N13
+MECHANISM: Most of the cost of holding energy for weeks goes into preventing self-discharge with membranes and containment, and if an applied field or signal switches the discharge reaction rate instead, that hardware is no longer needed. (Overturns: charged reactants must be physically separated to stay charged)
+VALUE: removes the separator and tank costs that dominate long-duration capacity, perhaps 3-10x
+
+N14
+MECHANISM: Required storage energy equals the worst lull duration times the load guaranteed through it, so guaranteeing only a contracted firm fraction (say 40%) through extreme lulls cuts the energy capacity needed roughly in proportion (Overturns: all load must get the same reliability)
+VALUE: about 2-2.5x less storage energy for the same essential service
+
+N15
+MECHANISM: Surplus comes in short gluts while deficits are long and shallow, so charge power should be several times discharge power and bought at near-zero $/kW, not matched one for one. (Overturns: charge and discharge ratings should be equal, ideally in one reversible device)
+VALUE: captures 2-3x more surplus energy per dollar of power hardware
+
+N16
+MECHANISM: A store charged as an addition to a large natural energy reservoir, such as geothermal heat or deep cold water, returns the work put in plus part of the reservoir's own, so energy delivered per kWh charged can exceed one. (Overturns: round-trip efficiency is always below 100%)
+VALUE: about half the surplus input and capacity per delivered kWh, or better
+
+N17
+MECHANISM: Capacity grows with a store's volume, but containment cost and leakage grow with its surface, so containment cost and self-discharge per kWh fall roughly as 1/size, and a few enormous stores beat many modules. (Overturns: stores should be modular and replicated)
+VALUE: 10x larger linear size gives about 10x lower containment cost and weekly losses per kWh
+
+N18
+MECHANISM: When most of a storage medium's cost is embodied energy (reduction, smelting, synthesis), making and expanding the medium only with curtailed electricity at near-zero price cuts its capital cost to the non-energy remainder (Overturns: storage capital is a fixed money cost paid before operation)
+VALUE: 3-5x cheaper capacity for media whose cost is 60-80% energy, and capacity grows every windy year
+
+N19
+MECHANISM: The worst lulls happen only a few times per decade, so the energy for those extreme cases can be a cheap single-use reserve rebuilt slowly from surplus instead of rechargeable capacity (Overturns: every stored kWh must recharge between one lull and the next)
+VALUE: the most expensive last 20-30% of capacity becomes a reserve at the cost of a fuel stockpile
+
+N20
+MECHANISM: When many independent storage units each fail or degrade with probability p, the binomial law makes aggregate availability predictable, so buying 10-20% extra cheap units provides the same firm capacity as fewer high-quality ones (Overturns: grid storage units must be individually durable and bankable)
+VALUE: looser tolerances, lifetimes and quality control; about 2x lower installed cost
+
+N21
+MECHANISM: A dark spell means too few photons reach the panels, not too little solar energy overall, and sunlight reflected from orbit onto existing solar farms can supply that energy with no storage. (Overturns: local sky conditions set solar output during a dark spell)
+VALUE: removes the dark part of a dark calm spell for solar fleets
+
+N22
+MECHANISM: At about 10 deep cycles a year and $20/MWh surplus, cutting round-trip efficiency from 80% to 40% costs about $0.25 per kWh of capacity per year (about $3/kWh present value), so any medium that saves more capex than that wins despite poor efficiency (Overturns: round-trip efficiency is a primary figure of merit)
+VALUE: admits media with 5-10x lower capacity cost at 30-45% efficiency
+
+N23
+MECHANISM: If a medium's cost comes mostly from its boundary (walls, liner, collectors) while its energy grows with volume, cost per kWh falls as one over the linear size (Overturns: storage cost per kWh stays roughly constant with scale)
+VALUE: a few very large units become about 10x cheaper per kWh than modular ones
+
+N24
+MECHANISM: The energy needed to buffer a net-load swing scales with amplitude divided by frequency while power scales only with amplitude, so almost all required kWh sit in the multi-day band, which needs about 1/100 kW per kWh and can use a medium chosen only for $/kWh (Overturns: one storage technology should cover hours through weeks)
+VALUE: power hardware nearly vanishes from long-duration cost; about 3-5x
+
+N25
+MECHANISM: In dissolved-reactant storage most of the mass and tank volume is solvent, so keeping the charged species as a dense solid or concentrate and adding solvent only inside the converter cuts stored volume per kWh about 3-10x (Overturns: the electrolyte inventory must be stored as working solution)
+VALUE: 3-10x less tankage and land per kWh
+
+N26
+MECHANISM: The time it takes charged species to mix grows with distance squared divided by diffusivity, so a few metres of still medium keeps them apart longer than any lull lasts (Overturns: charged species must be kept apart by a membrane)
+VALUE: removes the membrane, often the most expensive and fragile part; hardware 2-5x cheaper
+
+N27
+MECHANISM: Weekly-scale storage sees about 10-30 full cycles a year, so 30 years needs only about 300-900 cycles, which many materials rejected for poor reversibility already meet (Overturns: grid storage needs thousands of cycles of stability)
+VALUE: widens the eligible materials pool to ones 3-10x cheaper per kWh
+
+N28
+MECHANISM: A large natural energy stock that renews slowly can be shifted in time by drawing harder from it during lulls and resting it during surpluses, so holding the resource back is the charging step (Overturns: storage must absorb surplus electricity)
+VALUE: no charging hardware and no medium cost; existing natural stocks become buffers lasting several weeks
+
+N29
+MECHANISM: Lulls are local while weather systems move, so a generator that travels hundreds of kilometers a day to wherever there is wind or sun turns the storage problem into a transport problem. (Overturns: generators sit at fixed sites, so storage must bridge local lulls)
+VALUE: could cut the multi-day storage needed by more than half
+
+N30
+MECHANISM: An electrochemical store only needs one tanked half if the other reactant and its product are swapped with a practically unlimited natural body such as seawater, which halves stored mass and containment. (Overturns: both halves of a battery must be bought and contained)
+VALUE: about 2x lower capacity cost, more if the tanked half is cheap
+
+N31
+MECHANISM: Discharging does not have to reverse the charging reaction; two separate one-way reactions that together close a cycle can each be cheap where no single reversible reaction is (Overturns: a storage medium needs one reversible reaction)
+VALUE: a much wider choice of media and hardware, with each half optimized on its own; perhaps 3x cheaper
+
+N32
+MECHANISM: For a store cycled fewer than about 20 times a year and charged with power that would otherwise be curtailed, round-trip efficiency hardly changes the cost, and installed capex per kWh of capacity sets nearly all of it. (Overturns: round-trip efficiency is a key figure of merit)
+VALUE: opens up media with 20-40% efficiency but about 10x lower capacity cost
+
+N33
+MECHANISM: A store emptied over 100-300 hours needs current densities 100-300 times lower than a battery, so uncatalysed reactions with 100 times lower exchange currents and millimetre-scale solid diffusion still keep overpotential acceptable (Overturns: a candidate chemistry needs battery-grade kinetics)
+VALUE: opens the large pool of cheap, slow redox and phase reactions; electrode cost per kWh falls about 10x
+
+N34
+MECHANISM: Any diffusing quantity (ions, heat, dissolved species) leaks from a stagnant store with time constant L^2/D, so dissolved ions (D about 1e-9 m^2/s) separated by 1 m take about 30 years to mix, which means separation at metre scale needs no membrane (Overturns: keeping charged and discharged species apart needs membranes whose area scales with capacity)
+VALUE: membrane-free bulk stores priced as raw medium; about 3-5x cheaper capacity
+
+N35
+MECHANISM: For a store cycled only a few times a year on nearly free surplus power, total cost depends almost entirely on capital per kWh of capacity, so a process that returns only 10-25% but has ten times cheaper capacity beats any battery. (Overturns: round-trip efficiency is a key storage metric)
+VALUE: opens up processes dismissed for low efficiency, with about 10x cheaper capacity
+
+N36
+MECHANISM: The last kWh of a multi-week store may be used only once a decade, so each depth tier should be costed per use, and the deepest tiers can accept 10-30% efficiency if their capex per kWh is close to zero. (Overturns: a long-duration store is one uniform asset, sized and costed as a whole)
+VALUE: the deepest 50-70% of capacity at under 1 $/kWh, cutting total storage cost about 3-5x
+
+N37
+MECHANISM: For a rarely cycled store, levelized cost is set by calendar life and cost of capital, so an inert medium that lasts a century and is financed like infrastructure beats a cheaper short-lived one. (Overturns: cycle life and upfront $/kWh are the metrics that matter)
+VALUE: annualized capacity cost about 3x lower (100 years at 3% versus 20 years at 8%)
+
+N38
+MECHANISM: Surface calms under blocking high-pressure systems are only weakly linked to wind several hundred meters to kilometers up, so generators using those layers could cover most surface lulls. (Overturns: a calm spell is calm at every height)
+VALUE: cuts the energy that must be stored for multi-day calms by maybe 2-5x
+
+N39
+MECHANISM: Energy deficits from lulls are heavy-tailed, so the tier that covers only once-a-decade events can be filled once and refilled slowly over years, and only its holding cost counts, not cost per cycle or recharge speed (Overturns: every kWh of storage must be quickly rechargeable and cycle often)
+VALUE: the last 30-50% of required energy capacity at about one tenth the cost
+
+N40
+MECHANISM: Electrical energy can be pumped into long-lived nuclear isomers and released on demand, holding about a million times more energy per kilogram than chemical bonds. (Overturns: stored energy must be chemical, thermal or mechanical)
+VALUE: the active material costs almost nothing, so conversion hardware alone sets capacity cost
+
+N41
+MECHANISM: For storage that cycles rarely, the enclosure sets the cost rather than the medium, so what decides cost is whether the charged state stays stable in open air, rain and ambient temperature as a bare heap (Overturns: the active material is the main cost and must be protected)
+VALUE: storage cost approaches what bulk commodities cost to handle, about 1-3 $/kWh
+
+N42
+MECHANISM: A store's self-discharge and conversion losses are wasted only if they occur where heat is unwanted, so placing stores where their waste heat meets winter heat demand pushes effective efficiency toward 90%. (Overturns: storage losses are pure waste)
+VALUE: makes cheap, inefficient media competitive, with about 2x higher effective efficiency
+
+N43
+MECHANISM: Long calm, dark winter spells come with the coldest surroundings and strong temperature inversions, so heat-to-power efficiency from a low-temperature store peaks exactly when it is needed. (Overturns: low-grade heat is useless for making electricity)
+VALUE: makes 60-120 C stores at under $1 per thermal kWh viable for lulls, several times cheaper
+
+N44
+MECHANISM: When the charging energy is curtailed surplus worth almost nothing and cycling is rare, capital sets the cost per kWh delivered, so 20-35% round-trip efficiency is acceptable if capacity is 10x cheaper (Overturns: round-trip efficiency is a key figure of merit)
+VALUE: low-efficiency but very cheap media become usable; capacity cost 5-10x lower
+
+N45
+MECHANISM: The capacity cost of a chemical store equals the carrying cost of its active mass, not its purchase price, if that mass is an existing commodity stockpile that is charged, discharged and returned still within its commercial specification. (Overturns: storage material must be bought and set aside for the store)
+VALUE: capacity cost falls to interest plus handling, roughly 10-30x below buying the material
+
+N46
+MECHANISM: Surplus periods are long, so charging power can be a small fraction of discharge power, and charging hardware cost falls by the same factor (Overturns: charging and discharging power must be sized alike)
+VALUE: charging stage 10-50x smaller; slow trickle charging can replace reversible full-power devices
+
+N47
+MECHANISM: Most demand during a lull is for heat, motion or chemical processes, so storing energy in the form the end use needs avoids converting back to electricity and the losses and hardware that come with it. (Overturns: grid storage must give back electricity)
+VALUE: avoids 40-60% reconversion loss and the discharge converter for a large share of demand
+
+N48
+MECHANISM: The hardest step of a storage cycle need not be reversed with electricity if a free ambient process (drying, freezing, sunlight or biology) restores the spent medium between events. (Overturns: a store must be recharged along the same powered path it discharged through)
+VALUE: removes most charging hardware and losses, since the weeks to months between lulls give slow ambient processes enough time
+
