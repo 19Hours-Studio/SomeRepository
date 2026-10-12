@@ -54,6 +54,12 @@ Launch independent agents in one message; never read transcripts into your own c
   FAIL ideas shrink their claims honestly, V -1.0), O·V·F +31%. Judges alone put ideas that fail by orders of
   magnitude in their TOP3, so never report physical-world winners without D or an F judge.
 
+## Option (not default): count -> law -> invent loop
+- `laws R --arm ED` + one agent on `laws/prompt_laws.txt` + `laws R --transcript ...`; then `prompt R law g3_law1`.
+- Measured on energy: V +0.8 and (after D) F +0.5, but O -1.8: a law's favorable regime is usually already occupied by
+  known technology. Use it when value and feasibility matter more than originality.
+- After any user interrupt, check that running agents are still alive before waiting on them.
+
 ## v1.7 option (crux in generation: best V, but O -1.0 vs layered)
 - Gen 1 portfolio: neg, core, loop, mech, genius. Gen 2: `prompt R evo_simple g2_evo1|g2_evo2 ...` (simplifying crossover) + immigrant of the best technique. Parents: `select ... --drop-known-basins --diverse --by ovg`. Screening/final sets: `--crux --genius`.
 - ALWAYS add one plain judge (a set built without `--crux --genius`) to any A/B: the crux column primes judges' V (about half of the V gain in the v1.7 A/B was priming).

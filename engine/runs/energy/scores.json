@@ -2117,6 +2117,15 @@
    "B": "NEW",
    "closest": "pickle-liquor recovery for iron RFB",
    "F": 6
+  },
+  "t99g:J5": {
+   "O": 3,
+   "C": 6,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "pickle-liquor recovery for iron flow batteries",
+   "F": 6
   }
  },
  "ED:EC:EB:g1_loop2#3": {
@@ -2136,6 +2145,15 @@
    "B": "OREFLOW",
    "closest": "redox-targeting solid boosters, mineral cathodes",
    "F": 4
+  },
+  "t99g:J5": {
+   "O": 7,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "OREFLOW",
+   "closest": "redox-targeting; nontronite Fe redox",
+   "F": 5
   }
  },
  "ED:EC:EB:g1_core#3": {
@@ -2154,6 +2172,15 @@
    "R": "N",
    "B": "METALAIR",
    "closest": "structural batteries, Ni-Fe/alkaline slag cells",
+   "F": 3
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "METALAIR",
+   "closest": "Ni-Fe alkaline; in-situ earth batteries",
    "F": 3
   }
  },
@@ -2174,6 +2201,15 @@
    "B": "NEW",
    "closest": "thick-electrode LFP, DC-coupled PV storage",
    "F": 5
+  },
+  "t99g:J5": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "thick-electrode LFP; DC-coupled storage",
+   "F": 5
   }
  },
  "ED:EC:EB:g2_imm#2": {
@@ -2193,6 +2229,15 @@
    "B": "NEW",
    "closest": "LDES power-to-energy ratio optimisation",
    "F": 5
+  },
+  "t99g:J5": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LDES power/energy decoupling modelling",
+   "F": 6
   }
  },
  "ED:EC:EB:g1_core#1": {
@@ -2211,6 +2256,15 @@
    "R": "N",
    "B": "METALAIR",
    "closest": "iron-oxide alkaline electrodes, bipolar beds",
+   "F": 4
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "METALAIR",
+   "closest": "iron-oxide symmetric alkaline cells",
    "F": 4
   }
  },
@@ -2231,6 +2285,15 @@
    "B": "NEW",
    "closest": "polymer RFB with cellulose dialysis membrane",
    "F": 5
+  },
+  "t99g:J5": {
+   "O": 2,
+   "C": 7,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Janoschka polymer RFB, dialysis membrane",
+   "F": 6
   }
  },
  "ED:EC:EB:g1_loop#2": {
@@ -2249,6 +2312,15 @@
    "R": "N",
    "B": "METALAIR",
    "closest": "all-iron hybrid flow battery (ESS)",
+   "F": 5
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 6,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "all-iron hybrid flow battery",
    "F": 5
   }
  },
@@ -2269,6 +2341,15 @@
    "B": "NEW",
    "closest": "biphasic membraneless RFB + brine4power cavern",
    "F": 3
+  },
+  "t99g:J5": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "brine4power cavern flow battery",
+   "F": 5
   }
  },
  "ED:EC:EB:g1_genius#3": {
@@ -2288,6 +2369,15 @@
    "B": "NEW",
    "closest": "gravity-stratified membraneless battery",
    "F": 4
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "membraneless biphasic/stratified batteries",
+   "F": 3
   }
  },
  "ED:EC:EB:g1_mech#2": {
@@ -2307,6 +2397,15 @@
    "B": "THERMAL",
    "closest": "electrochemically triggered quadricyclane heat release",
    "F": 2
+  },
+  "t99g:J5": {
+   "O": 7,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "MOST norbornadiene-quadricyclane storage",
+   "F": 3
   }
  },
  "ED:EC:EB:g1_loop2#2": {
@@ -2325,6 +2424,15 @@
    "R": "N",
    "B": "OREFLOW",
    "closest": "lignin redox-targeting flow battery",
+   "F": 3
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "OREFLOW",
+   "closest": "redox-targeting solid boosters",
    "F": 3
   }
  },
@@ -2345,6 +2453,15 @@
    "B": "NEW",
    "closest": "glassy redox electrolytes, thermal recuperation",
    "F": 3
+  },
+  "t99g:J5": {
+   "O": 8,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "glass-stabilized radicals; molten-salt flow",
+   "F": 3
   }
  },
  "ED:EC:EB:g2_evo2#2": {
@@ -2364,6 +2481,15 @@
    "B": "METALAIR",
    "closest": "iron-air with Bi2S3 additive (Narayanan)",
    "F": 2
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "METALAIR",
+   "closest": "iron-air; heap-leach-style ore beds",
+   "F": 3
   }
  },
  "ED:EC:EB:g2_evo1#3": {
@@ -2382,6 +2508,15 @@
    "R": "N",
    "B": "METALAIR",
    "closest": "iron-air battery in waste",
+   "F": 3
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 5,
+   "V": 2,
+   "R": "N",
+   "B": "METALAIR",
+   "closest": "iron-air battery",
    "F": 3
   }
  },
@@ -2402,6 +2537,15 @@
    "B": "NEW",
    "closest": "MOST molecules, crystallising solid-boost RFB",
    "F": 2
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "solid-boosted / redox-targeting flow batteries",
+   "F": 4
   }
  },
  "ED:EC:EB:g2_evo2#1": {
@@ -2421,6 +2565,15 @@
    "B": "NEW",
    "closest": "membraneless flow battery, porous-bed cells",
    "F": 4
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "membraneless static sand-bed batteries",
+   "F": 5
   }
  },
  "ED:EC:EB:g1_genius#2": {
@@ -2439,6 +2592,15 @@
    "R": "N",
    "B": "NEW",
    "closest": "salt-gradient solar pond + stratified cell",
+   "F": 4
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "membraneless biphasic battery; salinity-gradient solar pond",
    "F": 4
   }
  },
@@ -2459,6 +2621,15 @@
    "B": "NEW",
    "closest": "membraneless coacervate / hybrid flow cell",
    "F": 3
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "membraneless zinc hybrid flow",
+   "F": 3
   }
  },
  "ED:EC:EB:g1_mech#1": {
@@ -2478,6 +2649,15 @@
    "B": "NEW",
    "closest": "sorption storage with vapour turbine",
    "F": 2
+  },
+  "t99g:J5": {
+   "O": 8,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "zeolite/water sorption heat storage",
+   "F": 3
   }
  },
  "ED:EC:EB:g2_imm#1": {
@@ -2496,6 +2676,15 @@
    "R": "N",
    "B": "FLEXLOAD",
    "closest": "electrochemical H2O2 + H2O2 fuel cell",
+   "F": 5
+  },
+  "t99g:J5": {
+   "O": 5,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "FLEXLOAD",
+   "closest": "Dow-Huron peroxide; H2O2 fuel cell",
    "F": 5
   }
  },
@@ -2516,6 +2705,15 @@
    "B": "NEW",
    "closest": "quinone-decorated biochar electrodes",
    "F": 4
+  },
+  "t99g:J5": {
+   "O": 6,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "biochar supercapacitors; lignin quinone electrodes",
+   "F": 3
   }
  },
  "ED:EC:EB:g1_mech#3": {
@@ -2535,6 +2733,147 @@
    "B": "NEW",
    "closest": "shape-memory natural rubber (SIC)",
    "F": 2
+  },
+  "t99g:J5": {
+   "O": 7,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "natural rubber strain-crystallization shape memory",
+   "F": 3
+  }
+ },
+ "ELD:g3_law1#2": {
+  "t99g:J5": {
+   "O": 3,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "microporous-separator organic flow batteries",
+   "F": 6
+  }
+ },
+ "ELD:g3_law1#1": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "METALAIR",
+   "closest": "thick-electrode iron batteries (Form-style)",
+   "F": 4
+  }
+ },
+ "g3_law1#1": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "METALAIR",
+   "closest": "thick-electrode iron batteries (Form-style)",
+   "F": 4
+  }
+ },
+ "g3_law1#2": {
+  "t99g:J5": {
+   "O": 3,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "porous-separator flow batteries",
+   "F": 2
+  }
+ },
+ "ELD:g3_law2#2": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "laminar membraneless flow batteries",
+   "F": 3
+  }
+ },
+ "g3_law1#3": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "co-laminar membraneless flow cells",
+   "F": 5
+  }
+ },
+ "g3_law2#3": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fe-Cr flow, porous separator",
+   "F": 4
+  }
+ },
+ "g3_law2#1": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "METALAIR",
+   "closest": "Ni-Fe/Fe-MnO2 alkaline cells",
+   "F": 4
+  }
+ },
+ "ELD:g3_law2#3": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fe-Cr flow, microporous separator",
+   "F": 5
+  }
+ },
+ "g3_law2#2": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 3,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "falling-film membraneless flow cell",
+   "F": 3
+  }
+ },
+ "ELD:g3_law2#1": {
+  "t99g:J5": {
+   "O": 4,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "METALAIR",
+   "closest": "Ni-Fe/Fe-MnO2 alkaline cells",
+   "F": 4
+  }
+ },
+ "ELD:g3_law1#3": {
+  "t99g:J5": {
+   "O": 5,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "co-laminar membraneless Fe-Cr flow",
+   "F": 5
   }
  }
 }
