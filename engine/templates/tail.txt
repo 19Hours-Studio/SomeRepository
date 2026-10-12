@@ -1,0 +1,10 @@
+{QUESTION}
+Propose {N} fundamentally new answers taken from the TAIL of the distribution of possible answers.
+1. First, privately write down the distribution of answers that experts and AI systems would typically give to this question - at least 25 concrete mechanisms or designs - each with its probability of being proposed.
+2. Discard every answer with probability above 0.05.
+3. From the low-probability tail, pick the {N} answers that would give the largest gain if they worked. Do not drift back to the head of the distribution with a reworded common answer, and do not reject a tail answer because it looks hard - it will be checked by calculation and repaired later.
+4. Each answer must rest on ONE clear idea that gives the gain; everything else in it must follow from that idea or be minimal wrapping.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}
+In the IDEAS section, put one extra line right after each NAME line: `P: (0-1, the probability that a typical expert or AI would propose this answer)`.

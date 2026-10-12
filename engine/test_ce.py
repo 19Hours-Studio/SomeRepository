@@ -181,6 +181,9 @@ def main():
             t1 = [k for k, v in k4.items() if v == "pr_t#1"][0]
             open(p, "w").write(f"=== CHECKED {t1} ===\nANCHOR: mobility\nVERDICT: REGIME\nESTIMATE: r = 1e-3 for D 1e-12\nNAME: m\nMECHANISM: holds for slow carriers\nVALUE: v\n")
             assert "'REGIME': 1" in ce("valorize", R7, "s04p", "--arm", "v7PT", "--file", p)
+            open(p, "w").write("=== IDEAS ===\nIDEA 1\nNAME: tail one\nP: 0.02\nMECHANISM: rare thing\nVALUE: big\n")
+            ce("ingest", R7, "tl", "--arm", "v7T", "--gen", "1", "--file", p)
+            assert [i for i in json.load(open(os.path.join(rd7, "ideas.json"))) if i["label"] == "tl"][0]["p"] == 0.02
             sc7 = json.load(open(os.path.join(rd7, "scores.json")))
             for v in sc7.values(): v.pop("s04p:J8", None)
             json.dump(sc7, open(os.path.join(rd7, "scores.json"), "w"))

@@ -80,9 +80,9 @@ def parse_ideas(text):
     for c in re.split(r"\n\**IDEA\s*\d+\**", "\n" + body):
         m = re.search(r"MECHANISM:\**\s*(.+?)\n\s*\**(?:VALUE|DIFFERENCE):\**\s*(.+?)(?:\n\s*\n|\Z)", c, re.S)
         if not m: continue
-        n = re.search(r"NAME:\**\s*(.+)", c)
+        n = re.search(r"NAME:\**\s*(.+)", c); pp = re.search(r"\n\s*\**P:\**\s*([0-9.]+)", c)
         out.append({"name": n.group(1).strip() if n else "", "mech": " ".join(m.group(1).split()),
-                    "value": " ".join(m.group(2).split())})
+                    "value": " ".join(m.group(2).split()), **({"p": float(pp.group(1))} if pp else {})})
     return out
 
 def basins_block(run, sources=None):
