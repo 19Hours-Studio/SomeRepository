@@ -33,3 +33,7 @@ g3_law1	a910ddef12381ebcb	engine	7
 g3_law2	a0c5be5827f71edab	engine	7
 VD_law	a098be3ef4065a4e2	fermi	7
 J_t99g	adb3a13f674e4bab4	judge	7
+pr_assume	a4ac7bed5299614d8	principle	8
+pr_transfer	a39970318dc9439de	principle	8
+pr_dissolve	a87827884c35b6e15	principle	8
+pr_tail	a272f9b6dc02bfa95	principle	8
