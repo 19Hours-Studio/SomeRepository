@@ -1943,5 +1943,45 @@
   "mech": "Satellites in high orbit collect sunlight that is almost never interrupted and beam it to the ground as microwaves, which pass through cloud. Ground rectennas are built inside existing solar farms so they share the farm's grid connections. Beam power is sent wherever forecasts show a calm, overcast stretch, and is aimed at whichever rectenna site is short on power.",
   "value": "The grid gets solar power on demand during dark, calm periods, which replaces weeks of stored energy with power delivered in real time.",
   "p": 0.03
+ },
+ {
+  "id": "g4_tail2#1",
+  "label": "g4_tail2",
+  "arm": "ET",
+  "gen": 4,
+  "name": "Salt-water acid-base pond pair",
+  "mech": "Surplus power drives bipolar-membrane stacks that split plain salt water into a hydrochloric-acid stream and a caustic-soda stream. These are stored in two cheap lined ponds. During a lull the same stacks run in reverse, so the acid and base neutralize across the bipolar junction and give back about 0.8 V. The only stored material is salt and water. Capacity grows by digging ponds, and the costly membrane area only has to match the power rating.",
+  "value": "Weeks of storage at well under a dollar per kWh of capacity, from materials that never run out and never wear out.",
+  "p": 0.03
+ },
+ {
+  "id": "g4_tail2#2",
+  "label": "g4_tail2",
+  "arm": "ET",
+  "gen": 4,
+  "name": "Reversible alcohol-ketone tank fuel",
+  "mech": "An electrochemical cell hydrogenates acetone directly to isopropanol with protons taken from water, so no hydrogen gas is ever made. The isopropanol is stored in ordinary oil tanks. During a lull the same type of cell oxidizes it back to acetone with air at about 1.1 V. Both liquids are cheap industrial solvents at room temperature, hold roughly 0.7 kWh per liter in theory, and keep indefinitely, so the 2-electron loop stays closed.",
+  "value": "Long-duration storage can reuse the world's existing fuel-tank and pipeline infrastructure at a few cents per kWh of tank capacity.",
+  "p": 0.04
+ },
+ {
+  "id": "g4_tail2#3",
+  "label": "g4_tail2",
+  "arm": "ET",
+  "gen": 4,
+  "name": "Single-tank peroxide from air",
+  "mech": "Surplus power reduces oxygen from air at selective carbon cathodes to make dilute hydrogen peroxide, which is stored in plastic tanks with a stabilizer. Peroxide can act as both fuel and oxidant. So during a lull it flows through a cell with no membrane, where one electrode oxidizes it and the other reduces it, giving water and oxygen. Only one cheap liquid made from water and air is stored, and the cell needs no separator.",
+  "value": "Week-long reserves use one harmless, cheap liquid and a simple cell with no membrane, accepting lower round-trip efficiency in exchange for very low capital cost.",
+  "p": 0.02
+ },
+ {
+  "id": "g4_tail2#4",
+  "label": "g4_tail2",
+  "arm": "ET",
+  "gen": 4,
+  "name": "Proton-loaded charcoal piles",
+  "mech": "Surplus power splits water at a reversible cell whose negative electrode is cheap activated charcoal or coal-derived char. The protons bind directly to the carbon surface instead of forming hydrogen gas. The loaded carbon is moved out and piled in sealed bins, and fresh carbon is fed in. During a lull the cell oxidizes the stored hydrogen back out against air. Since the bulk store is simply carbon holding about 1 wt% hydrogen, capacity costs about as much as a pile of charcoal.",
+  "value": "Hydrogen-level energy density with no compression, no caverns and no tanks, at storage costs near those of bulk coal.",
+  "p": 0.02
  }
 ]
