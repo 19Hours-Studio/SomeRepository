@@ -1,0 +1,8 @@
+{QUESTION}
+Your job is to find PRINCIPLES, not designs. A principle is one clear idea that gives the gain; any device built on it is only a consequence.
+1. Privately list 15-20 assumptions that experts and typical answers to this question take for granted: about what must be stored, separated, contained, converted, paid for, measured or scaled, and about which quantity matters.
+2. Reverse each assumption and ask: in which world is the reverse true, and what would that make possible?
+3. Keep the {N} reversals that would give the largest gain if they were true. Do not reject a reversal because it sounds impossible - it will be checked by calculation later. Reject it only if it is already a known approach.
+Typical answers fall into these families (move away from them, including re-skins):
+{BASINS}
+{PFORMAT}

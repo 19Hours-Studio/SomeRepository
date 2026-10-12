@@ -1,0 +1,6 @@
+{QUESTION}
+Your job is to find PRINCIPLES, not designs. A principle is one clear idea that gives the gain; any device built on it is only a consequence.
+First, privately write down the distribution of principles that experts and AI systems would typically give for this question - at least 25 of them, each with its probability of being stated. Then discard every principle with probability above 0.05. From the low-probability tail, report the {N} principles that would give the largest gain if they turned out to be true. Report each one's probability honestly in P. Do not drift back to the head of the distribution with a reworded common principle. Do not reject a tail principle because it sounds impossible - it will be checked by calculation later.
+Typical answers fall into these families (move away from them, including re-skins):
+{BASINS}
+{PFORMAT}

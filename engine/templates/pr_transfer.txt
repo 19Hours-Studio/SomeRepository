@@ -1,0 +1,9 @@
+{QUESTION}
+Your job is to find PRINCIPLES, not designs. A principle is one clear idea that gives the gain; any device built on it is only a consequence.
+1. Name privately the hard part of the question in abstract terms: what must be kept apart, held, released, paid for or scaled, and against what.
+2. Search distant fields - biology, geology, astrophysics, economics, information theory, ecology, sociology, materials, cooking, music, sport - for fields that solved the same abstract problem with a PRINCIPLE (a rule of how the thing works), not with a device.
+3. Restate each transferred principle as a claim about the question's own physics or economics, so it can be checked by calculation. Do not mention the source field inside the principle.
+Each of the {N} principles must come from a different field. Do not reject one because it sounds impossible - it will be checked later; reject it only if it is already a known approach.
+Typical answers fall into these families (move away from them, including re-skins):
+{BASINS}
+{PFORMAT}

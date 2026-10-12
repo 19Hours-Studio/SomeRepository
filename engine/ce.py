@@ -59,9 +59,21 @@ FEASIBLE_RUBRIC = ("- F = feasibility 1-10: do a quick order-of-magnitude check 
                    "at the scale it claims (useful rate per area or volume under the allowed loss, leak against useful rate, stress the "
                    "containment must carry, energy or information per unit of material, cost of the dominating part); 10 = the numbers "
                    "clearly work; 5 = off by about 3-10x but fixable; 1 = off by orders of magnitude. Judge the physics, not the tone.")
+PRINCIPLE_RUBRIC = ("- P = single principle 1-10: 10 = one clear, statable principle produces the gain and every part of the "
+                    "answer follows from it or is minimal wrapping; 5 = a principle is there but the answer is mostly a combination "
+                    "of independent tricks; 1 = a bag of tricks with no central principle.")
 FRAG = re.compile(r"\b(?:idea|answer|offspring)\s*#?\s*\d\b|\b(?:as|see) above\b|\bthe above\b|\bprevious (?:idea|answer)\b", re.I)
 
+def parse_principles(text):
+    """v2.0: one-line principles with self-reported typicality P (verbalized sampling)."""
+    out = []
+    for nm, cl, ov, gn, pp in re.findall(r"^\**PRINCIPLE\** \| (.+?) \| (.+?) \| OVERTURNS:\s*(.+?) \| GAIN:\s*(.+?) \| P:\s*([0-9.]+)", text, re.M):
+        out.append({"name": nm.strip(), "mech": f"{cl.strip()} (Overturns: {ov.strip()})", "value": gn.strip(),
+                    "principle": cl.strip(), "overturns": ov.strip(), "p": float(pp)})
+    return out
+
 def parse_ideas(text):
+    if "=== PRINCIPLES ===" in text: return parse_principles(text.split("=== PRINCIPLES ===", 1)[1])
     if "=== IDEAS ===" not in text: return []
     body = text.split("=== IDEAS ===", 1)[1]
     out = []
@@ -94,6 +106,7 @@ def fill(run, body, n, extra=None, sources=None):
     if cfg.get("use_crux") and cfg.get("crux"): fmt = tpl("_crux") + fmt  # v1.7: generators must attack the crux
     s = body.replace("{QUESTION}", cfg["question"]).replace("{FORMAT}", fmt).replace("{N}", str(n))
     s = s.replace("{CRUX}", cfg.get("crux", "(no crux recorded)"))
+    s = s.replace("{PFORMAT}", tpl("_format_principle").replace("{N}", str(n)))
     s = s.replace("{BASINS}", basins_block(run, sources))
     s = s.replace("{LAWS}", "\n".join(f"- {l['law']} (rules out: {l['out']}; opens: {l['opens']})" for l in cfg.get("laws", [])) or "(no laws recorded)")
     gaps = load(run, "gaps.json", [])
@@ -118,6 +131,7 @@ def cmd_prompt(a):
                 blocks += [f" Parent {tag}: MECHANISM: {i['mech']}", f"   VALUE: {i['value']}", f"   nearest published work: {near}"]
             blocks.append("")
         extra["PAIRS"] = "\n".join(blocks); n = len(pairs)
+    if getattr(a, "n", None): n = a.n
     s = fill(a.run, tpl(a.tech), n, extra)
     p = path(a.run, "prompts", a.label + ".txt"); open(p, "w").write(s); print(p)
 
@@ -154,7 +168,7 @@ def cmd_set(a):
             sid = f"{a.prefix}{j:02d}"; key[sid] = i["id"]
             f.write(f"{sid}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n\n")
     json.dump(key, open(os.path.join(d, "key.json"), "w"), indent=1)
-    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize", "value", "fermi", "intent"):
+    for kind in ("judge", "family", "lit", "gapwalk", "strip", "audit", "concretize", "crux", "valorize", "value", "fermi", "truth", "derive", "intent"):
         s = fill(a.run, tpl(kind), 0, {"SETFILE": os.path.join(d, "blind.txt")}, a.basin_sources and a.basin_sources.split(","))
         if kind == "judge" and getattr(a, "crux", False):
             crux = load(a.run, "config.json", {}).get("crux") or sys.exit("no crux recorded: run `family` with the v1.7 template first")
@@ -166,8 +180,11 @@ def cmd_set(a):
         if kind == "judge" and getattr(a, "feasible", False):
             s = s.replace("- R = ", FEASIBLE_RUBRIC + "\n- R = ")
             s = re.sub(r"(ID \| O \| C \| V(?: \| G)?)", r"\1 | F", s, count=1)
+        if kind == "judge" and getattr(a, "principle", False):
+            s = s.replace("- R = ", PRINCIPLE_RUBRIC + "\n- R = ")
+            s = re.sub(r"(ID \| O \| C \| V(?: \| G)?(?: \| F)?)", r"\1 | P", s, count=1)
         open(os.path.join(d, f"prompt_{kind}.txt"), "w").write(s)
-    json.dump([c for c, f in (("G", "genius"), ("F", "feasible")) if getattr(a, f, False)], open(os.path.join(d, "extra_cols.json"), "w"))
+    json.dump([c for c, f in (("G", "genius"), ("F", "feasible"), ("P", "principle")) if getattr(a, f, False)], open(os.path.join(d, "extra_cols.json"), "w"))
     print(f"set {a.set}: {len(items)} items -> {d}/blind.txt (+ prompt_judge/family/lit.txt)")
 
 def setkey(run, s): return json.load(open(path(run, "sets", s, "key.json")))
@@ -195,9 +212,9 @@ def cmd_judge(a):
     open(path(a.run, "sets", a.set, f"judge_{a.judge}.md"), "w").write(text)
     sc = load(a.run, "scores.json", {}); n = 0
     xf = path(a.run, "sets", a.set, "extra_cols.json"); cols = json.load(open(xf)) if os.path.exists(xf) else ["G"]
-    for sid, o, c, v, e1, e2, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| (?:(\d+) \| )?(?:(\d+) \| )?([YN]) \| ([A-Z0-9_]+) \| (?:([YN]) \| )?(.+)$", text, re.M):
+    for sid, o, c, v, e1, e2, e3, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| (?:(\d+) \| )?(?:(\d+) \| )?(?:(\d+) \| )?([YN]) \| ([A-Z0-9_]+) \| (?:([YN]) \| )?(.+)$", text, re.M):
         if sid not in key: continue
-        extra = {k: int(e) for k, e in zip(cols, [e for e in (e1, e2) if e])}
+        extra = {k: int(e) for k, e in zip(cols, [e for e in (e1, e2, e3) if e])}
         sc.setdefault(key[sid], {})[f"{a.set}:{a.judge}"] = {"O": int(o), "C": int(c), "V": int(v), "R": r, "B": b, "closest": cl.strip(),
                                                            **({"X": x} if x else {}), **extra}
         n += 1
@@ -366,7 +383,7 @@ def cmd_valorize(a):
     text = read_source(a); key = setkey(a.run, a.set)
     open(path(a.run, "sets", a.set, f"valorize_{a.arm}.md"), "w").write(text)
     ideas = load(a.run, "ideas.json", []); byid = {i["id"]: i for i in ideas}; n = 0
-    for sid, body in re.findall(r"=== (?:VALORIZED|VALUED|CHECKED) ([A-Z]+\d\d) ===\n(.*?)(?=\n=== (?:VALORIZED|VALUED|CHECKED)|\Z)", text, re.S):
+    for sid, body in re.findall(r"=== (?:VALORIZED|VALUED|CHECKED|DERIVED) ([A-Z]+\d\d) ===\n(.*?)(?=\n=== (?:VALORIZED|VALUED|CHECKED|DERIVED)|\Z)", text, re.S):
         if sid not in key: continue
         par = byid[key[sid]]
         m = re.search(r"MECHANISM:\**\s*(.+?)\n\s*\**VALUE:\**\s*(.+)", body, re.S)
@@ -376,7 +393,7 @@ def cmd_valorize(a):
         ideas.append({"id": nid, "label": f"{a.arm}:{par['label']}", "arm": a.arm, "gen": par["gen"], "parent": par["id"],
                       "name": nm.group(1).strip() if nm else "", "anchor": an.group(1).strip() if an else "",
                       "mech": " ".join(m.group(1).split()), "value": " ".join(m.group(2).split())}); n += 1
-        vd = re.search(r"VERDICT:\**\s*(PASS|FIX|FAIL)", body); es = re.search(r"ESTIMATE:\**\s*(.+?)\n\s*\**NAME:", body, re.S)
+        vd = re.search(r"VERDICT:\**\s*(PASS|FIX|FAIL|TRUE|REGIME|FALSE)", body); es = re.search(r"ESTIMATE:\**\s*(.+?)\n\s*\**NAME:", body, re.S)
         if vd: ideas[-1]["verdict"] = vd.group(1)
         if es: ideas[-1]["estimate"] = " ".join(es.group(1).split())
     save(a.run, "ideas.json", ideas); vs = Counter(i.get("verdict") for i in ideas if i["arm"] == a.arm and i.get("verdict"))
@@ -567,6 +584,7 @@ def main():
     x.add_argument("--force", action="store_true")
     x = sp.add_parser("prompt"); x.add_argument("run"); x.add_argument("tech", help="technique template or evolved species name"); x.add_argument("label")
     x.add_argument("--pairs", type=int, default=3); x.add_argument("--pair-from", type=int, default=0)
+    x.add_argument("--n", type=int, help="ideas/principles per generator (default: run's n)")
     x = sp.add_parser("ingest"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--arm", required=True)
     x.add_argument("--gen", type=int, default=0); src(x)
     x = sp.add_parser("set"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--labels"); x.add_argument("--ids")
@@ -574,6 +592,7 @@ def main():
     x.add_argument("--basin-sources", help="e.g. observed,predicted — exclude visited families from judge prompts (fair final comparison)")
     x.add_argument("--crux", action="store_true", help="v1.7: add the crux column X to the judge prompt")
     x.add_argument("--genius", action="store_true", help="v1.7: add the genius score G to the judge prompt")
+    x.add_argument("--principle", action="store_true", help="v2.0: add the single-principle score P to the judge prompt")
     x.add_argument("--feasible", action="store_true", help="v1.9: add the feasibility score F (order-of-magnitude check) to the judge prompt")
     x = sp.add_parser("family"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("valorize"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--arm", required=True); src(x)

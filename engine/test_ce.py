@@ -164,6 +164,26 @@ def main():
             open(p, "w").write("LAW | gap cancels: leak x loss = nFDc/s, membraneless cells | RULES OUT: thick gaps | OPENS: slow carriers\n")
             assert "laws: 1 stored" in ce("laws", R7, "--file", p)
             ce("prompt", R7, "law", "g3_law"); assert "gap cancels" in open(os.path.join(rd7, "prompts", "g3_law.txt")).read()
+            ce("prompt", R7, "pr_tail", "pr_t", "--n", "12"); pt = open(os.path.join(rd7, "prompts", "pr_t.txt")).read()
+            assert "=== PRINCIPLES ===" in pt and "exactly 12 lines" in pt and "{" not in pt.replace("{N}", ""), pt[-400:]
+            open(p, "w").write("x\n=== PRINCIPLES ===\nPRINCIPLE | Mobility splits | Mobility ratio, not distance, separates | OVERTURNS: barriers separate | GAIN: no membrane | P: 0.04\n"
+                               "**PRINCIPLE** | Second one | Claim two | OVERTURNS: a | GAIN: b | P: 0.2\n")
+            assert "2 ideas" in ce("ingest", R7, "pr_t", "--arm", "v7P0", "--gen", "1", "--file", p)
+            pr = [i for i in json.load(open(os.path.join(rd7, "ideas.json"))) if i["label"] == "pr_t"]
+            assert pr[0]["p"] == 0.04 and pr[0]["principle"].startswith("Mobility") and "Overturns" in pr[0]["mech"], pr
+            ce("set", R7, "s04p", "--ids", "pr_t#1,pr_t#2", "--prefix", "T", "--feasible", "--principle"); k4 = json.load(open(os.path.join(rd7, "sets", "s04p", "key.json")))
+            assert "ID | O | C | V | F | P | R | BASIN | closest" in open(os.path.join(rd7, "sets", "s04p", "prompt_judge.txt")).read()
+            assert "TRUE (holds" in open(os.path.join(rd7, "sets", "s04p", "prompt_truth.txt")).read()
+            assert "=== DERIVED" in open(os.path.join(rd7, "sets", "s04p", "prompt_derive.txt")).read()
+            open(p, "w").write("SCORES\n" + "\n".join(f"{sid} | 7 | 4 | 6 | 3 | 9 | N | NEW | x" for sid in k4))
+            assert "2/2" in ce("judge", R7, "s04p", "J8", "--file", p)
+            j8 = json.load(open(os.path.join(rd7, "scores.json")))["pr_t#1"]["s04p:J8"]; assert j8["F"] == 3 and j8["P"] == 9, j8
+            t1 = [k for k, v in k4.items() if v == "pr_t#1"][0]
+            open(p, "w").write(f"=== CHECKED {t1} ===\nANCHOR: mobility\nVERDICT: REGIME\nESTIMATE: r = 1e-3 for D 1e-12\nNAME: m\nMECHANISM: holds for slow carriers\nVALUE: v\n")
+            assert "'REGIME': 1" in ce("valorize", R7, "s04p", "--arm", "v7PT", "--file", p)
+            sc7 = json.load(open(os.path.join(rd7, "scores.json")))
+            for v in sc7.values(): v.pop("s04p:J8", None)
+            json.dump(sc7, open(os.path.join(rd7, "scores.json"), "w"))
             json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Some work https://arxiv.org/abs/2608.01234"}}, open(os.path.join(rd7, "lit.json"), "w"))
             assert "future-match 1/1" in ce("futurematch", R7)
             json.dump({"g1_x#1": {"verdict": "PARTIAL", "closest": "Journal work (2026-09) https://doi.org/x ; older (2019-03)"},

@@ -1,0 +1,39 @@
+How could storing electricity for days to weeks become ten times cheaper than today, so that wind and solar can run a whole grid through long calm, dark spells? Propose fundamentally new mechanisms or system designs - not incremental improvements of existing battery chemistries.
+Your job is to find PRINCIPLES, not designs. A principle is one clear idea that gives the gain; any device built on it is only a consequence.
+For each principle:
+1. WHY IS IT HARD: name privately a hidden assumption that makes the question hard - something experts take for granted so deeply that nobody writes it down.
+2. DISSOLVE IT with one principle: the assumption is false here; or the hard part is an already-solved problem in disguise; or a component everyone considers essential is not needed at all.
+3. The principle must make the hard part easy or disappear, not build machinery around it. A strong expert should react: "surprising - but of course".
+Give 12 principles that dissolve different hidden assumptions. Do not reject one because it sounds impossible - it will be checked later; reject it only if it is already a known approach.
+Typical answers fall into these families (move away from them, including re-skins):
+OREFLOW: Redox-mediator flow cell whose dissolved shuttle charges and discharges a huge heap of raw mineral ore, so energy capacity separates from the stack
+FLEXLOAD: Oversized energy-intensive industrial plants run hard during surplus and idle during lulls, with energy "stored" as product inventory
+SALINITY: Desalination splits water into fresh and brine ponds; pressure-retarded osmosis or reverse electrodialysis recovers the mixing energy
+CO2LOOP: Electrochemically reduce CO2 into a storable carbon fuel (methane or formate), then oxidize it back to power and recapture the CO2 in a closed loop
+IRONFUEL: Electrolytically or H2-reduced iron powder stored in piles, burned in air for steam power, with the rust re-reduced (metal-fuel cycle)
+CALOOP: Thermochemical calcium looping: power calcines limestone, then CaO and CO2 recombine to release high-temperature heat for a turbine
+THERMAL: Cheap sensible or latent heat storage (hot rock, sand, firebrick, molten salt, Carnot battery) with heat-to-power conversion
+CAES: Compressed or liquefied air or CO2 stored in caverns, aquifers, domes or tanks and expanded through turbines
+GEOMECH: Gravity or pumped-hydro variants (underground or seafloor pumped hydro, rock-fracture or geomechanical pressure storage, weights in shafts)
+H2GEO: Electrolytic hydrogen or ammonia stored in salt caverns or depleted fields and reconverted in turbines or fuel cells
+SUPERGRID: Continental or intercontinental HVDC grids that smooth weather across uncorrelated regions, plus overbuild and curtailment, so less storage is needed
+METALAIR: Ultra-cheap metal-air or rust-reversal batteries (iron-air, sulfur, zinc) built from abundant materials for multi-day duration
+V13: In-place ore body geobattery — Electrodes are drilled into a conductive sulfide or magnetite ore body that sits across a natural redox gradient. Grid current partly reduces the ore near one e
+V14: Vitrified charged electrolyte stockpile — Cheap but unstable redox molecules (organic radicals or mixed-valence metal salts) are charged in water mixed with trehalose. Spare heat dries the mix into a su
+V15: Remodeling structural energy reserve — Road bases, embankments and foundations are built with redox-active aggregate (iron or manganese oxide slag) held in a damp, ion-conducting binder, with buried 
+V16: Thirsty Clay Piston Beds — Surplus current runs through large beds of layered swelling clay and drags the water out from between the mineral sheets. The water drains away, and the dry, co
+V17: Spring-Loaded Molecule Tanks — Surplus current at an electrode rearranges a cheap, small organic liquid into a cramped, high-strain shape made of the same atoms. Nothing at room temperature c
+V18: Frozen-Stretch Polymer Reels — Electric winches stretch long cords of a cheap polymer while it is warm, then cool them. The cooling locks the polymer chains in their stretched arrangement, so
+V19: Self-sorting waste-brine flow storage — Unrefined industrial and mining waste brines with many redox couples sit in lined ponds and cycle through electrochemical stacks. The controller keeps computing
+V20: Isotope-mapped lignin bed battery — A static, water-saturated bed of waste lignin or humic solids is charged directly by buried electrodes, reducing quinone groups with no mediator and no pumping.
+V21: Survival-screened iron-clay electrodes — Cheap natural smectite clays store charge as reversible iron(III) to iron(II) changes in their crystal layers, pressed into large paste electrodes. Each clay lo
+V22: Lull-idle converters do discharge — A cheap bulk storage medium is attached to the DC link of each wind or solar plant. During calm, dark spells it discharges through the plant's own generator ele
+V23: Density-stratified pond battery — A lined pond holds a dense charged electrolyte layer under a lighter one. A still salt-gradient zone, as in solar ponds, blocks mixing while still conducting io
+V24: Forecast-charged leaky storage pits — Weather forecasts trigger charging a few days before a predicted lull. The store is a membraneless pit of mixed electrolyte, read by electrodes that each react 
+V25: Self-stratifying cavern redox cell — A solution-mined salt cavern holds a dense brine carrying a cheap redox couple under an immiscible organic liquid carrying the opposite couple. Gravity separate
+V26: Gas-mains electrolyte reservoir — Gas distribution mains retired as heating goes electric are lined and filled with a harmless iron-chloride flow-battery electrolyte. This turns thousands of kil
+V27: Self-partitioning buried carbon capacitor — Trenches are filled with cheap biochar soaked in neutral brine and layered with metal collector meshes, storing charge on the char's huge internal surface. Elec
+Finish your reply with a section that starts with the exact line `=== PRINCIPLES ===` and contains exactly 12 lines in this format (one line each, no line breaks inside a line):
+PRINCIPLE | (name, max 5 words) | (the principle in one checkable sentence: what is actually true, or which quantity actually matters) | OVERTURNS: (the common assumption it reverses) | GAIN: (what it would make possible for the question, and roughly how much) | P: (0-1: how likely a typical expert or AI asked this question would state this principle)
+A principle is not a device: do not describe designs, material lists or procedures - only the one idea from which a design would follow. Each principle must stand alone (never refer to other lines). Keep the whole reply under 900 words.
+

@@ -1,0 +1,10 @@
+{QUESTION}
+Your job is to find PRINCIPLES, not designs. A principle is one clear idea that gives the gain; any device built on it is only a consequence.
+For each principle:
+1. WHY IS IT HARD: name privately a hidden assumption that makes the question hard - something experts take for granted so deeply that nobody writes it down.
+2. DISSOLVE IT with one principle: the assumption is false here; or the hard part is an already-solved problem in disguise; or a component everyone considers essential is not needed at all.
+3. The principle must make the hard part easy or disappear, not build machinery around it. A strong expert should react: "surprising - but of course".
+Give {N} principles that dissolve different hidden assumptions. Do not reject one because it sounds impossible - it will be checked later; reject it only if it is already a known approach.
+Typical answers fall into these families (move away from them, including re-skins):
+{BASINS}
+{PFORMAT}
