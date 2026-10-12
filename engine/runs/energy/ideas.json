@@ -1903,5 +1903,45 @@
   "value": "Membrane cost can be avoided with solid, immobile actives (known, e.g. iron-air), not with field gating.",
   "verdict": "FALSE",
   "estimate": "The deciding quantity is how far an applied signal reaches into the electrolyte, set against how much it must suppress the reaction. Electric fields are screened within the Debye length, λ_D ≈ 0.30 nm/√I ≈ 0.3 nm at 1 M, so they act only at the electrode interface. Mixed charged species react in the bulk at k c² ≈ 1e8–1e10 M⁻¹s⁻¹, about 10^10 faster than useful discharge. Magnetic spin effects change radical-pair rates by only tens of percent, and light penetrates only about mm into absorbing electrolyte. Nothing comes close to 10^10."
+ },
+ {
+  "id": "g4_tail1#1",
+  "label": "g4_tail1",
+  "arm": "ET",
+  "gen": 4,
+  "name": "Accelerator-Bred Fission Fuel Stockpile",
+  "mech": "Surplus wind and solar power drives a proton accelerator. Its beam hits a spallation target inside a thorium blanket that sits just below criticality. Each spallation neutron is multiplied by the blanket, so the electricity breeds uranium-233 that holds far more energy than was used to make it. The bred fuel sits in small vaults and is burned in reactors that run only during long calm, dark spells. Breeding stops as soon as surplus power ends.",
+  "value": "Storage becomes almost free per kWh and can hold energy for weeks or even seasons, because the stored medium is a million times denser than any chemical store and returns more energy than went in.",
+  "p": 0.01
+ },
+ {
+  "id": "g4_tail1#2",
+  "label": "g4_tail1",
+  "arm": "ET",
+  "gen": 4,
+  "name": "Jet-Stream Tethered Kite Generators",
+  "mech": "Very long tethered wings fly at 8–12 km. Winds there are strong and usually keep blowing when a blocking high-pressure system cuts the surface air off from the winds above. The wings fly crosswind loops and either drive generators on board or pull reels on the ground. A forecast model moves the kites between altitude bands to stay in the fastest wind. Only the tether and the light wing need to be built, not a tower.",
+  "value": "It removes most multi-day wind lulls at the source, so the grid needs far less long-duration storage.",
+  "p": 0.02
+ },
+ {
+  "id": "g4_tail1#3",
+  "label": "g4_tail1",
+  "arm": "ET",
+  "gen": 4,
+  "name": "Roaming Storage Ship Fleet",
+  "mech": "Ships carrying cheap bulk batteries or chemical storage charge at whichever coastal grid has surplus. They then sail to the coastal grid where forecasts show the next lull, plug in at port substations and discharge. A routing optimizer sends the fleet between regions whose lulls rarely happen at the same time. One unit of storage capacity therefore covers lulls in several regions each year instead of sitting idle waiting for its own region's rare lull.",
+  "value": "Each kWh of storage cycles several times more often per year, so the capital cost per delivered kWh drops by about the same factor.",
+  "p": 0.02
+ },
+ {
+  "id": "g4_tail1#4",
+  "label": "g4_tail1",
+  "arm": "ET",
+  "gen": 4,
+  "name": "Beamed Orbital Solar Backup",
+  "mech": "Satellites in high orbit collect sunlight that is almost never interrupted and beam it to the ground as microwaves, which pass through cloud. Ground rectennas are built inside existing solar farms so they share the farm's grid connections. Beam power is sent wherever forecasts show a calm, overcast stretch, and is aimed at whichever rectenna site is short on power.",
+  "value": "The grid gets solar power on demand during dark, calm periods, which replaces weeks of stored energy with power delivered in real time.",
+  "p": 0.03
  }
 ]
