@@ -1,0 +1,8 @@
+{
+ "cand": "seed_ssm.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 98592,
+ "error": "TimeoutError: training exceeded 480s at step 2599",
+ "fitness": 99.0
+}

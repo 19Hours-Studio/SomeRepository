@@ -1,0 +1,11 @@
+{
+ "cand": "r0_blindB_2.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 144792,
+ "train_s": 269.2,
+ "train_bpc": 1.8073,
+ "bpc": 1.8847,
+ "bpc_2x": 2.2116,
+ "fitness": 1.8847
+}

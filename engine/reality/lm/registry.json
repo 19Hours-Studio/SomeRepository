@@ -9,6 +9,16 @@
    "method": "blind",
    "parents": "",
    "round": 0
+  },
+  "r1_cross": {
+   "method": "cross",
+   "parents": "r0_blindB_1,r0_blindA_2",
+   "round": 1
+  },
+  "r1_count": {
+   "method": "count",
+   "parents": "r0_blindB_1,r0_blindA_1",
+   "round": 1
   }
  },
  "r0_blindB_1": {

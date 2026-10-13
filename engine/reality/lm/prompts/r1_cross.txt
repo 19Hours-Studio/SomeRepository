@@ -1,0 +1,53 @@
+You are part of an architecture discovery engine. Its single principle: novelty is cheap, truth is expensive - so every
+idea is tested by real training, and only measurements decide. Your job: design new neural architectures for a task
+where nobody knows the best answer.
+
+THE REALITY TEST (fixed and equal for everyone):
+- Character-level language modelling of Python source code (CPython standard library; validation = files never seen in
+  training). 96 symbols (newline + printable ASCII). Context 128 characters.
+- Training: 3000 steps, batch 16, AdamW, one-cycle lr 3e-3, gradient clipping 1.0, random windows. Then validation
+  bits per character at context 128 (the fitness, LOWER IS BETTER) and, for information, at context 256.
+- Interface: a Python file defining `class Model(nn.Module)` with `__init__(self, vocab_size, max_len)` and
+  `forward(self, x)` taking LongTensor [B, T] and returning logits [B, T, vocab_size], where position t predicts the
+  character at t+1. It MUST be causal: output at t may depend only on x[:, :t+1] (checked by perturbing the input
+  before and after training; a non-causal model scores nothing). `torch`, `nn`, `F`, `math` are defined.
+- Budget: at most 150,000 trainable parameters, and 3000 steps must finish within 8 minutes on ONE CPU thread
+  (about 0.15 s per step at B=16, T=128). A causal Python loop over 128 time steps is affordable only if it is light.
+- Known reference points: a plain 2-layer causal RoPE transformer with ~96k parameters is a typical baseline.
+
+KNOWN FAMILIES (the attractors - a plain re-implementation teaches the engine nothing; use them only as material):
+Transformer variants (absolute, rotary, ALiBi or no positions; local or sparse attention), recurrent nets (LSTM, GRU),
+state-space models (S4, Mamba, selective scans), linear attention / RetNet / RWKV / gated linear recurrences,
+attention + SSM hybrids (Jamba-like), memory-augmented nets (NTM, DNC, key-value memories), mixture of experts,
+convolutional sequence models (Hyena, long convolutions), pointer networks.
+
+WHAT REALITY HAS SAID SO FAR (measured, not opinions):
+7 candidates measured (lower bits/char is better).
+Best candidates (principle -> measurement):
+- r0_blindB_1: 1.7803 bits/char (at 2x context 2.3643), 145920 params, 174.8s training, 1 seed(s). PRINCIPLE: Half of the attention heads compute their key at source position s from the previous position's state h[s-1], while the value comes from h[s] (no RoPE on these heads). A single layer therefore acts as a ready-made induction/copy head: "find where the current local context appeared before and copy the character that came next." That handles the many repeated identifiers and names in code from step 0, instead of hoping two-layer induction circuits form within only 3000 steps.
+- r0_blindA_1: 1.8272 bits/char (at 2x context 2.7279), 144947 params, 186.3s training, 1 seed(s). PRINCIPLE: A cache head trained end to end, with the pointer mixed into the output. Each earlier position j keeps its final hidden state as a key and the character that actually followed it, x[j+1], as the value. The model mixes a sharp cosine-similarity copy distribution over those next characters into its softmax. Code reuses identifiers, keywords and whole phrases over and over, and this head gives exact long-range copying from step one. A tiny 2-layer transformer would otherwise have to discover induction-head composition inside 3000 steps.
+- r0_blindA_2: 1.8694 bits/char (at 2x context 2.5408), 146592 params, 154.9s training, 1 seed(s). PRINCIPLE: Give the model an exact causal syntax register that costs no learning, computed with vectorised prefix scans of the input. It holds the column, the current line's indent, the previous non-blank line's indent and last character (for example ':'), the indent difference while inside leading whitespace, and the relative bracket depth, and it is embedded and added to the input. Leading whitespace and line structure make up a large share of Python characters and are fully fixed by these counts. Counting and comparing counts is exactly what a tiny attention model learns worst in 3000 steps. (This assumes the vocabulary is '\n' followed by chr(32..126) in order, so '\n'=0 and ' '=1.)
+- r0_blindB_2: 1.8847 bits/char (at 2x context 2.2116), 144792 params, 269.2s training, 1 seed(s). PRINCIPLE: Give the network exact parser-state counters by summing learned per-character increments: 8 never-decaying cumulative sums plus 8 counters with a learned per-character reset, all fed to the model as tanh and cos(pi*c) features. These can learn bracket depth, quote parity (inside a string or not), column and line indentation directly, instead of a tiny transformer having to learn to count from attention in 3000 steps.
+- seed_gru: 1.9582 bits/char (at 2x context 1.9210), 130272 params, 200.5s training, 1 seed(s). PRINCIPLE: known-family seed
+- seed_tf_rope: 2.0215 bits/char (at 2x context 2.4874), 95968 params, 160.7s training, 1 seed(s). PRINCIPLE: known-family seed
+- seed_ssm: FAILED (TimeoutError: training exceeded 480s at step 2599). PRINCIPLE: known-family seed
+Failed: seed_ssm (TimeoutError: training exceeded 480s at step 2599)
+
+PARENTS (measurements and principles only - their code is withheld on purpose so that you design from first principles):
+PARENT r0_blindB_1 - r0_blindB_1: 1.7803 bits/char (at 2x context 2.3643), 145920 params, 174.8s training, 1 seed(s). PRINCIPLE: Half of the attention heads compute their key at source position s from the previous position's state h[s-1], while the value comes from h[s] (no RoPE on these heads). A single layer therefore acts as a ready-made induction/copy head: "find where the current local context appeared before and copy the character that came next." That handles the many repeated identifiers and names in code from step 0, instead of hoping two-layer induction circuits form within only 3000 steps.
+PARENT r0_blindA_2 - r0_blindA_2: 1.8694 bits/char (at 2x context 2.5408), 146592 params, 154.9s training, 1 seed(s). PRINCIPLE: Give the model an exact causal syntax register that costs no learning, computed with vectorised prefix scans of the input. It holds the column, the current line's indent, the previous non-blank line's indent and last character (for example ':'), the indent difference while inside leading whitespace, and the relative bracket depth, and it is embedded and added to the input. Leading whitespace and line structure make up a large share of Python characters and are fully fixed by these counts. Counting and comparing counts is exactly what a tiny attention model learns worst in 3000 steps. (This assumes the vocabulary is '\n' followed by chr(32..126) in order, so '\n'=0 and ' '=1.)
+
+YOUR METHOD:
+Take the two parents above (measurements and principles). Find the ONE shared move that would give both their strengths and build a design SIMPLER than either, not a stack of both.
+
+Rules: each candidate must rest on ONE clear idea that should lower bits per character under THIS budget (state it as
+the PRINCIPLE, with why it should help here: code has deep indentation structure, repeated identifiers, matching
+brackets and quotes, long-range copies of names). Everything else is minimal wrapping. Make the code correct and
+causal, check shapes, keep it fast. Do not use tools; reply with text only.
+
+Output exactly 2 candidates in this format, nothing after the last one:
+=== CANDIDATE 1 ===
+PRINCIPLE: (one sentence: the single idea and why it should lower bits per character here)
+```python
+(complete code defining class Model)
+```

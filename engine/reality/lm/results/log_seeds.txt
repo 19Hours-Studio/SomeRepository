@@ -1,0 +1,3 @@
+seed_tf_rope: 2.0215 bits/char (at 2x context 2.4874), 95968 params, 160.7s training, 1 seed(s)
+seed_gru: 1.9582 bits/char (at 2x context 1.9210), 130272 params, 200.5s training, 1 seed(s)
+seed_ssm: FAILED (TimeoutError: training exceeded 480s at step 2599)
