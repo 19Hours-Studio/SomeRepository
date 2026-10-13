@@ -56,5 +56,17 @@
   "method": "count",
   "parents": "r0_blindB_1,r0_blindA_1",
   "round": 1
+ },
+ "r1_cross_1": {
+  "principle": "Both parents gain by putting exact input coordinates where a tiny transformer would otherwise have to learn them, so every head here keys source position s by the state just before it (h[s-1], value h[s]) and rotates by column (characters since the last newline, from a cummax scan) rather than by absolute position: one layer can then copy \"what followed this context before\" for repeated identifiers, and also \"what followed at this same column on earlier lines\", which gives indentation and vertical alignment with no syntax register at all.",
+  "method": "cross",
+  "parents": "r0_blindB_1,r0_blindA_2",
+  "round": 1
+ },
+ "r1_cross_2": {
+  "principle": "What both parents share is an exact, learning-free match on the preceding input, so this design computes it directly with no parameters: for every position, counts of which character followed each earlier occurrence of the last k characters (k = 1..8, from vectorised equality matrices), added to the logits as log(1+count) with a gate learned from the context; long matches copy repeated identifiers and phrases exactly from step 0, and matches that span newline-plus-spaces copy indentation and line structure, all on top of a plain small RoPE transformer.",
+  "method": "cross",
+  "parents": "r0_blindB_1,r0_blindA_2",
+  "round": 1
  }
 }
