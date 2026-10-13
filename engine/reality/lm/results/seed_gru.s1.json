@@ -1,0 +1,11 @@
+{
+ "cand": "seed_gru.py",
+ "seed": 1,
+ "steps": 3000,
+ "params": 130272,
+ "train_s": 203.9,
+ "train_bpc": 1.7098,
+ "bpc": 1.9445,
+ "bpc_2x": 1.9083,
+ "fitness": 1.9445
+}

@@ -1,0 +1,4 @@
+r0_blindB_1: 1.7812 bits/char (at 2x context 2.2347), 145920 params, 173.4s training, 2 seed(s)
+r0_blindA_1: 1.8303 bits/char (at 2x context 2.8239), 144947 params, 188.9s training, 2 seed(s)
+seed_gru: 1.9513 bits/char (at 2x context 1.9146), 130272 params, 202.2s training, 2 seed(s)
+seed_tf_rope: 2.0331 bits/char (at 2x context 2.5884), 95968 params, 161.3s training, 2 seed(s)
