@@ -19,6 +19,21 @@
    "method": "count",
    "parents": "seed_tf_rope",
    "round": 1
+  },
+  "r2_crossA": {
+   "method": "cross",
+   "parents": "r1_transfer_1,r1_dissolve_2",
+   "round": 2
+  },
+  "r2_crossB": {
+   "method": "cross",
+   "parents": "r1_transfer_1,r1_transfer_2",
+   "round": 2
+  },
+  "r2_dissolve": {
+   "method": "dissolve",
+   "parents": "r1_transfer_1,r1_transfer_2",
+   "round": 2
   }
  },
  "r1_dissolve_1": {

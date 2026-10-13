@@ -1,0 +1,157 @@
+You are part of an architecture discovery engine. Its single principle: novelty is cheap, truth is expensive - so every
+idea is tested by real training, and only measurements decide. Your job is to propose new neural sequence architectures.
+
+THE REALITY TEST (fixed and equal for everyone):
+- Four capability tasks, trained together for 3000 steps (AdamW, batch 32, one-cycle lr 3e-3), at short lengths, then
+  tested in-distribution (ID) and at 2x the training length (OOD):
+  mqar   multi-query associative recall: k1 v1 ... kn vn | q1 _ q2 _ ...   (train n<=8, test n=8 and n=16)
+  copy   a1 ... an | _ ... _   reproduce the sequence                        (train n<=8, test 8 and 16)
+  parity b1 ... bn | _   parity of the bits                                   (train n<=12, test 12 and 24)
+  hop    a1 b1 ... an bn | x _   answer f(f(x)) where f maps ai -> bi         (train n<=8, test 8 and 16)
+  Every sequence starts with a task-marker token. Token ids: 0 pad, 1 separator, 2 blank, 3-6 task markers, 8-31 symbols.
+- Score per task = accuracy above chance, scaled to 0-1; fitness = mean over tasks of (ID + OOD) / 2. Profile cell =
+  per task 0 (not learned), 1 (learned ID only) or 2 (also generalises to 2x length).
+- Interface: a Python file defining `class Model(nn.Module)` with `__init__(self, vocab_size, max_len)` and
+  `forward(self, x)` taking LongTensor [B, T] (0 = padding at the end) and returning logits [B, T, vocab_size] for every
+  position (loss is taken only at blank positions; the model sees the whole input, so it may be causal or not).
+  `torch`, `nn`, `F` and `math` are already defined (you may also import them). At most 120,000 trainable parameters.
+  3000 steps must finish within 7 minutes on ONE CPU thread (about 0.1 s per step at T <= 50), so a Python loop over
+  time steps is fine but nothing heavier. No external data, no task-specific hard-coding of answers (the model must
+  learn), no reading of the targets.
+
+KNOWN FAMILIES (the attractors - a plain re-implementation or re-skin of these teaches the engine nothing; take them
+only as material to go beyond):
+Transformer variants (absolute, rotary, ALiBi or no positions; local or sparse attention), recurrent nets (LSTM, GRU),
+state-space models (S4, Mamba, selective scans), linear attention / RetNet / RWKV / gated linear recurrences,
+attention + SSM hybrids (Jamba-like), memory-augmented nets (NTM, DNC, key-value memories), mixture of experts,
+convolutional sequence models (Hyena, long convolutions), pointer networks.
+
+WHAT REALITY HAS SAID SO FAR (measured, not opinions):
+10 candidates measured; 6 distinct profile cells filled: 0000, 0100, 0120, 1100, 1102, 1110.
+Best per task (ID / 2x): mqar 1.00 / 0.77; copy 1.00 / 0.52; parity 1.00 / 0.99; hop 1.00 / 1.00
+Top candidates (principle -> measurement):
+- r1_transfer_1: fitness 0.612, cell 1102, mqar 1.00/0.77, copy 1.00/0.06, parity 0.00/0.07, hop 1.00/1.00 (ID/2x), 102180 params. PRINCIPLE: Linked-list pointer chasing from classical data structures. Each cell stores its own token embedding as its address and its successor's embedding as its pointer. One shared content-addressed dereference is applied twice, starting from the previous token (r1 = *x, r2 = **x). Addresses and pointers live in the same embedding space, so the read can be repeated and never uses absolute positions. This targets the failed lookup capabilities, mqar (0.20/0.12) and hop (0.10/0.00), including at 2x length. What maps: pointer = successor embedding, dereference = softmax match on address. What does not map: addresses are not unique (repeated symbols blur the read), so a learned successor-type key term and a position-parity bias stand in for a "valid cell" bit, and there is no write or allocate.
+- r1_transfer_2: fitness 0.515, cell 1110, mqar 0.86/0.66, copy 1.00/0.52, parity 0.98/0.02, hop 0.08/0.00 (ID/2x), 93920 params. PRINCIPLE: NMR spin precession with re-aligning RF pulses. Each token rotates a bank of complex spins by a learned per-token angle, and a learned per-token pulse pulls each spin back toward a reference phase (this shrinks the magnitude but keeps the angle exact). Attention compares two positions by spin interference instead of by token index. A 1-bit rotation of pi then gives an exact parity sign at any length, which targets parity (0.45/0.05). Spins re-aligned at the marker or separator support "j-th token after segment start" matching for copy at unseen lengths, which targets copy at 2x (best 0.30). What maps: precession angle = token, RF pulse = reset gate, echo/interference = attention score. What does not map: there is no physical dephasing, the rates are learned, and the reset is soft and must be found by training.
+- r1_dissolve_2: fitness 0.423, cell 0120, mqar 0.19/0.09, copy 1.00/0.00, parity 1.00/0.99, hop 0.11/0.00 (ID/2x), 89056 params. PRINCIPLE: The hidden assumption is that a sequence state is a decaying or gated real-valued sum, which can only approximate parity and loses it beyond the trained length (best parity is 0.45 in-distribution but 0.05 at 2x). Parity is really a sum mod 2, which is just a rotation by pi per 1-bit. Adding a few unit-modulus phase channels (a cumulative sum of learned per-token angles, read out as cos/sin) gives a running state whose size never decays, so it stays exact at any length. These features are added to the RoPE transformer's embeddings, so everything that already works is kept.
+- r1_count_1: fitness 0.397, cell 0120, mqar 0.15/0.05, copy 1.00/0.02, parity 1.00/0.85, hop 0.10/0.00 (ID/2x), 113536 params. PRINCIPLE: Learned token-driven counters: every position's rotary phase is a cumulative sum of per-token learned angles, kept separately for queries and keys (plus a residual phase readout), so attention can match "count of blanks since the separator" against "count of symbols" (copy), find the previous token (mqar/hop), and read off a mod-2 phase (parity). Because a match means two counters are equal, it holds at any length, which targets the near-zero 2x scores (copy 1.00/0.00 and parity 0.45/0.00 for the RoPE transformer).
+- r1_dissolve_1: fitness 0.367, cell 1100, mqar 1.00/0.68, copy 1.00/0.07, parity 0.06/0.02, hop 0.11/0.00 (ID/2x), 89760 params. PRINCIPLE: The hidden assumption is that each token starts out knowing only itself, so before attention can link a key to its value it must first learn a "previous-token" circuit. Hard-wiring the predecessor into every position (embedding of x_t plus a separate embedding of x_{t-1}) turns mqar and hop (0.20 and 0.10, near chance) into position-free content lookups: the blank, whose predecessor is the query, matches the position whose predecessor is that key and reads off its own token. One layer does one hop and two layers do f(f(x)). These lookups never use absolute positions, so they should also hold at 2x length, and RoPE is kept so copy stays at 1.00 in-distribution.
+- r1_count_2: fitness 0.360, cell 1100, mqar 1.00/0.65, copy 1.00/0.04, parity 0.00/0.06, hop 0.13/0.01 (ID/2x), 112288 params. PRINCIPLE: Hard-wired predecessor binding: every attention layer computes its queries, keys and values from the concatenation [h_t, h_{t-1}], so "the value whose predecessor equals the query" is a single attention step. mqar then needs one layer and hop (f(f(x))) needs two chained layers, which addresses the measured failure to form an induction circuit in 3000 steps (mqar ID 0.20, hop ID 0.10 at best).
+- seed_tf_rope: fitness 0.229, cell 0100, mqar 0.19/0.10, copy 1.00/0.00, parity 0.45/0.00, hop 0.10/0.00 (ID/2x), 87712 params. PRINCIPLE: known-family seed
+- seed_ssm: fitness 0.191, cell 0000, mqar 0.16/0.10, copy 0.56/0.23, parity 0.42/0.05, hop 0.00/0.00 (ID/2x), 89312 params. PRINCIPLE: known-family seed
+
+PARENTS (their code; build on them or against them):
+PARENT r1_transfer_1 - r1_transfer_1: fitness 0.612, cell 1102, mqar 1.00/0.77, copy 1.00/0.06, parity 0.00/0.07, hop 1.00/1.00 (ID/2x), 102180 params
+```python
+def rope(q, base=10000.0):
+    B, H, T, D = q.shape; half = D // 2
+    f = base ** (-torch.arange(half, device=q.device) / half); a = torch.arange(T, device=q.device)[:, None] * f[None]
+    c, s = a.cos(), a.sin(); q1, q2 = q[..., :half], q[..., half:]
+    return torch.cat([q1 * c - q2 * s, q1 * s + q2 * c], -1)
+
+class Block(nn.Module):
+    def __init__(self, d, h):
+        super().__init__(); self.h = h; self.n1 = nn.LayerNorm(d); self.qkv = nn.Linear(d, 3 * d); self.o = nn.Linear(d, d)
+        self.n2 = nn.LayerNorm(d); self.ff = nn.Sequential(nn.Linear(d, 3 * d), nn.GELU(), nn.Linear(3 * d, d))
+    def forward(self, x, pad):
+        B, T, D = x.shape; q, k, v = self.qkv(self.n1(x)).view(B, T, 3, self.h, D // self.h).permute(2, 0, 3, 1, 4)
+        q, k = rope(q), rope(k); a = (q @ k.transpose(-1, -2)) / math.sqrt(D // self.h)
+        a = a.masked_fill(pad[:, None, None, :], -1e9).softmax(-1)
+        x = x + self.o((a @ v).transpose(1, 2).reshape(B, T, D))
+        return x + self.ff(self.n2(x))
+
+class Deref(nn.Module):
+    # Linked-list memory: cell s = (address e_s, pointer e_{s+1}). Reading = following the pointer; the result is
+    # again a token embedding, so the SAME lookup can be applied again (pointer chasing).
+    def __init__(self, d, dk=32, hops=2):
+        super().__init__(); self.hops = hops; self.dk = dk
+        self.q = nn.Linear(d, dk, bias=False); self.k = nn.Linear(d, dk, bias=False); self.ks = nn.Linear(d, dk, bias=False)
+        self.pb = nn.Parameter(torch.zeros(hops, 2))
+        self.w = nn.ModuleList([nn.Linear(d, d) for _ in range(hops)])
+    def forward(self, e, pad):
+        B, T, D = e.shape
+        nxt = torch.cat([e[:, 1:], torch.zeros_like(e[:, :1])], 1)          # pointer stored in each cell
+        r = torch.cat([torch.zeros_like(e[:, :1]), e[:, :-1]], 1)           # address register = previous token
+        key = self.k(e) + self.ks(nxt)                                      # address (+ what it points to)
+        par = torch.arange(T, device=e.device) % 2
+        out = 0
+        for i in range(self.hops):
+            s = self.q(r) @ key.transpose(1, 2) / math.sqrt(self.dk) + self.pb[i][par][None, None, :]
+            a = s.masked_fill(pad[:, None, :], -1e9).softmax(-1)
+            r = a @ nxt                                                     # dereference: r <- *r
+            out = out + self.w[i](r)
+        return out
+
+class Model(nn.Module):
+    def __init__(self, vocab_size, max_len, d=64):
+        super().__init__(); self.emb = nn.Embedding(vocab_size, d)
+        self.blocks = nn.ModuleList([Block(d, 4) for _ in range(2)]); self.deref = Deref(d)
+        self.n = nn.LayerNorm(d); self.out = nn.Linear(d, vocab_size)
+    def forward(self, x):
+        pad = x == 0; e = self.emb(x)
+        h = self.blocks[0](e, pad)
+        h = h + self.deref(e, pad)
+        h = self.blocks[1](h, pad)
+        return self.out(self.n(h))
+```
+PARENT r1_transfer_2 - r1_transfer_2: fitness 0.515, cell 1110, mqar 0.86/0.66, copy 1.00/0.52, parity 0.98/0.02, hop 0.08/0.00 (ID/2x), 93920 params
+```python
+def turn(q, zr, zi):
+    # rotate q (B,H,T,D) by complex spin z = zr + i*zi (B,H,T,D/2); q.k then depends on the relative spin phase
+    h = q.shape[-1] // 2; q1, q2 = q[..., :h], q[..., h:]
+    return torch.cat([q1 * zr - q2 * zi, q1 * zi + q2 * zr], -1)
+
+class Spins(nn.Module):
+    # per token: precession angle theta and keep-gate g; z_t = exp(i*theta_t) * (g_t * z_{t-1} + (1 - g_t))
+    def __init__(self, vocab_size, heads, k):
+        super().__init__()
+        w = (0.04 * 80 ** (torch.arange(k) / (k - 1))).repeat(heads)       # rates 0.04 .. 3.2 rad per token, per head
+        self.theta = nn.Parameter(w[None].repeat(vocab_size, 1) + 0.01 * torch.randn(vocab_size, heads * k))
+        self.keep = nn.Parameter(2.0 + 2.0 * torch.randn(vocab_size, heads * k))
+    def forward(self, x):
+        th = self.theta[x]; g = torch.sigmoid(self.keep[x]); c, s = th.cos(), th.sin()
+        zr = torch.ones_like(th[:, 0]); zi = torch.zeros_like(zr); R, I = [], []
+        for t in range(x.shape[1]):
+            ar = g[:, t] * zr + 1 - g[:, t]; ai = g[:, t] * zi
+            zr = ar * c[:, t] - ai * s[:, t]; zi = ar * s[:, t] + ai * c[:, t]
+            R.append(zr); I.append(zi)
+        return torch.stack(R, 1), torch.stack(I, 1)
+
+class Block(nn.Module):
+    def __init__(self, d, h):
+        super().__init__(); self.h = h; self.n1 = nn.LayerNorm(d); self.qkv = nn.Linear(d, 3 * d); self.o = nn.Linear(d, d)
+        self.n2 = nn.LayerNorm(d); self.ff = nn.Sequential(nn.Linear(d, 3 * d), nn.GELU(), nn.Linear(3 * d, d))
+    def forward(self, x, pad, zr, zi):
+        B, T, D = x.shape; q, k, v = self.qkv(self.n1(x)).view(B, T, 3, self.h, D // self.h).permute(2, 0, 3, 1, 4)
+        q, k = turn(q, zr, zi), turn(k, zr, zi); a = (q @ k.transpose(-1, -2)) / math.sqrt(D // self.h)
+        a = a.masked_fill(pad[:, None, None, :], -1e9).softmax(-1)
+        x = x + self.o((a @ v).transpose(1, 2).reshape(B, T, D))
+        return x + self.ff(self.n2(x))
+
+class Model(nn.Module):
+    def __init__(self, vocab_size, max_len, d=64, H=4):
+        super().__init__(); self.H = H; self.emb = nn.Embedding(vocab_size, d)
+        self.spins = Spins(vocab_size, H, d // H // 2); self.read = nn.Linear(d, d)
+        self.blocks = nn.ModuleList([Block(d, H) for _ in range(2)]); self.n = nn.LayerNorm(d); self.out = nn.Linear(d, vocab_size)
+    def forward(self, x):
+        B, T = x.shape; pad = x == 0
+        zr, zi = self.spins(x)                                              # B,T,d/2 each
+        h = self.emb(x) + self.read(torch.cat([zr, zi], -1))                # spin readout (parity = sign of a spin)
+        zr = zr.view(B, T, self.H, -1).transpose(1, 2); zi = zi.view(B, T, self.H, -1).transpose(1, 2)
+        for b in self.blocks: h = b(h, pad, zr, zi)
+        return self.out(self.n(h))
+```
+
+YOUR METHOD:
+Look at the measured profiles above. Pick the capability that the best candidates fail (or fail at 2x length). Name the hidden assumption in their computation that makes that capability hard to learn or to extend to longer inputs - something taken for granted so deeply that nobody writes it down. Dissolve it with ONE move: drop the assumption, or show the capability is an already-solved problem in disguise, or remove a component everyone considers essential. The fix must not break what already works.
+
+Rules: each candidate must rest on ONE clear idea that should give the gain (state it as the PRINCIPLE); everything else
+is minimal wrapping. Prefer the simplest code that embodies the idea. Make the code correct: check tensor shapes,
+padding (x == 0 at the end of shorter sequences), and that it runs for any T up to 72. Do not use tools; reply with
+text only.
+
+Output exactly 2 candidates in this format, nothing after the last one:
+=== CANDIDATE 1 ===
+PRINCIPLE: (one sentence: the single idea and which measured weakness it should fix)
+```python
+(complete code defining class Model)
+```
