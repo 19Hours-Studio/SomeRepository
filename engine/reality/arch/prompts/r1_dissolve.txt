@@ -1,0 +1,92 @@
+You are part of an architecture discovery engine. Its single principle: novelty is cheap, truth is expensive - so every
+idea is tested by real training, and only measurements decide. Your job is to propose new neural sequence architectures.
+
+THE REALITY TEST (fixed and equal for everyone):
+- Four capability tasks, trained together for 3000 steps (AdamW, batch 32, one-cycle lr 3e-3), at short lengths, then
+  tested in-distribution (ID) and at 2x the training length (OOD):
+  mqar   multi-query associative recall: k1 v1 ... kn vn | q1 _ q2 _ ...   (train n<=8, test n=8 and n=16)
+  copy   a1 ... an | _ ... _   reproduce the sequence                        (train n<=8, test 8 and 16)
+  parity b1 ... bn | _   parity of the bits                                   (train n<=12, test 12 and 24)
+  hop    a1 b1 ... an bn | x _   answer f(f(x)) where f maps ai -> bi         (train n<=8, test 8 and 16)
+  Every sequence starts with a task-marker token. Token ids: 0 pad, 1 separator, 2 blank, 3-6 task markers, 8-31 symbols.
+- Score per task = accuracy above chance, scaled to 0-1; fitness = mean over tasks of (ID + OOD) / 2. Profile cell =
+  per task 0 (not learned), 1 (learned ID only) or 2 (also generalises to 2x length).
+- Interface: a Python file defining `class Model(nn.Module)` with `__init__(self, vocab_size, max_len)` and
+  `forward(self, x)` taking LongTensor [B, T] (0 = padding at the end) and returning logits [B, T, vocab_size] for every
+  position (loss is taken only at blank positions; the model sees the whole input, so it may be causal or not).
+  `torch`, `nn`, `F` and `math` are already defined (you may also import them). At most 120,000 trainable parameters.
+  3000 steps must finish within 7 minutes on ONE CPU thread (about 0.1 s per step at T <= 50), so a Python loop over
+  time steps is fine but nothing heavier. No external data, no task-specific hard-coding of answers (the model must
+  learn), no reading of the targets.
+
+KNOWN FAMILIES (the attractors - a plain re-implementation or re-skin of these teaches the engine nothing; take them
+only as material to go beyond):
+Transformer variants (absolute, rotary, ALiBi or no positions; local or sparse attention), recurrent nets (LSTM, GRU),
+state-space models (S4, Mamba, selective scans), linear attention / RetNet / RWKV / gated linear recurrences,
+attention + SSM hybrids (Jamba-like), memory-augmented nets (NTM, DNC, key-value memories), mixture of experts,
+convolutional sequence models (Hyena, long convolutions), pointer networks.
+
+WHAT REALITY HAS SAID SO FAR (measured, not opinions):
+4 candidates measured; 2 distinct profile cells filled: 0000, 0100.
+Best per task (ID / 2x): mqar 0.20 / 0.12; copy 1.00 / 0.30; parity 0.45 / 0.05; hop 0.10 / 0.00
+Top candidates (principle -> measurement):
+- seed_tf_rope: fitness 0.229, cell 0100, mqar 0.19/0.10, copy 1.00/0.00, parity 0.45/0.00, hop 0.10/0.00 (ID/2x), 87712 params. PRINCIPLE: known-family seed
+- seed_ssm: fitness 0.191, cell 0000, mqar 0.16/0.10, copy 0.56/0.23, parity 0.42/0.05, hop 0.00/0.00 (ID/2x), 89312 params. PRINCIPLE: known-family seed
+- seed_gru: fitness 0.187, cell 0000, mqar 0.20/0.12, copy 0.56/0.30, parity 0.19/0.04, hop 0.08/0.00 (ID/2x), 117920 params. PRINCIPLE: known-family seed
+- seed_tf_abs: fitness 0.175, cell 0100, mqar 0.19/0.07, copy 1.00/0.07, parity 0.00/0.04, hop 0.03/0.00 (ID/2x), 92320 params. PRINCIPLE: known-family seed
+
+PARENTS (their code; build on them or against them):
+PARENT seed_tf_rope - seed_tf_rope: fitness 0.229, cell 0100, mqar 0.19/0.10, copy 1.00/0.00, parity 0.45/0.00, hop 0.10/0.00 (ID/2x), 87712 params
+```python
+# Seed (known family): 2-layer pre-LN transformer, bidirectional attention, rotary positions (RoPE).
+def rope(q, base=10000.0):
+    B, H, T, D = q.shape; half = D // 2
+    f = base ** (-torch.arange(half, device=q.device) / half); a = torch.arange(T, device=q.device)[:, None] * f[None]
+    c, s = a.cos(), a.sin(); q1, q2 = q[..., :half], q[..., half:]
+    return torch.cat([q1 * c - q2 * s, q1 * s + q2 * c], -1)
+
+class Block(nn.Module):
+    def __init__(self, d, h):
+        super().__init__(); self.h = h; self.n1 = nn.LayerNorm(d); self.qkv = nn.Linear(d, 3 * d); self.o = nn.Linear(d, d)
+        self.n2 = nn.LayerNorm(d); self.ff = nn.Sequential(nn.Linear(d, 3 * d), nn.GELU(), nn.Linear(3 * d, d))
+    def forward(self, x, pad):
+        B, T, D = x.shape; q, k, v = self.qkv(self.n1(x)).view(B, T, 3, self.h, D // self.h).permute(2, 0, 3, 1, 4)
+        q, k = rope(q), rope(k); a = (q @ k.transpose(-1, -2)) / math.sqrt(D // self.h)
+        a = a.masked_fill(pad[:, None, None, :], -1e9).softmax(-1)
+        x = x + self.o((a @ v).transpose(1, 2).reshape(B, T, D))
+        return x + self.ff(self.n2(x))
+
+class Model(nn.Module):
+    def __init__(self, vocab_size, max_len, d=64):
+        super().__init__(); self.emb = nn.Embedding(vocab_size, d)
+        self.blocks = nn.ModuleList([Block(d, 4) for _ in range(2)]); self.n = nn.LayerNorm(d); self.out = nn.Linear(d, vocab_size)
+    def forward(self, x):
+        pad = x == 0; h = self.emb(x)
+        for b in self.blocks: h = b(h, pad)
+        return self.out(self.n(h))
+```
+PARENT seed_gru - seed_gru: fitness 0.187, cell 0000, mqar 0.20/0.12, copy 0.56/0.30, parity 0.19/0.04, hop 0.08/0.00 (ID/2x), 117920 params
+```python
+# Seed (known family): 2-layer unidirectional GRU (reads the data, then answers at the blanks).
+class Model(nn.Module):
+    def __init__(self, vocab_size, max_len, d=96):
+        super().__init__(); self.emb = nn.Embedding(vocab_size, d); self.rnn = nn.GRU(d, d, num_layers=2, batch_first=True)
+        self.out = nn.Linear(d, vocab_size)
+    def forward(self, x):
+        return self.out(self.rnn(self.emb(x))[0])
+```
+
+YOUR METHOD:
+Look at the measured profiles above. Pick the capability that the best candidates fail (or fail at 2x length). Name the hidden assumption in their computation that makes that capability hard to learn or to extend to longer inputs - something taken for granted so deeply that nobody writes it down. Dissolve it with ONE move: drop the assumption, or show the capability is an already-solved problem in disguise, or remove a component everyone considers essential. The fix must not break what already works.
+
+Rules: each candidate must rest on ONE clear idea that should give the gain (state it as the PRINCIPLE); everything else
+is minimal wrapping. Prefer the simplest code that embodies the idea. Make the code correct: check tensor shapes,
+padding (x == 0 at the end of shorter sequences), and that it runs for any T up to 72. Do not use tools; reply with
+text only.
+
+Output exactly 2 candidates in this format, nothing after the last one:
+=== CANDIDATE 1 ===
+PRINCIPLE: (one sentence: the single idea and which measured weakness it should fix)
+```python
+(complete code defining class Model)
+```

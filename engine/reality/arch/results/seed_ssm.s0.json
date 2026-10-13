@@ -1,0 +1,36 @@
+{
+ "cand": "seed_ssm.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 89312,
+ "train_s": 74.9,
+ "final_loss": 1.1256,
+ "tasks": {
+  "mqar": {
+   "id_acc": 0.197,
+   "ood_acc": 0.135,
+   "id": 0.162,
+   "ood": 0.098
+  },
+  "copy": {
+   "id_acc": 0.583,
+   "ood_acc": 0.263,
+   "id": 0.565,
+   "ood": 0.231
+  },
+  "parity": {
+   "id_acc": 0.711,
+   "ood_acc": 0.523,
+   "id": 0.422,
+   "ood": 0.047
+  },
+  "hop": {
+   "id_acc": 0.127,
+   "ood_acc": 0.057,
+   "id": 0.002,
+   "ood": 0.0
+  }
+ },
+ "fitness": 0.1909,
+ "cell": "0000"
+}

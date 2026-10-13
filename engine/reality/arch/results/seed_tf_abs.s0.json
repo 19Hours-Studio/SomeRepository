@@ -1,0 +1,36 @@
+{
+ "cand": "seed_tf_abs.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 92320,
+ "train_s": 53.9,
+ "final_loss": 0.9364,
+ "tasks": {
+  "mqar": {
+   "id_acc": 0.227,
+   "ood_acc": 0.106,
+   "id": 0.193,
+   "ood": 0.067
+  },
+  "copy": {
+   "id_acc": 1.0,
+   "ood_acc": 0.114,
+   "id": 1.0,
+   "ood": 0.075
+  },
+  "parity": {
+   "id_acc": 0.494,
+   "ood_acc": 0.521,
+   "id": 0.0,
+   "ood": 0.043
+  },
+  "hop": {
+   "id_acc": 0.146,
+   "ood_acc": 0.066,
+   "id": 0.025,
+   "ood": 0.0
+  }
+ },
+ "fitness": 0.1754,
+ "cell": "0100"
+}

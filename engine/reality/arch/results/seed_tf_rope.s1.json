@@ -1,0 +1,36 @@
+{
+ "cand": "seed_tf_rope.py",
+ "seed": 1,
+ "steps": 3000,
+ "params": 87712,
+ "train_s": 50.9,
+ "final_loss": 0.3367,
+ "tasks": {
+  "mqar": {
+   "id_acc": 0.225,
+   "ood_acc": 0.14,
+   "id": 0.191,
+   "ood": 0.102
+  },
+  "copy": {
+   "id_acc": 1.0,
+   "ood_acc": 0.042,
+   "id": 1.0,
+   "ood": 0.0
+  },
+  "parity": {
+   "id_acc": 0.641,
+   "ood_acc": 0.488,
+   "id": 0.281,
+   "ood": 0.0
+  },
+  "hop": {
+   "id_acc": 0.213,
+   "ood_acc": 0.062,
+   "id": 0.1,
+   "ood": 0.0
+  }
+ },
+ "fitness": 0.2092,
+ "cell": "0100"
+}

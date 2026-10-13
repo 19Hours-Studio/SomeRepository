@@ -1,0 +1,24 @@
+{
+ "_prompts": {
+  "r0_blind": {
+   "method": "blind",
+   "parents": "",
+   "round": 0
+  },
+  "r1_dissolve": {
+   "method": "dissolve",
+   "parents": "seed_tf_rope,seed_gru",
+   "round": 1
+  },
+  "r1_transfer": {
+   "method": "transfer",
+   "parents": "seed_tf_rope,seed_ssm",
+   "round": 1
+  },
+  "r1_count": {
+   "method": "count",
+   "parents": "seed_tf_rope",
+   "round": 1
+  }
+ }
+}

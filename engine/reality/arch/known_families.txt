@@ -1,0 +1,4 @@
+Transformer variants (absolute, rotary, ALiBi or no positions; local or sparse attention), recurrent nets (LSTM, GRU),
+state-space models (S4, Mamba, selective scans), linear attention / RetNet / RWKV / gated linear recurrences,
+attention + SSM hybrids (Jamba-like), memory-augmented nets (NTM, DNC, key-value memories), mixture of experts,
+convolutional sequence models (Hyena, long convolutions), pointer networks.

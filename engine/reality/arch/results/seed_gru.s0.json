@@ -1,0 +1,36 @@
+{
+ "cand": "seed_gru.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 117920,
+ "train_s": 58.2,
+ "final_loss": 0.9965,
+ "tasks": {
+  "mqar": {
+   "id_acc": 0.233,
+   "ood_acc": 0.157,
+   "id": 0.2,
+   "ood": 0.12
+  },
+  "copy": {
+   "id_acc": 0.583,
+   "ood_acc": 0.33,
+   "id": 0.565,
+   "ood": 0.301
+  },
+  "parity": {
+   "id_acc": 0.596,
+   "ood_acc": 0.52,
+   "id": 0.191,
+   "ood": 0.039
+  },
+  "hop": {
+   "id_acc": 0.193,
+   "ood_acc": 0.057,
+   "id": 0.078,
+   "ood": 0.0
+  }
+ },
+ "fitness": 0.1867,
+ "cell": "0000"
+}
