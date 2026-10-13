@@ -22,5 +22,17 @@
   "method": "blind",
   "parents": "",
   "round": 0
+ },
+ "r0_blindA_1": {
+  "principle": "A cache head trained end to end, with the pointer mixed into the output. Each earlier position j keeps its final hidden state as a key and the character that actually followed it, x[j+1], as the value. The model mixes a sharp cosine-similarity copy distribution over those next characters into its softmax. Code reuses identifiers, keywords and whole phrases over and over, and this head gives exact long-range copying from step one. A tiny 2-layer transformer would otherwise have to discover induction-head composition inside 3000 steps.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
+ },
+ "r0_blindA_2": {
+  "principle": "Give the model an exact causal syntax register that costs no learning, computed with vectorised prefix scans of the input. It holds the column, the current line's indent, the previous non-blank line's indent and last character (for example ':'), the indent difference while inside leading whitespace, and the relative bracket depth, and it is embedded and added to the input. Leading whitespace and line structure make up a large share of Python characters and are fully fixed by these counts. Counting and comparing counts is exactly what a tiny attention model learns worst in 3000 steps. (This assumes the vocabulary is '\\n' followed by chr(32..126) in order, so '\\n'=0 and ' '=1.)",
+  "method": "blind",
+  "parents": "",
+  "round": 0
  }
 }
