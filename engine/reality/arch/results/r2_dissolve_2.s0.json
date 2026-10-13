@@ -1,0 +1,36 @@
+{
+ "cand": "r2_dissolve_2.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 108420,
+ "train_s": 85.5,
+ "final_loss": 0.0004,
+ "tasks": {
+  "mqar": {
+   "id_acc": 1.0,
+   "ood_acc": 1.0,
+   "id": 1.0,
+   "ood": 1.0
+  },
+  "copy": {
+   "id_acc": 1.0,
+   "ood_acc": 0.1,
+   "id": 1.0,
+   "ood": 0.061
+  },
+  "parity": {
+   "id_acc": 1.0,
+   "ood_acc": 0.848,
+   "id": 1.0,
+   "ood": 0.695
+  },
+  "hop": {
+   "id_acc": 1.0,
+   "ood_acc": 1.0,
+   "id": 1.0,
+   "ood": 1.0
+  }
+ },
+ "fitness": 0.8445,
+ "cell": "2112"
+}

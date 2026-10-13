@@ -1,0 +1,36 @@
+{
+ "cand": "r0_blind_2.py",
+ "seed": 1,
+ "steps": 3000,
+ "params": 32777,
+ "train_s": 31.1,
+ "final_loss": 0.0001,
+ "tasks": {
+  "mqar": {
+   "id_acc": 1.0,
+   "ood_acc": 1.0,
+   "id": 1.0,
+   "ood": 1.0
+  },
+  "copy": {
+   "id_acc": 1.0,
+   "ood_acc": 0.999,
+   "id": 1.0,
+   "ood": 0.999
+  },
+  "parity": {
+   "id_acc": 1.0,
+   "ood_acc": 1.0,
+   "id": 1.0,
+   "ood": 1.0
+  },
+  "hop": {
+   "id_acc": 1.0,
+   "ood_acc": 1.0,
+   "id": 1.0,
+   "ood": 1.0
+  }
+ },
+ "fitness": 0.9999,
+ "cell": "2222"
+}

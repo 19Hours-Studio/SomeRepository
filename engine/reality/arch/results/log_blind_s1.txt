@@ -1,0 +1,2 @@
+r0_blind_2: fitness 1.000, cell 2222, mqar 1.00/1.00, copy 1.00/1.00, parity 1.00/1.00, hop 1.00/1.00 (ID/2x), 32777 params
+r0_blind_1: fitness 0.764, cell 2220, mqar 1.00/1.00, copy 1.00/1.00, parity 1.00/1.00, hop 0.12/0.00 (ID/2x), 109344 params
