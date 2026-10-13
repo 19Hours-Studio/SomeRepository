@@ -1,0 +1,36 @@
+{
+ "cand": "r1_transfer_1.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 102180,
+ "train_s": 63.7,
+ "final_loss": 0.0581,
+ "tasks": {
+  "mqar": {
+   "id_acc": 1.0,
+   "ood_acc": 0.777,
+   "id": 0.999,
+   "ood": 0.767
+  },
+  "copy": {
+   "id_acc": 1.0,
+   "ood_acc": 0.101,
+   "id": 1.0,
+   "ood": 0.062
+  },
+  "parity": {
+   "id_acc": 0.465,
+   "ood_acc": 0.535,
+   "id": 0.0,
+   "ood": 0.07
+  },
+  "hop": {
+   "id_acc": 1.0,
+   "ood_acc": 0.998,
+   "id": 1.0,
+   "ood": 0.998
+  }
+ },
+ "fitness": 0.612,
+ "cell": "1102"
+}
