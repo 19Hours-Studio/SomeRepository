@@ -89,5 +89,17 @@
   "method": "blind",
   "parents": "",
   "round": 0
+ },
+ "r2_crossA_1": {
+  "principle": "Put a running token-driven phase (cumsum of learned per-token angles, as in r1_dissolve_2) into the one embedding space that r1_transfer_1's shared successor-dereference reads, and drop every transformer block: the content match still gives mqar and hop, the blank's own unit-modulus phase gives exact parity at any length (r1_transfer_1 scores 0.00/0.07 on parity), and slow symbol-driven and blank-driven phase counters let the same dereference match the j-th blank to the j-th symbol, which targets copy at 2x (best 0.52).",
+  "method": "cross",
+  "parents": "r1_transfer_1,r1_dissolve_2",
+  "round": 2
+ },
+ "r2_crossA_2": {
+  "principle": "Use one phase-augmented embedding (token plus a running cumsum of learned per-token angles) as the shared address space for both the two-hop successor dereference and a single RoPE attention block, which replaces r1_transfer_1's two blocks. The dereference keeps mqar and hop at 1.00, the phase the dereference and attention read gives r1_transfer_1 the parity it lacks (0.00/0.07), and one block keeps copy in-distribution, so the result is simpler than either parent.",
+  "method": "cross",
+  "parents": "r1_transfer_1,r1_dissolve_2",
+  "round": 2
  }
 }
