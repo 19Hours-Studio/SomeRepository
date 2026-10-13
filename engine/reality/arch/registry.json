@@ -44,5 +44,17 @@
   "method": "count",
   "parents": "seed_tf_rope",
   "round": 1
+ },
+ "r1_transfer_1": {
+  "principle": "Linked-list pointer chasing from classical data structures. Each cell stores its own token embedding as its address and its successor's embedding as its pointer. One shared content-addressed dereference is applied twice, starting from the previous token (r1 = *x, r2 = **x). Addresses and pointers live in the same embedding space, so the read can be repeated and never uses absolute positions. This targets the failed lookup capabilities, mqar (0.20/0.12) and hop (0.10/0.00), including at 2x length. What maps: pointer = successor embedding, dereference = softmax match on address. What does not map: addresses are not unique (repeated symbols blur the read), so a learned successor-type key term and a position-parity bias stand in for a \"valid cell\" bit, and there is no write or allocate.",
+  "method": "transfer",
+  "parents": "seed_tf_rope,seed_ssm",
+  "round": 1
+ },
+ "r1_transfer_2": {
+  "principle": "NMR spin precession with re-aligning RF pulses. Each token rotates a bank of complex spins by a learned per-token angle, and a learned per-token pulse pulls each spin back toward a reference phase (this shrinks the magnitude but keeps the angle exact). Attention compares two positions by spin interference instead of by token index. A 1-bit rotation of pi then gives an exact parity sign at any length, which targets parity (0.45/0.05). Spins re-aligned at the marker or separator support \"j-th token after segment start\" matching for copy at unseen lengths, which targets copy at 2x (best 0.30). What maps: precession angle = token, RF pulse = reset gate, echo/interference = attention score. What does not map: there is no physical dephasing, the rates are learned, and the reset is soft and must be found by training.",
+  "method": "transfer",
+  "parents": "seed_tf_rope,seed_ssm",
+  "round": 1
  }
 }
