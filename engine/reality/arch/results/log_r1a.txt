@@ -1,0 +1,4 @@
+r1_dissolve_1: fitness 0.367, cell 1100, mqar 1.00/0.68, copy 1.00/0.07, parity 0.06/0.02, hop 0.11/0.00 (ID/2x), 89760 params
+r1_dissolve_2: fitness 0.423, cell 0120, mqar 0.19/0.09, copy 1.00/0.00, parity 1.00/0.99, hop 0.11/0.00 (ID/2x), 89056 params
+r1_count_1: fitness 0.397, cell 0120, mqar 0.15/0.05, copy 1.00/0.02, parity 1.00/0.85, hop 0.10/0.00 (ID/2x), 113536 params
+r1_count_2: fitness 0.360, cell 1100, mqar 1.00/0.65, copy 1.00/0.04, parity 0.00/0.06, hop 0.13/0.01 (ID/2x), 112288 params

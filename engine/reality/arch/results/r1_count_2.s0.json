@@ -1,0 +1,36 @@
+{
+ "cand": "r1_count_2.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 112288,
+ "train_s": 62.2,
+ "final_loss": 0.165,
+ "tasks": {
+  "mqar": {
+   "id_acc": 1.0,
+   "ood_acc": 0.662,
+   "id": 1.0,
+   "ood": 0.647
+  },
+  "copy": {
+   "id_acc": 1.0,
+   "ood_acc": 0.082,
+   "id": 1.0,
+   "ood": 0.042
+  },
+  "parity": {
+   "id_acc": 0.484,
+   "ood_acc": 0.529,
+   "id": 0.0,
+   "ood": 0.059
+  },
+  "hop": {
+   "id_acc": 0.236,
+   "ood_acc": 0.131,
+   "id": 0.127,
+   "ood": 0.007
+  }
+ },
+ "fitness": 0.3603,
+ "cell": "1100"
+}
