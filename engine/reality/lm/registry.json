@@ -88,5 +88,17 @@
   "method": "cross",
   "parents": "r0_blindB_1,r0_blindA_2",
   "round": 1
+ },
+ "r2_cross_1": {
+  "principle": "Both parents do one thing in common: they compare the current suffix with the suffix that came before each earlier character, then read off that character. This design scores both sides with the SAME cheap learned encoder, a per-channel exponential-decay sum of character embeddings over the last 12 characters. An exact repeat therefore gets a perfect cosine of 1 from step 0, which is the exactness of the count parent. The decays and embeddings learn which mismatches to forgive, which is the learned matching of the shifted-key parent. The resulting copy distribution over next characters is mixed into a plain 2-layer RoPE transformer's softmax through a null slot gated by the context. Repeated identifiers, phrases and indentation runs are copied without count matrices or special attention heads.",
+  "method": "cross",
+  "parents": "r0_blindB_1,r1_cross_2",
+  "round": 2
+ },
+ "r2_cross_2": {
+  "principle": "This is the same shared move with no encoder at all. Each earlier position j gets a learned, per-lag weighted count of agreements between the 16 characters ending at t and the 16 characters ending at j-1: sum_i w_i [x[t-i] == x[j-1-i]], which costs only 16 parameters. This soft match length is exact from step 0 like the counts, but unlike exact suffix matching it survives a single renamed or mistyped character inside a repeated phrase. The softmax over these scores copies x[j] into the distribution of a plain 2-layer RoPE transformer through a null slot gated by the context.",
+  "method": "cross",
+  "parents": "r0_blindB_1,r1_cross_2",
+  "round": 2
  }
 }
