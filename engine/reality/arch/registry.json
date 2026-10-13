@@ -20,5 +20,29 @@
    "parents": "seed_tf_rope",
    "round": 1
   }
+ },
+ "r1_dissolve_1": {
+  "principle": "The hidden assumption is that each token starts out knowing only itself, so before attention can link a key to its value it must first learn a \"previous-token\" circuit. Hard-wiring the predecessor into every position (embedding of x_t plus a separate embedding of x_{t-1}) turns mqar and hop (0.20 and 0.10, near chance) into position-free content lookups: the blank, whose predecessor is the query, matches the position whose predecessor is that key and reads off its own token. One layer does one hop and two layers do f(f(x)). These lookups never use absolute positions, so they should also hold at 2x length, and RoPE is kept so copy stays at 1.00 in-distribution.",
+  "method": "dissolve",
+  "parents": "seed_tf_rope,seed_gru",
+  "round": 1
+ },
+ "r1_dissolve_2": {
+  "principle": "The hidden assumption is that a sequence state is a decaying or gated real-valued sum, which can only approximate parity and loses it beyond the trained length (best parity is 0.45 in-distribution but 0.05 at 2x). Parity is really a sum mod 2, which is just a rotation by pi per 1-bit. Adding a few unit-modulus phase channels (a cumulative sum of learned per-token angles, read out as cos/sin) gives a running state whose size never decays, so it stays exact at any length. These features are added to the RoPE transformer's embeddings, so everything that already works is kept.",
+  "method": "dissolve",
+  "parents": "seed_tf_rope,seed_gru",
+  "round": 1
+ },
+ "r1_count_1": {
+  "principle": "Learned token-driven counters: every position's rotary phase is a cumulative sum of per-token learned angles, kept separately for queries and keys (plus a residual phase readout), so attention can match \"count of blanks since the separator\" against \"count of symbols\" (copy), find the previous token (mqar/hop), and read off a mod-2 phase (parity). Because a match means two counters are equal, it holds at any length, which targets the near-zero 2x scores (copy 1.00/0.00 and parity 0.45/0.00 for the RoPE transformer).",
+  "method": "count",
+  "parents": "seed_tf_rope",
+  "round": 1
+ },
+ "r1_count_2": {
+  "principle": "Hard-wired predecessor binding: every attention layer computes its queries, keys and values from the concatenation [h_t, h_{t-1}], so \"the value whose predecessor equals the query\" is a single attention step. mqar then needs one layer and hop (f(f(x))) needs two chained layers, which addresses the measured failure to form an induction circuit in 3000 steps (mqar ID 0.20, hop ID 0.10 at best).",
+  "method": "count",
+  "parents": "seed_tf_rope",
+  "round": 1
  }
 }

@@ -91,15 +91,8 @@ def cmd_prompt(a):
     rg.setdefault("_prompts", {})[a.label] = {"method": a.method, "parents": a.parents, "round": a.round}; save_reg(rg); print(p)
 
 
-def transcript_text(path):
-    out = []
-    for line in open(path):
-        try: e = json.loads(line)
-        except Exception: continue
-        m = e.get("message", {})
-        if e.get("type") == "assistant" and isinstance(m.get("content"), list):
-            out += [c.get("text", "") for c in m["content"] if c.get("type") == "text"]
-    return "\n".join(out)
+sys.path.insert(0, os.path.join(HERE, "..", ".."))
+from ce import transcript_text  # final reply incl. SubagentHandback
 
 
 def cmd_ingest(a):
