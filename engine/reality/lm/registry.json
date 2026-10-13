@@ -10,5 +10,17 @@
    "parents": "",
    "round": 0
   }
+ },
+ "r0_blindB_1": {
+  "principle": "Half of the attention heads compute their key at source position s from the previous position's state h[s-1], while the value comes from h[s] (no RoPE on these heads). A single layer therefore acts as a ready-made induction/copy head: \"find where the current local context appeared before and copy the character that came next.\" That handles the many repeated identifiers and names in code from step 0, instead of hoping two-layer induction circuits form within only 3000 steps.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
+ },
+ "r0_blindB_2": {
+  "principle": "Give the network exact parser-state counters by summing learned per-character increments: 8 never-decaying cumulative sums plus 8 counters with a learned per-character reset, all fed to the model as tanh and cos(pi*c) features. These can learn bracket depth, quote parity (inside a string or not), column and line indentation directly, instead of a tiny transformer having to learn to count from attention in 3000 steps.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
  }
 }

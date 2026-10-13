@@ -1,0 +1,11 @@
+{
+ "cand": "seed_tf_rope.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 95968,
+ "train_s": 160.7,
+ "train_bpc": 1.972,
+ "bpc": 2.0215,
+ "bpc_2x": 2.4874,
+ "fitness": 2.0215
+}
