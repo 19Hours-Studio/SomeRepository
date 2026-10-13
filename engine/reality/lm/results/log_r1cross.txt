@@ -1,0 +1,2 @@
+r1_cross_1: 2.1119 bits/char (at 2x context 2.1919), 145056 params, 159.6s training, 1 seed(s)
+r1_cross_2: 1.8026 bits/char (at 2x context 2.4911), 146264 params, 227.6s training, 1 seed(s)

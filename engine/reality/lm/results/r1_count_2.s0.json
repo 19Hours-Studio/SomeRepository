@@ -1,0 +1,11 @@
+{
+ "cand": "r1_count_2.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 146240,
+ "train_s": 251.1,
+ "train_bpc": 1.7801,
+ "bpc": 1.8451,
+ "bpc_2x": 2.2049,
+ "fitness": 1.8451
+}

@@ -1,0 +1,2 @@
+r1_count_1: 1.8127 bits/char (at 2x context 2.1439), 148622 params, 245.7s training, 1 seed(s)
+r1_count_2: 1.8451 bits/char (at 2x context 2.2049), 146240 params, 251.1s training, 1 seed(s)

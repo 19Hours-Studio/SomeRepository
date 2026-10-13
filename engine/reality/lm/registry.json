@@ -19,6 +19,26 @@
    "method": "count",
    "parents": "r0_blindB_1,r0_blindA_1",
    "round": 1
+  },
+  "r2_cross": {
+   "method": "cross",
+   "parents": "r0_blindB_1,r1_cross_2",
+   "round": 2
+  },
+  "r2_dissolve": {
+   "method": "dissolve",
+   "parents": "r0_blindB_1,r1_count_1",
+   "round": 2
+  },
+  "r0_blindC": {
+   "method": "blind",
+   "parents": "",
+   "round": 0
+  },
+  "r0_blindD": {
+   "method": "blind",
+   "parents": "",
+   "round": 0
   }
  },
  "r0_blindB_1": {
