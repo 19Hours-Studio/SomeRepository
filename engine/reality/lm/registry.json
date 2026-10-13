@@ -112,5 +112,17 @@
   "method": "blind",
   "parents": "",
   "round": 0
+ },
+ "r0_blindD_1": {
+  "principle": "A hard-wired induction pointer. Its queries and keys are a learned signature of the last 4 characters, and its values are the character that followed each earlier occurrence. It is mixed with the generator in one softmax that has a learned \"no-copy\" slot, so the model can copy repeated identifiers, attribute names and idioms (code's biggest redundancy) from the first steps. Without it, a ~100k-parameter net would have to grow a two-layer induction circuit, which it rarely does within 3000 steps.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
+ },
+ "r0_blindD_2": {
+  "principle": "Parameter-free causal counters are computed with cumulative sums and added to the input as embeddings: column, current-line indentation, the previous line's indentation and last character, bracket depth, and quote parity. Whitespace, newlines and closing brackets carry a large share of Python's bits, and they depend on these counts, which a tiny net cannot learn to count reliably in 3000 steps but can use at once when given them.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
  }
 }
