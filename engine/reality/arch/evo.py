@@ -84,8 +84,11 @@ def cmd_prompt(a):
         s = s.replace("{ARCHIVE}", archive_text(agg, rg))
         par = []
         for p in (a.parents.split(",") if a.parents else []):
-            par += [f"PARENT {p} - {profile(p, agg[p])}", "```python", open(os.path.join(C, p + ".py")).read().strip(), "```"]
-        s = s.replace("{PARENTS}", ("PARENTS (their code; build on them or against them):\n" + "\n".join(par)) if par else "")
+            par.append(f"PARENT {p} - {profile(p, agg[p])}. PRINCIPLE: {rg.get(p, {}).get('principle', 'known-family seed')}")
+            if a.code: par += ["```python", open(os.path.join(C, p + ".py")).read().strip(), "```"]
+        hdr = "PARENTS (their code; build on them or against them):" if a.code else \
+              "PARENTS (measurements and principles only - their code is withheld on purpose so that you design from first principles):"
+        s = s.replace("{PARENTS}", (hdr + "\n" + "\n".join(par)) if par else "")
     s = s.replace("{METHOD}", METHODS[a.method]).replace("{N}", str(a.n))
     p = os.path.join(HERE, "prompts", a.label + ".txt"); os.makedirs(os.path.dirname(p), exist_ok=True); open(p, "w").write(s)
     rg.setdefault("_prompts", {})[a.label] = {"method": a.method, "parents": a.parents, "round": a.round}; save_reg(rg); print(p)
@@ -132,6 +135,7 @@ if __name__ == "__main__":
     sp.add_parser("status")
     x = sp.add_parser("prompt"); x.add_argument("label"); x.add_argument("--method", required=True, choices=list(METHODS))
     x.add_argument("--parents", default=""); x.add_argument("--n", type=int, default=2); x.add_argument("--round", type=int, default=0)
+    x.add_argument("--code", action="store_true", help="include parents' code (anchors generators; off by default)")
     x = sp.add_parser("ingest"); x.add_argument("label"); x.add_argument("--transcript"); x.add_argument("--file")
     x = sp.add_parser("eval"); x.add_argument("cands", nargs="+"); x.add_argument("--seeds", default="0")
     a = ap.parse_args(); globals()["cmd_" + a.cmd](a)

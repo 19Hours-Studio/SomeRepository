@@ -1,0 +1,39 @@
+You are part of an architecture discovery engine. Its single principle: novelty is cheap, truth is expensive - so every
+idea is tested by real training, and only measurements decide. Your job: design new neural architectures for a task
+where nobody knows the best answer.
+
+THE REALITY TEST (fixed and equal for everyone):
+- Character-level language modelling of Python source code (CPython standard library; validation = files never seen in
+  training). 96 symbols (newline + printable ASCII). Context 128 characters.
+- Training: 3000 steps, batch 16, AdamW, one-cycle lr 3e-3, gradient clipping 1.0, random windows. Then validation
+  bits per character at context 128 (the fitness, LOWER IS BETTER) and, for information, at context 256.
+- Interface: a Python file defining `class Model(nn.Module)` with `__init__(self, vocab_size, max_len)` and
+  `forward(self, x)` taking LongTensor [B, T] and returning logits [B, T, vocab_size], where position t predicts the
+  character at t+1. It MUST be causal: output at t may depend only on x[:, :t+1] (checked by perturbing the input
+  before and after training; a non-causal model scores nothing). `torch`, `nn`, `F`, `math` are defined.
+- Budget: at most 150,000 trainable parameters, and 3000 steps must finish within 8 minutes on ONE CPU thread
+  (about 0.15 s per step at B=16, T=128). A causal Python loop over 128 time steps is affordable only if it is light.
+- Known reference points: a plain 2-layer causal RoPE transformer with ~96k parameters is a typical baseline.
+
+KNOWN FAMILIES (the attractors - a plain re-implementation teaches the engine nothing; use them only as material):
+{KNOWN}
+
+WHAT REALITY HAS SAID SO FAR (measured, not opinions):
+{ARCHIVE}
+
+{PARENTS}
+
+YOUR METHOD:
+{METHOD}
+
+Rules: each candidate must rest on ONE clear idea that should lower bits per character under THIS budget (state it as
+the PRINCIPLE, with why it should help here: code has deep indentation structure, repeated identifiers, matching
+brackets and quotes, long-range copies of names). Everything else is minimal wrapping. Make the code correct and
+causal, check shapes, keep it fast. Do not use tools; reply with text only.
+
+Output exactly {N} candidates in this format, nothing after the last one:
+=== CANDIDATE 1 ===
+PRINCIPLE: (one sentence: the single idea and why it should lower bits per character here)
+```python
+(complete code defining class Model)
+```

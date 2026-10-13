@@ -1,0 +1,14 @@
+{
+ "_prompts": {
+  "r0_blindA": {
+   "method": "blind",
+   "parents": "",
+   "round": 0
+  },
+  "r0_blindB": {
+   "method": "blind",
+   "parents": "",
+   "round": 0
+  }
+ }
+}

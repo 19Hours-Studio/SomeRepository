@@ -8,23 +8,22 @@ HERE = os.path.dirname(os.path.abspath(__file__)); C = os.path.join(HERE, "cands
 REG = os.path.join(HERE, "registry.json")
 
 METHODS = {
- "dissolve": "Look at the measured profiles above. Pick the capability that the best candidates fail (or fail at 2x "
-   "length). Name the hidden assumption in their computation that makes that capability hard to learn or to extend "
-   "to longer inputs - something taken for granted so deeply that nobody writes it down. Dissolve it with ONE move: "
-   "drop the assumption, or show the capability is an already-solved problem in disguise, or remove a component "
-   "everyone considers essential. The fix must not break what already works.",
- "transfer": "Pick the capability the best candidates fail. Find a DISTANT field (biology, physics, chemistry, "
-   "neuroscience, classical algorithms and data structures, signal processing, economics) that solves the same abstract "
-   "problem (exact lookup by content, faithful replay of an ordered list, a state that flips, chaining two lookups, "
-   "behaving the same on longer inputs) with a specific mechanism. Turn that mechanism into differentiable computation. "
-   "Say in the principle what the mapping is and what does not map.",
- "cross": "Take the two parents above, which have complementary measured strengths. Find the ONE shared move that "
-   "would give both strengths, and build an offspring that is SIMPLER than either parent, not a stack of both.",
- "count": "Work from first principles. For each task, state privately the minimal computation it needs (what must be "
-   "stored, compared, counted or composed, and what must not depend on absolute position so that it works at 2x length). "
-   "Then design the smallest mechanism that provides ALL of them at once, and count its parameters and per-step cost so "
-   "it fits the budget. Use the measurements to check your reasoning about why current candidates fail.",
- "blind": "Propose architectures that you expect to score well on all four tasks, including at 2x length.",
+ "blind": "Think deeply from first principles about what limits a tiny character model of source code under this exact "
+   "budget (parameters, 3000 steps, one CPU thread), then propose the architectures you expect to reach the lowest "
+   "validation bits per character.",
+ "dissolve": "Look at the measurements. Name the hidden assumption that all measured candidates share and that caps "
+   "their bits per character under this budget - something taken for granted so deeply that nobody writes it down. "
+   "Dissolve it with ONE move: drop the assumption, or show the bottleneck is an already-solved problem in disguise, "
+   "or remove a component everyone considers essential.",
+ "transfer": "Find a DISTANT field (compression algorithms, biology, physics, neuroscience, classical data structures, "
+   "linguistics, signal processing) that solves the same abstract problem as predicting the next character of code "
+   "cheaply (exploiting nesting, repetition of names, matching delimiters, long-range copies) with a specific "
+   "mechanism, and turn it into differentiable causal computation. Say what maps and what does not.",
+ "count": "Work from first principles and the measurements: estimate where the bits go (which kinds of characters "
+   "cost most: indentation, identifiers, keywords, delimiters) and where the budget goes (parameters, steps, compute "
+   "per step), then design the smallest mechanism that removes the largest share of bits within the budget.",
+ "cross": "Take the two parents above (measurements and principles). Find the ONE shared move that would give both "
+   "their strengths and build a design SIMPLER than either, not a stack of both.",
 }
 
 
@@ -75,8 +74,11 @@ def cmd_prompt(a):
         s = s.replace("{ARCHIVE}", archive_text(agg, rg))
         par = []
         for p in (a.parents.split(",") if a.parents else []):
-            par += [f"PARENT {p} - {profile(p, agg[p])}", "```python", open(os.path.join(C, p + ".py")).read().strip(), "```"]
-        s = s.replace("{PARENTS}", ("PARENTS (their code; build on them or against them):\n" + "\n".join(par)) if par else "")
+            par.append(f"PARENT {p} - {profile(p, agg[p])}. PRINCIPLE: {rg.get(p, {}).get('principle', 'known-family seed')}")
+            if a.code: par += ["```python", open(os.path.join(C, p + ".py")).read().strip(), "```"]
+        hdr = "PARENTS (their code; build on them or against them):" if a.code else \
+              "PARENTS (measurements and principles only - their code is withheld on purpose so that you design from first principles):"
+        s = s.replace("{PARENTS}", (hdr + "\n" + "\n".join(par)) if par else "")
     s = s.replace("{METHOD}", METHODS[a.method]).replace("{N}", str(a.n))
     p = os.path.join(HERE, "prompts", a.label + ".txt"); os.makedirs(os.path.dirname(p), exist_ok=True); open(p, "w").write(s)
     rg.setdefault("_prompts", {})[a.label] = {"method": a.method, "parents": a.parents, "round": a.round}; save_reg(rg); print(p)
@@ -123,6 +125,7 @@ if __name__ == "__main__":
     sp.add_parser("status")
     x = sp.add_parser("prompt"); x.add_argument("label"); x.add_argument("--method", required=True, choices=list(METHODS))
     x.add_argument("--parents", default=""); x.add_argument("--n", type=int, default=2); x.add_argument("--round", type=int, default=0)
+    x.add_argument("--code", action="store_true", help="include parents' code (anchors generators; off by default)")
     x = sp.add_parser("ingest"); x.add_argument("label"); x.add_argument("--transcript"); x.add_argument("--file")
     x = sp.add_parser("eval"); x.add_argument("cands", nargs="+"); x.add_argument("--seeds", default="0")
     a = ap.parse_args(); globals()["cmd_" + a.cmd](a)
