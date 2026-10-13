@@ -1,0 +1,36 @@
+{
+ "cand": "r2_crossA_1.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 68836,
+ "train_s": 33.5,
+ "final_loss": 0.0109,
+ "tasks": {
+  "mqar": {
+   "id_acc": 0.979,
+   "ood_acc": 0.743,
+   "id": 0.978,
+   "ood": 0.731
+  },
+  "copy": {
+   "id_acc": 0.935,
+   "ood_acc": 0.166,
+   "id": 0.932,
+   "ood": 0.13
+  },
+  "parity": {
+   "id_acc": 1.0,
+   "ood_acc": 0.537,
+   "id": 1.0,
+   "ood": 0.074
+  },
+  "hop": {
+   "id_acc": 0.979,
+   "ood_acc": 0.561,
+   "id": 0.975,
+   "ood": 0.498
+  }
+ },
+ "fitness": 0.6647,
+ "cell": "1111"
+}

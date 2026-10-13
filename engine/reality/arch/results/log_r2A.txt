@@ -1,0 +1,2 @@
+r2_crossA_1: fitness 0.665, cell 1111, mqar 0.98/0.73, copy 0.93/0.13, parity 1.00/0.07, hop 0.97/0.50 (ID/2x), 68836 params
+r2_crossA_2: fitness 0.863, cell 2122, mqar 1.00/0.94, copy 0.99/0.06, parity 1.00/1.00, hop 0.99/0.92 (ID/2x), 61796 params
