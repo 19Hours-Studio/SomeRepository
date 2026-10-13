@@ -1,0 +1,12 @@
+{
+ "cand": "e35_d80_c_zo_lr3_nh2.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 148656,
+ "buffers": 20,
+ "train_s": 238.4,
+ "train_bpc": 1.5738,
+ "bpc": 1.6915,
+ "bpc_2x": 1.5889,
+ "fitness": 1.6915
+}

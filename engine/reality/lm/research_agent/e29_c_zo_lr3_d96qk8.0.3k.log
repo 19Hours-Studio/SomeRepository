@@ -1,0 +1,12 @@
+{
+ "cand": "e29_c_zo_lr3_d96qk8.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 147904,
+ "buffers": 4,
+ "train_s": 265.5,
+ "train_bpc": 1.6102,
+ "bpc": 1.7189,
+ "bpc_2x": 1.6029,
+ "fitness": 1.7189
+}

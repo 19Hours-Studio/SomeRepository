@@ -1,0 +1,12 @@
+{
+ "cand": "e25_c_zo_lr3_qkn.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 149192,
+ "buffers": 12,
+ "train_s": 97.3,
+ "train_bpc": 1.8842,
+ "bpc": 1.8995,
+ "bpc_2x": 1.7903,
+ "fitness": 1.8995
+}

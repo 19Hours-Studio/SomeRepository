@@ -1,0 +1,12 @@
+{
+ "cand": "e06_canon_lr2.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 149184,
+ "buffers": 12,
+ "train_s": 98.0,
+ "train_bpc": 1.8898,
+ "bpc": 1.9213,
+ "bpc_2x": 2.4156,
+ "fitness": 1.9213
+}

@@ -1,0 +1,12 @@
+{
+ "cand": "e20_c_zo_lr3_d80.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 148656,
+ "buffers": 10,
+ "train_s": 84.6,
+ "train_bpc": 1.8218,
+ "bpc": 1.8641,
+ "bpc_2x": 2.0752,
+ "fitness": 1.8641
+}

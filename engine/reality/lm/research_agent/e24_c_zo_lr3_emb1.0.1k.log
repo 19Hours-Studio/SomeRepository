@@ -1,0 +1,12 @@
+{
+ "cand": "e24_c_zo_lr3_emb1.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 149184,
+ "buffers": 12,
+ "train_s": 91.2,
+ "train_bpc": 1.8779,
+ "bpc": 1.916,
+ "bpc_2x": 2.1758,
+ "fitness": 1.916
+}

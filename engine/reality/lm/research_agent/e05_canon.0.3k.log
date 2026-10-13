@@ -1,0 +1,12 @@
+{
+ "cand": "e05_canon.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 149184,
+ "buffers": 12,
+ "train_s": 270.7,
+ "train_bpc": 1.6412,
+ "bpc": 1.7563,
+ "bpc_2x": 2.5681,
+ "fitness": 1.7563
+}

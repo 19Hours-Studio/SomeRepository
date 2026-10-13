@@ -1,0 +1,12 @@
+{
+ "cand": "e32_d80_zo_lr3_nocanon.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 148496,
+ "buffers": 10,
+ "train_s": 181.2,
+ "train_bpc": 1.6106,
+ "bpc": 1.7232,
+ "bpc_2x": 2.0871,
+ "fitness": 1.7232
+}

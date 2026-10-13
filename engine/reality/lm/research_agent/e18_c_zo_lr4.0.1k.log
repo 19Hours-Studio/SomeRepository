@@ -1,0 +1,12 @@
+{
+ "cand": "e18_c_zo_lr4.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 149184,
+ "buffers": 12,
+ "train_s": 100.3,
+ "train_bpc": 1.9115,
+ "bpc": 1.9081,
+ "bpc_2x": 2.0837,
+ "fitness": 1.9081
+}

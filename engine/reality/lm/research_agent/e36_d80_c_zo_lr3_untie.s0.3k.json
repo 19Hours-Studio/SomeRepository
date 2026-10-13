@@ -1,0 +1,12 @@
+{
+ "cand": "e36_d80_c_zo_lr3_untie.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 148656,
+ "buffers": 10,
+ "train_s": 257.2,
+ "train_bpc": 1.5756,
+ "bpc": 1.6812,
+ "bpc_2x": 1.9533,
+ "fitness": 1.6812
+}

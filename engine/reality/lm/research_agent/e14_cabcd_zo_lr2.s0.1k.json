@@ -1,0 +1,12 @@
+{
+ "cand": "e14_cabcd_zo_lr2.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 149168,
+ "buffers": 12,
+ "train_s": 100.3,
+ "train_bpc": 1.8614,
+ "bpc": 1.9021,
+ "bpc_2x": 2.1506,
+ "fitness": 1.9021
+}

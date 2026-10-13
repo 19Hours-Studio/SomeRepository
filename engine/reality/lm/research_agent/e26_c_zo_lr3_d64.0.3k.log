@@ -1,0 +1,12 @@
+{
+ "cand": "e26_c_zo_lr3_d64.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 149664,
+ "buffers": 8,
+ "train_s": 250.1,
+ "train_bpc": 1.5557,
+ "bpc": 1.6906,
+ "bpc_2x": 1.6779,
+ "fitness": 1.6906
+}

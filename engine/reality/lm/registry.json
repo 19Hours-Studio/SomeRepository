@@ -136,5 +136,15 @@
   "method": "dissolve",
   "parents": "r0_blindB_1,r1_count_1",
   "round": 2
+ },
+ "researcher_best": {
+  "principle": "Learning speed, not the copy mechanism, set the 1.78 plateau: causal short convolutions (k=4) inside every block plus a 3x effective step size (W = 3W'), on top of shifted-key copy heads.",
+  "method": "researcher",
+  "round": 3
+ },
+ "ctrl_tf_rope_x3": {
+  "principle": "control: seed RoPE transformer with the same 3x effective step size",
+  "method": "control",
+  "round": 3
  }
 }

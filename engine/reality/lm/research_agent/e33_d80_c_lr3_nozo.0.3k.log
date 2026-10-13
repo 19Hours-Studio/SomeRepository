@@ -1,0 +1,12 @@
+{
+ "cand": "e33_d80_c_lr3_nozo.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 148656,
+ "buffers": 10,
+ "train_s": 268.4,
+ "train_bpc": 1.5784,
+ "bpc": 1.6809,
+ "bpc_2x": 2.0083,
+ "fitness": 1.6809
+}

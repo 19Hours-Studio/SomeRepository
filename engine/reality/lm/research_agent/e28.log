@@ -1,0 +1,12 @@
+{
+ "cand": "e28_d80_only.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 144656,
+ "buffers": 10,
+ "train_s": 163.2,
+ "train_bpc": 1.6716,
+ "bpc": 1.7739,
+ "bpc_2x": 2.3914,
+ "fitness": 1.7739
+}

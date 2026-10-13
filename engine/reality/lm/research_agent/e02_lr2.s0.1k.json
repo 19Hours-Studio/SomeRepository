@@ -1,0 +1,12 @@
+{
+ "cand": "e02_lr2.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 145920,
+ "buffers": 12,
+ "train_s": 58.1,
+ "train_bpc": 1.9296,
+ "bpc": 1.9895,
+ "bpc_2x": 2.4735,
+ "fitness": 1.9895
+}

@@ -1,0 +1,12 @@
+{
+ "cand": "e01_base.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 145920,
+ "buffers": 12,
+ "train_s": 57.4,
+ "train_bpc": 1.9907,
+ "bpc": 2.0191,
+ "bpc_2x": 2.0298,
+ "fitness": 2.0191
+}

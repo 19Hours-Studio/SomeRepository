@@ -1,0 +1,12 @@
+{
+ "cand": "e11_c_zo_lr3.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 149184,
+ "buffers": 12,
+ "train_s": 277.8,
+ "train_bpc": 1.5857,
+ "bpc": 1.711,
+ "bpc_2x": 1.9595,
+ "fitness": 1.711
+}

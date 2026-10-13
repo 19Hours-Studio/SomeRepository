@@ -1,0 +1,12 @@
+{
+ "cand": "e09_ngram_lr2.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 147456,
+ "buffers": 12,
+ "train_s": 54.4,
+ "train_bpc": 1.9793,
+ "bpc": 1.9973,
+ "bpc_2x": 2.3045,
+ "fitness": 1.9973
+}

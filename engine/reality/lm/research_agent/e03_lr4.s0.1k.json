@@ -1,0 +1,12 @@
+{
+ "cand": "e03_lr4.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 145920,
+ "buffers": 12,
+ "train_s": 60.4,
+ "train_bpc": 1.9537,
+ "bpc": 2.0018,
+ "bpc_2x": 2.5137,
+ "fitness": 2.0018
+}

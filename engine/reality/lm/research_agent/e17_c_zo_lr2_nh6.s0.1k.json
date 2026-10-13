@@ -1,0 +1,12 @@
+{
+ "cand": "e17_c_zo_lr2_nh6.py",
+ "seed": 0,
+ "steps": 1000,
+ "params": 149184,
+ "buffers": 8,
+ "train_s": 91.7,
+ "train_bpc": 1.8903,
+ "bpc": 1.9105,
+ "bpc_2x": 2.0308,
+ "fitness": 1.9105
+}
