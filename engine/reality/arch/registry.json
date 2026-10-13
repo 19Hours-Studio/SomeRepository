@@ -71,5 +71,23 @@
   "method": "transfer",
   "parents": "seed_tf_rope,seed_ssm",
   "round": 1
+ },
+ "r0_blind_1": {
+  "principle": "Count each position from the most recent delimiter (task marker or separator) and feed that count to attention only as a fixed rotary phase. Copy's source-to-target alignment then becomes an exact relative-identity match (delta = 0). Recall and hop stay purely content-addressed, so the usual failure of absolute or sequence-relative positions at 2x length should disappear. A cumulative phase channel with binary-saturating phases supplies parity.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
+ },
+ "r0_blind_2": {
+  "principle": "Use a token-space pointer machine. One weight-tied lookup (\"find the position whose previous token equals my pointer, read its token\") is iterated, and each step re-embeds the retrieved token distribution as the next query. The operation itself contains no lengths and its state stays near one-hot, so recall (1 hop), hop (2 hops) and copy (1 hop plus a delimiter-relative positional kernel) should hold at 2x length. Saturating phases supply parity.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
+ },
+ "r0_blind_3": {
+  "principle": "Replace every positional and counting quantity with learned gated integer counters, n_t = (1 - reset(x_t)) * n_{t-1} + inc(x_t), whose per-token gates saturate to exact 0/1 and are read out only through fixed-frequency rotations. The model discovers its own event-relative clocks for rotary attention (copy alignment, odd/even key-value slots) and its own bit-counters mod 2 (parity). These stay exact integers at any length, which should fix the drift of fixed or absolute position codes beyond the training length.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
  }
 }
