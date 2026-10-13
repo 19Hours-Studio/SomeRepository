@@ -44,5 +44,17 @@
   "method": "blind",
   "parents": "",
   "round": 0
+ },
+ "r1_count_1": {
+  "principle": "A copy head scores each earlier position j by the exact length of the shared character suffix ending at t and at j, computed with vectorised diagonal scans and capped at 12, plus a small learned content term. It then mixes the copy distribution over x[j+1] with the LM softmax through a learned null slot. Repeated identifiers, keywords and phrases in code are predicted by copying from the longest previous occurrence of the current context, like PPM. This works from step 0 instead of relying on a fuzzy match on a learned hidden state.",
+  "method": "count",
+  "parents": "r0_blindB_1,r0_blindA_1",
+  "round": 1
+ },
+ "r1_count_2": {
+  "principle": "Treat source code as a 2D text grid. Every attention head gets a learned bias indexed by the exact (line distance 0..3, column difference within +-12) between query and key, computed with causal prefix scans. Indentation, dedents and aligned repeated statements are mostly decided by the character directly above, one line up, so one learned bias entry lets a head look straight up. Plain 1D positions cannot express this, because line lengths vary. It sits on the parent's shifted-key induction heads, with half the heads keyed on h[s-1].",
+  "method": "count",
+  "parents": "r0_blindB_1,r0_blindA_1",
+  "round": 1
  }
 }
