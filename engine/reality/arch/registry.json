@@ -101,5 +101,17 @@
   "method": "cross",
   "parents": "r1_transfer_1,r1_dissolve_2",
   "round": 2
+ },
+ "r2_dissolve_1": {
+  "principle": "The hidden assumption is that attention knows a position only by its distance from the query (absolute index, RoPE offset, or spin phase). Copy needs an offset of n+1, and at 2x length that offset was never trained, so the best model scores 0.06 on copy at 2x. Dropping that assumption, each head gives every position two learned token-driven counts (one for the query side, one for the key side, e.g. \"blanks seen\" and \"symbols seen\") and scores keys by a kernel on the count difference, -beta*(c_q - c_k)^2. \"Blank j reads symbol j\" is then a match at difference 0 whatever n is. The rest of r1_transfer_1 (pointer chasing, RoPE blocks) is left untouched, so mqar and hop are kept.",
+  "method": "dissolve",
+  "parents": "r1_transfer_1,r1_transfer_2",
+  "round": 2
+ },
+ "r2_dissolve_2": {
+  "principle": "The hidden assumption is that a position's state must be a weighted average or sum of vectors (attention in r1_transfer_1, which scores 0.00/0.07 on parity). Parity, like any finite-state question, is really the word problem of a finite group, so the state should be a group element: every token applies its own learned orthogonal matrix exp(A_x - A_x^T) to a bank of unit vectors. Products of rotations never decay, and a learned rotation by pi on bit 1 stays exact at any length. This state is fed only into the input of the first block, while pointer chasing still reads the raw embeddings, so mqar and hop are kept.",
+  "method": "dissolve",
+  "parents": "r1_transfer_1,r1_transfer_2",
+  "round": 2
  }
 }
