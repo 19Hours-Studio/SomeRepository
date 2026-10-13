@@ -1,0 +1,2 @@
+researcher_best: 1.6813 bits/char (at 2x context 1.9279), 148656 params, 265.1s training, 2 seed(s)
+ctrl_tf_rope_x3: 1.9667 bits/char (at 2x context 2.4721), 95968 params, 164.6s training, 2 seed(s)

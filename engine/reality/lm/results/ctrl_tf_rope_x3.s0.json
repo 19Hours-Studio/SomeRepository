@@ -1,0 +1,12 @@
+{
+ "cand": "ctrl_tf_rope_x3.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 95968,
+ "buffers": 0,
+ "train_s": 163.4,
+ "train_bpc": 1.88,
+ "bpc": 1.9619,
+ "bpc_2x": 2.3434,
+ "fitness": 1.9619
+}
