@@ -1,6 +1,6 @@
 ---
 name: creativity-engine
-description: Run the evidence-based creativity engine (protocol v1.9: layers A-B-C, plus D for physical questions) to generate genuinely unusual, valuable ideas for a hard open question - empirical attractor mapping, a portfolio of de-biasing techniques, two blind judges, literature check, evolution with attractor memory, and a best-of-N control. Use when the user wants maximally original ideas, not a quick brainstorm.
+description: Run the evidence-based creativity engine (protocol v3 for code-checkable questions; v1.9 layers A-B-C(-D) otherwise) to generate genuinely unusual, valuable ideas for a hard open question - empirical attractor mapping, a portfolio of de-biasing techniques, two blind judges, literature check, evolution with attractor memory, and a best-of-N control. Use when the user wants maximally original ideas, not a quick brainstorm.
 ---
 
 # Creativity engine
@@ -33,6 +33,15 @@ otherwise the agent stops on the "single Read" rule:
 Literature checks use `subagent_type: general-purpose` (they need WebSearch) with the set's `prompt_lit.txt`.
 After an agent finishes, ingest from its transcript: `--transcript <output_file from the Agent launch result>`.
 Launch independent agents in one message; never read transcripts into your own context.
+
+## v3 (when ideas can be checked by running code): ask reality, not judges (08-reality-engine.md)
+- Build an executable evaluator first (see `engine/reality/arch|lm/harness.py`: fixed equal training, causality and
+  budget checks incl. non-trainable buffers). Close loopholes: optimisers find whatever the rules do not forbid.
+- Generate deep designs from first principles WITHOUT parents' code (`evo.py prompt R --method blind|dissolve|...`,
+  parents shown as measurements + principles only), evaluate all with 2 seeds, keep the best.
+- Then run ONE researcher agent with tools (template `engine/reality/lm/research_agent/TASK.md`): it edits only its
+  folder, runs the unchanged harness up to 4 in parallel, logs every run. Verify harness hashes and re-run its best
+  yourself. Measured: 16 one-shot agents plateaued at 1.781 bpc; one researcher (38 runs, 41 min) reached 1.681.
 
 ## Default: engine v1.8 = layers A -> B -> C (research/stage1-creativity/06-engine-v17.md §9-10)
 - Layer A (originality): `python3 engine/ce.py portfolio` gives the gen-1 portfolio (bandit over all past runs);
