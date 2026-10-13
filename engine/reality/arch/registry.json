@@ -113,5 +113,17 @@
   "method": "dissolve",
   "parents": "r1_transfer_1,r1_transfer_2",
   "round": 2
+ },
+ "r2_crossB_1": {
+  "principle": "Pointer chasing with spin addresses: keep parent 1's tied dereference (it starts from the previous token and reads the successor) but drop its two RoPE blocks and its position-parity bias, and use a relative-phase term from token-driven spins instead; the spins are renormalised to unit size at every step, so the phase never decays (a reset gate below 1/2 keeps the real axis exactly, above 1/2 snaps the spin back to 1), which keeps the parity bit and the segment counts exact at any length \u2014 this targets parent 1's parity 0.00/0.07 and copy 2x 0.06 and parent 2's hop 0.08 and parity 2x 0.02.",
+  "method": "cross",
+  "parents": "r1_transfer_1,r1_transfer_2",
+  "round": 2
+ },
+ "r2_crossB_2": {
+  "principle": "Address = token x spin: a single tied dereference whose key is the cell's (token, successor) embedding rotated by its unit-size token-driven spin; zero-rate channels give parent 1's position-free content chase (mqar/hop), nonzero-rate channels give parent 2's length-free counting and exact parity, and a learned per-query choice of how many hops to take (0-3) replaces all transformer blocks \u2014 this targets parent 1's copy 2x 0.06 and parity 0.00 and parent 2's hop 0.08 and parity 2x 0.02 with one mechanism.",
+  "method": "cross",
+  "parents": "r1_transfer_1,r1_transfer_2",
+  "round": 2
  }
 }
