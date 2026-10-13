@@ -1,3 +1,5 @@
 label	agent	role	round
 r0_blindA	aa2328b7bcded8aee	gen	0
 r0_blindB	a2aed995241392552	gen	0
+r1_cross	a1811ff45ccaa50eb	gen	1
+r1_count	a0ff22275f732b405	gen	1
