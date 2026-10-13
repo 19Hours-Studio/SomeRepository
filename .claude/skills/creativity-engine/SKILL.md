@@ -34,6 +34,15 @@ Literature checks use `subagent_type: general-purpose` (they need WebSearch) wit
 After an agent finishes, ingest from its transcript: `--transcript <output_file from the Agent launch result>`.
 Launch independent agents in one message; never read transcripts into your own context.
 
+## Default for any question (08-reality-engine.md, 4 experiments): free generation, then reality repair
+- Reality (literature, real Python, running code) raises truth but, applied DURING invention, cuts originality by ~2
+  points (laws-first, principle truth-check, researcher-as-generator). Applied in a REPAIR phase that keeps each
+  idea's anchor, it costs almost nothing (O -0.17) and gives F +1.0 even on ideas already repaired once.
+- So: layers A -> B -> C (free, anti-attractor, no parents' text/code) -> researcher repair: one general-purpose agent
+  with WebSearch + python3 repairs the most original ideas around their anchors (template
+  `engine/runs/energy/repair/TASK.md`), then a blind judge built with `--feasible`. Never give the researcher the job
+  of inventing: it drifts to safe known solutions (O 3.8 vs 5.8).
+
 ## v3 (when ideas can be checked by running code): ask reality, not judges (08-reality-engine.md)
 - Build an executable evaluator first (see `engine/reality/arch|lm/harness.py`: fixed equal training, causality and
   budget checks incl. non-trainable buffers). Close loopholes: optimisers find whatever the rules do not forbid.
