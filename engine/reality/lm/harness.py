@@ -12,6 +12,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CHARS = "\n" + "".join(chr(i) for i in range(32, 127)); VOCAB = len(CHARS)   # 96
 T_TRAIN, BS, MAXLEN = 128, 16, 512
 PARAM_BUDGET = 150_000
+BUFFER_BUDGET = 300_000   # non-trainable state counts too (closes the count-table loophole found by r2_dissolve)
 
 
 def load(split):
@@ -59,6 +60,8 @@ def run(path, steps=3000, seed=0, lr=3e-3, time_cap=480):
         tr, va = load("train"), load("val"); model = load_model(path)
         npar = sum(p.numel() for p in model.parameters() if p.requires_grad); res["params"] = npar
         if npar > PARAM_BUDGET: raise ValueError(f"{npar} params > budget {PARAM_BUDGET}")
+        nbuf = sum(b.numel() for b in model.buffers()); res["buffers"] = nbuf
+        if nbuf > BUFFER_BUDGET: raise ValueError(f"{nbuf} buffer elements > budget {BUFFER_BUDGET} (state counts as memory)")
         x, _ = get_batch(tr, T_TRAIN, 2, g); out = model(x)
         if out.shape != (2, T_TRAIN, VOCAB): raise ValueError(f"bad output shape {tuple(out.shape)}")
         causal_check(model, g)

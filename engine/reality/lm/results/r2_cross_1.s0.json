@@ -1,0 +1,11 @@
+{
+ "cand": "r2_cross_1.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 144882,
+ "train_s": 205.2,
+ "train_bpc": 1.679,
+ "bpc": 1.7831,
+ "bpc_2x": 2.4436,
+ "fitness": 1.7831
+}

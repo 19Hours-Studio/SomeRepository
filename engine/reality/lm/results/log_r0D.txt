@@ -1,0 +1,2 @@
+r0_blindD_1: 1.8264 bits/char (at 2x context 2.5677), 131186 params, 189.6s training, 1 seed(s)
+r0_blindD_2: 1.9609 bits/char (at 2x context 2.9226), 138416 params, 151.4s training, 1 seed(s)

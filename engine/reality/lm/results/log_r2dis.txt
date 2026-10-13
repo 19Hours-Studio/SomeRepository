@@ -1,0 +1,2 @@
+r2_dissolve_1: 1.8753 bits/char (at 2x context 1.8838), 145568 params, 361.5s training, 1 seed(s)
+r2_dissolve_2: 1.9077 bits/char (at 2x context 1.8138), 141356 params, 363.9s training, 1 seed(s)

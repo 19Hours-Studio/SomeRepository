@@ -11,7 +11,7 @@ THE REALITY TEST (fixed and equal for everyone):
   `forward(self, x)` taking LongTensor [B, T] and returning logits [B, T, vocab_size], where position t predicts the
   character at t+1. It MUST be causal: output at t may depend only on x[:, :t+1] (checked by perturbing the input
   before and after training; a non-causal model scores nothing). `torch`, `nn`, `F`, `math` are defined.
-- Budget: at most 150,000 trainable parameters, and 3000 steps must finish within 8 minutes on ONE CPU thread
+- Budget: at most 150,000 trainable parameters and at most 300,000 elements of non-trainable buffers (all state counts), and 3000 steps must finish within 8 minutes on ONE CPU thread
   (about 0.15 s per step at B=16, T=128). A causal Python loop over 128 time steps is affordable only if it is light.
 - Known reference points: a plain 2-layer causal RoPE transformer with ~96k parameters is a typical baseline.
 

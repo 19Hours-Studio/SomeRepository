@@ -1,0 +1,11 @@
+{
+ "cand": "r2_dissolve_1.py",
+ "seed": 0,
+ "steps": 3000,
+ "params": 145568,
+ "train_s": 361.5,
+ "train_bpc": 1.1821,
+ "bpc": 1.8753,
+ "bpc_2x": 1.8838,
+ "fitness": 1.8753
+}
