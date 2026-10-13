@@ -100,5 +100,17 @@
   "method": "cross",
   "parents": "r0_blindB_1,r1_cross_2",
   "round": 2
+ },
+ "r0_blindC_1": {
+  "principle": "Build the induction head into the structure: a copy layer scores each earlier position j by how well the local context ending at j matches the local context ending at t, and returns the character that came after j (x[j+1]). Repeated identifiers, attribute chains and closing patterns in code can then be copied from step 0, without spending scarce training steps teaching two attention layers to form an induction circuit. The query and key projections start out identical, so at initialisation the layer already attends to positions with similar context.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
+ },
+ "r0_blindC_2": {
+  "principle": "Feed the network exact causal counters of code structure (column, leading spaces typed so far on the current line, the indent of the most recent code line and the gap between the two, unclosed-bracket depth, and quote parity within the line), computed with cumsum and cummax and added as embeddings. A tiny model trained for 3000 steps cannot learn to count reliably, yet these counts decide many of the most predictable characters in Python: the runs of indentation spaces after each newline, closing brackets, and closing quotes.",
+  "method": "blind",
+  "parents": "",
+  "round": 0
  }
 }
