@@ -124,5 +124,17 @@
   "method": "blind",
   "parents": "",
   "round": 0
+ },
+ "r2_dissolve_1": {
+  "principle": "Every measured candidate assumes that the only memory of the training corpus is \u2264150k weights trained by SGD in 3000 steps. This design drops that assumption: a non-trainable buffer collects exact counts of (last k characters -> next character) for k=1..7 from every past training batch. The buffer is updated only after each forward pass, so it stays causal, and it is frozen in eval. Its smoothed log-probabilities are mixed into the logits of a small shifted-key induction transformer through learned, context-dependent per-order gates. The result is a character-level PPM over millions of characters of Python idioms (indentation runs, `self.`, `def `, `return `, keyword and identifier spellings) that costs zero parameters and zero learning, so the 145k weights only have to learn how much to trust each order and how to copy within the window.",
+  "method": "dissolve",
+  "parents": "r0_blindB_1,r1_count_1",
+  "round": 2
+ },
+ "r2_dissolve_2": {
+  "principle": "This design removes the sequence network that everyone treats as essential. Text compression already solved next-character prediction with context mixing (PAQ), so the model is just 16 exact count models. Eight are global counts of (last k chars -> next char) for k=1..8, collected from all past training batches into a non-trainable buffer. The other eight are in-window counts of the same contexts, which copy repeated identifiers and indentation from earlier in the window. A small 2-layer MLP looks at the last 8 characters and at how confident each count model is, then sets per-position weights for geometrically mixing the 16 predictions and adds a small residual. All 141k parameters therefore go to deciding which count model to trust, not to storing what Python looks like.",
+  "method": "dissolve",
+  "parents": "r0_blindB_1,r1_count_1",
+  "round": 2
  }
 }
