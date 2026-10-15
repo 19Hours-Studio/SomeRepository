@@ -47,6 +47,11 @@ Launch independent agents in one message; never read transcripts into your own c
   set (s98: engine + EC + control), split repair into 2 agents x 4 ideas (template `engine/runs/permafrost/repair/a/TASK.md`:
   binding quantity, cost vs current practice, hazards, verdict WORKS/NICHE/FAILS), then judge ERP + parents + control.
 - Always run the control arm: a literature NO-CLOSE-MATCH can still be an idea plain runs find (2/8 here).
+- An external critique of the permafrost result found two repair failures (09-permafrost-run.md, "Разбор прожарки"):
+  the researcher computed a melt rate but never checked it against its own +3..+9 kg trim window (the pod sinks in
+  hours), and I compared a chain against hauling raw ore (7x) instead of the best realistic practice (2x per kg of
+  recovered product). Add to every repair TASK: compare against the best current practice per unit of RECOVERED
+  product, and do a consistency pass that checks every computed rate against every tolerance in the design.
 
 ## v3 (when ideas can be checked by running code): ask reality, not judges (08-reality-engine.md)
 - Build an executable evaluator first (see `engine/reality/arch|lm/harness.py`: fixed equal training, causality and
