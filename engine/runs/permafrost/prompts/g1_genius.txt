@@ -1,0 +1,33 @@
+Russia holds vast natural resources (oil, gas, metals, diamonds, coal, rare earths) in Siberia, Yakutia and the Arctic, mostly under permafrost and far from roads, railways and ports. Propose a fundamentally new way to reach, extract, process or bring these resources to market that is extremely cheap (several times cheaper than current practice), has never been tried or seriously costed by anyone, can be deployed within a few years, and works with known physics. Not incremental improvements of existing mining, drilling, pipelines or winter-road logistics.
+Propose 3 fundamentally new answers that make the hard part of this question easy instead of building around it. For each answer:
+1. WHY IS IT HARD: state the crux of the question and the hidden assumption that makes it hard - something experts take for granted so deeply that nobody writes it down.
+2. DISSOLVE IT with exactly one move:
+   a) drop that assumption and show the crux becomes easy or disappears; or
+   b) show the crux IS an already-solved problem of another field, with a mapping that preserves exactly what makes the crux hard (say what does not map); or
+   c) remove a component everyone considers essential and show the problem gets easier without it.
+3. SIMPLICITY: the core of the answer must fit in one sentence and use at most three parts. If it needs more machinery, you have not found the move yet - keep looking.
+4. INEVITABILITY CHECK: would a strong expert react "surprising - but of course"? If the reaction would be "clever, but complicated", discard it.
+5. HONESTY CHECK: name the closest existing work; if the answer is essentially that, choose another move.
+Families that models have been observed to converge on (forbidden, including re-skins):
+FROSTCRK: Repeated water freeze-thaw cycles driven by Arctic cold crack rock along grain boundaries, replacing blasting and grinding
+ICEHULL: Throwaway pykrete (ice plus sawdust) hulls or slabs built on winter river ice carry ore concentrate down the spring flood, then are left to melt
+FRZCONC: Freezing a dilute leach solution or brine pushes salts out of the ice, so metals are concentrated almost free before shipping
+PFLEACH: Underground leaching of a thawed, bounded ore block, with the surrounding permafrost acting as a self-sealing container
+ICECABLE: Sprayed ice trough with steel-runner sleds pulled by an endless cable loop, like a ski lift, for continuous low-friction freight
+KITESLED: Driverless sled trains pulled across tundra and sea ice by wind-traction kites
+AIRSHIP: Heavy-lift airships or hybrid buoyant craft fly concentrate straight from the deposit to a railhead or port with no ground infrastructure
+ONSITEPWR: A small modular nuclear plant or stranded gas powers on-site smelting or refining, so only metal or high-value product is shipped
+ENERGYEXP: Energy is "exported" as data: stranded gas or coal powers on-site data centres or crypto mining instead of being transported
+GASCHEM: Stranded gas is turned on site into ammonia, methanol, hydrogen or synthetic fuel, then shipped by small tanker or drone
+BIOLEACH: Cold-adapted microbes leach metals from heaps or from ore in place
+CAPSPIPE: Pneumatic or slurry capsule pipelines laid on the surface or under the ice move solids without roads
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+
