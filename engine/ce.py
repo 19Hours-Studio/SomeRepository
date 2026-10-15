@@ -145,6 +145,12 @@ def cmd_ingest(a):
         frag = bool(FRAG.search(d["mech"] + " " + d["value"]))
         if frag: print(f"WARNING: {a.label}#{k} is a fragment (refers to another idea) - excluded from selection")
         ideas.append({"id": f"{a.label}#{k}", "label": a.label, "arm": a.arm, "gen": a.gen, **d, **({"fragment": True} if frag else {})})
+    parents = getattr(a, "parents", None)
+    if parents:  # repair/red-team rounds: the k-th parsed idea descends from the k-th listed id
+        parents = parents.split(",") if "," in parents or not os.path.exists(parents) else json.load(open(parents))
+        if len(parents) != len(new): sys.exit(f"--parents lists {len(parents)} ids but {len(new)} ideas were parsed")
+        for k, par in enumerate(parents, 1):
+            next(i for i in ideas if i["id"] == f"{a.label}#{k}")["parent"] = par
     save(a.run, "ideas.json", ideas); print(f"{a.label}: {len(new)} ideas ({len(text.split())} words)")
     if "FIRST THOUGHTS" in text:
         block = text.split("FIRST THOUGHTS", 1)[1].split("=== IDEAS ===", 1)[0]
@@ -555,6 +561,38 @@ def cmd_import_basins(a):
             if code not in have: dst.append({**b, "code": code, "source": a.as_}); k += 1
     save(a.dst, "basins.json", dst); print(f"imported {k} basins as {a.as_}")
 
+def task_ideas(run, ids):
+    """Numbered idea blocks with the latest judges' mean O and F (for repair and red-team tasks)."""
+    allx = {i["id"]: i for i in load(run, "ideas.json", [])}; out = []
+    for k, iid in enumerate(ids, 1):
+        if iid not in allx: sys.exit(f"unknown idea {iid}")
+        i, g = allx[iid], agg(run, iid)
+        sc = f" (mean originality {g['O']:.1f}/10, mean feasibility {g['F']:.1f}/10)" if g and g.get("F") is not None else ""
+        out.append(f"IDEA {k}{sc}\nNAME: {i['name']}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n")
+    return "\n".join(out)
+
+def cmd_repairtask(a):
+    """v2.2: researcher repair (best-practice baseline per unit of recovered product + rate-vs-tolerance
+    consistency pass); --critique adds a red-team review the researcher must answer point by point."""
+    ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
+    crit = ""
+    if a.critique:
+        crit = ("\nAn adversarial reviewer has examined the current versions. Answer EVERY defect it lists: fix it in\n"
+                "the design, refute it with a computed number, or concede it in the verdict. Its review:\n<<<REVIEW\n"
+                + read_source(argparse.Namespace(transcript=a.critique if a.critique.endswith(".output") else None,
+                                                 file=None if a.critique.endswith(".output") else a.critique))
+                + "\nREVIEW>>>\n")
+    s = fill(a.run, tpl("repair_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids), "CRITIQUE": crit})
+    open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "parents.json"), "w"))
+    print(os.path.join(a.dir, "TASK.md"))
+
+def cmd_redteamtask(a):
+    """v2.2: adversarial reviewer with tools; its review feeds `repairtask --critique`."""
+    ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
+    s = fill(a.run, tpl("redteam_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids)})
+    open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
+    print(os.path.join(a.dir, "TASK.md"))
+
 def cmd_report(a):
     arms = defaultdict(list)
     for i in load(a.run, "ideas.json", []):
@@ -586,7 +624,10 @@ def main():
     x.add_argument("--pairs", type=int, default=3); x.add_argument("--pair-from", type=int, default=0)
     x.add_argument("--n", type=int, help="ideas/principles per generator (default: run's n)")
     x = sp.add_parser("ingest"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--arm", required=True)
-    x.add_argument("--gen", type=int, default=0); src(x)
+    x.add_argument("--gen", type=int, default=0); x.add_argument("--parents", help="ids (comma list or parents.json) the k-th idea descends from"); src(x)
+    x = sp.add_parser("repairtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
+    x.add_argument("--critique", help="red-team review (file, or agent transcript .output)")
+    x = sp.add_parser("redteamtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x = sp.add_parser("set"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--labels"); x.add_argument("--ids")
     x.add_argument("--arms"); x.add_argument("--prefix", default="S")
     x.add_argument("--basin-sources", help="e.g. observed,predicted — exclude visited families from judge prompts (fair final comparison)")

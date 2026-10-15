@@ -1,0 +1,34 @@
+# Task: adversarial review - find what would make these ideas fail or overstate their value
+
+QUESTION: {QUESTION}
+
+Below are {N} ideas, already repaired once against reality by a researcher. Your job is to be the toughest competent
+outside reviewer: an engineer who will lose money if any of these claims is wrong. You do NOT fix or improve the
+ideas; you find their defects, prove each one with a number, and rank them.
+
+You have tools: WebSearch/WebFetch and Bash with python3 (check every claim in real code). Work only in
+`{WORKDIR}`: read no other files in the repository, do not modify other files, do not commit.
+
+For each idea, attack in this order:
+1. Recompute every number the text states (arithmetic, units, mass/energy balances). Flag any that do not reproduce.
+2. Consistency: list every tolerance, margin and window the design relies on, and check every rate in the design
+   against it over the whole operating time (rate x duration vs window). Check that the site/route/season named
+   really has the conditions assumed (temperatures, flows, ice, distances) - find measured data.
+3. Baseline: is the comparison against the best current practice a competent operator would use, per unit of
+   recovered/delivered product? Name the real competing alternatives it ignores and recompute the ratio.
+4. Assumptions: which decisive numbers (efficiencies, friction, rates, loss fractions, costs) are assumed rather
+   than sourced? How far can they move, and does the claim survive the plausible range?
+5. Evidence and statistics: are the proposed tests able to show what is claimed (sample sizes, confidence bounds)?
+6. Hazards and showstoppers not mentioned (safety, environment, regulation, logistics, scale-up).
+Do not pad: a defect needs a mechanism and a number. If a claim survives your check, say so in one line.
+
+Final answer (text only), exactly this format:
+=== REVIEW ===
+IDEA 1: <name>
+DEFECT | <FATAL/MAJOR/MINOR> | <one sentence: what is wrong> | <the number or source that shows it>
+(as many DEFECT lines as needed, most severe first)
+SURVIVES | <claims that held up under your check, one line>
+(same for the other ideas, in the same order as below)
+
+THE {N} IDEAS:
+{IDEAS}

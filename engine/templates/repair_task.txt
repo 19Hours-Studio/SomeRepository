@@ -1,0 +1,49 @@
+# Task: repair original ideas against reality WITHOUT losing what makes them original
+
+QUESTION: {QUESTION}
+
+Below are {N} ideas an idea engine produced for this question. Blind judges rated them for originality (O) and
+order-of-magnitude feasibility (F, out of 10). Your job is NOT to invent new ideas and NOT to replace them with safer
+known solutions. Your job is to make each one work while keeping its anchor - the one distinctive idea that makes it
+original.
+
+You have tools: WebSearch/WebFetch (check what exists, find real material data, field data and costs) and Bash with
+python3 (do every estimate in real code). Work only in `{WORKDIR}`: read no other files in the repository, do not
+modify other files, do not commit.
+
+For each idea, loop until it works or you can prove it cannot:
+1. Name its ANCHOR (the distinctive idea) in a few words. This must survive.
+2. Find the binding quantity (what decides whether it works at the needed scale - a rate, an energy balance, a
+   recovery, a throughput, a safety limit) and compute it in Python with real numbers from the literature (cite the
+   source in your notes).
+3. BASELINE: compare against the BEST current practice a competent operator would actually use for the same job
+   (list at least two real alternatives, including the cheapest one), and compute cost per unit of RECOVERED or
+   DELIVERED product (per kg of metal recovered, per tonne delivered), not per tonne of raw material moved, with
+   sourced numbers. Never compare against a strawman nobody would do.
+4. CONSISTENCY PASS: list every tolerance, window and limit your design relies on (buoyancy margins, temperature
+   limits, strengths, breakdown fields, stage efficiencies, site conditions where you placed it) and check every
+   rate you computed against every one of them over the whole operating time (rate x duration vs window). Check
+   that the site or route you chose really has the conditions you assumed. Write the check table in your notes.
+5. If it fails, change the DESIGN AROUND the anchor (materials, geometry, operating regime, scale, season, which
+   resource/cargo/deposit type it is used for) and recompute. Look for the regime where the anchor is strongest.
+   Repeat - several rounds per idea is normal.
+6. Name the hazards honestly and design them down where possible; say which unknown number decides the idea and the
+   cheapest experiment that would measure it (with the sample size it needs).
+7. Check novelty: if the repaired design turns out to be a known system, keep the anchor and find the version that is
+   not known.
+8. Only if no anchor-preserving design can work, say so and give the best honest niche.
+{CRITIQUE}
+Keep `LOG.md` in your folder: one line per round (idea, change, decisive number, result). Spend about 45-60 minutes at most.
+
+Final answer (text only): first the {N} repaired ideas in exactly this format, then a short NOTES section (per idea:
+anchor kept?, decisive numbers with sources, best-baseline comparison per unit of recovered/delivered product,
+consistency table summary, hazards, deciding unknown and experiment, closest existing work, verdict WORKS / NICHE / FAILS).
+=== IDEAS ===
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-5 sentences: the anchor first, then the repaired design, with the decisive computed numbers)
+VALUE: (1 sentence, with the cost ratio vs the best current practice)
+(same for the other ideas, in the same order as below)
+
+THE {N} IDEAS:
+{IDEAS}

@@ -197,6 +197,15 @@ def main():
             assert "[2] gamma" in ce("intent", R7, "s01", "--file", p)
             assert "crux b" in ce("intent", R7, "--pick", "1")
             assert json.load(open(os.path.join(rd7, "config.json")))["crux"] == "crux b"
+            # v2.2: red-team task, repair task with critique, ingest with parent links
+            dr = os.path.join(tmp, "rt"); ce("redteamtask", R7, "--ids", "tl#1", "--dir", dr)
+            t = open(os.path.join(dr, "TASK.md")).read(); assert "=== REVIEW ===" in t and "tail one" in t and dr in t
+            open(p, "w").write("=== REVIEW ===\nIDEA 1: tail one\nDEFECT | FATAL | melts | 3 kg/day\n")
+            dp = os.path.join(tmp, "rp"); ce("repairtask", R7, "--ids", "tl#1", "--dir", dp, "--critique", p)
+            t = open(os.path.join(dp, "TASK.md")).read(); assert "melts | 3 kg/day" in t and "CONSISTENCY PASS" in t
+            open(p, "w").write("=== IDEAS ===\nIDEA 1\nNAME: fixed tail\nMECHANISM: rare thing fixed\nVALUE: big\n")
+            ce("ingest", R7, "rp", "--arm", "v7R", "--gen", "3", "--parents", os.path.join(dp, "parents.json"), "--file", p)
+            assert [i for i in json.load(open(os.path.join(rd7, "ideas.json"))) if i["label"] == "rp"][0]["parent"] == "tl#1"
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")
