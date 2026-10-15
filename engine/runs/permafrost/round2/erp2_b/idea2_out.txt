@@ -1,0 +1,51 @@
+thaw energy and water needed (water cooled from Tw to 0.5 C, 85% heat use)
+ ice-cemented pile (original, ice 0.30, -5C)        E=100.9 MJ/m3  Tw= 4C ->  8.1 m3 water per m3 ore
+ ice-cemented pile (original, ice 0.30, -5C)        E=100.9 MJ/m3  Tw= 6C ->  5.2 m3 water per m3 ore
+ ice-cemented pile (original, ice 0.30, -5C)        E=100.9 MJ/m3  Tw= 8C ->  3.8 m3 water per m3 ore
+ ice-cemented pile (original, ice 0.30, -5C)        E=100.9 MJ/m3  Tw=10C ->  3.0 m3 water per m3 ore
+ loose hoisted frozen lumps (ice 0.15 bulk, -5C)    E= 54.9 MJ/m3  Tw= 4C ->  4.4 m3 water per m3 ore
+ loose hoisted frozen lumps (ice 0.15 bulk, -5C)    E= 54.9 MJ/m3  Tw= 6C ->  2.8 m3 water per m3 ore
+ loose hoisted frozen lumps (ice 0.15 bulk, -5C)    E= 54.9 MJ/m3  Tw= 8C ->  2.1 m3 water per m3 ore
+ loose hoisted frozen lumps (ice 0.15 bulk, -5C)    E= 54.9 MJ/m3  Tw=10C ->  1.6 m3 water per m3 ore
+ loose lumps, summer-tempered (ice 0.15, -2C)       E= 49.5 MJ/m3  Tw= 4C ->  4.0 m3 water per m3 ore
+ loose lumps, summer-tempered (ice 0.15, -2C)       E= 49.5 MJ/m3  Tw= 6C ->  2.5 m3 water per m3 ore
+ loose lumps, summer-tempered (ice 0.15, -2C)       E= 49.5 MJ/m3  Tw= 8C ->  1.9 m3 water per m3 ore
+ loose lumps, summer-tempered (ice 0.15, -2C)       E= 49.5 MJ/m3  Tw=10C ->  1.5 m3 water per m3 ore
+ sprayed upstream skin (ice 0.15+0.33 pores, -8C)   E=161.4 MJ/m3  Tw= 4C -> 13.0 m3 water per m3 ore
+ sprayed upstream skin (ice 0.15+0.33 pores, -8C)   E=161.4 MJ/m3  Tw= 6C ->  8.2 m3 water per m3 ore
+ sprayed upstream skin (ice 0.15+0.33 pores, -8C)   E=161.4 MJ/m3  Tw= 8C ->  6.0 m3 water per m3 ore
+ sprayed upstream skin (ice 0.15+0.33 pores, -8C)   E=161.4 MJ/m3  Tw=10C ->  4.8 m3 water per m3 ore
+sluice needs ~2.2-3 m3 water per m3 (kuzstu 2023: 3 m3/m3)
+
+sheet flow: depth 2.3 mm, V 0.33 m/s, Re 435, contact 52 s, conductive mixing time 41 s -> water leaves at ~0 C if contact >> mixing: 1.3x
+ h ~ 7496 W/m2K -> thaw rate at 6C: 70.73 m/d (needed 0.8 m/d)
+ Q=47 L/s Tw=5C ice 0.15: feed  49.3 m3/h =   1183 m3/d -> 60,000 m3 in  50.7 d
+ Q=47 L/s Tw=5C ice 0.3: feed  26.9 m3/h =    644 m3/d -> 60,000 m3 in  93.1 d
+ Q=47 L/s Tw=6C ice 0.15: feed  60.3 m3/h =   1446 m3/d -> 60,000 m3 in  41.5 d
+ Q=47 L/s Tw=6C ice 0.3: feed  32.8 m3/h =    788 m3/d -> 60,000 m3 in  76.2 d
+ Q=47 L/s Tw=8C ice 0.15: feed  82.2 m3/h =   1972 m3/d -> 60,000 m3 in  30.4 d
+ Q=47 L/s Tw=8C ice 0.3: feed  44.8 m3/h =   1074 m3/d -> 60,000 m3 in  55.9 d
+ loose pile at -3C: cold content refreezes 0.016 m3 water per m3 vs air voids 0.30-0.35 -> self-seal 5% : LEAKS
+ loose pile at -6C: cold content refreezes 0.031 m3 water per m3 vs air voids 0.30-0.35 -> self-seal 9% : LEAKS
+ loose pile at -10C: cold content refreezes 0.052 m3 water per m3 vs air voids 0.30-0.35 -> self-seal 16% : LEAKS
+ spray-seal 0.4 m lift at -20C: 0.13 m3/m2 water freezes in 19 h
+ spray-seal 0.4 m lift at -30C: 0.13 m3/m2 water freezes in 14 h
+ spray-seal 0.4 m lift at -40C: 0.13 m3/m2 water freezes in 10 h
+ sealed skin 3.0 m x 8.0 m x 80.0 m = 1920 m3 of ore (thawed last, needs 2.9x energy)
+ breach peak V=60000 m3 H=6 m -> 144 m3/s
+ breach peak V=8000 m3 H=3 m -> 34 m3/s
+ breach peak V=3000 m3 H=2 m -> 15 m3/s
+ forebay warming +2 K at 47 L/s needs 4,372 m2 (~0.44 ha) shallow pond
+ forebay warming +3 K at 47 L/s needs 6,558 m2 (~0.66 ha) shallow pond
+ forebay warming +4 K at 47 L/s needs 8,744 m2 (~0.87 ha) shallow pond
+ Tw  3C: feed  29.3 m3/h, water ratio  5.8 m3/m3 OK
+ Tw  5C: feed  52.8 m3/h, water ratio  3.2 m3/m3 OK
+ Tw  7C: feed  76.2 m3/h, water ratio  2.2 m3/m3 OK
+ Tw  9C: feed  99.7 m3/h, water ratio  1.7 m3/m3 OUT
+ Tw 11C: feed 123.1 m3/h, water ratio  1.4 m3/m3 OUT
+
+hourly: D375-class $159/h, loader $71/h
+ A natural thaw+dozer rip+loader+sluice     $ 4.65/m3 ; at 0.8 g/m3, 85% recovery: $ 6.83/g
+ B hydromonitor+gravel pump+sluice          $ 4.65/m3 ; at 0.8 g/m3, 85% recovery: $ 6.84/g
+ NEW self-feeding buttress                  $ 2.01/m3 ; at 0.8 g/m3, 85% recovery: $ 2.95/g
+ ratio vs A 2.3x, vs B 2.3x

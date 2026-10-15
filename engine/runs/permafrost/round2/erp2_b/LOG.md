@@ -1,0 +1,22 @@
+# LOG (one line per round: idea | change | decisive number | result)
+
+- I1 r1 | original: dark harrowed gravel at windy Arctic tundra, Mar 15-May 10 | hourly energy-balance model at Pevek gives 0.00-0.28 mm w.e./d in Mar to mid-Apr; at albedo 0.10 the surface reaches 0 C and melts from about Apr 28 (7-24 mm/d melt in May) | FAIL: the claimed 0.4-0.7 mm/d holds only for about 2 weeks, and after that it melts (liquid water)
+- I1 r2 | snow check: Barrow-type tundra snow-off is in early June, Pevek spring has 2-3 snowfall days a month | the field must be ploughed and fenced (Tabler fence 0.6-1.4 m holds the spring drift), and snowfall (about 10 mm w.e.) is the same size as the whole sublimation budget | the design needs a blade pass after each snowfall
+- I1 r3 | dry-lag check | 1 mm of freed dry grains halves the rate (0.26 to 0.11 mm/d), 3 mm cuts it 5x | the lag must be raked daily, effective factor about 0.6
+- I1 r4 | albedo control (dark when cold, raked light lag when near 0 C) | season gross 13.3 mm w.e. at Pevek over 48 d (6.0 mm in the calm upper Kolyma) | freed only 58-87 mm/yr (not 210), 1.4 km2 per 100k m3
+- I1 r5 | cost: windswept bench or dump, pore ice 0.08-0.12 | $3.7-4.5/m3 against $6.0 for a bulldozer-sluice and $4.0 for retreating tailings | NICHE 1.3-1.6x (claimed 3.6x); the strongest use is waterless benches and dry processing (freeze-drying replaces $9-13/m3 of fuel for thermal drying)
+- I1 r6 | gold-loss check (Shao-Lu) | quartz 63-500 um u*t 0.22-0.35; gold flakes 75-300 um about 0.23-0.32, so flakes move with the sand; Stokes settling 0.6-6.6 m/s means gold is never suspended | a low saltation-trap lip downwind is mandatory, and the fine-gold loss is the unknown
+- I2 r1 | original ice-cemented pile (ice 0.30) | 101 MJ/m3, which needs 3.8-8.1 m3 of water per m3 at 4-8 C | water-limited, not sluice-matched
+- I2 r2 | loose winter-hoisted lumps (ice 0.15 bulk) | 50-55 MJ/m3, 2.2-3.2 m3 of water per m3 at 5-7 C, which equals the sluice need (3 m3/m3) | the self-dosing is strongest here
+- I2 r3 | watertightness | the cold content of a loose pile refreezes only 0.016-0.05 m3/m3 against 0.33 of voids, so it LEAKS | repair: winter spray-sealed 3 m upstream ore skin (0.4 m lift freezes in 10-19 h) under a 0.8-1 m saturated-peat blanket (Stefan thaw 0.42 m in 90 d)
+- I2 r4 | face heat transfer and breach | h about 7,500 W/m2K gives 70 m/d thaw capacity against the 0.8 m/d needed; Froehlich peak 34 m3/s for an 8,000 m3, 3 m forebay (144 for a 60,000 m3 reservoir) | OK
+- I2 r5 | control window | feed tracks water temperature; above 8-9 C the water ratio drops below 2 (sluice overload), so cold creek water is blended in | WORKS
+- I2 r6 | cost | $2.0/m3 against $4.65 (dozer-rip + loader + pumped sluice) and $4.65 (hydromonitor + gravel pump) | 2.3x (claimed 5x)
+- I3 r1 | original timing (ice reaches boulder tops in March) | 775 C-d of frost after contact freezes 39 cm of gravel to the floe (402 kg/m2 against 141 kg/m2 buoyancy) | FAIL: the floe stays grounded
+- I3 r2 | drawdown-timed grounding (keep deep until about Apr 25, then lower the pond) | 91 C-d after contact gives 4.4 cm of gravel, so 1.7 m ice lifts 0.058 m3/m2 and 3.2 m ice lifts 0.133 | it floats
+- I3 r3 | breakout | a 0.8 m boulder needs 5-9 m2 of 1.7 m floe, a 1.2 m boulder needs 18-30 m2 | only the surface boulder armour (about 10-20% cover) can be cleared, not buried boulders
+- I3 r4 | cost | ice $5.1-5.7/m3 boulder against $3.0 for an excavator grapple and $2.7 for a dozer push | NICHE only where machines cannot work (flooded dredge-pond armour), about 0.5-1x
+- I4 r1 | original trim +3..+9 kg | shell melt (the idea's own 6 cm) gives -196 kg; snow creep (Vionnet 2012) at 250-350 kg/m3 loses 95-5,300 kg/d; air compressibility 521 kg/m of depth | FAIL by 1-3 orders of magnitude
+- I4 r2 | polynya/tailwater routes | +0.5 to +2 C water melts the shell in 0.3-1.1 d | FAIL near dams, so pods must launch below the polynya edge
+- I4 r3 | repair: cold-sealed (-35 C gives +14.9 kPa), 550 kg/m3 snow, rolling log, +750 kg margin | creep 0.6-1.4% in 45 d (about 100 kg), within the margin; rolling needs a mean 0.20-0.41 m/s, ice keels of 5-20 cm need 0.62-0.95 m/s | measured under-ice velocity 0.05-0.25 m/s (Lena delta) gives FAIL on natural rivers
+- I4 r4 | cost if it worked | $6.8/t coal against $124/t winter road and $27-33/t summer barge + stockpile | the ratio is moot; FAILS (best niche is a single fast smooth regulated reach to test)

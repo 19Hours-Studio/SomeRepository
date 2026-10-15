@@ -1,0 +1,50 @@
+shell area 39.3 m2, shell ice 3.54 m3
+(1) shell melt 6 cm over transit (the idea's own number) -> buoyancy change -196 kg vs trim window +3..+9 kg
+(2) snow 250 kg/m3, pressure excess   20 kPa: creep  72.154 %/d -> buoyancy loss   5339.4 kg/day
+(2) snow 250 kg/m3, pressure excess    5 kPa: creep  18.039 %/d -> buoyancy loss   1334.8 kg/day
+(2) snow 350 kg/m3, pressure excess   20 kPa: creep   5.167 %/d -> buoyancy loss    382.4 kg/day
+(2) snow 350 kg/m3, pressure excess    5 kPa: creep   1.292 %/d -> buoyancy loss     95.6 kg/day
+(2) snow 450 kg/m3, pressure excess   20 kPa: creep   0.403 %/d -> buoyancy loss     29.8 kg/day
+(2) snow 450 kg/m3, pressure excess    5 kPa: creep   0.101 %/d -> buoyancy loss      7.5 kg/day
+(2) snow 550 kg/m3, pressure excess   20 kPa: creep   0.033 %/d -> buoyancy loss      2.4 kg/day
+(2) snow 550 kg/m3, pressure excess    5 kPa: creep   0.008 %/d -> buoyancy loss      0.6 kg/day
+(3) compressible air 5.4 m3 -> buoyancy changes 521 kg per metre depth (Cartesian-diver unstable vs 3-9 kg trim)
+(4) water +0.05 C above freezing: shell melts 0.8 cm/day -> 9 cm shell lasts 10.6 d
+(4) water +0.50 C above freezing: shell melts 8.5 cm/day -> 9 cm shell lasts 1.1 d
+(4) water +2.00 C above freezing: shell melts 33.9 cm/day -> 9 cm shell lasts 0.3 d
+   net buoyancy   3 kg, v_rel 0.12: sliding friction     15 N vs drag    48 N -> moves
+   net buoyancy   3 kg, v_rel 0.16: sliding friction     15 N vs drag    84 N -> moves
+   net buoyancy   3 kg, v_rel 0.25: sliding friction     15 N vs drag   206 N -> moves
+   net buoyancy   9 kg, v_rel 0.12: sliding friction     44 N vs drag    48 N -> moves
+   net buoyancy   9 kg, v_rel 0.16: sliding friction     44 N vs drag    84 N -> moves
+   net buoyancy   9 kg, v_rel 0.25: sliding friction     44 N vs drag   206 N -> moves
+   net buoyancy  50 kg, v_rel 0.12: sliding friction    245 N vs drag    48 N -> STALLS
+   net buoyancy  50 kg, v_rel 0.16: sliding friction    245 N vs drag    84 N -> STALLS
+   net buoyancy  50 kg, v_rel 0.25: sliding friction    245 N vs drag   206 N -> STALLS
+   net buoyancy 200 kg, v_rel 0.12: sliding friction    981 N vs drag    48 N -> STALLS
+   net buoyancy 200 kg, v_rel 0.16: sliding friction    981 N vs drag    84 N -> STALLS
+   net buoyancy 200 kg, v_rel 0.25: sliding friction    981 N vs drag   206 N -> STALLS
+
+--- repair: cylinder 'log' pod, snow pre-compacted to 550 kg/m3 and sealed at -35 C ---
+ sealing cold air at -35.0 C gives +14.9 kPa at 0 C = hydrostatic head 1.52 m
+  ice draft +0.0 m: residual dp 8.7 kPa -> 45-d snow creep 0.64 %
+  ice draft +0.5 m: residual dp 13.6 kPa -> 45-d snow creep 1.01 %
+  ice draft +1.0 m: residual dp 18.5 kPa -> 45-d snow creep 1.37 %
+ coal        : snow 0.74 m3/t (vs 0.28-0.86 dry snow), pod volume 14.8 m3 -> D 1.6 m x L 7.4 m
+ rock ore    : snow 1.57 m3/t (vs 0.28-0.86 dry snow), pod volume 19.4 m3 -> D 1.6 m x L 9.6 m
+ sulphide ore: snow 1.86 m3/t (vs 0.28-0.86 dry snow), pod volume 21.0 m3 -> D 1.6 m x L 10.4 m
+ rolling balance (net buoyancy 750 kg incl. melt allowance, D 1.6 m, L ~9 m):
+  Crr 0.02: resistance 147 N -> needs relative velocity 0.14 m/s at the ice; near-ice flow ~0.7x mean -> mean >= 0.20 m/s
+  Crr 0.05: resistance 368 N -> needs relative velocity 0.23 m/s at the ice; near-ice flow ~0.7x mean -> mean >= 0.32 m/s
+  Crr 0.08: resistance 589 N -> needs relative velocity 0.29 m/s at the ice; near-ice flow ~0.7x mean -> mean >= 0.41 m/s
+ measured under-ice: Lena delta main channel 0.12-0.18 m/s, Bykovskaya 0.20-0.25, Olenekskaya 0.05-0.11 (Apr 2019)
+  inverted step (ice keel) 5 cm: needs drag 2731 N -> v 0.62 m/s
+  inverted step (ice keel) 10 cm: needs drag 4071 N -> v 0.75 m/s
+  inverted step (ice keel) 20 cm: needs drag 6489 N -> v 0.95 m/s
+  inverted step (ice keel) 40 cm: needs drag 12744 N -> v 1.33 m/s
+
+cost per t delivered, 700 km:
+ winter-road truck (cost model, 30 km/h, empty back-haul): $124/t  (= $0.177/t-km)
+ summer barge + winter stockpile: ~$27-33/t  (assumed 0.03 $/t-km; NOTES)
+ pods (coal): make $1.6 + slots $2.0 + 5% loss $3.2 = $6.8/t  (only IF velocity >= 0.3-0.5 m/s all the way)
+ pods (rock ore): make $2.7 + slots $2.0 + 5% loss $7.9 = $12.5/t  (only IF velocity >= 0.3-0.5 m/s all the way)

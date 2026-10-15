@@ -1,0 +1,112 @@
+=== (a) sublimation of dark harrowed frozen gravel, U10=6 m/s, RH_ice=0.85, cloud=0.4 ===
+Mar 25 albedo 0.10: net sublimation -0.00 mm w.e./d, Ts max -17.1 C, melt  0.00 mm/d
+Mar 25 albedo 0.80: net sublimation -0.08 mm w.e./d, Ts max -23.6 C, melt  0.00 mm/d
+Apr 15 albedo 0.10: net sublimation  0.26 mm w.e./d, Ts max  -6.7 C, melt  0.00 mm/d
+Apr 15 albedo 0.80: net sublimation -0.12 mm w.e./d, Ts max -15.2 C, melt  0.00 mm/d
+May 5 albedo 0.10: net sublimation  0.56 mm w.e./d, Ts max   0.0 C, melt  7.37 mm/d
+May 5 albedo 0.80: net sublimation -0.17 mm w.e./d, Ts max  -5.2 C, melt  0.00 mm/d
+May 20 albedo 0.10: net sublimation  0.29 mm w.e./d, Ts max   0.0 C, melt 23.57 mm/d
+May 20 albedo 0.80: net sublimation -0.15 mm w.e./d, Ts max  -1.0 C, melt  0.00 mm/d
+check vs measured snow sublimation (albedo 0.8 case) North Slope EC: 0.06-0.15 mm/d
+
+--- sensitivity (Apr 15) ---
+U10=3 RH_ice=0.7: E= 0.21 mm/d Tsmax= -6.2
+U10=3 RH_ice=0.85: E= 0.17 mm/d Tsmax= -5.7
+U10=3 RH_ice=1.0: E= 0.12 mm/d Tsmax= -5.3
+U10=6 RH_ice=0.7: E= 0.37 mm/d Tsmax= -7.2
+U10=6 RH_ice=0.85: E= 0.26 mm/d Tsmax= -6.7
+U10=6 RH_ice=1.0: E= 0.14 mm/d Tsmax= -6.3
+U10=9 RH_ice=0.7: E= 0.52 mm/d Tsmax= -7.9
+U10=9 RH_ice=0.85: E= 0.34 mm/d Tsmax= -7.4
+U10=9 RH_ice=1.0: E= 0.15 mm/d Tsmax= -7.0
+
+--- dry lag limit (Apr 15, U=6): vapour through a freed-grain layer, D_eff=6e-6 m2/s ---
+dry layer    1 mm: E= 0.11 mm/d
+dry layer    3 mm: E= 0.05 mm/d
+dry layer   10 mm: E= 0.02 mm/d
+dry layer   30 mm: E= 0.01 mm/d
+
+=== Pevek coast (Chaun placers): lat 69.7, U10 6.0, RH_ice 0.85, cloud 0.4
+ doy  74 Ta  -23.5 | dark: E -0.03 melt  0.00 | controlled: alb 0.10 E -0.03 Tsmax -21.8
+ doy  78 Ta  -22.5 | dark: E -0.02 melt  0.00 | controlled: alb 0.10 E -0.02 Tsmax -19.8
+ doy  82 Ta  -21.5 | dark: E -0.01 melt  0.00 | controlled: alb 0.10 E -0.01 Tsmax -17.9
+ doy  86 Ta  -20.5 | dark: E  0.02 melt  0.00 | controlled: alb 0.10 E  0.02 Tsmax -16.1
+ doy  90 Ta  -19.5 | dark: E  0.05 melt  0.00 | controlled: alb 0.10 E  0.05 Tsmax -14.3
+ doy  94 Ta  -18.1 | dark: E  0.09 melt  0.00 | controlled: alb 0.10 E  0.09 Tsmax -12.2
+ doy  98 Ta  -16.7 | dark: E  0.14 melt  0.00 | controlled: alb 0.10 E  0.14 Tsmax -10.2
+ doy 102 Ta  -15.3 | dark: E  0.20 melt  0.00 | controlled: alb 0.10 E  0.20 Tsmax  -8.2
+ doy 106 Ta  -13.9 | dark: E  0.28 melt  0.00 | controlled: alb 0.10 E  0.28 Tsmax  -6.2
+ doy 110 Ta  -12.4 | dark: E  0.37 melt  0.00 | controlled: alb 0.10 E  0.37 Tsmax  -4.2
+ doy 114 Ta  -10.8 | dark: E  0.48 melt  0.00 | controlled: alb 0.10 E  0.48 Tsmax  -2.2
+ doy 118 Ta   -9.3 | dark: E  0.61 melt  0.00 | controlled: alb 0.10 E  0.61 Tsmax  -0.3
+ doy 122 Ta   -7.8 | dark: E  0.66 melt  2.03 | controlled: alb 0.30 E  0.46 Tsmax  -0.6
+ doy 126 Ta   -6.3 | dark: E  0.62 melt  6.16 | controlled: alb 0.40 E  0.40 Tsmax   0.0
+ doy 130 Ta   -4.8 | dark: E  0.54 melt 11.41 | controlled: alb 0.55 E  0.23 Tsmax  -0.1
+ doy 134 Ta   -3.4 | dark: E  0.40 melt 17.49 | controlled: melts at any albedo<=0.55
+ doy 138 Ta   -2.2 | dark: E  0.26 melt 23.29 | controlled: melts at any albedo<=0.55
+ doy 142 Ta   -1.0 | dark: E  0.11 melt 29.12 | controlled: melts at any albedo<=0.55
+ doy 146 Ta    0.1 | dark: E -0.07 melt 35.09 | controlled: melts at any albedo<=0.55
+ doy 150 Ta    1.2 | dark: E -0.26 melt 41.04 | controlled: melts at any albedo<=0.55
+ doy 154 Ta    1.5 | dark: E -0.30 melt 43.39 | controlled: melts at any albedo<=0.55
+ doy 158 Ta    1.5 | dark: E -0.30 melt 44.35 | controlled: melts at any albedo<=0.55
+ season gross sublimation: fixed dark 8.7 mm; albedo-controlled 13.3 mm over 48 d; snowfall on field 9.6 mm (cleared by blade after each event)
+
+=== Upper Kolyma/Indigirka upland: lat 63.5, U10 3.5, RH_ice 0.7, cloud 0.3
+ doy  74 Ta  -22.0 | dark: E  0.00 melt  0.00 | controlled: alb 0.10 E  0.00 Tsmax -17.0
+ doy  78 Ta  -20.5 | dark: E  0.02 melt  0.00 | controlled: alb 0.10 E  0.02 Tsmax -14.1
+ doy  82 Ta  -19.0 | dark: E  0.06 melt  0.00 | controlled: alb 0.10 E  0.06 Tsmax -11.4
+ doy  86 Ta  -17.5 | dark: E  0.10 melt  0.00 | controlled: alb 0.10 E  0.10 Tsmax  -8.9
+ doy  90 Ta  -16.0 | dark: E  0.16 melt  0.00 | controlled: alb 0.10 E  0.16 Tsmax  -6.5
+ doy  94 Ta  -14.1 | dark: E  0.24 melt  0.00 | controlled: alb 0.10 E  0.24 Tsmax  -3.9
+ doy  98 Ta  -12.3 | dark: E  0.33 melt  0.00 | controlled: alb 0.10 E  0.33 Tsmax  -1.3
+ doy 102 Ta  -10.4 | dark: E  0.42 melt  0.87 | controlled: alb 0.20 E  0.34 Tsmax  -0.2
+ doy 106 Ta   -8.6 | dark: E  0.41 melt  4.28 | controlled: alb 0.40 E  0.19 Tsmax  -0.9
+ doy 110 Ta   -7.0 | dark: E  0.38 melt  8.42 | controlled: alb 0.55 E  0.05 Tsmax  -1.5
+ doy 114 Ta   -5.4 | dark: E  0.31 melt 13.20 | controlled: melts at any albedo<=0.55
+ doy 118 Ta   -3.8 | dark: E  0.22 melt 18.38 | controlled: melts at any albedo<=0.55
+ doy 122 Ta   -2.2 | dark: E  0.13 melt 23.54 | controlled: melts at any albedo<=0.55
+ doy 126 Ta   -0.6 | dark: E  0.05 melt 28.49 | controlled: melts at any albedo<=0.55
+ doy 130 Ta    1.0 | dark: E -0.02 melt 33.17 | controlled: melts at any albedo<=0.55
+ doy 134 Ta    2.6 | dark: E -0.08 melt 37.59 | controlled: melts at any albedo<=0.55
+ doy 138 Ta    3.9 | dark: E -0.12 melt 41.45 | controlled: melts at any albedo<=0.55
+ doy 142 Ta    5.2 | dark: E -0.15 melt 45.06 | controlled: melts at any albedo<=0.55
+ doy 146 Ta    6.4 | dark: E -0.18 melt 48.53 | controlled: melts at any albedo<=0.55
+ doy 150 Ta    7.7 | dark: E -0.20 melt 51.87 | controlled: melts at any albedo<=0.55
+ doy 154 Ta    8.0 | dark: E -0.21 melt 53.54 | controlled: melts at any albedo<=0.55
+ doy 158 Ta    8.0 | dark: E -0.21 melt 54.50 | controlled: melts at any albedo<=0.55
+ season gross sublimation: fixed dark 3.7 mm; albedo-controlled 6.0 mm over 40 d; snowfall on field 10.7 mm (cleared by blade after each event)
+
+best site: Pevek coast (Chaun placers): gross 13.3 mm, effective (lag factor 0.6) 8.0 mm w.e./season, 48 d
+  pore ice 0.1: freed gravel 87 mm/season
+  pore ice 0.15: freed gravel 58 mm/season
+  pore ice 0.2: freed gravel 43 mm/season
+  pore ice 0.3: freed gravel 29 mm/season
+area for 100,000 m3/yr at pore ice 0.12: 1.38 km2 (claimed 0.21 m/yr, 0.5 km2)
+
+(c) threshold friction velocity u*t (m/s)
+  quartz    20 um: 0.372    gold sphere    20 um: 0.409
+  quartz    63 um: 0.239    gold sphere    63 um: 0.386
+  quartz   100 um: 0.223    gold sphere   100 um: 0.442
+  quartz   250 um: 0.262    gold sphere   250 um: 0.658
+  quartz   500 um: 0.348    gold sphere   500 um: 0.921
+  quartz  1000 um: 0.484    gold sphere  1000 um: 1.300
+  gold flake 150x10 um -> eq sphere 70 um, u*t(sphere) 0.395; flake (drag x2.5) ~0.247
+  gold flake 300x20 um -> eq sphere 139 um, u*t(sphere) 0.504; flake (drag x2.5) ~0.315
+  gold flake 75x5 um -> eq sphere 35 um, u*t(sphere) 0.368; flake (drag x2.5) ~0.230
+  U10  4 m/s -> u* 0.17 (z0 1 mm); gust x1.5 -> 0.26
+  U10  5 m/s -> u* 0.22 (z0 1 mm); gust x1.5 -> 0.33
+  U10  6 m/s -> u* 0.26 (z0 1 mm); gust x1.5 -> 0.39
+  U10  7 m/s -> u* 0.30 (z0 1 mm); gust x1.5 -> 0.46
+  U10  8 m/s -> u* 0.35 (z0 1 mm); gust x1.5 -> 0.52
+  U10 10 m/s -> u* 0.43 (z0 1 mm); gust x1.5 -> 0.65
+  gold 30 um Stokes settling 0.59 m/s vs u* 0.3 -> Rouse 5: never suspended
+  gold 50 um Stokes settling 1.64 m/s vs u* 0.3 -> Rouse 14: never suspended
+  gold 100 um Stokes settling 6.57 m/s vs u* 0.3 -> Rouse 55: never suspended
+(d) U10 5: saltation capacity 0.0 g/m/s -> 0.00 t/m/d; supply 1.03 kg/m2/d -> max fetch 0 m
+(d) U10 6: saltation capacity 2.9 g/m/s -> 0.12 t/m/d; supply 1.03 kg/m2/d -> max fetch 121 m
+(d) U10 7: saltation capacity 8.3 g/m/s -> 0.36 t/m/d; supply 1.03 kg/m2/d -> max fetch 347 m
+
+(e) area 1.38 km2; pass 18.0 h; field $164,937; snow $241,476; fence $70,481; lag load $25,000; wash residue $150,000; trap $30,000
+ TOTAL $681,893/yr -> $6.82 per m3 of pay gravel processed
+ old tailings 0.25 g/m3: deflation $34.1/g recovered vs best practice $20.0/g -> 0.59x
+ thin-overburden cut 0.6 g/m3: deflation $14.2/g recovered vs best practice $12.5/g -> 0.88x

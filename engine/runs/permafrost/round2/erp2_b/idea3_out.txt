@@ -1,0 +1,35 @@
+FDD 5141 C d -> natural ice 1.72 m (a=2.4); a=2.0..2.7 -> 1.43..1.94 m
+ice 1.7 m: buoyancy 141 kg/m2 -> lifts 0.086 m3 stone/m2 (no gravel stuck)
+ice 3.2 m: buoyancy 266 kg/m2 -> lifts 0.161 m3 stone/m2 (no gravel stuck)
+
+freeze-in under the floe if it grounds early (natural timing, 'reaches boulder tops in March'):
+ contact Mar     : residual FDD  775 -> frozen gravel  38.6 cm; ice 1.7 m: B 141 vs gravel 402 kg/m2 -> net stone -0.158 m3/m2 STAYS GROUNDED
+ contact Mar     : residual FDD  775 -> frozen gravel  38.6 cm; ice 3.2 m: B 266 vs gravel 402 kg/m2 -> net stone -0.083 m3/m2 STAYS GROUNDED
+ contact Apr     : residual FDD  379 -> frozen gravel  18.5 cm; ice 1.7 m: B 141 vs gravel 193 kg/m2 -> net stone -0.031 m3/m2 STAYS GROUNDED
+ contact Apr     : residual FDD  379 -> frozen gravel  18.5 cm; ice 3.2 m: B 266 vs gravel 193 kg/m2 -> net stone +0.044 m3/m2 FLOATS
+ contact late Apr: residual FDD   91 -> frozen gravel   4.4 cm; ice 1.7 m: B 141 vs gravel 46 kg/m2 -> net stone +0.058 m3/m2 FLOATS
+ contact late Apr: residual FDD   91 -> frozen gravel   4.4 cm; ice 3.2 m: B 266 vs gravel 46 kg/m2 -> net stone +0.133 m3/m2 FLOATS
+
+breakout: floe area needed per boulder (ice 1.7 m and 3.2 m, 5 cm gravel stuck)
+ D 0.5 m embedded 0.3: boulder   108 kg + soil     6 kg -> needs   1.3 m2 (1.7 m ice) /   0.5 m2 (3.2 m) of floe ; boulder plan area 0.20 m2
+ D 0.5 m embedded 0.5: boulder   108 kg + soil    16 kg -> needs   1.4 m2 (1.7 m ice) /   0.6 m2 (3.2 m) of floe ; boulder plan area 0.20 m2
+ D 0.5 m embedded 0.7: boulder   108 kg + soil    82 kg -> needs   2.1 m2 (1.7 m ice) /   0.9 m2 (3.2 m) of floe ; boulder plan area 0.20 m2
+ D 0.8 m embedded 0.3: boulder   442 kg + soil    25 kg -> needs   5.3 m2 (1.7 m ice) /   2.2 m2 (3.2 m) of floe ; boulder plan area 0.50 m2
+ D 0.8 m embedded 0.5: boulder   442 kg + soil    67 kg -> needs   5.7 m2 (1.7 m ice) /   2.4 m2 (3.2 m) of floe ; boulder plan area 0.50 m2
+ D 0.8 m embedded 0.7: boulder   442 kg + soil   336 kg -> needs   8.8 m2 (1.7 m ice) /   3.6 m2 (3.2 m) of floe ; boulder plan area 0.50 m2
+ D 1.2 m embedded 0.3: boulder  1493 kg + soil    86 kg -> needs  17.8 m2 (1.7 m ice) /   7.4 m2 (3.2 m) of floe ; boulder plan area 1.13 m2
+ D 1.2 m embedded 0.5: boulder  1493 kg + soil   226 kg -> needs  19.3 m2 (1.7 m ice) /   8.1 m2 (3.2 m) of floe ; boulder plan area 1.13 m2
+ D 1.2 m embedded 0.7: boulder  1493 kg + soil  1134 kg -> needs  29.5 m2 (1.7 m ice) /  12.3 m2 (3.2 m) of floe ; boulder plan area 1.13 m2
+
+capacity:
+ surface boulder cover 10% of 0.8 m boulders = 0.053 m3/m2 ; 1.7 m ice lifts 0.054, 3.2 m lifts 0.129
+ surface boulder cover 20% of 0.8 m boulders = 0.107 m3/m2 ; 1.7 m ice lifts 0.054, 3.2 m lifts 0.129
+ surface boulder cover 30% of 0.8 m boulders = 0.160 m3/m2 ; 1.7 m ice lifts 0.054, 3.2 m lifts 0.129
+
+ice method per ha (1.7 m ice): lifts 431 m3; saw 11 h; total $6,544 -> $15.18/m3 boulder
+ flood-thickened 3.2 m: lifts 1035 m3; $17,508 -> $16.92/m3
+baselines: excavator grapple $3.00/m3, dozer push $2.65/m3, drill-blast-doze ~$6/m3 (only >1.5 m)
+ dredge-ahead boulder clearing by ice: adds $0.46/m3 of pay
+ dredge-ahead boulder clearing by excavator on drained ground: adds $0.09/m3 of pay
+round2 ice 1.7 m: lifted 432 m3/ha, cost $2,465/ha -> $5.71/m3 boulder (excavator grapple $3.0, dozer $2.7)
+round2 ice 3.2 m: lifted 1032 m3/ha, cost $5,240/ha -> $5.08/m3 boulder (excavator grapple $3.0, dozer $2.7)

@@ -1007,5 +1007,45 @@
   "mech": "Anchor: crushed ore plus dry snow sealed in an ice shell, carried by the current under the winter river ice to a downstream slot, with no vessel and no return trip. Snow needed per tonne is 0.28 m³ for coal, 0.74 for rock ore and 0.86 for sulphide ore. The original strongly buoyant pods fail: pressed against ice near 0 °C (μ about 0.5 at slow speed), a 1 t pod at 0.1-0.3 m/s can carry only 1-12 kg of net buoyancy before it stalls, and a stalled pod freezes into the ice cover at 1-2 cm/day. The repair uses 10 t broadside \"fin\" pods (5.0 × 2.2 × 1.2 m), soaked to 0 °C and trimmed in the launch slot with a crane load cell to +3 to +9 kg net buoyancy. That keeps drag (about 170 N at 0.16 m/s) larger than buoyancy, so pods dive under ice roughness instead of sticking. Routes are limited to reaches with smooth thermal ice and under-ice velocity of at least 0.2 m/s, mainly regulated rivers below hydropower dams (Kolyma, Vilyuy, Yenisei). An 8-10 cm shell survives transit (6 cm melt in 45 days), 700 km takes 41-68 days, and a pair of slots moves 1,200 t/day, or 144 kt per season.",
   "value": "Handling costs about $7.3/t including 5% lost pods, against $59-176/t by winter road over 500-1,500 km (8-24x cheaper) and 1.7-5x cheaper than summer barges, with coal as the best cargo.",
   "parent": "EC:EB:g1_loop#3"
+ },
+ {
+  "id": "erp2_b#1",
+  "label": "erp2_b",
+  "arm": "ERP2",
+  "gen": 4,
+  "name": "Albedo-steered freeze-dry deflation placer",
+  "mech": "Anchor kept: in spring, cold dry wind freeze-dries frozen pay gravel by sublimation and blows away the freed fines without any liquid water, leaving the heavies behind as a lag. An hourly energy-balance model for Pevek shows the claimed 0.4-0.7 mm w.e./day holds for only about 2 weeks. A dark surface begins melting around Apr 28 (7-24 mm/day of melt in May). The repair is to steer the albedo: keep the surface dark while it is cold, then leave the raked, lighter lag (albedo 0.3-0.55) once the surface nears 0 °C. This keeps the surface below 0 °C and gives 13 mm w.e. per season (48 days), times 0.6 for the dry-lag penalty (1 mm of dry grains halves the rate). That frees only 58-109 mm of gravel per year, depending on pore ice of 8-15%, so 100,000 m³/yr needs 0.9-1.4 km² of wind-scoured bench or dump surface. The site also needs a blade pass after each snowfall (spring snowfall of about 10 mm w.e. equals the whole budget), 0.6-1.4 m snow fences, and a low saltation-trap lip downwind. The trap is needed because gold flakes start moving at u* 0.23-0.32 m/s, the same as sand, although gold never goes into suspension (Stokes settling 0.6-6.6 m/s).",
+  "value": "About $3.7-4.5 per m³ processed (about $8-9 per g recovered at 0.6 g/m³) against $6.0/m³ (about $12.5/g) for bulldozer-sluice washing, so 1.3-1.6x cheaper, not 3.6x; on old tailings it is only about 1x.",
+  "parent": "repair_b#1"
+ },
+ {
+  "id": "erp2_b#2",
+  "label": "erp2_b",
+  "arm": "ERP2",
+  "gen": 4,
+  "name": "Self-feeding ore-ice buttress dam",
+  "mech": "Anchor kept: the frozen ore pile holds the forebay water, and warm water run over its downstream face thaws it, so feed = flow × ΔT / thaw energy. The regime where this is strongest is a loose winter-hoisted pile (bulk ice 0.15, 50-55 MJ/m³). With creek or forebay water at 5-7 °C it needs 2.2-3.2 m³ of water per m³, which matches what a sluice needs (about 3 m³/m³). The original ice-cemented pile (101 MJ/m³) needs 3.8-8 m³/m³ and is water-limited. A loose pile leaks: its cold content refreezes only 5-16% of its voids. The repair is a 3 m upstream ore skin, spray-sealed in winter (a 0.4 m lift freezes in 10-19 h), under a 0.8-1 m saturated-peat blanket that thaws only 0.42 m in 90 days. The forebay is kept at 3 m or less (sliding safety factor about 5, Froehlich breach peak 34 m³/s against 144 m³/s for a season-long reservoir). Above 8-9 °C cold creek water is blended in, because the water ratio would otherwise fall below 2. The face can thaw about 70 m/day, against the 0.8 m/day needed.",
+  "value": "Summer washing of winter-mined stockpiles costs about $2.0/m³ ($2.95/g at 0.8 g/m³) against about $4.65/m³ ($6.8/g) for natural thaw plus dozer ripping plus loader plus pumped sluice, or for hydromonitor plus gravel pump, so 2.3x cheaper (not 5x).",
+  "parent": "repair_b#2"
+ },
+ {
+  "id": "erp2_b#3",
+  "label": "erp2_b",
+  "arm": "ERP2",
+  "gen": 4,
+  "name": "Drawdown-timed ice boulder lift",
+  "mech": "Anchor kept: bottom-fast pond ice freezes onto the boulder tops and a spring water rise floats them off. The original timing (ice reaching the boulders in March) fails. The remaining 775 °C·days of frost freeze 39 cm of gravel onto the floe base, a load of 402 kg/m² against 141 kg/m² of buoyancy, so the floe stays grounded. The repair keeps the pond deeper than the ice until about Apr 25, then draws it down so the ice settles onto the boulders for the last 91 °C·days only. That freezes on only 4.4 cm of gravel, so 1.7 m natural ice lifts 0.058 m³/m² of stone and 3.2 m flood-built ice lifts 0.133 m³/m². A 0.8 m boulder needs 5-9 m² of floe to break out, so only a surface boulder armour of about 10-20% cover can be cleared, not boulders buried in the pay. Floating strips 30 × 100 m are sawn and winched into a dump bay.",
+  "value": "About $5.1-5.7 per m³ of boulder against $2.7-3.0/m³ for a dozer push or excavator grapple on drained ground (about 0.5x), so it pays only where machines cannot reach, such as surface armour inside a flooded dredge pond.",
+  "parent": "repair_b#3"
+ },
+ {
+  "id": "erp2_b#4",
+  "label": "erp2_b",
+  "arm": "ERP2",
+  "gen": 4,
+  "name": "Cold-sealed rolling snow-log pods",
+  "mech": "Anchor kept: crushed ore plus snow sealed in an ice shell, carried by the current under winter river ice with no vessel and no return trip. The near-neutral +3 to +9 kg trim fails by orders of magnitude. Shell melt alone (the idea's own 6 cm) costs -196 kg of buoyancy. Snow at 250-350 kg/m³ creeps under hydrostatic load and loses 95-5,300 kg of buoyancy per day (Vionnet 2012 viscosity), and the trapped air gives 521 kg per metre of depth (a Cartesian-diver instability). The repair: a 1.6 m diameter rolling \"log\", snow pre-compacted to 550 kg/m³ (0.74 m³/t for coal, 1.6 for rock ore), sealed at -35 °C so it self-pressurises to +14.9 kPa, with a +750 kg margin. Creep then costs only 0.6-1.4% (about 100 kg) per 45 days. But rolling needs a mean under-ice velocity of 0.20-0.41 m/s, and getting past ice keels of 5-20 cm needs 0.62-0.95 m/s. Measured under-ice velocities are 0.05-0.25 m/s (Lena delta), and tailwater at +0.5 to +2 °C below dams melts the shell in 0.3-1.1 days.",
+  "value": "If it ran, pods would cost about $6.8/t for coal against about $124/t by winter road and $27-33/t by summer barge plus stockpiling (4-5x cheaper than the barge), but no surveyed reach has the required velocity, so the ratio is moot.",
+  "parent": "repair_b#4"
  }
 ]
