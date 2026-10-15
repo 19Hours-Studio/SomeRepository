@@ -160,5 +160,32 @@
   "name": "Midnight-sun salt-gradient power pond",
   "mech": "An insulated, lined pond holds a salinity gradient made from local Siberian Platform brines. The gradient traps summer insolation in the dense bottom layer at 60–80 °C, and in winter the ice lid adds insulation. In winter an organic Rankine cycle draws heat from the bottom layer and rejects it to −40 °C air. That temperature difference of about 110 K roughly doubles the efficiency of solar-pond plants in temperate climates. Gradient sensors trigger brine injection whenever the non-convecting layer starts to mix.",
   "value": "Supplies winter heat and electricity to remote operations from local salt and sunlight, cutting the fuel that has to come in by winter road."
+ },
+ {
+  "id": "g1_core2#1",
+  "label": "g1_core2",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Etched thermokarst freight canals",
+  "mech": "The surface of ice-rich yedoma is stripped or darkened along a planned line toward a navigable river, while insulating mats protect the banks as a mask. Each summer, meltwater ponds in the strip, absorbs more sun and deepens the thaw. Mud drains away until thawing stops at ice-poor ground, leaving a channel deep enough for barges. Ground-temperature probes guide each year's re-darkening and widening, like etch-rate control.",
+  "value": "Solar heat does the digging, so lowland deposits get a waterway for the cost of surface treatment instead of a road at millions of dollars per kilometre."
+ },
+ {
+  "id": "g1_core2#2",
+  "label": "g1_core2",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Fire-controlled ballistic ore transfer",
+  "mech": "A gas or electric gun on the deposit fires steel-cased slugs of 100-500 kg of concentrate at about 1.5 km/s into a sand-and-water catch basin at a railhead or river port more than 100 km away. Radar measures where each round lands, and that miss distance corrects elevation and charge for the next round, exactly like artillery adjusting fire. Casings are recovered and sent back on the seasonal supply route.",
+  "value": "A stranded deposit is connected to market by two fixed installations and no corridor at all."
+ },
+ {
+  "id": "g1_core2#3",
+  "label": "g1_core2",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Sub-ambient photonic permafrost shields",
+  "mech": "Pads, embankments, tailings and foundations are covered with polymer radiative-cooling film. It reflects sunlight and radiates heat through the 8-13 µm atmospheric window, so the surface stays below air temperature even in the 24-hour summer sun. Buried thermistors show where the ground is warming, and more film layers or wider coverage go there.",
+  "value": "Ice-rich ground stays frozen with no power, piles or thermosyphons, so foundations cost far less and stop failing."
  }
 ]
