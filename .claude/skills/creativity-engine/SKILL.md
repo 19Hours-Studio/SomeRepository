@@ -42,6 +42,11 @@ Launch independent agents in one message; never read transcripts into your own c
   with WebSearch + python3 repairs the most original ideas around their anchors (template
   `engine/runs/energy/repair/TASK.md`), then a blind judge built with `--feasible`. Never give the researcher the job
   of inventing: it drifts to safe known solutions (O 3.8 vs 5.8).
+- Confirmed on a user's real task (09-permafrost-run.md): final output vs 8 plain runs O 6.44 vs 3.38 AND F 5.38 vs
+  3.44; repair dO -0.44, dF +2.19. Practical settings that worked: pick repair ideas from a two-judge `--feasible`
+  set (s98: engine + EC + control), split repair into 2 agents x 4 ideas (template `engine/runs/permafrost/repair/a/TASK.md`:
+  binding quantity, cost vs current practice, hazards, verdict WORKS/NICHE/FAILS), then judge ERP + parents + control.
+- Always run the control arm: a literature NO-CLOSE-MATCH can still be an idea plain runs find (2/8 here).
 
 ## v3 (when ideas can be checked by running code): ask reality, not judges (08-reality-engine.md)
 - Build an executable evaluator first (see `engine/reality/arch|lm/harness.py`: fixed equal training, causality and

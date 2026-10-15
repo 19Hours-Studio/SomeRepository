@@ -614,6 +614,17 @@
    "X": "N",
    "G": 2,
    "F": 3
+  },
+  "s99:J3": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "FROSTCRK",
+   "closest": "freeze-thaw comminution lab studies",
+   "X": "N",
+   "G": 2,
+   "F": 2
   }
  },
  "ctrl_4#1": {
@@ -649,6 +660,17 @@
    "X": "N",
    "G": 3,
    "F": 4
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g1_core2#2": {
@@ -705,6 +727,17 @@
    "R": "N",
    "B": "PFLEACH",
    "closest": "in-situ leaching with freeze walls",
+   "X": "N",
+   "G": 3,
+   "F": 3
+  },
+  "s99:J3": {
+   "O": 3,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "PFLEACH",
+   "closest": "in-situ recovery with freeze walls",
    "X": "N",
    "G": 3,
    "F": 3
@@ -767,6 +800,17 @@
    "X": "N",
    "G": 3,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g1_core#1": {
@@ -826,6 +870,17 @@
    "X": "N",
    "G": 2,
    "F": 4
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "FRZCONC",
+   "closest": "spray-freezing wastewater concentration (Alberta)",
+   "X": "N",
+   "G": 2,
+   "F": 5
   }
  },
  "ctrl_8#1": {
@@ -861,6 +916,17 @@
    "X": "N",
    "G": 6,
    "F": 3
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "balloon guide rope; log driving",
+   "X": "N",
+   "G": 5,
+   "F": 4
   }
  },
  "EC:EB:g1_core2#1": {
@@ -920,6 +986,17 @@
    "X": "Y",
    "G": 7,
    "F": 4
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "triboelectric separation; Kelvin water dropper",
+   "X": "Y",
+   "G": 5,
+   "F": 4
   }
  },
  "map_1#1": {
@@ -955,6 +1032,17 @@
    "X": "N",
    "G": 3,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g1_genius#3": {
@@ -1013,6 +1101,17 @@
    "closest": "eutectic freeze crystallization; cold-sink ORC",
    "X": "Y",
    "G": 6,
+   "F": 5
+  },
+  "s99:J3": {
+   "O": 5,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "freeze crystallization; Arctic thermal power",
+   "X": "Y",
+   "G": 5,
    "F": 5
   }
  },
@@ -1097,6 +1196,17 @@
    "X": "Y",
    "G": 5,
    "F": 1
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "eutectic freeze crystallization (EFC)",
+   "X": "Y",
+   "G": 5,
+   "F": 2
   }
  },
  "map_3#2": {
@@ -1132,6 +1242,17 @@
    "X": "N",
    "G": 4,
    "F": 2
+  },
+  "s99:J3": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "ICECABLE",
+   "closest": "iced logging roads; ropeway haulage",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g1_genius#1": {
@@ -1239,6 +1360,17 @@
    "X": "Y",
    "G": 7,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 8,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mond nickel carbonyl process",
+   "X": "Y",
+   "G": 5,
+   "F": 5
   }
  },
  "EC:EB:g2_evo2#1": {
@@ -1274,6 +1406,17 @@
    "X": "Y",
    "G": 5,
    "F": 1
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "lake ice-push boulder ramparts; jigging",
+   "X": "Y",
+   "G": 4,
+   "F": 2
   }
  },
  "EC:EB:g2_imm#2": {
@@ -1357,6 +1500,17 @@
    "X": "N",
    "G": 3,
    "F": 2
+  },
+  "s99:J3": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "spray-freeze brine concentration",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "ctrl_5#3": {
@@ -1392,6 +1546,17 @@
    "X": "N",
    "G": 4,
    "F": 2
+  },
+  "s99:J3": {
+   "O": 5,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Nansen Fram drift",
+   "X": "N",
+   "G": 3,
+   "F": 2
   }
  },
  "map_1#2": {
@@ -1426,6 +1591,17 @@
    "closest": "freeze-thaw rock weathering",
    "X": "N",
    "G": 3,
+   "F": 2
+  },
+  "s99:J3": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "FROSTCRK",
+   "closest": "freeze-thaw weathering; expansive demolition",
+   "X": "N",
+   "G": 2,
    "F": 2
   }
  },
@@ -1486,6 +1662,17 @@
    "X": "N",
    "G": 2,
    "F": 4
+  },
+  "s99:J3": {
+   "O": 3,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "FRZCONC",
+   "closest": "natural freeze concentration",
+   "X": "N",
+   "G": 2,
+   "F": 5
   }
  },
  "g2_evo1#2": {
@@ -1593,6 +1780,17 @@
    "X": "N",
    "G": 2,
    "F": 4
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "KITESLED",
+   "closest": "Inuit WindSled kite sledge train",
+   "X": "N",
+   "G": 2,
+   "F": 4
   }
  },
  "EC:EB:g1_mech#3": {
@@ -1627,6 +1825,17 @@
    "closest": "hydraulic thawing; sluice boxes",
    "X": "Y",
    "G": 6,
+   "F": 4
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ground sluicing; cold-water thawing",
+   "X": "N",
+   "G": 4,
    "F": 4
   }
  },
@@ -1663,6 +1872,17 @@
    "X": "N",
    "G": 5,
    "F": 2
+  },
+  "s99:J3": {
+   "O": 5,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Nansen Fram drift; drifting buoys",
+   "X": "N",
+   "G": 4,
+   "F": 2
   }
  },
  "ctrl_5#2": {
@@ -1698,6 +1918,17 @@
    "X": "N",
    "G": 3,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g2_evo1#1": {
@@ -1757,6 +1988,17 @@
    "X": "N",
    "G": 3,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g2_evo1#3": {
@@ -1791,6 +2033,17 @@
    "closest": "aeolian deflation lag; dry winnowing",
    "X": "Y",
    "G": 6,
+   "F": 2
+  },
+  "s99:J3": {
+   "O": 7,
+   "C": 6,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dry blowing; aeolian deflation lag",
+   "X": "Y",
+   "G": 5,
    "F": 2
   }
  },
@@ -1827,6 +2080,17 @@
    "X": "N",
    "G": 3,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g2_evo2#2": {
@@ -1886,6 +2150,17 @@
    "X": "N",
    "G": 2,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 6,
+   "V": 4,
+   "R": "Y",
+   "B": "KITESLED",
+   "closest": "WindSled; SkySails towing kites",
+   "X": "N",
+   "G": 3,
+   "F": 4
   }
  },
  "EC:EB:g1_loop#3": {
@@ -1921,6 +2196,17 @@
    "X": "N",
    "G": 6,
    "F": 2
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "log driving; under-ice drifters",
+   "X": "N",
+   "G": 5,
+   "F": 3
   }
  },
  "ctrl_6#3": {
@@ -1955,6 +2241,17 @@
    "closest": "log driving; under-ice drifters",
    "X": "N",
    "G": 5,
+   "F": 3
+  },
+  "s99:J3": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "log driving; under-ice drifters",
+   "X": "N",
+   "G": 4,
    "F": 3
   }
  },
@@ -1991,6 +2288,17 @@
    "X": "N",
    "G": 4,
    "F": 3
+  },
+  "s99:J3": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "PFLEACH",
+   "closest": "Talvivaara bioheap; in-situ copper leach",
+   "X": "Y",
+   "G": 4,
+   "F": 2
   }
  },
  "ctrl_6#2": {
@@ -2026,6 +2334,17 @@
    "X": "N",
    "G": 3,
    "F": 6
+  },
+  "s99:J3": {
+   "O": 3,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "spray-ice islands; Habbakuk",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g1_core#2": {
@@ -2085,6 +2404,17 @@
    "X": "N",
    "G": 3,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 2,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "ctrl_5#1": {
@@ -2120,6 +2450,17 @@
    "X": "N",
    "G": 4,
    "F": 5
+  },
+  "s99:J3": {
+   "O": 3,
+   "C": 6,
+   "V": 4,
+   "R": "Y",
+   "B": "FROSTCRK",
+   "closest": "expansive demolition agents; ice-wedge quarrying",
+   "X": "N",
+   "G": 3,
+   "F": 4
   }
  },
  "g2_evo2#2": {
@@ -2179,6 +2520,17 @@
    "X": "N",
    "G": 3,
    "F": 3
+  },
+  "s99:J3": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "winter mirabilite harvesting, Kulunda lakes",
+   "X": "Y",
+   "G": 3,
+   "F": 3
   }
  },
  "repair_b#2": {
@@ -2192,6 +2544,17 @@
    "X": "Y",
    "G": 5,
    "F": 6
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "placer cold-water thawing, ground sluicing",
+   "X": "N",
+   "G": 4,
+   "F": 5
   }
  },
  "repair_b#4": {
@@ -2205,6 +2568,17 @@
    "X": "N",
    "G": 5,
    "F": 4
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "log driving; pipeline pigging",
+   "X": "N",
+   "G": 4,
+   "F": 5
   }
  },
  "repair_a#2": {
@@ -2218,6 +2592,17 @@
    "X": "Y",
    "G": 5,
    "F": 7
+  },
+  "s99:J3": {
+   "O": 5,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "Zarchin direct-contact freeze desalination",
+   "X": "Y",
+   "G": 4,
+   "F": 6
   }
  },
  "repair_a#3": {
@@ -2230,6 +2615,17 @@
    "closest": "triboelectric free-fall separators",
    "X": "Y",
    "G": 5,
+   "F": 5
+  },
+  "s99:J3": {
+   "O": 6,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "triboelectrostatic belt separation",
+   "X": "Y",
+   "G": 4,
    "F": 5
   }
  },
@@ -2244,6 +2640,17 @@
    "X": "Y",
    "G": 4,
    "F": 6
+  },
+  "s99:J3": {
+   "O": 5,
+   "C": 8,
+   "V": 3,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "eutectic freeze crystallization; sky cooling",
+   "X": "Y",
+   "G": 3,
+   "F": 4
   }
  },
  "repair_b#1": {
@@ -2256,6 +2663,17 @@
    "closest": "aeolian lag deposits; dry winnowing",
    "X": "Y",
    "G": 6,
+   "F": 5
+  },
+  "s99:J3": {
+   "O": 7,
+   "C": 8,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dry blowing; aeolian deflation lag",
+   "X": "Y",
+   "G": 4,
    "F": 5
   }
  },
@@ -2270,6 +2688,17 @@
    "X": "N",
    "G": 4,
    "F": 6
+  },
+  "s99:J3": {
+   "O": 5,
+   "C": 7,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ice-rafted boulders; lake ice-push",
+   "X": "N",
+   "G": 3,
+   "F": 5
   }
  },
  "repair_a#1": {
@@ -2282,6 +2711,17 @@
    "closest": "Mond process; pipeline additive injection",
    "X": "Y",
    "G": 6,
+   "F": 6
+  },
+  "s99:J3": {
+   "O": 8,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mond carbonyl; pipeline methanol injection",
+   "X": "Y",
+   "G": 4,
    "F": 6
   }
  }
