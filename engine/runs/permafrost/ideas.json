@@ -79,5 +79,32 @@
   "name": "Engineered Frost-Shatter Comminution",
   "mech": "Broken ore is stacked in insulated heaps laced with pipes and saturated with water. Fans then alternate −40°C winter air with warm water heated by waste heat from stranded gas or a generator. This runs many freeze-thaw cycles per winter instead of one per year. Water expands about 9% when it freezes, which forces cracks open along grain boundaries and shatters the rock to fine sizes. Temperature and acoustic sensors in the heap detect when cracking stops, and the cycle timing is adjusted to match.",
   "value": "Most of the crushing and grinding energy, the largest energy cost in hard-rock mining, is replaced by free Arctic cold, so remote deposits can be heap-leached or concentrated on site."
+ },
+ {
+  "id": "g1_genius#1",
+  "label": "g1_genius",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Transpolar Drift Freight",
+  "mech": "Sealed, buoyant ore containers with satellite tags are set into Laptev Sea fast ice near the Lena delta. The Transpolar Drift carries the ice and containers to Fram Strait in 2–3 years without fuel or escort. When the floes melt, the containers float in open water and ships pick them up by their tag positions.",
+  "value": "Bulk ore can reach European waters with no icebreakers, paying only the cost of time."
+ },
+ {
+  "id": "g1_genius#2",
+  "label": "g1_genius",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Winter-Only Railway",
+  "mech": "Track panels are laid straight onto snow-compacted frozen tundra, with no permanent embankment, and rivers are crossed on artificially thickened ice. The line runs only during the 5–6 months when the ground is rigid. Each autumn, tamping machines re-level the track to undo the summer heave.",
+  "value": "Rail-scale bulk capacity reaches remote deposits for a fraction of the cost of an all-season Arctic railway."
+ },
+ {
+  "id": "g1_genius#3",
+  "label": "g1_genius",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Frozen Placer Dry-Washing",
+  "mech": "In deep winter, frozen placer gravel is dug and crushed while it stays below −20 °C. At that temperature the ice behaves as a brittle, light mineral. Air tables and dry-washers separate the gold and heavy minerals from gravel and ice by density, with no water at all, and the tailings are stacked frozen.",
+  "value": "Placer mining can run all year without thawing, water or tailings ponds."
  }
 ]
