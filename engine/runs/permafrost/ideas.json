@@ -762,5 +762,93 @@
   "anchor": "Fram-hulled pods riding the Transpolar Drift",
   "mech": "Sealed, buoyant, satellite-tagged pods with rounded, sledge-like hulls like Nansen's Fram ride up instead of being crushed when ice squeezes them. They are filled at the deposit itself and launched into a north-flowing river such as the Lena, Yana or Indigirka, whose summer current carries them to the delta with no barge or fuel. A boom at the delta gathers the pods. In early winter they are hauled over the fast ice and set on young ice at its outer edge, where offshore winds push the new ice into the Transpolar Drift, which carries it to Fram Strait in 2–3 years. A pod freed by melt floats on and is frozen in again the next winter. Because no leg of the route costs anything per tonne-kilometre, the pods can carry screened run-of-mine ore instead of concentrate, and ships collect them by tag position and take them to a European plant that has the power and reagents to separate the metal.",
   "value": "A roadless deposit on any Arctic-draining river can send its ore to a powered plant with no road, barge, icebreaker, fuel or on-site concentrator."
+ },
+ {
+  "id": "EC:EB:g1_mech#2",
+  "label": "EC:EB:g1_mech",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_mech#2",
+  "name": "Self-Charging Frost Separator Cascade",
+  "anchor": "self-charging triboelectric free-fall separator in dry frost air",
+  "mech": "Dry crushed ore slides down a chute lined with a chosen material, so each mineral picks up its own sign of charge, and in −40 °C air, which holds almost no water vapour, that charge does not leak away. The grains fall between two plates into two metal-lined bins, each wired to the plate on the far side, so the charge carried into the bins keeps driving the plates up to a spark-gap cap of tens of kilovolts, as in a Kelvin water dropper. One unpowered pass gives only a modest upgrade, but each stage costs only a lining, two plates and a few metres of drop, so a dozen stages are stacked down a hillside or pit wall: each stage's concentrate bin feeds the next stage's chute, and a small conveyor lifts the reject of the lower stages back into the feed. The cascade reaches shipping grade with no power supply, water or reagent for the separation, and its only settings are the splitters, moved according to the grade measured in each bin.",
+  "value": "Remote deposits make shipping-grade concentrate on site all winter from dry ore, with no water, reagent or power for the separation, cutting the tonnage to be hauled by 5–20 times."
+ },
+ {
+  "id": "EC:EB:g2_evo1#3",
+  "label": "EC:EB:g2_evo1",
+  "arm": "EC",
+  "gen": 2,
+  "parent": "EB:g2_evo1#3",
+  "name": "Winter Wind Deflation Placer",
+  "anchor": "wind sublimes pore ice, then winnows light grains",
+  "mech": "All winter, frozen placer pay gravel is ripped and spread a few centimetres thick over a broad pad of flat, windy tundra next to the cut. The dry −30 °C wind sublimes the pore ice from the top of the layer, freeing up to about a millimetre a day, and because no liquid water ever forms, the freed silt and light quartz and feldspar sand blow off loose into a snow fence. Gold, cassiterite, wolframite and other heavy grains stay behind; a daily harrow exposes fresh frozen layer, and the residue is swept up and dry-screened to remove the gravel. Because the rate is fixed per square metre, the pad is sized by area (about a square kilometre handles a season's pay gravel), and the silt-free residue, a small fraction of the original volume, is stockpiled so that the short summer wash plant finishes the whole year's ore in a few weeks of clear water, with no mud reaching the river.",
+  "value": "Placer mines gain a second production season in midwinter and finish all their ore in a few clean-water summer weeks, with no water, reagent or silt discharge and almost no fuel for the winter concentration."
+ },
+ {
+  "id": "EC:EB:g1_core#2",
+  "label": "EC:EB:g1_core",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_core#2",
+  "name": "Self-Heating Thaw-Bowl Leach",
+  "anchor": "sun- and snow-insulated self-heating in-place bioleach on frozen floor",
+  "mech": "A gently sloping pyritic copper-sulfide outcrop is blasted once to rubble in place, tens of metres deep. Each spring its surface is covered with black geotextile that lets air and water through and soaks up the round-the-clock summer sun, and each autumn it is fenced so that drifting snow buries it under an insulating blanket. Once the rubble is warm, bacteria oxidise its own pyrite, which makes sulfuric acid and heat, and the trapped heat thaws the rubble a little deeper every year; the warm column also acts as a chimney, drawing air in at the downslope toe and out through the fabric, so oxygen reaches the whole thawing bowl with no fans. Each spring the snow the fences caught melts and flushes the dissolved copper down to the still-frozen bowl floor, which acts as a natural liner and drains it to a sump at the toe packed with scrap steel, where the copper plates out as cement copper.",
+  "value": "A whole shallow sulfide orebody, not just its summer thaw layer, leaches itself in place over the years, using sun, snow and its own pyrite for heat, water, acid and air flow, and ships out only cement copper, with no plant, power line or acid supply."
+ },
+ {
+  "id": "EC:EB:g1_loop#2",
+  "label": "EC:EB:g1_loop",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_loop#2",
+  "name": "Spray-Ice Drift Pods",
+  "anchor": "Fram-shaped buoyant pods riding the Transpolar Drift",
+  "mech": "Each autumn, coal or concentrate is sealed in heavy plastic bulk bags on the new Laptev Sea ice, and seawater pumped up through the ice is sprayed into the −40 °C air over each load until it is encased in a thick ice block with the hull shape of Nansen's Fram, so that ice pressure squeezes it upward instead of crushing it. Several cubic metres of ice per tonne make the whole block float even with dense concentrate inside, so the hull costs only the pumping and a bag, is never returned, is thick enough to outlast two melt seasons, and carries a cheap satellite beacon frozen in with the load. The Transpolar Drift carries the blocks to the ice edge in Fram Strait in about two years, where an ordinary ship finds them by beacon and lifts out the bags. Launch points are chosen from satellite ice-motion maps traced backward from Fram Strait, keeping only those whose paths reliably lead out rather than into the Beaufort Gyre, and the choice is updated each season from the beacon logs.",
+  "value": "Bulk coal and concentrate move from the Laptev coast to the North Atlantic at almost no freight cost, with no engines, icebreakers or port and no pod hulls to build or bring back, in exchange for about two years in transit."
+ },
+ {
+  "id": "EC:EB:g1_core2#2",
+  "label": "EC:EB:g1_core2",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_core2#2",
+  "name": "Gun-Launched Gliding Freight Shuttle",
+  "anchor": "two fixed guns shuttling casings, with inbound fuel paying for the shots",
+  "mech": "Two fixed guns, one at the deposit and one at a railhead or river port more than 100 km away, fire 0.5 t steel casings steeply upward at a modest 0.6–0.8 km/s. Near the top of the arc each casing unfolds spring-loaded wings and glides the rest of the way, steered by satellite-guided fins onto a sand catch bed beside the other gun. Gliding carries a casing several times farther per unit of launch energy than a purely ballistic arc and lands it slowly, so the guns are cheaper and wear less, the casings and wings are reused, and landing errors shrink from tens of metres to a few. Casings fly out full of concentrate and come back full of diesel and reagents, each inbound load carrying more fuel than the outbound shot burns, so the same loop powers the gun, the mill and the camp, with no road, convoy or seasonal return route.",
+  "value": "A stranded deposit is linked both ways all year, concentrate out and fuel and reagents in, by two fixed installations and no corridor at all, using a fraction of the energy and wear of a purely ballistic link."
+ },
+ {
+  "id": "EC:EB:g1_genius#2",
+  "label": "EC:EB:g1_genius",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_genius#2",
+  "name": "Relocatable Frozen-Tundra Ore Railway",
+  "anchor": "seasonal rail laid on frozen tundra, hauling raw ore to a grid-powered mill",
+  "mech": "Worn rail panels, which mainline track renewals retire every year at near-scrap cost, are laid by a standard track-laying train straight onto frozen tundra compacted with snow, with no embankment. Rivers are crossed on ice thickened by repeated flooding, tamping machines re-level the line each autumn to undo the summer heave, and trains run only in the 5–6 months when the ground is rigid. Because the line carries rail-scale tonnage at rail cost, it hauls raw ore to a mill on the permanent network where grid power and reagents already exist, and the empty trains come back with fuel, so the deposit needs only a pit and a loading ramp. When the deposits it serves are worked out, the same panels are lifted and relaid to the next group of deposits, so the line's capital cost is mostly labour, is reused, and is small enough for deposits shipping a few hundred thousand tonnes a year.",
+  "value": "Mid-size remote deposits, not only giant ones, get rail-scale haulage of raw ore to grid-powered mills for a small fraction of the cost of an all-season Arctic railway, with no plant on permafrost."
+ },
+ {
+  "id": "EC:EB:g2_evo2#2",
+  "label": "EC:EB:g2_evo2",
+  "arm": "EC",
+  "gen": 2,
+  "parent": "EB:g2_evo2#2",
+  "name": "Under-Ice Sphere Strings",
+  "anchor": "buoyant sealed spheres rolling along the underside of river ice",
+  "mech": "Rigid spheres about 1 m across, with closed-cell foam shells, sealed holds and no gas, valves or electronics, are trimmed to about 0.5% positive buoyancy and clipped about every 20 m onto a light floating rope, in strings of a hundred or more. A string rides against the smooth underside of a big Siberian river's winter ice and rolls downstream with the current; because the drag on the whole string pulls each sphere along, none can stall in slack water or behind an ice keel long enough to freeze in, and the flow pushes the string down and around ridges and hanging dams. Since these rivers flow north from the railway, strings pushed through a slot at an upstream railhead carry diesel, brought to neutral buoyancy by dense reagents such as acid or lime in a second hold, down to a riverside mine. There they are emptied, refilled with concentrate, re-trimmed and pushed back under the ice to a boom at a downstream port that catches each string by its lead rope, and the empties go back upriver by barge in summer.",
+  "value": "Through the seven months when nothing else moves on the river, the current under the ice both supplies a riverside mine with fuel and reagents and carries its concentrate to port, without losing cargo to freeze-in and with no vehicles, fuel or tending."
+ },
+ {
+  "id": "EC:EB:g2_imm#3",
+  "label": "EC:EB:g2_imm",
+  "arm": "EC",
+  "gen": 2,
+  "parent": "EB:g2_imm#3",
+  "name": "Freeze-Engine Vitriol Winning",
+  "anchor": "freezing the leach liquor both powers the plant and concentrates the metal",
+  "mech": "Copper-bearing liquor from a summer heap leach is stored in a pond, where it stays liquid at 0–4 °C under the winter ice. Through the winter nearly all of it is frozen in successive passes over coils, and the heat given off as it freezes boils propane, which drives a turbine and condenses in finned radiators open to −35 to −50 °C air, giving roughly 15–30 kJ of electricity per kilogram frozen. Each pass leaves a stronger drained brine, until copper sulfate reaches saturation and crystallises out as blue vitriol while the far more soluble ferric sulfate stays dissolved, so freezing both powers the plant and separates the copper from the iron. The crystals are redissolved in the spent electrolyte of a small, clean electrowinning cell run on the same power, and in spring the ferric, acidic brine and the ice meltwater, with any copper trapped in it, return to the heap as its oxidant and acid.",
+  "value": "A remote copper heap leach makes its own winter power, separates its copper from iron and wins clean cathode copper with no solvent extraction, no diesel and almost no acid shipped in."
  }
 ]
