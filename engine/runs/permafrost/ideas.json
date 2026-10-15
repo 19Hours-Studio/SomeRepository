@@ -1047,5 +1047,45 @@
   "mech": "Anchor kept: crushed ore plus snow sealed in an ice shell, carried by the current under winter river ice with no vessel and no return trip. The near-neutral +3 to +9 kg trim fails by orders of magnitude. Shell melt alone (the idea's own 6 cm) costs -196 kg of buoyancy. Snow at 250-350 kg/m³ creeps under hydrostatic load and loses 95-5,300 kg of buoyancy per day (Vionnet 2012 viscosity), and the trapped air gives 521 kg per metre of depth (a Cartesian-diver instability). The repair: a 1.6 m diameter rolling \"log\", snow pre-compacted to 550 kg/m³ (0.74 m³/t for coal, 1.6 for rock ore), sealed at -35 °C so it self-pressurises to +14.9 kPa, with a +750 kg margin. Creep then costs only 0.6-1.4% (about 100 kg) per 45 days. But rolling needs a mean under-ice velocity of 0.20-0.41 m/s, and getting past ice keels of 5-20 cm needs 0.62-0.95 m/s. Measured under-ice velocities are 0.05-0.25 m/s (Lena delta), and tailwater at +0.5 to +2 °C below dams melts the shell in 0.3-1.1 days.",
   "value": "If it ran, pods would cost about $6.8/t for coal against about $124/t by winter road and $27-33/t by summer barge plus stockpiling (4-5x cheaper than the barge), but no surveyed reach has the required velocity, so the ratio is moot.",
   "parent": "repair_b#4"
+ },
+ {
+  "id": "erp2_a#1",
+  "label": "erp2_a",
+  "arm": "ERP2",
+  "gen": 4,
+  "name": "Carbonyl nickel rides gas pipelines",
+  "mech": "Anchor kept: nickel travels as Ni(CO)4 vapour in the Power of Siberia line's own gas flow (9.8 MPa, 38 bcm/yr) and is split back out at the Amur gas plant where the line ends. Repaired design: 0.027 mol% carries 25 kt Ni/yr, which is Kun-Manie scale. That dose is at a saturation ratio of 0.25 at -10 °C. Compressor discharge is capped at 45 °C, so only 0.035% CO is needed to keep the carbonyl stable (the original 0.15% was sized for 80 °C). At the plant, a cold-oil absorber (20-60 kg/s of oil, 10-16 stages) catches 99.999% and leaves 2.7 ppb in sales gas, instead of heating the whole 879 kg/s stream (423 MW gross). The concentrated carbonyl is then decomposed at 200 °C. Propane hydrate does not apply here; the binding cost is CO make-up of 2.53 t CO per t Ni (about $514/t Ni).",
+  "value": "The physics works, but the pipeline leg costs about $960/t Ni more than running the same carbonyl refinery at the BAM/PoS junction and shipping pellets by rail, which saves only $27/t Ni of freight (about 0.03x). The whole chain at $6.6-8.4k/t Ni is no cheaper than selling concentrate at 70-75% payability ($5.4-6.1k/t Ni lost), so it FAILS on cost.",
+  "parent": "repair_a#1"
+ },
+ {
+  "id": "erp2_a#2",
+  "label": "erp2_a",
+  "arm": "ERP2",
+  "gen": 4,
+  "name": "Freeze-Engine Vitriol Winning",
+  "mech": "Anchor kept: freezing the stored copper leach liquor runs a Rankine engine that rejects heat to Arctic air, and the same freezing crystallises CuSO4·5H2O. Repairs: (1) The direct-contact refrigerant changes from propane to n-butane. Propane boiling at -6 to -8 °C (3.5-3.9 bar) sits inside the propane-hydrate field. (2) Fan power is now counted: 8.7 kJ per kg of ice against 15.2 gross at -40 °C. The fans are replaced by a natural-draft dry tower. (3) Integrated over a real Yakutsk November-March winter, the engine nets 7.6 kJ per kg of ice. That covers 50% of electrowinning power at 2.5 g/L, not 80-104%. (4) Freezing costs $1.5-2.5 per m³ of feed, so dilute liquor loses. The process is moved to 10-15 g/L liquor from leach-solution recycle on siliceous low-Mg oxide ore (Mg ≤ 2 g/L, Fe ≤ 1 g/L, since impurities concentrate 24x). There it needs 77-117 kg of ice per kg Cu, and the engine supplies 8-12% of electrowinning power.",
+  "value": "$1,222-1,379/t Cu against $1,590/t Cu for diesel-powered solvent extraction plus electrowinning (1.15-1.3x cheaper), but it loses to grid-powered SX-EW ($1,086/t). NICHE.",
+  "parent": "repair_a#2"
+ },
+ {
+  "id": "erp2_a#3",
+  "label": "erp2_a",
+  "arm": "ERP2",
+  "gen": 4,
+  "name": "Self-Charging Frost Separator Cascade",
+  "mech": "Anchor kept: grains charged on the chute lining build the separating field themselves, through bins cross-wired to the opposite plates, with no power supply. The stated 30 kV/m gives only 4-9 cm of drift (not 30-60) and is space-charge-limited to 0.15 t/h per metre, which would need 7 km of plates. Repaired design: - A 0.3 m gap self-excites to 90 kV (300 kV/m, 8% of breakdown at -40 °C). That gives 41 cm of drift over a 1.5 m fall and 1.47 t/h per metre, or about 700 m of plates in total for 1 Mt/yr. - Insulating grains cannot hand over charge the way water drops do in a Kelvin dropper. Instead, discharges inside the charged grain pile pass about 98% of it to the bin. Leakage must stay above 2.2e10 Ω per metre. - Intake air must be heated to 20-40 °C, not 0 °C, to dry ore with 1-2% moisture: 137 MJ/t against 43-54 MJ/t of mill heat.",
+  "value": "$3,994/t Li2O delivered against $4,588 for dense-media separation plus haul (the best baseline, 1.15x) and $6,292 for Arctic flotation (1.6x). NICHE.",
+  "parent": "repair_a#3"
+ },
+ {
+  "id": "erp2_a#4",
+  "label": "erp2_a",
+  "arm": "ERP2",
+  "gen": 4,
+  "name": "Night-sky lithium freeze cascade",
+  "mech": "Anchor tested: trays radiating through the 8-13 µm window push Ca-Li brine below the CaCl2-ice eutectic (-49.8 °C) so Ca locks up and LiCl stays liquid. My own band model agrees with the original: - With no brine load the film settles 8.1 K below -40 °C air. - A film at -52 °C cools only when the air is at -45 °C or colder. That is 288 hours a winter, freezing 36 kg per m². - So the trays need 13,000-35,600 m² per t LCE per year (Udachnaya brine averages 147 mg/L Li). Keeping the anchor above the eutectic does not help: crystallising CaCl2·6H2O from brines with 36-40% CaCl2 needs only plain -40 °C air (Li concentrates x1.3-1.9), and radiative trays add only x1.81 to x1.92. Only niche: freeze-concentrate Ca-free sorbent eluate in thin flooded layers with -40 °C air (about 100 m² per t LCE), which drops the anchor.",
+  "value": "As stated, at least $65-178k/t LCE against $3.4-6.2k for the whole sorption route, so it FAILS. The eluate niche beats RO plus mechanical evaporation ($690-1,150/t LCE on diesel) only off-grid; on grid power that route costs $260-440/t LCE.",
+  "parent": "repair_a#4"
  }
 ]
