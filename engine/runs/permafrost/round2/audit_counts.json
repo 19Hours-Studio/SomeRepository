@@ -1,0 +1,122 @@
+{
+ "repair_a#4": {
+  "FATAL": 0,
+  "MAJOR": 2,
+  "MINOR": 3
+ },
+ "erp2_a#3": {
+  "FATAL": 1,
+  "MAJOR": 4,
+  "MINOR": 2
+ },
+ "rt_a#1": {
+  "FATAL": 0,
+  "MAJOR": 5,
+  "MINOR": 2
+ },
+ "rt_a#4": {
+  "FATAL": 0,
+  "MAJOR": 2,
+  "MINOR": 2
+ },
+ "erp2_a#4": {
+  "FATAL": 0,
+  "MAJOR": 2,
+  "MINOR": 2
+ },
+ "repair_a#1": {
+  "FATAL": 1,
+  "MAJOR": 4,
+  "MINOR": 2
+ },
+ "rt_a#2": {
+  "FATAL": 1,
+  "MAJOR": 3,
+  "MINOR": 2
+ },
+ "erp2_a#1": {
+  "FATAL": 0,
+  "MAJOR": 3,
+  "MINOR": 1
+ },
+ "rt_a#3": {
+  "FATAL": 0,
+  "MAJOR": 4,
+  "MINOR": 2
+ },
+ "erp2_a#2": {
+  "FATAL": 0,
+  "MAJOR": 4,
+  "MINOR": 1
+ },
+ "repair_a#2": {
+  "FATAL": 2,
+  "MAJOR": 3,
+  "MINOR": 0
+ },
+ "repair_a#3": {
+  "FATAL": 3,
+  "MAJOR": 4,
+  "MINOR": 1
+ },
+ "erp2_b#2": {
+  "FATAL": 0,
+  "MAJOR": 3,
+  "MINOR": 3
+ },
+ "rt_b#2": {
+  "FATAL": 1,
+  "MAJOR": 3,
+  "MINOR": 1
+ },
+ "repair_b#4": {
+  "FATAL": 2,
+  "MAJOR": 4,
+  "MINOR": 0
+ },
+ "rt_b#1": {
+  "FATAL": 0,
+  "MAJOR": 3,
+  "MINOR": 2
+ },
+ "repair_b#1": {
+  "FATAL": 1,
+  "MAJOR": 3,
+  "MINOR": 1
+ },
+ "erp2_b#1": {
+  "FATAL": 0,
+  "MAJOR": 3,
+  "MINOR": 2
+ },
+ "repair_b#3": {
+  "FATAL": 1,
+  "MAJOR": 2,
+  "MINOR": 0
+ },
+ "rt_b#4": {
+  "FATAL": 1,
+  "MAJOR": 5,
+  "MINOR": 1
+ },
+ "rt_b#3": {
+  "FATAL": 0,
+  "MAJOR": 2,
+  "MINOR": 2
+ },
+ "erp2_b#4": {
+  "FATAL": 2,
+  "MAJOR": 0,
+  "MINOR": 1
+ },
+ "repair_b#2": {
+  "FATAL": 1,
+  "MAJOR": 3,
+  "MINOR": 2
+ },
+ "erp2_b#3": {
+  "FATAL": 0,
+  "MAJOR": 4,
+  "MINOR": 0
+ }
+}
