@@ -232,5 +232,32 @@
   "name": "Drag-Diving Under-Ice Ore Spheres",
   "mech": "In winter, concentrate is packed into rigid spheres about 1 m across with closed-cell foam shells, which have no gas, valves or electronics. They are pushed through one slot cut in the ice of a large Siberian river's main channel. Each sphere's buoyancy is trimmed to roughly 0.5% above that of the water, so the drag of the current is larger than its lift. The sphere rolls along the smooth underside of the ice, and when it meets a hanging slush dam or an ice ridge, the current pushes it down and around. A boom under a slot at a downstream port collects the spheres, which are sent back upriver empty in summer.",
   "value": "Ore moves hundreds of kilometres to the quay all winter with no fuel, vehicle or tending, at a time when nothing else moves on these rivers."
+ },
+ {
+  "id": "g2_evo1#1",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Snow-Masked Under-Ice Guide Groove",
+  "mech": "In early winter, two parallel strips are cleared of snow along the fast main channel of a frozen river, while the snow between and beside them is left as insulation. Ice grows faster under the cleared strips, forming two downward keels with a smooth groove between them on the underside of the ice. Passive, slightly buoyant concentrate pods put in through a slot ride the groove on the current without drifting into slow water near the banks. Ice-thickness readings taken through the ice guide where the strips are cleared again after each snowfall.",
+  "value": "It turns any large frozen river into a self-built winter conveyor for ore with no fuel, vessels or moving parts."
+ },
+ {
+  "id": "g2_evo1#2",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Current-Washed Under-Ice Sluice",
+  "mech": "A long riffled sluice box is hung beneath a slot cut in the ice of a river that keeps flowing all winter. Frozen placer gravel from a nearby deposit is crushed and dropped into the slot. The river's own 0 °C current, kept liquid by the ice lid, washes the gravel. Gold and heavy minerals settle in the riffles, and fine tailings disperse in the low winter flow. The sluice is lifted weekly through the slot to collect the concentrate, and its angle is set from flow speeds measured through the ice.",
+  "value": "Placer gold can be washed through the whole winter with no pumps, heated plant or tailings ponds."
+ },
+ {
+  "id": "g2_evo1#3",
+  "label": "g2_evo1",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Wind-Sublimation Ore Drying",
+  "mech": "Frozen, ice-rich ore or wet concentrate is spread in thin layers on pads exposed to the dry, windy −30 °C air of deep winter. Ice turns straight into vapour without melting, at roughly 1 kg/m² a day, and a harrow turns the layers. Moisture probes decide when each strip is dry enough to be swept up and the next layer laid down.",
+  "value": "It removes 20–50% of the hauled weight and gives dry material ready for dry separation, with no fuel or thermal dryers."
  }
 ]
