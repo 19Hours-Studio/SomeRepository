@@ -1,0 +1,12 @@
+Russia holds vast natural resources (oil, gas, metals, diamonds, coal, rare earths) in Siberia, Yakutia and the Arctic, mostly under permafrost and far from roads, railways and ports. Propose a fundamentally new way to reach, extract, process or bring these resources to market that is extremely cheap (several times cheaper than current practice), has never been tried or seriously costed by anyone, can be deployed within a few years, and works with known physics. Not incremental improvements of existing mining, drilling, pipelines or winter-road logistics.
+Propose 3 fundamentally new answers (not incremental variations of existing approaches).
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

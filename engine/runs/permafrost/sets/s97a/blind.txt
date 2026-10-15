@@ -1,0 +1,32 @@
+B01
+MECHANISM: The overburden is stripped from an ice-rich placer, and a shallow pond of meltwater is kept on top so it absorbs round-the-clock summer sun. Each summer the top layer thaws, and its excess ground ice turns it into a weak, saturated slurry. Gold and other heavy minerals sink through the slurry and settle on the still-frozen floor. Year by year the advancing thaw front carries this heavy layer down to bedrock. Ground-temperature probes track how deep the front has gone, and the pond depth is adjusted to speed it up or slow it down. Then only the thin enriched bottom layer is dug and washed.
+VALUE: Sunlight and gravity do most of the excavation and concentration, so a placer is mined by moving a few percent of the gravel that conventional digging moves.
+
+B02
+MECHANISM: Sealed sacks of about 1 t of ground valuable material each carry a gas bladder, set so the sack is slightly lighter than water and rides pressed against the smooth underside of a frozen river. The current under the ice, which flows all winter, pushes them 25–50 km a day with no fuel or vessel. If a pressure sensor detects a stall, a valve lets out gas so the sack drops back into the flow, then refills it from a cartridge. A net under a slot cut in the ice collects the sacks far downstream.
+VALUE: Freight moves along frozen rivers through the whole winter at almost no energy cost, when today nothing moves on them.
+
+B03
+MECHANISM: At the deposit, an acid solution of gold, platinum-group metals, cobalt or rare earths is stirred with diesel-range oil that contains a metal-grabbing reagent, so the metal moves into the oil. The loaded oil goes into the crude trunk line as separate slugs between crude batches, about 2% of throughput, and density meters track each slug. At the coastal terminal each slug is cut into its own tank and washed with strong acid. The acid takes the metal back for plating out, and the cleaned oil is sold as ordinary fuel, so the carrier never has to come back.
+VALUE: Remote high-value metals reach a seaport for almost nothing by riding inside an existing oil pipeline. At 1 g/L that is up to about 2,000 t of metal a year.
+
+B04
+MECHANISM: Ice-class LNG carriers leave Arctic terminals with full tanks but under their weight limit, so they also carry thousands of tonnes of seawater ballast. Sealed cassettes of briquetted concentrate, brought by barge from deposits on the Yenisei and Ob, take the place of that ballast in double-bottom spaces and are swapped for seawater at the port where the LNG is unloaded. For each voyage, cargo reports and the ship's draft from AIS tracking give the ratio of paid tonnes to available deadweight. That ratio sets how many cassettes the next loading plan assigns, turning ballast space into cargo space.
+VALUE: Arctic concentrate rides ships that already sail to Asian and European markets, at almost no extra cost for fuel or icebreakers.
+
+B05
+MECHANISM: The surface of ice-rich yedoma is stripped or darkened along a planned line toward a navigable river, while insulating mats protect the banks as a mask. Each summer, meltwater ponds in the strip, absorbs more sun and deepens the thaw. Mud drains away until thawing stops at ice-poor ground, leaving a channel deep enough for barges. Ground-temperature probes guide each year's re-darkening and widening, like etch-rate control.
+VALUE: Solar heat does the digging, so lowland deposits get a waterway for the cost of surface treatment instead of a road at millions of dollars per kilometre.
+
+B06
+MECHANISM: A long riffled sluice box is hung beneath a slot cut in the ice of a river that keeps flowing all winter. Frozen placer gravel from a nearby deposit is crushed and dropped into the slot. The river's own 0 °C current, kept liquid by the ice lid, washes the gravel. Gold and heavy minerals settle in the riffles, and fine tailings disperse in the low winter flow. The sluice is lifted weekly through the slot to collect the concentrate, and its angle is set from flow speeds measured through the ice.
+VALUE: Placer gold can be washed through the whole winter with no pumps, heated plant or tailings ponds.
+
+B07
+MECHANISM: Sealed, buoyant ore containers with satellite tags are set into Laptev Sea fast ice near the Lena delta. The Transpolar Drift carries the ice and containers to Fram Strait in 2–3 years without fuel or escort. When the floes melt, the containers float in open water and ships pick them up by their tag positions.
+VALUE: Bulk ore can reach European waters with no icebreakers, paying only the cost of time.
+
+B08
+MECHANISM: Inflatable rubber weirs are flown in folded and set up in series on a small tributary between the deposit and a navigable river; each pond fills with snowmelt and rain. Shallow-draft barges loaded with concentrate wait in the top pond. A hydraulic routing model times the gate releases so that each pulse lifts the barges over the next shallow stretch into the pond below, and the model re-plans from water-level gauges after every pulse. Empty barges are winched back across the flat pools, and the weirs are deflated after the season, leaving no road or rail.
+VALUE: Turns an ordinary summer stream into a temporary waterway, so bulk tonnage moves at water-freight cost without building a corridor.
+

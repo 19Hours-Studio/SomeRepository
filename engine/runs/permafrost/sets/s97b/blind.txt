@@ -1,0 +1,32 @@
+B01
+MECHANISM: Water at 0–4 °C is pumped from under lake or river ice and sprayed over coils where propane or CO₂ boils. The water's warmth and the heat it gives off as it freezes boil the fluid, which drives a turbine. The fluid then condenses in finned radiators open to −35 to −50 °C air. About 30 kg/s of water turned to slush gives roughly 1 MW. The slush is piled into ice heaps, and output rises on its own as the air gets colder.
+VALUE: Remote deposits get fuel-free power for the seven-month winter, when crushing and haulage peak, and diesel no longer has to be trucked in.
+
+B02
+MECHANISM: Each spring, black UV-stable geotextile is laid over the deposit to absorb round-the-clock summer sun. Each autumn, rows of cheap snow fences are set up to trap a thick snow blanket that blocks most winter refreezing. Buried temperature strings track the thaw front, and film coverage and fence spacing are re-tuned every season to maximise net heat gain, so the unfrozen zone deepens year after year. Light rippers and loaders can then dig the thawed gravel without blasting or heavy frozen-ground machinery.
+VALUE: Replaces diesel-intensive excavation of frozen ground with free solar heat for placers and shallow overburden.
+
+B03
+MECHANISM: A gas or electric gun on the deposit fires steel-cased slugs of 100-500 kg of concentrate at about 1.5 km/s into a sand-and-water catch basin at a railhead or river port more than 100 km away. Radar measures where each round lands, and that miss distance corrects elevation and charge for the next round, exactly like artillery adjusting fire. Casings are recovered and sent back on the seasonal supply route.
+VALUE: A stranded deposit is connected to market by two fixed installations and no corridor at all.
+
+B04
+MECHANISM: In winter, concentrate is packed into rigid spheres about 1 m across with closed-cell foam shells, which have no gas, valves or electronics. They are pushed through one slot cut in the ice of a large Siberian river's main channel. Each sphere's buoyancy is trimmed to roughly 0.5% above that of the water, so the drag of the current is larger than its lift. The sphere rolls along the smooth underside of the ice, and when it meets a hanging slush dam or an ice ridge, the current pushes it down and around. A boom under a slot at a downstream port collects the spheres, which are sent back upriver empty in summer.
+VALUE: Ore moves hundreds of kilometres to the quay all winter with no fuel, vehicle or tending, at a time when nothing else moves on these rivers.
+
+B05
+MECHANISM: Track panels are laid straight onto snow-compacted frozen tundra, with no permanent embankment, and rivers are crossed on artificially thickened ice. The line runs only during the 5–6 months when the ground is rigid. Each autumn, tamping machines re-level the track to undo the summer heave.
+VALUE: Rail-scale bulk capacity reaches remote deposits for a fraction of the cost of an all-season Arctic railway.
+
+B06
+MECHANISM: Frozen, ice-rich ore or wet concentrate is spread in thin layers on pads exposed to the dry, windy −30 °C air of deep winter. Ice turns straight into vapour without melting, at roughly 1 kg/m² a day, and a harrow turns the layers. Moisture probes decide when each strip is dry enough to be swept up and the next layer laid down.
+VALUE: It removes 20–50% of the hauled weight and gives dry material ready for dry separation, with no fuel or thermal dryers.
+
+B07
+MECHANISM: Crushed dry rock is tumbled against a plate so that different minerals pick up different electric charges. The near-zero moisture of −40 °C air stops that charge from leaking away. The grains fall between two charged plates and are pushed into separate bins according to their charge. Readings from each bin continuously adjust the plate voltage and the dividers between bins.
+VALUE: Valuable material is separated from waste on site through the winter with no water, cutting the tonnage to be hauled by 5–20 times.
+
+B08
+MECHANISM: Reusable sealed pods, shaped like Nansen's Fram so that ice pressure squeezes them upward instead of crushing them, are filled with coal or concentrate whose value does not suffer from slow delivery. In autumn they are set on newly formed Laptev Sea ice, drift with the ice to the ice edge at Fram Strait, and are picked up there by an ordinary ship. Comparing daily satellite radar maps of the ice gives drift paths traced backward from the Fram Strait exit. Starting sites whose paths turn off into the Beaufort Gyre are dropped, new sites are added where paths converge on the exit, and pod placement is re-optimized each season from beacon logs.
+VALUE: Bulk cargo moves from the Laptev coast to the North Atlantic with no engines, no icebreakers and no infrastructure, trading about two years in transit for almost no freight cost.
+
