@@ -25,5 +25,32 @@
   "name": "Winter freeze-concentration of leachates",
   "mech": "A dilute leach solution or brine carrying metals or rare earths is sprayed or spread in thin layers over a sloped field during winter. Freezing pushes the dissolved salts out of the pure ice, and the concentrated liquid drains away into collecting channels. The spraying rate and the number of passes are adjusted from conductivity readings at the outlet until the target concentration is reached. The ice left behind is nearly clean water that is reused in spring.",
   "value": "Concentrating metals before shipping, normally an energy-hungry step, becomes nearly free, so only a small volume of high-grade liquor has to leave the site."
+ },
+ {
+  "id": "map_3#1",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Grown pykrete drift barges",
+  "mech": "In winter, crews repeatedly flood thin layers of river water mixed with wood-chip waste onto riverbank ice. This builds pykrete slabs about 100x30x5 m, each able to float roughly 1,000 t of bagged ore concentrate. The cargo is loaded on top while everything is frozen. At spring breakup the slab floats free, and small tugs steer it down the Lena or Yenisei to an Arctic transshipment port. There it is unloaded and left to melt, so no barge has to go back upstream.",
+  "value": "Each spring flood becomes a one-way bulk fleet whose only materials are water, sawdust and frost."
+ },
+ {
+  "id": "map_3#2",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Cable-hauled ice guideway sleds",
+  "mech": "Sprinkler rigs build a narrow, graded ice trough along a fixed line from a deposit to a railhead or river. They refresh it automatically whenever the temperature drops enough. Steel-runner ore sleds clip onto an endless steel cable loop, like a ski lift, driven by motors at the two ends. Because runners on ice have friction close to rail, a single loop moves a continuous stream of cargo without trucks, drivers or road surface. Sensors on the track trigger re-spraying wherever the ice wears down.",
+  "value": "Gives near-railway freight costs every winter for the price of a cable, two winches and a water pump."
+ },
+ {
+  "id": "map_3#3",
+  "label": "map_3",
+  "arm": "control",
+  "gen": 0,
+  "name": "Permafrost-sealed in-place leaching",
+  "mech": "Blasting breaks up the ore body underground, and circulating warm brine thaws only a bounded block of it. A leaching solution is then pumped through the block to dissolve the metal, and wells recover it. Any liquid that leaks toward the edge of the block refreezes on contact with the surrounding frozen ground, so the permafrost acts as a self-healing container. Temperature readings at the boundary show where the seal is. Only the recovered metal, often under 1% of the ore's mass, is ever transported.",
+  "value": "Extracts metals from remote frozen deposits with no pit, no ore haulage and no artificial liner."
  }
 ]
