@@ -187,5 +187,32 @@
   "name": "Sub-ambient photonic permafrost shields",
   "mech": "Pads, embankments, tailings and foundations are covered with polymer radiative-cooling film. It reflects sunlight and radiates heat through the 8-13 µm atmospheric window, so the surface stays below air temperature even in the 24-hour summer sun. Buried thermistors show where the ground is warming, and more film layers or wider coverage go there.",
   "value": "Ice-rich ground stays frozen with no power, piles or thermosyphons, so foundations cost far less and stop failing."
+ },
+ {
+  "id": "g1_loop#1",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Paid ore ballast on LNG carriers",
+  "mech": "Ice-class LNG carriers leave Arctic terminals with full tanks but under their weight limit, so they also carry thousands of tonnes of seawater ballast. Sealed cassettes of briquetted concentrate, brought by barge from deposits on the Yenisei and Ob, take the place of that ballast in double-bottom spaces and are swapped for seawater at the port where the LNG is unloaded. For each voyage, cargo reports and the ship's draft from AIS tracking give the ratio of paid tonnes to available deadweight. That ratio sets how many cassettes the next loading plan assigns, turning ballast space into cargo space.",
+  "value": "Arctic concentrate rides ships that already sail to Asian and European markets, at almost no extra cost for fuel or icebreakers."
+ },
+ {
+  "id": "g1_loop#2",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Transpolar drift cargo pods",
+  "mech": "Reusable sealed pods, shaped like Nansen's Fram so that ice pressure squeezes them upward instead of crushing them, are filled with coal or concentrate whose value does not suffer from slow delivery. In autumn they are set on newly formed Laptev Sea ice, drift with the ice to the ice edge at Fram Strait, and are picked up there by an ordinary ship. Comparing daily satellite radar maps of the ice gives drift paths traced backward from the Fram Strait exit. Starting sites whose paths turn off into the Beaufort Gyre are dropped, new sites are added where paths converge on the exit, and pod placement is re-optimized each season from beacon logs.",
+  "value": "Bulk cargo moves from the Laptev coast to the North Atlantic with no engines, no icebreakers and no infrastructure, trading about two years in transit for almost no freight cost."
+ },
+ {
+  "id": "g1_loop#3",
+  "label": "g1_loop",
+  "arm": "engine",
+  "gen": 1,
+  "name": "Under-ice river drift pods",
+  "mech": "In winter, slightly buoyant torpedo-shaped pods of concentrate are pushed through a slot cut in the ice of a big Siberian river's main channel. They ride the current along the smooth underside of the ice, out of reach of wind and waves, to a downstream recovery station with a boom and slot at a port. Weekly current profiles taken through the ice show where the flow stays fast. Where it slows, or where slush ice builds a dam below the ice, a relay slot is cut, the pods are lifted past the blockage and released again, and the spacing between releases is adjusted to the measured speed.",
+  "value": "Ore reaches Arctic ports during the frozen months and is already on the quay, instead of competing for the short summer window on the river."
  }
 ]

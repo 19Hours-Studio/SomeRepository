@@ -1,0 +1,21 @@
+Here are the diagnostics I ported and how each one held up against the closest existing work:
+
+1. **Power factor (electrical engineering).** Real power divided by apparent power shows current that flows but does no useful work. Ported here, it is paid tonnes divided by available deadweight on each loaded voyage. Arc7 LNG carriers fill their tanks before they reach their weight limit, because LNG weighs about 0.45 t/m³. So they sail loaded and still carry seawater ballast for ice draft and stability. The closest existing work is permanent solid ballast and combination (OBO) carriers. I know of no one who carries paid cargo as ballast on a loaded voyage. The obstacles are approval under the IGC Code and class rules, and the risk that concentrate liquefies, which sealed briquette cassettes address.
+2. **Blink comparator (astronomy).** Comparing two photographic plates of the same sky reveals hidden moving objects. Ported here, comparing daily satellite radar maps of sea ice shows the Transpolar Drift carrying Laptev Sea ice to Fram Strait in about 1.5–3 years for free. The closest existing work is Nansen's ship Fram, ice-tethered buoys and the MOSAiC expedition. All of these were science; none carried cargo.
+3. **Doppler flowmetry (medicine).** It detects flow hidden under tissue. Ported here, current profilers lowered through the ice show that the main channels of big Siberian rivers keep flowing under the ice all winter, while logistics treats those rivers as closed. The closest existing work is log driving, which works only in open water and loses logs that sink, and CAPSPIPE, which needs a pipe to be built. Here the ice cover plays the role of the pipe's roof and nothing is built.
+
+=== IDEAS ===
+IDEA 1
+NAME: Paid ore ballast on LNG carriers
+MECHANISM: Ice-class LNG carriers leave Arctic terminals with full tanks but under their weight limit, so they also carry thousands of tonnes of seawater ballast. Sealed cassettes of briquetted concentrate, brought by barge from deposits on the Yenisei and Ob, take the place of that ballast in double-bottom spaces and are swapped for seawater at the port where the LNG is unloaded. For each voyage, cargo reports and the ship's draft from AIS tracking give the ratio of paid tonnes to available deadweight. That ratio sets how many cassettes the next loading plan assigns, turning ballast space into cargo space.
+VALUE: Arctic concentrate rides ships that already sail to Asian and European markets, at almost no extra cost for fuel or icebreakers.
+
+IDEA 2
+NAME: Transpolar drift cargo pods
+MECHANISM: Reusable sealed pods, shaped like Nansen's Fram so that ice pressure squeezes them upward instead of crushing them, are filled with coal or concentrate whose value does not suffer from slow delivery. In autumn they are set on newly formed Laptev Sea ice, drift with the ice to the ice edge at Fram Strait, and are picked up there by an ordinary ship. Comparing daily satellite radar maps of the ice gives drift paths traced backward from the Fram Strait exit. Starting sites whose paths turn off into the Beaufort Gyre are dropped, new sites are added where paths converge on the exit, and pod placement is re-optimized each season from beacon logs.
+VALUE: Bulk cargo moves from the Laptev coast to the North Atlantic with no engines, no icebreakers and no infrastructure, trading about two years in transit for almost no freight cost.
+
+IDEA 3
+NAME: Under-ice river drift pods
+MECHANISM: In winter, slightly buoyant torpedo-shaped pods of concentrate are pushed through a slot cut in the ice of a big Siberian river's main channel. They ride the current along the smooth underside of the ice, out of reach of wind and waves, to a downstream recovery station with a boom and slot at a port. Weekly current profiles taken through the ice show where the flow stays fast. Where it slows, or where slush ice builds a dam below the ice, a relay slot is cut, the pods are lifted past the blockage and released again, and the spacing between releases is adjusted to the measured speed.
+VALUE: Ore reaches Arctic ports during the frozen months and is already on the quay, instead of competing for the short summer window on the river.
