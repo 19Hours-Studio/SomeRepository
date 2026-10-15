@@ -1,5 +1,22 @@
 {
  "question": "Russia holds vast natural resources (oil, gas, metals, diamonds, coal, rare earths) in Siberia, Yakutia and the Arctic, mostly under permafrost and far from roads, railways and ports. Propose a fundamentally new way to reach, extract, process or bring these resources to market that is extremely cheap (several times cheaper than current practice), has never been tried or seriously costed by anyone, can be deployed within a few years, and works with known physics. Not incremental improvements of existing mining, drilling, pipelines or winter-road logistics.",
  "format": "value",
- "n": 3
+ "n": 3,
+ "readings": [
+  {
+   "label": "Year-round bulk haulage to market",
+   "goal": "A way to move millions of tonnes a year of ore, coal or concentrate from roadless deposits to a railhead or sea port, every year, at a fraction of today's cost per tonne-km.",
+   "crux": "Haulage that keeps going in any season and any weather at real tonnage; the typical answers rely on one spring flood a year, winter-only ice or the right wind, and leave hulls surviving ice jams, steering, return logistics and transfer at the Arctic estuary unsolved."
+  },
+  {
+   "label": "Ship value, not rock",
+   "goal": "A way to turn raw ore into a saleable high-grade product at the deposit, so only a few percent of the mass ever has to be moved.",
+   "crux": "Separating and recovering the metal in deep cold with almost no power or reagents brought in; the typical answers use free frost to crack rock or concentrate brine, but assume that mineral separation, slow leaching near freezing, reagent supply and site power will simply work."
+  },
+  {
+   "label": "Monetise stranded oil and gas",
+   "goal": "A way to bring Siberian and Arctic gas and oil, where most of the value lies, to market or into use without new pipelines or LNG megaprojects.",
+   "crux": "Cheaply turning hydrocarbons at small, scattered wellheads into something that can be shipped or used on site; the typical answers deal only with solid ores, treat gas as a free heat source and never move hydrocarbons at all."
+  }
+ ]
 }
