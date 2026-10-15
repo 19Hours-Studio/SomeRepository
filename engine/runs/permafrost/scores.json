@@ -625,6 +625,17 @@
    "X": "N",
    "G": 2,
    "F": 2
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "FROSTCRK",
+   "closest": "freeze-thaw ore pretreatment studies",
+   "X": "N",
+   "G": 3,
+   "F": 1
   }
  },
  "ctrl_4#1": {
@@ -668,6 +679,17 @@
    "R": "N",
    "B": "ICEHULL",
    "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Habakkuk pykrete; Lena karbazy",
    "X": "N",
    "G": 3,
    "F": 3
@@ -741,6 +763,17 @@
    "X": "N",
    "G": 3,
    "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "PFLEACH",
+   "closest": "stope leaching; artificial ground-freezing barriers",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "g2_imm#3": {
@@ -808,6 +841,17 @@
    "R": "N",
    "B": "ICEHULL",
    "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Habakkuk pykrete; Lena karbazy",
    "X": "N",
    "G": 3,
    "F": 3
@@ -881,6 +925,17 @@
    "X": "N",
    "G": 2,
    "F": 5
+  },
+  "s99r:J6": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "FRZCONC",
+   "closest": "spray-freeze wastewater concentration (Alberta)",
+   "X": "N",
+   "G": 2,
+   "F": 4
   }
  },
  "ctrl_8#1": {
@@ -927,6 +982,17 @@
    "X": "N",
    "G": 5,
    "F": 4
+  },
+  "s99r:J6": {
+   "O": 7,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "balloon guide-rope; under-ice drifters",
+   "X": "N",
+   "G": 5,
+   "F": 2
   }
  },
  "EC:EB:g1_core2#1": {
@@ -1040,6 +1106,17 @@
    "R": "N",
    "B": "ICEHULL",
    "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Habakkuk pykrete; Lena karbazy",
    "X": "N",
    "G": 3,
    "F": 3
@@ -1250,6 +1327,17 @@
    "R": "N",
    "B": "ICECABLE",
    "closest": "iced logging roads; ropeway haulage",
+   "X": "N",
+   "G": 3,
+   "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "ICECABLE",
+   "closest": "iced logging sled roads; ropeways",
    "X": "N",
    "G": 3,
    "F": 3
@@ -1511,6 +1599,17 @@
    "X": "N",
    "G": 3,
    "F": 3
+  },
+  "s99r:J6": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "FRZCONC",
+   "closest": "spray-freeze brine concentration",
+   "X": "N",
+   "G": 2,
+   "F": 2
   }
  },
  "ctrl_5#3": {
@@ -1556,6 +1655,17 @@
    "closest": "Nansen Fram drift",
    "X": "N",
    "G": 3,
+   "F": 2
+  },
+  "s99r:J6": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fram drift; ice-tethered drifting buoys",
+   "X": "N",
+   "G": 4,
    "F": 2
   }
  },
@@ -1603,6 +1713,17 @@
    "X": "N",
    "G": 2,
    "F": 2
+  },
+  "s99r:J6": {
+   "O": 2,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "FROSTCRK",
+   "closest": "freeze-thaw weathering; water-freeze quarrying",
+   "X": "N",
+   "G": 2,
+   "F": 1
   }
  },
  "g2_evo1#3": {
@@ -1673,6 +1794,17 @@
    "X": "N",
    "G": 2,
    "F": 5
+  },
+  "s99r:J6": {
+   "O": 3,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "FRZCONC",
+   "closest": "natural freeze concentration of wastewater",
+   "X": "N",
+   "G": 2,
+   "F": 4
   }
  },
  "g2_evo1#2": {
@@ -1791,6 +1923,17 @@
    "X": "N",
    "G": 2,
    "F": 4
+  },
+  "s99r:J6": {
+   "O": 3,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "KITESLED",
+   "closest": "Greenland Windsled; SkySails kite towing",
+   "X": "N",
+   "G": 3,
+   "F": 4
   }
  },
  "EC:EB:g1_mech#3": {
@@ -1883,6 +2026,17 @@
    "X": "N",
    "G": 4,
    "F": 2
+  },
+  "s99r:J6": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fram drift; ice-tethered drifting buoys",
+   "X": "N",
+   "G": 4,
+   "F": 2
   }
  },
  "ctrl_5#2": {
@@ -1926,6 +2080,17 @@
    "R": "N",
    "B": "ICEHULL",
    "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Habakkuk pykrete; Lena karbazy",
    "X": "N",
    "G": 3,
    "F": 3
@@ -1996,6 +2161,17 @@
    "R": "N",
    "B": "ICEHULL",
    "closest": "Project Habbakuk pykrete ship",
+   "X": "N",
+   "G": 3,
+   "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Habakkuk pykrete; Lena karbazy",
    "X": "N",
    "G": 3,
    "F": 3
@@ -2091,6 +2267,17 @@
    "X": "N",
    "G": 3,
    "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Habakkuk pykrete; Lena karbazy",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "EC:EB:g2_evo2#2": {
@@ -2158,6 +2345,17 @@
    "R": "Y",
    "B": "KITESLED",
    "closest": "WindSled; SkySails towing kites",
+   "X": "N",
+   "G": 3,
+   "F": 4
+  },
+  "s99r:J6": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "KITESLED",
+   "closest": "Greenland Windsled; SkySails kite towing",
    "X": "N",
    "G": 3,
    "F": 4
@@ -2253,6 +2451,17 @@
    "X": "N",
    "G": 4,
    "F": 3
+  },
+  "s99r:J6": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "log driving; under-ice drifters",
+   "X": "N",
+   "G": 4,
+   "F": 2
   }
  },
  "ctrl_6#1": {
@@ -2296,6 +2505,17 @@
    "R": "N",
    "B": "PFLEACH",
    "closest": "Talvivaara bioheap; in-situ copper leach",
+   "X": "Y",
+   "G": 4,
+   "F": 2
+  },
+  "s99r:J6": {
+   "O": 5,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "PFLEACH",
+   "closest": "in-situ leaching; self-heating sulfide heaps",
    "X": "Y",
    "G": 4,
    "F": 2
@@ -2345,6 +2565,17 @@
    "X": "N",
    "G": 3,
    "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "single-use Lena timber flatboats (karbazy)",
+   "X": "N",
+   "G": 3,
+   "F": 4
   }
  },
  "EC:EB:g1_core#2": {
@@ -2415,6 +2646,17 @@
    "X": "N",
    "G": 3,
    "F": 3
+  },
+  "s99r:J6": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Habakkuk pykrete; ice ferries",
+   "X": "N",
+   "G": 3,
+   "F": 2
   }
  },
  "ctrl_5#1": {
@@ -2461,6 +2703,17 @@
    "X": "N",
    "G": 3,
    "F": 4
+  },
+  "s99r:J6": {
+   "O": 3,
+   "C": 6,
+   "V": 4,
+   "R": "Y",
+   "B": "FROSTCRK",
+   "closest": "expansive-grout splitting; freeze quarrying",
+   "X": "N",
+   "G": 3,
+   "F": 2
   }
  },
  "g2_evo2#2": {
@@ -2531,6 +2784,17 @@
    "X": "Y",
    "G": 3,
    "F": 3
+  },
+  "s99r:J6": {
+   "O": 3,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "FRZCONC",
+   "closest": "winter mirabilite crystallization (Kara-Bogaz-Gol)",
+   "X": "Y",
+   "G": 3,
+   "F": 2
   }
  },
  "repair_b#2": {
@@ -2552,6 +2816,17 @@
    "R": "N",
    "B": "NEW",
    "closest": "placer cold-water thawing, ground sluicing",
+   "X": "N",
+   "G": 4,
+   "F": 5
+  },
+  "s99r:J6": {
+   "O": 5,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "hydraulic thawing of frozen placer stockpiles",
    "X": "N",
    "G": 4,
    "F": 5
@@ -2579,6 +2854,17 @@
    "X": "N",
    "G": 4,
    "F": 5
+  },
+  "s99r:J6": {
+   "O": 6,
+   "C": 8,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "log driving; under-ice drifters",
+   "X": "N",
+   "G": 4,
+   "F": 2
   }
  },
  "repair_a#2": {
@@ -2603,6 +2889,17 @@
    "X": "Y",
    "G": 4,
    "F": 6
+  },
+  "s99r:J6": {
+   "O": 5,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "direct-contact freeze crystallization; Arctic heat engines",
+   "X": "Y",
+   "G": 5,
+   "F": 5
   }
  },
  "repair_a#3": {
@@ -2627,6 +2924,17 @@
    "X": "Y",
    "G": 4,
    "F": 5
+  },
+  "s99r:J6": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "free-fall triboelectric separation; Kelvin dropper",
+   "X": "Y",
+   "G": 5,
+   "F": 3
   }
  },
  "repair_a#4": {
@@ -2651,6 +2959,17 @@
    "X": "Y",
    "G": 3,
    "F": 4
+  },
+  "s99r:J6": {
+   "O": 5,
+   "C": 7,
+   "V": 2,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "eutectic freeze crystallization; sky radiative cooling",
+   "X": "Y",
+   "G": 3,
+   "F": 2
   }
  },
  "repair_b#1": {
@@ -2675,6 +2994,17 @@
    "X": "Y",
    "G": 4,
    "F": 5
+  },
+  "s99r:J6": {
+   "O": 6,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dry winnowing; aeolian placer deflation",
+   "X": "Y",
+   "G": 4,
+   "F": 3
   }
  },
  "repair_b#3": {
@@ -2699,6 +3029,17 @@
    "X": "N",
    "G": 3,
    "F": 5
+  },
+  "s99r:J6": {
+   "O": 6,
+   "C": 6,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ice-rafted boulders; placer boulder clearing",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  },
  "repair_a#1": {
@@ -2723,6 +3064,225 @@
    "X": "Y",
    "G": 4,
    "F": 6
+  },
+  "s99r:J6": {
+   "O": 8,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mond nickel carbonyl process",
+   "X": "N",
+   "G": 6,
+   "F": 3
+  }
+ },
+ "rt_b#2": {
+  "s99r:J6": {
+   "O": 5,
+   "C": 7,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "hydraulic thawing of frozen placer stockpiles",
+   "X": "N",
+   "G": 3,
+   "F": 6
+  }
+ },
+ "rt_a#4": {
+  "s99r:J6": {
+   "O": 3,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "freeze concentration of Li eluate",
+   "X": "N",
+   "G": 2,
+   "F": 5
+  }
+ },
+ "erp2_a#2": {
+  "s99r:J6": {
+   "O": 5,
+   "C": 8,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "direct-contact butane freeze crystallization",
+   "X": "Y",
+   "G": 5,
+   "F": 4
+  }
+ },
+ "erp2_b#4": {
+  "s99r:J6": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "log driving; under-ice drifters",
+   "X": "N",
+   "G": 4,
+   "F": 2
+  }
+ },
+ "erp2_b#1": {
+  "s99r:J6": {
+   "O": 6,
+   "C": 7,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dry winnowing; aeolian placer deflation",
+   "X": "Y",
+   "G": 4,
+   "F": 4
+  }
+ },
+ "rt_b#3": {
+  "s99r:J6": {
+   "O": 6,
+   "C": 7,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ice-rafted boulders; secondary blasting",
+   "X": "N",
+   "G": 3,
+   "F": 6
+  }
+ },
+ "erp2_a#3": {
+  "s99r:J6": {
+   "O": 6,
+   "C": 8,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "triboelectric spodumene separation",
+   "X": "Y",
+   "G": 5,
+   "F": 4
+  }
+ },
+ "erp2_a#4": {
+  "s99r:J6": {
+   "O": 5,
+   "C": 7,
+   "V": 2,
+   "R": "N",
+   "B": "FRZCONC",
+   "closest": "eutectic freeze crystallization; sky radiative cooling",
+   "X": "Y",
+   "G": 3,
+   "F": 2
+  }
+ },
+ "rt_a#1": {
+  "s99r:J6": {
+   "O": 8,
+   "C": 8,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mond nickel carbonyl process",
+   "X": "N",
+   "G": 5,
+   "F": 2
+  }
+ },
+ "erp2_a#1": {
+  "s99r:J6": {
+   "O": 8,
+   "C": 8,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mond nickel carbonyl process",
+   "X": "N",
+   "G": 5,
+   "F": 2
+  }
+ },
+ "rt_b#1": {
+  "s99r:J6": {
+   "O": 6,
+   "C": 7,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "dry winnowing; aeolian placer deflation",
+   "X": "Y",
+   "G": 4,
+   "F": 2
+  }
+ },
+ "rt_a#2": {
+  "s99r:J6": {
+   "O": 5,
+   "C": 8,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "direct-contact butane freeze desalination pilots",
+   "X": "Y",
+   "G": 5,
+   "F": 4
+  }
+ },
+ "rt_b#4": {
+  "s99r:J6": {
+   "O": 6,
+   "C": 8,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "log driving; under-ice drifters",
+   "X": "N",
+   "G": 4,
+   "F": 3
+  }
+ },
+ "rt_a#3": {
+  "s99r:J6": {
+   "O": 6,
+   "C": 9,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "triboelectric spodumene separation",
+   "X": "Y",
+   "G": 5,
+   "F": 4
+  }
+ },
+ "erp2_b#2": {
+  "s99r:J6": {
+   "O": 5,
+   "C": 8,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "hydraulic thawing of frozen placer stockpiles",
+   "X": "N",
+   "G": 4,
+   "F": 6
+  }
+ },
+ "erp2_b#3": {
+  "s99r:J6": {
+   "O": 6,
+   "C": 8,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ice-rafted boulders; boulder grapple",
+   "X": "N",
+   "G": 3,
+   "F": 3
   }
  }
 }
