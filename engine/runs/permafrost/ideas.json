@@ -52,5 +52,32 @@
   "name": "Permafrost-sealed in-place leaching",
   "mech": "Blasting breaks up the ore body underground, and circulating warm brine thaws only a bounded block of it. A leaching solution is then pumped through the block to dissolve the metal, and wells recover it. Any liquid that leaks toward the edge of the block refreezes on contact with the surrounding frozen ground, so the permafrost acts as a self-healing container. Temperature readings at the boundary show where the seal is. Only the recovered metal, often under 1% of the ore's mass, is ever transported.",
   "value": "Extracts metals from remote frozen deposits with no pit, no ore haulage and no artificial liner."
+ },
+ {
+  "id": "map_2#1",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Disposable Pykrete Flood Barges",
+  "mech": "In winter, crews cast barge hulls on the frozen river surface near the mine. The hulls are made of pykrete: water frozen with 10-15% local larch sawdust or pulp, which is several times tougher than plain ice. They are filled with ore concentrate or coal and capped with a sprayed ice-and-sawdust lid, insulated with a layer of sawdust. When the ice breaks up in spring, the flood floats them north to an estuary. GPS beacons report their drift, and a few tugs gather them for transfer to sea ships. The hulls are never brought back: they melt into the river, so the transport fleet costs almost nothing to build and needs no return trip. The hull wall thickness and the cargo load are set each year from flood forecasts and from strength tests of the frozen hulls.",
+  "value": "Any deposit near a north-flowing river can ship bulk cargo once a year with no road, railway or permanent fleet."
+ },
+ {
+  "id": "map_2#2",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Autonomous Kite-Sled Freight Trains",
+  "mech": "Driverless trains of sleds cross frozen tundra and coastal sea ice pulled by large controllable traction kites, like those used to tow ships and on polar expeditions, scaled to tonnes per sled. A small onboard computer steers the kite, picks a route from wind forecasts and ice thickness maps, and anchors the train to wait out calm or unfavourable wind. Each train stores its route log and the ice conditions it meets, and the shared route map improves every season. It has no fuel, road or driver costs, and slow delivery is acceptable for ore stockpiled over the winter.",
+  "value": "It replaces diesel winter-road trucking with nearly free wind power over the roadless distances where trucking costs the most."
+ },
+ {
+  "id": "map_2#3",
+  "label": "map_2",
+  "arm": "control",
+  "gen": 0,
+  "name": "Engineered Frost-Shatter Comminution",
+  "mech": "Broken ore is stacked in insulated heaps laced with pipes and saturated with water. Fans then alternate −40°C winter air with warm water heated by waste heat from stranded gas or a generator. This runs many freeze-thaw cycles per winter instead of one per year. Water expands about 9% when it freezes, which forces cracks open along grain boundaries and shatters the rock to fine sizes. Temperature and acoustic sensors in the heap detect when cracking stops, and the cycle timing is adjusted to match.",
+  "value": "Most of the crushing and grinding energy, the largest energy cost in hard-rock mining, is replaced by free Arctic cold, so remote deposits can be heap-leached or concentrated on site."
  }
 ]

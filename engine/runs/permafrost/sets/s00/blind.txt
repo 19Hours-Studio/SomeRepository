@@ -1,0 +1,36 @@
+M01
+MECHANISM: Broken ore is stacked in insulated heaps laced with pipes and saturated with water. Fans then alternate −40°C winter air with warm water heated by waste heat from stranded gas or a generator. This runs many freeze-thaw cycles per winter instead of one per year. Water expands about 9% when it freezes, which forces cracks open along grain boundaries and shatters the rock to fine sizes. Temperature and acoustic sensors in the heap detect when cracking stops, and the cycle timing is adjusted to match.
+VALUE: Most of the crushing and grinding energy, the largest energy cost in hard-rock mining, is replaced by free Arctic cold, so remote deposits can be heap-leached or concentrated on site.
+
+M02
+MECHANISM: In winter, shallow moulds on the frozen banks of a river near the mine are flooded with river water mixed with sawdust, and the cold freezes them into thick pykrete hulls. Ore concentrate is sealed inside these hulls in waterproof bags. At spring breakup the hulls float free and ride the flood hundreds of kilometres downstream to an Arctic port or rail point. There the cargo is lifted out and the hull is simply left to melt. A short GPS and ice-thickness log for each hull is used to adjust next year's hull thickness and launch dates to the river's real flood behaviour.
+VALUE: Bulk cargo can leave roadless deposits once a year with no steel fleet, no return trips and no road, using a free current and a hull that costs almost nothing.
+
+M03
+MECHANISM: A dilute leach solution or brine carrying metals or rare earths is sprayed or spread in thin layers over a sloped field during winter. Freezing pushes the dissolved salts out of the pure ice, and the concentrated liquid drains away into collecting channels. The spraying rate and the number of passes are adjusted from conductivity readings at the outlet until the target concentration is reached. The ice left behind is nearly clean water that is reused in spring.
+VALUE: Concentrating metals before shipping, normally an energy-hungry step, becomes nearly free, so only a small volume of high-grade liquor has to leave the site.
+
+M04
+MECHANISM: In winter, crews cast barge hulls on the frozen river surface near the mine. The hulls are made of pykrete: water frozen with 10-15% local larch sawdust or pulp, which is several times tougher than plain ice. They are filled with ore concentrate or coal and capped with a sprayed ice-and-sawdust lid, insulated with a layer of sawdust. When the ice breaks up in spring, the flood floats them north to an estuary. GPS beacons report their drift, and a few tugs gather them for transfer to sea ships. The hulls are never brought back: they melt into the river, so the transport fleet costs almost nothing to build and needs no return trip. The hull wall thickness and the cargo load are set each year from flood forecasts and from strength tests of the frozen hulls.
+VALUE: Any deposit near a north-flowing river can ship bulk cargo once a year with no road, railway or permanent fleet.
+
+M05
+MECHANISM: Sprinkler rigs build a narrow, graded ice trough along a fixed line from a deposit to a railhead or river. They refresh it automatically whenever the temperature drops enough. Steel-runner ore sleds clip onto an endless steel cable loop, like a ski lift, driven by motors at the two ends. Because runners on ice have friction close to rail, a single loop moves a continuous stream of cargo without trucks, drivers or road surface. Sensors on the track trigger re-spraying wherever the ice wears down.
+VALUE: Gives near-railway freight costs every winter for the price of a cable, two winches and a water pump.
+
+M06
+MECHANISM: In winter, crews repeatedly flood thin layers of river water mixed with wood-chip waste onto riverbank ice. This builds pykrete slabs about 100x30x5 m, each able to float roughly 1,000 t of bagged ore concentrate. The cargo is loaded on top while everything is frozen. At spring breakup the slab floats free, and small tugs steer it down the Lena or Yenisei to an Arctic transshipment port. There it is unloaded and left to melt, so no barge has to go back upstream.
+VALUE: Each spring flood becomes a one-way bulk fleet whose only materials are water, sawdust and frost.
+
+M07
+MECHANISM: Blasting breaks up the ore body underground, and circulating warm brine thaws only a bounded block of it. A leaching solution is then pumped through the block to dissolve the metal, and wells recover it. Any liquid that leaks toward the edge of the block refreezes on contact with the surrounding frozen ground, so the permafrost acts as a self-healing container. Temperature readings at the boundary show where the seal is. Only the recovered metal, often under 1% of the ore's mass, is ever transported.
+VALUE: Extracts metals from remote frozen deposits with no pit, no ore haulage and no artificial liner.
+
+M08
+MECHANISM: Driverless trains of sleds cross frozen tundra and coastal sea ice pulled by large controllable traction kites, like those used to tow ships and on polar expeditions, scaled to tonnes per sled. A small onboard computer steers the kite, picks a route from wind forecasts and ice thickness maps, and anchors the train to wait out calm or unfavourable wind. Each train stores its route log and the ice conditions it meets, and the shared route map improves every season. It has no fuel, road or driver costs, and slow delivery is acceptable for ore stockpiled over the winter.
+VALUE: It replaces diesel winter-road trucking with nearly free wind power over the roadless distances where trucking costs the most.
+
+M09
+MECHANISM: In autumn, a dense grid of cheap boreholes is drilled into the ore body and flooded with water. Winter air is then blown or naturally drawn through them, so the water freezes and expands by about 9%. Repeated over several freeze-thaw cycles, this splits the rock along its grain boundaries into fine fragments. Temperature and acoustic sensors in the boreholes record where cracking has slowed, and the next year's water injection is concentrated in those zones. In the thaw season the fines are washed or vacuumed out instead of being blasted and crushed.
+VALUE: Most of the cost of blasting, explosives transport and crushing disappears, because the Arctic climate breaks the rock for free.
+
