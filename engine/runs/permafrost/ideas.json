@@ -967,5 +967,45 @@
   "mech": "Anchor tested as stated: trays under film that radiates through the 8-13 µm atmospheric window are pushed below the CaCl2-ice eutectic (about -50 °C), so CaCl2 hexahydrate and ice lock up together and LiCl stays liquid. At -50 °C that band carries only 30 W/m² (21% of blackbody). With no brine load at all the film settles only 7.8 K below -40 °C air. At -52 °C it removes no net heat unless the air is already -45 °C or colder. At Udachny (January mean -39.4 °C) that gives about 273 usable hours, which freeze about 55 kg of brine per m² each winter. That means 11,600 m² of trays per tonne of lithium carbonate equivalent (LCE) per year, about $55,000/t LCE. Above the eutectic, ambient cold concentrates Li only 1.0-1.55x, so the anchor cannot be rescued at scale. The only workable niche drops the calcium part of the anchor: the same trays freeze sorbent eluate that is free of calcium (LiCl only, eutectic -75 °C) with plain -40 °C air. That concentrates it about 30x using roughly 100 m² per t LCE/yr, about $500/t LCE.",
   "value": "As stated the idea is about 10x more expensive than the whole sorption route ($3.4-6.2k/t LCE), so it fails; only the eluate-freezing niche, which does not use the eutectic, is cheaper than the evaporation step it would replace.",
   "parent": "EC:EB:g1_core2#3"
+ },
+ {
+  "id": "repair_b#1",
+  "label": "repair_b",
+  "arm": "ERP",
+  "gen": 3,
+  "name": "Spring Sun-Wind Deflation Placer",
+  "mech": "Anchor: the cold, dry wind freeze-dries frozen pay gravel by sublimation and blows away the freed silt and light sand without any liquid water, leaving gold, cassiterite and other heavies behind as a lag. In midwinter Yakutia this runs at only 0.014-0.041 mm w.e./day, which frees 0.05-0.15 mm/day of gravel, so the design moves to the windy Arctic tundra in spring (Mar 15 to about May 10), when sun falling on dark, harrowed, still-frozen gravel drives 0.4-0.7 mm w.e./day, freeing 2.5-5 mm/day. Pay gravel is worked in place, either on the stripped cut whose active layer was drained by ditches in autumn (pore ice 0.15 instead of 0.30) or on old tailings dumps, which need no stripping at all. That removes 0.21 m per year, so 100,000 m³ a year needs about 0.5 km². A daily harrow-and-rake pass windrows the lag. Harrowing is done only when the 10 m wind is 7-8 m/s or less: at 7 m/s quartz from 25 to 500 µm leaves and no gold moves. The dry -10 mm residue is about 25% of the volume and is washed clean in a few summer weeks.",
+  "value": "In place on thin-overburden placers or old tailings, digging, feeding and washing cost about $1.7/m³ against about $6.0/m³ for summer washing today (3.6x cheaper); on a pad for thick virgin pay the gain is only 2.1x.",
+  "parent": "EC:EB:g2_evo1#3"
+ },
+ {
+  "id": "repair_b#2",
+  "label": "repair_b",
+  "arm": "ERP",
+  "gen": 3,
+  "name": "Self-feeding ore-ice buttress dam",
+  "mech": "Anchor: the frozen ore pile itself holds the water, and stored warm water run over its bare downstream face melts the ice cement at a rate set by the flow, so the dam doses its own gravel into a riffled chute. Calculation confirms the self-dosing: releasing 1 m³ of ice-cemented gravel takes 101 MJ, which is 4.3-7.6 m³ of 8 °C water, inside the normal sluicing range (a working placer uses 2.2 m³ per m³). The face can transfer heat 20-100x faster than needed, so feed really does equal flow times water temperature. The repair splits the structure into two parts. One is a permanent frozen core under 0.8-1.0 m of saturated peat (it thaws only 0.5-0.6 m per summer). The other is a sacrificial ore buttress downstream, 75 m thick and retreating 0.8 m a day. Creek baseflow (about 47 L/s for 60,000 m³ a season) passes through a small forebay instead of a season-long reservoir, which cuts the dam-break peak from 460 to 128 m³/s. It is used where it is strongest: winter (underground) placer mining, where the hoist already builds a frozen stockpile that today has to be thawed with steam or sprinkling, ripped and fed by dozer.",
+  "value": "For winter-mined placers the summer washing stage drops from about $6.7 to about $1.3 per m³ (5x cheaper), with no feed dozers, pumps or ripping; for summer-mined gravel built up in autumn the gain is only 2.2x.",
+  "parent": "EC:EB:g1_mech#3"
+ },
+ {
+  "id": "repair_b#3",
+  "label": "repair_b",
+  "arm": "ERP",
+  "gen": 3,
+  "name": "Freeze-and-float boulder pond",
+  "mech": "Anchor kept: a pond over the placer lets winter bottom-fast ice freeze onto the stones, and the spring water rise floats the ice off with the stones in it. The in-place sorting part fails by orders of magnitude. Pond waves give a bottom orbital velocity of only 0.03 m/s at 1 m depth, and the pore flow they pump is 6×10⁻⁴ m/s against the 0.02-0.1 m/s needed to fluidise (jig) the gravel. Fines leaving over the spillway would take 2,000-11,000 years, so that part is dropped. The repaired design times the pond depth so the ice (natural 1.6-1.8 m, or 3.1-3.3 m when built up by flooding the ice surface) reaches the boulder tops only in March, while the summer-thawed talik below stays unfrozen. Each m² of floe then lifts 0.08-0.17 m³ of stone a year, and a tractor winch, not the wind, drags the floes to a dump bay. The pond's 1.4-2.2 m of summer thaw prepares the ground.",
+  "value": "Clearing boulders by ice costs about $1/m³ of boulder against about $6/m³ to drill, blast and doze them (roughly 6x cheaper), which opens bouldery placers that dredges reject; overall washing is only 1.25-1.5x cheaper, so this is a niche.",
+  "parent": "EC:EB:g2_evo2#1"
+ },
+ {
+  "id": "repair_b#4",
+  "label": "repair_b",
+  "arm": "ERP",
+  "gen": 3,
+  "name": "Trimmed snow-buoyed under-ice ore pods",
+  "mech": "Anchor: crushed ore plus dry snow sealed in an ice shell, carried by the current under the winter river ice to a downstream slot, with no vessel and no return trip. Snow needed per tonne is 0.28 m³ for coal, 0.74 for rock ore and 0.86 for sulphide ore. The original strongly buoyant pods fail: pressed against ice near 0 °C (μ about 0.5 at slow speed), a 1 t pod at 0.1-0.3 m/s can carry only 1-12 kg of net buoyancy before it stalls, and a stalled pod freezes into the ice cover at 1-2 cm/day. The repair uses 10 t broadside \"fin\" pods (5.0 × 2.2 × 1.2 m), soaked to 0 °C and trimmed in the launch slot with a crane load cell to +3 to +9 kg net buoyancy. That keeps drag (about 170 N at 0.16 m/s) larger than buoyancy, so pods dive under ice roughness instead of sticking. Routes are limited to reaches with smooth thermal ice and under-ice velocity of at least 0.2 m/s, mainly regulated rivers below hydropower dams (Kolyma, Vilyuy, Yenisei). An 8-10 cm shell survives transit (6 cm melt in 45 days), 700 km takes 41-68 days, and a pair of slots moves 1,200 t/day, or 144 kt per season.",
+  "value": "Handling costs about $7.3/t including 5% lost pods, against $59-176/t by winter road over 500-1,500 km (8-24x cheaper) and 1.7-5x cheaper than summer barges, with coal as the best cargo.",
+  "parent": "EC:EB:g1_loop#3"
  }
 ]
