@@ -1,0 +1,41 @@
+=== VALUED C01 ===
+ANCHOR: Sky-cooled freezing past the calcium chloride eutectic
+NAME: Night-sky lithium freeze cascade
+MECHANISM: Oil fields, gas fields and deep mines on the Siberian Platform already pump up strong calcium-chloride brine (often 0.2–0.5 g/L lithium) and must dispose of it. In winter this brine runs through a chain of shallow trays covered with polymer radiative-cooling film under an infrared-clear windshield. The film sheds heat through the 8–13 µm atmospheric window, so the trays sit about 10 K below air that is already at −40 to −50 °C. Each night every tray freezes past the calcium chloride–ice eutectic (about −50 °C). Ice and calcium chloride hexahydrate lock up together as a crust, while lithium chloride, which stays liquid down to about −75 °C, collects in a shrinking leftover liquid that drains by gravity into the next tray. After a few nights and steps, the liquid is tens of times smaller in volume and richer in lithium and bromide, and goes to an existing lithium plant. The spent crust melts in spring and goes back down the field's own disposal wells.
+VALUE: Brine that Siberian oil, gas and mine operators now pay to reinject becomes a large-scale lithium concentrate, made with only the winter sky and the wells they already run.
+
+=== VALUED C02 ===
+ANCHOR: Deep-cold shattering of placer ice cement
+NAME: Frozen-gravel dry gold plant
+MECHANISM: Frozen placer gravel is dug in winter and fed, still below −30 °C, through a light impact breaker. The brittle ice cement shatters while pebbles and gold grains stay whole. A screen then removes the pebbles, and a rising air stream blows away the ice chips and silt. The remaining sand passes over a corona-roll electrostatic separator, which throws off conducting gold and black sand while quartz and ice stay pinned to the roll. Mineral-sands plants have to heat their feed to dry it for this step, but −30 °C air holds almost no water, so the frost does that drying for free. A permanent magnet then strips out magnetite and leaves a gold concentrate. Electrostatic force grips fine and flaky gold best, which are exactly the sizes that air and water tables lose.
+VALUE: Placer operators in Yakutia, Magadan and Chukotka can mine all winter straight from frozen ground and recover their fine gold, using a small generator and no thawing, water, ponds or reagents.
+
+=== VALUED C03 ===
+ANCHOR: Winter ice dam storing snowmelt head
+NAME: Self-feeding ore-ice dam
+MECHANISM: In early winter, the pay gravel stockpiled in autumn is laid across a creek in layers and sprayed with water, so the dam itself is frozen ore. A peat cover on its crest and upstream face keeps it frozen while spring snowmelt fills the basin behind it. All summer a fixed timber gate lets a steady flow of sun-warmed basin water run down the dam's bare downstream face. This water melts the ice cement at a rate set by the flow, so gravel drops into the water at roughly the right ratio for washing. The mix runs straight down a riffled chute, where cassiterite, wolframite or gold settle and the light gravel goes to a pit. The stored water and its head do both the feeding and the separation, with no loaders, pumps, fuel or reagents.
+VALUE: A roadless placer can run a full washing season unattended from one autumn stockpile and one winter's snow, cutting out the summer fuel, pumps and loaders that make up most of its cost.
+
+=== VALUED C04 ===
+ANCHOR: Nickel carbonyl riding inside a gas trunk line
+NAME: Carbonyl nickel in gas pipelines
+MECHANISM: This is set up beside a trunk line that ends at a gas processing or LNG plant. A small side stream of the line's own gas is partly burned to carbon monoxide and hydrogen. This gas first reduces roasted nickel ore to metal. Then, cooled to about 50 °C at a few bar, it carries the nickel off as nickel tetracarbonyl vapour, while iron, copper and rock stay behind. The vapour is metered into the line at about 0.1 mol%, which stays below its condensation pressure even in permafrost-chilled sections. A little extra carbon monoxide stops it breaking down in compressor stations, and the line runs under the same rules already used for lines carrying toxic sour gas. At the plant, heated beds in the inlet train, where mercury guard beds already sit, split the vapour into pure nickel pellets and carbon monoxide. The carbonyl never leaves the plant fence and no customer ever receives it.
+VALUE: A line already carrying about 38 billion m³ of gas a year could also deliver about 100,000 t of refined nickel a year from a deposit along its route. It needs no new transport route and no reagents brought in, and nothing changes for gas customers.
+
+=== VALUED C05 ===
+ANCHOR: Buoyant ore pods riding under river ice
+NAME: Snow-buoyed ice-shell ore pods
+MECHANISM: Pods are made on the spot at a slot cut in the main-channel ice of a big north-flowing river. Crushed high-grade ore and enough dry snow to float it (roughly a cubic metre of snow per tonne of ore) are packed into a mould and sprayed with river water. The −40 °C air freezes this overnight into a sealed ice shell. The pods float up against the smooth underside of the ice and ride the current, out of reach of wind and waves, to a boom and recovery slot at a plant or year-round port downstream. There they are lifted out and cracked open, and the ice is thrown away. The 0 °C river cannot melt the pods, they cost nothing and they never go back upstream, so throughput is limited only by how fast the two slots work. Whole ore can therefore travel, and separation stays at an existing concentrator.
+VALUE: A riverside deposit can send ore all winter to a downstream plant or port with no vessels, fuel, pod fleet or return haul, using only snow, river water and cold.
+
+=== VALUED C06 ===
+ANCHOR: Snow pattern sculpting a guide channel under ice
+NAME: One-pass snow-berm ice lane
+MECHANISM: At freeze-up a plow makes a single pass down the fast main channel of a big frozen river. It heaps the thin early snow into a low berm along that line and leaves the ice bare on either side. The berm insulates the ice beneath it, so through the early winter the bare sides grow downward much faster. This leaves a smooth upward channel in the ice's underside, and later snow, which falls evenly, does not erase it, so no more clearing is needed. Slightly buoyant pods of crushed high-grade ore are put in through a slot. They rise into the channel and ride the current inside it, so they cannot stray into slow water near the banks or catch on rough ice. A slot at the downstream plant or port lifts them out for concentration where power and reagents already exist.
+VALUE: After one plow pass, any large frozen river becomes a self-maintaining, fuel-free winter lane that carries ore from a riverside mine to an existing plant, with no road, vessel or processing plant at the mine.
+
+=== VALUED C07 ===
+ANCHOR: Ore bed as a solar pond's black floor
+NAME: Creeping-floor solar copper pond
+MECHANISM: An insulated, lined salt-gradient pond is floored with crushed chalcocite-rich copper ore. The dark ore absorbs sunlight like a solar pond's black bottom and sits in the 60–80 °C chloride bottom brine, which is also the leach liquor. In winter the hot brine drives an organic Rankine cycle that dumps its heat into −40 °C air at about twice the efficiency of temperate solar ponds. That power runs a divided cell: cuprous copper in brine drawn from under the ore plates out as powder, and the anode makes cupric chloride that goes back to attack the ore. The chalcocite simply splits into copper and sulfur, with no acid, oxygen or other reagent used up. Fresh ore goes in down a submerged chute along one bank, and a slow submerged scraper, run on the pond's own power, drags the bed across the floor to a sump where leached residue is lifted out. The pond therefore leaches a continuous stream of ore instead of a single batch.
+VALUE: A remote chalcocite deposit in the Transbaikal permafrost can produce copper metal year-round at mine scale from local salt and summer sun, with no fuel, acid, oxygen plant or power line.
