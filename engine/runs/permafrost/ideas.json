@@ -313,5 +313,32 @@
   "name": "Transpolar drift cargo pods",
   "mech": "In winter, sealed and buoyant pods built to withstand ice pressure are filled with dense concentrate that does not spoil (nickel matte, rare-earth or tin concentrate) and placed on fast ice off the Lena delta. The Transpolar Drift, the current that carried Nansen's Fram, then moves them across the Arctic Basin to Fram Strait in roughly one to three years. Each pod carries a satellite beacon, and a drift model kept updated with beacon tracks and ice forecasts predicts where pods will exit. One ice-class vessel can then collect each season's arrivals in the East Greenland Current. Because the pods float if their floe breaks up, losses are limited to beacon failures and pods crushed in pressure ridges.",
   "value": "Moves concentrate from the Siberian shelf to Atlantic markets with no fuel and no icebreaker escort, trading speed for a slow but predictable supply pipeline."
+ },
+ {
+  "id": "ctrl_5#1",
+  "label": "ctrl_5",
+  "arm": "control",
+  "gen": 0,
+  "name": "Frost-wedge rock fragmentation",
+  "mech": "Instead of blasting, drill a grid of holes into the frozen orebody, fill them with water and seal each hole's top with a packer. The surrounding permafrost is below 0 °C, so each water column freezes from the wall inward. This traps the liquid core and pressurises it to tens of MPa, well above rock tensile strength (5–15 MPa): the burst-pipe effect at bench scale. Acoustic sensors log cracking in each hole, and software refills holes that cracked too little and adjusts hole spacing for the next bench.",
+  "value": "Removes explosives from remote mines, along with the airlift, magazines and permits they need, cutting rock-breaking cost several-fold and allowing vibration-free mining next to settlements and infrastructure."
+ },
+ {
+  "id": "ctrl_5#2",
+  "label": "ctrl_5",
+  "arm": "control",
+  "gen": 0,
+  "name": "Single-use pykrete river barges",
+  "mech": "Each winter, pumps on a floodplain next to the mine's river spray water mixed with sawdust from local sawmills into moulds. It freezes layer by layer into pykrete hulls (ice with about 14% wood fibre, several times stronger than plain ice and much slower to melt), each carrying a few thousand tonnes. Concentrate or coal stockpiled over winter is loaded straight in, and the spring flood lifts the hulls off the floodplain and carries them north at 100–200 km/day, with one small pusher boat steering each convoy. At the delta port the cargo is moved to ships and the hull is left to melt; wall thickness is set each year from the forecast water temperature and the route length.",
+  "value": "Winter cold and the spring flood become a free, throwaway fleet that moves bulk cargo from roadless interiors to Arctic ports with no steel hulls to build and no return trip."
+ },
+ {
+  "id": "ctrl_5#3",
+  "label": "ctrl_5",
+  "arm": "control",
+  "gen": 0,
+  "name": "Transpolar Drift cargo pods",
+  "mech": "At a port on the Laptev or East Siberian Sea, bulk cargo is loaded into rounded steel pods with no engines. Their shape makes ice pressure push them upward instead of crushing them, the hull principle of Nansen's ship Fram. In autumn they are towed into the forming pack ice and freeze in. They then ride the natural Transpolar Drift across the Arctic Ocean and reach Fram Strait in about one to two years, where tugs collect them near Svalbard. Every pod carries a satellite beacon, and a drift model updated with each year's ice-motion data picks the release points and dates that give the fastest, safest crossing.",
+  "value": "Siberian bulk commodities reach the Atlantic with no fuel, icebreaker escort or Northern Sea Route fees; the main cost is a year or two of capital tied up in the cargo and the cheap hulls."
  }
 ]
