@@ -674,5 +674,93 @@
   "anchor": "snow-cleared strips sculpting an under-ice groove",
   "mech": "In early winter, two parallel strips along a frozen river's fast main channel are kept clear of snow, while the snow between and beside them is left as insulation. The ice grows faster under the bare strips and forms two downward keels with a smooth groove between them on the ice's underside. Slightly buoyant pods of crushed high-grade ore, put in through a slot, float up into the groove and ride the current between the keels, so they cannot stray into slow water near the banks; the strips are simply cleared again after each snowfall. Because the conveyor builds itself and burns no fuel, ore can ship without being concentrated, leaving separation to the port or smelter, which already has power and reagents.",
   "value": "Any large frozen river becomes a self-built, fuel-free winter conveyor that takes ore away from a remote mine with no road, vessel or processing plant."
+ },
+ {
+  "id": "EC:EB:g1_loop#1",
+  "label": "EC:EB:g1_loop",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_loop#1",
+  "name": "Whole-Ore Ballast Swap",
+  "anchor": "ore cassettes swapped for LNG-carrier ballast",
+  "mech": "Ice-class LNG carriers fill up by volume long before they reach their weight limit, so both legs from Arctic terminals carry thousands of tonnes of seawater ballast. That is far more free tonnage than any mine's concentrate. Sealed cassettes of crushed but unconcentrated ore take the place of that ballast in the double-bottom spaces and are swapped for seawater at the port where the LNG is unloaded. An ordinary mill there, with grid power and cheap reagents, separates the metal. On the empty return leg the cassettes come back full of diesel, and summer river barges on the Ob and Yenisei shuttle them between the deposits and the terminal, so the mine itself runs only drills, loaders and a crusher.",
+  "value": "A remote Arctic mine can do without its concentrator, power plant and reagent supply altogether, because the hard step of separating metal moves to a warm, powered port on freight that is already paid for."
+ },
+ {
+  "id": "EC:EB:g1_mech#1",
+  "label": "EC:EB:g1_mech",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_mech#1",
+  "name": "Ice-Shell Under-Ice Ore Drift",
+  "anchor": "buoyant ore packages drifting under river ice",
+  "mech": "Run-of-mine ore goes into 1 t sacks, each with a thin plastic air bladder, and is frozen into a shell of river water in a simple mould. The trapped air plus the ice make each package slightly lighter than water, so the float itself comes free from the winter and nothing has to be shipped back upstream. The packages sit in a slot pool until they warm to 0 °C and are then pushed under the ice of a large river that flows all winter. In 0 °C water the shell cannot melt, and the current carries the packages 10–40 km a day to a net under a slot at a downstream town with power, where an ordinary mill separates the metal and the shells melt away. Packages that snag are freed at breakup and caught by a boom at the same site, and the only consumable is one liner per tonne.",
+  "value": "Moving whole ore costs almost nothing per tonne and nothing returns upstream, so even ordinary-grade deposits upriver of a powered town need no plant, power, reagents or return freight of their own."
+ },
+ {
+  "id": "EC:EB:g1_core#1",
+  "label": "EC:EB:g1_core",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_core#1",
+  "name": "Pulse-Sorting Weir Staircase",
+  "anchor": "inflatable weir staircase releasing timed flood pulses",
+  "mech": "Folded rubber weirs are flown in and inflated in series on a small tributary below a deposit, where they store snowmelt and rain in a chain of ponds. Frost-broken ore is spread in a riffled side lane of the stretch below each weir. Each timed gate release sends a measured flood pulse over the ore that sweeps clay, silt and light rock into the next pond, where they settle as tailings, while gold, cassiterite, diamonds or other heavy minerals stay in the riffles to be scooped out. The same pulses carry shallow-draft barges of this concentrate over each shallow stretch to the navigable river, and after the season the weirs are deflated and flown out, leaving no road, plant or tailings dam.",
+  "value": "A roadless placer or heavy-mineral deposit gets its washing plant, tailings ponds and haul route from one seasonal staircase of water, with no pumps, fuel or reagents."
+ },
+ {
+  "id": "EC:EB:g2_evo1#2",
+  "label": "EC:EB:g2_evo1",
+  "arm": "EC",
+  "gen": 2,
+  "parent": "EB:g2_evo1#2",
+  "name": "Snow-Sculpted Under-Ice Sluice",
+  "anchor": "under-ice current washing a sand heap over a riffle mat",
+  "mech": "Before freeze-up, placer sand screened in summer is laid as a long windrow beside a riffle mat on the bed of a river reach that keeps flowing all winter. Through the winter, snow is scraped off a band of ice across the reach above the mat and piled on the ice upstream and downstream of it. Bare ice grows much faster than snow-covered ice, so the band grows a keel that squeezes the whole river's flow beneath it and speeds up the current over the windrow, faster each month as the keel deepens. The faster current strips the windrow grain by grain: light grains leave downstream, gold and heavy minerals drop into the riffles, and in late winter the mat is lifted through a slot and the concentrate is cleaned by hand.",
+  "value": "A placer mine can wash a full season's sand during winter at several times the natural under-ice rate, with frost building the sluice and the river powering it, so the short summer is spent only digging and no washing fuel, pumps or heated plant are needed."
+ },
+ {
+  "id": "EC:EB:g1_core2#1",
+  "label": "EC:EB:g1_core2",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_core2#1",
+  "name": "Lake-Breach Thermo-Erosion Canal",
+  "anchor": "darkened strip steering thermokarst into a channel",
+  "mech": "Along a surveyed line from a lowland deposit to a navigable river, the moss is stripped or darkened in a strip with insulating mats along its edges, so the ground beneath thaws first and becomes the weakest path. A sun-warmed thaw lake or a dammed creek at the deposit end is then breached into the strip. Its 10–15 °C water runs down the line, melts the ice-rich yedoma at metres per day by thermo-erosion and carries the collapsing silt to the river. This is the same process that cuts gullies metres deep in days when such lakes drain naturally. Ground-temperature probes show where to darken further before the next lake is released, and once barges can reach the deposit the ore leaves unprocessed for a plant that already has power and reagents.",
+  "value": "Summer heat stored in lakes digs a barge channel in one or two seasons instead of decades, so a roadless lowland deposit is opened to water freight without building a road."
+ },
+ {
+  "id": "EC:EB:g2_evo2#1",
+  "label": "EC:EB:g2_evo2",
+  "arm": "EC",
+  "gen": 2,
+  "parent": "EB:g2_evo2#1",
+  "name": "Self-Sorting Wave-and-Ice Pond",
+  "anchor": "wind-wave pond winnowing a placer as it thaws",
+  "mech": "Over a stripped, ice-rich placer, a spillway holds a shallow pond of the ground's own meltwater. The pond absorbs the round-the-clock summer sun and thaws the gravel beneath it, wind waves lift silt and sand over the spillway, and their pressure pulses jig gold and heavy sand down through the stones onto the frozen floor. Each autumn the pond is set just shallower than the winter ice will grow, so the ice freezes onto the tops of the stones. In spring the spillway is closed, snowmelt lifts the bottom-fast ice, and the wind pushes the floes and their stones onto a dump shore, the way lake ice builds boulder ramparts. The spillway is lowered each year so the thin heavy layer rides down with the thaw front to bedrock, where only that layer is dug and washed.",
+  "value": "Even in the cobbly gravels typical of Siberian placers, sun, wind and winter ice remove the silt, sand and stones in place, so only a few percent of the deposit is ever dug and washed, with no pumps, washing-plant fuel or reagents."
+ },
+ {
+  "id": "EC:EB:g2_imm#2",
+  "label": "EC:EB:g2_imm",
+  "arm": "EC",
+  "gen": 2,
+  "parent": "EB:g2_imm#2",
+  "name": "Cold-Brine Leach, Crude-Carried Gold",
+  "anchor": "crude-oil slug carrying extracted gold to the coast",
+  "mech": "At a crude-oil pump station near a gold or platinum-metal deposit, ore is heap-leached all year with a strong calcium chloride brine that stays liquid far below −30 °C. The chlorine and acid the leach needs are made on site by electrolysing a bleed of the same brine with the station's existing power, so only top-up salt is shipped in. A side stream of the line's own crude, dosed with a gold extractant made only of carbon, hydrogen and oxygen such as dibutyl carbitol, is stirred once through the metal-loaded brine and rejoins the line as a density-tracked slug. As a result the site needs no carbon columns, elution, electrowinning, smelter or gold room. At the coastal terminal the slug is cut into its own tank and washed with hot oxalic acid, which drops the gold out as metal powder, and the crude is exported as ordinary crude.",
+  "value": "A deposit beside a crude pipeline can leach and recover precious metal right through the Siberian winter with only a heap, a mixer and an electrolysis cell on site and only salt brought in."
+ },
+ {
+  "id": "EC:EB:g1_genius#1",
+  "label": "EC:EB:g1_genius",
+  "arm": "EC",
+  "gen": 1,
+  "parent": "EB:g1_genius#1",
+  "name": "River-to-Pole Drift Pods",
+  "anchor": "Fram-hulled pods riding the Transpolar Drift",
+  "mech": "Sealed, buoyant, satellite-tagged pods with rounded, sledge-like hulls like Nansen's Fram ride up instead of being crushed when ice squeezes them. They are filled at the deposit itself and launched into a north-flowing river such as the Lena, Yana or Indigirka, whose summer current carries them to the delta with no barge or fuel. A boom at the delta gathers the pods. In early winter they are hauled over the fast ice and set on young ice at its outer edge, where offshore winds push the new ice into the Transpolar Drift, which carries it to Fram Strait in 2–3 years. A pod freed by melt floats on and is frozen in again the next winter. Because no leg of the route costs anything per tonne-kilometre, the pods can carry screened run-of-mine ore instead of concentrate, and ships collect them by tag position and take them to a European plant that has the power and reagents to separate the metal.",
+  "value": "A roadless deposit on any Arctic-draining river can send its ore to a powered plant with no road, barge, icebreaker, fuel or on-site concentrator."
  }
 ]
