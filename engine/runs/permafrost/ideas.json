@@ -597,5 +597,82 @@
   "anchor": "Fram-hulled pods riding the Transpolar Drift",
   "mech": "Each autumn, sealed, buoyant pods with the hull shape of Nansen's Fram, so that ice pressure squeezes them upward instead of crushing them, are filled with coal or concentrate and set on newly formed Laptev Sea ice. The Transpolar Drift carries them to the ice edge in Fram Strait in about two years, where an ordinary ship collects them by beacon; if their floe melts early, they float on with the same currents. Launch sites are chosen from satellite ice-motion maps traced backward from Fram Strait, keeping only starting points whose paths reliably lead out rather than into the Beaufort Gyre, and the choice is updated each season from the pods' beacon logs.",
   "value": "Bulk cargo moves from the Laptev coast to the North Atlantic with no engines, icebreakers or port, trading about two years in transit for almost no freight cost."
+ },
+ {
+  "id": "EB:g1_core2#3",
+  "label": "EB:g1_core2",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_core2#3",
+  "name": "Sky-cooled lithium brine freeze-out",
+  "anchor": "sky-radiating film running below air temperature",
+  "mech": "Deep Yakutian mines pump out strong calcium-chloride drainage brine that they then have to get rid of. Here it is frozen in shallow batch trays covered with polymer radiative-cooling film under a thin infrared-clear windshield, so it sheds heat straight to space through the 8–13 µm atmospheric window and runs about 10 K colder than the winter air. On nights below about −40 °C this takes the brine past the calcium chloride–ice eutectic (about −50 °C). Ice and calcium chloride hexahydrate freeze out together as a crust, while lithium chloride, which stays liquid down to roughly −75 °C, gathers in a shrinking leftover liquid that drains by gravity into a covered sump. Every degree the film reaches below the eutectic leaves that liquid smaller and richer, so the sky's cold sets the lithium grade, not fuel or reagents.",
+  "value": "Mine waste brine becomes a lithium concentrate using only the winter sky, with no fuel, reagents or evaporation ponds."
+ },
+ {
+  "id": "EB:g2_imm#1",
+  "label": "EB:g2_imm",
+  "arm": "EB",
+  "gen": 2,
+  "parent": "g2_imm#1",
+  "name": "Nickel carbonyl through gas pipelines",
+  "anchor": "nickel carbonyl riding in pipeline gas",
+  "mech": "Beside a gas trunk line, a small side stream of the line's own gas is partly burned to hot carbon monoxide and hydrogen. This gas first reduces roasted nickel ore to metal; then, cooled to about 50 °C at a few bar, it carries the nickel off as nickel tetracarbonyl vapour. Iron, copper and rock barely react under these mild conditions, so this one step does the whole separation with a reagent made only from the line's gas. The vapour is metered into the line at about 0.1 mol%, which keeps it below its condensation pressure even in the coldest permafrost-chilled sections, and a little extra carbon monoxide stops it breaking down in warm compressor stations. At the receiving terminal, before any customer, beds at about 200 °C split it into pure nickel pellets and carbon monoxide, which is burned or sent back.",
+  "value": "A line carrying about 38 billion m³ of gas a year could also deliver roughly 100,000 t of refined nickel a year from a remote deposit, with no new transport route and no reagent brought in."
+ },
+ {
+  "id": "EB:g1_genius#3",
+  "label": "EB:g1_genius",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_genius#3",
+  "name": "Cold-shatter dry placer winnowing",
+  "anchor": "deep-frozen ice as a brittle, light mineral",
+  "mech": "Frozen placer gravel is dug in deep winter and fed, still below −30 °C, through a light impact breaker. The ice cement is by far the weakest phase, so it shatters into chips and dust while pebbles and gold grains stay whole, and almost all the crushing energy goes into the ice. A screen drops the coarse pebbles, and a rising air stream blows the ice fragments and silt off the rest, because ice is about 20 times lighter than gold and 3 times lighter than quartz. That leaves a small sand-and-gold residue for a dry air table. At −30 °C the air is so dry that nothing clumps, no water or reagent is used, and the ice-and-gravel tailings are stacked frozen.",
+  "value": "Placer gold can be recovered all winter straight from frozen ground with little power and no thawing, water, ponds or reagents."
+ },
+ {
+  "id": "EB:g1_core#3",
+  "label": "EB:g1_core",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_core#3",
+  "name": "Ore-floored solar leach pond",
+  "anchor": "summer-heated brine pond discharged to −40 °C air",
+  "mech": "An insulated, lined salt-gradient pond is floored with about a metre of crushed chalcocite-rich copper ore. The dark ore absorbs sunlight like a solar pond's black bottom and sits all year in the 60–80 °C chloride bottom brine, which also serves as the leach liquor. In winter the hot brine runs an organic Rankine cycle that dumps its heat into −40 °C air at roughly twice the efficiency of temperate solar ponds. The electricity drives a divided cell: brine drawn from under the ore bed flows through it, cuprous copper plates out as powder at the cathode, and the anode turns cuprous into cupric chloride, which goes back to attack the ore. Overall the chalcocite simply splits into copper metal and sulfur, so no acid, oxygen or other reagent is used up, and the energy cost is well under a kilowatt-hour per kilogram of copper.",
+  "value": "A remote chalcocite copper deposit can make copper metal all winter from local salt and summer sun, with no fuel, acid, oxygen plant or power line."
+ },
+ {
+  "id": "EB:g1_loop#3",
+  "label": "EB:g1_loop",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_loop#3",
+  "name": "Under-ice drifting ore pods",
+  "anchor": "buoyant pods riding under river ice",
+  "mech": "In winter, slightly buoyant torpedo-shaped pods are pushed through a slot cut in the ice of a big river's main channel. They float up against the smooth underside of the ice and ride the current, out of reach of wind and waves, to a boom and recovery slot at a downstream port; where a slush dam blocks the flow, a relay slot lifts them past it. Because the haul burns no fuel, the pods can carry crushed high-grade ore instead of concentrate, so the mine needs no flotation plant, power or reagents of its own. Separation happens at the port or smelter, where those already exist, and the collapsible pods go back upstream by summer barge.",
+  "value": "Remote deposits can send ore to Arctic ports all through the frozen months without fuel, vessels or a processing plant at the mine."
+ },
+ {
+  "id": "EB:g1_mech#3",
+  "label": "EB:g1_mech",
+  "arm": "EB",
+  "gen": 1,
+  "parent": "g1_mech#3",
+  "name": "Ice-dam sluice and crest barging",
+  "anchor": "winter ice dam releasing a timed snowmelt crest",
+  "mech": "In winter, water sprayed across a small creek builds an ice dam, a peat cover keeps it from melting, and snowmelt fills the basin behind it. In midsummer the gate first lets a steady flow down a riffled chute beside the dam, into which thawed tin or tungsten placer gravel is fed. The heavy ore minerals settle in the riffles and the light gravel is swept into a dug pit, so the stored water and its head do the whole separation with no pumps, fuel or reagents. Then the gate opens fully, and the crest floats flat-bottomed barges of concentrate down to a river deep enough for ships.",
+  "value": "A roadless placer gets free process water, a free gravity concentrator and a free summer freight route from one winter's snow."
+ },
+ {
+  "id": "EB:g2_evo1#1",
+  "label": "EB:g2_evo1",
+  "arm": "EB",
+  "gen": 2,
+  "parent": "g2_evo1#1",
+  "name": "Snow-sculpted under-ice ore groove",
+  "anchor": "snow-cleared strips sculpting an under-ice groove",
+  "mech": "In early winter, two parallel strips along a frozen river's fast main channel are kept clear of snow, while the snow between and beside them is left as insulation. The ice grows faster under the bare strips and forms two downward keels with a smooth groove between them on the ice's underside. Slightly buoyant pods of crushed high-grade ore, put in through a slot, float up into the groove and ride the current between the keels, so they cannot stray into slow water near the banks; the strips are simply cleared again after each snowfall. Because the conveyor builds itself and burns no fuel, ore can ship without being concentrated, leaving separation to the port or smelter, which already has power and reagents.",
+  "value": "Any large frozen river becomes a self-built, fuel-free winter conveyor that takes ore away from a remote mine with no road, vessel or processing plant."
  }
 ]
