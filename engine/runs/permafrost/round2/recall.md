@@ -18,3 +18,20 @@ New defects not in the known list (examples): carbonyl toxic inventory ~1,000 t 
 CO open-loop cost $550-1,100/t Ni; propane hydrate in the freeze engine; Udokan has grid power; drift impossible at 45 kV;
 deflation window inside the snow season; no wind separates 25-500 um quartz from gold; ore-ice dam debris coat and
 seepage; boulder floe grounding; frazil accretion; coal over-buoyant.
+
+# ERP2 (new repair rules, NO critic) - which known defects it found and fixed by itself
+
+| K | found by ERP2? | how |
+|---|---|---|
+| K1 | YES | b/idea 4: shell melt -196 kg vs +-3-9 kg window; plus NEW snow creep and Cartesian-diver depth instability (521 kg/m) |
+| K2 | YES | b/idea 4: tailwater +0.5..+2 C melts the shell in 0.3-1.1 days |
+| K3 | YES | b/idea 4: summer barge + stockpile $27-33/t as the baseline |
+| K4 | partial | b/idea 4: sizes a 20-log test for +-10% arrival fraction, does not bound industrial loss |
+| K5 | partial | b/idea 4: snow pre-compacted to 550 kg/m3 and sealed at -35 C (self-pressurised); soaking not discussed |
+| K6 | partial | a/idea 3: names spodumene-vs-gangue charge at -40 C as the deciding unknown |
+| K7 | YES | a/idea 3: dense-media separation + haul is the best baseline -> 1.15x |
+| K8 | YES | a/idea 3: 0 C air dries only 0.33%; intake must be 20-40 C (137 MJ/t) |
+| K9 | YES | a/idea 3: space charge caps 0.15 t/h/m at 30 kV/m; repaired to 1.47 t/h/m at 300 kV/m |
+| K10 | YES | a/idea 1: cites US 8,840,692 / 9,669,374 |
+Self-catch 7 full + 3 partial of 10. It also found on its own what critic A found (propane hydrate, fan power, grid-power
+baseline) and NEW strawman baselines (boulders: excavator $3/m3 vs claimed $6/m3 drill-blast).
