@@ -561,13 +561,13 @@ def cmd_import_basins(a):
             if code not in have: dst.append({**b, "code": code, "source": a.as_}); k += 1
     save(a.dst, "basins.json", dst); print(f"imported {k} basins as {a.as_}")
 
-def task_ideas(run, ids):
+def task_ideas(run, ids, scores=True):
     """Numbered idea blocks with the latest judges' mean O and F (for repair and red-team tasks)."""
     allx = {i["id"]: i for i in load(run, "ideas.json", [])}; out = []
     for k, iid in enumerate(ids, 1):
         if iid not in allx: sys.exit(f"unknown idea {iid}")
         i, g = allx[iid], agg(run, iid)
-        sc = f" (mean originality {g['O']:.1f}/10, mean feasibility {g['F']:.1f}/10)" if g and g.get("F") is not None else ""
+        sc = f" (mean originality {g['O']:.1f}/10, mean feasibility {g['F']:.1f}/10)" if scores and g and g.get("F") is not None else ""
         out.append(f"IDEA {k}{sc}\nNAME: {i['name']}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\n")
     return "\n".join(out)
 
@@ -589,7 +589,7 @@ def cmd_repairtask(a):
 def cmd_redteamtask(a):
     """v2.2: adversarial reviewer with tools; its review feeds `repairtask --critique`."""
     ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
-    s = fill(a.run, tpl("redteam_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids)})
+    s = fill(a.run, tpl("redteam_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=not a.blind)})
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
@@ -628,6 +628,7 @@ def main():
     x = sp.add_parser("repairtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--critique", help="red-team review (file, or agent transcript .output)")
     x = sp.add_parser("redteamtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
+    x.add_argument("--blind", action="store_true", help="omit judges' scores (blind audit of mixed versions)")
     x = sp.add_parser("set"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--labels"); x.add_argument("--ids")
     x.add_argument("--arms"); x.add_argument("--prefix", default="S")
     x.add_argument("--basin-sources", help="e.g. observed,predicted — exclude visited families from judge prompts (fair final comparison)")
