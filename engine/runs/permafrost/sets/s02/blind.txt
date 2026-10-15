@@ -1,0 +1,24 @@
+L01
+MECHANISM: Sealed sacks of about 1 t of ground valuable material each carry a gas bladder, set so the sack is slightly lighter than water and rides pressed against the smooth underside of a frozen river. The current under the ice, which flows all winter, pushes them 25–50 km a day with no fuel or vessel. If a pressure sensor detects a stall, a valve lets out gas so the sack drops back into the flow, then refills it from a cartridge. A net under a slot cut in the ice collects the sacks far downstream.
+VALUE: Freight moves along frozen rivers through the whole winter at almost no energy cost, when today nothing moves on them.
+
+L02
+MECHANISM: In winter, slightly buoyant torpedo-shaped pods of concentrate are pushed through a slot cut in the ice of a big Siberian river's main channel. They ride the current along the smooth underside of the ice, out of reach of wind and waves, to a downstream recovery station with a boom and slot at a port. Weekly current profiles taken through the ice show where the flow stays fast. Where it slows, or where slush ice builds a dam below the ice, a relay slot is cut, the pods are lifted past the blockage and released again, and the spacing between releases is adjusted to the measured speed.
+VALUE: Ore reaches Arctic ports during the frozen months and is already on the quay, instead of competing for the short summer window on the river.
+
+L03
+MECHANISM: Crushed dry rock is tumbled against a plate so that different minerals pick up different electric charges. The near-zero moisture of −40 °C air stops that charge from leaking away. The grains fall between two charged plates and are pushed into separate bins according to their charge. Readings from each bin continuously adjust the plate voltage and the dividers between bins.
+VALUE: Valuable material is separated from waste on site through the winter with no water, cutting the tonnage to be hauled by 5–20 times.
+
+L04
+MECHANISM: The surface of ice-rich yedoma is stripped or darkened along a planned line toward a navigable river, while insulating mats protect the banks as a mask. Each summer, meltwater ponds in the strip, absorbs more sun and deepens the thaw. Mud drains away until thawing stops at ice-poor ground, leaving a channel deep enough for barges. Ground-temperature probes guide each year's re-darkening and widening, like etch-rate control.
+VALUE: Solar heat does the digging, so lowland deposits get a waterway for the cost of surface treatment instead of a road at millions of dollars per kilometre.
+
+L05
+MECHANISM: Sealed, buoyant ore containers with satellite tags are set into Laptev Sea fast ice near the Lena delta. The Transpolar Drift carries the ice and containers to Fram Strait in 2–3 years without fuel or escort. When the floes melt, the containers float in open water and ships pick them up by their tag positions.
+VALUE: Bulk ore can reach European waters with no icebreakers, paying only the cost of time.
+
+L06
+MECHANISM: In deep winter, frozen placer gravel is dug and crushed while it stays below −20 °C. At that temperature the ice behaves as a brittle, light mineral. Air tables and dry-washers separate the gold and heavy minerals from gravel and ice by density, with no water at all, and the tailings are stacked frozen.
+VALUE: Placer mining can run all year without thawing, water or tailings ponds.
+

@@ -85,5 +85,125 @@
   "desc": "Pneumatic or slurry capsule pipelines laid on the surface or under the ice move solids without roads",
   "source": "predicted",
   "members": []
+ },
+ {
+  "code": "V13",
+  "desc": "Transpolar Drift Freight — Sealed, buoyant ore containers with satellite tags are set into Laptev Sea fast ice near the Lena delta. The Transpolar Drift carries the ice and containers to ",
+  "source": "visited",
+  "members": [
+   "g1_genius#1"
+  ]
+ },
+ {
+  "code": "V14",
+  "desc": "Winter-Only Railway — Track panels are laid straight onto snow-compacted frozen tundra, with no permanent embankment, and rivers are crossed on artificially thickened ice. The line r",
+  "source": "visited",
+  "members": [
+   "g1_genius#2"
+  ]
+ },
+ {
+  "code": "V15",
+  "desc": "Frozen Placer Dry-Washing — In deep winter, frozen placer gravel is dug and crushed while it stays below −20 °C. At that temperature the ice behaves as a brittle, light mineral. Air tables",
+  "source": "visited",
+  "members": [
+   "g1_genius#3"
+  ]
+ },
+ {
+  "code": "V16",
+  "desc": "Buoyant Under-Ice Current Packets — Sealed sacks of about 1 t of ground valuable material each carry a gas bladder, set so the sack is slightly lighter than water and rides pressed against the smo",
+  "source": "visited",
+  "members": [
+   "g1_mech#1"
+  ]
+ },
+ {
+  "code": "V17",
+  "desc": "Cold-Dry-Air Charge Sorting — Crushed dry rock is tumbled against a plate so that different minerals pick up different electric charges. The near-zero moisture of −40 °C air stops that charg",
+  "source": "visited",
+  "members": [
+   "g1_mech#2"
+  ]
+ },
+ {
+  "code": "V18",
+  "desc": "Stored Meltwater Barge Pulse — In winter, sprayed water builds an ice wall across a small creek, and a peat cover keeps it from melting. Snowmelt fills the basin behind it, and the water is r",
+  "source": "visited",
+  "members": [
+   "g1_mech#3"
+  ]
+ },
+ {
+  "code": "V19",
+  "desc": "Relay flood-pulse ore barges — Inflatable rubber weirs are flown in folded and set up in series on a small tributary between the deposit and a navigable river; each pond fills with snowmelt a",
+  "source": "visited",
+  "members": [
+   "g1_core#1"
+  ]
+ },
+ {
+  "code": "V20",
+  "desc": "Seasonal thermal-diode ground thaw — Each spring, black UV-stable geotextile is laid over the deposit to absorb round-the-clock summer sun. Each autumn, rows of cheap snow fences are set up to trap",
+  "source": "visited",
+  "members": [
+   "g1_core#2"
+  ]
+ },
+ {
+  "code": "V21",
+  "desc": "Midnight-sun salt-gradient power pond — An insulated, lined pond holds a salinity gradient made from local Siberian Platform brines. The gradient traps summer insolation in the dense bottom layer at 6",
+  "source": "visited",
+  "members": [
+   "g1_core#3"
+  ]
+ },
+ {
+  "code": "V22",
+  "desc": "Etched thermokarst freight canals — The surface of ice-rich yedoma is stripped or darkened along a planned line toward a navigable river, while insulating mats protect the banks as a mask. Each su",
+  "source": "visited",
+  "members": [
+   "g1_core2#1"
+  ]
+ },
+ {
+  "code": "V23",
+  "desc": "Fire-controlled ballistic ore transfer — A gas or electric gun on the deposit fires steel-cased slugs of 100-500 kg of concentrate at about 1.5 km/s into a sand-and-water catch basin at a railhead or r",
+  "source": "visited",
+  "members": [
+   "g1_core2#2"
+  ]
+ },
+ {
+  "code": "V24",
+  "desc": "Sub-ambient photonic permafrost shields — Pads, embankments, tailings and foundations are covered with polymer radiative-cooling film. It reflects sunlight and radiates heat through the 8-13 µm atmosphe",
+  "source": "visited",
+  "members": [
+   "g1_core2#3"
+  ]
+ },
+ {
+  "code": "V25",
+  "desc": "Paid ore ballast on LNG carriers — Ice-class LNG carriers leave Arctic terminals with full tanks but under their weight limit, so they also carry thousands of tonnes of seawater ballast. Sealed c",
+  "source": "visited",
+  "members": [
+   "g1_loop#1"
+  ]
+ },
+ {
+  "code": "V26",
+  "desc": "Transpolar drift cargo pods — Reusable sealed pods, shaped like Nansen's Fram so that ice pressure squeezes them upward instead of crushing them, are filled with coal or concentrate whose va",
+  "source": "visited",
+  "members": [
+   "g1_loop#2"
+  ]
+ },
+ {
+  "code": "V27",
+  "desc": "Under-ice river drift pods — In winter, slightly buoyant torpedo-shaped pods of concentrate are pushed through a slot cut in the ice of a big Siberian river's main channel. They ride the cu",
+  "source": "visited",
+  "members": [
+   "g1_loop#3"
+  ]
  }
 ]

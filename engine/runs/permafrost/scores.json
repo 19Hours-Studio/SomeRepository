@@ -1,1 +1,182 @@
-{}
+{
+ "g1_core#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Salinity-gradient solar ponds, ORC",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_genius#2": {
+  "s01:J1": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Baikal ice railway, winter roads",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_core2#3": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Radiative cooling films, reflective embankments",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "g1_mech#3": {
+  "s01:J1": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Splash dams, flash locks",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_mech#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Log driving, under-ice float transport",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "g1_core2#1": {
+  "s01:J1": {
+   "O": 7,
+   "C": 3,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Thermokarst lake formation, solar thawing",
+   "X": "N",
+   "G": 5
+  }
+ },
+ "g1_mech#2": {
+  "s01:J1": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Triboelectrostatic belt separation (potash, fly ash)",
+   "X": "Y",
+   "G": 4
+  }
+ },
+ "g1_core2#2": {
+  "s01:J1": {
+   "O": 5,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HARP gun, mass drivers",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_genius#1": {
+  "s01:J1": {
+   "O": 6,
+   "C": 4,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fram drift, ice-tethered buoys",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "g1_core#1": {
+  "s01:J1": {
+   "O": 3,
+   "C": 6,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Flash locks, inflatable rubber weirs",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_loop#1": {
+  "s01:J1": {
+   "O": 4,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Backhaul cargo, solid ballast",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "g1_loop#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Log driving under river ice",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "g1_genius#3": {
+  "s01:J1": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Dry washers, air tables",
+   "X": "Y",
+   "G": 5
+  }
+ },
+ "g1_loop#2": {
+  "s01:J1": {
+   "O": 6,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Fram drift, Transpolar Drift buoys",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "g1_core#2": {
+  "s01:J1": {
+   "O": 2,
+   "C": 6,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Solar thawing in placer mining (stripping)",
+   "X": "N",
+   "G": 2
+  }
+ }
+}
