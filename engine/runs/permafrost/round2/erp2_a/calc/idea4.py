@@ -31,9 +31,9 @@ Lf=260e3  # J/kg brine solidified at eutectic (ice 334 kJ/kg * 0.7 + hexahydrate
 print(f"hours with net cooling at -52 C film: {hrs}; energy {E/1e6:.1f} MJ/m2 -> {E/Lf:.0f} kg brine solidified per m2 per winter")
 Li=0.147 # g/L Udachnaya average (Novosibirsk study); 0.4 g/L for richer Siberian horizons
 for Li_gL in [0.147,0.4]:
-    brine_t=188/Li_gL*1.25/1000*1000/1000  # t brine per t LCE (188 kg Li; density 1.25)
-    area=brine_t*1000*0.8/(E/Lf)
-    print(f"Li {Li_gL} g/L: {brine_t:.0f} t brine per t LCE; trays {area:.0f} m2 per t LCE/yr; at $40/m2/yr (capex $250/m2 @12% + upkeep) -> ${area*40:.0f}/t LCE")
+    brine_t=188/Li_gL*1.25  # t brine per t LCE (188 kg Li per t LCE; brine density 1.25 t/m3; Li in kg/m3 = g/L)
+    area=brine_t*1000*0.8/(E/Lf)  # 80% of brine mass solidified
+    print(f"Li {Li_gL} g/L: {brine_t:.0f} t brine per t LCE; trays {area:.0f} m2 per t LCE/yr; at $5/m2/yr -> ${area*5:.0f}/t LCE")
 # Above-eutectic, air-only alternative for brines richer than eutectic composition: hexahydrate crystallisation
 def hexa_liq(TC): return 29.9+(37.3-29.9)*(TC+49.8)/49.8   # wt% CaCl2 on hexahydrate liquidus (eutectic -49.8/29.9 to 0 C/37.3)
 for w0 in [33,36,40]:
