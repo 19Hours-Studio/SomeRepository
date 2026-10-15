@@ -1127,5 +1127,45 @@
   "mech": "Anchor kept: crushed ore or coal and snow sealed in an ice shell drift with the current under winter ice, with no vessel and no return trip. The rigid ice shell is essential: in a flexible bag, a 0.7 m change in ice draft would change buoyancy by 390 kg. An HDPE skid on top (μ 0.15, assumed) widens the trim window to 90-404 kg. Pods are filled in autumn at -4 °C, which adds only +10 kg of cold-reserve buoyancy against +65 kg for contents at -25 °C, so no open soaking slot is needed. Pods are 1.2 m tall with a 7-13 cm shell. At 3.7, 11 or 18.4 kg/day of buoyancy loss (water +0.01, +0.03 or +0.05 K), usable trips are only 76-428 km. Coal pods carry 8 t with flooded voids and a 1.76 m³ snow pocket. Routes run in early winter (ice 0.6-1.0 m, so 1.75-2.1 m of depth is needed), more than 1,400 km below the Kolyma dam polynya, and deliver to consumers that burn the cargo in winter. The test case is Zyryanka coal to Srednekolymsk, about 330 km, with roughly 327 m³/s and 0.18-0.33 m/s under the ice.",
   "value": "Estimated at $10-20/t delivered, against $39/t by winter road over the same 330 km (1.9-3.9x) and $12-37/t by summer barge plus a stockpile (0.6-3.7x). That is not the 8-24x claimed, and it is unproven.",
   "parent": "repair_b#4"
+ },
+ {
+  "id": "rt_a#1",
+  "label": "rt_a",
+  "arm": "ERPR",
+  "gen": 4,
+  "name": "Carbonyl nickel rides gas pipelines",
+  "mech": "Anchor kept: nickel travels as Ni(CO)4 vapour (0.04 mol%) inside a trunk gas line's own flow and is split back to metal where the line ends. Injection now goes in only downstream of the last local offtake. Before any planned vent, injection stops for one transit time (10 h per 300 km, 72 h for the full 2,159 km at 8.3 m/s) and Gazprom's mobile compressor units pump the section down, so planned vents release almost no carbonyl. Compressor discharge is capped at 50 °C, which cuts the CO stabiliser from 0.15% to 0.05% (equilibrium needs 0.032%), so CO use falls from 3.70 to 2.51 t per t Ni, against a hard minimum of 1.91. A 250 °C nickel-bed polisher after the decomposer leaves 0.09 ppb Ni(CO)4 in the sales gas at equilibrium (4.5 ppb at 200 °C). Unsolved: a rupture still releases about 12 t Ni(CO)4 per 30 km section, which is 8.8e8 m³ of air at the IDLH. Its 40-60 s half-life in air means only 0.3-2% survives 1 km downwind, but CO in the plume can slow the breakdown to minutes.",
+  "value": "The pipeline-specific cost is $109-947/t Ni (one-way CO plus lost line capacity, minus the CO's value as fuel), against about $100-150/t Ni to ship pellets or matte, so it loses to best practice unless CO is a free by-product costing under about $56/t; it beats only trucking concentrate ($1,067/t Ni), by 0.8-1.9x.",
+  "parent": "repair_a#1"
+ },
+ {
+  "id": "rt_a#2",
+  "label": "rt_a",
+  "arm": "ERPR",
+  "gen": 4,
+  "name": "Freeze-Engine Vitriol Winning",
+  "mech": "Anchor kept: freezing stored copper leach liquor both drives a heat engine (the heat of freezing boils the working fluid, which condenses in Arctic air) and crystallises CuSO4·5H2O. Propane is replaced by n-butane, which forms no hydrate on its own and was the direct-contact fluid in the 1960s-70s secondary-refrigerant freeze-desalination pilots. It boils at 0.87-0.97 bar against the liquor and condenses at 0.19-0.30 bar. Freezing is staged so that most ice forms while the liquor is still dilute, which keeps the ice-weighted freezing point at -0.8 °C. Copper recovery is capped at 80% and feed acid at 2.5 g/L, and the 90% case is dropped. Fans would eat about half the output, so a 60-80 m natural-draft dry tower (47-52 Pa of draft at -35 °C) replaces them, and freezing is scheduled into the coldest hours. That gives 6-9 kJ per kg of ice, enough for 42-63% of electrowinning power at Udachny-type cold but only 24-44% at Chara (Udokan). A richer 10 g/L leach solution cuts ice from 492 to 123 kg per kg Cu and the freeze step to $105-165/t Cu, but then the engine covers only about 12% of electrowinning power.",
+  "value": "At 2.5 g/L the route is 0.56-0.86x as cheap as grid-powered SX-EW at Udokan (i.e. dearer) and 0.83-1.08x at an off-grid diesel site; only an off-grid, low-Mg, 10 g/L case reaches about 1.1-1.4x cheaper.",
+  "parent": "repair_a#2"
+ },
+ {
+  "id": "rt_a#3",
+  "label": "rt_a",
+  "arm": "ERPR",
+  "gen": 4,
+  "name": "Self-Charging Frost Separator Cascade",
+  "mech": "Anchor kept: grains charge themselves on the chute lining, and the bins that catch them, wired across to the opposite plates, build the separating field with no power supply, like a Kelvin water dropper. The field is reset to 150 kV/m across a 0.5 m gap (75 kV, 5% of air breakdown), which gives 17-23 cm of drift per side in a drag-included simulation without grains hitting the plates (200 kV/m would hit them). The sorted charge delivers only 0.4-1.4 µA per metre of plate width, so self-excitation needs at least 5e10 Ω of leakage resistance per 10 m channel. Space charge caps each channel at 0.17-0.5 t/h per metre of plate width, so each stage is a stack of alternating-polarity plates at 0.5 m pitch: 170-525 channels, each 10 m wide, for 1 Mt/yr. Ore moisture is removed by a closed air loop through an outdoor cold trap at -30 °C, which gives 2% RH at the separator. Mill heat and diesel-generator waste heat supply the drying heat: 9-19 MJ/t at 0.2-0.4% ice, 47 MJ/t at 1% ice. With middlings recycled, eight stages reach 6.2% Li2O at 82% recovery only if each stage sends forward 85% of the spodumene and 45% of the waste. A 80/50 split needs 22 stages and 23x circulating load, and a 75/55 split cannot reach 6% at all.",
+  "value": "$4,100-4,960 per t of Li2O recovered at the railhead, against $6,430-7,390 for XRT sorting plus DMS (the cheapest real alternative) and $7,400-8,270 for Arctic DMS plus flotation, so 1.3-1.8x cheaper, and only if a measured per-stage split of 85/45 or better holds.",
+  "parent": "repair_a#3"
+ },
+ {
+  "id": "rt_a#4",
+  "label": "rt_a",
+  "arm": "ERPR",
+  "gen": 4,
+  "name": "Night-sky lithium freeze cascade",
+  "mech": "The anchor (night-sky cooling that drives CaCl2 brine below its -50 °C eutectic) cannot be rescued. Even with a heat pump rejecting to -40/-45 °C air, it needs 5.5-15 MWh per t LCE and must freeze 450-910 t of brine per t LCE, and the leftover liquor is still about 30% CaCl2, so DLE is still needed. Above the eutectic, cold concentrates lithium only 1.25x. The surviving niche keeps only \"Arctic cold concentrates lithium\" and applies it to Ca-free sorbent eluate. Reverse osmosis first takes the eluate to 6 g/L Li (37 bar osmotic pressure). Two stages of spray freezing (snowmaking guns rather than trays) then take it to 20.6 g/L by draining the unfrozen brine and collecting the early melt. That moves 53% of the Li per pass, needs 62 t of ice per t LCE, and gives a product that freezes at -14 °C. Late melt at ≤1.1 g/L Li goes back to the RO feed, so no lithium is lost in the ice, and winter-only freezing needs 0.37 Mm³ of stored RO concentrate, not 2.2-7.3 Mm³.",
+  "value": "$110-240/t LCE against $470-1,085/t LCE for the MVR evaporator it replaces (2-4x cheaper for that step), but that is only 5-15% off the $3.4-6.2k/t LCE whole route, and the night-sky/eutectic anchor is not used.",
+  "parent": "repair_a#4"
  }
 ]
