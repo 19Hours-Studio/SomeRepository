@@ -28,5 +28,55 @@
   "verdict": "PARTIAL",
   "closest": "Drywasher (air-riffle dry placer recovery, standard desert practice) https://en.wikipedia.org/wiki/Drywasher ; second: Yukon and Alaska frozen-placer practice of winter-only underground mining in frozen ground, then thawing and water washing, e.g. Kirzhner et al., \"Underground mining of a frozen placer deposit in the Arctic\", Gluckauf (2001) https://repository.geologyscience.ru/handle/123456789/25567 and Yukon placer atlas https://ygsftp.gov.yk.ca/ygsftp/publications/placer_atlas/richard_zimmer_klondike_river.pdf",
   "new": "Dry washing and winter mining in frozen ground both exist separately. The new part is a fully dry circuit that crushes and separates gravel and ice below -20 °C and stacks frozen tailings; I found no source testing dry density separation of frozen gravel in English or Russian, and Russian dredging literature treats thawing as necessary for full recovery."
+ },
+ "EC:EB:g2_evo1#3": {
+  "verdict": "PARTIAL",
+  "closest": "Apparatus for dry placer mining and method of operating same, US4451357 (1984) https://patents.google.com/patent/US4451357 ; Method of and apparatus for extraction of gold from placer gravel, US4265743 (1981) https://patents.google.com/patent/US4265743 (also winter-stockpile then summer-sluice practice, e.g. Silverado Nolan, 2006-04, https://www.miningnewsnorth.com/story/2006/04/23/news/winter-nolan-work-promises-summer-payoff/1403.html)",
+  "new": "dry air/electrostatic placer separation and winter stockpiling are known, but using passive wind sublimation of pore ice to disaggregate frozen gravel and winnow silt and light sand, then sizing the pad by area, was not found anywhere (the sublimation rates in the literature I found, 0.1-0.2 mm/yr under a sediment lag, are far below the idea's ~1 mm/day for exposed ice, so the rate is unsupported)."
+ },
+ "EC:EB:g2_imm#1": {
+  "verdict": "PARTIAL",
+  "closest": "Energy and/or material transport including phase change, McAlister, US 8,840,692 (2014) https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8840692 and continuation US 9,669,374 (2017) https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9669374 (piping warm Ni(CO)4 gas to a plant where it is decomposed to nickel plus CO) ; Mond process, https://en.wikipedia.org/wiki/Mond_process",
+  "new": "carbonyl-by-pipeline is already in a patent family as an example embodiment and the chemistry is a century old, so what is new is co-transporting dilute Ni(CO)4 inside an existing gas trunk line to the processing plant's guard-bed train for a remote nickel deposit (no costing found; the toxicity and liability case is untested)."
+ },
+ "EC:EB:g2_evo2#2": {
+  "verdict": "PARTIAL",
+  "closest": "Design of Pipelines to Transport Neutrally Buoyant Capsules, J. Hydraulic Engineering (1998-11) https://ascelibrary.com/doi/10.1061/(ASCE)0733-9429(1998)124:11(1155) ; JPS5259481A Capsule transport system by use of buoyancy (1977) https://patents.google.com/patent/JPS5259481A/en (under-ice submerged cargo concepts, e.g. General Dynamics LNG submarines, 1982-06, https://csmonitor.com/1982/0618/061848.html, are ocean-scale)",
+  "new": "neutrally buoyant capsules carried by a water flow are classic, but using the underside of a river's ice cover as the open conduit, with drag-coupled rope strings that cannot freeze in, and carrying fuel and reagents upstream-to-downstream under it, was not found."
+ },
+ "EC:EB:g1_core2#3": {
+  "verdict": "PARTIAL",
+  "closest": "Radiative freezing desalination, UCLA Raman lab, Joule (2023) https://samueli.ucla.edu/freezing-offers-potential-low-energy-low-cost-method-for-purifying-saltwater/ ; Pure water and useful salts from waste, eutectic freeze crystallization, UCT / Lewis et al., Scientific African (2023-07) https://ebe.uct.ac.za/talks/articles/pure-water-and-useful-salts-waste-eutectic-freeze-crystallisation (also sub-zero brine cooling to -20/-30 C in lithium patents such as US 7,390,466, 2008, https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7390466; Kovykta lithium brine study, 2025, https://pmi.spmi.ru/pmi/article/view/16629)",
+  "new": "passive radiative-sky-cooling freezing and eutectic freeze crystallization each exist, but a tray cascade that cools Siberian CaCl2 oilfield brine below the CaCl2-ice eutectic to leave a LiCl-rich liquor was not found (note radiative film power is small at -40 C, so the 10 K sub-ambient claim is the weakest link)."
+ },
+ "EC:EB:g1_mech#3": {
+  "verdict": "PARTIAL",
+  "closest": "Cold Water Thawing of Frozen Placer Gravel, J. Lund (1951) https://onemine.org/documents/cold-water-thawing-of-frozen-placer-gravel ; US2444629A Method of placer mining (c. 1948, sprayed water erodes frozen ground) https://patents.google.com/patent/US2444629",
+  "new": "water thawing and erosion of frozen gravel plus sluicing is long known (hydraulicking, Klondike, floater-dredge tests), but building the stockpile into an ice-cemented dam that meters its own gravel into a riffled chute using the stored water head was not found."
+ },
+ "EC:EB:g2_evo1#1": {
+  "verdict": "NO-CLOSE-MATCH",
+  "closest": "Snow effects on brash ice and level ice growth (Zhaka et al., 2023/24) https://agris.fao.org/search/es/records/682f29ef9d0aa4165340ae5c ; US Army ice bridge construction guidance (snow clearing and insulation effects) https://home.army.mil/wood/7017/8455/4465/Prahl.pdf",
+  "new": "snow insulation controlling ice growth is well known, but deliberately berming snow once to grow a persistent downward ridge-free guide channel in the ice underside for buoyant cargo pods was not found (the pod-in-current carrier itself is the W03 concept)."
+ },
+ "EC:EB:g1_mech#2": {
+  "verdict": "PARTIAL",
+  "closest": "Triboelectric Separator for Beneficiation of Fine Minerals (ST Equipment and Technology belt separator, commercial, dry, no water) https://store.cim.org/en/triboelectric-separator-for-beneficiation-of-fine-minerals ; The Kelvin Water Dropper: Converting a physics toy into an educational device (2017-07) https://arxiv.org/pdf/1707.06861 (also triboelectrostatic separation patent US5938041, https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/5938041)",
+  "new": "dry tribo-electrostatic mineral separation is commercial and the Kelvin self-excitation effect is textbook, but replacing the high-voltage supply with a Kelvin-type feedback of the mineral charge itself, cascaded unpowered down a slope in dry cold air, was not found."
+ },
+ "EC:EB:g2_imm#3": {
+  "verdict": "PARTIAL",
+  "closest": "Evaluation of glaciothermal engines for the generation of polar renewable energy, Smith, Univ. of Tasmania thesis (2023) https://eprints.utas.edu.au/23078/ ; US 11,118,846 Power generation using ice or other frozen fluids as a heat source (c. 2021) https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11118846 (also cryogenic concentration in sub-zero Udokan copper leaching, Minerals 2018-10, https://doaj.org/article/b28f397feac34e4eb84950f398db2ead)",
+  "new": "freezing-latent-heat Rankine power (reported 5-10 percent efficiency) and freeze crystallization of copper sulfate are both published, but fusing them so one freezing plant powers itself, fractionally crystallises CuSO4 away from ferric sulfate and feeds a clean electrowinning cell on a remote heap leach was not found."
+ },
+ "EC:EB:g1_loop#3": {
+  "verdict": "PARTIAL",
+  "closest": "Govorushko, On the transport of rock fragments by ice (river, lake and sea ice), Materialy Glyatsiologicheskikh Issledovanii (1984) https://www.spri.cam.ac.uk/library/catalogue/records/72091/ (natural ice-rafting of stones) ; the neutrally buoyant capsule literature cited under W03",
+  "new": "natural ice carriage of rock and capsule transport in water are known, but engineered snow-foam-and-ice-shell pods made on the spot and floated under river ice to a recovery boom, whole-ore and with no return haul, were not found (carrier is essentially W03 and W06 with a different pod)."
+ },
+ "EC:EB:g2_evo2#1": {
+  "verdict": "NO-CLOSE-MATCH",
+  "closest": "Ice action on shores, J. Glaciology (lake ice shoves boulders into ramparts; Baffin Island) https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/8F63529E4FD06F883642C11918060F76/S0022143000017159a.pdf/ice-action-on-shores.pdf ; Testing the Viability of Floater Dredging in Frozen Ground, Yukon Geological Survey (pond thaws frozen gravel) https://open.yukon.ca/information/822ac071-1180-44b2-95f2-35e647261095",
+  "new": "each step has a natural or mining analogue (thaw ponds, wave sorting of heavies on beaches, ice-push ramparts), but combining a spillway-controlled thaw pond with wind-wave jigging and bottom-fast ice that lifts stones off the placer to a dump shore as an engineered in-place stone-and-silt removal system was not found."
  }
 }
