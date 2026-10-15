@@ -52,6 +52,12 @@ Launch independent agents in one message; never read transcripts into your own c
   hours), and I compared a chain against hauling raw ore (7x) instead of the best realistic practice (2x per kg of
   recovered product). Add to every repair TASK: compare against the best current practice per unit of RECOVERED
   product, and do a consistency pass that checks every computed rate against every tolerance in the design.
+- v2.2 (tested, 09-permafrost-run.md round 2): build repair tasks with `ce.py repairtask R --ids ... --dir D`
+  (rules above are in the template) and ingest with `ingest R label --arm X --parents D/parents.json`. The new rules
+  alone cut FATAL defects left after repair by 72% (blind tool-using audit) with O unchanged. A red-team round before
+  repair (`redteamtask` -> `repairtask --critique`) did NOT cut FATAL further: use `redteamtask --blind` as the FINAL
+  AUDIT and report its residual defects to the user. Judges without tools miss fatal defects and score claimed value,
+  so never report judge V/F alone as truth.
 
 ## v3 (when ideas can be checked by running code): ask reality, not judges (08-reality-engine.md)
 - Build an executable evaluator first (see `engine/reality/arch|lm/harness.py`: fixed equal training, causality and
