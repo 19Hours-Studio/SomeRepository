@@ -1,0 +1,118 @@
+
+== 1a. Critique's case: 10 t ore (3000 kg/m3) floated by SOLID ice only ==
+net weight in water 6667 kg; ice needed 73.7 t; pod 83.7 t; payload 12%  -> the critique's arithmetic is right for solid ice
+
+== 1b. The repaired design: ore + packed SNOW (air) sealed in a liner, thin ice shell ==
+snow 150 kg/m3, shell 8 cm: H 1.29 m, volume 14.2 m3, pod 14.1 t, payload 71%, snow 7.6 m3, shell ice 3.0 t
+snow 150 kg/m3, shell 10 cm: H 1.36 m, volume 15.0 m3, pod 14.9 t, payload 67%, snow 7.5 m3, shell ice 3.8 t
+snow 250 kg/m3, shell 8 cm: H 1.39 m, volume 15.3 m3, pod 15.2 t, payload 66%, snow 8.6 m3, shell ice 3.1 t
+snow 250 kg/m3, shell 10 cm: H 1.46 m, volume 16.1 m3, pod 16.1 t, payload 62%, snow 8.4 m3, shell ice 3.9 t
+snow 350 kg/m3, shell 8 cm: H 1.52 m, volume 16.7 m3, pod 16.7 t, payload 60%, snow 9.9 m3, shell ice 3.2 t
+snow 350 kg/m3, shell 10 cm: H 1.60 m, volume 17.6 m3, pod 17.5 t, payload 57%, snow 9.8 m3, shell ice 4.1 t
+-> with snow the pod is ~14-16 t, not 84 t; the air trapped in snow carries ~90% of the lift.
+   Condition: the snow must stay dry (sealed liner) while the shell is sprayed; soaked snow = critique's case.
+
+== 1c. Buoyancy drift from shell melt vs the +3..+9 kg trim window (10 t pod, ~40 m2 wetted) ==
+u_rel 0.04 m/s h  108 W/m2K  water +0.005 C: melt    0.2 mm/day, lift loss     0.5 kg/day -> sinks after  285.9 h ( 164.7 km at 0.16 m/s)
+u_rel 0.04 m/s h  108 W/m2K  water +0.02  C: melt    0.6 mm/day, lift loss     2.0 kg/day -> sinks after   71.5 h (  41.2 km at 0.16 m/s)
+u_rel 0.04 m/s h  108 W/m2K  water +0.1   C: melt    3.0 mm/day, lift loss    10.1 kg/day -> sinks after   14.3 h (   8.2 km at 0.16 m/s)
+u_rel 0.04 m/s h  108 W/m2K  water +0.5   C: melt   15.2 mm/day, lift loss    50.4 kg/day -> sinks after    2.9 h (   1.6 km at 0.16 m/s)
+u_rel 0.04 m/s h  108 W/m2K  water +2.0   C: melt   60.7 mm/day, lift loss   201.5 kg/day -> sinks after    0.7 h (   0.4 km at 0.16 m/s)
+u_rel 0.20 m/s h  390 W/m2K  water +0.005 C: melt    0.5 mm/day, lift loss     1.8 kg/day -> sinks after   78.9 h (  45.4 km at 0.16 m/s)
+u_rel 0.20 m/s h  390 W/m2K  water +0.02  C: melt    2.2 mm/day, lift loss     7.3 kg/day -> sinks after   19.7 h (  11.4 km at 0.16 m/s)
+u_rel 0.20 m/s h  390 W/m2K  water +0.1   C: melt   11.0 mm/day, lift loss    36.5 kg/day -> sinks after    3.9 h (   2.3 km at 0.16 m/s)
+u_rel 0.20 m/s h  390 W/m2K  water +0.5   C: melt   55.0 mm/day, lift loss   182.5 kg/day -> sinks after    0.8 h (   0.5 km at 0.16 m/s)
+u_rel 0.20 m/s h  390 W/m2K  water +2.0   C: melt  219.9 mm/day, lift loss   730.1 kg/day -> sinks after    0.2 h (   0.1 km at 0.16 m/s)
+Measured: Lena delta under ice -0.1..+0.8 C (Fedorova et al. 2020); below Krasnoyarsk HPP the Yenisei stays
+ice-free 200-300 km (warm release). So the trim window is used up in hours-days: the repaired pod sinks.
+Total ice-derived lift that can melt away: shell 332 kg + snow skeleton 133 kg = 465 kg; the trapped AIR (~6 t of lift) does not melt.
+
+== 1d. Repair: tolerate drift instead of trimming it away (window = drag / (mu g)) ==
+U 0.16 m/s drogue  0 m2 mu  0.5: drag    34 N -> window 0..    7 kg 
+U 0.16 m/s drogue  0 m2 mu  0.1: drag    34 N -> window 0..   34 kg 
+U 0.16 m/s drogue  0 m2 mu 0.05: drag    34 N -> window 0..   69 kg 
+U 0.16 m/s drogue 20 m2 mu  0.5: drag   341 N -> window 0..   70 kg 
+U 0.16 m/s drogue 20 m2 mu  0.1: drag   341 N -> window 0..  348 kg 
+U 0.16 m/s drogue 20 m2 mu 0.05: drag   341 N -> window 0..  695 kg covers full melt
+U 0.16 m/s drogue 40 m2 mu  0.5: drag   648 N -> window 0..  132 kg 
+U 0.16 m/s drogue 40 m2 mu  0.1: drag   648 N -> window 0..  661 kg covers full melt
+U 0.16 m/s drogue 40 m2 mu 0.05: drag   648 N -> window 0.. 1321 kg covers full melt
+U 0.24 m/s drogue  0 m2 mu  0.5: drag    76 N -> window 0..   16 kg 
+U 0.24 m/s drogue  0 m2 mu  0.1: drag    76 N -> window 0..   78 kg 
+U 0.24 m/s drogue  0 m2 mu 0.05: drag    76 N -> window 0..  155 kg 
+U 0.24 m/s drogue 20 m2 mu  0.5: drag   767 N -> window 0..  156 kg 
+U 0.24 m/s drogue 20 m2 mu  0.1: drag   767 N -> window 0..  782 kg covers full melt
+U 0.24 m/s drogue 20 m2 mu 0.05: drag   767 N -> window 0.. 1564 kg covers full melt
+U 0.24 m/s drogue 40 m2 mu  0.5: drag  1458 N -> window 0..  297 kg 
+U 0.24 m/s drogue 40 m2 mu  0.1: drag  1458 N -> window 0.. 1487 kg covers full melt
+U 0.24 m/s drogue 40 m2 mu 0.05: drag  1458 N -> window 0.. 2973 kg covers full melt
+-> a 40 m2 drogue + polymer skids (mu <= 0.1) gives a window wider than ALL melt-able lift (~460 kg):
+   start at +450 kg and the pod never leaves the window. Unknown: mu of polymer on 0 C river ice at
+   0.05-0.2 m/s (no data found; low-speed ice friction is non-monotonic), and diving under keels needs
+   drag > B*g -> keels must be handled by STRINGS (pods on a rope share the whole string's drag).
+
+== 1e. Throughput and ice/snow handled ==
+14400 pods per season = 120/day (critique: right).
+solid-ice design: 1.06 Mt ice; snow design: ~74 kt of shell+snow ice (109440 m3 snow/season = 912 m3/day)
+heat to remove to freeze the shells: 1.7 MW (snowmaking-gun scale, free at -40 C air)
+
+== 1f. Zero-loss pilot: 95% upper bound on loss probability ==
+n= 20, 0 lost -> p < 13.9%
+n= 59, 0 lost -> p < 5.0%
+n=299, 0 lost -> p < 1.0%
+-> critique right: 20 pods test the MECHANISM (stall, freeze-in, sinking), not industrial reliability.
+What loss rate is tolerable depends on cargo value (pod + cargo lost vs road saved, 700 km):
+  coal               $ 100/t vs winter road $0.117/t-km: saves $ 74.6/t -> break-even loss 42.7%
+  coal               $ 100/t vs critique's $0.14/t-km: saves $ 90.7/t -> break-even loss 47.6%
+  spodumene SC6      $ 900/t vs winter road $0.117/t-km: saves $ 74.6/t -> break-even loss  7.7%
+  spodumene SC6      $ 900/t vs critique's $0.14/t-km: saves $ 90.7/t -> break-even loss  9.2%
+  Ni/Cu concentrate  $2500/t vs winter road $0.117/t-km: saves $ 74.6/t -> break-even loss  2.9%
+  Ni/Cu concentrate  $2500/t vs critique's $0.14/t-km: saves $ 90.7/t -> break-even loss  3.5%
+  vs summer barge ($0.025/t-km = $17.5/t at 700 km): saves ~$10/t -> break-even loss 9% coal, 1% SC6
+
+== 2a. Self-charging separator: energy and current ==
+work done by the field per kg: 0.90 J/kg = 0.25 Wh/t (grinding ~10 kWh/t = 36,000 J/kg)
+charging current 272 uA total; power at 45 kV 12 W
+-> critique right that kV != power, but separation needs FIELD, not power: the energy to deflect the grains
+   is ~1 J/kg, ~10^4x below grinding. Energy is not the bottleneck; charge CONTRAST between minerals is.
+
+== 2b. Space charge of the falling curtain (a real throughput limit) ==
+ 1.0 m wide: 27.22 kg/s/m, 18.15 kg/m3, unipolar space-charge field   51.2 kV/cm
+21.8 m wide:  1.25 kg/s/m,  0.83 kg/m3, unipolar space-charge field    2.4 kV/cm
+-> at 1 m width the stream's own charge exceeds air breakdown (30 kV/cm); the researcher's 21.8 m wide stages
+   bring it to ~1-2 kV/cm, the same order as the applied 3 kV/cm, so throughput per metre is capped.
+
+== 2c. 'Humidity 90%' - which humidity ==
+air at -40 C, 90% RH over ice: vapour pressure 11.6 Pa, 0.107 g/m3
+  grain surface at  -40 C: relative humidity at the surface  90.0%
+  grain surface at  -20 C: relative humidity at the surface  11.2%
+  grain surface at    0 C: relative humidity at the surface   1.9%
+-> it is RH at the grain surface (sets the adsorbed water film), not ore moisture. Ore moisture is a separate
+   problem: permafrost ore carries ice; pegmatite ~0.5% -> 5 kg/t to sublimate/evaporate ~14 MJ/t (4 kWh/t).
+   Unknown: surface conductivity at -40 C may be far below that at +20 C at equal RH, so the original
+   'cold keeps charge' claim is untested either way - a cold-room Faraday-cup measurement decides it.
+
+== 2d. Stage selectivity 0.85/0.45 - where from ==
+Not from data: no published tribo-separation of spodumene from quartz/feldspar was found (2024 IMPC search).
+Benchmarks that ARE published: DMS 0.6% -> 5.7% Li2O at ~90% recovery (Kazakh ore); sensor sorting rejects
+28-32% of mass at 84-94% Li2O recovery (dry, commercial, STEINERT at CBL Brazil).
+  per-stage split valuable 0.85 / gangue 0.45: enrichment per stage 1.89
+  per-stage split valuable 0.8 / gangue 0.5: enrichment per stage 1.60
+  per-stage split valuable 0.75 / gangue 0.55: enrichment per stage 1.36
+
+== 3. Whole chain per kg of Li2O RECOVERED (700 km, 1.2% Li2O ore, mining $15/t ore in all cases) ==
+-- winter road $0.117/t-km
+  A raw ore by winter road, DMS at railhead            $ 108.9/t ore,  10.8 kg Li2O, $10.08/kg Li2O,  0.5x vs D
+  D DMS/flotation on site + conc by winter road        $  53.9/t ore,  10.2 kg Li2O, $ 5.29/kg Li2O,  1.0x vs D
+  E DMS/flotation on site + conc by summer barge       $  43.0/t ore,  10.2 kg Li2O, $ 4.21/kg Li2O,  1.3x vs D
+  D' DMS/flotation on site + conc by under-ice pods    $  41.2/t ore,  10.2 kg Li2O, $ 4.04/kg Li2O,  1.3x vs D
+  B tribo cascade + conc by winter road                $  38.8/t ore,   9.8 kg Li2O, $ 3.94/kg Li2O,  1.3x vs D
+  C tribo cascade + conc by under-ice pods             $  26.5/t ore,   9.8 kg Li2O, $ 2.70/kg Li2O,  2.0x vs D
+-- winter road $0.14/t-km
+  A raw ore by winter road, DMS at railhead            $ 125.0/t ore,  10.8 kg Li2O, $11.57/kg Li2O,  0.5x vs D
+  D DMS/flotation on site + conc by winter road        $  56.7/t ore,  10.2 kg Li2O, $ 5.55/kg Li2O,  1.0x vs D
+  E DMS/flotation on site + conc by summer barge       $  43.0/t ore,  10.2 kg Li2O, $ 4.21/kg Li2O,  1.3x vs D
+  D' DMS/flotation on site + conc by under-ice pods    $  41.2/t ore,  10.2 kg Li2O, $ 4.04/kg Li2O,  1.4x vs D
+  B tribo cascade + conc by winter road                $  41.4/t ore,   9.8 kg Li2O, $ 4.21/kg Li2O,  1.3x vs D
+  C tribo cascade + conc by under-ice pods             $  26.5/t ore,   9.8 kg Li2O, $ 2.70/kg Li2O,  2.1x vs D
+Spodumene SC6 ~ $900/t = ~$15/kg Li2O, so every case is far below the price; the comparison is between cases.
