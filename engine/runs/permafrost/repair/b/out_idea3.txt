@@ -1,0 +1,51 @@
+=== R1: can pond waves winnow / jig the bed? ===
+U=8 F=300 m: Hs=0.07 m T=0.83 s | depth 0.3 m: bottom orbital u=0.088 m/s, pressure pulse  109 Pa
+U=8 F=300 m: Hs=0.07 m T=0.83 s | depth 0.6 m: bottom orbital u=0.017 m/s, pressure pulse   22 Pa
+U=8 F=300 m: Hs=0.07 m T=0.83 s | depth 1.0 m: bottom orbital u=0.002 m/s, pressure pulse    2 Pa
+U=8 F=300 m: Hs=0.07 m T=0.83 s | depth 1.5 m: bottom orbital u=0.000 m/s, pressure pulse    0 Pa
+U=12 F=500 m: Hs=0.14 m T=1.13 s | depth 0.3 m: bottom orbital u=0.267 m/s, pressure pulse  387 Pa
+U=12 F=500 m: Hs=0.14 m T=1.13 s | depth 0.6 m: bottom orbital u=0.109 m/s, pressure pulse  186 Pa
+U=12 F=500 m: Hs=0.14 m T=1.13 s | depth 1.0 m: bottom orbital u=0.033 m/s, pressure pulse   58 Pa
+U=12 F=500 m: Hs=0.14 m T=1.13 s | depth 1.5 m: bottom orbital u=0.007 m/s, pressure pulse   12 Pa
+U=12 F=1000 m: Hs=0.19 m T=1.43 s | depth 0.3 m: bottom orbital u=0.443 m/s, pressure pulse  685 Pa
+U=12 F=1000 m: Hs=0.19 m T=1.43 s | depth 0.6 m: bottom orbital u=0.236 m/s, pressure pulse  460 Pa
+U=12 F=1000 m: Hs=0.19 m T=1.43 s | depth 1.0 m: bottom orbital u=0.113 m/s, pressure pulse  242 Pa
+U=12 F=1000 m: Hs=0.19 m T=1.43 s | depth 1.5 m: bottom orbital u=0.044 m/s, pressure pulse   96 Pa
+min fluidization velocity of 2 mm gravel: 0.018 m/s
+min fluidization velocity of 5 mm gravel: 0.046 m/s
+min fluidization velocity of 20 mm gravel: 0.107 m/s
+wave-pumped seepage ~ K*grad = 6.19e-04 m/s  -> 2-3 orders below fluidization: NO wave jigging
+
+=== R1: fines export over the spillway (sediment budget) ===
+own melt+rain outflow                            C=0.1 kg/m3: export   0.07 kg/m2/yr vs fines 760 kg/m2 ->  10857 years
+own melt+rain outflow                            C=0.5 kg/m3: export   0.35 kg/m2/yr vs fines 760 kg/m2 ->   2171 years
+creek routed through 10 ha pond, 1 m3/s x 100 d  C=0.1 kg/m3: export   8.60 kg/m2/yr vs fines 760 kg/m2 ->     88 years
+creek routed through 10 ha pond, 1 m3/s x 100 d  C=0.5 kg/m3: export  43.00 kg/m2/yr vs fines 760 kg/m2 ->     18 years
+
+=== R1: thaw under the pond (Stefan) ===
+ice frac 0.3: pond 10 C x 100 d -> thaw 1.84 m/summer
+ice frac 0.3: pond 15 C x 100 d -> thaw 2.25 m/summer
+ice frac 0.5: pond 10 C x 100 d -> thaw 1.43 m/summer
+ice frac 0.5: pond 15 C x 100 d -> thaw 1.75 m/summer
+
+=== R2: ice rafting capacity (buoyancy) and ice thickening ===
+FDD 4000: natural ice 1.56 m + flooded 0 m = 1.56 m -> lifts 0.078 m3 stone/m2/yr
+FDD 4000: natural ice 1.56 m + flooded 1.5 m = 3.06 m -> lifts 0.154 m3 stone/m2/yr
+FDD 5500: natural ice 1.83 m + flooded 0 m = 1.83 m -> lifts 0.092 m3 stone/m2/yr
+FDD 5500: natural ice 1.83 m + flooded 1.5 m = 3.33 m -> lifts 0.167 m3 stone/m2/yr
+
+=== R2: value - fraction of washing removed ===
+oversize 20% of 2 m pay = 0.40 m3/m2: 4.0 pond-years; wash volume cut to 80% -> 1.25x cheaper washing
+oversize 20% of 2 m pay = 0.40 m3/m2: 2.2 pond-years; wash volume cut to 80% -> 1.25x cheaper washing
+oversize 35% of 2 m pay = 0.70 m3/m2: 7.0 pond-years; wash volume cut to 65% -> 1.54x cheaper washing
+oversize 35% of 2 m pay = 0.70 m3/m2: 3.9 pond-years; wash volume cut to 65% -> 1.54x cheaper washing
+
+=== R3 niche: boulder-rich ('valunistye') placers left unmined by dredges ===
+boulders 12% per m of pay -> 0.8 yr per m depth; floe winching: 20x20 m floe carries 60 m3 of boulders
+ice-raft cost ~$1.08/m3 boulder (10 ha pond, 2 men + winch tractor 30 d) vs drill/blast/doze ~$6.0/m3 -> 6x for that operation only
+
+=== R4: where would wave sorting work? (fetch needed) ===
+U=12 m/s F=2 km: Hs=0.27 m, bottom u at 1.5 m = 0.14 m/s
+U=12 m/s F=10 km: Hs=0.61 m, bottom u at 1.5 m = 0.61 m/s
+U=12 m/s F=30 km: Hs=1.06 m, bottom u at 1.5 m = 1.22 m/s
+-> sorting at 1-2 m depth needs km-scale fetch = a natural lake/sea shore; that is ordinary beach-placer genesis (not novel, not a pond)

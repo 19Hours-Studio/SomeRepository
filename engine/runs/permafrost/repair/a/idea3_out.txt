@@ -1,0 +1,49 @@
+== Round 1: how much charge can a grain carry, and how far does it drift? ==
+d=100 um: Gauss-limit q/m =    590 uC/kg; at 5% of limit  29.5 uC/kg
+d=200 um: Gauss-limit q/m =    295 uC/kg; at 5% of limit  14.8 uC/kg
+d=400 um: Gauss-limit q/m =    148 uC/kg; at 5% of limit   7.4 uC/kg
+d=800 um: Gauss-limit q/m =     74 uC/kg; at 5% of limit   3.7 uC/kg
+d=150um q/m= 19.7 uC/kg E=2 kV/cm, 1.5 m plates: lateral drift  60.2 cm in 1.50 s
+d=150um q/m= 19.7 uC/kg E=4 kV/cm, 1.5 m plates: lateral drift 120.3 cm in 1.57 s
+d=300um q/m=  9.8 uC/kg E=2 kV/cm, 1.5 m plates: lateral drift  30.1 cm in 0.84 s
+d=300um q/m=  9.8 uC/kg E=4 kV/cm, 1.5 m plates: lateral drift  60.2 cm in 0.85 s
+d=600um q/m=  4.9 uC/kg E=2 kV/cm, 1.5 m plates: lateral drift  15.0 cm in 0.64 s
+d=600um q/m=  4.9 uC/kg E=4 kV/cm, 1.5 m plates: lateral drift  30.1 cm in 0.64 s
+
+== Round 2: does the stage self-excite? charge supply vs leakage ==
+charging current 5.0 uA per m; time to 45 kV with no leak 1350.0 ms
+temperate humid insulators (1e10 ohm): steady V = 50 kV (cap 45 kV) -> self-excites
+dry/clean 1e12: steady V = 5,000 kV (cap 45 kV) -> self-excites
+-40 C frost-free 1e14: steady V = 500,000 kV (cap 45 kV) -> self-excites
+
+== Round 2b: the real leakage path is the GRAIN SURFACE (adsorbed water), controlled by RH at the grain surface ==
+ore surface  -40 C in -40 C air (90% RHi): effective RH at grain =  90.0%
+ore surface  -30 C in -40 C air (90% RHi): effective RH at grain =  30.4%
+ore surface  -20 C in -40 C air (90% RHi): effective RH at grain =  11.2%
+ore surface  -10 C in -40 C air (90% RHi): effective RH at grain =   4.4%
+ore surface   -5 C in -40 C air (90% RHi): effective RH at grain =   2.9%
+temperate plant: 20 C/50% air, feed preheated to 60 C: RH at grain =  5.8%
+temperate plant: 20 C/50% air, feed preheated to 80 C: RH at grain =  2.4%
+temperate plant: 20 C/50% air, feed preheated to 100 C: RH at grain =  1.1%
+temperate plant: 20 C/50% air, feed preheated to 120 C: RH at grain =  0.6%
+dry grinding 5 kWh/t -> grain temperature rise up to 22 K (if not removed)
+dry grinding 10 kWh/t -> grain temperature rise up to 45 K (if not removed)
+dry grinding 15 kWh/t -> grain temperature rise up to 68 K (if not removed)
+
+Repair: enclose the cascade and ventilate it with OUTDOOR -40 C air warmed by grinding-mill heat:
+  outdoor air (90% RHi at -40 C) warmed to -20 C: RH = 11.2%
+  outdoor air (90% RHi at -40 C) warmed to -10 C: RH =  4.4%
+  outdoor air (90% RHi at -40 C) warmed to   0 C: RH =  1.9%
+  outdoor air (90% RHi at -40 C) warmed to  10 C: RH =  0.9%
+  air needed per t ore to carry 10 kWh/t of mill heat with 40 K rise: 692 m3/t
+
+== Round 3: cascade - stages, recovery, height (spodumene pegmatite 1.2 -> 6 % Li2O) ==
+stage split valuable 0.85/gangue 0.45 (enrichment/stage 1.89): 9 stages, grade 6.1% Li2O, recovery 82%, circulating load 7.2x feed, mass pull 16.1%
+stage split valuable 0.80/gangue 0.50 (enrichment/stage 1.60): 25 stages, grade 6.0% Li2O, recovery 75%, circulating load 25.0x feed, mass pull 14.9%
+Sv=0.75 Sg=0.55: target not reached in 30 stages
+Sv=0.7 Sg=0.6: target not reached in 30 stages
+
+== Round 4: cost per t ore vs (a) hauling raw ore (b) Arctic flotation plant ==
+98 t/h, 21.8 m per stage x 9 stages, capex $9.3M -> separation 6.34 $/t ore; grinding 4.0 $/t
+dry cascade + haul concentrate: 27.1 $/t ore | haul raw ore: 105.0 $/t ore -> 3.9x | Arctic flotation + haul: 43.1 -> 1.6x
+recovery penalty ~10 % of value: at 1.2% Li2O ore x 7.5% Li2O-spod. conc ~ $900/t conc (6%) -> ore value ~$115/t; penalty $14/t ore

@@ -1,0 +1,51 @@
+== Round 1: dew point check (ideal gas, no enhancement factor => conservative) ==
+T=  20 C  Psat= 44.59 kPa  max mol% at 9.8 MPa (100% sat)= 0.455  at 70% sat= 0.319
+T=   5 C  Psat= 23.39 kPa  max mol% at 9.8 MPa (100% sat)= 0.239  at 70% sat= 0.167
+T=   0 C  Psat= 18.53 kPa  max mol% at 9.8 MPa (100% sat)= 0.189  at 70% sat= 0.132
+T=  -5 C  Psat= 14.54 kPa  max mol% at 9.8 MPa (100% sat)= 0.148  at 70% sat= 0.104
+T= -10 C  Psat= 11.29 kPa  max mol% at 9.8 MPa (100% sat)= 0.115  at 70% sat= 0.081
+T= -20 C  Psat=  6.59 kPa  max mol% at 9.8 MPa (100% sat)= 0.067  at 70% sat= 0.047
+T= -25 C  Psat=  4.94 kPa  max mol% at 9.8 MPa (100% sat)= 0.050  at 70% sat= 0.035
+
+mol gas/yr = 1.580e+12
+dose 0.100 mol% -> Ni    92.7 kt/yr ; Ni(CO)4 liquid  8.56 kg/s
+dose 0.050 mol% -> Ni    46.4 kt/yr ; Ni(CO)4 liquid  4.28 kg/s
+dose 0.040 mol% -> Ni    37.1 kt/yr ; Ni(CO)4 liquid  3.42 kg/s
+dose 0.030 mol% -> Ni    27.8 kt/yr ; Ni(CO)4 liquid  2.57 kg/s
+dose 0.020 mol% -> Ni    18.5 kt/yr ; Ni(CO)4 liquid  1.71 kg/s
+
+== Round 1b: thermodynamic stability vs CO partial pressure ==
+dH=-160.8 kJ/mol dS=-409.9 J/molK
+T=25 C K=5.71e+06  min p_CO=0.009 bar = 0.009 mol% CO (for 0.04% Ni(CO)4)
+T=50 C K=3.78e+04  min p_CO=0.032 bar = 0.033 mol% CO (for 0.04% Ni(CO)4)
+T=60 C K=6.27e+03  min p_CO=0.050 bar = 0.051 mol% CO (for 0.04% Ni(CO)4)
+T=70 C K=1.16e+03  min p_CO=0.076 bar = 0.078 mol% CO (for 0.04% Ni(CO)4)
+T=80 C K=234  min p_CO=0.114 bar = 0.116 mol% CO (for 0.04% Ni(CO)4)
+T=90 C K=51.9  min p_CO=0.166 bar = 0.169 mol% CO (for 0.04% Ni(CO)4)
+
+== decomposer at the receiving plant: residual Ni(CO)4 at equilibrium ==
+T=150 C residual Ni(CO)4 = 2.369 ppm -> capture 99.41%
+T=180 C residual Ni(CO)4 = 0.115 ppm -> capture 99.97%
+T=200 C residual Ni(CO)4 = 0.019 ppm -> capture 100.00%
+T=220 C residual Ni(CO)4 = 0.004 ppm -> capture 100.00%
+gas 820 kg/s; recuperated duty 395 MW; net fired 43 MW = 44 Mm3/yr = 0.12% of throughput
+recuperator area ~49,322 m2 (U=400 W/m2K ASSUME)
+
+== Round 2: hazard - toxic-equivalent H2S content (IDLH ratio [G]) ==
+Ni(CO)4 1000 ppm ~ H2S-equivalent 2.5 mol% H2S (IDLH ratio 25)
+Ni(CO)4 400 ppm ~ H2S-equivalent 1.0 mol% H2S (IDLH ratio 25)
+Ni(CO)4 200 ppm ~ H2S-equivalent 0.5 mol% H2S (IDLH ratio 25)
+
+== Round 3: cost per t Ni, carbonyl route vs selling concentrate ==
+conventional: payability 0.70: value lost 4,950 + freight 1,067 = 6,017 $/t Ni
+conventional: payability 0.76: value lost 3,960 + freight 1,067 = 5,027 $/t Ni
+CO per Ni = 7.75 mol; CH4 2.12 t/t Ni = 3,171 m3 -> $317; O2 2.11 t, ASU 634 kWh
+H2 co-produced 15.5 mol/mol Ni vs ~2-3 needed for NiO + partial FeO reduction -> surplus burned for roaster/kiln heat
+carbonyl capex 8000 $/annual t: total 3,367 $/t Ni  parts capital=1,280, opex=900, so2=400, receiver=439, gas_o2=349
+carbonyl capex 12000 $/annual t: total 4,007 $/t Ni  parts capital=1,920, opex=900, so2=400, receiver=439, gas_o2=349
+carbonyl capex 18000 $/annual t: total 4,967 $/t Ni  parts capital=2,880, opex=900, so2=400, receiver=439, gas_o2=349
+
+== Round 4: regime where the anchor is strongest - awaruite / pre-reduced feed (no roast, no SO2) ==
+awaruite-type feed capex 6000: 2,347 $/t Ni vs conventional 5,522 -> ratio 2.35x
+awaruite-type feed capex 9000: 2,827 $/t Ni vs conventional 5,522 -> ratio 1.95x
+pipeline share charged at tariff for 300 km: 1,947 m3 -> $7.01 per t Ni vs truck+rail concentrate $1,067 per t Ni

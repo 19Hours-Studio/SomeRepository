@@ -1,0 +1,38 @@
+== Round 1: how much can a sky-facing film radiate at -50 C? ==
+T=  20 C: blackbody  418.7 W/m2, 8-13 um band 132.7 W/m2 (31.7%)
+T= -30 C: blackbody  198.2 W/m2, 8-13 um band  49.8 W/m2 (25.1%)
+T= -40 C: blackbody  167.5 W/m2, 8-13 um band  39.1 W/m2 (23.3%)
+T= -50 C: blackbody  140.6 W/m2, 8-13 um band  30.0 W/m2 (21.3%)
+T= -55 C: blackbody  128.4 W/m2, 8-13 um band  26.1 W/m2 (20.3%)
+
+== Round 1b: net cooling at film -52 C (just below eutectic) vs air temperature ==
+air -35: h_conv=2.0: net latent removal at -52 C =  -14.6 W/m2
+air -35: h_conv=4.0: net latent removal at -52 C =  -48.6 W/m2
+air -40: h_conv=2.0: net latent removal at -52 C =   -3.8 W/m2
+air -40: h_conv=4.0: net latent removal at -52 C =  -27.8 W/m2
+air -45: h_conv=2.0: net latent removal at -52 C =    7.0 W/m2
+air -45: h_conv=4.0: net latent removal at -52 C =   -7.0 W/m2
+air -50: h_conv=2.0: net latent removal at -52 C =   17.7 W/m2
+air -50: h_conv=4.0: net latent removal at -52 C =   13.7 W/m2
+air -55: h_conv=2.0: net latent removal at -52 C =   28.3 W/m2
+air -55: h_conv=4.0: net latent removal at -52 C =   34.3 W/m2
+zero-load stagnation at air -40 C: film -47.8 C (depression 7.8 K)
+
+== Round 2: freeze load and season capacity at Udachny ==
+hours/yr with net freezing possible at -52 C: 273; seasonal latent removal 12.6 MJ/m2
+load 231 kJ/kg brine -> 55 kg brine frozen per m2 per winter
+brine per t LCE: 634 t; tray area per (t LCE/yr): 11,617 m2
+tray cost 25.0 $/m2, annualised 4.75 $/m2/yr -> 55,180 $/t LCE vs whole DLE route $3,400-6,200/t LCE [E]
+
+== Round 3: repair A - let the wind do the work on the few coldest nights, film only as add-on ==
+(already included above for air < -52 C; result is dominated by hours below -52 C)
+
+== Round 3b: repair B - choose brine closer to the eutectic so the sub-ambient part is smaller? ==
+No: whatever the starting CaCl2, the large Li concentration happens only when ~90+% of the mass solidifies AT the eutectic;
+  CaCl2 20%: free ambient (-40 C) concentration factor for Li = 1.40x
+  CaCl2 30%: free ambient (-40 C) concentration factor for Li = 1.00x
+  CaCl2 38%: free ambient (-40 C) concentration factor for Li = 1.55x
+
+== Round 4: niche - same trays on Ca-free DLE eluate (LiCl only, eutectic -75 C): ambient air suffices ==
+eluate 1.0 g/L -> CF 30x at -40 C; ice to freeze 182 t per t LCE (vs 634 t brine to solidify in the CaCl2 route)
+open-air freezing capacity 583 MJ/m2/winter -> 104 m2 per (t LCE/yr) -> 494 $/t LCE

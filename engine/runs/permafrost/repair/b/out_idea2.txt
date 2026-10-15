@@ -1,0 +1,60 @@
+=== R1: melt heat vs washing water ratio ===
+ice frac 0.25:    86 MJ/m3 | Tw= 5C eff=0.4: water/gravel = 10.3 m3/m3
+ice frac 0.25:    86 MJ/m3 | Tw= 5C eff=0.7: water/gravel =  5.9 m3/m3
+ice frac 0.25:    86 MJ/m3 | Tw= 8C eff=0.4: water/gravel =  6.4 m3/m3
+ice frac 0.25:    86 MJ/m3 | Tw= 8C eff=0.7: water/gravel =  3.7 m3/m3
+ice frac 0.25:    86 MJ/m3 | Tw=12C eff=0.4: water/gravel =  4.3 m3/m3
+ice frac 0.25:    86 MJ/m3 | Tw=12C eff=0.7: water/gravel =  2.4 m3/m3
+ice frac 0.30:   101 MJ/m3 | Tw= 5C eff=0.4: water/gravel = 12.1 m3/m3
+ice frac 0.30:   101 MJ/m3 | Tw= 5C eff=0.7: water/gravel =  6.9 m3/m3
+ice frac 0.30:   101 MJ/m3 | Tw= 8C eff=0.4: water/gravel =  7.6 m3/m3
+ice frac 0.30:   101 MJ/m3 | Tw= 8C eff=0.7: water/gravel =  4.3 m3/m3
+ice frac 0.30:   101 MJ/m3 | Tw=12C eff=0.4: water/gravel =  5.0 m3/m3
+ice frac 0.30:   101 MJ/m3 | Tw=12C eff=0.7: water/gravel =  2.9 m3/m3
+ice frac 0.40:   132 MJ/m3 | Tw= 5C eff=0.4: water/gravel = 15.8 m3/m3
+ice frac 0.40:   132 MJ/m3 | Tw= 5C eff=0.7: water/gravel =  9.0 m3/m3
+ice frac 0.40:   132 MJ/m3 | Tw= 8C eff=0.4: water/gravel =  9.8 m3/m3
+ice frac 0.40:   132 MJ/m3 | Tw= 8C eff=0.7: water/gravel =  5.6 m3/m3
+ice frac 0.40:   132 MJ/m3 | Tw=12C eff=0.4: water/gravel =  6.6 m3/m3
+ice frac 0.40:   132 MJ/m3 | Tw=12C eff=0.7: water/gravel =  3.8 m3/m3
+-> sluicing needs ~2-15 m3 water per m3 (2.2 in zolotodb example); melt-set ratio falls inside the range: self-dosing works thermally
+
+=== R1: face area needed (heat-transfer rate) ===
+St=0.0015 U=0.5 Tw=5: h=  3142 W/m2K q= 15.7 kW/m2 retreat= 0.56 m/h -> face for 70 m3/h:    125 m2
+St=0.0015 U=0.5 Tw=10: h=  3142 W/m2K q= 31.4 kW/m2 retreat= 1.12 m/h -> face for 70 m3/h:     63 m2
+St=0.0015 U=1.5 Tw=5: h=  9428 W/m2K q= 47.1 kW/m2 retreat= 1.67 m/h -> face for 70 m3/h:     42 m2
+St=0.0015 U=1.5 Tw=10: h=  9428 W/m2K q= 94.3 kW/m2 retreat= 3.35 m/h -> face for 70 m3/h:     21 m2
+St=0.005 U=0.5 Tw=5: h= 10475 W/m2K q= 52.4 kW/m2 retreat= 1.86 m/h -> face for 70 m3/h:     38 m2
+St=0.005 U=0.5 Tw=10: h= 10475 W/m2K q=104.8 kW/m2 retreat= 3.72 m/h -> face for 70 m3/h:     19 m2
+St=0.005 U=1.5 Tw=5: h= 31425 W/m2K q=157.1 kW/m2 retreat= 5.58 m/h -> face for 70 m3/h:     13 m2
+St=0.005 U=1.5 Tw=10: h= 31425 W/m2K q=314.2 kW/m2 retreat=11.16 m/h -> face for 70 m3/h:      6 m2
+
+=== R2: season water & heat budget, unattended feed ===
+60000 m3 over 90 d = 27.8 m3/h; water ratio 6.0 -> 47 L/s steady creek/basin outflow
+if ALL water from stored snowmelt: catchment 4.3 km2, basin 0.36 Mm3 (dam-break hazard) 
+creek baseflow at 5 L/s/km2 needs catchment 9 km2 (forebay only buffers a few days)
+creek baseflow at 10 L/s/km2 needs catchment 5 km2 (forebay only buffers a few days)
+melt power 782 kW; if creek water too cold, sun-warming forebay area at 100 W/m2 net: 0.8 ha
+
+=== R3: keep a sacrificial ore buttress on a permanent frozen core: thaw depth under peat (Stefan) ===
+upstream face under 8C water, 100 d: thaw into saturated peat = 0.52 m ; crest in air (mean 12C, peat k 0.5) = 0.63 m
+upstream face under 12C water, 100 d: thaw into saturated peat = 0.63 m ; crest in air (mean 12C, peat k 0.5) = 0.63 m
+-> 0.8-1.0 m saturated peat (or peat + 0.3 m ice-rich silt) keeps the core frozen all summer
+
+=== R2/R3: buttress geometry & feed self-regulation ===
+buttress for 60000 m3 at H=6.0 m, L=60.0 m: 167 m thick (retreats 1.85 m/day)
+  heat-transfer-limited capacity St=0.0015,U=0.5: 560 m3/h on 628 m2 face vs needed 28 m3/h -> heat supply (flow x T) controls, as anchor claims
+  heat-transfer-limited capacity St=0.005,U=1.0: 3735 m3/h on 628 m2 face vs needed 28 m3/h -> heat supply (flow x T) controls, as anchor claims
+
+=== COST per m3 of pay, washing stage (feed+water+wash+tailings), roadless placer ===
+current: fuel $2.16 + labour $1.44 + equipment $1.50 = $5.10/m3 (fuel share 42%)
+ore-ice dam: fuel $1.08 + labour $0.60 + equipment $0.60 = $2.28/m3
+RATIO = 2.2x on the washing stage (stripping unchanged)
+
+=== R4: strongest regime = winter (underground/winter-mined) placer whose hoist already builds a frozen stockpile ===
+current (thaw/rip frozen stockpile, feed, pump): $6.66/m3 ; ore-ice dam: $1.32/m3 ; RATIO 5.0x
+geometry H=10.0 m, L=80.0 m: buttress 75 m thick, retreat 0.83 m/day (chute head advanced weekly)
+
+=== HAZARD: dam-break peak outflow (Froehlich 1995: Qp=0.607 V^0.295 H^1.24) ===
+full-season snowmelt reservoir (original)         : V=0.36 Mm3 H=10 m -> Qp=460 m3/s
+forebay only, creek baseflow routed through (repaired): V=0.04 Mm3 H=6 m -> Qp=128 m3/s

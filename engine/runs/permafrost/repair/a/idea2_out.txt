@@ -1,0 +1,39 @@
+== Round 1: electricity per kg of ice ==
+air -25 C: eta= 1.4%  ->  4.8 kJ_e per kg ice
+air -30 C: eta= 2.5%  ->  8.3 kJ_e per kg ice
+air -35 C: eta= 3.5%  -> 11.7 kJ_e per kg ice
+air -40 C: eta= 4.5%  -> 15.1 kJ_e per kg ice
+air -45 C: eta= 5.6%  -> 18.6 kJ_e per kg ice
+cross-check: Smith thesis 9-11% net at interior Antarctic sites (colder air); Lock 1989 ~5% at -25 C
+
+== Round 1b: ice per kg Cu and energy self-sufficiency (R=80 %, Cu_sat=45 g/L ASSUME in mixed sulfate) ==
+PLS    1 g/L Cu: phi=0.0044 ice=  1244 kg/kg Cu  engine/EW=2.02  final Fe=   450 g/L acid=   900 g/L
+PLS    2 g/L Cu: phi=0.0089 ice=   619 kg/kg Cu  engine/EW=1.01  final Fe=   225 g/L acid=   450 g/L
+PLS  2.5 g/L Cu: phi=0.0111 ice=   494 kg/kg Cu  engine/EW=0.80  final Fe=   180 g/L acid=   360 g/L
+PLS    3 g/L Cu: phi=0.0133 ice=   411 kg/kg Cu  engine/EW=0.67  final Fe=   150 g/L acid=   300 g/L
+PLS    5 g/L Cu: phi=0.0222 ice=   244 kg/kg Cu  engine/EW=0.40  final Fe=    90 g/L acid=   180 g/L
+PLS   10 g/L Cu: phi=0.0444 ice=   119 kg/kg Cu  engine/EW=0.19  final Fe=    45 g/L acid=    90 g/L
+
+== Round 2: iron/acid ceiling. Fe3+ sulfate hydrates and acid limit the concentration factor ==
+A PLS with Fe0=2 g/L, acid 4 g/L: at 2.5 g/L Cu final Fe = 2/phi ... too high -> Fe co-crystallises.
+Repair: (a) oxide-ore heap (malachite/brochantite) PLS with Cu/Fe >= 2, (b) acid-limited: run heap at low acid,
+(c) stop freezing at Fe ceiling and bleed brine back to heap; recover only Cu above saturation in the bleed-limited liquor.
+Fe0=0.5 acid0=2.0 c0=2.5: max CF=  180, Cu recovery per freeze season=  90%
+Fe0=0.5 acid0=2.0 c0=4.0: max CF=  180, Cu recovery per freeze season=  94%
+Fe0=1.0 acid0=3.0 c0=2.5: max CF=   90, Cu recovery per freeze season=  80%
+Fe0=1.0 acid0=3.0 c0=4.0: max CF=   90, Cu recovery per freeze season=  88%
+Fe0=2.0 acid0=4.0 c0=2.5: max CF=   45, Cu recovery per freeze season=  60%
+Fe0=2.0 acid0=4.0 c0=4.0: max CF=   45, Cu recovery per freeze season=  75%
+
+== Round 3: hardware & cost per t Cu (10 kt/yr cathode, PLS 2.5 g/L, Fe 0.5, acid 2) ==
+ice 4.94 Mt/yr; heat rejection 127 MWth; turbine 4.5 MWe; EW needs 5.6 MWe if EW runs only in winter
+Stefan ice on panel at dT=6.0 K over season: 1.06 m per face -> 1938 kg/m2; panel area 2.55 km2
+A crystallizer: capex $63M -> 1,092 $/t Cu (annualised + O&M + labour)
+B ice-on-panel pond: capex $176M -> 2,795 $/t Cu (annualised + O&M + labour)
+baseline SX (750) + diesel EW power (667) = 1,417 $/t Cu
+freeze route replaces both; ratio baseline/freeze: A 1.30x  B 0.51x
+
+== Round 4: strongest regime = colder air and the pond as crystallizer, panels re-used as summer heap-solution heaters ==
+air -30: 8.3 kJ/kg ice -> engine/EW at 2.5 g/L = 0.57
+air -40: 15.1 kJ/kg ice -> engine/EW at 2.5 g/L = 1.04
+air -45: 18.6 kJ/kg ice -> engine/EW at 2.5 g/L = 1.27
