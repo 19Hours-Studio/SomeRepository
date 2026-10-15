@@ -214,5 +214,23 @@
   "name": "Under-ice river drift pods",
   "mech": "In winter, slightly buoyant torpedo-shaped pods of concentrate are pushed through a slot cut in the ice of a big Siberian river's main channel. They ride the current along the smooth underside of the ice, out of reach of wind and waves, to a downstream recovery station with a boom and slot at a port. Weekly current profiles taken through the ice show where the flow stays fast. Where it slows, or where slush ice builds a dam below the ice, a relay slot is cut, the pods are lifted past the blockage and released again, and the spacing between releases is adjusted to the measured speed.",
   "value": "Ore reaches Arctic ports during the frozen months and is already on the quay, instead of competing for the short summer window on the river."
+ },
+ {
+  "id": "g2_evo2#1",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Thaw-Front Self-Panning Placers",
+  "mech": "The overburden is stripped from an ice-rich placer, and a shallow pond of meltwater is kept on top so it absorbs round-the-clock summer sun. Each summer the top layer thaws, and its excess ground ice turns it into a weak, saturated slurry. Gold and other heavy minerals sink through the slurry and settle on the still-frozen floor. Year by year the advancing thaw front carries this heavy layer down to bedrock. Ground-temperature probes track how deep the front has gone, and the pond depth is adjusted to speed it up or slow it down. Then only the thin enriched bottom layer is dug and washed.",
+  "value": "Sunlight and gravity do most of the excavation and concentration, so a placer is mined by moving a few percent of the gravel that conventional digging moves."
+ },
+ {
+  "id": "g2_evo2#2",
+  "label": "g2_evo2",
+  "arm": "engine",
+  "gen": 2,
+  "name": "Drag-Diving Under-Ice Ore Spheres",
+  "mech": "In winter, concentrate is packed into rigid spheres about 1 m across with closed-cell foam shells, which have no gas, valves or electronics. They are pushed through one slot cut in the ice of a large Siberian river's main channel. Each sphere's buoyancy is trimmed to roughly 0.5% above that of the water, so the drag of the current is larger than its lift. The sphere rolls along the smooth underside of the ice, and when it meets a hanging slush dam or an ice ridge, the current pushes it down and around. A boom under a slot at a downstream port collects the spheres, which are sent back upriver empty in summer.",
+  "value": "Ore moves hundreds of kilometres to the quay all winter with no fuel, vehicle or tending, at a time when nothing else moves on these rivers."
  }
 ]
