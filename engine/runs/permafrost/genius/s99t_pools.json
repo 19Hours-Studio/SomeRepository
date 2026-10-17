@@ -1,0 +1,40 @@
+{
+ "kids": [
+  "gx_res1_b#1",
+  "gx_res1_b#2",
+  "gx_res1_b#3",
+  "gx_res1_b#4",
+  "gx_res1_b#5",
+  "gx_res1_b#6",
+  "gx_res1_b#7",
+  "gx_res1_b#8",
+  "gx_res1_b#9",
+  "gx_res1_b#10",
+  "gx_res1_b#11",
+  "gx_res1_b#12"
+ ],
+ "parents": [
+  "gx_ledg_1#1",
+  "gx_fl_1#3",
+  "gx_fl_2#3",
+  "gx_ledg_2#5"
+ ],
+ "anchors_new": [
+  "gx_front_1#2",
+  "gx_ledg_2#2",
+  "gx_ledg_1#5",
+  "gx_front_1#3",
+  "gx_front_2#5",
+  "gx_front_1#1",
+  "gx_ledg_1#3",
+  "gx_fl_1#4"
+ ],
+ "anchors_ec": [
+  "EC:EB:g1_core2#2",
+  "EC:EB:g1_genius#3",
+  "EC:EB:g1_mech#1",
+  "EC:EB:g1_genius#2",
+  "EC:EB:g2_imm#2",
+  "EC:EB:g2_evo1#2"
+ ]
+}
