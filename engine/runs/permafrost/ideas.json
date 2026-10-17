@@ -1212,5 +1212,50 @@
   "name": "Self-Levelling Pressure-Cell Foundations",
   "mech": "Modular plants and camps rest on mats of Vectran-strap pressure cells (CAP 21), flown in folded, that spread load over untouched tundra so ground pressure stays below what the active layer bears. Tilt sensors drive a small compressor that inflates or bleeds individual cells as ice-rich ground settles or heaves, keeping structures level for decades.",
   "value": "Facilities go onto raw permafrost in days, skipping pile rigs, freeze-back waits and gravel pads."
+ },
+ {
+  "id": "gx_fl_2#1",
+  "label": "gx_fl_2",
+  "arm": "GFL",
+  "gen": 1,
+  "name": "Thaw-scored slab toppling",
+  "mech": "Hot-water jet holes thaw thin slots that score frozen overburden, base included, into slabs ~10 m tall and 3 m thick. Woven Vectran cushions from inflatable space habitats (CAP 21), slid into the back slot and inflated below 1 bar, tip each ~450 t slab into the previous mined-out strip, letting gravity move it. A site model stores hole spacing against measured ice content and retunes it after every topple.",
+  "value": "Strips frozen overburden using about a tenth of today's dozer-hours and diesel per gram."
+ },
+ {
+  "id": "gx_fl_2#2",
+  "label": "gx_fl_2",
+  "arm": "GFL",
+  "gen": 1,
+  "name": "Black-sand-steered bedrock moles",
+  "mech": "Battery robots cut drifts along bedrock under intact frozen overburden left as roof, removing only the 1-1.5 m gold layer. Quantum magnetometers built for GPS-free navigation (CAP 4) serve as ore-ahead sensors: magnetite black sand travels with gold, so robots steer up the magnetic gradient and store a 3D pay map. Sodium-ion packs working at −40 °C (CAP 9) emit no exhaust heat, so winter air ventilates the drifts without thawing the roof.",
+  "value": "Ends stripping, cutting volume moved and diesel per gram of placer gold about tenfold."
+ },
+ {
+  "id": "gx_fl_2#3",
+  "label": "gx_fl_2",
+  "arm": "GFL",
+  "gen": 1,
+  "name": "Coal micro-pits beside settlements",
+  "mech": "A sled-towed cold-atom gravity gradiometer built to find tunnels (CAP 5) maps shallow coal lenses, half as dense as host rock, near Lena-basin settlements. An autonomous excavator, its dry-stone vision and grasping (CAP 20) retrained to sort frozen coal from rock, mines a few thousand tonnes unattended each winter. Lens rankings and measured ash are stored and updated, so the robot backfills and moves on.",
+  "value": "A short winter haul replaces hundreds of kilometres of barge and winter road, cutting settlement coal logistics about tenfold."
+ },
+ {
+  "id": "gx_fl_2#4",
+  "label": "gx_fl_2",
+  "arm": "GFL",
+  "gen": 1,
+  "name": "Flash-distilled lithium at the pit",
+  "mech": "Crushed pegmatite plus a chloride donor gets a one-second flash Joule pulse (CAP 15), repurposed as a still that boils lithium off as LiCl. Staged condensers catch alkali chlorides hot and Fe/Al chlorides cold; soda ash precipitates Li2CO3 and freed NaCl is recycled. Thermophotovoltaic cells lining the chamber (CAP 7) recapture up to a third of pulse energy; pulse length is retuned from each batch's logged Li:Na condensate ratio.",
+  "value": "Containerised flash lines replace concentrator, kiln and acid-leach plant, cutting process capital per tonne LCE about tenfold."
+ },
+ {
+  "id": "gx_fl_2#5",
+  "label": "gx_fl_2",
+  "arm": "GFL",
+  "gen": 1,
+  "name": "Woven lay-flat crude line",
+  "mech": "A 100 mm lay-flat hose jacketed in the Vectran strapping of inflatable space habitats (CAP 21) is unreeled by a tracked vehicle along the existing winter road, with no trench or piles. Crude-fired pump skids every ~15 km move the field's ~27 m³/h, dosing pour-point depressant and setting speed from line temperature and pressure. Skid-to-skid mass balance locates leaks; the hose is rewound and reused when the field declines.",
+  "value": "Turns ~$10/bbl trucking into about $1/bbl, so 300 km tie-ins of small East-Siberian fields to ESPO pay."
  }
 ]
