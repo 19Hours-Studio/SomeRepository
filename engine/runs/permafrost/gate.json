@@ -390,5 +390,61 @@
   "margin": 0.00012,
   "ratio": 0.68,
   "verdict": "DEAD"
+ },
+ "erp2_a#1": {
+  "killer": "CO needed to keep 0.027 mol% Ni(CO)4 stable at the 45 °C compressor-discharge cap, 9.8 MPa",
+  "why": "The chemistry works with 1.5x headroom, but the pipeline adds about $930/t Ni to save $27/t of rail freight, so the whole chain costs about 9 % more than refining and railing or selling concentrate.",
+  "ratio": 0.92,
+  "margin": 1.52,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_2#1": {
+  "killer": "push force to slide an 8,000-t block over its thawed paystreak vs shear reaction of the next frozen block's base",
+  "why": "The block can be pushed with about 1.5x reaction headroom and the kerfs cost only 0.13 l/m³, but drilling and jacking make overburden about 2.9x cheaper rather than 10x, so delivered cost falls about 28 %, short of the 1.5x bar.",
+  "margin": 1.46,
+  "ratio": 1.39,
+  "verdict": "WOUNDED"
+ },
+ "EC:EB:g2_imm#1": {
+  "killer": "nickel supply from a deposit on the Power of Siberia route to fill 0.1 mol% Ni(CO)4 in 38 bcm/yr (92.7 kt Ni/yr)",
+  "why": "No deposit on the route can feed 100 kt/yr (the largest supplies a third of that), and the pipeline swaps about $70/t of freight for about $610/t of CO and decomposition, so the chain gets dearer.",
+  "margin": 0.33,
+  "ratio": 0.95,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_loop#3": {
+  "killer": "river drag on a pod pressed against the ice underside vs ice-on-ice friction from its own buoyancy",
+  "why": "Buoyant pods need about 3x more force than a 0.29 m/s winter current supplies to slide along the ice, pods frozen at −40 °C carry about 63 MJ of cold that freezes about 190 kg of water onto them on contact, and hauling whole ore barely beats concentrating on site (1.10x even at 5 % Cu).",
+  "margin": 0.36,
+  "ratio": 1.07,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g2_imm#2": {
+  "killer": "heap-leach rate at −30 °C as a fraction of the +15 °C summer rate",
+  "why": "At −30 °C the leach runs at about a sixth of summer speed, so year-round leaching raises annual heap output only about 1.24x, and the salt lost with spent ore costs more than the carbon, elution and gold-room steps that the crude ride removes.",
+  "margin": 0.17,
+  "ratio": 0.93,
+  "verdict": "DEAD"
+ },
+ "g1_core#2": {
+  "killer": "thaw depth after 3 seasons in a 1-D enthalpy model (Susuman: mean annual air −11.5 °C, July +15 °C; black film n_t 2.0, top of the asphalt range 1.4–2.3; deep snow n_f 0.25; 30 % ice; natural active layer 1.55 m, permafrost −5.8 °C)",
+  "why": "The film and fences add only about 1 m to the first summer's thaw and then advance about 0.1 m a year, so most of the cut stays frozen and delivered cost falls by about 4 %.",
+  "margin": 0.32,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_genius#1": {
+  "killer": "share of pods placed on young ice off the Laptev fast ice that reach Fram Strait in the Transpolar Drift",
+  "why": "Most pods would be released on the shelf when their ice melts rather than ride to Fram Strait, and single-use tagged pods carrying run-of-mine ore cost several times the value of the copper they deliver.",
+  "margin": 0.22,
+  "ratio": 0.14,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_mech#1": {
+  "killer": "share of fixed-bladder 1-t packages whose net lift falls in the 0–34 kg window where they both float and are dragged along the ice (drag 50 N at 0.29 m/s vs μ 0.15)",
+  "why": "Even with shells warmed to 0 °C, about a third of fixed-bladder packages either sink or stick under the ice, and moving 23 t of ordinary ore per ounce costs more than the plant and power it saves.",
+  "margin": 0.69,
+  "ratio": 0.96,
+  "verdict": "DEAD"
  }
 }
