@@ -1,0 +1,70 @@
+==============================================================================
+IDEA 1  One-pass snow-berm ice lane
+  slide threshold 0.121 m/s + drift 0.048 m/s; near-ice factor 0.69
+  required depth-mean 0.245 m/s ; available 0.15 (main ch.) best 0.25 [S1]
+  MARGIN typical 0.61  best 1.02  (mu=0.1 -> 0.47)
+  barge 23.8 $/t ore (74 $/oz); pod cost central 22.9 $/t
+  CHAIN now 2550 $/oz, with idea 2547 $/oz -> RATIO 1.001 (range 0.96-1.11)
+  VERDICT DEAD
+==============================================================================
+IDEA 2  Cold-sealed rolling snow-log pods
+  log L=6 m keel 5 cm -> F 2731 N, u_req 0.75 m/s
+  log L=6 m keel 20 cm -> F 6489 N, u_req 1.16 m/s
+  log L=9 m keel 5 cm -> F 2731 N, u_req 0.62 m/s
+  log L=9 m keel 20 cm -> F 6489 N, u_req 0.95 m/s
+  required >= 0.62 m/s ; available 0.15 typical, 0.25 best [S1]; Kolyma winter Q only 61-127 m3/s [S3]
+  MARGIN typical 0.24  best 0.40
+  CHAIN now 274 $/t, with idea 185 $/t -> RATIO 1.48 (if last mile also replaced 5.7)
+  VERDICT DEAD
+==============================================================================
+IDEA 3  Under-ice river drift pods (torpedo, slightly buoyant)
+  V 0.34 m3, slide threshold 0.293 m/s (smooth ice granted, no keels), drift 0.096 m/s, factor 0.56
+  required depth-mean 0.70 m/s ; MARGIN typical 0.22 best 0.36
+  barge 47.6 $/t conc vs pods 34.8 $/t; CHAIN now 8500 with idea 8440 $/t Cu -> RATIO 1.007 (max if pods free 1.055)
+  VERDICT DEAD
+==============================================================================
+IDEA 4  Midnight-sun salt-gradient power pond (Yakutsk 62.0 N)
+  NCZ 1.18 m: absorbed 755 MJ/m2/yr vs losses at 70 C 1214 (top 1056 + ground 158) -> MARGIN 0.62
+  best NCZ thickness 4.4 m gives margin 1.19 with ZERO heat extraction
+  max electric yield as written (60-80 C) 5.8 kWh_e/m2/yr at NCZ 5.0 m, LCZ 60 C
+  (unconstrained bound 12.9 kWh_e/m2/yr at LCZ 10 C, NCZ 0.7 m)
+  pond electricity 1.21 $/kWh vs diesel 0.49 -> CHAIN RATIO 0.87 (unconstrained bound 0.54 $/kWh -> 0.99; free power cap 1.11)
+  VERDICT DEAD
+==============================================================================
+IDEA 5  Superconducting rotating-field grinding pipe
+  feed size: available 1.0 mm vs required 16.0 mm (crushed) / 152.4 mm (SAG duty)
+  needle KE 3.08 mJ vs ~5.2 J to break a 16 mm particle -> energy ratio 5.9e-04
+  MARGIN 0.062 (size, lenient crushed-feed case); 0.0066 for SAG duty
+  grinding = 0.158 of capex; 10x lighter -> CHAIN RATIO 1.062 (upper bound, grinding free & plant 81 %: 1.132)
+  VERDICT DEAD
+==============================================================================
+IDEA 6  Self-feeding ore-ice dam
+  thaw energy 101.0 (check 101) MJ/m3; water ratio at 10.0 C = 2.41 m3/m3 vs sluice need 5.6
+  MARGIN 0.43 (at 7 C: 0.61; at 15 C: 0.29)
+  washing link 6.80 $/g of 82.1 $/g (8.3 %) -> CHAIN RATIO 1.049 (if washing free 1.090)
+  VERDICT DEAD
+==============================================================================
+IDEA 7  Self-feeding ore-ice buttress dam
+  check: 52.5/(4.19*7)=1.79, /(4.19*5)=2.51 m3/m3 (idea says 2.2-3.2)
+  design ratio 2.7 m3/m3 vs sluice need 5.6 (US 3.2-9.9; RU 10-20) -> MARGIN 0.48
+  (face thaw 70 m/day vs 0.8 needed -> 88x headroom, not the killer)
+  CHAIN now 82.1 $/g with idea 78.3 $/g -> RATIO 1.049
+  VERDICT DEAD
+==============================================================================
+IDEA 8  Gun-launched gliding freight shuttle
+  analog 12in/50 Mk8: 517.0 kg at 762.0 m/s, KE 150 MJ; idea 0.5 t at 0.7 km/s KE 122 MJ
+  shots/yr 2.80e+06 vs barrel life 344 -> MARGIN 1.2e-04 (small 50 kt/yr mine: 3.4e-03); a barrel every 1.08 h
+  propellant floor 4.20 $/kg -> 1013 $/t payload; CHAIN with idea 12545 $/t Cu -> RATIO 0.68
+  (generous diesel-fired, zero barrel/casing wear: 23.7 kg diesel/shot, 90 $/t -> RATIO 1.02)
+  VERDICT DEAD
+==============================================================================
+SUMMARY (per-unit chain costs)
+  cos(refraction) May-Sep: 5:0.79, 6:0.81, 7:0.80, 8:0.77, 9:0.73
+  IDEA 1: MARGIN 0.612  RATIO 1.001  chain 2550 -> 2547 $/oz  -> DEAD
+  IDEA 2: MARGIN 0.242  RATIO 1.477  chain 274 -> 185 $/t coal  -> DEAD
+  IDEA 3: MARGIN 0.215  RATIO 1.007  chain 8500 -> 8440 $/t Cu  -> DEAD
+  IDEA 4: MARGIN 0.622  RATIO 0.872  chain 2550 -> 2925 $/oz  -> DEAD
+  IDEA 5: MARGIN 0.0625  RATIO 1.062  chain 8500 -> 8006 $/t Cu  -> DEAD
+  IDEA 6: MARGIN 0.428  RATIO 1.049  chain 82.1 -> 78.3 $/g (2550 -> 2430 $/oz)  -> DEAD
+  IDEA 7: MARGIN 0.48  RATIO 1.049  chain 82.1 -> 78.3 $/g (2550 -> 2430 $/oz)  -> DEAD
+  IDEA 8: MARGIN 0.000123  RATIO 0.678  chain 8500 -> 12545 $/t Cu  -> DEAD

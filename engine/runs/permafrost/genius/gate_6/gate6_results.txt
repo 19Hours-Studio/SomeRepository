@@ -1,0 +1,49 @@
+========================================================================
+IDEA 1  repaired carbonyl Ni in Power of Siberia (25 kt/yr)
+Ni carried 25.0 kt/yr; dHvap=29.5 kJ/mol; sat. ratio at -10C = 0.25
+K(45C)=1.02e+05 bar^-3; CO required 0.0230 mol% vs supplied 0.035 mol% -> MARGIN 1.52
+0.035% CO is enough up to 54 C (cap is 45 C)
+CO lost per t Ni = 2.53 t (idea: 2.53 t, ~$514/t Ni -> $203/t CO)
+now: sell concentrate 10,795; refinery+rail 10,467; with idea 11,400 $/t Ni -> RATIO 0.92
+rail check 580 km x 3.9 rub/t-km = $27/t
+========================================================================
+IDEA 3  original carbonyl Ni in gas line (0.1 mol%, ~100 kt/yr)
+Ni carried 92.7 kt/yr; ideal sat. ratio at -10C 0.93, at -15C 1.20
+  CO to stabilise at 50 C: 0.040 mol%
+  CO to stabilise at 80 C: 0.144 mol%
+largest Ni deposit near PoS/BAM corridor (Kun-Manie, 338 km road to BAM) 33.0 kt/yr vs 100 kt/yr needed -> MARGIN 0.33
+CO 2.62 t/t Ni = $533; bed heat $27; pipeline leg $610 vs freight saved $70 -> now 10,510, with 11,050, RATIO 0.95
+========================================================================
+IDEA 2  jacked frozen-block stripping
+block h=10.5 m; push needed 55 MN (mu=0.70); reaction of next frozen block 80 MN -> MARGIN 1.46
+  if kerfs refreeze: need 181 MN vs 206 MN -> 1.14
+kerf thaw diesel 0.13 l/m3 (claim 0.1; current ~1)
+OB now $3.65/m3, with idea $1.25/m3; save $716/oz -> $1834/oz, RATIO 1.39 (10x claim would give 1.63)
+========================================================================
+IDEA 4  snow-buoyed ice-shell pods (under-ice drift)
+winter depth-mean under-ice velocity (Lena, Q=2,000 m3/s) ~0.29 m/s = 25 km/day
+pod 1.73 m3, net buoyancy 116 kg; friction 171 N vs drag 62 N -> MARGIN 0.36
+cold content 63 MJ -> freezes 188 kg of water onto the pod (bonds to the ice cover on contact)
+pods $12.7/t ore x 37 t = $469/t Cu; savings $1055 -> $7914/t Cu, RATIO 1.07
+========================================================================
+IDEA 5  cold-brine chloride heap leach, gold carried in crude
+  Ea 15.7 kJ/mol: k(-30C)/k(+15C) = 0.30
+  Ea 22.7 kJ/mol: k(-30C)/k(+15C) = 0.17
+  Ea 34.4 kJ/mol: k(-30C)/k(+15C) = 0.07
+KILLER (Ea 22.7, chemical control): MARGIN 0.17
+annual leach throughput vs 5-month seasonal heap: x1.24
+CaCl2 top-up 29 kg/t ore -> +$314/oz; Cl2 power +$48; ADR removed $-153; -> $2754/oz, RATIO 0.93
+========================================================================
+IDEA 6  seasonal thermal-diode thaw (black film + snow fences)
+natural (n_t 1.0, n_f 0.6): active layer 1.55 m, T(15 m) -5.8 C
+treated (n_t 2.0, n_f 0.25): max thaw depth by year 2.4 m, 2.5 m, 2.6 m, 2.7 m, 2.9 m
+KILLER thaw depth after 3 yr 2.6 m vs 8.0 m -> MARGIN 0.32
+frac thawed 0.32; treatment $90/oz -> $2450/oz, RATIO 1.04
+========================================================================
+IDEA 7  river-to-pole drift pods
+arrival fraction 0.20 vs 0.90 needed -> MARGIN 0.22
+tags alone $996/pod -> $55,333/t Cu delivered; with idea >= $62,941/t Cu, RATIO 0.14
+========================================================================
+IDEA 8  ice-shell under-ice ore drift (sack + air bladder, warmed to 0 C)
+drag 50 N -> moving window 0..34 kg net buoyancy; scatter sd 18 kg; best delivered fraction 0.66 vs 0.95 -> MARGIN 0.69
+package $33.5/t ore x 23 t/oz = $773/oz; plant/power savings $663/oz -> $2660/oz, RATIO 0.96

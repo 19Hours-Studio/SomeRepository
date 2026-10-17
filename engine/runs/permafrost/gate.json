@@ -334,5 +334,61 @@
   "margin": 0.47,
   "ratio": 1.06,
   "verdict": "DEAD"
+ },
+ "EC:EB:g2_evo1#1": {
+  "killer": "depth-mean under-ice current needed for a +1% buoyant 1 m³ pod to slide along the channel ceiling (friction 0.05, near-ice factor 0.69) and cover 500 km in a 120-day window",
+  "why": "Even if the berm channel forms and the pods creep along it, buoyant pods cost about as much per tonne as the summer ore barge they replace, so delivered cost barely moves (ratio 0.96-1.11 across haul length and pod reuse).",
+  "margin": 0.61,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "erp2_b#4": {
+  "killer": "mean under-ice velocity to roll the 1.6 m, +750 kg log over 5-20 cm ice keels",
+  "why": "Measured winter currents are about a quarter of what is needed to roll the logs over ordinary 5 cm keels (0.40 even in the fastest delta channel), so the attractive coal ratio is never reached.",
+  "margin": 0.24,
+  "ratio": 1.48,
+  "verdict": "DEAD"
+ },
+ "g1_loop#3": {
+  "killer": "depth-mean current for a +1% buoyant torpedo pod (Cd 0.2) to slide on even a perfectly smooth ice underside and reach a port 1,000 km away within a 120-day window",
+  "why": "The torpedo shape minimises the drag that has to push it, so the pod needs about 4x the measured winter current, and even free pods would only trim a river leg worth about 5% of delivered copper cost (maximum ratio 1.06).",
+  "margin": 0.22,
+  "ratio": 1.01,
+  "verdict": "DEAD"
+ },
+ "g1_core#3": {
+  "killer": "annual heat balance of the 70 °C storage layer at Yakutsk with a 1.18 m gradient zone and zero heat extraction",
+  "why": "At 62°N a standard gradient pond cannot even hold 70 °C with zero output (only a 4.4 m gradient breaks even), its best power at the idea's 60-80 °C costs about 2.5x diesel, and even free power would cap the ratio at 1.11.",
+  "margin": 0.62,
+  "ratio": 0.87,
+  "verdict": "DEAD"
+ },
+ "gx_fl_1#5": {
+  "killer": "largest feed particle the steel-needle field mill can break",
+  "why": "A 1x10 mm needle carries about 3 mJ against roughly 5 J to break a 16 mm particle, so the pipe cannot take the mills' duty, and grinding capex is too small a share for a 10x cut to pass 1.1 (1.13 only if grinding were free).",
+  "margin": 0.06,
+  "ratio": 1.06,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_mech#3": {
+  "killer": "water-to-gravel ratio the heat coupling delivers to the riffled chute (101 MJ/m³ ice-cemented gravel, 10 °C sun-warmed water)",
+  "why": "Washing is only about 8% of delivered placer-gold cost, so even free washing gives only 1.09, and the heat-coupled slurry is too thick for a riffled chute (margin 0.29 at 15 °C).",
+  "margin": 0.43,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "erp2_b#2": {
+  "killer": "water-to-gravel ratio at the design point (loose pile 50-55 MJ/m³, 5-7 °C water)",
+  "why": "Face-thaw headroom is ample (88x), but the design slurry has about half the water real sluices use, and a 2.3x cut to an 8% link moves delivered cost by only about 5%.",
+  "margin": 0.48,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_core2#2": {
+  "killer": "gun barrel life against the shot rate for 1.4 Mt/yr of concentrate at 0.5 t payload per shot",
+  "why": "A gun throwing 0.5 t at 0.7-0.8 km/s wears out a barrel about every hour at Baimskaya scale (about every 30 h even for a 50 kt/yr mine), and even a wear-free diesel-fired launcher reaches only 1.02.",
+  "margin": 0.00012,
+  "ratio": 0.68,
+  "verdict": "DEAD"
  }
 }
