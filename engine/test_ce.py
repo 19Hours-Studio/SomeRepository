@@ -223,6 +223,9 @@ def main():
                                "CHAIN | road | now 80 | with idea 20 | RATIO 4.0\nVERDICT | ALIVE | ok\n")
             assert "2/2" in ce("gate", R7, "--dir", dg, "--file", p)
             gj = json.load(open(os.path.join(rd7, "gate.json"))); assert gj["rp#1"]["ratio"] == 4.0 and gj["tl#1"]["margin"] == 0.05
+            t = open(ce("resurrect", R7, "rz", "--ids", "tl#1,rp#1", "--m", "2").strip()).read()
+            assert "DEATH CERTIFICATE: killer: melt | margin 0.05" in t and "exactly 4 ideas" in t and "{" not in t.replace("{N}", "")
+            assert json.load(open(os.path.join(rd7, "prompts", "rz.parents.json"))) == ["tl#1", "tl#1", "rp#1", "rp#1"]
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")

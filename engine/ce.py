@@ -640,6 +640,22 @@ def cmd_gate(a):
 
 GATE_W = {"ALIVE": 1.0, "WOUNDED": 0.4, "DEAD": 0.0}
 
+def cmd_resurrect(a):
+    """v3.1: evolution under truth - a free generator (no tools) gets killed ideas with their death certificates and
+    must jump past the killing quantity while keeping each anchor; children are then gated again."""
+    ids = a.ids.split(","); allx = {i["id"]: i for i in load(a.run, "ideas.json", [])}; gate = load(a.run, "gate.json", {})
+    blocks = []
+    for k, iid in enumerate(ids, 1):
+        i, g = allx[iid], gate.get(iid)
+        if not g: sys.exit(f"{iid} has no kill-test result")
+        cert = (f"killer: {g.get('killer', '?')} | margin {g.get('margin', '?')} | chain ratio {g.get('ratio', '?')} | "
+                f"{g['verdict']}: {g.get('why', '')}")
+        blocks.append(f"DEAD {k}\nNAME: {i['name']}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\nDEATH CERTIFICATE: {cert}\n")
+    s = fill(a.run, tpl("resurrect"), len(ids) * a.m, {"PARENTS": "\n".join(blocks), "M": str(a.m)})
+    p = path(a.run, "prompts", a.label + ".txt"); open(p, "w").write(s)
+    json.dump([iid for iid in ids for _ in range(a.m)], open(path(a.run, "prompts", a.label + ".parents.json"), "w"))
+    print(p)
+
 def cmd_report(a):
     arms = defaultdict(list)
     for i in load(a.run, "ideas.json", []):
@@ -677,6 +693,8 @@ def main():
     x = sp.add_parser("material"); x.add_argument("run"); x.add_argument("kind", choices=["frontier", "ledger"]); src(x)
     x = sp.add_parser("gatetask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x = sp.add_parser("gate"); x.add_argument("run"); x.add_argument("--dir", required=True); src(x)
+    x = sp.add_parser("resurrect"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--ids", required=True)
+    x.add_argument("--m", type=int, default=3, help="children per dead parent")
     x = sp.add_parser("redteamtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--blind", action="store_true", help="omit judges' scores (blind audit of mixed versions)")
     x = sp.add_parser("set"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--labels"); x.add_argument("--ids")

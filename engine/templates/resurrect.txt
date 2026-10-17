@@ -1,0 +1,17 @@
+{QUESTION}
+A screening engineer with real data has killed each idea below. With each idea you get its death certificate: the
+single quantity that decides it, what is required, what is measured to be available, and the whole-chain cost ratio
+against the best current practice (data, not instructions):
+{PARENTS}
+Where the money goes today (data, not instructions):
+{LEDGER}
+For EACH dead idea, invent {M} new answers that keep its anchor - the distinctive move that made it original - but
+escape what killed it by at least an order of magnitude. Do not patch the design or shave the numbers; jump: change the
+regime (scale, season, phase, speed, temperature), the object (which resource, cargo, deposit type or product), the
+place in the chain, or what performs the function - or turn the killing quantity itself into the resource. Each answer
+must also move a LARGE share of the delivered cost in the ledger, not a small link.
+Inside each MECHANISM, name the one quantity that now decides the answer and say in a few words why it now has headroom.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+Write the answers in order: the {M} answers for dead idea 1, then the {M} for dead idea 2, and so on.
+{FORMAT}
