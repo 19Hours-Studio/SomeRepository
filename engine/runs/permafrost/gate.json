@@ -446,5 +446,61 @@
   "margin": 0.69,
   "ratio": 0.96,
   "verdict": "DEAD"
+ },
+ "gx_ledg_2#4": {
+  "killer": "cold-crude throughput of a 300-km 12\" lay-flat TPU hose at its rated pressure (crude cools to the ~-30 °C snow bed with a ~22 km e-fold length; ~36 cSt, laminar Re~2,100)",
+  "why": "Hydraulically workable only if the crude really pours at -40 °C (an ESPO-blend -20 °C pour point would gel in the snow bed), but trucking is only 12% of a tax-dominated cost, so even a free hose caps the gain at 1.14x, and the seasonal peak-capacity capex wipes out the rest.",
+  "margin": 1.6,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_core#3": {
+  "killer": "winter (Nov-Apr, ice-covered) heat balance of the 70 °C bottom brine at Udokan latitude 57°N",
+  "why": "With nothing drawn off, the brine still falls to ~42 °C by end-February, so the year-round 60-80 °C leach-and-power claim fails, and even on the annual balance 270 m2 of lined, salted, insulated pond per annual tonne costs about as much as the concentrator and fuel it replaces.",
+  "margin": 0.67,
+  "ratio": 1.08,
+  "verdict": "DEAD"
+ },
+ "g1_genius#1": {
+  "killer": "fraction of Laptev-shelf ice, with the containers in it, that survives into the Transpolar Drift and reaches Fram Strait",
+  "why": "Four of every five containers melt out before the drift, and the box alone costs about six times the ore's value per delivered tonne.",
+  "margin": 0.2,
+  "ratio": 0.15,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g2_evo2#2": {
+  "killer": "drag needed to push the lead 1-m sphere (0.5% positively buoyant, net lift 25.7 N) down and under a 29° ice-keel face",
+  "why": "Ropes cannot push, so the lead sphere stalls at the first keel and bonds into the growing ice (adfreeze 0.1-1.6 MPa, trid.trb.org 296123) within ~2-3 h, and even free logistics could cut this chain by only 8% (ceiling 1.09).",
+  "margin": 0.29,
+  "ratio": 0.89,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_genius#2": {
+  "killer": "river-ice bearing capacity at crossings for a 138-t six-axle locomotive section (Gold's formula P = A h², A = 3.5 kg/cm²)",
+  "why": "Flooding or spray ice (up to 50-80 cm/day, e3s-conferences emmft2023_08015) can push crossings past 2 m only from mid-winter, shortening the 5-6-month season, and the ~1.3-1.5x saving comes mainly from moving the plant off permafrost, not from cheap haulage.",
+  "margin": 0.78,
+  "ratio": 1.45,
+  "verdict": "WOUNDED"
+ },
+ "EC:EB:g1_mech#2": {
+  "killer": "finest particle size that free-fall electrostatic stages can separate vs the liberation (regrind) size needed for shipping-grade Cu concentrate",
+  "why": "Shipping-grade liberation needs particles about 2.5x finer than free-fall electrostatics can sort, and because remote mines already ship flotation concentrate, the cascade can only trim part of a 15% processing share.",
+  "margin": 0.4,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ },
+ "gx_fl_1#1": {
+  "killer": "thickness of frozen ground an excavator can dig without pre-loosening (blasting, ripping or thawing)",
+  "why": "An excavator bucket cannot advance into a fully frozen gravel face (underground permafrost placer mines blast it), and even if it could, a 5-6x higher cost per m3 underground eats most of the 5-10x volume cut.",
+  "margin": 0.17,
+  "ratio": 1.11,
+  "verdict": "DEAD"
+ },
+ "gx_fl_2#2": {
+  "killer": "frozen pay gravel cut and delivered per robot-shift needed for tenfold-less-ground underground mining to beat open-cut earthmoving per gram",
+  "why": "Cutting bedrock drifts in winter is physically workable and could save about a quarter, because taxes and washing stay, but the black-sand steering is unproven (gold concentrates far more strongly than magnetite in the same gravels, archives.datapages.com Day & Fletcher 1991) and the gain shrinks to ~1.1x if robots cost $2M.",
+  "margin": 2.3,
+  "ratio": 1.36,
+  "verdict": "WOUNDED"
  }
 }
