@@ -49,3 +49,15 @@ gx_ledg_1	a5557ab7a8ef3def8	GL	1
 gx_ledg_2	a267546b761a06c63	GL	1
 gx_fl_1	a85989a42d1c77ee6	GFL	1
 gx_fl_2	ab3cab43c2dbaeb1f	GFL	1
+gx_ledg_1	a5557ab7a8ef3def8	GL	1
+GATE1	ad512cdba376e0be6	gate	5
+GATE2	a866d634d9ea04eec	gate	5
+GATE3	a0c0b984329173988	gate	5
+GATE4	a91546c16495c085f	gate	5
+GATE5	a2709e294338a09bb	gate	5
+GATE6	a74f8d2d8fad6ee8e	gate	5
+GATE7	a42cf1b2e752f8f8c	gate	5
+GATE8	a8eb8307660131ea4	gate	5
+GATE9	a60e8bdd34b649952	gate	5
+J7_s99s	aee412e27946ff9ac	judge	5
+J8_s99s	adeacdc850e642ed8	judge	5
