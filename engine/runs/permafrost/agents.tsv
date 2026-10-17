@@ -64,3 +64,6 @@ J8_s99s	adeacdc850e642ed8	judge	5
 gx_res1_a	ad4586b9c3a8be85a	GR1	2
 gx_res1_b	a7eb5ad3e932bdea3	GR1	2
 gx_res1_a	ad4586b9c3a8be85a	GR1	2	FLAGGED-cyber-not-retried
+GATE_R1_1	a2c69e868496d0539	gate	6
+GATE_R1_2	a6e9442e2572e7a1c	gate	6
+J9_s99t	ae35fe99ded7ffbee	judge	6
