@@ -939,6 +939,16 @@
    "closest": "HARP gun; gliding guided shells",
    "X": "N",
    "G": 2
+  },
+  "s99t:J9": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Guided glide artillery; cargo shells",
+   "X": "N",
+   "G": 3
   }
  },
  "map_3#3": {
@@ -1501,6 +1511,16 @@
    "closest": "High-tension roll separators, mineral sands",
    "X": "Y",
    "G": 4
+  },
+  "s99t:J9": {
+   "O": 6,
+   "C": 7,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Electrostatic concentrate cleaning; dry washers",
+   "X": "Y",
+   "G": 6
   }
  },
  "EC:EB:g2_imm#3": {
@@ -1591,6 +1611,16 @@
    "closest": "Sluice riffles; ice-road snow clearing",
    "X": "Y",
    "G": 5
+  },
+  "s99t:J9": {
+   "O": 7,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Ground sluicing; ice-road snow clearing",
+   "X": "Y",
+   "G": 6
   }
  },
  "g2_imm#1": {
@@ -1841,6 +1871,16 @@
    "closest": "Baikal ice railway; portable military railways",
    "X": "N",
    "G": 4
+  },
+  "s99t:J9": {
+   "O": 5,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "1904 Lake Baikal ice railway",
+   "X": "N",
+   "G": 4
   }
  },
  "EC:EB:g2_imm#1": {
@@ -1987,6 +2027,16 @@
    "closest": "Inco DBC gold extraction; chlorine leach",
    "X": "Y",
    "G": 4
+  },
+  "s99t:J9": {
+   "O": 8,
+   "C": 7,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "DBC gold refining; chloride heap leaching",
+   "X": "Y",
+   "G": 5
   }
  },
  "g2_evo2#1": {
@@ -2363,6 +2413,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Log driving; Habakkuk pykrete",
+   "X": "N",
+   "G": 4
+  },
+  "s99t:J9": {
+   "O": 6,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "ICEHULL",
+   "closest": "Loose log driving; pykrete hulls",
    "X": "N",
    "G": 4
   }
@@ -4335,6 +4395,16 @@
    "closest": "Borehole hydraulic mining (Arens)",
    "X": "N",
    "G": 2
+  },
+  "s99t:J9": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Borehole hydraulic placer mining",
+   "X": "N",
+   "G": 3
   }
  },
  "gx_ledg_1#3": {
@@ -4347,6 +4417,16 @@
    "closest": "Lime-sinter spodumene; nepheline alumina plants",
    "X": "N",
    "G": 4
+  },
+  "s99t:J9": {
+   "O": 6,
+   "C": 7,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Lime-sinter spodumene; nepheline alumina sinter",
+   "X": "N",
+   "G": 5
   }
  },
  "gx_fl_1#5": {
@@ -4383,6 +4463,16 @@
    "closest": "Local Yakutian coal pits; gravimetry",
    "X": "N",
    "G": 2
+  },
+  "s99t:J9": {
+   "O": 3,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Local coal pits; gravity survey",
+   "X": "N",
+   "G": 2
   }
  },
  "gx_ledg_1#1": {
@@ -4393,6 +4483,16 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Frozen-placer drift mining; highwall miners",
+   "X": "N",
+   "G": 3
+  },
+  "s99t:J9": {
+   "O": 4,
+   "C": 6,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Highwall mining; placer drift mining",
    "X": "N",
    "G": 3
   }
@@ -4515,6 +4615,16 @@
    "closest": "Quaise gyrotron drilling; downhole LIBS",
    "X": "N",
    "G": 3
+  },
+  "s99t:J9": {
+   "O": 4,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Quaise millimetre-wave drilling; LIBS",
+   "X": "N",
+   "G": 3
   }
  },
  "gx_fl_1#3": {
@@ -4525,6 +4635,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Local riverbank coal mining, Yakutia",
+   "X": "N",
+   "G": 2
+  },
+  "s99t:J9": {
+   "O": 3,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Local riverbank coal pits",
    "X": "N",
    "G": 2
   }
@@ -4539,6 +4659,16 @@
    "closest": "River-training wing dikes",
    "X": "N",
    "G": 2
+  },
+  "s99t:J9": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "River training wing dams",
+   "X": "N",
+   "G": 3
   }
  },
  "gx_front_2#4": {
@@ -4561,6 +4691,16 @@
    "R": "N",
    "B": "NEW",
    "closest": "Nemaska membrane-electrolysis lithium process",
+   "X": "N",
+   "G": 3
+  },
+  "s99t:J9": {
+   "O": 4,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Nemaska membrane electrolysis; flash Joule heating",
    "X": "N",
    "G": 3
   }
@@ -4611,6 +4751,16 @@
    "closest": "Mineral-sands dredge, floating concentrator",
    "X": "N",
    "G": 3
+  },
+  "s99t:J9": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Rock dredging; floating mineral-sands concentrators",
+   "X": "N",
+   "G": 3
   }
  },
  "gx_front_2#5": {
@@ -4623,6 +4773,16 @@
    "closest": "Aeromagnetic survey; MagNav map-matching",
    "X": "N",
    "G": 3
+  },
+  "s99t:J9": {
+   "O": 4,
+   "C": 4,
+   "V": 2,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Magnetic anomaly navigation; drone aeromagnetics",
+   "X": "N",
+   "G": 2
   }
  },
  "gx_front_1#3": {
@@ -4635,6 +4795,16 @@
    "closest": "Ultrasonic drilling; vibratory frozen-ground rippers",
    "X": "N",
    "G": 3
+  },
+  "s99t:J9": {
+   "O": 4,
+   "C": 4,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Ultrasonic rock fragmentation; SelFrag",
+   "X": "N",
+   "G": 2
   }
  },
  "gx_front_2#2": {
@@ -4671,6 +4841,160 @@
    "closest": "Doppelmayr RopeCon conveyor",
    "X": "N",
    "G": 2
+  },
+  "s99t:J9": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Doppelmayr RopeCon; overland conveyors",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "gx_res1_b#1": {
+  "s99t:J9": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Borehole hydraulic mining (Russian SHD)",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "gx_res1_b#10": {
+  "s99t:J9": {
+   "O": 5,
+   "C": 6,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "DLE from Siberian Platform brines",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "gx_res1_b#5": {
+  "s99t:J9": {
+   "O": 5,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Floating power plants; vessel overwintering",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "gx_res1_b#7": {
+  "s99t:J9": {
+   "O": 2,
+   "C": 6,
+   "V": 2,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Milled peat fuel harvesting",
+   "X": "N",
+   "G": 2
+  }
+ },
+ "gx_res1_b#9": {
+  "s99t:J9": {
+   "O": 3,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Autonomous mining; artel placer mining",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "gx_res1_b#3": {
+  "s99t:J9": {
+   "O": 3,
+   "C": 5,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Pillar remining of old workings",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "gx_res1_b#2": {
+  "s99t:J9": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Thin-seam plow mining; swarm robots",
+   "X": "N",
+   "G": 4
+  }
+ },
+ "gx_res1_b#8": {
+  "s99t:J9": {
+   "O": 3,
+   "C": 6,
+   "V": 3,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Borehole hydraulic coal mining",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "gx_res1_b#4": {
+  "s99t:J9": {
+   "O": 4,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "River bar placer mining",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "gx_res1_b#12": {
+  "s99t:J9": {
+   "O": 3,
+   "C": 6,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Technogenic placer re-dredging",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "gx_res1_b#11": {
+  "s99t:J9": {
+   "O": 4,
+   "C": 5,
+   "V": 3,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Thawed-placer dredging; sub-lake taliks",
+   "X": "N",
+   "G": 3
+  }
+ },
+ "gx_res1_b#6": {
+  "s99t:J9": {
+   "O": 6,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "De Beers marine diamond mining vessels",
+   "X": "N",
+   "G": 4
   }
  }
 }
