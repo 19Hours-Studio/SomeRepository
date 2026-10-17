@@ -278,5 +278,61 @@
   "margin": 1.07,
   "ratio": 1.05,
   "verdict": "DEAD"
+ },
+ "gx_fl_2#3": {
+  "killer": "peak vertical gravity gradient of a one-winter coal lens (3,000 t, 27x27x3 m, top 4.5 m, coal 1.35 vs host 2.3 t/m3, prism model) vs 3-sigma detection",
+  "why": "The haul saving is real (2.2x) but even with stationary 20 E noise the gradiometer only just sees a one-winter lens, so lens-finding by sled tow is unproven and ground-ice bodies, lighter than coal, will give false targets.",
+  "margin": 0.98,
+  "ratio": 2.18,
+  "verdict": "WOUNDED"
+ },
+ "EC:EB:g1_core#2": {
+  "killer": "flush water through the bowl vs water needed to carry its copper out in a 25-yr life (30 m x 2.7 t/m3 x 0.4% Cu x 60% recovery = 194 kg Cu/m2, PLS 3 g/L)",
+  "why": "Snow and rain bring about a quarter of the solution needed (0.71 even at an 8 g/L PLS), so a 30-m bowl would take about 94 years and still give up the gold credit that makes the current route cheap.",
+  "margin": 0.27,
+  "ratio": 1.4,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_1#4": {
+  "killer": "water depth on the tow route vs draft of a 10 Mt/yr module (1,240 t/h; ~18 kt of mills, mill charge, flotation slurry and heated superstructure -> ~28 kt displacement -> 4.7-6.3 m draft; Akademik Lomonosov, 21.5 kt on 144x30 m at 5.6 m draft, as real-world check)",
+  "why": "The module draws more than twice the depth Siberian rivers guarantee, and with pit, tailings, road, port and power still onshore, even a 6.5x cheaper concentrator cuts delivered cost only about 13%.",
+  "margin": 0.42,
+  "ratio": 1.15,
+  "verdict": "WOUNDED"
+ },
+ "g1_mech#1": {
+  "killer": "packet drift speed under ice vs the claimed 25 km/day (1-t sack ~1 m3, 1% net buoyancy pressing on the ice, sliding friction 0.01-0.03, drag coefficient 1, flow next to the ice 0.8 of mean)",
+  "why": "Measured winter currents under Siberian river ice are about half the speed needed, and friction against the ice cuts packet speed to about 4-7 km/day, a 4-7x shortfall before pressure ridges and hanging ice dams are counted.",
+  "margin": 0.2,
+  "ratio": 1.09,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_core2#3": {
+  "killer": "net cooling flux of a tray held just past the eutectic (-52 C, air -45 C) vs the heat to freeze a 1-cm brine layer in a 16-h night (eutectic ice + CaCl2.6H2O ~180 kJ/kg, 1,280 kg/m3)",
+  "why": "At -50 C even a perfect window emitter radiates only ~28 W/m2, so the trays cannot sit 10 K below air while also giving up freezing heat, and the tray area pushes concentrate cost to about ten times the price of finished carbonate.",
+  "margin": 0.05,
+  "ratio": 0.05,
+  "verdict": "DEAD"
+ },
+ "g1_genius#2": {
+  "killer": "river-ice capacity for the lightest mainline diesel, 2TE116 at 2 x 138 t (Gold P = A h^2, safe A = 3.5 kg/cm2)",
+  "why": "Thickened late-winter ice carries only about half a two-section locomotive and far less in early winter, and track capital is so small a slice of delivered coal cost that the cheaper line saves under 5%.",
+  "margin": 0.48,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "gx_front_1#4": {
+  "killer": "ore throughput one open-gradient superconducting coil can treat vs one pit's ore stream (4 Mt/yr over 7,000 h, Lomonosov GOK 1 + 3 Mt/yr modules, Rapaport/IDEX)",
+  "why": "One coil treats only about a sixth of a mid-size pit's ore even at the best theoretical rate, and because mining dominates kimberlite cost, a perfect 3x plant shrink would cut delivered cost only about 12%.",
+  "margin": 0.16,
+  "ratio": 1.13,
+  "verdict": "DEAD"
+ },
+ "gx_front_1#5": {
+  "killer": "20-year thaw settlement under a heated building on grade vs cell stroke (1-D Stefan model: +20 C inside, floor R 5.2 m2K/W, thawed-soil conductivity 1.4 W/mK, 40 vol% ice, latent heat 334 kJ/kg -> 10.7 m thaw, thaw strain 0.2)",
+  "why": "With no air gap, a heated building thaws raw ice-rich ground 7-11 m deep in 20 years and settles 1.5-2 m, more than the cells can make up, and foundations are too small a share of delivered cost to matter.",
+  "margin": 0.47,
+  "ratio": 1.06,
+  "verdict": "DEAD"
  }
 }

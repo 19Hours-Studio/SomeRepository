@@ -1,0 +1,36 @@
+1_killer => {"one-winter lens, idea's own contrast (host 2.70)": (92.7, 27.2, 1.54), 'one-winter lens, Lena-basin sandstone host 2.30': (65.2, 27.2, 1.09), '3-winter lens 10 kt, host 2.30': (40.7, 49.7, 0.68), 'one-winter lens at 6 m, host 2.30': (52.1, 27.2, 0.87)}
+1_chain => {'excavator capital': 3020, 'fuel 20 l/h x 1500 h @130 rub/l': 1300, 'repairs/wear 15%/yr of capex': 2250, 'tech visits 2 x 5/12 x 5 M rub': 1389, 'gravity survey share': 500, 'short winter haul 20 km x 20 rub/t-km + loading': 500, 'moves, licence, ash tests': 300, 'MET/other (ledger 1.5%)': 345}
+1_chain_total => (10564, 2.18)
+2_killer => {'Cu_kg_m2': 194, 'avail_m_yr': 0.692, 'req_m_yr,margin by PLS g/L': {1.0: (7.78, 0.09), 3.0: (2.59, 0.27), 8.0: (0.97, 0.71)}}
+2_chain => {'blasting capital': 2341, 'geotextile+fences $0.5/m2/yr': 241, 'scrap iron 2 t/t Cu x ($350 + NSR 16k rub/t + 200 km road)': 1177, 'seasonal crew 20 workers/km2': 578, 'ship cement Cu (concentrate outbound $425/t / 3.4)': 125, 'smelt/refine cement copper': 400, 'other/MET (ledger 14%)': 1190}
+2_chain_total => (6052, 1.4, 94, 0.41)
+3_killer => {'tph': 1241, 'payload_t': 18355, 'displ_t': 28239, 'draft_30m_beam': 6.3, 'draft_40m_beam': 4.7, 'Lomonosov block-draft check': 4.96, 'required_m': 6.0, 'available_m': 2.5, 'margin': 0.42}
+3_chain => (1180, 7405, 1.15)
+4_killer => {'required_m_s': 0.289, 'cases(v m/s, km/day, margin)': {'main channel 0.15 m/s (0.12-0.18), mu 0.03, near-ice 0.8': (0.043, 3.7, 0.15), 'main channel 0.15, mu 0.01, near-ice 0.8': (0.076, 6.5, 0.26), 'best channel 0.25 (Bykovskaya), mu 0.01, no shear loss': (0.206, 17.8, 0.71), 'water itself, main channel, zero friction': (0.15, 13.0, 0.52)}}
+4_chain => (6048, 21048, 1.09, 1.53)
+5_killer => {'band(221K)': 28.4, 'sigmaT4(221K)': 135.6, 'avail_upper_bound': 19.0, 'avail_realistic': 2.1, 'dH_kJ_kg': 180, 'req_W_m2_1cm_16h': 40.0, 'margin_realistic': 0.05, 'margin_upper_bound': 0.47}
+5_chain => [(2.1, 77410, 211257, 0.048), (19.0, 8445, 28500, 0.358)]
+6_killer => {'h_req_cm(A=3.5)': 281, 'h_req_cm(A=7)': 199, 'h_eff_cm': 195.0, 'margin(A=3.5)': 0.48, 'margin(A=7)': 0.96, 'margin season start 80 cm natural': 0.08}
+6_chain => (49, 9.71, 46.7, 1.05)
+7_killer => {'required_t_h': 571, 'available_t_h': 90.0, 'margin': 0.16}
+7_chain => (0.145, 0.885, 1.13)
+8_killer => {5.2: (10.7, 2.14, 0.47), 10.2: (7.5, 1.5, 0.67)}
+8_chain => (0.04, 0.939, 1.06)
+M=3000 t th=3.0 m top=3.0 m drho=-1350: centre 92.7 E, peak 96.1 E, margin vs 60 E (SNR3@20E) 1.60, vs 100 E (SNR5) 0.96
+M=3000 t th=3.0 m top=3.0 m drho=-950: centre 65.2 E, peak 67.6 E, margin vs 60 E (SNR3@20E) 1.13, vs 100 E (SNR5) 0.68
+M=3000 t th=3.0 m top=4.5 m drho=-1350: centre 83.5 E, peak 83.6 E, margin vs 60 E (SNR3@20E) 1.39, vs 100 E (SNR5) 0.84
+M=3000 t th=3.0 m top=4.5 m drho=-950: centre 58.7 E, peak 58.8 E, margin vs 60 E (SNR3@20E) 0.98, vs 100 E (SNR5) 0.59
+M=3000 t th=3.0 m top=6.0 m drho=-1350: centre 74.0 E, peak 74.0 E, margin vs 60 E (SNR3@20E) 1.23, vs 100 E (SNR5) 0.74
+M=3000 t th=3.0 m top=6.0 m drho=-950: centre 52.1 E, peak 52.1 E, margin vs 60 E (SNR3@20E) 0.87, vs 100 E (SNR5) 0.52
+M=3000 t th=2.0 m top=3.0 m drho=-1350: centre 54.8 E, peak 62.1 E, margin vs 60 E (SNR3@20E) 1.04, vs 100 E (SNR5) 0.62
+M=3000 t th=2.0 m top=3.0 m drho=-950: centre 38.6 E, peak 43.7 E, margin vs 60 E (SNR3@20E) 0.73, vs 100 E (SNR5) 0.44
+M=3000 t th=2.0 m top=4.5 m drho=-1350: centre 51.1 E, peak 53.3 E, margin vs 60 E (SNR3@20E) 0.89, vs 100 E (SNR5) 0.53
+M=3000 t th=2.0 m top=4.5 m drho=-950: centre 36.0 E, peak 37.5 E, margin vs 60 E (SNR3@20E) 0.63, vs 100 E (SNR5) 0.38
+M=3000 t th=2.0 m top=6.0 m drho=-1350: centre 47.1 E, peak 47.4 E, margin vs 60 E (SNR3@20E) 0.79, vs 100 E (SNR5) 0.47
+M=3000 t th=2.0 m top=6.0 m drho=-950: centre 33.1 E, peak 33.3 E, margin vs 60 E (SNR3@20E) 0.56, vs 100 E (SNR5) 0.33
+M=10000 t th=3.0 m top=3.0 m drho=-1350: centre 57.9 E, peak 75.7 E, margin vs 60 E (SNR3@20E) 1.26, vs 100 E (SNR5) 0.76
+M=10000 t th=3.0 m top=3.0 m drho=-950: centre 40.7 E, peak 53.3 E, margin vs 60 E (SNR3@20E) 0.89, vs 100 E (SNR5) 0.53
+M=10000 t th=3.0 m top=4.5 m drho=-1350: centre 55.9 E, peak 64.9 E, margin vs 60 E (SNR3@20E) 1.08, vs 100 E (SNR5) 0.65
+M=10000 t th=3.0 m top=4.5 m drho=-950: centre 39.3 E, peak 45.7 E, margin vs 60 E (SNR3@20E) 0.76, vs 100 E (SNR5) 0.46
+M=10000 t th=3.0 m top=6.0 m drho=-1350: centre 53.5 E, peak 57.8 E, margin vs 60 E (SNR3@20E) 0.96, vs 100 E (SNR5) 0.58
+M=10000 t th=3.0 m top=6.0 m drho=-950: centre 37.7 E, peak 40.7 E, margin vs 60 E (SNR3@20E) 0.68, vs 100 E (SNR5) 0.41
