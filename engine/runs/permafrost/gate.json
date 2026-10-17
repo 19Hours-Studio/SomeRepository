@@ -1,0 +1,58 @@
+{
+ "gx_front_1#1": {
+  "killer": "gold particles caught per 1-m sample by a 2-cm hole in placer pay gravel (bankable assay statistics)",
+  "why": "A finger-thin hole catches about one gold flake per metre even in a rich Kolyma placer, against ~20 needed for a +/-50% assay, so it cannot give bankable grade, and exploration is only ~6% of delivered cost anyway.",
+  "margin": 0.06,
+  "ratio": 1.06,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_loop#2": {
+  "killer": "share of Laptev-launched floes that reach Fram Strait",
+  "why": "Even with chosen launch points at most half of Laptev ice ever joined the Transpolar Drift (about a fifth survives today), and bags, two years of 14% money and a token pickup already cost as much as the rail freight they replace.",
+  "margin": 0.56,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g2_evo2#1": {
+  "killer": "near-bed wave orbital velocity needed to stir 0.5-mm sand in a 1-m-deep pond",
+  "why": "Waves on a pond this small are too short to reach the floor: even a gale stirs it at ~2 cm/s, a quarter of what 0.5-mm sand needs and ~5% of what 20-mm stones need, so the sorting that would halve placer cost never starts.",
+  "margin": 0.24,
+  "ratio": 1.9,
+  "verdict": "DEAD"
+ },
+ "g1_mech#3": {
+  "killer": "yearly release volume to float 1.4 Mt of concentrate 100 km down a 20-m creek at 0.8 m depth",
+  "why": "The barges fall behind the crest, so the release must run for the whole voyage, and one small-creek snowmelt carries under a quarter of a Baimskaya-size year while a free creek route would trim only the 5% outbound share.",
+  "margin": 0.23,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "erp2_a#3": {
+  "killer": "charge per kg of grain needed for the claimed 41-cm drift at 300 kV/m over a 1.5-m fall",
+  "why": "Measured charging of the feldspar and quartz waste gives about half the claimed drift, and even the idea's own saving is under 3% of delivered lithium carbonate cost.",
+  "margin": 0.48,
+  "ratio": 1.03,
+  "verdict": "DEAD"
+ },
+ "gx_fl_1#2": {
+  "killer": "hoop strap tension at the base of a 60-m tailings thickener holding 6 m of slurry, safety factor 4",
+  "why": "The \"a sixth of burst\" check compares pressure, but strap tension grows with tank radius, so a 60-m thickener wall needs about 4x the hoop strength ever demonstrated, and the shells reach at most a quarter of capex.",
+  "margin": 0.23,
+  "ratio": 1.1,
+  "verdict": "DEAD"
+ },
+ "g1_core2#2": {
+  "killer": "barrel life at ~1.5 km/s with 100-500 kg rounds",
+  "why": "A gun this fast wears out its barrel in about 65 rounds against ~12,800 a day needed for Baimskaya, and the launch energy alone costs more than the whole outbound logistics bill.",
+  "margin": 0.005,
+  "ratio": 0.99,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_1#2": {
+  "killer": "seam area gasified per well pair",
+  "why": "Underground gasification itself is proven, but a well pair sweeps about 0.2 ha rather than the 1.5 ha assumed, and at 10 kt/yr the station's crew, plant and 2-3 new well pairs a year cost more than the barge and winter-road chain they remove.",
+  "margin": 0.13,
+  "ratio": 0.76,
+  "verdict": "DEAD"
+ }
+}

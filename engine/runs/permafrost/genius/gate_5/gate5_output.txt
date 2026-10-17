@@ -1,0 +1,54 @@
+======================================================================
+IDEA 1  Plume-Assay Needle Drilling
+  flake mass 0.483 mg; particles/m3 3627; per 1-m composite 1.14; per 5-cm reading 0.057
+  MARGIN = 1.14/20 = 0.057
+  (side check: 8.2 MJ/m -> 44 m/h at 100 kW, not limiting)
+  exploration+definition ~$161/oz; saving $145/oz; with idea $2405/oz; RATIO 1.060
+======================================================================
+IDEA 2  Spray-Ice Drift Pods
+  MARGIN = 0.5/0.9 = 0.56  (with today's 0.20 survival: 0.22)
+  non-log $37.35 + bag $10.25 + spray $1.17 (2.4 kWh/t) + carry $14.6 + pickup $20.0
+  with idea $83.4/t (generous) -> RATIO 1.00; with ledger NSR bag-cargo rate $254/t -> 0.33
+  with 50% arrival the launch-side cost doubles: $147/t
+======================================================================
+IDEA 3  Self-Sorting Wave-and-Ice Pond
+  U10 10.0 m/s, F 1000 m: Hm0 0.159 m, Tp 1.03 s; depth 0.5 m -> u_bed 0.1374 m/s
+  U10 10.0 m/s, F 1000 m: Hm0 0.159 m, Tp 1.03 s; depth 1.0 m -> u_bed 0.0217 m/s
+  U10 10.0 m/s, F 1000 m: Hm0 0.159 m, Tp 1.03 s; depth 1.5 m -> u_bed 0.0033 m/s
+  u_crit 0.5-mm sand 0.090 m/s; 20-mm gravel 0.425 m/s
+  MARGIN (sand, h=1.0 m) = 0.0217/0.090 = 0.24; (gravel) 0.051
+  with idea $1340/oz; RATIO 1.90
+======================================================================
+IDEA 4  Stored Meltwater Barge Pulse
+  water/t 27.7 m3; required 39.5 Mm3; snowmelt 90 mm -> available 9.0 Mm3
+  MARGIN 0.23
+  with idea >= $8075/t Cu; RATIO <= 1.053
+======================================================================
+IDEA 5  Self-Charging Frost Separator Cascade
+  fall time 0.553 s; q/m required 8.94 uC/kg; available 4.30 (feldspar) / 6.05 (quartz)
+  MARGIN 0.48 (quartz 0.68)
+  Li2O per t LCE 0.460; saving $273/t LCE; with idea $9927; RATIO 1.027
+======================================================================
+IDEA 6  Woven pressure-shell concentrator
+  demonstrated hoop capacity 2.18 MN/m; thickener needs 9.60 MN/m (SF4); MARGIN 0.23
+  (10-m flotation cell needs 1.60 MN/m -> 1.37, passes)
+  addressable capex share 0.250; delivered-cost cut 9.2%; with idea $7716; RATIO 1.102
+======================================================================
+IDEA 7  Fire-controlled ballistic ore transfer
+  rounds/yr 4.67e+06; required barrel life 12785; available 65; MARGIN 0.0051
+  Cu output 339 kt/yr -> 4.13 t conc/t Cu; gun energy 1488 kWh/t conc = $472/t Cu vs outbound $425
+  with idea >= $8547/t Cu (no barrels, casings, catch basin); RATIO 0.995
+======================================================================
+IDEA 8  Village Coal Gasified Underfoot
+  footprint per pair 0.192 ha; required 1.50 ha; MARGIN 0.128
+  labour $84/t; plant $174/t (capex $10.7M, CRF 0.163); wells 2.6 pairs/yr $78/t
+  now $274/t; with idea $361/t -> RATIO 0.76; with free drilling $283/t -> 0.97
+======================================================================
+IDEA 1: MARGIN 0.057  RATIO 1.06  -> DEAD
+IDEA 2: MARGIN 0.556  RATIO 0.995  -> DEAD
+IDEA 3: MARGIN 0.242  RATIO 1.9  -> DEAD
+IDEA 4: MARGIN 0.228  RATIO 1.05  -> DEAD
+IDEA 5: MARGIN 0.481  RATIO 1.03  -> DEAD
+IDEA 6: MARGIN 0.228  RATIO 1.1  -> DEAD
+IDEA 7: MARGIN 0.00508  RATIO 0.995  -> DEAD
+IDEA 8: MARGIN 0.128  RATIO 0.759  -> DEAD
