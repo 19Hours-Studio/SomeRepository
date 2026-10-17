@@ -1,0 +1,60 @@
+capital charge implied by ledger B: 0.124/yr
+
+=== IDEA 1 Freeze-Engine Vitriol Winning
+concentration factor 20, fraction frozen f = 0.964
+Faraday check: 2.0 V, 90% CE -> 1.87 kWh/kg Cu
+Tair -31.0 C:   8.9 kJ/kg frozen (idea claims 15-30) -> 1.19 kWh/kg Cu, margin 0.59
+Tair -35.0 C:  11.6 kJ/kg frozen (idea claims 15-30) -> 1.55 kWh/kg Cu, margin 0.78
+Tair -40.0 C:  15.0 kJ/kg frozen (idea claims 15-30) -> 2.01 kWh/kg Cu, margin 1.00
+Tair -50.0 C:  21.8 kJ/kg frozen (idea claims 15-30) -> 2.92 kWh/kg Cu, margin 1.46
+freeze duty 12.4 kWth, ORC 0.56 kWe, pond 167 m2 per t/yr Cu; net added capex $8,813 per t/yr
+CHAIN: now $8,500/t, with idea $8,690/t, ratio 0.98
+  (if freezing supplied ALL EW power: $8,259/t, ratio 1.03)
+
+=== IDEA 2 Frozen-gravel dry gold plant
+pore ice 186 kg/t; left on grains 47 kg/t; must remove 42 kg/t
+e_ice(-30C) = 38.0 Pa, sat vapour density 0.339 g/m3 -> air needed 122,753 m3/t (at 70% RHice: 409,177)
+available 'free drying' at 1000 m3/t: 0.34 kg/t -> margin 0.0081
+CHAIN: index 89.5 -> with idea $2,281/oz, ratio 1.12
+
+=== IDEA 3 Winter Wind Deflation Placer
+required 0.229 kg/m2/day (1 km2 -> 150,000 m3/season); available 0.07 -> margin 0.31
+snowfall onto pad ~0.38 mm w.e./day > sublimation -> net ~0 unless snow is cleared
+pad needed for 150,000 m3 at measured rate: 3.3 km2
+CHAIN: index 111 -> $2,830/oz, ratio 0.90
+
+=== IDEA 4 Etched thermokarst freight canals
+required 0.30 m/yr, available 0.062 m/yr -> margin 0.21; years to 1.5 m: 24
+  (Fedorov & Konstantinov boundary maximum 0.15 m/yr -> margin 0.50)
+CHAIN: canal capital 3,136 rub/t; with idea 21,336 rub/t; ratio 1.08
+
+=== IDEA 5 Snow-Sculpted Under-Ice Sluice
+U 1.0 m/s, h 0.4 m: Shields 0.25, required winter discharge  25.4 m3/s
+U 1.5 m/s, h 0.4 m: Shields 0.56, required winter discharge   9.4 m3/s
+U 2.0 m/s, h 0.3 m: Shields 0.99, required winter discharge   3.7 m3/s
+available 0.52 m3/s (5.2% of annual mean) -> margin 0.056
+CHAIN: index 92 -> $2,346/oz, ratio 1.09
+
+=== IDEA 6 Sub-ambient photonic permafrost shields
+Norilsk: air TDD 1026, allowable surface TDD 541, required mean sub-ambient dT 4.0 K; available 2.4 K -> margin 0.59
+Yakutsk: air TDD 1983, allowable surface TDD 541, required mean sub-ambient dT 9.4 K; available 2.4 K -> margin 0.25
+CHAIN: with idea $8,353/t Cu, ratio 1.018
+
+=== IDEA 7 Grinding mill brews its lixiviant
+mechanocatalysis 747 kWh/kg NH3 (Haber-Bosch ~8); available 20 g/t ore; required 21.0 kg/t -> margin 0.0010
+  even vs 1 kg/t loss-only make-up: margin 0.020
+H2 187 kg/t metal -> $746/t; CHAIN with idea $9,752/t, ratio 0.87
+
+=== IDEA 8 Cold-Dry-Air Charge Sorting
+electrostatic mass cut 2.88x at 77% rec (DMS benchmark 10.6x at 90%) -> margin 0.58
+CHAIN: concentrator share 19.5%, with idea $10,467/t LCE, ratio 0.97
+
+=== SUMMARY
+IDEA 1: MARGIN 0.595  RATIO 0.98  -> DEAD
+IDEA 2: MARGIN 0.00815  RATIO 1.12  -> DEAD
+IDEA 3: MARGIN 0.305  RATIO 0.90  -> DEAD
+IDEA 4: MARGIN 0.207  RATIO 1.08  -> DEAD
+IDEA 5: MARGIN 0.0557  RATIO 1.09  -> DEAD
+IDEA 6: MARGIN 0.591  RATIO 1.02  -> DEAD
+IDEA 7: MARGIN 0.000954  RATIO 0.87  -> DEAD
+IDEA 8: MARGIN 0.576  RATIO 0.97  -> DEAD

@@ -54,5 +54,61 @@
   "margin": 0.13,
   "ratio": 0.76,
   "verdict": "DEAD"
+ },
+ "EC:EB:g2_imm#3": {
+  "killer": "winter electricity from freezing the leach liquor vs electrowinning demand, per kg Cu (2 g/L PLS frozen 96% to reach CuSO4 saturation; Nov–Mar air −31 °C; 5 K/10 K heat-exchanger approaches; 0.6 of Carnot)",
+  "why": "Freezing covers only ~60% of the electrowinning power (100% only if the whole season averaged −40 °C), and SX plus diesel are too small a share of cost to pay for a plant that must freeze ~480 t of liquor per tonne of copper.",
+  "margin": 0.6,
+  "ratio": 0.98,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_genius#3": {
+  "killer": "ice that must leave the sand before the dry electrostatic roll vs the \"free drying\" of −30 °C air",
+  "why": "Frozen ground is not dry ground: the pore ice stays on the grains, and removing it with −30 °C air would take ~1.2×10^5 m³ of air per tonne of sand, so the gold never reaches the roll as free grains.",
+  "margin": 0.008,
+  "ratio": 1.12,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g2_evo1#3": {
+  "killer": "winter sublimation flux from the gravel pad",
+  "why": "The measured sublimation is about 1/3 of what is needed, so the pad would have to be ~3.3 km²; snowfall (~0.4 mm/day, ~5× the sublimation) buries it anyway, and the extra handling makes each ounce dearer.",
+  "margin": 0.31,
+  "ratio": 0.9,
+  "verdict": "DEAD"
+ },
+ "g1_core2#1": {
+  "killer": "rate at which ponded, darkened yedoma deepens by thaw",
+  "why": "A 1.5 m channel would take ~24 years to form (while the banks retreat ~1.2 m/yr), and even a finished canal only shortens one leg of the delivery chain.",
+  "margin": 0.21,
+  "ratio": 1.08,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g2_evo1#2": {
+  "killer": "under-ice river discharge needed to carry a season's sand (100,000 m³ of 1 mm sand over 120 days at 1.5 m/s under the keel; Meyer-Peter–Müller bedload formula)",
+  "why": "Placer rivers carry about 1/20 of the winter flow needed (most freeze through, or overflow as aufeis when the keel chokes them), and even a working version saves only the washing, ~8% of the chain.",
+  "margin": 0.06,
+  "ratio": 1.09,
+  "verdict": "DEAD"
+ },
+ "g1_core2#3": {
+  "killer": "average amount the film surface must stay below air temperature over the thaw season to keep the thaw inside a 2 m gravel pad (Stefan formula: at most 541 °C·day of surface thawing)",
+  "why": "The film supplies only ~60% of the cooling needed in the Arctic (~25% in central Yakutia), cannot be laid on driven-over or dusty surfaces, and foundations are too small a share of delivered cost for the chain to change.",
+  "margin": 0.59,
+  "ratio": 1.02,
+  "verdict": "DEAD"
+ },
+ "gx_front_2#2": {
+  "killer": "ammonia made per tonne of ore ground vs ammonia the leach consumes (sulphide sulphur ends up as ammonium sulphate; ore with 1% Ni + 1% Cu)",
+  "why": "Even at the lab-record efficiency the mill makes about 1/1,000 of the ammonia the leach consumes, and if it did make it all, the electrolytic hydrogen alone ($746/t) would cost about three times the inbound logistics it removes ($255/t).",
+  "margin": 0.001,
+  "ratio": 0.87,
+  "verdict": "DEAD"
+ },
+ "g1_mech#2": {
+  "killer": "reduction in hauled tonnage that dry electrostatic sorting achieves at usable recovery",
+  "why": "Dry charge sorting achieves about half the required tonnage cut at worse recovery than the dense-media and flotation plants already concentrating on site, so the hauled tonnage does not fall and delivered cost rises.",
+  "margin": 0.55,
+  "ratio": 0.97,
+  "verdict": "DEAD"
  }
 }

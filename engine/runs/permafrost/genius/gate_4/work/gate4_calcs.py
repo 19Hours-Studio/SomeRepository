@@ -35,7 +35,7 @@ dTf0 = 1.0                     # K initial freezing-point depression of PLS (ASS
 # mean freezing-point depression weighted over the frozen mass
 n = 2000
 mean_dTf = sum(dTf0 * (1 - (i + 0.5) / n * f) ** (K - 1) for i in range(n)) / n
-dT_evap, dT_cond, eta2, parasitic = 5.0, 10.0, 0.5, 0.10   # ASSUMP approaches, 2nd-law eff, pumps/fans
+dT_evap, dT_cond, eta2, parasitic = 5.0, 10.0, 0.6, 0.10   # ASSUMP approaches, 2nd-law eff (generous), pumps/fans
 
 def kJ_per_kg(Tair_C):
     Th = 273.15 - mean_dTf - dT_evap
@@ -50,8 +50,8 @@ for T in (-31.0, -35.0, -40.0, -50.0):
     e = kJ_per_kg(T)
     av = e * liq_per_kgCu / 3600
     print(f"Tair {T:5.1f} C: {e:5.1f} kJ/kg frozen (idea claims 15-30) -> {av:4.2f} kWh/kg Cu, margin {av/EW_req:4.2f}")
-# Decisive case: -35 C, the idea's warm end and ~ Yakutsk Dec-Feb mean (Jan -38.6 C kupi.com; Nov ~ -26 C)
-av1 = kJ_per_kg(-35.0) * liq_per_kgCu / 3600
+# Decisive case: -31 C = Yakutsk Nov-Mar mean (Jan -38.6 C kupi.com; Nov ~ -26 C), i.e. the 150-day freeze season used below
+av1 = kJ_per_kg(-31.0) * liq_per_kgCu / 3600
 m1 = av1 / EW_req
 # CHAIN: ledger B, $8,500/t Cu; heap-leach SX-EW variant on diesel power ($0.49/kWh ledger)
 now1 = 8500.0
