@@ -1167,5 +1167,50 @@
   "mech": "The anchor (night-sky cooling that drives CaCl2 brine below its -50 °C eutectic) cannot be rescued. Even with a heat pump rejecting to -40/-45 °C air, it needs 5.5-15 MWh per t LCE and must freeze 450-910 t of brine per t LCE, and the leftover liquor is still about 30% CaCl2, so DLE is still needed. Above the eutectic, cold concentrates lithium only 1.25x. The surviving niche keeps only \"Arctic cold concentrates lithium\" and applies it to Ca-free sorbent eluate. Reverse osmosis first takes the eluate to 6 g/L Li (37 bar osmotic pressure). Two stages of spray freezing (snowmaking guns rather than trays) then take it to 20.6 g/L by draining the unfrozen brine and collecting the early melt. That moves 53% of the Li per pass, needs 62 t of ice per t LCE, and gives a product that freezes at -14 °C. Late melt at ≤1.1 g/L Li goes back to the RO feed, so no lithium is lost in the ice, and winter-only freezing needs 0.37 Mm³ of stored RO concentrate, not 2.2-7.3 Mm³.",
   "value": "$110-240/t LCE against $470-1,085/t LCE for the MVR evaporator it replaces (2-4x cheaper for that step), but that is only 5-15% off the $3.4-6.2k/t LCE whole route, and the night-sky/eutectic anchor is not used.",
   "parent": "repair_a#4"
+ },
+ {
+  "id": "gx_front_1#1",
+  "label": "gx_front_1",
+  "arm": "GF",
+  "gen": 1,
+  "name": "Plume-Assay Needle Drilling",
+  "mech": "A sled-mounted ~100 kW gyrotron (CAP 24) vaporises a finger-thin hole through frozen overburden and ore with no bit, rods or drilling fluid, so permafrost never thaws and no water or core is hauled. A nitrogen purge lifts the rock vapour; a spectrometer reads its atomic emission lines every few centimetres, and the condensed fume is bagged as a check sample. The rig steps across a coarse grid and adds holes wherever the plume chemistry spikes.",
+  "value": "Remote deposits gain bankable grade and tonnage at a fraction of the cost and time of core drilling with fly-out assays."
+ },
+ {
+  "id": "gx_front_1#2",
+  "label": "gx_front_1",
+  "arm": "GF",
+  "gen": 1,
+  "name": "Robot-Built Self-Dredging Rivers",
+  "mech": "Each winter, autonomous excavators that scan, grasp and stack irregular boulders without mortar (CAP 20) work the dry bars and frozen bed of a shallow tributary between deposit and navigable river, building dry-stone wing dams that pinch every riffle. The spring flood, squeezed through the gaps, scours a deep continuous channel that shallow-draft barges use all summer. After each flood the robots re-scan the bed and lengthen, raise or notch walls where scour fell short or overshot.",
+  "value": "Hundreds of kilometres of unused small rivers become maintained freight waterways for a fraction of a road's cost."
+ },
+ {
+  "id": "gx_front_1#3",
+  "label": "gx_front_1",
+  "arm": "GF",
+  "gen": 1,
+  "name": "Tuned-Burst Frozen Ground Ripping",
+  "mech": "Lithotripsy-style transducer arrays (CAP 23), coupled to a frozen face through a brine film, fire ultrasound bursts tuned to the grain size of ice-cemented gravel or silt, so the weak ice bonds between grains fatigue and fail while the stones stay whole. A light loader scrapes off each loosened, still-frozen layer, and burst frequency is retuned as scanned grain size changes. Unheated rigs run through polar night on sodium-ion packs that keep over 90% capacity at −40 °C (CAP 9).",
+  "value": "Frozen overburden and ore are dug year-round by small electric machines, without explosives or waiting for summer thaw."
+ },
+ {
+  "id": "gx_front_1#4",
+  "label": "gx_front_1",
+  "arm": "GF",
+  "gen": 1,
+  "name": "Fusion-Magnet Dry Kimberlite Rejection",
+  "mech": "A 20-tesla REBCO coil (CAP 6) stands at the pit rim, its cryocooler dumping heat into winter air. Crushed dry kimberlite falls through its open field gradient: iron- and magnesium-silicate grains are dragged sideways, while diamagnetic diamonds and non-magnetic grains drop straight into a small product stream. Splitter vanes are reset continuously from X-ray diamond counts in each stream.",
+  "value": "Most kimberlite is rejected dry at the pit, shrinking the heated wet plant and its ore haulage several-fold."
+ },
+ {
+  "id": "gx_front_1#5",
+  "label": "gx_front_1",
+  "arm": "GF",
+  "gen": 1,
+  "name": "Self-Levelling Pressure-Cell Foundations",
+  "mech": "Modular plants and camps rest on mats of Vectran-strap pressure cells (CAP 21), flown in folded, that spread load over untouched tundra so ground pressure stays below what the active layer bears. Tilt sensors drive a small compressor that inflates or bleeds individual cells as ice-rich ground settles or heaves, keeping structures level for decades.",
+  "value": "Facilities go onto raw permafrost in days, skipping pile rigs, freeze-back waits and gravel pads."
  }
 ]
