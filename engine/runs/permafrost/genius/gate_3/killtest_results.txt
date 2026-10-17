@@ -1,0 +1,16 @@
+IDEA 1: req=7e+07 avail=1.494e+06 MARGIN=0.0213 | now=8500 with=15331 RATIO=0.554 -> DEAD
+    {'ore_per_cu': 233.3333, 'barge': 8333.3333, 'left': 4403.0, 'port_opex': 964.75, 'port_capex': 697.0, 'handling': 933.3333}
+IDEA 2: req=6.918 avail=2.535 MARGIN=0.366 | now=23000 with=13760 RATIO=1.67 -> WOUNDED
+    {'remainder': 11550.0, 'wr_km': 577.5, 'idea_leg': 2310.0}
+IDEA 3: req=10 avail=0.02388 MARGIN=0.00239 | now=2550 with=2497.9 RATIO=1.02 -> DEAD
+    {'spacing_km': 41.8807, 'expl_per_oz': 52.0932}
+IDEA 4: req=51.15 avail=212.8 MARGIN=4.16 | now=23000 with=18655 RATIO=1.23 -> WOUNDED
+    {'holes_per_yr': 23.4997, 'labour': 4000.0, 'energy': 3075.0, 'drill': 4699.9439, 'capex': 4882.3618, 'penalty': 1.0873}
+IDEA 5: req=100 avail=83.7 MARGIN=0.837 | now=2550 with=2212.1 RATIO=1.15 -> WOUNDED
+    {'best_ratio_solid': 253.6559, 'best_h': 2.33, 'lane_h': 0.6794, 'lane_ratio': 330.8432, 'water_per_bulk': 215.0481, 'earthmoving_share': 0.5147, 'removed': 0.1325}
+IDEA 6: req=1.4e+06 avail=9.171e+05 MARGIN=0.655 | now=9065.8 with=8287.5 RATIO=1.09 -> DEAD
+    {'Q_pulse': 47.1075, 'pulses_day': 4.5853, 'road_tcu': 565.756, 'truck_tcu': 212.5}
+IDEA 7: req=8 avail=2.752 MARGIN=0.344 | now=2550 with=2034.8 RATIO=1.25 -> WOUNDED
+    {'max_factor_infinite_width': 7.6667, 'hwm_per_oz': 340.7662}
+IDEA 8: req=1.4e+06 avail=1.494e+06 MARGIN=1.07 | now=8500 with=8075 RATIO=1.05 -> DEAD
+    {'spare_per_voyage': 6200.0}

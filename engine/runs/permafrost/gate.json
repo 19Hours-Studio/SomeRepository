@@ -222,5 +222,61 @@
   "margin": 0.36,
   "ratio": 0.91,
   "verdict": "DEAD"
+ },
+ "EC:EB:g1_loop#1": {
+  "killer": "spare laden-leg deadweight of the Arctic LNG fleet vs whole-ore tonnage",
+  "why": "A laden Arc7 has only ~6,200 t of deadweight to spare, so the whole fleet could carry about 2% of one Baimskaya's ore, and river-barging 233 t of ore per tonne of copper alone costs about as much as today's entire delivered chain.",
+  "margin": 0.021,
+  "ratio": 0.55,
+  "verdict": "DEAD"
+ },
+ "gx_front_1#2": {
+  "killer": "post-flood summer discharge needed to hold a 1.0 m x 12 m barge lane (Manning, n 0.035, slope 0.0005)",
+  "why": "Wing dams can narrow a channel but cannot add water: small Yakutian rivers carry about a third of the post-flood flow a minimal barge lane needs, and the large chain gain holds only if the robot works cost almost nothing.",
+  "margin": 0.37,
+  "ratio": 1.67,
+  "verdict": "WOUNDED"
+ },
+ "gx_front_2#5": {
+  "killer": "survey line density over the territory",
+  "why": "Fixed logistics corridors give about 1/400 of the line density a kimberlite search needs, and exploration is only ~2% of delivered gold cost, so even a perfect free survey barely moves the chain.",
+  "margin": 0.0024,
+  "ratio": 1.02,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_2#3": {
+  "killer": "coal recovered per borehole (water-jet reach)",
+  "why": "Borehole-mining physics has headroom, but at ~200 t per hole a village boiler needs ~23 new permafrost wells a year plus a full-time crew and plant, which leaves only ~1.2x over imported coal (and less where a shallow seam could simply be pit-mined).",
+  "margin": 4.2,
+  "ratio": 1.23,
+  "verdict": "WOUNDED"
+ },
+ "EC:EB:g1_core#1": {
+  "killer": "water-limited washing throughput of the staircase (Meyer-Peter-Muller bedload at 1% slope, 30 mm gravel, 1.5 m2/s lane flow = 215 m3 water per m3 ore, water reused at 5 weirs)",
+  "why": "The water roughly suffices, but the staircase replaces only the washing plant, not the stripping of frozen overburden that is two-thirds of physical placer cost, so its best case is ~15% cheaper even before recovery losses from washing unscreened ore.",
+  "margin": 0.84,
+  "ratio": 1.15,
+  "verdict": "WOUNDED"
+ },
+ "g1_core#1": {
+  "killer": "seasonal tonnage the pulses can lift over the shoals (Manning: 47 m3/s for 1.2 m depth over a 40 m shoal, ~4,000 s per pulse, 4 x 500 t barges, 100 open-water days, est.)",
+  "why": "Even with the pulses moving two-thirds of the needed tonnage, the road and trucking they replace are under 10% of delivered copper cost, so the chain gain stays below 1.1.",
+  "margin": 0.66,
+  "ratio": 1.09,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_1#1": {
+  "killer": "reduction in earthmoving per gram",
+  "why": "The trench the highwall miner needs and the pillars it leaves cap the earthmoving cut near 2.8x rather than 8-10x (8x is unreachable unless overburden exceeds ~6x the pay thickness), which still leaves a real but modest ~1.25x.",
+  "margin": 0.34,
+  "ratio": 1.25,
+  "verdict": "WOUNDED"
+ },
+ "g1_loop#1": {
+  "killer": "spare laden-leg deadweight of the Arc7 fleet vs concentrate tonnage",
+  "why": "The whole Arc7 fleet's spare deadweight could at best carry one Baimskaya's concentrate, but sea freight is only 5% of delivered copper cost, so free carriage cannot beat ~1.05x.",
+  "margin": 1.07,
+  "ratio": 1.05,
+  "verdict": "DEAD"
  }
 }
