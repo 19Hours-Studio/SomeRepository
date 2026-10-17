@@ -166,5 +166,61 @@
   "margin": 0.86,
   "ratio": 0.89,
   "verdict": "DEAD"
+ },
+ "gx_front_2#4": {
+  "killer": "fraction of gold left in the calcine after a ~3,000 °C flash (Au boils at 2,856 °C; p_Au ≈ 1.7 atm; a 1-µm grain evaporates in ~17 µs)",
+  "why": "At 3,000 °C the gold boils off with the arsenic. Even if it stayed, the container only replaces a ~$250/oz link (POX capex $46/oz, POX opex ≤$122/oz, freight $81/oz), while its 939 kWh/t of flash power at 41 rub/kWh costs ~$223/oz (RATIO 1.09 even at NPP power prices).",
+  "margin": 0.44,
+  "ratio": 1.01,
+  "verdict": "DEAD"
+ },
+ "gx_fl_2#5": {
+  "killer": "pump pressure per 15-km hose segment at the −57.8 °C record low (ESPO-type crude at 6.95 cSt @20 °C, extrapolated with the Siberian Light slope to 124 cSt; laminar flow; +100 m rise)",
+  "why": "The strapped hose survives the hydraulics, but trucking is only $10 of an $82/bbl chain that is ~53% tax. The hose alone ($180/m aramid-TPU catalogue price, shop.midwesthose.com, $54M) amortises to $6.5/bbl, and even the claimed $1/bbl reaches only 1.12.",
+  "margin": 1.8,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_2#2": {
+  "killer": "diesel per gram to hot-water thaw, jet and airlift the paystreak (20 vol% pore ice = 69 MJ/m³; 60% of heat reaches the ore; 85% boiler; grade 1.75 g/m³; 85% recovery)",
+  "why": "Ideal thaw alone already takes 1.5 l/g, so the 2 l/g claim fails. Each cased 0.3-m hole through 20 m of cover yields only ~2.7 oz and costs ≥$3,900 even at US double-cased rates (softlive.floridadep.gov). That adds ~$1,440/oz, more than the stripping fleet it removes.",
+  "margin": 0.54,
+  "ratio": 0.88,
+  "verdict": "DEAD"
+ },
+ "gx_fl_2#4": {
+  "killer": "flash Joule heating (FJH) throughput for run-of-mine pegmatite (1.96 Mt/yr; 43.6 t ore per t LCE; 210 MW, or 140 MW after the thermophotovoltaic recapture)",
+  "why": "The chemistry works in the lab, but the pit needs ~1,000x the largest FJH plant that exists. Heating all 43.6 t of ore per tonne also costs 27 MWh/t ($2,094/t at 6.45 rub/kWh), so even the claimed tenfold process-capex cut gives only ~1.2x.",
+  "margin": 0.0009,
+  "ratio": 1.19,
+  "verdict": "DEAD"
+ },
+ "gx_fl_2#1": {
+  "killer": "diesel to thaw the scoring slots (0.2-m back, side and base slots on 10×3×8.3 m slabs = 11% of volume; 30 vol% ice; 100% heat use) against one-tenth of today's dozer diesel",
+  "why": "The <1 bar cushions can tip a slab (6x the restoring moment). But melting even the thinnest slots takes about as much diesel per m³ as ripping and dozing does now, ~7x the claimed one-tenth budget.",
+  "margin": 0.14,
+  "ratio": 1.27,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_2#5": {
+  "killer": "dredging depth to the pit floor (70 Mt/yr ore × ~25 yr × strip ratio 0.8 = 1.17 km³ → 230–390 m mean depth over 3–5 km²; ~47 m of deepening in year 1 on 1 km²; ore traced to 750 m)",
+  "why": "No dredge reaches below ~45 m, so the floating mine stalls within the first year or two of a pit that must go several hundred metres deep. Even the claimed capital halving, with no dredge or barge cost added, gives only 1.26x.",
+  "ratio": 1.26,
+  "margin": 0.11,
+  "verdict": "DEAD"
+ },
+ "EC:EB:g1_core2#1": {
+  "killer": "water needed to hold barge depth in the gravity-graded channel after the lake drains (1.5 m × 15 m for ≤400-t Kolyma barges; n 0.03; slope 0.1 m/km → 8.7 m³/s over a 100-day season)",
+  "why": "Lake heat could cut the gully: about 86,000 m³ of 12 °C water per km melts the 65–90 vol% yedoma ice (epic.awi.de/35773). But water draining to the river leaves no navigable canal behind, and the road leg it replaces is a few percent of delivered cost.",
+  "margin": 0.16,
+  "ratio": 1.07,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_1#5": {
+  "killer": "throughput per rope-conveyor line at 25 Mt/yr and 85% availability",
+  "why": "The comparison is with Elga's own railway at ~$12/t (built for ~100 bn rub, about $2.2M/km), not the $46/t RZD tariff. A 450-km elevated belt costs more per tonne: $3.2bn → $16.8/t (from bulk-online's $2.07M/km at 10 Mtpa, scaled), or $45/t at Thundersaid's average $0.1/t-km. It would also need ~3x the capacity and ~90x the length of any RopeCon built.",
+  "margin": 0.36,
+  "ratio": 0.91,
+  "verdict": "DEAD"
  }
 }
