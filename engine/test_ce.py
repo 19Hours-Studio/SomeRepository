@@ -206,6 +206,23 @@ def main():
             open(p, "w").write("=== IDEAS ===\nIDEA 1\nNAME: fixed tail\nMECHANISM: rare thing fixed\nVALUE: big\n")
             ce("ingest", R7, "rp", "--arm", "v7R", "--gen", "3", "--parents", os.path.join(dp, "parents.json"), "--file", p)
             assert [i for i in json.load(open(os.path.join(rd7, "ideas.json"))) if i["label"] == "rp"][0]["parent"] == "tl#1"
+            # v3.0: raw material, frontier/ledger techniques, kill-test gate, selection by O x headroom
+            open(p, "w").write("notes\n=== FRONTIER ===\nCAP 1 | glass foam | materials | floats | 0.1 g/cc (2024) | TRL 6 | u\n")
+            assert "frontier:" in ce("material", R7, "frontier", "--file", p)
+            open(p, "w").write("=== LEDGER ===\nARCHETYPE A: x | delivered cost 1 | price 2\n")
+            ce("material", R7, "ledger", "--file", p)
+            for tech in ("frontier", "ledger", "frontier_ledger"):
+                t = open(ce("prompt", R7, tech, "t_" + tech).strip()).read()
+                assert "{" not in t.replace("{N}", ""), t[:200]
+            assert "glass foam" in open(os.path.join(rd7, "prompts", "t_frontier_ledger.txt")).read()
+            dg = os.path.join(tmp, "gt"); ce("gatetask", R7, "--ids", "tl#1,rp#1", "--dir", dg)
+            t = open(os.path.join(dg, "TASK.md")).read(); assert "ARCHETYPE A" in t and "fixed tail" in t and "mean originality" not in t
+            open(p, "w").write("=== GATE ===\nIDEA 1: tail one\nKILLER | melt | required 9 kg | available 0.5 kg (src) | MARGIN 0.05\n"
+                               "CHAIN | road | now 80 | with idea 70 | RATIO 1.14\nVERDICT | DEAD | melts\n"
+                               "IDEA 2: fixed tail\nKILLER | flux | required 1 | available 3 (src) | MARGIN 3\n"
+                               "CHAIN | road | now 80 | with idea 20 | RATIO 4.0\nVERDICT | ALIVE | ok\n")
+            assert "2/2" in ce("gate", R7, "--dir", dg, "--file", p)
+            gj = json.load(open(os.path.join(rd7, "gate.json"))); assert gj["rp#1"]["ratio"] == 4.0 and gj["tl#1"]["margin"] == 0.05
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")

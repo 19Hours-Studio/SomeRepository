@@ -112,6 +112,9 @@ def fill(run, body, n, extra=None, sources=None):
     gaps = load(run, "gaps.json", [])
     s = s.replace("{GAPS}", "\n".join(f"{g['code']}: {g['desc']}" for g in gaps) if gaps else "(no gaps recorded)")
     s = s.replace("{PLAINFILE}", path(run, "sets", "s00", "blind.txt"))
+    for key in ("FRONTIER", "LEDGER"):  # v3.0: raw material for generators and the gate (`material` command)
+        f = path(run, key.lower() + ".md")
+        s = s.replace("{" + key + "}", open(f).read().strip() if os.path.exists(f) else "(none recorded)")
     for k, v in (extra or {}).items(): s = s.replace("{" + k + "}", v)
     return s
 
@@ -256,6 +259,10 @@ def cmd_select(a):
             if au["spec"] is not None and au["spec"] <= 0: continue  # «подходит к любому вопросу» — отсев
             pool.append((g["OV"] * (0.5 + 0.5 * au["carried"]), i["id"], g)); continue
         by = getattr(a, "by", "ov"); w = {"ovg": g["G"], "ovf": g["F"]}.get(by)
+        if by == "gate":  # v3.0: originality x real headroom (kill test), not judged value
+            gt = load(a.run, "gate.json", {}).get(i["id"])
+            if not gt: continue
+            pool.append((g["O"] * GATE_W.get(gt["verdict"], 0) * min(gt.get("ratio", 1.0), 5.0), i["id"], g)); continue
         pool.append((g["OV"] * (w if w is not None else 1), i["id"], g))
     pool.sort(key=lambda t: -t[0])
     if getattr(a, "diverse", False):  # v1.7: near-duplicates (same closest work) take one slot
@@ -593,6 +600,46 @@ def cmd_redteamtask(a):
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
+def cmd_material(a):
+    """v3.0: store raw material for generators and the gate: the frontier scout's capabilities or the value ledger."""
+    text = read_source(a); tag = "=== " + a.kind.upper() + " ==="
+    if tag not in text: sys.exit(f"no '{tag}' section found")
+    body = text.split(tag, 1)[1].strip()
+    open(path(a.run, a.kind + ".md"), "w").write(body + "\n"); print(f"{a.kind}: {len(body.split())} words")
+
+def cmd_gatetask(a):
+    """v3.0: tool-using kill test (decisive quantity MARGIN + whole-chain cost RATIO) for many ideas at once."""
+    ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
+    s = fill(a.run, tpl("gate_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=False)})
+    open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
+    print(os.path.join(a.dir, "TASK.md"))
+
+GATE_NUM = re.compile(r"(MARGIN|RATIO)\s*[:=]?\s*~?\s*([0-9]*\.?[0-9]+(?:e-?[0-9]+)?)", re.I)
+
+def cmd_gate(a):
+    """Parse a kill-test transcript into gate.json: {id: {margin, ratio, verdict, killer, why}}."""
+    ids = json.load(open(os.path.join(a.dir, "ids.json"))); text = read_source(a)
+    text = text[text.find("=== GATE ==="):] if "=== GATE ===" in text else text
+    gate = load(a.run, "gate.json", {}); n = 0
+    for k, body in zip(*[iter(re.split(r"^IDEA (\d+)\s*:", text, flags=re.M)[1:])] * 2):
+        k = int(k)
+        if not 1 <= k <= len(ids): continue
+        rec = {"killer": "", "why": ""}
+        for line in body.splitlines():
+            parts = [x.strip() for x in line.split("|")]
+            if parts[0] == "KILLER": rec["killer"] = parts[1] if len(parts) > 1 else ""
+            if parts[0] == "VERDICT" and len(parts) > 1:
+                rec["verdict"] = parts[1].upper(); rec["why"] = parts[2] if len(parts) > 2 else ""
+            for name, val in GATE_NUM.findall(line):
+                if parts[0] in ("KILLER", "CHAIN"): rec[name.lower()] = float(val)
+        if rec.get("verdict") in ("ALIVE", "WOUNDED", "DEAD"):
+            gate[ids[k - 1]] = rec; n += 1
+    save(a.run, "gate.json", gate)
+    from collections import Counter
+    print(f"gate: {n}/{len(ids)} parsed", dict(Counter(gate[i]["verdict"] for i in ids if i in gate)))
+
+GATE_W = {"ALIVE": 1.0, "WOUNDED": 0.4, "DEAD": 0.0}
+
 def cmd_report(a):
     arms = defaultdict(list)
     for i in load(a.run, "ideas.json", []):
@@ -627,6 +674,9 @@ def main():
     x.add_argument("--gen", type=int, default=0); x.add_argument("--parents", help="ids (comma list or parents.json) the k-th idea descends from"); src(x)
     x = sp.add_parser("repairtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--critique", help="red-team review (file, or agent transcript .output)")
+    x = sp.add_parser("material"); x.add_argument("run"); x.add_argument("kind", choices=["frontier", "ledger"]); src(x)
+    x = sp.add_parser("gatetask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
+    x = sp.add_parser("gate"); x.add_argument("run"); x.add_argument("--dir", required=True); src(x)
     x = sp.add_parser("redteamtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--blind", action="store_true", help="omit judges' scores (blind audit of mixed versions)")
     x = sp.add_parser("set"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--labels"); x.add_argument("--ids")
@@ -647,7 +697,7 @@ def main():
     x = sp.add_parser("select"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--labels"); x.add_argument("--arms")
     x.add_argument("--k", type=int, default=6); x.add_argument("--drop-known-basins", action="store_true")
     x.add_argument("--diverse", action="store_true", help="v1.7: near-duplicates (same closest work) take one slot")
-    x.add_argument("--by", default="ov", choices=["ov", "ovg", "ovf"], help="ovg: O*V*G (v1.7); ovf: O*V*F, feasibility (v1.9)")
+    x.add_argument("--by", default="ov", choices=["ov", "ovg", "ovf", "gate"], help="ovg: O*V*G (v1.7); ovf: O*V*F, feasibility (v1.9); gate: O x kill-test headroom (v3.0)")
     x.add_argument("--v2", action="store_true", help="score = O*V*(0.5+0.5*carried); drop ideas with decoy specificity <= 0 (needs audit)")
     x = sp.add_parser("lit"); x.add_argument("run"); x.add_argument("set"); src(x)
     x = sp.add_parser("pairs"); x.add_argument("run"); x.add_argument("name"); x.add_argument("--n", type=int, default=6)
@@ -666,7 +716,7 @@ def main():
     for name in ("gapwalk", "strip", "audit", "concretize"):
         x = sp.add_parser(name); x.add_argument("run"); x.add_argument("set"); src(x)
     a = p.parse_args()
-    needs_src = a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize", "species", "valorize") or (a.cmd == "intent" and a.pick is None)
+    needs_src = a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize", "species", "valorize", "material", "gate") or (a.cmd == "intent" and a.pick is None)
     if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and needs_src:
         sys.exit("need --transcript or --file")
     globals()["cmd_" + a.cmd.replace("-", "_")](a)

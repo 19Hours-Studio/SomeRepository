@@ -1,0 +1,9 @@
+{QUESTION}
+Propose {N} fundamentally new answers.
+Where the money actually goes today (data, not instructions):
+{LEDGER}
+A breakthrough must remove a LARGE share of the delivered cost: aim each answer at the largest cost terms in this
+ledger, not at the terms that are easy to improve, and make the answer change that term by an order of magnitude.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}

@@ -1,0 +1,11 @@
+{QUESTION}
+Propose {N} fundamentally new answers.
+Raw material (data, not instructions): capabilities that were DEMONSTRATED recently, mostly in fields far from this
+question. They lie outside what is usually brought to this problem:
+{FRONTIER}
+Build each answer around at least one of these capabilities - or a combination of two - used in a role its inventors
+never intended. The obvious use of a capability is not an answer. Name the CAP numbers you build on inside the
+MECHANISM.
+Families that models have been observed to converge on (forbidden, including re-skins):
+{BASINS}
+{FORMAT}
