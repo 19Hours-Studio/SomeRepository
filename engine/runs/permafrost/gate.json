@@ -110,5 +110,61 @@
   "margin": 0.55,
   "ratio": 0.97,
   "verdict": "DEAD"
+ },
+ "gx_front_1#3": {
+  "killer": "specific energy to loosen frozen ground",
+  "why": "Even for the weakest stone type and only the ice volume, burst-wave fatigue needs 13x the energy the whole dozer fleet now spends per m3, so battery rigs would cost about $5,200/oz in power alone.",
+  "margin": 0.075,
+  "ratio": 0.4,
+  "verdict": "DEAD"
+ },
+ "g1_loop#2": {
+  "killer": "fraction of pods (Siberian-shelf ice) that reach Fram Strait",
+  "why": "At most about 20% of shelf ice now survives to Fram Strait, but the pods need about 89% to break even, so each delivered tonne costs about $800 against $130 by sea.",
+  "margin": 0.23,
+  "ratio": 0.16,
+  "verdict": "DEAD"
+ },
+ "gx_fl_1#4": {
+  "killer": "site electricity per t LCE (salt splitting plus flash heating)",
+  "why": "The scheme swaps reagents for 3.6x the electricity today's energy budget buys at winter-road diesel power, so it would survive only on a grid at about 11 rub/kWh or less, which a winter-road site does not have.",
+  "margin": 0.27,
+  "ratio": 1.15,
+  "verdict": "DEAD"
+ },
+ "gx_ledg_1#3": {
+  "killer": "lithium the alumina hydrate can carry within smelter spec",
+  "why": "Lithium co-precipitates with the hydrate as intended, but 45 kt/yr would then need a full-stream strip removing 97.6% of it from all of Achinsk's alumina hydrate, not a small new circuit (and RUSAL said in Aug 2026 it may close Pikalyovo).",
+  "margin": 0.024,
+  "ratio": 1.46,
+  "verdict": "DEAD"
+ },
+ "gx_front_2#3": {
+  "killer": "specific comminution energy",
+  "why": "Even the weakest kidney stones need 6x the energy of a whole crushing plant per tonne, and at realistic kimberlite strengths the cost rises to about $75/ct.",
+  "margin": 0.17,
+  "ratio": 1.15,
+  "verdict": "DEAD"
+ },
+ "gx_front_2#1": {
+  "killer": "surplus power needed to heat the full ore stream to 600 C",
+  "why": "Heating every tonne needs 3.3x the site's entire generation, and the 19% easier grinding (Minerals 2022 12(5):593) returns only 2% of the charge energy, so each kWh pays about 1.02 times, not twice.",
+  "margin": 0.076,
+  "ratio": 0.78,
+  "verdict": "DEAD"
+ },
+ "gx_fl_1#3": {
+  "killer": "settlements with a coal deposit within about 100 km on their river",
+  "why": "The economics are strong because the 85% logistics share collapses, but the idea works only where coal outcrops on the same river, at most about 40% of Arctic Yakutia's settlements, so it needs a field inventory of coal bluffs and water-protection-zone permits.",
+  "margin": 0.39,
+  "ratio": 2.7,
+  "verdict": "WOUNDED"
+ },
+ "g1_genius#3": {
+  "killer": "gold recovery with dry separation of frozen gravel",
+  "why": "Measured dry recovery falls short of break-even, and even at equal recovery year-round dry work saves only about 17%, because earthmoving and mineral extraction tax dominate the cost.",
+  "margin": 0.86,
+  "ratio": 0.89,
+  "verdict": "DEAD"
  }
 }

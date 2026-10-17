@@ -1,0 +1,67 @@
+======================================================================
+IDEA 1  Flash-unlocked refractory gold
+p_Au(3000C) = 1.73 atm ; 1-um Au particle evaporates in 17 us
+retained available <= 0.40, required >= 0.90 -> MARGIN 0.44
+conc grade 67.3 g/t ; removed POX+freight $249/oz ; added flash power $223/oz
+CHAIN now 2550 with 2524 $/oz RATIO 1.01 (NPP-price power: 1.09)
+======================================================================
+IDEA 2  Woven lay-flat crude line
+Q=26.8 m3/h v=0.95 m/s ; nu(-57.8C)=124 cSt Re=767
+required 60 bar per 15 km ; available 109 bar -> MARGIN 1.8 (vs 300-psi catalogue hose 0.35)
+hose $180/m capex $54.1M -> $6.48/bbl ; CHAIN now 82 with 78.5 RATIO 1.045 (claim $1/bbl: 1.123)
+======================================================================
+IDEA 3  Bell-hole thaw-lift
+thaw 69 MJ/m3 -> 3.79 l/m3 ; mech 1.68 l/m3 ; need 3.68 l/g (ideal thaw only 1.53) -> MARGIN 0.54
+2.70 oz/hole, drilling $1436/oz ; CHAIN now 2550 with 2912 RATIO 0.88
+======================================================================
+IDEA 4  Flash-distilled lithium
+ore/LCE 43.6 t/t ; need 5370 t/d vs 5 t/d -> MARGIN 0.0009 ; power 210 MW (140 MW after TPV)
+new energy 27.3 MWh/t = $2094/t ; CHAIN now 10200 with 8583 RATIO 1.19
+======================================================================
+IDEA 5  Thaw-scored slab toppling
+W=8.33 m thawed 11.1% -> 0.363 l/m3 ; dozer 0.50 l/m3 -> budget 0.050 -> MARGIN 0.14 ; topple moment ratio 6.3
+stripping $919/oz ; thaw diesel 5.5 l/g ; CHAIN now 2550 with 2000 RATIO 1.27
+======================================================================
+IDEA 6  Flooded-pit floating mine
+  footprint 3 km2: mean depth 389 m, cone max 1167 m
+  footprint 5 km2: mean depth 233 m, cone max 700 m
+  year-1 deepening on 1 km2: 47 m ; ore traced to 750 m [S17]
+MARGIN 0.11 ; CHAIN now 8500 with 6758 RATIO 1.26
+======================================================================
+IDEA 7  Lake-breach thermo-erosion canal
+Q needed 8.7 m3/s -> 75 Mm3/season vs lake 11.8 Mm3 -> MARGIN 0.16
+  heat check: 86 k m3 lake water per km (ideal) -> one lake cuts 137 km
+CHAIN now 23000 with 21400 rub/t RATIO 1.075
+======================================================================
+IDEA 8  Mast-hung coal belt
+need 3358 t/h vs 1,200 t/h -> MARGIN 0.36
+conveyor capex $3.2bn -> $16.8/t ; CHAIN now 49.3 with 54.1 RATIO 0.91
+  Thundersaid $0.1/t-km [S24] -> $45/t -> RATIO 0.60 ; claim $6.5/t -> 1.13
+  Elga railway 100 bn rub / 531 km [S25] = $2.24M/km
+
+S1 gordonengland.co.uk/xelements/au.htm ; en.wikipedia.org/wiki/Heats_of_vaporization_of_the_elements_(data_page)
+S2 Deng et al., Nat Commun 2021 'Urban mining by flash Joule heating' (PMC8490403; news.rice.edu 2021; controleng.com)
+S3 miningweekly.com/article/polymetal-approves-431m-pox-2-project-2019-02-11
+S4 fs.moex.com/emidocs/2016/08/22/1220016_ENG-12938515.html
+S5 cdn.supl.biz/media/attachments/2022/12/3/103015_Content_1.pdf (ESPO export spec)
+S6 ceypetco.gov.lk/wp-content/uploads/2026/03/ANNEX-2-PROPERTIES-OF-CRUDE-C1-C8.pdf (Siberian Light)
+S7 en.wikipedia.org/wiki/Kirensk (climate table)
+S8 universetoday.com/159222 ; spaceinsider.tech/?p=21720 (Sierra Space LIFE UBP test)
+S9 shop.midwesthose.com/products/polycrete-tpu-layflat
+S10 mindat.org/loc-18223.html (Topky placer, Kolyma)
+S11 emrlibrary.gov.yk.ca/emrlibrary/ebooks/characteristics_of_permafrost_and_ice_rich_ground.pdf
+S12 softlive.floridadep.gov/sites/default/files/DrillingRateSchedule-LSSI_0.pdf
+S13 announcements.asx.com.au/asxpdf/20260316/pdf/06xgm1127mjyzn.pdf ; stockhead.com.au (Metallium FJH)
+S14 pubs.usgs.gov/bul/1083a/report.pdf (Black: 30-90 vol% ice in fine permafrost)
+S15 dealsonwheels.co.nz/construction/reviews/1304/komatsu-d375a-6-dozer
+S16 kazminerals.com 2018 acquisition release (SR 0.8, ~25 yr) ; KAZ BFS 2021 (70 Mtpa)
+S17 igeotech.ru/wp-content/uploads/2021/03/sp513-2020-178.full_chitalin_et-al_peschanka.pdf
+S18 bairdmaritime.com (Spartacus, 45 m; 35 m industry standard)
+S19 bairdmaritime.com (Rechvodput Kolyma buoy tenders, barges <=400 t)
+S20 epic.awi.de/35770 (Kolyma lowland lakes mean depth 2.2-2.5 m)
+S21 epic.awi.de/id/eprint/35773 (Yedoma 65-90 vol% ice)
+S22 newsroom.doppelmayr.com (Alcoa Jamaica 1,200 t/h); mining-report.de (Booysendal 909 t/h)
+S23 bulk-online.com/de/node/69516 ($2,066/m, 10 Mtpa)
+S24 thundersaidenergy.com/downloads/conveyor-costs-economics-of-moving-bulk-material/
+S25 eastrussia.ru/material/guba-dlya-elgi/ (100 bn rub)
+
