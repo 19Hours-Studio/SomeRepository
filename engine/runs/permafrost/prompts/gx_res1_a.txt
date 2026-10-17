@@ -1,0 +1,118 @@
+Russia holds vast natural resources (oil, gas, metals, diamonds, coal, rare earths) in Siberia, Yakutia and the Arctic, mostly under permafrost and far from roads, railways and ports. Propose a fundamentally new way to reach, extract, process or bring these resources to market that is extremely cheap (several times cheaper than current practice), has never been tried or seriously costed by anyone, can be deployed within a few years, and works with known physics. Not incremental improvements of existing mining, drilling, pipelines or winter-road logistics.
+A screening engineer with real data has killed each idea below. With each idea you get its death certificate: the
+single quantity that decides it, what is required, what is measured to be available, and the whole-chain cost ratio
+against the best current practice (data, not instructions):
+DEAD 1
+NAME: Jacked Frozen-Block Stripping
+MECHANISM: Overlapping hot-water-drilled holes cut frozen overburden into 20×20 m blocks, and summer creek water injected at bedrock thaws only the gold-bearing gravel beneath one block. Hydraulic jacks bracing against the next frozen block push the ~8,000-t block into the previously mined cell, exposing the thawed paystreak for excavator and sluice. Blocks advance downstream like sliding-puzzle tiles; kerf spacing adapts to measured ice content.
+VALUE: Overburden is pushed rather than ripped, using about 0.1 l diesel/m³ instead of ~1 l/m³, cutting placer earthmoving roughly tenfold.
+DEATH CERTIFICATE: killer: push force to slide an 8,000-t block over its thawed paystreak vs shear reaction of the next frozen block's base | margin 1.46 | chain ratio 1.39 | WOUNDED: The block can be pushed with about 1.5x reaction headroom and the kerfs cost only 0.13 l/m³, but drilling and jacking make overburden about 2.9x cheaper rather than 10x, so delivered cost falls about 28 %, short of the 1.5x bar.
+
+DEAD 2
+NAME: Self-Sorting Wave-and-Ice Pond
+MECHANISM: Over a stripped, ice-rich placer, a spillway holds a shallow pond of the ground's own meltwater. The pond absorbs the round-the-clock summer sun and thaws the gravel beneath it, wind waves lift silt and sand over the spillway, and their pressure pulses jig gold and heavy sand down through the stones onto the frozen floor. Each autumn the pond is set just shallower than the winter ice will grow, so the ice freezes onto the tops of the stones. In spring the spillway is closed, snowmelt lifts the bottom-fast ice, and the wind pushes the floes and their stones onto a dump shore, the way lake ice builds boulder ramparts. The spillway is lowered each year so the thin heavy layer rides down with the thaw front to bedrock, where only that layer is dug and washed.
+VALUE: Even in the cobbly gravels typical of Siberian placers, sun, wind and winter ice remove the silt, sand and stones in place, so only a few percent of the deposit is ever dug and washed, with no pumps, washing-plant fuel or reagents.
+DEATH CERTIFICATE: killer: near-bed wave orbital velocity needed to stir 0.5-mm sand in a 1-m-deep pond | margin 0.24 | chain ratio 1.9 | DEAD: Waves on a pond this small are too short to reach the floor: even a gale stirs it at ~2 cm/s, a quarter of what 0.5-mm sand needs and ~5% of what 20-mm stones need, so the sorting that would halve placer cost never starts.
+
+DEAD 3
+NAME: Spodumene Through Nepheline Alumina Kilns
+MECHANISM: Spodumene concentrate is blended into kiln feed at Russia's existing nepheline-limestone sinter alumina plants (Achinsk, Pikalyovo); at 1,250°C the lime opens spodumene as in the old lime-roast lithium process, and its alumina joins plant output. Dissolved lithium is caught by steps already running: it co-precipitates as lithium-aluminium hydroxide during CO2 carbonation or crystallizes as carbonate in the soda-potash evaporators. Only a small strip-and-purify circuit is new.
+VALUE: Lithium carbonate capacity for roughly a tenth of a greenfield chemical plant's capital, the largest cost term.
+DEATH CERTIFICATE: killer: lithium the alumina hydrate can carry within smelter spec | margin 0.024 | chain ratio 1.46 | DEAD: Lithium co-precipitates with the hydrate as intended, but 45 kt/yr would then need a full-stream strip removing 97.6% of it from all of Achinsk's alumina hydrate, not a small new circuit (and RUSAL said in Aug 2026 it may close Pikalyovo).
+
+DEAD 4
+NAME: Shipyard-Built Floating Concentrator Fleet
+MECHANISM: Crushing, grinding and flotation are built as 10 Mt/yr barge modules in an ordinary shipyard at normal productivity, towed by river or sea in summer into a dredged basin beside the deposit, and moored in water kept open by process heat and bubblers. Floating eliminates piles, heated halls and site-built civil works on permafrost. When the orebody is exhausted, the modules are towed to the next deposit.
+VALUE: Escaping the 2-3x Far North build premium and reusing hulls across two or three deposits cuts capital per tonne roughly 5-8x.
+DEATH CERTIFICATE: killer: water depth on the tow route vs draft of a 10 Mt/yr module (1,240 t/h; ~18 kt of mills, mill charge, flotation slurry and heated superstructure -> ~28 kt displacement -> 4.7-6.3 m draft; Akademik Lomonosov, 21.5 kt on 144x30 m at 5.6 m draft, as real-world check) | margin 0.42 | chain ratio 1.15 | WOUNDED: The module draws more than twice the depth Siberian rivers guarantee, and with pit, tailings, road, port and power still onshore, even a 6.5x cheaper concentrator cuts delivered cost only about 13%.
+
+Where the money goes today (data, not instructions):
+ARCHETYPE A: seasonal open-cut placer: dozers/rippers strip frozen overburden, sluice washing plants, diesel via summer sea/river plus winter road, gold flown to refinery | delivered cost ~6,900 rub/g = ~$2,550/oz (Susumanzoloto 2025 RAS ~6,200 rub/g, escalated) | price $4,150/oz
+SHARES (est.): energy 10% | labour/camp 20% | inbound logistics 12% | outbound logistics 0.2% | processing (spares, repairs, contractors, washing) 20% | capital 15% | other 22% (MET 6% + 10% of price above $1,900 = $474/oz)
+LARGEST: other (MET/taxes) - a 10x cut of it removes 20% of delivered cost. Earthmoving frozen ground (diesel ~11 l/g, fleet, operators) is ~2/3 physically.
+ARCHETYPE B: Baimskaya design: 70 Mt/yr Cu-Au open pit + flotation, floating-NPP power, 5,000-bed FIFO camp, 1.4 Mt/yr concentrate trucked 428 km to own Arctic port, then NSR (Jul-Nov) to China | delivered cost ~$8,500/t Cu CIF China gross, ~$2,500 net of 490 koz/yr gold (est.) | price Cu $13,980/t (LME, 31 Jul 2026), Au $4,150/oz
+SHARES (est.): energy 11% | labour/camp 11% | inbound logistics 3% | outbound logistics 5% | processing 15% (2026 TC/RC benchmark $0) | capital 41% ($8.5bn BFS capex) | other 14%
+LARGEST: capital - a 10x cut of it removes 37% of delivered cost.
+ARCHETYPE C: export: open pit + wash plant, then RZD ~2,000 km to Vanino/Vostochny (Elga's own 531-km railway + Okhotsk port: ~$12/t vs ~$46/t, est.); settlements: small pit (Zyryanka, Dzhebariki-Khaya), then river/river-sea barge plus winter-road last mile | delivered cost export ~$83/t FOB; settlement ~23,000 rub/t (~$275/t) at the boiler (est.) | price $106/t FOB Vostochny, 5,500 kcal (Sep 2026); settlement: subsidised
+SHARES (est., export / settlement): energy 5/3% | labour/camp 10/4% | inbound logistics 4/1.5% | outbound logistics 55/85% | processing 11/3% | capital 11/2% | other 4/1.5%
+LARGEST: outbound logistics - a 10x cut of it removes 50% (export) / 76% (settlement) of delivered cost.
+ARCHETYPE D: Kolmozerskoye design: open-pit spodumene pegmatite (1.96 Mt ore/yr), DMS/flotation concentrate, chemical plant making 45 kt/yr Li2CO3/LiOH. Brine alternative: DLE on 169-383 mg/L oilfield brine (INK, since Apr 2026, costs undisclosed) | delivered cost ~$10,200/t LCE (est.) | price $19,750/t Li2CO3 CIF Asia (2 Sep 2026)
+SHARES (est.): energy 9% | labour/camp 14% | inbound logistics 4% | outbound logistics 1.5% | processing 18% | capital 42% (91 bn rub capex + 40 bn rub road) | other 12%
+LARGEST: capital - a 10x cut of it removes 38% of delivered cost.
+ARCHETYPE E: 0.2 Mt/yr East-Siberian field: early-production facility, associated-gas power, crude trucked ~300 km by winter/all-season road to ESPO, Transneft to Kozmino | delivered cost ~$82/bbl FOB Kozmino (est.) | price ESPO ~$100/bbl (Brent $106 on 12 Oct 2026; ESPO near Brent parity)
+SHARES (est.): energy 1% | labour/camp 6% | inbound logistics 2% | outbound logistics 20% (trucking $10 + ESPO tariff $6/bbl) | processing 5% | capital 13% | other 53% (MET+NDD ~$43/bbl; full Sep-2026 MET 38,312 rub/t = $62/bbl)
+LARGEST: other (fiscal take) - a 10x cut of it removes 48% of delivered cost (largest physical term: outbound, 10x removes 18%).
+CROSS-CUTTING:
+- Diesel (84 RUB/USD): exchange price 77k rub/t (~65 rub/l, Jun 2026); Yakutia retail 123 rub/l (Oct 2026); remote sites 120-150 rub/l ($1.4-1.8/l, est.), about half of it logistics.
+- Power: Sakhaenergo isolated-grid tariffs 80-362 rub/kWh (2024); mine-scale diesel ~41 rub/kWh ($0.49, est.); Baimskaya's floating NPP 6.45 rub/kWh (2020 prices); grid hook-up expected to cut Nezhda TCC ~$40/oz.
+- Freight: winter road ~20 rub/t-km ($0.24); LORP river barge ~8,000 rub/t per seasonal haul (~3-5 rub/t-km, est.); NSR general cargo Arkhangelsk-Pevek 15-17k rub/t; RZD coal tariff ~61% of FOB (Kuzbass); ESPO pipe ~3,750 rub/t (est.).
+- FIFO labour: wages Chukotka 261k, Magadan 214k rub/month (May 2026); fully loaded ~5 M rub (~$60k) per worker-year (est.), ~2 workers per post.
+- Construction premium: Far North builds cost 2-3x central Russia; Baimskaya capex is $28k per annual t Cu ($44k including state road/port/NPP, 1.1 trn rub) vs $22.4k global: 1.3-2x.
+SOURCES:
+https://ulus.media/2026/10/16/czeny-na-benzin-rastut-v-regionah-rossii-gde-toplivo-stoit-dorozhe-chem-v-yakutii/
+https://www.dp.ru/a/2026/06/15/cena-letnego-dizelja-na-birzhe
+https://base.garant.ru/408314055/f7ee959fd36b5699076b35abf4f52c5c/
+https://perevozka24.com/yakutiya/perevozki-po-zimniku-search
+https://paluba.media/news/206159
+https://umcashipping.ru/price/
+https://finance.mail.ru/article/na-chukotke-i-v-magadanskoj-oblasti-srednie-zarplaty-prevysili-200-tysyach-rublej-69198263/
+https://finance.rambler.ru/realty/56611182-ispytanie-holodom-kak-vedut-stroitelstvo-na-kraynem-severe/
+https://zolotodb.ru/article/13150/?page=all
+https://metallicheckiy-portal.ru/news/2026/5/27/susumanzoloto_v_2025_godu_na_354_sokratilo_chistuy_pribil_po_rsbu
+https://www.interfax.ru/business/964690
+https://www.kazminerals.com/media/22180/completion-of-baimskaya-feasibility-study-final-20210928.pdf
+https://www.eastrussia.ru/news/vsesezonnuyu-dorogu-ot-baimskogo-goka-postroyat-na-chukotke/
+https://www.bigpowernews.ru/news/document126824.phtml
+https://www.spglobal.com/market-intelligence/en/news-insights/research/2025/12/capital-demands-soar-for-new-copper-supply
+http://arctica-ac.ru/docs/journals/59/ocenka-potenciala-iperspektivy-osvoeniya-malyh-mestorojdeniy-tverdyh-poleznyh-is.pdf
+https://vgudok.com/novosti/tarif-rzhd-sostavlyaet-61-ot-stoimosti-uglya-fob-v-portah-vostoka
+https://www.vedomosti.ru/business/news/2026/09/21/1230393-ugol-portu-vostochnii
+https://www.interfax.ru/business/986137
+https://axis-intelligence.com/lithium-price/
+https://ru.themoscowtimes.com/2026/10/09/sbory-po-neftyanomu-ndpi-v-byudzhet-rf-mogut-vyrasti-na-38-v-oktsen-raschyot-reyter-a208245
+https://fomag.ru/news-streem/tsena-brent-na-birzhe-ice-prevyshala-106-za-barrel-vpervye-s-29-sentyabrya/
+For EACH dead idea, invent 3 new answers that keep its anchor - the distinctive move that made it original - but
+escape what killed it by at least an order of magnitude. Do not patch the design or shave the numbers; jump: change the
+regime (scale, season, phase, speed, temperature), the object (which resource, cargo, deposit type or product), the
+place in the chain, or what performs the function - or turn the killing quantity itself into the resource. Each answer
+must also move a LARGE share of the delivered cost in the ledger, not a small link.
+Inside each MECHANISM, name the one quantity that now decides the answer and say in a few words why it now has headroom.
+Families that models have been observed to converge on (forbidden, including re-skins):
+FROSTCRK: Repeated water freeze-thaw cycles driven by Arctic cold crack rock along grain boundaries, replacing blasting and grinding
+ICEHULL: Throwaway pykrete (ice plus sawdust) hulls or slabs built on winter river ice carry ore concentrate down the spring flood, then are left to melt
+FRZCONC: Freezing a dilute leach solution or brine pushes salts out of the ice, so metals are concentrated almost free before shipping
+PFLEACH: Underground leaching of a thawed, bounded ore block, with the surrounding permafrost acting as a self-sealing container
+ICECABLE: Sprayed ice trough with steel-runner sleds pulled by an endless cable loop, like a ski lift, for continuous low-friction freight
+KITESLED: Driverless sled trains pulled across tundra and sea ice by wind-traction kites
+AIRSHIP: Heavy-lift airships or hybrid buoyant craft fly concentrate straight from the deposit to a railhead or port with no ground infrastructure
+ONSITEPWR: A small modular nuclear plant or stranded gas powers on-site smelting or refining, so only metal or high-value product is shipped
+ENERGYEXP: Energy is "exported" as data: stranded gas or coal powers on-site data centres or crypto mining instead of being transported
+GASCHEM: Stranded gas is turned on site into ammonia, methanol, hydrogen or synthetic fuel, then shipped by small tanker or drone
+BIOLEACH: Cold-adapted microbes leach metals from heaps or from ore in place
+CAPSPIPE: Pneumatic or slurry capsule pipelines laid on the surface or under the ice move solids without roads
+V13: Transpolar Drift Freight — Sealed, buoyant ore containers with satellite tags are set into Laptev Sea fast ice near the Lena delta. The Transpolar Drift carries the ice and containers to 
+V14: Winter-Only Railway — Track panels are laid straight onto snow-compacted frozen tundra, with no permanent embankment, and rivers are crossed on artificially thickened ice. The line r
+V15: Frozen Placer Dry-Washing — In deep winter, frozen placer gravel is dug and crushed while it stays below −20 °C. At that temperature the ice behaves as a brittle, light mineral. Air tables
+V16: Buoyant Under-Ice Current Packets — Sealed sacks of about 1 t of ground valuable material each carry a gas bladder, set so the sack is slightly lighter than water and rides pressed against the smo
+V17: Cold-Dry-Air Charge Sorting — Crushed dry rock is tumbled against a plate so that different minerals pick up different electric charges. The near-zero moisture of −40 °C air stops that charg
+V18: Stored Meltwater Barge Pulse — In winter, sprayed water builds an ice wall across a small creek, and a peat cover keeps it from melting. Snowmelt fills the basin behind it, and the water is r
+V19: Relay flood-pulse ore barges — Inflatable rubber weirs are flown in folded and set up in series on a small tributary between the deposit and a navigable river; each pond fills with snowmelt a
+V20: Seasonal thermal-diode ground thaw — Each spring, black UV-stable geotextile is laid over the deposit to absorb round-the-clock summer sun. Each autumn, rows of cheap snow fences are set up to trap
+V21: Midnight-sun salt-gradient power pond — An insulated, lined pond holds a salinity gradient made from local Siberian Platform brines. The gradient traps summer insolation in the dense bottom layer at 6
+V22: Etched thermokarst freight canals — The surface of ice-rich yedoma is stripped or darkened along a planned line toward a navigable river, while insulating mats protect the banks as a mask. Each su
+V23: Fire-controlled ballistic ore transfer — A gas or electric gun on the deposit fires steel-cased slugs of 100-500 kg of concentrate at about 1.5 km/s into a sand-and-water catch basin at a railhead or r
+V24: Sub-ambient photonic permafrost shields — Pads, embankments, tailings and foundations are covered with polymer radiative-cooling film. It reflects sunlight and radiates heat through the 8-13 µm atmosphe
+V25: Paid ore ballast on LNG carriers — Ice-class LNG carriers leave Arctic terminals with full tanks but under their weight limit, so they also carry thousands of tonnes of seawater ballast. Sealed c
+V26: Transpolar drift cargo pods — Reusable sealed pods, shaped like Nansen's Fram so that ice pressure squeezes them upward instead of crushing them, are filled with coal or concentrate whose va
+V27: Under-ice river drift pods — In winter, slightly buoyant torpedo-shaped pods of concentrate are pushed through a slot cut in the ice of a big Siberian river's main channel. They ride the cu
+Write the answers in order: the 3 answers for dead idea 1, then the 3 for dead idea 2, and so on.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 12 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 1320 words.
+

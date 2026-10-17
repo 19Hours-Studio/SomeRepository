@@ -102,6 +102,7 @@ def cmd_init(a):
 def fill(run, body, n, extra=None, sources=None):
     cfg = load(run, "config.json", {})
     fmt = tpl("_format_" + cfg["format"]).replace("{N}", str(n))
+    fmt = fmt.replace("under 500 words", f"under {max(500, 110 * n)} words")  # many-idea prompts (resurrect) need room
     if cfg.get("thoughts"): fmt = tpl("_thoughts") + fmt
     if cfg.get("use_crux") and cfg.get("crux"): fmt = tpl("_crux") + fmt  # v1.7: generators must attack the crux
     s = body.replace("{QUESTION}", cfg["question"]).replace("{FORMAT}", fmt).replace("{N}", str(n))
