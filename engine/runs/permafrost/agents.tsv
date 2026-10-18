@@ -73,3 +73,5 @@ gx_res2_a	a125b37f6b3401b6b	GR2	3
 AUDIT_FINAL	af3f892dbaa4a397e	audit	7
 gx_res2_a	a125b37f6b3401b6b	GR2	3	FLAGGED-not-retried
 gx_evo_audit	a2ebabd87192e4e0f	GE	4
+REPAIR_EVO_A	a3ed35e8b0fac0578	ERPE	5
+REPAIR_EVO_B	ab870538a641ddaee	ERPE	5
