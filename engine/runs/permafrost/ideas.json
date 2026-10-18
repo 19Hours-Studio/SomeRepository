@@ -1597,5 +1597,85 @@
   "mech": "Anchor: the coal barge is itself the village boilerhouse; its hold is the winter coal bunker, it freezes into a backwater beside the heat network, and it leaves after the spring ice breaks up to refill. Repaired: unpowered 2,000 t barges (100×22 m, drawing 1.26 m instead of 3.5-3.9 m for 5,000-8,000 t hulls, which the shoaling Yana and Indigirka cannot float). Each carries a containerized automatic coal boiler (1.3 MW average, 3.2 MW peak, enough for about 300-700 people). One tug serves several barges, the hold is loaded directly by the floating bluff miner or a riverside mine, and the haul is at most 300-800 km. The barge is away from the village for 92 summer days; its own round trip takes only 12-22 days, which leaves about 75 days of paid freight work that covers the cost of a used hull.",
   "value": "3,000-5,000 rub/t at 300-800 km against about 8,080 rub/t for current river supply plus transshipment, trucking and stockpile losses, so 1.6-2.7× cheaper; at the original 1,500 km with new 8,000 t hulls it is 0.66-0.88× (more expensive), and it only fits sub-Arctic river villages that need no summer heating.",
   "parent": "gx_res1_b#5"
+ },
+ {
+  "id": "gx_evo_audit#1",
+  "label": "gx_evo_audit",
+  "arm": "GE",
+  "gen": 4,
+  "name": "Drowned-Valley Reservoir Floor Dredging",
+  "mech": "A submersible-pump dredge reaching 40 m mines placer valleys drowned for decades under Far-North hydro reservoirs such as the Kolyma. It works below the minimum drawdown level, where above-zero bottom water has thawed the whole floor, not just a lake centre. It works in open water only, so it needs no ice sawing, pond heating or moving between lakes. Deciding quantity: thawed area. A dredge needs about 0.1 km² a year against tens of km² of drowned floor, a margin of more than 100×.",
+  "value": "Gold recovered with neither stripping nor thawing, removing the frozen-ground earthmoving that is about two-thirds of physical placer cost.",
+  "parent": "rep_final#1"
+ },
+ {
+  "id": "gx_evo_audit#2",
+  "label": "gx_evo_audit",
+  "arm": "GE",
+  "gen": 4,
+  "name": "Brine-Thawed Shelf Tin Dredging",
+  "mech": "A seagoing bucket-line dredge works known shelf tin placers such as Vankina Bay in the 80-100-day open-water season, where thousands of years of seawater have left the sediments unfrozen. Deciding quantity: depth to ice-bonded permafrost below the seabed. Drilling off the Lena delta found it tens of metres down within a few km of shore, several times the 5-15 m pay column, over thousands of km². No thawing, winter work or overland moves are needed.",
+  "value": "Tin mined with no stripping, thawing or roads, the items that dominate onshore placer cost.",
+  "parent": "rep_final#1"
+ },
+ {
+  "id": "gx_evo_audit#3",
+  "label": "gx_evo_audit",
+  "arm": "GE",
+  "gen": 4,
+  "name": "Creek-Undercut Overburden Caving",
+  "mech": "Creek water runs through a starter gallery along the paystreak, thawing the pay and washing it to a sluice, the way a river cuts a niche into an Arctic bluff. Once the undercut reaches 10-20 m, the frozen overburden fails as a cantilever (0.5-2 MPa bending stress against 0.5-1.5 MPa tensile strength) and drops as intact slabs into the sluiced void, with no jacks, needles or backfill. Deciding quantity: heat delivered to the face. A 1 m³/s creek cooled by 8 K delivers about 33 MW, more than 300× a 108 kW hot-water drill.",
+  "value": "Gravity moves the overburden and free creek heat thaws the pay, removing most ripping and dozing.",
+  "parent": "rep_final#2"
+ },
+ {
+  "id": "gx_evo_audit#4",
+  "label": "gx_evo_audit",
+  "arm": "GE",
+  "gen": 4,
+  "name": "Thaw-Consolidation Gravity Stripping",
+  "mech": "The stripping surface is graded at 8-10° toward the mined cell and sprinkled with creek water. Each time summer thaw reaches ice-rich muck, meltwater is released faster than it can drain, pore pressure carries the weight, and the thawed sheet slides intact into the cell like a natural active-layer detachment. Deciding quantity: excess pore-pressure ratio at the thaw front. Muck with 40-80% ice holds it near 0.85, which lowers the sliding threshold to about 5°, half the graded slope.",
+  "value": "Gravity replaces dozing of thawed layers, today's cheapest practice at 0.30 l/m³, removing most stripping fuel, fleet and operators.",
+  "parent": "rep_final#2"
+ },
+ {
+  "id": "gx_evo_audit#5",
+  "label": "gx_evo_audit",
+  "arm": "GE",
+  "gen": 4,
+  "name": "Barge Highwall Coal Augers",
+  "mech": "A barge-mounted auger bores 1.5-2 m holes 100-200 m into a frozen coal seam from a river bluff at summer water level, leaving coal webs as pillars and conveying the coal into the hold. Deciding quantity: rock handled per tonne of coal. It is zero instead of 1.77 t, so stone placement, revetment and surplus riprap disappear and the bluff stays frozen. A 40 t/h auger cuts a 20 kt village season in about three weeks, so one barge can rotate among several rivers.",
+  "value": "Village coal with neither stripping nor a winter road, the two largest costs of a micro-pit (est. 2-3× cheaper).",
+  "parent": "rep_final#3"
+ },
+ {
+  "id": "gx_evo_audit#6",
+  "label": "gx_evo_audit",
+  "arm": "GE",
+  "gen": 4,
+  "name": "Barge Augers for Terrace Placers",
+  "mech": "A barge works river terraces whose gold- or tin-bearing gravel lies at summer water level, boring 1.5-2 m auger holes 50-100 m along the frozen paystreak. The auger flights feed the gravel to an onboard warm-water scrubber and jig, tailings refill the finished holes, and 10-20 m of frozen overburden stays in place as roof. Deciding quantity: overburden moved per m³ of pay. It is zero instead of 5-10 m³, and a 2-m opening is 5-10× narrower than the span at which frozen ground fails. Suits gravels with clasts under about 0.4 m.",
+  "value": "Removes frozen-ground earthmoving, two-thirds of physical placer cost, with river access replacing winter roads.",
+  "parent": "rep_final#3"
+ },
+ {
+  "id": "gx_evo_audit#7",
+  "label": "gx_evo_audit",
+  "arm": "GE",
+  "gen": 4,
+  "name": "Docked Multi-Year Bunker Hull",
+  "mech": "A surplus 8,000 t river hull is brought in once while empty (about 0.65 m light draught) and moored for good in a gated basin dug beside the heat network. It is fitted with an automatic boiler, and its hold is topped up ship-to-ship each summer from a riverside mine; boiler flue gas blankets the hold against self-heating. Deciding quantity: bunker capacity. The hold carries 2.3-4 winters of a 2,000-3,500 t burn, so the boiler never leaves, a low-water year can skip delivery, and the hull never meets the ice run.",
+  "value": "Removes transshipment, shore stockpiles, trucking and the shore boiler house (est. half of today's 8,080 rub/t) and ends winters lost to a failed delivery.",
+  "parent": "rep_final#4"
+ },
+ {
+  "id": "gx_evo_audit#8",
+  "label": "gx_evo_audit",
+  "arm": "GE",
+  "gen": 4,
+  "name": "Shipyard-Built Floating Mine Plants",
+  "mech": "The concentrator, power house and camp for a riverside or coastal deposit are built as hulls in an ordinary southern yard, towed in during open water, and floated into a pond dug at the site, where they freeze in for good. Crushers and mills stand on bedrock at the pond edge. Deciding quantity: the cost of building on permafrost. A floating hull is indifferent to the talik its own heat makes under the pond, so piles, thermosyphons and the 2-3× Far-North construction premium drop out.",
+  "value": "Builds most of the plant at central-Russia cost, cutting the largest cost line (capital, 41-42%) for an estimated 10-20% off delivered cost.",
+  "parent": "rep_final#4"
  }
 ]
