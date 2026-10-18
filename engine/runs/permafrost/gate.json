@@ -502,5 +502,47 @@
   "margin": 2.3,
   "ratio": 1.36,
   "verdict": "WOUNDED"
+ },
+ "gx_res1_b#5": {
+  "killer": "loaded draft of a 5,000-8,000 t barge vs guaranteed depth on settlement rivers",
+  "why": "Using the barge's idle winter as the boilerhouse does cut delivered cost about 1.6x, but a 5,000-8,000 t hull draws ~3.75 m against <=2 m guaranteed depth (none at all on most of the network), so it reaches only main-stem settlements, which are already the cheapest to supply, not \"nearly every river settlement\".",
+  "margin": 0.53,
+  "ratio": 1.58,
+  "verdict": "WOUNDED"
+ },
+ "gx_res1_b#4": {
+  "killer": "gold exposed per km of eroding pay-bearing bank per year (retreat x pay thickness x grade)",
+  "why": "Pay-bearing banks are gravel-floored, retreat <=1 m/yr and big-river alluvium carries <=0.3 g/m3, so the river exposes only ~0.45 kg of gold per km per year, and even 50 km of auriferous bank gives ~22 kg/yr at a cost above open cut.",
+  "margin": 0.29,
+  "ratio": 0.84,
+  "verdict": "DEAD"
+ },
+ "gx_res1_b#10": {
+  "killer": "brine inflow that fills the pit lake (the lake's lithium supply)",
+  "why": "The brine is rich enough, but it enters at only ~300 m3/h, which caps output near 2 kt LCE/yr where DLE costs over twice today's spodumene route, and flooding pits above live or planned underground mines is exactly how Mir flooded in 2017.",
+  "margin": 0.08,
+  "ratio": 0.43,
+  "verdict": "DEAD"
+ },
+ "gx_res1_b#7": {
+  "killer": "field-dried yield per ha on undrained permafrost peat",
+  "why": "Drying looks physically feasible in dry central-Yakutian summers even with a ~2.5x penalty for undrainable permafrost peat, but a small, Far-North-built robotic peat chain delivers heat only ~1.4x cheaper than barged coal, short of removing most of the 85% logistics share, with high-ash peat and frozen stacks as further risks.",
+  "margin": 1.24,
+  "ratio": 1.43,
+  "verdict": "WOUNDED"
+ },
+ "gx_res1_b#3": {
+  "killer": "survival of pillars and openings 35-75 years after abandonment (pillar stress vs long-term strength of frozen gravel)",
+  "why": "If the pillars still stood, 3-10 g/m3 would make robotic recovery about 2x cheaper than open cut, but pillars sized for months carried ~3 MPa against ~1.25 MPa long-term strength, so after decades most will have crept, crushed and caved, closing the \"already paid\" access.",
+  "margin": 0.42,
+  "ratio": 2.07,
+  "verdict": "WOUNDED"
+ },
+ "gx_res1_b#9": {
+  "killer": "unattended operating hours between failures",
+  "why": "Mining excavators fail every ~80-100 h while a crewless season needs ~2,000 h unattended (plus 110-1,100 m3 of diesel per placer at 11 l/g), and even a flawless robot set removes only ~24% of cost (ceiling ratio 1.32).",
+  "margin": 0.05,
+  "ratio": 1.13,
+  "verdict": "DEAD"
  }
 }

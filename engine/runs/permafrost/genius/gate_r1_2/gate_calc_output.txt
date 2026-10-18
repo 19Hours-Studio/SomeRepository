@@ -1,0 +1,31 @@
+=== IDEA 1 Wintering Miner-Barge Boilerhouses
+draft required 3.75 m, guaranteed depth 2.00 m, MARGIN 0.53
+share of Lena-basin network with any guaranteed depth: 22%
+cut 3450 + barge capital 8124 + tug 1000 + crew/maint 1966 = 14540 rub/t ; RATIO 1.58 (idea's own freight claim: 9450 rub/t, ratio 2.43)
+
+=== IDEA 2 River-Stripped Terrace Gold Barge
+barge cost $1.80M/yr; required 78.4 kg/yr = 1.57 kg/km/yr over 50 km; available 0.45 kg/km/yr; MARGIN 0.29
+cost with idea $3049/oz vs $2550 ; RATIO 0.84
+
+=== IDEA 3 Flooded Kimberlite Pit Brine
+fill rate needed 3805 m3/h vs available 300 ; MARGIN 0.079 ; years to 0.1 km3: 38
+Li supply 177-436 t/yr -> 0.85-2.09 kt LCE/yr vs 45 kt/yr archetype
+DLE capex $63491/annual t, opex $5140/t; at E3 scale $11044/t (ratio 0.92); at inflow-limited 2.1 kt/yr $23453/t ; RATIO 0.43
+
+=== IDEA 4 Robot-Milled Summer Peat
+Nordic 157 t/ha at 42.5%; undrained-permafrost penalty x2.53 -> 62 t/ha vs required 50 ; MARGIN 1.24 (range 0.68-2.27)
+peat chain 48.3 M rub/yr vs coal 69.0 M rub/yr ; RATIO 1.43
+  cross-check Finnish price x1.0: ratio 1.86
+  cross-check Finnish price x1.5: ratio 1.30
+  cross-check Finnish price x2.0: ratio 1.00
+
+=== IDEA 5 Robot Pillar Robbing
+pillar stress 3.0 MPa vs long-term strength 1.25 MPa ; MARGIN 0.42
+  3.0 g/m3: $106/m3 -> $1788/oz ; ratio 1.43
+  5.5 g/m3: $106/m3 -> $1230/oz ; ratio 2.07
+  10.0 g/m3: $106/m3 -> $929/oz ; ratio 2.74
+
+=== IDEA 6 Crewless Micro-Placer Nomads
+MTBF 100 h vs unattended season 2000 h ; MARGIN 0.050
+diesel per placer 110-1100 m3 (ledger 11 l/g)
+with idea $2265/oz (premium $327/oz) ; RATIO 1.13 ; ideal ceiling 1.32

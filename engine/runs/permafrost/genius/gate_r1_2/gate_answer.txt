@@ -1,0 +1,30 @@
+=== GATE ===
+IDEA 1: Wintering Miner-Barge Boilerhouses
+KILLER | loaded draft of a 5,000-8,000 t barge vs guaranteed depth on settlement rivers | required 3.75 m (5,000-t barge, 101x17 m, Nibulon B5000M, thepage.ua) | available 2.0 m guaranteed on the Arctic Lena-basin reaches, and no guaranteed depth on ~78% of the >16,000-km network (Mintrans northern-delivery notice 10 Sep 2026: 230 cm = guaranteed + 30 cm; Mintrans: only 3,558 km with guaranteed dimensions) | MARGIN 0.53
+CHAIN | small riverside pit + long-haul barge + transshipment + winter road, coal at the boiler (ledger C settlement) | now 23,000 rub/t | with idea ~14,500 rub/t (pit-side cost 3,450 + barge capital on one trip a year 8,100 [$3M per 5,000-t barge, Ukrrechflot via gmk.center, x1.3] + tug 1,000 + crew/maintenance 2,000) | RATIO 1.58
+VERDICT | WOUNDED | Using the barge's idle winter as the boilerhouse does cut delivered cost about 1.6x, but a 5,000-8,000 t hull draws ~3.75 m against <=2 m guaranteed depth (none at all on most of the network), so it reaches only main-stem settlements, which are already the cheapest to supply, not "nearly every river settlement".
+
+IDEA 2: River-Stripped Terrace Gold Barge
+KILLER | gold exposed per km of eroding pay-bearing bank per year (retreat x pay thickness x grade) | required 1.57 kg/km/yr (78 kg/yr to deliver at half today's cost, spread over a generous 50 km of auriferous cut-bank) | available 0.45 kg/km/yr (<=1 m/yr retreat of gravel-floored banks, Murzin 2020, e.nlrs.ru/open/137191; <=0.3 g/m3 in big-river alluvium, resar.elpub.ru 2014; 1.5 m pay, est.) | MARGIN 0.29
+CHAIN | seasonal open-cut placer (ledger A) | now $2,550/oz | with idea ~$3,050/oz (22.5 kg/yr against a $1.8M/yr barge, crew and wash plant, plus $561/oz MET/other) | RATIO 0.84
+VERDICT | DEAD | Pay-bearing banks are gravel-floored, retreat <=1 m/yr and big-river alluvium carries <=0.3 g/m3, so the river exposes only ~0.45 kg of gold per km per year, and even 50 km of auriferous bank gives ~22 kg/yr at a cost above open cut.
+
+IDEA 3: Flooded Kimberlite Pit Brine
+KILLER | brine inflow that fills the pit lake (the lake's lithium supply) | required 3,800 m3/h (0.1 km3 within 3 years) | available 270-300 m3/h at Udachny, i.e. 38 years to 0.1 km3 and 0.18-0.44 kt Li/yr (0.9-2.1 kt LCE/yr vs 45 kt/yr) at 67-166 mg/L (ynalrosa.ru Daldyn-field hydrogeology paper; Udachnaya brine analyses) | MARGIN 0.08
+CHAIN | Kolmozerskoye spodumene pit + concentrator + chemical plant (ledger D) | now $10,200/t LCE | with idea ~$23,500/t LCE (2.1 kt/yr DLE sized to the inflow, scaled from E3 Lithium Clearwater PFS C$2.47bn for 32 kt/yr LHM and opex C$6,200/t, wellfield credited; ~$11,000/t even at full E3 scale) | RATIO 0.43
+VERDICT | DEAD | The brine is rich enough, but it enters at only ~300 m3/h, which caps output near 2 kt LCE/yr where DLE costs over twice today's spodumene route, and flooding pits above live or planned underground mines is exactly how Mir flooded in 2017.
+
+IDEA 4: Robot-Milled Summer Peat
+KILLER | field-dried yield per ha on undrained permafrost peat | required 50 t/ha/season (the idea's 130-ha sizing for 3,000 t coal) | available ~62 t/ha, range 34-114 (Nordic 300-1,000 m3/ha/yr, Malkki & Frilander 1997 via Research Square, at 0.33 t/m3, cut 2.5x for drying 90%-moisture undrainable peat instead of 80% drained peat, est.) | MARGIN 1.24
+CHAIN | barged/winter-road coal at the settlement boiler (ledger C settlement) | now 23,000 rub/t coal | with idea ~16,100 rub per t of coal-equivalent heat (6,500 t/yr peat: 110 M rub robot fleet, 150 ha prepared, 40 M rub boiler conversion, 12.4% capital charge; cross-check: Finnish delivered milled peat EUR 16-19/MWh, Statistics Finland, x1.5 remote factor gives 1.30) | RATIO 1.43
+VERDICT | WOUNDED | Drying looks physically feasible in dry central-Yakutian summers even with a ~2.5x penalty for undrainable permafrost peat, but a small, Far-North-built robotic peat chain delivers heat only ~1.4x cheaper than barged coal, short of removing most of the 85% logistics share, with high-ash peat and frozen stacks as further risks.
+
+IDEA 5: Robot Pillar Robbing
+KILLER | survival of pillars and openings 35-75 years after abandonment (pillar stress vs long-term strength of frozen gravel) | required >=3.0 MPa (30 m cover, 80% chamber extraction, est.) | available ~1.25 MPa long-term strength of frozen sandy gravel at -3 to -5 C (est.; cf. creep and a gravel roof fall in the 40-year-old CRREL permafrost tunnel, Bjella et al. 2008, ERDC/CRREL TR-08-11) | MARGIN 0.42
+CHAIN | seasonal open-cut placer incl. technogenic re-mining (ledger A; ~50% of Magadan output already comes from technogenic placers, eastrussia.ru) | now $2,550/oz | with idea ~$1,230/oz at 5.5 g/m3 ($106/m3 robotic underground handling at 33.4 m3/shift, the Kularzoloto LHD rate, rudmet.net; $1,790/oz at 3 g/m3) | RATIO 2.07
+VERDICT | WOUNDED | If the pillars still stood, 3-10 g/m3 would make robotic recovery about 2x cheaper than open cut, but pillars sized for months carried ~3 MPa against ~1.25 MPa long-term strength, so after decades most will have crept, crushed and caved, closing the "already paid" access.
+
+IDEA 6: Crewless Micro-Placer Nomads
+KILLER | unattended operating hours between failures | required ~2,000 h per placer-season with no people on site | available 80-100 h MTBF for a mining excavator (Komatsu PC4000-6 reliability study, repository.sgu.ac.id) | MARGIN 0.05
+CHAIN | seasonal open-cut placer with camp (ledger A) | now $2,550/oz | with idea ~$2,265/oz (removes labour/camp 20% + camp supply ~4%, adds ~$330/oz robot capital, remote operations and per-placer moves at 50 kg per placer) | RATIO 1.13
+VERDICT | DEAD | Mining excavators fail every ~80-100 h while a crewless season needs ~2,000 h unattended (plus 110-1,100 m3 of diesel per placer at 11 l/g), and even a flawless robot set removes only ~24% of cost (ceiling ratio 1.32).
