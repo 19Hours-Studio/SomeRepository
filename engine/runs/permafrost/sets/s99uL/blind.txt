@@ -1,0 +1,32 @@
+W01
+MECHANISM: Many river settlements sit near bluffs where coal seams outcrop. A self-propelled barge with an autonomous excavator works the bluff nearest each settlement during the navigation season, cutting frozen coal into its hold, unloading at the riverside yard, then moving to the next exposure. Its dry-stone-walling autonomy (CAP 20) re-stacks the removed rock slabs as a mortarless revetment, so the cut bank cannot thaw and slump.
+VALUE: Replaces a 1,000-2,000 km barge-plus-winter-road chain with a 10-100 km haul, cutting settlement coal's 85% logistics share about tenfold.
+
+W02
+MECHANISM: A barge carrying a packaged coal boiler cuts 5,000-8,000 t from a riverbank seam into its own hold, sails up to 1,500 km to a settlement and freezes into a backwater as the village boilerhouse, piped to the heat network; in spring it returns to the seam. Bunker level and heat demand are logged to size the next season's cut. Deciding quantity: river distance to the nearest coal bluff, now up to ~1,500 km instead of 100 km; it has headroom because transshipment, stockpiles, the winter road and the boilerhouse building all disappear, leaving only barge freight at 3-5 rub/t-km.
+VALUE: Nearly every river settlement gets coal at roughly half today's logistics cost.
+
+W03
+MECHANISM: Overlapping hot-water-drilled holes cut frozen overburden into 20×20 m blocks, and summer creek water injected at bedrock thaws only the gold-bearing gravel beneath one block. Hydraulic jacks bracing against the next frozen block push the ~8,000-t block into the previously mined cell, exposing the thawed paystreak for excavator and sluice. Blocks advance downstream like sliding-puzzle tiles; kerf spacing adapts to measured ice content.
+VALUE: Overburden is pushed rather than ripped, using about 0.1 l diesel/m³ instead of ~1 l/m³, cutting placer earthmoving roughly tenfold.
+
+W04
+MECHANISM: Worn rail panels, which mainline track renewals retire every year at near-scrap cost, are laid by a standard track-laying train straight onto frozen tundra compacted with snow, with no embankment. Rivers are crossed on ice thickened by repeated flooding, tamping machines re-level the line each autumn to undo the summer heave, and trains run only in the 5–6 months when the ground is rigid. Because the line carries rail-scale tonnage at rail cost, it hauls raw ore to a mill on the permanent network where grid power and reagents already exist, and the empty trains come back with fuel, so the deposit needs only a pit and a loading ramp. When the deposits it serves are worked out, the same panels are lifted and relaid to the next group of deposits, so the line's capital cost is mostly labour, is reused, and is small enough for deposits shipping a few hundred thousand tonnes a year.
+VALUE: Mid-size remote deposits, not only giant ones, get rail-scale haulage of raw ore to grid-powered mills for a small fraction of the cost of an all-season Arctic railway, with no plant on permafrost.
+
+W05
+MECHANISM: Soviet underground placer mines in Kolyma and Yakutia left pillars of their richest pay inside frozen drifts. Robots enter through old shafts or a new borehole, laser-scan the workings against archived plans, cut the pillars on retreat and let the roof cave behind them, sending the gravel to a portable wash plant; the grade of each pillar is stored and re-ranks the rest. Deciding quantity: gold per m³ handled, 3-10 g in pillars against ~0.3 g per m³ moved in open cut; it has headroom because the overburden and development were paid for decades ago.
+VALUE: Gold that is already proven and opened up is recovered with 10-30x less material moved per gram, in workings where caving rules out human miners.
+
+W06
+MECHANISM: Beneath thermokarst lakes deeper than ~2 m, and beneath reservoirs that drowned placer valleys, the ground has thawed tens of metres down. A floating dredge with an onboard gold plant works these pre-thawed gravels year-round under the winter ice, with no stripping or thawing. Summer electrical soundings map each talik into a stored model, and the dredge's path follows the thawed zone. Deciding quantity: depth to pay inside the talik, 10-40 m against a 45 m dredge reach; it has headroom because nature has already thawed and softened the overburden.
+VALUE: Placer gravels that nature has already thawed are mined continuously, removing about half of delivered cost.
+
+W07
+MECHANISM: From one shaft per square kilometre, 0.4 m-high battery crawlers cut only the basal gravel and the top of the fractured bedrock, conveying the cuttings to a wash plant at the shaft. Behind them the frozen roof creeps down and closes the slot, so the mine needs no pillars and no trench. Gold per metre goes into a shared stored map that steers the swarm along rich streaks. Deciding quantity: the share of placer gold in the basal 0.4 m, typically 60-80%; it has headroom because the volume cut per gram falls 13-20x compared with stripping.
+VALUE: Placers are worked year-round with an order of magnitude less earthmoving and almost no surface disturbance.
+
+W08
+MECHANISM: A sled-towed cold-atom gravity gradiometer built to find tunnels (CAP 5) maps shallow coal lenses, half as dense as host rock, near Lena-basin settlements. An autonomous excavator, its dry-stone vision and grasping (CAP 20) retrained to sort frozen coal from rock, mines a few thousand tonnes unattended each winter. Lens rankings and measured ash are stored and updated, so the robot backfills and moves on.
+VALUE: A short winter haul replaces hundreds of kilometres of barge and winter road, cutting settlement coal logistics about tenfold.
+
