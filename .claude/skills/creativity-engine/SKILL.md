@@ -59,6 +59,20 @@ Launch independent agents in one message; never read transcripts into your own c
   AUDIT and report its residual defects to the user. Judges without tools miss fatal defects and score claimed value,
   so never report judge V/F alone as truth.
 
+## v3.0-v3.1 for physical-world questions: truth in selection, freedom in imagination (10-genius-engine.md)
+- Before generating: `material R ledger` (where the money goes, by cost share, sourced) - the most useful raw material:
+  ledger-fed generators (`prompt R ledger ...`) survive the kill test 4-8x more often (40% vs 0-9%) at lower O.
+  `material R frontier` (fresh far-field capabilities) did NOT help (plug-in technology, O lower, survival 10%).
+- Gate EVERY idea, not the most original few: `gatetask R --ids ... --dir D` (one decisive quantity MARGIN + whole-chain
+  RATIO vs best practice; ALIVE/WOUNDED/DEAD), blocks of 8 shuffled across arms, plus 2-4 calibration items with known
+  audit outcomes; `gate R --dir D --transcript ...`. The most original ideas (A->B->C) were 91% DEAD here.
+- Evolution under truth: `resurrect R label --ids <dead/wounded with high O x RATIO> --m 3`, ingest with
+  `--parents prompts/label.parents.json`, gate the children. Survival rose 14% -> 50% with O unchanged and gave the first
+  ALIVE idea. The deep blind audit is stricter than the gate, so evolve under the audit for the final generations.
+- Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
+  defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
+  bio-adjacent items out of judge sets.
+
 ## v3 (when ideas can be checked by running code): ask reality, not judges (08-reality-engine.md)
 - Build an executable evaluator first (see `engine/reality/arch|lm/harness.py`: fixed equal training, causality and
   budget checks incl. non-trainable buffers). Close loopholes: optimisers find whatever the rules do not forbid.
