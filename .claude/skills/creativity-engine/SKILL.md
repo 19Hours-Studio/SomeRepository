@@ -69,6 +69,10 @@ Launch independent agents in one message; never read transcripts into your own c
 - Evolution under truth: `resurrect R label --ids <dead/wounded with high O x RATIO> --m 3`, ingest with
   `--parents prompts/label.parents.json`, gate the children. Survival rose 14% -> 50% with O unchanged and gave the first
   ALIVE idea. The deep blind audit is stricter than the gate, so evolve under the audit for the final generations.
+- Evolution under the deep audit (v3.2): `evolve R label --audit <dir with REVIEW.md + ids.json> --m 2` -> repair
+  -> same blind audit. It removed every parent FATAL (FATAL 0.75 -> 0.62, zero-FATAL 25% -> 50%), but new FATALs
+  appeared and 'already done / not new' findings rose 1/4 -> 5/8: fixing defects converges on known practice.
+  Track both counters (FATAL per idea AND prior-art share); feed prior-art findings back as a defect class.
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.

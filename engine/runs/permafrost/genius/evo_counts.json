@@ -1,0 +1,66 @@
+{
+ "parents": {
+  "rep_final#1": {
+   "FATAL": 1,
+   "MAJOR": 5,
+   "MINOR": 3
+  },
+  "rep_final#2": {
+   "FATAL": 1,
+   "MAJOR": 5,
+   "MINOR": 2
+  },
+  "rep_final#3": {
+   "FATAL": 1,
+   "MAJOR": 5,
+   "MINOR": 1
+  },
+  "rep_final#4": {
+   "FATAL": 0,
+   "MAJOR": 5,
+   "MINOR": 2
+  }
+ },
+ "children": {
+  "rep_evo_b#2": {
+   "FATAL": 0,
+   "MAJOR": 5,
+   "MINOR": 4
+  },
+  "rep_evo_a#1": {
+   "FATAL": 1,
+   "MAJOR": 3,
+   "MINOR": 2
+  },
+  "rep_evo_b#4": {
+   "FATAL": 0,
+   "MAJOR": 4,
+   "MINOR": 4
+  },
+  "rep_evo_a#3": {
+   "FATAL": 0,
+   "MAJOR": 4,
+   "MINOR": 2
+  },
+  "rep_evo_a#2": {
+   "FATAL": 0,
+   "MAJOR": 7,
+   "MINOR": 1
+  },
+  "rep_evo_b#3": {
+   "FATAL": 2,
+   "MAJOR": 4,
+   "MINOR": 1
+  },
+  "rep_evo_a#4": {
+   "FATAL": 1,
+   "MAJOR": 4,
+   "MINOR": 2
+  },
+  "rep_evo_b#1": {
+   "FATAL": 1,
+   "MAJOR": 3,
+   "MINOR": 3
+  }
+ }
+}
