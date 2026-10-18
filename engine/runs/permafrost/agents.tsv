@@ -71,3 +71,4 @@ REPAIR_FINAL	a6ed237d1535dd628	ERPF	7
 LIT_s99uL	a878db91eeafe6326	lit	7
 gx_res2_a	a125b37f6b3401b6b	GR2	3
 AUDIT_FINAL	af3f892dbaa4a397e	audit	7
+gx_res2_a	a125b37f6b3401b6b	GR2	3	FLAGGED-not-retried
