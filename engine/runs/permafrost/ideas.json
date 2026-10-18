@@ -1837,5 +1837,45 @@
   "mech": "The bunker barge carries a coal boiler and a ~0.3 MW organic-Rankine set and, wintering in a fleet zaton, supplies the village's winter heat and power. In summer the existing diesel station runs alone, and its jacket heat covers the light heat load. Closest is ATTEMPT 20: a 70 MW floating plant overran its capital 4.1×; this is a used hull and a container kit. Deciding quantity: fuel cost per kWh, ~1-2 rub of coal against 30-45 rub of diesel, a 20-30× gap.",
   "value": "Removes most of the 80-362 rub/kWh isolated-grid power bill as well as the heat cost, with no new grid.",
   "parent": "rep_final#4"
+ },
+ {
+  "id": "rep_att_a#1",
+  "label": "rep_att_a",
+  "arm": "ERPA",
+  "gen": 5,
+  "name": "Year-Round Under-Ice Talik Crawler",
+  "mech": "Anchor: mine the natural thaw bulb under a lake from beneath the intact winter ice, using the ice as roof and work platform. The 40-t crawler cannot fit through a 1.4×1.4 m hole, so it drives in from the shore before freeze-up. It carries a submerged jig, so only about 1% concentrate goes up the 2 m² moon-pool, which takes about 2 kW to keep open. Tailings go by tremie pipe into the crawler's own pit, inside a silt-curtain cell hung from the ice. Without the cell, 540 t/day of fines would add about 3,400 mg/L per day to the ~160k m³ of water under the ice. Load on the ice stays below 25 t until the ice reaches 1.1 m (mid-December at Yakutsk, Stefan a=2.7). The same unit works open water in summer: 270 d/yr at 150 m³/h is about 0.6 Mm³/yr. That needs about 9 ha of lake floor over talik per year, with a 7 m dig against a talik of 25 m or more.",
+  "value": "About 1,600 rub/g recovered, against about 2,140 for a summer suction dredge and about 1,930 for draining the lake and working it with dozers and a sluice. That is 1.2–1.35× cheaper, not several times, and only for lake placers that cannot be drained.",
+  "parent": "gx_evo_att#1"
+ },
+ {
+  "id": "rep_att_a#2",
+  "label": "rep_att_a",
+  "arm": "ERPA",
+  "gen": 5,
+  "name": "Thermal Drift-and-Drop Placer Caving",
+  "mech": "Anchor: water thaws only the pay layer, and the frozen overburden then falls under its own weight without any machine handling it. Toppling the face outward fails, because 62 m³ of rubble per metre of face lands in front of the next niche. So a trench is stripped instead (about 9% of the overburden), and remote low-pressure monitors drive 2-m drifts 30–60 m into the frozen pay from its side. A hydro-elevator at the face sends the slurry back to the trench. Each finished drift is widened past its long-term breaking span: 11–18 m for 6 m of overburden at 0.2–0.5 MPa. It stays open while being worked because a short-term strength of about 1 MPa lets it span about 25 m. The roof then drops 2 m in place, and mining retreats along the trench. Thaw rate is 5–10 m/day in theory and 0.15–5 m/day in field data. Water use is 3–8 m³ per m³ of pay, and fuel is about 60 rub/m³. It works best where overburden is 8–15 m thick.",
+  "value": "With 10 m of overburden, about 1,930 rub/g, against 2,270–3,980 for open cut with dozers and 3,500–7,000 for underground placer mining (1.2–3.6× cheaper). There is no gain with 6 m of overburden or less.",
+  "parent": "gx_evo_att#3"
+ },
+ {
+  "id": "rep_att_a#3",
+  "label": "rep_att_a",
+  "arm": "ERPA",
+  "gen": 5,
+  "name": "Barge-Mounted Bluff Auger Coal",
+  "mech": "Anchor: a spudded floating auger bores a frozen seam at water level in a river bluff and discharges straight into a hold, so no overburden is moved. At 20 kt/yr the rig sits idle most of the year and costs about 4,100 rub/t. The repaired version runs the whole ~100-day navigation season at about 60 t/h, for about 80 kt/yr. That rate sits between historical augers (21.5 t/h) and highwall miners (100–140 t/h). It fills four hopper barges moored alongside instead of its own hold. Thrust of 150–300 kN is taken by a frame bolted to the face, because three spuds (about 360 kN) are marginal. The frame has about 3 m of vertical travel to follow the 1–3 m drop in low-water stage during a campaign. Holes rise slightly so they drain. Face recovery is 62%, about 190 t per 80 m hole, which uses about 0.9 km of bluff a year.",
+  "value": "About 1,800 rub/t at a village bank within 150 km. That compares with 2,800–3,700 rub/t for a pit at the bank under a 20–30 m bluff (1.6–2× cheaper) and 7,100–11,600 rub/t for coal hauled 2,000+ km, as from Dzhebariki-Khaya (4–6× cheaper). There is no gain under a bluff of 10 m or less.",
+  "parent": "gx_evo_att#5"
+ },
+ {
+  "id": "rep_att_a#4",
+  "label": "rep_att_a",
+  "arm": "ERPA",
+  "gen": 5,
+  "name": "Wintering Barge Bunker Swap",
+  "mech": "Anchor: a floating hull is the village's coal bunker and feeds the boiler directly; hulls are swapped, so the coal never touches the shore. Keeping hulls dedicated all year costs 5,700 rub/t with used hulls and 27,000 with new ones, against 1,100–3,400 rub/t saved. So the swap uses the river fleet's idle winter instead. The season's last-voyage barge winters at the village berth as a sealed bunker and leaves after ice-out for summer work. In a sealed hold, only about 1,800 m³ of air enters as coal is drawn, so oxidation adds about 0.3 kW on average and self-heating is negligible. The gas that replaces the coal must be flue gas dried to about 0 °C: raw flue gas is wet, and at 6–9% O₂ it is not inert. As coal is drawn, buoyancy pushes up on the ice at about 80 kN/m, which would crack it. A 55 kW heated moat slot around the hull plus 27 kW of hold heat (3.4% of a 2.4 MW boiler, taken from flue-gas waste heat) prevent this. Draft limits capacity: at 1.2 m of water a 1,500-t hull carries only about 660 t.",
+  "value": "About 1,360 rub/t where a natural backwater lies within about 150 m of the main boiler. The costs it avoids are transshipment, rehandling, trucking and 5–15% stockpile loss, together 1,100–3,400 rub/t (0.8–2.5×). It loses money if a basin has to be dredged (2,226 rub/t) or a heat main is needed (+1,440 rub/t).",
+  "parent": "gx_evo_att#7"
  }
 ]
