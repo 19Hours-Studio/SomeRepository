@@ -72,7 +72,10 @@ Launch independent agents in one message; never read transcripts into your own c
 - Evolution under the deep audit (v3.2): `evolve R label --audit <dir with REVIEW.md + ids.json> --m 2` -> repair
   -> same blind audit. It removed every parent FATAL (FATAL 0.75 -> 0.62, zero-FATAL 25% -> 50%), but new FATALs
   appeared and 'already done / not new' findings rose 1/4 -> 5/8: fixing defects converges on known practice.
-  Track both counters (FATAL per idea AND prior-art share); feed prior-art findings back as a defect class.
+  An unsolved problem means every earlier mechanism stopped short for a reason, so 'already done' is a hidden
+  FATAL (the re-invention inherits that reason), not a novelty penalty: the goal is working, not unique.
+- v3.3 (under test): `attemptstask R --ids <parents> --dir D` (researcher: earlier attempts + WHY each did not solve
+  it) -> `material R attempts` -> `evolve ... --tpl evolve_attempts` (children must beat the closest attempt's cause).
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.
