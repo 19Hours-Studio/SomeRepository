@@ -1,0 +1,33 @@
+A: 81.98 $/g = E 42.63 + W 21.32 + T 18.04; open cut 5.81 $/m3 moved, 110.5 $/m3 pay; implied pay grade 2.59 g/m3
+
+IDEA 1
+ bell 353 m3 pay (742 t); hole/pay volume 0.032 (idea claims ~0.04)
+ spread 423 $/h; bell 49.6 k$ = 140 $/m3 pay vs open cut 110
+ KILLER rate required 12.9 t/h, available 9.0 -> MARGIN 0.70
+ CHAIN now 2550 $/oz, idea 2910 $/oz -> RATIO 0.88
+ halving claim needs E' <= 1.6 $/g; fixed drill/move alone = 16.1 $/g
+
+IDEA 2
+ implied seam 4.0 m; yield at 2.44 m = 97 t; drilled m/t 1.55 vs 0.03
+ KILLER MARGIN 0.14
+ CHAIN now 23000 rub/t, idea 9915 rub/t -> RATIO 2.32; at available radius 40219 -> 0.57
+
+IDEA 3
+ plant 3.62 $/m3; KILLER grade required 0.104 g/m3, available 0.19 -> MARGIN 1.82
+ CHAIN idea 1803 $/oz -> RATIO 1.41
+  recovery 0.55: RATIO 1.30
+  recovery 0.75: RATIO 1.52
+
+IDEA 4
+ share uniform 0.31, enriched 0.39; KILLER MARGIN 0.65 (req 0.60)
+ robots 42.7 $/m3; CHAIN idea 1815 $/oz -> RATIO 1.40; at available share 1.12
+
+IDEA 5
+ KILLER MARGIN 0.00
+ CHAIN now 49.35 $/t, idea 39.38 $/t -> RATIO 1.25; vs RZD chain 2.11
+
+IDEA 6
+ KILLER MARGIN lakes 1.90
+ reservoir check: thaw 14.2 m in 40 yr; mean water depth 33 m leaves 12 m of reach
+ heat loss 748 W/m2 -> 0.58 $/m3; dredge 5.01 $/m3 (Korzun-based 1.65); 4.44 m3/g
+ CHAIN idea 1584 $/oz -> RATIO 1.61; Korzun-based 2.28

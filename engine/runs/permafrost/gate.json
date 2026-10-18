@@ -544,5 +544,47 @@
   "margin": 0.05,
   "ratio": 1.13,
   "verdict": "DEAD"
+ },
+ "gx_res1_b#1": {
+  "killer": "excavation-and-lift rate of one borehole tool in frozen placer gravel",
+  "why": "The hole is small enough (hole volume is 0.03 of the pay volume), but at the only measured borehole rate in frozen gravel a bell costs more per m³ of pay than open-cut stripping, and drilling plus moving the tool already cost ~$16/g, against the ~$1.6/g of earthmoving that halving delivered cost would allow.",
+  "ratio": 0.88,
+  "margin": 0.7,
+  "verdict": "DEAD"
+ },
+ "gx_res1_b#8": {
+  "killer": "cutting radius of a rotating water jet in coal from a borehole",
+  "why": "At the measured jet reach a 150 m hole yields about 97 t instead of 5,000 t, so drilling rises from 0.03 to ~1.5 m per tonne and coal at the boiler would cost about 40,000 rub/t against 23,000 now.",
+  "margin": 0.14,
+  "ratio": 2.32,
+  "verdict": "DEAD"
+ },
+ "gx_res1_b#12": {
+  "killer": "residual gold grade in old dredge-pond tailings against break-even",
+  "why": "The grade is about twice break-even, but with diesel power, ~65% recovery of fine gold and MET unchanged the whole chain is only about 1.4x cheaper (1.3-1.5x for 55-75% recovery), and Kolyma dumps already reworked three to five times (www1.ru, 2 Sep 2026) may hold less.",
+  "margin": 1.82,
+  "ratio": 1.41,
+  "verdict": "WOUNDED"
+ },
+ "gx_res1_b#2": {
+  "killer": "share of the placer's gold inside a 0.4 m basal slot",
+  "why": "Most of the gold probably lies outside a 0.4 m slot, and even at the claimed share the cost of cutting by robot keeps the whole-chain gain near 1.4x (about 1.1x at the measured share).",
+  "margin": 0.65,
+  "ratio": 1.4,
+  "verdict": "WOUNDED"
+ },
+ "gx_res1_b#6": {
+  "killer": "water depth at a coal-seam face where a 50,000 t ship must moor",
+  "why": "No Bering-field seam meets water deep enough for the ship: the mined seam is far inland and even the port's coast is barge-depth, and against an operator's own short haul road and port the saving would only be ~1.25x anyway.",
+  "margin": 0.0,
+  "ratio": 1.25,
+  "verdict": "DEAD"
+ },
+ "gx_res1_b#11": {
+  "killer": "depth of the thawed zone under a thermokarst lake deeper than 2 m, against depth to pay",
+  "why": "The thaw runs well below the pay and dredging pre-thawed gravel cuts the chain about 1.6x even with new-dredge capital and winter heating, but the measured lake is in an Arctic coastal lowland, not a placer valley, so the open risk is how many deep lakes actually sit on placers; the reservoir variant fails, since ~40 years of thaw is only ~14 m and the Kolyma reservoir's ~33 m mean depth leaves just ~12 m of the 45 m reach.",
+  "margin": 1.9,
+  "ratio": 1.61,
+  "verdict": "ALIVE"
  }
 }
