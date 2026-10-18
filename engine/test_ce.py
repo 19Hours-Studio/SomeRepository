@@ -226,6 +226,9 @@ def main():
             t = open(ce("resurrect", R7, "rz", "--ids", "tl#1,rp#1", "--m", "2").strip()).read()
             assert "DEATH CERTIFICATE: killer: melt | margin 0.05" in t and "exactly 4 ideas" in t and "{" not in t.replace("{N}", "")
             assert json.load(open(os.path.join(rd7, "prompts", "rz.parents.json"))) == ["tl#1", "tl#1", "rp#1", "rp#1"]
+            open(os.path.join(dr, "REVIEW.md"), "w").write("=== REVIEW ===\nIDEA 1: tail one\nDEFECT | FATAL | melts | 3 kg/day\nDEFECT | MINOR | x | y\n")
+            t = open(ce("evolve", R7, "ev", "--audit", dr, "--m", "2").strip()).read()
+            assert "- FATAL: melts (3 kg/day)" in t and "MINOR" not in t.split("REVIEW FINDINGS")[1].split("Where")[0] and "exactly 2 ideas" in t
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")
