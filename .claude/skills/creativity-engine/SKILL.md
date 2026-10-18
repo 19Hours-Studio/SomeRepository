@@ -74,8 +74,11 @@ Launch independent agents in one message; never read transcripts into your own c
   appeared and 'already done / not new' findings rose 1/4 -> 5/8: fixing defects converges on known practice.
   An unsolved problem means every earlier mechanism stopped short for a reason, so 'already done' is a hidden
   FATAL (the re-invention inherits that reason), not a novelty penalty: the goal is working, not unique.
-- v3.3 (under test): `attemptstask R --ids <parents> --dir D` (researcher: earlier attempts + WHY each did not solve
-  it) -> `material R attempts` -> `evolve ... --tpl evolve_attempts` (children must beat the closest attempt's cause).
+- v3.3: `attemptstask R --ids <parents> --dir D` (researcher: earlier attempts + WHY each did not solve it) ->
+  `material R attempts` -> `evolve ... --tpl evolve_attempts` (children must beat the closest attempt's cause).
+  Result vs v3.2 (n=8 each): 'already done' 5/8 -> 2/8, FATAL 0.62 -> 0.50, MAJOR 4.25 -> 3.88 (direction right, not
+  significant). Remaining FATALs are computable (strength vs time, heat transfer, ice vs depth): the next lever is
+  cheap verified calculators in the gate. One researcher's 'not found' is not proof (it missed 2 of 5 known cases).
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.
