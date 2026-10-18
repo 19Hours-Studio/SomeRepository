@@ -156,7 +156,7 @@ v3.1 запущен: 8 родителей (выталкивание блоков
 | выталкивание блоков (1/5) | Pond-Heated Jet Undercut Caving | 0/7/1 | 1.2–4.3× по диапазону чувствительности автора |
 | | Self-Detaching Thaw-Face Stripping | 0/5/4 | 1.1–2.5× с учётом вскрыши на 4–9 сезонов вперёд |
 | плавучий угольщик у обрыва (1/5) | Bluff-Anchored Barge Coal Augers | 0/4/2 | 1.16× к микрокарьеру |
-| | Frozen-In Barge Auger Drift Mining | 2/4/1 | 0.64× (дороже подземной добычи); FATAL — закладка не смерзается неделями |
+| | Frozen-In Barge Auger Drift Mining | 2/4/1 | 0.81× к подземной добыче, 0.64× к карьеру; FATAL — закладка не смерзается неделями |
 | баржа-котельная (0/5) | Sealed Derelict-Hull Coal Bunker | 1/4/2 | <1×: бункер дороже погрузки, которую он убирает |
 | | Re-Floatable Pond-Moored Mine Plants | 0/4/4 | 1.03–1.07× |
 
