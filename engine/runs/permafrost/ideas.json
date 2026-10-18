@@ -1717,5 +1717,45 @@
   "mech": "Anchor kept: the concentrator, power house and camp float on hulls built in a shipyard, in a pond dug at the site, so the talik their heat creates does not matter. The pond is 6 m deep (2.2 m of maximum ice, 3 m of draft and a margin). Waste heat keeps a 2 m moat open around each hull against ice pressure, using 0.9-1.6 MW of the roughly 35 MW the power house rejects. Mills stand on bedrock 20-50 m back from the edge to allow for 0.5-2 m/yr of bank retreat. The hulls (130×14 m, 3 m draft, about 2.9 kt payload each) fit the 135×14.3 m White Sea-Baltic canal locks. Against the best current practice, a modular plant on piles, a cold-permafrost site gains nothing (capex +4%). The anchor pays off in one regime: warm, ice-rich ground where foundations are 20-25% of capex, cheap $3k/t barge hulls, and short-lived (5-7 year) riverside or coastal deposits. There the plant is re-floated and towed to the next deposit, keeping 45-55% of its value.",
   "value": "In that regime capex is 15-19% below a modular plant on piles and delivered cost 10-14% lower. On ordinary cold permafrost the gain is about 0%.",
   "parent": "gx_evo_audit#8"
+ },
+ {
+  "id": "rep_evo_a#1",
+  "label": "rep_evo_a",
+  "arm": "ERPE",
+  "gen": 5,
+  "name": "Reservoir-Talik Tributary Dredging",
+  "mech": "Anchor: placers drowned under a Far-North hydro reservoir get thawed by the water above them, so they can be mined from open water with no stripping-by-thaw, pond building or ice sawing. Reality check: after 40 years a 1-D enthalpy model gives a talik of only 5.8/8.5/10.8/12.5 m for mean bottom water at 1/2/3/4 °C, so the \"whole floor thawed\" claim is false for deep main-valley sections. The repaired design targets drowned tributary mouths with total sections of 8 m or less and an overburden:pay ratio of 2 or less, on the 130 km² band 1.5-25 m below the minimum operating level (UMO, 432 m). It uses an electric 600 m³/h submerged-pump cutter dredge fed from the Kolyma HPP grid, starts at ice-off when the reservoir is at its lowest, and discharges tailings below the surface into the mined-out cut. That discharge keeps fines escape under the 0.5-1.3 % that the fishery limit allows; at 5 % escape the plume would add 1.0-2.6 mg/L. Modelled cost is 526-683 rub/m³ of section (1.2 Mm³ per 120-day season).",
+  "value": "It adds a resource that is now sterilised, at roughly the same cost as open-cut placer gold (0.7-1.0× of 1,050-2,000 rub/g at the same section), not several times cheaper.",
+  "parent": "gx_evo_audit#1"
+ },
+ {
+  "id": "rep_evo_a#2",
+  "label": "rep_evo_a",
+  "arm": "ERPE",
+  "gen": 5,
+  "name": "Pond-Heated Jet Undercut Caving",
+  "mech": "Anchor: creek water thaws and removes the pay from under the frozen overburden, and the overburden then caves onto bedrock under its own weight, with no stripping and no roof support. A creek flowing through a gallery fails: at valley slopes of 0.5-1 % the Shields number is 0.026-0.043, below the 0.047 needed to move gravel, so the thawed gravel stays put and the gold settles on the gallery floor under the caving roof. Repaired design: low-pressure jets (monitors) using water from the solar-warmed recycle pond and the creek (a 3 ha pond absorbs about 5.4 MW in July-August) thaw the face. Heat delivered vs needed is 1.27 at 4 °C and 2.5 at 7 °C, at 7 m³ of water per m³ of gravel. A hydro-elevator lifts the slurry to a sluice at the portal. Panels about 25 m wide retreat with nobody underground, and the roof caves within hours to days (0.58 MPa bending stress against 0.2-0.5 MPa long-term tensile strength). Two monitors give about 216 k m³ of pay per 70-day season at about 650 rub/m³ (556-965 across the sensitivity range).",
+  "value": "For deep, thin frozen placers (overburden:pay ratio 6 or more) it costs about 620 rub/g against 1,100-2,650 rub/g for the cheaper of open-cut and drill-blast underground mining, 1.8-3.4× cheaper.",
+  "parent": "gx_evo_audit#3"
+ },
+ {
+  "id": "rep_evo_a#3",
+  "label": "rep_evo_a",
+  "arm": "ERPE",
+  "gen": 5,
+  "name": "Bluff-Anchored Barge Coal Augers",
+  "mech": "Anchor: a floating highwall auger drills a frozen river-bluff coal seam at summer water level and loads straight into the hold, so no rock is moved. A cycle model of a 1.8 m × 100 m hole (331 t) gives 33-53 t/h, so a 20 kt season is 60 holes, 26 days and 145 m of bluff; the original 40 t/h claim holds. Repairs: the 300 kN thrust goes into two adfreeze anchors in the frozen bluff (283-424 kN each) instead of spuds (about 100 kN usable each). Webs are 0.6 m where cover is up to 30 m and 0.9 m deeper (unfrozen safety factor 3.1/1.5/0.9 at 15/30/50 m with 0.6 m webs). A ±3 m adjustable frame gives a 60-120 day water-level window against the 26 days needed. Hole mouths are plugged afterwards against oxidation. One barge must serve at least about 60 kt/yr on one river system; one village alone costs about 6,500 rub/t.",
+  "value": "About 3,200 rub/t delivered to the village shore against 5,300-10,300 rub/t for long-haul river coal and 3,700-7,400 rub/t for a micro-pit plus winter road (1.2-3.2× cheaper).",
+  "parent": "gx_evo_audit#5"
+ },
+ {
+  "id": "rep_evo_a#4",
+  "label": "rep_evo_a",
+  "arm": "ERPE",
+  "gen": 5,
+  "name": "Sealed Derelict-Hull Coal Bunker",
+  "mech": "Anchor: a surplus river hull, floated in once, becomes a permanent multi-year sealed coal bunker beside the heat network and is topped up straight from barges. An 8 kt hull holds 7.4-8 kt (2.1-4 winters of a 2-3.5 kt burn), 0.52 m light draught and 3.3 m loaded. If it is frozen in afloat, the winter burn makes it want to rise 1.05 m; the ice cracks along the hull (1.3 MPa against 0.5-0.8 MPa ice flexural strength), which is harmless. A 76 kW moat kept open with waste heat (3.3 % of the 2.3 MW boiler) removes thermal ice pressure. Alternatively the dock is dewatered and the hull rests on a gravel pad at 33 kPa. The flue-gas blanket is dropped: a sealed hold holds only 1.4 t O₂ (at most 1.9 K bulk heating), and breathing adds about 80 kg O₂/day (about 12 kW), so sealed hatches, a small N₂ membrane and CO monitoring are enough. A derelict hull, an existing backwater and a short conveyor to the existing boiler house bring the annualised cost to about 2,800 rub/t at 3 kt/yr.",
+  "value": "Parity to 1.8× in general; 1.4-2.5× cheaper only for failure-prone shallow-river villages (20-30 %/yr chance of a failed delivery), with removable handling costs being 12-29 % of 8,080 rub/t, not half.",
+  "parent": "gx_evo_audit#7"
  }
 ]
