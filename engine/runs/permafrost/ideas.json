@@ -1877,5 +1877,45 @@
   "mech": "Anchor: a floating hull is the village's coal bunker and feeds the boiler directly; hulls are swapped, so the coal never touches the shore. Keeping hulls dedicated all year costs 5,700 rub/t with used hulls and 27,000 with new ones, against 1,100–3,400 rub/t saved. So the swap uses the river fleet's idle winter instead. The season's last-voyage barge winters at the village berth as a sealed bunker and leaves after ice-out for summer work. In a sealed hold, only about 1,800 m³ of air enters as coal is drawn, so oxidation adds about 0.3 kW on average and self-heating is negligible. The gas that replaces the coal must be flue gas dried to about 0 °C: raw flue gas is wet, and at 6–9% O₂ it is not inert. As coal is drawn, buoyancy pushes up on the ice at about 80 kN/m, which would crack it. A 55 kW heated moat slot around the hull plus 27 kW of hold heat (3.4% of a 2.4 MW boiler, taken from flue-gas waste heat) prevent this. Draft limits capacity: at 1.2 m of water a 1,500-t hull carries only about 660 t.",
   "value": "About 1,360 rub/t where a natural backwater lies within about 150 m of the main boiler. The costs it avoids are transshipment, rehandling, trucking and 5–15% stockpile loss, together 1,100–3,400 rub/t (0.8–2.5×). It loses money if a basin has to be dredged (2,226 rub/t) or a heat main is needed (+1,440 rub/t).",
   "parent": "gx_evo_att#7"
+ },
+ {
+  "id": "rep_att_b#1",
+  "label": "rep_att_b",
+  "arm": "ERPA",
+  "gen": 5,
+  "name": "Ice-Deck Borehole Talik Mining",
+  "mech": "Anchor: drill from winter lake ice into the sub-lake talik, which is already thawed, and mine the pay by borehole hydraulic mining. That means no thaw (saves 90 MJ/m³, about 25 kWh/m³), no dike, no drainage and no stripping. Repair: 1.2 m of ice carries only ~25 t of parked load, so the ice is flood-thickened to ≥1.8 m (Gold's formula at A=3.5 kg/cm² gives 113 t short-term, ~57 t parked). The 20-25 t modules sit more than 57 m apart, and the casing is insulated where it passes through the ice. Loose saturated talik gravel holds no roof and caves into the cavity, so the method is limited to narrow (25-40 m), deep, fine-gravel buried channels (<15 cm, the intake limit). Holes go on an 18 m grid (jet reach R=9 m) and are airlifted at 20-40 m³/h. Drawing stops at D≈3.4-3.9 m³ drawn per m³ of pay, set by on-ice jig grade monitoring; this extracts 86-89% of the pay in each hole's footprint, and tailings go back down mined holes. Cost: 1,130-1,970 rub per m³ drawn, which is 3,000-4,800 rub/g of gold recovered.",
+  "value": "Recovers gold from narrow, deep sub-lake channels that today go unmined, at 3,000-4,800 rub/g. The cheapest alternative, a summer pontoon suction dredge, costs ≥8,800 rub/g, so this is 1.8-4.4x cheaper; on channels wider than 80 m it is only 1-1.5x cheaper.",
+  "parent": "gx_evo_att#2"
+ },
+ {
+  "id": "rep_att_b#2",
+  "label": "rep_att_b",
+  "arm": "ERPA",
+  "gen": 5,
+  "name": "Frozen-Roof Jet Adits",
+  "mech": "Anchor: an unmanned jet and hydro-elevator head on a hose drives 3 m adits along bedrock under intact frozen overburden. Pillars are jetted out on retreat so the roof settles, and only the pay is thawed and lifted. Repair: a realistic creek (6→1 °C, 100 L/s) gives only 2.1 MW, which is 21 m³/h, not 60. Adding a 2 ha black-lined recirculating settling pond (net 80-150 W/m²) brings the heat to 3.7-5.1 MW, which is 35-45 m³/h at 30% heat use (107 MJ/m³ of pay) over a 90-day summer. The adit must never flood, because 6 °C water thaws the roof 2-4 m/day. So adits are driven up-gradient, the hydro-elevator handles 1.3x the inflow, and the portal has an insulated curtain; there is no ventilation because nobody is inside. Advance of 3.7-8 m/h limits the roof's life to 25-45 h, with 3-5 cm of roof thaw, and pillar stress is 0.4-1.2 MPa against 1-2 MPa long-term strength for frozen gravel. Cost: 1,200-1,400 rub/m³ of pay including washing, which is 550-660 rub/g.",
+  "value": "For frozen placers under ≥20 m of cover it costs 550-660 rub/g, against ~1,040-1,670 rub/g for winter underground mining and 1,270-2,400 rub/g for open pit: 1.6-2.5x cheaper overall and 2-3.5x on the mining step alone. It loses to bulldozer open pits where cover is under 15 m.",
+  "parent": "gx_evo_att#4"
+ },
+ {
+  "id": "rep_att_b#3",
+  "label": "rep_att_b",
+  "arm": "ERPA",
+  "gen": 5,
+  "name": "Channel-Talik Seam Dredging",
+  "mech": "Anchor: a dredge cuts the coal seam in place inside the unfrozen channel talik, where the river has already removed the cover, and pumps it into a hopper barge. Repair: only seams at thalweg level under high bluffs, where a bank pit would have to strip 15-25 m³/t. A leased dredge with a 150 kW cutter cuts lignite (UCS 5-7 MPa) at 46-65 m³/h, which is about 46-65 t/h and matches Kovin's measured 67 t/h. A 10 kt village-cluster year therefore takes 8-25 dredge-days, not \"a week\", and one dredge visits about 4 bends a season. An on-barge dewatering screen brings the coal to ~32% moisture (3,670 kcal/kg). Cutting in June-July lets stockpiles drain before freeze-up. Delivered cost is 2,700-4,300 rub/t, which is 730-1,170 rub/Gcal.",
+  "value": "730-930 rub/Gcal with a shared dredge, against 2,830 rub/Gcal for northern-delivery coal at 15k rub/t (3.0-3.9x cheaper) and 1.4-2.4x below a bank micro-pit under high bluffs. There is no gain where the same seam has thin cover on land.",
+  "parent": "gx_evo_att#6"
+ },
+ {
+  "id": "rep_att_b#4",
+  "label": "rep_att_b",
+  "arm": "ERPA",
+  "gen": 5,
+  "name": "Wintering Coal CHP Barge",
+  "mech": "Anchor: the bunker barge that brings the winter's coal stays frozen in at the village and burns its own cargo as a combined heat and power plant. Repair: a thermal-oil coal boiler (80%) feeds an ORC (16% net), run heat-led into the village heat network. The 1.54 MW of reject heat replaces boiler-house coal burned at 65%, so the net extra fuel per kWh_e is about 0. Electric-only would cost 12.7 rub/kWh_e at 10k rub/t; the original 20-30x claim compared kWh of heat from coal with kWh of electricity from diesel. A 0.3 MWe unit needs 1,780 t of coal per winter, which fits one 2,000 t barge, and the 381 m³ of ash fits the hold space freed as coal is burned. Reject heat of 104 kW keeps an ice moat open around the hull and 44 kW keeps the hold unfrozen. Capex dominates the cost: 19-32 rub/kWh at 0.3 MWe (132-237 M rub) and 14 rub/kWh at 1 MWe for district centres.",
+  "value": "Winter electricity at 14-32 rub/kWh against 45-75 rub/kWh full diesel cost (1.9-4.3x cheaper, up to 6x where costs reach 88 rub/kWh), with the heat nearly free.",
+  "parent": "gx_evo_att#8"
  }
 ]
