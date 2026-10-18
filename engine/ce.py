@@ -113,7 +113,7 @@ def fill(run, body, n, extra=None, sources=None):
     gaps = load(run, "gaps.json", [])
     s = s.replace("{GAPS}", "\n".join(f"{g['code']}: {g['desc']}" for g in gaps) if gaps else "(no gaps recorded)")
     s = s.replace("{PLAINFILE}", path(run, "sets", "s00", "blind.txt"))
-    for key in ("FRONTIER", "LEDGER"):  # v3.0: raw material for generators and the gate (`material` command)
+    for key in ("FRONTIER", "LEDGER", "ATTEMPTS"):  # v3.0/v3.3: raw material for generators and the gate (`material`)
         f = path(run, key.lower() + ".md")
         s = s.replace("{" + key + "}", open(f).read().strip() if os.path.exists(f) else "(none recorded)")
     for k, v in (extra or {}).items(): s = s.replace("{" + k + "}", v)
@@ -601,8 +601,17 @@ def cmd_redteamtask(a):
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
+def cmd_attemptstask(a):
+    """v3.3: ledger of earlier attempts - what was already tried near these designs and why the problem stayed unsolved
+    (an unsolved problem means every earlier mechanism stopped short for a reason a re-invention would inherit)."""
+    ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
+    s = fill(a.run, tpl("attempts_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=False)})
+    open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
+    print(os.path.join(a.dir, "TASK.md"))
+
 def cmd_material(a):
-    """v3.0: store raw material for generators and the gate: the frontier scout's capabilities or the value ledger."""
+    """v3.0: store raw material for generators and the gate: the frontier scout's capabilities, the value ledger,
+    or (v3.3) the ledger of earlier attempts."""
     text = read_source(a); tag = "=== " + a.kind.upper() + " ==="
     if tag not in text: sys.exit(f"no '{tag}' section found")
     body = text.split(tag, 1)[1].strip()
@@ -653,7 +662,8 @@ def cmd_evolve(a):
         lines = [f"- {d[1].strip()}: {d[2].strip()} ({d[3].strip() if len(d) > 3 else ''})" for d in defects[:a.max_defects]]
         if not lines: sys.exit(f"no FATAL/MAJOR findings for review block {k} ({iid})")
         blocks.append(f"DESIGN {k}\nNAME: {i['name']}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\nREVIEW FINDINGS:\n" + "\n".join(lines) + "\n")
-    s = fill(a.run, tpl("evolve_audit"), len(ids) * a.m, {"PARENTS": "\n".join(blocks), "M": str(a.m)})
+    if a.tpl == "evolve_attempts" and not os.path.exists(path(a.run, "attempts.md")): sys.exit("no attempts.md: run `material R attempts`")
+    s = fill(a.run, tpl(a.tpl), len(ids) * a.m, {"PARENTS": "\n".join(blocks), "M": str(a.m)})
     p = path(a.run, "prompts", a.label + ".txt"); open(p, "w").write(s)
     json.dump([iid for iid in ids for _ in range(a.m)], open(path(a.run, "prompts", a.label + ".parents.json"), "w"))
     print(p)
@@ -708,12 +718,15 @@ def main():
     x.add_argument("--gen", type=int, default=0); x.add_argument("--parents", help="ids (comma list or parents.json) the k-th idea descends from"); src(x)
     x = sp.add_parser("repairtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--critique", help="red-team review (file, or agent transcript .output)")
-    x = sp.add_parser("material"); x.add_argument("run"); x.add_argument("kind", choices=["frontier", "ledger"]); src(x)
+    x = sp.add_parser("material"); x.add_argument("run"); x.add_argument("kind", choices=["frontier", "ledger", "attempts"]); src(x)
+    x = sp.add_parser("attemptstask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x = sp.add_parser("gatetask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x = sp.add_parser("gate"); x.add_argument("run"); x.add_argument("--dir", required=True); src(x)
     x = sp.add_parser("evolve"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--audit", required=True,
         help="redteamtask dir holding ids.json and the auditor's REVIEW.md"); x.add_argument("--m", type=int, default=2)
     x.add_argument("--max-defects", type=int, default=6)
+    x.add_argument("--tpl", default="evolve_audit", choices=["evolve_audit", "evolve_attempts"],
+                   help="evolve_attempts (v3.3) also shows the ledger of earlier attempts and why they stopped short")
     x = sp.add_parser("resurrect"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--ids", required=True)
     x.add_argument("--m", type=int, default=3, help="children per dead parent")
     x = sp.add_parser("redteamtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)

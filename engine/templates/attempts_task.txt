@@ -1,0 +1,27 @@
+# Task: the ledger of earlier attempts - what has already been tried, and why the problem is still unsolved
+
+QUESTION the ledger serves: {QUESTION}
+
+You are a historian of mining and northern engineering. A problem that is still unsolved means that every earlier
+mechanism aimed at it stopped short for some reason. Inventors who do not know those reasons re-invent the earlier
+attempts and inherit their limits. Build the ledger of earlier attempts, with sourced facts. Use WebSearch/WebFetch and
+python3 (for arithmetic). Work only in `{WORKDIR}`: read no other files in the repository, write files only there, do
+not commit.
+
+Cover (a) the main established and tried approaches to the question as a whole, and (b) for each design listed at the
+end, the earlier attempts closest to its mechanism - the same physical move, even in another country, industry,
+century or commodity (Alaska, Canada, Scandinavia, Soviet practice, mineral sands, offshore, dredging, ports, etc.).
+Include methods that are in use but stayed small, pilots that were dropped, and ideas that were costed and rejected.
+For each attempt find out WHY it did not solve the problem at scale: the binding cause (physics, a cost term, season,
+regulation, logistics, reliability, market size), with the number that shows it. If a method is standard practice
+today, say what it still leaves expensive. "Never tried" is acceptable only when you searched and found nothing; then
+say what you searched.
+
+Final answer (text only), exactly this shape, at most 1,100 words in total:
+=== ATTEMPTS ===
+ATTEMPT 1: <mechanism, one line> | <where, who, when> | <standard practice / niche / pilot dropped / costed and rejected / not found> | WHY IT DID NOT SOLVE IT: <binding cause with its number> | <source URL>
+(15-25 attempts, the most important first; for each design below at least two attempts close to its mechanism)
+LESSONS: 3-6 lines - the causes that recur across attempts, i.e. the limits any new answer must get past.
+
+THE DESIGNS (closest earlier attempts are needed for each):
+{IDEAS}

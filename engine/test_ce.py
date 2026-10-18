@@ -229,6 +229,13 @@ def main():
             open(os.path.join(dr, "REVIEW.md"), "w").write("=== REVIEW ===\nIDEA 1: tail one\nDEFECT | FATAL | melts | 3 kg/day\nDEFECT | MINOR | x | y\n")
             t = open(ce("evolve", R7, "ev", "--audit", dr, "--m", "2").strip()).read()
             assert "- FATAL: melts (3 kg/day)" in t and "MINOR" not in t.split("REVIEW FINDINGS")[1].split("Where")[0] and "exactly 2 ideas" in t
+            # v3.3: ledger of earlier attempts, evolution that must beat the reason the closest attempt stopped short
+            da = os.path.join(tmp, "at"); ce("attemptstask", R7, "--ids", "tl#1", "--dir", da)
+            t = open(os.path.join(da, "TASK.md")).read(); assert "=== ATTEMPTS ===" in t and "tail one" in t and "{" not in t
+            open(p, "w").write("x\n=== ATTEMPTS ===\nATTEMPT 1: ice cellar | Yukon 1900 | niche | WHY IT DID NOT SOLVE IT: melts by July | u\n")
+            assert "attempts:" in ce("material", R7, "attempts", "--file", p)
+            t = open(ce("evolve", R7, "ev2", "--audit", dr, "--m", "1", "--tpl", "evolve_attempts").strip()).read()
+            assert "ice cellar" in t and "- FATAL: melts" in t and "{" not in t.replace("{N}", "")
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")
