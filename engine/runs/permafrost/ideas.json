@@ -1677,5 +1677,45 @@
   "mech": "The concentrator, power house and camp for a riverside or coastal deposit are built as hulls in an ordinary southern yard, towed in during open water, and floated into a pond dug at the site, where they freeze in for good. Crushers and mills stand on bedrock at the pond edge. Deciding quantity: the cost of building on permafrost. A floating hull is indifferent to the talik its own heat makes under the pond, so piles, thermosyphons and the 2-3× Far-North construction premium drop out.",
   "value": "Builds most of the plant at central-Russia cost, cutting the largest cost line (capital, 41-42%) for an estimated 10-20% off delivered cost.",
   "parent": "rep_final#4"
+ },
+ {
+  "id": "rep_evo_b#1",
+  "label": "rep_evo_b",
+  "arm": "ERPE",
+  "gen": 5,
+  "name": "Under-Ice Brine-Thawed Tin Dredging",
+  "mech": "Anchor kept: seawater keeps the shelf tin placer unfrozen, so a dredge can dig it with no thawing, stripping or roads. The summer-only version has already been tried twice. Sevmorolovo worked Vankina Bay in the late 1970s and stopped because waves upset its onboard gravity plant; the BIMA dredge at Nome (1986-90) lost money. Repaired design: the same dredge also works December to June in a covered slot under the stationary landfast ice of the SE Laptev Sea, where there are no waves or storms. That raises effective days from about 58 to about 214 a year. Holding the slot open takes 0.65 MW against 2.25 MW of diesel waste heat. Ice ahead (0.17 m³ per m³ of ground) is sawn and lifted out, because melting it would need 4.3 MW. Work is limited to water deeper than about 4 m and at least 0.3-1 km offshore, where ice-bonded permafrost lies below the 17 m dig depth (Buor-Khaya borehole: 28 m down at 800 m offshore).",
+  "value": "For a 600 m³/h dredge, cost falls from about $126k/t Sn in the open-water-only mode to $37k/t at 0.5 kg/m³ and $23k/t at 0.8 kg/m³, 3-5× cheaper than the known seasonal mode. It beats PT Timah's offshore cost ($14-22k/t) only if the shelf grade is at least 0.85 kg/m³.",
+  "parent": "gx_evo_audit#2"
+ },
+ {
+  "id": "rep_evo_b#2",
+  "label": "rep_evo_b",
+  "arm": "ERPE",
+  "gen": 5,
+  "name": "Self-Detaching Thaw-Face Stripping",
+  "mech": "Anchor kept: excess pore pressure at the thaw front of ice-rich muck carries the thawed layer downslope into the mined cell by gravity. The mechanism checks out: R = α/(2√cv) is 0.9-1.6, which puts the frictional sliding threshold at about 2-5°. The original layout fails, though: with 0.5-2 kPa of cohesion, a whole surface graded at 5-8° only slides once the sheet is 1.9-12 m thick, more than the 1.6 m that thaws in a season. Repaired design: cut long, south-facing faces at 10-12° and sprinkle them with creek water. Sheets 0.2-0.9 m thick then detach several times a season, which keeps the face bare and thawing about 3 m per season. Each metre of face yields 115-138 m³ per season, so 0.5 Mm³ needs about 4 km of face. The slurry (yield stress under 500 Pa) runs down the roughly 4° drop into the adjacent mined cell and settles to 0.64 of its frozen volume. Stripping has to start 4-9 seasons ahead of mining.",
+  "value": "Stripping drops from about $1.0/m³ (natural thaw plus dozing) to about $0.3/m³, 3× cheaper. That cuts delivered gold cost by about 15% in ordinary muck and by up to about 40% in Yedoma (over 60% ice), where dozers bog down and the alternative is digging frozen ground at about $3.5/m³.",
+  "parent": "gx_evo_audit#4"
+ },
+ {
+  "id": "rep_evo_b#3",
+  "label": "rep_evo_b",
+  "arm": "ERPE",
+  "gen": 5,
+  "name": "Frozen-In Barge Auger Drift Mining",
+  "mech": "Anchor kept: horizontal augers from a barge at the bank bore the frozen paystreak and leave the frozen overburden in place as roof. The ground holds for a while: under 10-20 m of cover the pillars between holes carry 0.9-1.8 MPa against 5-8 MPa short-term strength. This holds only if tailings are pumped back and freeze in each hole within weeks. Two design fixes are needed. Round holes centred in the gravel miss the gold on bedrock, so the hole centre is set 0.3-0.5 m above bedrock; that sweeps 65-74% of the bedrock surface but dilutes the feed with 0.4-0.6 m of bedrock, and only 0.61 of the seam is extracted. A 130-day open-water season gives only 70-100k m³ at $68-96/m³, so the barge is frozen into a notch in the bank and run for 280 days with a heated plant (215k m³ at $45-55/m³). The target becomes deep river-cut placers (30-40 m cover) with at least 1.8 m of pay, gold spread through the gravel and clasts under 0.4 m, which are now drift-mined or left in the ground.",
+  "value": "Even repaired it costs about $36/g at 3 g/m³, against $23/g for frozen open pit and an estimated $29/g for drift mining. It is not cheaper, so it is only a niche for deep placers that open pits cannot reach.",
+  "parent": "gx_evo_audit#6"
+ },
+ {
+  "id": "rep_evo_b#4",
+  "label": "rep_evo_b",
+  "arm": "ERPE",
+  "gen": 5,
+  "name": "Re-Floatable Pond-Moored Mine Plants",
+  "mech": "Anchor kept: the concentrator, power house and camp float on hulls built in a shipyard, in a pond dug at the site, so the talik their heat creates does not matter. The pond is 6 m deep (2.2 m of maximum ice, 3 m of draft and a margin). Waste heat keeps a 2 m moat open around each hull against ice pressure, using 0.9-1.6 MW of the roughly 35 MW the power house rejects. Mills stand on bedrock 20-50 m back from the edge to allow for 0.5-2 m/yr of bank retreat. The hulls (130×14 m, 3 m draft, about 2.9 kt payload each) fit the 135×14.3 m White Sea-Baltic canal locks. Against the best current practice, a modular plant on piles, a cold-permafrost site gains nothing (capex +4%). The anchor pays off in one regime: warm, ice-rich ground where foundations are 20-25% of capex, cheap $3k/t barge hulls, and short-lived (5-7 year) riverside or coastal deposits. There the plant is re-floated and towed to the next deposit, keeping 45-55% of its value.",
+  "value": "In that regime capex is 15-19% below a modular plant on piles and delivered cost 10-14% lower. On ordinary cold permafrost the gain is about 0%.",
+  "parent": "gx_evo_audit#8"
  }
 ]
