@@ -1,0 +1,133 @@
+====================================================================================================
+0. WHICH ARCHETYPE CAN REACH 2x AT ALL (ceiling = 1/(1 - share the pieces can touch))
+====================================================================================================
+  A gold placer          max ratio if every touched cost went to ZERO:   2.08x   (earthmoving ~2/3 of physical (78%) = 52%; MET/other 22% untouched)
+  B Cu (Baimskaya)       max ratio if every touched cost went to ZERO:   1.03x   (P8 foundations <= ~6% of the 41% capital share)
+  C1 export coal         max ratio if every touched cost went to ZERO:   1.69x   (pieces touch mining only (all non-outbound physical 41%); rail 55% untouched)
+  C2 settlement coal     max ratio if every touched cost went to ZERO:  66.67x   (everything but 'other' 1.5% (outbound logistics 85%))
+  D lithium              max ratio if every touched cost went to ZERO:   1.00x   (no piece touches it)
+  E oil (0.2 Mt/yr)      max ratio if every touched cost went to ZERO:   1.89x   (fiscal 53% untouched)
+  -> only settlement coal (C2) has room for 'several times'; gold cannot pass ~2.1x even with free earthmoving,
+     oil cannot pass 1.89x even with free everything physical. Chains 1-3 are settlement-heat chains; chain 4 (gold)
+     is computed only to show it fails.
+
+====================================================================================================
+1. SITE: a Yana-type Arctic river (Verkhoyansk normals), village cluster + coal seam in a 20-30 m bluff <=300 km
+====================================================================================================
+  Verkhoyansk FDD 6,688 C*d, days with mean > 8 C: 90 (kit: 90)
+  Heat load while the bunker barge is away (1 Jun-20 Sep, 111 d): 2.8% of the year -> comes from a small SHORE stock burned in the existing shore boiler-house (fixes P7 MAJOR 1)
+  First day with daily mean < 0 C: day 263 (~21 Sep)
+  End-of-winter ice at the berth: 1.39-1.96 m (alpha 0.017-0.024)
+  P7 hull 100x22 m, 2,000 t payload: draught 1.26 m (P7: 1.26 m)
+    low-water depth 1.50 m, under-keel 0.3-0.4 m -> payload 1,746-1,904 t (kit: Yana/Indigirka low water 1.5-2.0 m)
+    low-water depth 1.75 m, under-keel 0.3-0.4 m -> payload 2,000-2,000 t (kit: Yana/Indigirka low water 1.5-2.0 m)
+    low-water depth 2.00 m, under-keel 0.3-0.4 m -> payload 2,000-2,000 t (kit: Yana/Indigirka low water 1.5-2.0 m)
+  Wintering berth depth needed (loaded at freeze-up, ice 1.96 m): 2.20 m at late-winter low water (backwater must be >= this)
+  Hull rise as 2,000 t is drawn from the hold over winter: 0.96 m -> hull must not stay bonded to the ice: a slot is cut round it (standard 'obkolka' in winter harbours) or kept open by heat (chain 2)
+
+====================================================================================================
+2. CURRENT PRACTICE for the target village type (archetype C2): 23,000 RUB/t at the boiler
+====================================================================================================
+  mine at a distant pit (Dzhebariki-Khaya/Zyryanka), physical    3,105 RUB/t  [ledger C2 shares 13.5%]
+  mine 'other' (MET, overheads)                                345 RUB/t  [ledger C2 'other' 1.5%]
+  long river / river-sea haul                                8,000 RUB/t  [LORP seasonal haul 8,000 RUB/t [L]]
+  transshipment + storage at river depot                     1,500 RUB/t  [est. (split of the 85% logistics share)]
+  winter-road last mile ~450 km x 20 RUB/t-km                9,000 RUB/t  [winter road 20 RUB/t-km [L] (distance est.)]
+  village depot handling + stockpile losses                  1,050 RUB/t  [remainder of 85% logistics]
+  TOTAL                                                     23,000 RUB/t
+  Coal: long-flame (D) hard coal, LHV 5,100-5,400 kcal/kg (Kuznetsk D example; Dzhebariki-Khaya is D grade) -> 4,381 RUB/Gcal of fuel at 5.25 Gcal/t
+  Note: river-bank villages served directly by barge pay far less: 7,100-11,600 RUB/t (P5), 8,080 (P7), Kolyma depot tender 6,962 RUB/t (kit). The chain only targets winter-road-last-mile villages.
+
+====================================================================================================
+3. CHAIN 1: P5 bluff auger -> P7 shallow hulls (direct discharge, low-water shuttle) -> each hull's last cargo
+   winters as a bunker of the SHORE boiler-house (P7 anchor, repaired) | product: fuel heat into the boiler, RUB/Gcal
+====================================================================================================
+  P5 season output Q = 25,036 (17,819-34,465) t/yr  (review: 38-68 kt at 100 d/75%; here 60-90 effective d and field recovery 30-50%)
+  market: 12% of Arctic Yakutia utility coal (205 kt) at P50 = 8,345 people at 3 t/person within 300 km of one bluff (P5 review MAJOR 1)
+  P5 mining cost incl. MET/other: 4,821 (3,840-6,212) RUB/t  vs bank pit under the same 20-30 m bluff 2,800-3,700 (+150-300 loading)
+  shuttle: one hull filled every 5.9 (4.4-8.0) d, round trip 3.6 (2.9-4.3) d -> 3 (3-3) hulls; bunker share of the coal 0.23 (0.17-0.32) (one bunker cargo per hull)
+  per tonne delivered: chain 7,012 (5,872-8,551) RUB/t ; best competent alternative 5,750 (5,244-6,259) RUB/t ; now 23,000
+  village end per tonne: bunker 1,618 (1,364-1,872) vs shore pile 784 (611-968) RUB/t -> the P7 bunker is NOT cheaper than a shore pile (it saves one handling and 2-7% losses but adds reclaim, slot cutting, berth, monitoring, insurance)
+
+  LINK TABLE (RUB per Gcal of fuel heat delivered into the village boiler; P50 with P10-P90)
+  link                         | method now                             |    now | method with chain                          |                chain | source
+  1 mining                     | distant pit, D coal (incl. MET 1.5%)   |    657 | P5 floating bluff auger, repaired          |    1,170 (898-1,554) | P5 + review
+  2 loading                    | (inside haul)                          |      0 | auger discharges into the hull (coupling)  |                    0 | P5, P7
+  3 haul                       | 2,000+ km river, depot, 450 km zimnik  |  3,524 | P7 1.26 m hulls, 150-300 km, low water     |        287 (216-382) | P7; LORP 3-5 RUB/t-km
+  4 village storage/handling   | depot pile, reload, losses             |    200 | P7 bunker (last cargoes) + shore pile      |        236 (189-296) | P7 + est.
+  TOTAL                        |                                        |  4,382 |                                            |  1,701 (1,360-2,162) |
+  CHAIN RATIO vs current practice:          2.58 (2.03-3.22)   P(>=2x) 91%  P(>=3x) 20%
+  CHAIN RATIO vs best competent alternative: 0.82 (0.67-0.98)   (bank pit at the same bluff, same hulls, shore pile)
+  that alternative alone vs current practice: 3.16 (2.66-3.70)  <- the gain is 'mine locally', not the pieces
+  ceiling (MET/other 1.5% untouched): 67x - not binding
+  best-competent-alternative links, RUB/Gcal (P50): mining+loading 921 | haul 287 | shore pile 189 | total 1,388  -> weakest link of the chain = P5 mining (1,170 vs 921)
+  P7 as designed (one dedicated used hull per 2,000 t, one cargo a year, hull 15-50 M RUB): hull charge 2,943 (1,681-4,254) RUB/t, chain ratio vs now 1.71 (1.38-2.12)  (P7 review MAJOR 3 confirmed)
+
+  COUPLINGS (computed):
+   a) timing + vessel: the floating auger reaches the seam only in the low-water window, which is exactly when only <=1.3 m hulls can run the Yana/Indigirka; payload 1,746-2,000 t at 1.5-2.0 m; P50 output 25,036 t = 12.5 hull-loads, one every 5.9 d -> 3 hulls and one tug keep the auger loading with no shore stockpile, loader or transshipment at the mine
+   b) freeze-up vs self-heating: bunker cargoes are the last 3 loads (from day 237 to 255); air means drop below 0 C on day 263: 8-26 warm days in a covered hold for coal that leaves the seam FROZEN (onset >=14 d for open brown-coal piles) -> CO/temperature probes, hatch covers, bunker burned FIRST (Oct-Jan) so the hull is light long before break-up
+   c) ice: hull rises 0.96 m as the hold is emptied; the boiler-house stokers cut a slot (0.3-0.6 FTE); berth needs >= 2.20 m at late-winter low water
+   d) hull capital: shuttle hulls winter loaded at villages instead of empty in a winter harbour -> no extra hull; the price is that only 23% of the coal can be bunkered
+
+  SENSITIVITY (tornado: one input at a range end, others at mid) - chain-1 ratio vs current practice
+   mid-point ratio 2.64x
+   local coal LHV 3.5 / 5.0 Gcal/t         2.17x ..  3.10x  (swing 0.93)
+   today's price 17,000 / 25,000 RUB/t     1.95x ..  2.86x  (swing 0.92)
+   field recovery 0.30 / 0.50              2.14x ..  3.06x  (swing 0.92)
+   cycle rate 21 / 38 t/h                  2.23x ..  2.93x  (swing 0.70)
+   effective campaign 60 / 90 d            2.37x ..  2.85x  (swing 0.48)
+   haul 300 / 150 km                       2.52x ..  2.76x  (swing 0.24)
+   barge rate 5 / 3 RUB/t-km               2.55x ..  2.73x  (swing 0.18)
+   low-water depth 1.5 / 2.0 m             2.60x ..  2.64x  (swing 0.04)
+   THRESHOLD (decisive unknown): chain < 2x when one rig delivers < 15,009 t/yr (field recovery x effective days x cycle rate; P50 25,036; other inputs mid)
+   3x needs >= 35,178 t/yr per rig at LHV 4.25 Gcal/t, or 23,906 t/yr at LHV 5.0 (review cap 38-68 kt at 100 d and 62% recovery)
+   THRESHOLD: chain < 2x when the seam's LHV < 3.23 Gcal/t (other inputs mid)
+   THRESHOLD: chain < 2x where today's delivered price is below 17,453 RUB/t at the boiler (river-bank villages at 7,100-11,600 RUB/t: 0.81-1.33x)
+   pilot to measure the decisive unknown: per-hole tonnage CV 0.4 -> 61 holes for +/-10% (95%) = 13-23 rig-days at 5.0-9.1 h/hole: one season answers it
+   pilot to measure the decisive unknown: per-hole tonnage CV 0.6 -> 138 holes for +/-10% (95%) = 29-52 rig-days at 5.0-9.1 h/hole: one season answers it
+   P5 matches the bank pit (3,475 RUB/t incl. loading) only above 38,062 t/yr per rig at 40% recovery
+   P5 (P50 4,476 RUB/t) beats a bank pit only under bluffs higher than ~36 m (pit cost linear in height through P5's 20 m/2,800 and 30 m/3,700 - est.), where bluff-collapse risk is worst (P5 MAJOR 5)
+
+====================================================================================================
+4. CHAIN 2: chain-1 coal; the shuttle hulls winter loaded round a P6 1-MWe ORC CHP barge in a protected backwater
+   (district centre).  Product: the winter (194 d) energy bundle = heat into the network + electricity at busbar
+====================================================================================================
+  winter electricity 4,188 (3,817-4,564) MWh; coal 6,810 (5,796-8,047) t = 3.4 (2.9-4.1) hull-loads moored round the CHP (fixes P6 MAJOR 4); extra one-cargo hulls beyond the shuttle fleet: 1.0 (0.0-2.0)
+  P5 output / CHP coal = 3.7 (2.5-5.3) (the rig also supplies the surrounding villages)
+  CHP capex at 1 MWe (P6 0.3 MWe 132-237 M RUB scaled ^0.6-0.7): 405 (311-495) M RUB
+  CHP electricity cost (capex + 3% O&M + staff; net extra fuel ~0, heat-led): 20.6 (16.3-25.4) RUB/kWh vs avoided diesel fuel 18-55 RUB/kWh
+  coupling (heat): the CHP's 148-250 kW of hull losses keep the moat and the bunker holds unfrozen, so no slot cutting; coupling (waste stream): freed hold volume / ash volume = 4.9 (4.0-6.1) -> ash rides back in the hulls for the spring trip
+
+  LINK TABLE (RUB per MWh of bundle = heat + electricity, P50)
+  1-4 coal to the heat plant   | now: imported coal, shore boiler 65%   4,837 | chain: P5 + P7 local coal in bunker hulls   2,203 | P5, P7
+  5 electricity conversion     | now: diesel fuel + variable O&M        6,398 | chain: P6 CHP barge capex + staff     3,407 | P6 + review
+  6 diesel plant kept standby  | now (untouched share, est.)           3,719 | chain: same                         3,719 | est.
+  TOTAL                        | now 14,939 (12,393-17,480) | chain 9,368 (8,078-10,701) | best alternative 8,483 (7,272-9,714)
+  CHAIN RATIO vs current practice: 1.59 (1.31-1.91)  P(>=2x) 5%  P(>=3x) 0%   (without the standby share, an upper bound: 1.98 (1.50-2.55))
+  CHAIN RATIO vs best competent alternative (pit coal + shore ORC CHP, or pit coal + old boiler + diesel): 0.91 (0.86-0.95)
+  -> DROPPED (P50 < 2x): electricity at 21 RUB/kWh vs 18-55 avoided is ~1x, and it dilutes the coal gain
+
+====================================================================================================
+5. CHAIN 3: P4 channel-talik seam dredge -> pumped into P7 hopper hulls (water drains in the hold) -> bunker + shore
+====================================================================================================
+  dredge output per season 12,673 (11,151-14,215) t (13.3 t/h, 45-61 d) = 1-1.5 bends; dredge cost 6,005 (3,736-8,394) RUB/t (P4's own season cost, spread over 1 bend instead of 4)
+  chain 3,147 (2,277-4,142) RUB/Gcal; RATIO vs current 1.39 (1.06-1.92) (P>=2x 7%); vs bank pit 0.55 (0.42-0.75)
+  turbidity: cutter (0.5% escape) needs 18 m3/s of full mixing, screen water returned (5%) 185 m3/s, vs +0.25 mg/L judged near the source -> settle in the hold (coupling with P7), not costed. Wet 37-49% coal freezes solid in a bunker hold.  -> DROPPED (P50 < 2x)
+
+====================================================================================================
+6. CHAIN 4 (gold, deep thin placer): P2 jet undercut caving + P8 floating power/wash plant in P2's recycle pond,
+   power-house reject heat into the jet water.  Product: gold at the refinery, RUB/g
+====================================================================================================
+  coupling: electric load (hydro-elevator 20 m lift + monitors 80 m head) ~547 kW -> reject heat ~739 kW vs 3,300 kW thaw demand: +0.71 K on 0.25 m3/s; heat delivered/needed at 4 C water 1.27 -> 1.49
+  RATIO vs current practice 1.42 (1.10-1.72); P(>=2x) 0%; vs borehole hydraulic mining (not costed) at most the same.  Ceiling with free earthmoving 2.08x -> DROPPED
+  (P1 thaw-face stripping + P8 instead: 1.20 (1.10-1.33); vs hydraulic stripping ~1x -> DROPPED)
+
+====================================================================================================
+7. SUMMARY
+====================================================================================================
+  Chain 1 P5+P7 heat       vs now 2.58 (2.03-3.22)     vs best competent 0.82 (0.67-0.98)     P(now>=2x)  91% P(now>=3x)  20%
+  Chain 2 P5+P7+P6 CHP     vs now 1.59 (1.31-1.91)     vs best competent 0.91 (0.86-0.95)     P(now>=2x)   5% P(now>=3x)   0%
+  Chain 3 P4+P7 heat       vs now 1.39 (1.06-1.92)     vs best competent 0.55 (0.42-0.75)     P(now>=2x)   7% P(now>=3x)   0%
+  Chain 4 P2+P8 gold       vs now 1.42 (1.10-1.72)     vs best competent 1.42 (1.10-1.72)     P(now>=2x)   0% P(now>=3x)   0%
+  Local bank pit + shallow hulls + shore pile (no piece) vs now: 3.16 (2.66-3.70)  P(>=3x) 64%
+  gate (econ.gate_verdict, margin = P50 rig output / 2x-threshold output = 1.67): chain 1 ALIVE vs now, DEAD vs the best competent alternative

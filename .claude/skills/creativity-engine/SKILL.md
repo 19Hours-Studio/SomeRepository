@@ -84,6 +84,11 @@ Launch independent agents in one message; never read transcripts into your own c
   Result (8 ideas with known audits): same catches (3/4), right mechanism 3/3 vs 2/3, 60% fewer tool calls, but much
   stricter (DEAD on 3/4 ideas the audit did not call FATAL). Treat a killer built on an assumed default as WOUNDED
   with the decisive unknown and its threshold; DEAD only on measured values or physical limits.
+- v3.5 composer: `composetask R --ids <0-FATAL pieces> --dir D --audits <review dirs>` builds whole chains with the
+  kit. Its first output was the decisive one: CEILINGS from the ledger (1 / untouched share). Compute them BEFORE
+  generating and aim generators only at archetype x link pairs whose ceiling exceeds the target (permafrost: oil 1.89x
+  by taxes, gold earthmoving 2.08x, only Arctic settlement fuel had room; ~120 ideas mostly aimed where 'several
+  times' was arithmetically impossible). Report ratios vs today AND vs the best competent alternative.
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.
