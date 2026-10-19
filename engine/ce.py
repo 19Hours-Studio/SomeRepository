@@ -674,6 +674,33 @@ def cmd_evolve(a):
     json.dump([iid for iid in ids for _ in range(a.m)], open(path(a.run, "prompts", a.label + ".parents.json"), "w"))
     print(p)
 
+def review_lines(audit_dir, iid, sev=("FATAL", "MAJOR"), survives=False):
+    """Blind-review findings for one idea from a redteamtask dir (ids.json + REVIEW.md); None if not reviewed there."""
+    ids = json.load(open(os.path.join(audit_dir, "ids.json")))
+    if iid not in ids or not os.path.exists(os.path.join(audit_dir, "REVIEW.md")): return None
+    found = dict(zip(*[iter(re.split(r"^IDEA (\d+)\s*:", open(os.path.join(audit_dir, "REVIEW.md")).read(), flags=re.M)[1:])] * 2))
+    out = []
+    for l in found.get(str(ids.index(iid) + 1), "").splitlines():
+        d = [x.strip() for x in l.split("|")]
+        if d[0] == "DEFECT" and len(d) > 2 and d[1] in sev: out.append(f"- {d[1]}: {d[2]} ({d[3] if len(d) > 3 else ''})")
+        if survives and d[0] == "SURVIVES" and len(d) > 1: out.append(f"- SURVIVES: {d[1]}")
+    return out
+
+def cmd_composetask(a):
+    """v3.5: chain composer - surviving pieces (with their blind reviews) + best practice -> whole chains whose link
+    gains multiply; computed with the calculation kit against current practice and the best competent alternative."""
+    ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
+    allx = {i["id"]: i for i in load(a.run, "ideas.json", [])}; blocks = []
+    for k, iid in enumerate(ids, 1):
+        i = allx[iid]; rev = next((r for d in a.audits.split(",") if (r := review_lines(d, iid, survives=True)) is not None), None)
+        if rev is None: sys.exit(f"{iid}: no blind review in --audits")
+        blocks.append(f"P{k}\nNAME: {i['name']}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\nBLIND REVIEW:\n" + "\n".join(rev) + "\n")
+    kd = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kit")
+    s = fill(a.run, tpl("compose_task"), len(ids), {"WORKDIR": wd + "/", "KITDIR": kd + "/", "PIECES": "\n".join(blocks),
+             "KIT": open(os.path.join(kd, "CATALOG.md")).read().strip()})
+    open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "pieces.json"), "w"))
+    print(os.path.join(a.dir, "TASK.md"))
+
 def cmd_resurrect(a):
     """v3.1: evolution under truth - a free generator (no tools) gets killed ideas with their death certificates and
     must jump past the killing quantity while keeping each anchor; children are then gated again."""
@@ -735,6 +762,8 @@ def main():
     x.add_argument("--max-defects", type=int, default=6)
     x.add_argument("--tpl", default="evolve_audit", choices=["evolve_audit", "evolve_attempts"],
                    help="evolve_attempts (v3.3) also shows the ledger of earlier attempts and why they stopped short")
+    x = sp.add_parser("composetask"); x.add_argument("run"); x.add_argument("--ids", required=True, help="surviving pieces")
+    x.add_argument("--dir", required=True); x.add_argument("--audits", required=True, help="redteamtask dirs holding their reviews")
     x = sp.add_parser("resurrect"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--ids", required=True)
     x.add_argument("--m", type=int, default=3, help="children per dead parent")
     x = sp.add_parser("redteamtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)

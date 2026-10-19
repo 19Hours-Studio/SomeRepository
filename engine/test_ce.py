@@ -243,6 +243,11 @@ def main():
                                "CHAIN | road | now 80 | with idea 60 | RATIO 1.3\nVERDICT | WOUNDED | thin ice\n")
             ce("gate", R7, "--dir", dk, "--out", "gate_kit.json", "--file", p)
             gk = json.load(open(os.path.join(rd7, "gate_kit.json")))["tl#1"]; assert gk["screen"] == "ice: 0.4; heat: 2" and gk["margin"] == 0.4
+            # v3.5: chain composer gets surviving pieces with their blind reviews
+            open(os.path.join(dr, "REVIEW.md"), "w").write("=== REVIEW ===\nIDEA 1: tail one\nDEFECT | MAJOR | slow | 2 t/h\nDEFECT | MINOR | x | y\nSURVIVES | the heat balance\n")
+            dc = os.path.join(tmp, "cp"); ce("composetask", R7, "--ids", "tl#1", "--dir", dc, "--audits", dr)
+            t = open(os.path.join(dc, "TASK.md")).read()
+            assert "- MAJOR: slow (2 t/h)" in t and "- SURVIVES: the heat balance" in t and "MINOR" not in t.split("THE 1 PIECES")[1] and "{" not in t
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")

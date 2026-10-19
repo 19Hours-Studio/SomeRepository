@@ -1,0 +1,53 @@
+# Task: compose whole chains from the pieces that survived review
+
+QUESTION: {QUESTION}
+
+Single ideas have so far given at most 1.2-3x on ONE link of the chain, never "several times cheaper" on the whole
+route from the deposit to the market. Your job is to build WHOLE CHAINS out of the surviving pieces below plus best
+current practice, so that the gains of several links multiply, and to compute honestly whether any chain reaches
+several times cheaper than current practice.
+
+You have tools: Bash with python3, WebSearch (WebFetch does not resolve domains here), and the verified calculation kit
+in `{KITDIR}` (catalog below; import it instead of rewriting physics). Work only in `{WORKDIR}`: write files only
+there, read no other repository files except the kit, do not commit.
+
+Rules:
+1. A chain covers the whole route for one product, from the deposit to the point of sale or use (refinery, port,
+   village boiler, consumer), as a sequence of links. Each link is either a piece below (cite it as P<k>) or the best
+   current practice. At least two links must be pieces.
+2. The pieces must fit together: the same kind of site, season, scale and market. At least one COUPLING where one link
+   supplies what another link needs (heat, water, ice, timing, a vessel, a market, a waste stream) - name it and
+   compute it.
+3. Respect each piece's review findings: use the reviewed numbers and ranges, not the original claims, and fix or
+   avoid every listed FATAL/MAJOR defect in the chain design (say how).
+4. For each chain, compute in python a link table: link | method | cost per unit of FINAL product now (current
+   practice) | with the chain | source or piece. Chain RATIO = total now / total with the chain. Give two ratios:
+   against current practice as operated today, and against the best competent alternative (e.g. a local pit where a
+   seam outcrops, an on-site concentrator). Respect the ceiling: shares no link touches (taxes, royalties) cap the
+   ratio (`econ.ceiling_ratio`).
+5. Name the weakest link and the decisive unknown, with the threshold at which the chain drops below 2x.
+6. Build at most 4 chains, the strongest first. Drop any chain below 2x against current practice. If no chain reaches
+   3x against current practice, say so plainly and give the best you found.
+
+Calculation kit catalog (data):
+{KIT}
+
+Where the money goes today (data):
+{LEDGER}
+
+What was tried before and why it did not solve the problem (data):
+{ATTEMPTS}
+
+Final answer (text only), in this order:
+=== IDEAS ===
+IDEA 1
+NAME: (max 6 words)
+MECHANISM: (3-6 sentences: the links in order, which pieces, the coupling, what fixes the reviewed defects)
+VALUE: (1-2 sentences: chain RATIO against current practice and against the best competent alternative, for what product and market size)
+(same for each further chain)
+=== CHAINS ===
+CHAIN 1: the link table, the two ratios, the weakest link, the decisive unknown and its threshold
+(same for each further chain)
+
+THE {N} PIECES (each with its blind review):
+{PIECES}
