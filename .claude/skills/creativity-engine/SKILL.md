@@ -79,6 +79,11 @@ Launch independent agents in one message; never read transcripts into your own c
   Result vs v3.2 (n=8 each): 'already done' 5/8 -> 2/8, FATAL 0.62 -> 0.50, MAJOR 4.25 -> 3.88 (direction right, not
   significant). Remaining FATALs are computable (strength vs time, heat transfer, ice vs depth): the next lever is
   cheap verified calculators in the gate. One researcher's 'not found' is not proof (it missed 2 of 5 known cases).
+- v3.4 kit: `engine/kit/` (tested calculators + `CATALOG.md` of 13 killer classes; `python3 engine/kit/test_kit.py`).
+  `gatetask ... --kit` screens every applicable class first; `gate ... --out gate_kit.json` keeps A/B arms apart.
+  Result (8 ideas with known audits): same catches (3/4), right mechanism 3/3 vs 2/3, 60% fewer tool calls, but much
+  stricter (DEAD on 3/4 ideas the audit did not call FATAL). Treat a killer built on an assumed default as WOUNDED
+  with the decisive unknown and its threshold; DEAD only on measured values or physical limits.
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.

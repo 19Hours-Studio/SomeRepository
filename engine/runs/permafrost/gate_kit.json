@@ -1,0 +1,66 @@
+{
+ "rep_att_a#1": {
+  "killer": "fines increment outside the silt-curtain cell in the closed ~160k m³ under-ice water after 1 day",
+  "why": "Water under the ice has no outflow, so even a 95%-efficient cell leaves ~170 mg/L/day against a 0.25 mg/L limit, and the chain gain is only 1.17x.",
+  "screen": "7 turbidity: 0.00013 (0.0015 even at 95% curtain efficiency); 2 ice bearing (25 t parked at moon-pool edge on 1.1 m ice): 0.39; 1 season window (1.1 m ice comes ~36 d after mid-Dec at snow-covered alpha 0.020, not 0.027): 0.75; 6 moon-pool heat (2 kW vs 0.8-1.5 kW loss): 1.4; 9 baseline: ratio 1.17",
+  "margin": 0.00013,
+  "ratio": 1.17,
+  "verdict": "DEAD"
+ },
+ "rep_att_b#4": {
+  "killer": "water depth at the village berth for a 2,000 t barge (80x15 m) carrying 1,780 t coal + ~100 t plant (draught 2.17 m)",
+  "why": "The ~1.5x saving on winter power is real, but a loaded hull draws more than Arctic village berths offer (it fits only deep Lena-type reaches), and a 2x Far-North capex premium wipes out the gain.",
+  "screen": "3/11 wintering depth for loaded hull: 0.78 (Yana/Indigirka 0.58; Lena main stem 1.13); 6 moat heat (104 kW vs 69 kW for 0.5 m moat at -38.6 °C, 5 m/s): 1.5; 11 hull rise 1.29 m, uplift 76 kN/m vs 31 kN/m ice edge: 0.40 only if the moat is lost while burning; 8 heat-led market (1.57 MW reject heat vs village base load): >=1; 9 baseline: ratio 1.51 (0.89 at 2x Far-North capex)",
+  "margin": 0.78,
+  "ratio": 1.51,
+  "verdict": "WOUNDED"
+ },
+ "rep_att_b#1": {
+  "killer": "fines from tailings returned down caved holes that connect to the lake bed (30 m³/h drawn, 1.9 t/m³, 20% fines, 0.5% escape = 1.37 t/day per module)",
+  "why": "The chain gain is genuine (~1.9x), but each module breaks the fishery limit in the closed under-ice lake within hours unless escape stays below ~0.1%, and parked modules at the hole edge are also short of capacity (0.80).",
+  "screen": "7 turbidity in the closed under-ice lake: 0.18 (1 Mm³) / 0.03 (0.16 Mm³); 2 ice bearing (25 t parked over the hole edge, 1.39 m natural + 0.41 m flooded ice, 0.65 rule): 0.80 (0.94 if all clear ice); 5 jet reach (25 mm at 120 m/s gives 2.1 m/s at 9 m, moves <=2.9 cm grains): ~1 for d50 2-3 cm; 10 recovery (circles on 18 m grid cover 0.785 x 0.86-0.89 = 0.68-0.70 of pay); 9 baseline: ratio 1.90",
+  "margin": 0.18,
+  "ratio": 1.9,
+  "verdict": "DEAD"
+ },
+ "rep_att_b#2": {
+  "killer": "face-average heat-transfer coefficient needed to advance a 3 m adit 3.7-8 m/h with 6 °C water (E = 99 MJ/m³, 30% ice at -4 °C)",
+  "why": "The plan treats a stagnation-point heat-transfer value as the face average, so the face takes ~1/5 of the needed flux and advance drops ~5x (or the water thaws the roof instead), and even the claimed costs give only 1.35x on the chain.",
+  "screen": "5 face heat transfer: 0.19 (0.14-0.29; stagnation-only 0.41-0.88); 6 pond net gain (kit 243-379 W/m² vs claimed 80-150): 2.8; 4 pillars (0.4-1.2 vs 1.25-2 MPa long-term): 1.04; 1 season window (90 d at claimed rates): not binding; 9 baseline: ratio 1.35",
+  "margin": 0.19,
+  "ratio": 1.35,
+  "verdict": "DEAD"
+ },
+ "rep_att_a#3": {
+  "killer": "coal demand within 150 km needed to absorb one rig's 80 kt/yr",
+  "why": "The repair gets to 1,800 rub/t only by selling 80 kt/yr, about 5x what villages within 150 km burn, and at a market-sized ~20 kt the idea's own 4,100 rub/t loses to the bank pit (0.87x).",
+  "screen": "8 market: 0.20 (10 kt village cluster: 0.12); 1 season window (60 t/h x 100 d x 0.56 = 81 kt): 1.0 (0.36 at the historical 21.5 t/h); 4 web pillars (1.45 vs 5.8 MPa): 4.0; anchors for thrust frame (57 kN each at -0.5 °C, ~6 per 300 kN): OK; 9 baseline: ratio 1.36 (0.87 at a market-limited 20 kt)",
+  "margin": 0.2,
+  "ratio": 1.36,
+  "verdict": "DEAD"
+ },
+ "rep_att_b#3": {
+  "killer": "river flow needed to dilute coal fines returned overboard with the dewatering-screen water (55 t/h; 5% <63 µm all escape + 0.5% of 10% fines at the cutter = 0.77 kg/s)",
+  "why": "An in-river cutter feeding an on-barge screen sends every sub-screen coal fine back with the slurry water, needing ~10x the flow available at the control section, although the 1.5x economics would have passed.",
+  "screen": "7 turbidity: 0.09 at a 500 m control section (1.0 only with full mixing into the whole Kolyma mean flow; cutter alone 9.5); 1 season window (4 bends x 8-25 d + transit in 61 d of Jun-Jul): 0.82 (0.56-1.5); 8 market (4 x 10 kt clusters): OK; 9 baseline: ratio 1.52",
+  "margin": 0.09,
+  "ratio": 1.52,
+  "verdict": "DEAD"
+ },
+ "rep_att_a#2": {
+  "killer": "thaw advance of a 2 m drift face (45 m drift within 30 d of a 90-d water season)",
+  "why": "The roof caves at about the right time only with central strength values, the drift face thaws at about half the rate a season needs, the water budget is short (0.58), and the chain gain is only 1.35x.",
+  "screen": "5 drift face thaw rate (debris-coat-limited 0.44-0.87 m/day vs 1.5 m/day needed): 0.44 (0.13 against the 5 m/day theory); 6 water ratio (claimed 3-8, mid 5.5, vs 9.5 m³/m³ at dT 5 K and 50% heat use): 0.58; 4 roof caving at 10 m cover (Vyalov central: 22 m span 89 d, 25 m 1.9 d; weak-to-strong ground 0.013-501 d at 25 m): ~1 central but unpredictable; 1 season (45 m drift per monitor per 90 d at 0.65 m/day): 1.3; 9 baseline: ratio 1.35",
+  "margin": 0.44,
+  "ratio": 1.35,
+  "verdict": "WOUNDED"
+ },
+ "rep_att_a#4": {
+  "killer": "water depth in the natural backwater for the frozen-in hull (660 t, draught 1.07 m)",
+  "why": "The swap removes at most a 5-15% slice of a 23,000 rub/t delivered cost (ratio 0.99-1.10), and a 1.2 m backwater freezes to the bed around the hull.",
+  "screen": "3 backwater depth (1.2 m vs 2.00 m needed with 1.75 m ice; freezes to bed): 0.60 (0.75 with 1.3 m Lena ice); 6 moat heat (55 vs 52 kW for a 0.4 m slot at 5 m/s): 1.06; 6 hold heat (27 vs ~16 kW through frozen coal crust): 1.7; 11 uplift 80 kN/m: handled only while the moat stays open; 9 baseline: ratio 1.04 (ceiling 1.17)",
+  "margin": 0.6,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ }
+}
