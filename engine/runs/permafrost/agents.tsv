@@ -86,3 +86,4 @@ AUDIT_ATT_2	a695360d1cfaff9d5	audit	8
 KIT_BUILD	a2aa8a1624e9a7b0c	kit	-
 GATE_NOKIT	a2afed8703fa44ac6	gate	5
 GATE_KIT	aece007af4d346a18	gate	5
+COMPOSE	a4fc14472cfd44d29	compose	6
