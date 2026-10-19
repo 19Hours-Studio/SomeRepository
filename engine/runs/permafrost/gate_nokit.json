@@ -1,0 +1,58 @@
+{
+ "rep_att_a#1": {
+  "killer": "fines leaking past the silt-curtain cell into the ~160k m³ of still under-ice water (540 t/d of fines, 10% clay <2 µm settling 0.18 m/d, so ~17 d residence in 3 m of water)",
+  "why": "Containment fails by about 50x (steady ~1,100 mg/L under the ice against a 25 mg/L limit, while the Russian fishery norm is +0.25–0.75 mg/L), and even if it worked, the 1.2x mining-step saving moves delivered gold only 7%.",
+  "margin": 0.02,
+  "ratio": 1.07,
+  "verdict": "DEAD"
+ },
+ "rep_att_b#4": {
+  "killer": "net ORC electric efficiency in heat-led mode (condensing into the village heat network)",
+  "why": "The physics closes: 1,780 t gives about 4,400 full-load hours, and the reject heat replaces about 91% of the extra coal. But the 19–32 rub/kWh is capital alone (it reproduces at an annual capital charge of 17%), with no crew, ash handling or Far-North premium, so the 0.3 MWe village unit is about 1.5x cheaper, not 2–6x; only 1 MWe district units (~2.5x) clear the bar.",
+  "margin": 1.06,
+  "ratio": 1.46,
+  "verdict": "WOUNDED"
+ },
+ "rep_att_b#1": {
+  "killer": "effective jet reach in submerged loose talik gravel (the 18 m grid needs R = 9 m)",
+  "why": "The niche economics hold on paper, but at a real ~3.75 m reach the 18 m grid covers 14% of the pay instead of 79%, so the number of holes must rise about 5.8x (or recovery collapses) before 3,000–4,800 rub/g can hold.",
+  "margin": 0.42,
+  "ratio": 1.68,
+  "verdict": "WOUNDED"
+ },
+ "rep_att_b#2": {
+  "killer": "thaw rate at the frozen face with ≤6 °C water, needed to sustain 35–45 m³/h at 3.7–8 m/h advance",
+  "why": "Heat transfer from 6 °C water to a frozen face gives only about 0.3–0.5 of the needed thaw rate, and even at the claimed rate a 2x cheaper mining step becomes only 1.2x once taxes, camp and logistics are included.",
+  "margin": 0.4,
+  "ratio": 1.19,
+  "verdict": "WOUNDED"
+ },
+ "rep_att_a#3": {
+  "killer": "auger production rate in the frozen seam over ~1,330 operating hours per season",
+  "why": "The rate is just about within auger experience, but against the competent alternative (a bank pit) the 1.6–2x mining saving shrinks to about 1.36x on coal at the boiler; the claimed 4–6x holds only against the 2,000-km haul.",
+  "margin": 0.94,
+  "ratio": 1.36,
+  "verdict": "WOUNDED"
+ },
+ "rep_att_b#3": {
+  "killer": "cutting output of a 150 kW cutter in lignite (UCS 5–7 MPa)",
+  "why": "The Kovin benchmark the idea relies on actually implies about 5x more cutter power per tonne, so dredge-days, and the dredge share of cost, are likely 2–4x the claim, which pulls the ~1.5x advantage over a bank pit toward parity.",
+  "margin": 0.46,
+  "ratio": 1.52,
+  "verdict": "WOUNDED"
+ },
+ "rep_att_a#2": {
+  "killer": "heat balance: water heat available to thaw ice-cemented pay at 3–8 m³ of water per m³ of pay",
+  "why": "At realistic heat use the pumped water carries only about two-thirds of the heat needed to thaw the pay, so thaw and production lag, and even as written the 1.6x mining saving is only about 1.2x on delivered gold.",
+  "margin": 0.66,
+  "ratio": 1.23,
+  "verdict": "WOUNDED"
+ },
+ "rep_att_a#4": {
+  "killer": "heat to keep the moat slot and the hold ice-free at about −39 °C",
+  "why": "It works physically, but it spends 1,360 rub/t to save 1,100–3,400 rub/t on coal that costs ~23,000 rub/t at the boiler, so the delivered-cost gain is 0–10% at best (ratio 0.99–1.10).",
+  "margin": 2.4,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ }
+}
