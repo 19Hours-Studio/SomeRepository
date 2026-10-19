@@ -62,6 +62,9 @@ def thaw_feed_rate(Q_m3_s, dT_water_K, E_J_m3, efficiency=1.0):
     Multiply by 86400 for m3/day. Source: round2/erp2_b/idea2_icedam.py (47 L/s, 5 C, ice 0.15 -> 49 m3/h).
     """
     _pos("Q_m3_s", Q_m3_s)
+    _pos("E_J_m3", E_J_m3)
+    if not 0 < efficiency <= 1:
+        raise ValueError("efficiency must be in (0,1]")
     return Q_m3_s * CW * dT_water_K * efficiency / E_J_m3 if dT_water_K > 0 else 0.0
 
 
@@ -197,7 +200,8 @@ def talik_depth_lake_axis(radius_m, T_ground_surface, T_lake_bottom, geo_gradien
 
 # ------------------------------------------------------------------ heat transfer to a frozen face / ice
 def h_dittus_boelter(U, Dh, nu=1.6e-6, k=data.K_WATER, Pr=12.0, n=0.4):
-    """Turbulent convection coefficient, W/m2K: Nu = 0.023 Re^0.8 Pr^n (n 0.4 heating the wall... use 0.4).
+    """Turbulent convection coefficient, W/m2K: Nu = 0.023 Re^0.8 Pr^n (n = 0.4 when the fluid is being heated,
+    0.3 when it is cooled; the harvested runs used 0.4 throughout).
 
     Valid Re > 1e4, 0.6 < Pr < 160, smooth duct. Water near 1-5 C: nu 1.5-1.75e-6, Pr 11-13, k 0.57.
     Underestimates rough gravel faces ~3x (Douglas et al. 2023) - see h_gnielinski(roughness_factor).
@@ -231,7 +235,7 @@ def h_gnielinski(U, Dh, nu=1.57e-6, k=data.K_WATER, Pr=11.6, roughness_factor=1.
 
 def h_jet_stagnation(v_jet, d_nozzle, nu=1.57e-6, k=data.K_WATER, Pr=11.6, C=0.715):
     """Heat-transfer coefficient at the stagnation point of an impinging round water jet, W/m2K:
-    Nu_d = C Re_d^0.5 Pr^0.4 (laminar stagnation-point solution, Sibulkin 1952 Nu=0.763(a d/nu)^0.5 Pr^0.4
+    Nu_d = C Re_d^0.5 Pr^0.4 (laminar stagnation-point solution, Sibulkin 1952 Nu=0.763(a d^2/nu)^0.5 Pr^0.4
     with velocity gradient a ~0.88 v/d -> C ~0.715). Stagnation point only: face-average is several times
     lower, and a jet spreads its heat over roof/ribs (need hA, not h).
     Source: genius/audit_evo_2/check5.py (50 mm at 10-15 m/s -> 12-15 kW/m2K).
@@ -376,6 +380,40 @@ def planck_band_exitance(T_K, lam1=8e-6, lam2=13e-6, n=4000):
         l = lam1 + (i + 0.5) * dl
         s += 2 * math.pi * h * c * c / l ** 5 / (math.exp(h * c / (l * kB * T_K)) - 1.0)
     return s * dl
+
+
+# ------------------------------------------------------------------ freeze concentration and cold engines
+def freeze_concentration(liquid_fraction_left, k_eff=0.0):
+    """Progressive (Scheil/Rayleigh) freeze concentration of a solute with effective ice/liquid distribution
+    coefficient k_eff: C_L/C0 = f^(k-1); fraction of solute kept in the liquid = f^k (f = liquid mass left).
+    Returns (concentration factor, solute fraction retained in liquid). Fast freezing of thin layers in -40 C
+    air traps brine: k_eff 0.05-0.3 is realistic, perfect rejection (k=0) is not.
+    Source: round2/audit_a/calc_lithium.py (f=1/30: k 0.1 -> 21x, 71%; k 0.2 -> 15x, 51%), critic_a, gate_4."""
+    if not 0 < liquid_fraction_left <= 1:
+        raise ValueError("liquid fraction in (0,1]")
+    if not 0 <= k_eff < 1:
+        raise ValueError("k_eff in [0,1)")
+    return liquid_fraction_left ** (k_eff - 1.0), liquid_fraction_left ** k_eff
+
+
+def frozen_fraction_for_concentration(cf, k_eff=0.0):
+    """Mass fraction that must freeze to reach concentration factor cf: f_frozen = 1 - cf^(-1/(1-k)).
+    Source: genius/gate_4 (CF 20, K 0.1 -> 0.964)."""
+    if cf < 1 or not 0 <= k_eff < 1:
+        raise ValueError("cf >= 1, 0 <= k_eff < 1")
+    return 1.0 - cf ** (-1.0 / (1.0 - k_eff))
+
+
+def heat_engine_work(Q_J, T_hot_C, T_cold_C, frac_carnot=0.5):
+    """Work from heat Q moved between T_hot and T_cold at a fraction of Carnot: W = Q frac (1 - Tc/Th), J.
+    'Freeze engines' (latent heat of freezing water vs Arctic air) get only 4-6% of Carnot-limited 334 kJ/kg:
+    ~12 kJ per kg ice at -35 C air (repair/a); glaciothermal analogues 5-11% net. Fans/approaches eat half."""
+    if Q_J < 0 or not 0 < frac_carnot <= 1:
+        raise ValueError("Q >= 0, 0 < frac <= 1")
+    Th, Tc = T_hot_C + 273.15, T_cold_C + 273.15
+    if Tc <= 0 or Tc >= Th:
+        return 0.0
+    return Q_J * frac_carnot * (1.0 - Tc / Th)
 
 
 # ------------------------------------------------------------------ freezing of backfill

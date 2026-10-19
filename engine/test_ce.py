@@ -236,6 +236,13 @@ def main():
             assert "attempts:" in ce("material", R7, "attempts", "--file", p)
             t = open(ce("evolve", R7, "ev2", "--audit", dr, "--m", "1", "--tpl", "evolve_attempts").strip()).read()
             assert "ice cellar" in t and "- FATAL: melts" in t and "{" not in t.replace("{N}", "")
+            # v3.4: kill test with the verified calculation kit; A/B arms keep separate result files
+            dk = os.path.join(tmp, "gk"); ce("gatetask", R7, "--ids", "tl#1", "--dir", dk, "--kit")
+            t = open(os.path.join(dk, "TASK.md")).read(); assert "Kit catalog: killer classes" in t and "SCREEN |" in t and "{" not in t
+            open(p, "w").write("=== GATE ===\nIDEA 1: tail one\nSCREEN | ice: 0.4; heat: 2\nKILLER | ice | required 2 m | available 0.8 m (x) | MARGIN 0.4\n"
+                               "CHAIN | road | now 80 | with idea 60 | RATIO 1.3\nVERDICT | WOUNDED | thin ice\n")
+            ce("gate", R7, "--dir", dk, "--out", "gate_kit.json", "--file", p)
+            gk = json.load(open(os.path.join(rd7, "gate_kit.json")))["tl#1"]; assert gk["screen"] == "ice: 0.4; heat: 2" and gk["margin"] == 0.4
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
         print("OK: all engine commands passed")

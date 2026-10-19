@@ -58,14 +58,21 @@ def tonnes_per_cm(waterplane_area_m2, rho=RHO_W):
     return rho * waterplane_area_m2 / 1e5
 
 
-def depth_needed(draft, h_ice=0.0, under_keel_clearance=0.4):
-    """Water depth (m) for a hull of given draft at the end of winter: draft + clearance (+ 0 for ice:
-    a frozen-in hull's draft is unaffected) - but a backwater whose depth < 0.917 h_ice freezes to the bed,
-    so also require depth >= ice draft + draft when wintering in place. Returns the larger requirement."""
+def depth_needed(draft, h_ice=0.0, under_keel_clearance=0.4, under_ice=False):
+    """Water depth (m) needed at winter low water.
+
+    Frozen-in / wintering hull (under_ice=False): max(draft, 0.917 h_ice) + clearance - the hull must float
+    and the surrounding ice must not ground (shallow backwaters freeze to the bed).
+    Object passing BELOW an ice cover (under_ice=True: pods, towed strings): 0.917 h_ice + draft + clearance.
+    Source: genius/audit_evo_2 (3.3 m loaded draught + 0.5 m -> ~3.8 m vs shallow-river backwaters),
+    round2/critic_b (1.2-2 m ice + 1.2 m pod -> 2.3-3.0 m at every riffle)."""
     _pos("draft", draft)
     if h_ice < 0 or under_keel_clearance < 0:
         raise ValueError("inputs >= 0")
-    return max(draft + under_keel_clearance, RHO_I / RHO_W * h_ice + draft)
+    ice_d = RHO_I / RHO_W * h_ice
+    if under_ice:
+        return ice_d + draft + under_keel_clearance
+    return max(draft, ice_d) + under_keel_clearance
 
 
 def net_buoyancy_kg(volume_m3, mass_kg, rho=RHO_W):

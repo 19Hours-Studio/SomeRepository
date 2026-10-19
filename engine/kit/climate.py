@@ -73,7 +73,7 @@ def daily_temperatures(monthly12):
         c += _DAYS[m]
     out = []
     for day in range(365):
-        d = day + 0.5
+        d = float(day)  # same day indexing as genius/audit_final nonheating()
         for i in range(12):
             j = (i + 1) % 12
             a = mids[i]
