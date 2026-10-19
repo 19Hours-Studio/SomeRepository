@@ -620,7 +620,12 @@ def cmd_material(a):
 def cmd_gatetask(a):
     """v3.0: tool-using kill test (decisive quantity MARGIN + whole-chain cost RATIO) for many ideas at once."""
     ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
-    s = fill(a.run, tpl("gate_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=False)})
+    extra = {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=False)}
+    if a.kit:  # v3.4: verified calculation kit + catalog of killer classes from earlier audits
+        kd = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kit"); cat = os.path.join(kd, "CATALOG.md")
+        if not os.path.exists(cat): sys.exit("no kit/CATALOG.md")
+        extra.update({"KITDIR": kd + "/", "KIT": open(cat).read().strip()})
+    s = fill(a.run, tpl("gate_task_kit" if a.kit else "gate_task"), len(ids), extra)
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
@@ -630,7 +635,7 @@ def cmd_gate(a):
     """Parse a kill-test transcript into gate.json: {id: {margin, ratio, verdict, killer, why}}."""
     ids = json.load(open(os.path.join(a.dir, "ids.json"))); text = read_source(a)
     text = text[text.find("=== GATE ==="):] if "=== GATE ===" in text else text
-    gate = load(a.run, "gate.json", {}); n = 0
+    out = a.out or "gate.json"; gate = load(a.run, out, {}); n = 0
     for k, body in zip(*[iter(re.split(r"^IDEA (\d+)\s*:", text, flags=re.M)[1:])] * 2):
         k = int(k)
         if not 1 <= k <= len(ids): continue
@@ -638,13 +643,14 @@ def cmd_gate(a):
         for line in body.splitlines():
             parts = [x.strip() for x in line.split("|")]
             if parts[0] == "KILLER": rec["killer"] = parts[1] if len(parts) > 1 else ""
+            if parts[0] == "SCREEN": rec["screen"] = parts[1] if len(parts) > 1 else ""
             if parts[0] == "VERDICT" and len(parts) > 1:
                 rec["verdict"] = parts[1].upper(); rec["why"] = parts[2] if len(parts) > 2 else ""
             for name, val in GATE_NUM.findall(line):
                 if parts[0] in ("KILLER", "CHAIN"): rec[name.lower()] = float(val)
         if rec.get("verdict") in ("ALIVE", "WOUNDED", "DEAD"):
             gate[ids[k - 1]] = rec; n += 1
-    save(a.run, "gate.json", gate)
+    save(a.run, out, gate)
     from collections import Counter
     print(f"gate: {n}/{len(ids)} parsed", dict(Counter(gate[i]["verdict"] for i in ids if i in gate)))
 
@@ -721,7 +727,9 @@ def main():
     x = sp.add_parser("material"); x.add_argument("run"); x.add_argument("kind", choices=["frontier", "ledger", "attempts"]); src(x)
     x = sp.add_parser("attemptstask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x = sp.add_parser("gatetask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
+    x.add_argument("--kit", action="store_true", help="v3.4: give the screener engine/kit and its catalog of killer classes")
     x = sp.add_parser("gate"); x.add_argument("run"); x.add_argument("--dir", required=True); src(x)
+    x.add_argument("--out", help="results file in the run dir (default gate.json; A/B arms keep separate files)")
     x = sp.add_parser("evolve"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--audit", required=True,
         help="redteamtask dir holding ids.json and the auditor's REVIEW.md"); x.add_argument("--m", type=int, default=2)
     x.add_argument("--max-defects", type=int, default=6)

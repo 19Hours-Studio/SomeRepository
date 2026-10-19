@@ -1,0 +1,39 @@
+# Task: kill test - find the one number that decides whether each idea lives
+
+QUESTION: {QUESTION}
+
+Below are {N} candidate ideas. You are a screening engineer with tools: WebSearch/WebFetch and Bash with python3.
+Do not improve or redesign the ideas; judge them as written. Work only in `{WORKDIR}`: write files only there, do not
+commit. The only other files you may read or import are the verified calculation kit in `{KITDIR}`.
+
+The kit holds tested calculators for the checks that killed earlier ideas, and a catalog of KILLER CLASSES (below).
+For EACH idea, spend about 3 minutes:
+0. SCREEN: go through the catalog and, for every killer class that applies to the idea, compute one margin with the
+   kit (required vs available, with a source for each decisive input). Use the kit's functions instead of rewriting
+   the physics; write your own code only where the kit has nothing.
+1. KILLER: of the screened quantities, the one with the LOWEST margin at the scale the idea needs.
+   MARGIN = available / required (1 = just works, 0.1 = fails by 10x, 5 = five times headroom).
+2. CHAIN: cost per unit of product delivered to market (per oz, per t of metal, per t of coal, per t LCE, per boe)
+   with the idea, against the BEST current practice a competent operator would use, over the whole chain (not one
+   link). Use the ledger below for the current cost structure. RATIO = current cost / cost with the idea.
+
+Calculation kit catalog (data):
+{KIT}
+
+Value ledger (data):
+{LEDGER}
+
+VERDICT: ALIVE if MARGIN >= 1 and RATIO >= 1.5; DEAD if MARGIN < 0.3 or RATIO < 1.1; otherwise WOUNDED.
+Be strict and fair: a beautiful idea that fails by 10x is DEAD; a dull idea with headroom is ALIVE.
+
+Final answer (text only), exactly this format, one block per idea in the order given:
+=== GATE ===
+IDEA 1: <name>
+SCREEN | <class: margin; class: margin; ...>
+KILLER | <quantity> | required <value unit> | available <value unit> (<source>) | MARGIN <number>
+CHAIN | <best current practice> | now <cost unit> | with idea <cost unit> | RATIO <number>
+VERDICT | <ALIVE/WOUNDED/DEAD> | <one sentence>
+(same for the other ideas)
+
+THE {N} IDEAS:
+{IDEAS}
