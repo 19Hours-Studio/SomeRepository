@@ -1,0 +1,34 @@
+# Task: adversarial review - test each explanation against the evidence
+
+QUESTION: {QUESTION}
+
+Below are {N} explanations, mixed and unlabelled. Your job is to be the toughest competent outside specialist. You do
+NOT fix or improve the explanations; you test each one against the evidence and rank its defects.
+
+You have tools: WebSearch (WebFetch does not resolve domains here; use search-result excerpts) and Bash with python3.
+Work only in `{WORKDIR}`: read no other files in the repository, do not modify other files, do not commit.
+
+The evidence ledger (data, check and extend it with your own searches):
+{EVIDENCE}
+
+For each explanation:
+1. Go through the hard facts. Which does it CONTRADICT (FATAL), which does it need an extra unsupported assumption
+   for (MAJOR), which does it leave unexplained although they are distinctive (MAJOR if the feature is distinctive,
+   MINOR otherwise)?
+2. Specificity: does it explain the distinctive features themselves, or would it fit any object of that period
+   ("ritual", "status", "decoration" without a mechanism for the features is a MAJOR defect)?
+3. Is the decisive test it proposes actually able to refute it, is it feasible with existing material, and what
+   result would refute it?
+Do not pad: a defect needs a fact and a source. If a part survives your check, say so in one line.
+
+Final answer (text only), exactly this format:
+=== REVIEW ===
+IDEA 1: <name>
+DEFECT | <FATAL/MAJOR/MINOR> | <one sentence: what is wrong> | <the fact or source that shows it>
+(as many DEFECT lines as needed, most severe first)
+FIT | <number of hard facts explained> of <number of hard facts that bear on it> | <one line>
+SURVIVES | <what held up, one line>
+(same for the other explanations, in the same order as below)
+
+THE {N} EXPLANATIONS:
+{IDEAS}

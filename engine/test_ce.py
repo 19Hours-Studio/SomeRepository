@@ -250,6 +250,25 @@ def main():
             assert "- MAJOR: slow (2 t/h)" in t and "- SURVIVES: the heat balance" in t and "MINOR" not in t.split("THE 1 PIECES")[1] and "{" not in t
         finally:
             shutil.rmtree(rd7, ignore_errors=True)
+        # v3.6: explanation questions - evidence and earlier-explanation ledgers, explain techniques, evidence review
+        R8 = "_selftest36"; rd8 = os.path.join(HERE, "runs", R8)
+        try:
+            ce("init", R8, "--question", "What was the bronze thing for?", "--format", "explain", "--force")
+            for tp in ("evidence_task", "hypotheses_task"):
+                t = open(ce("researchtask", R8, "--tpl", tp, "--dir", os.path.join(tmp, tp)).strip()).read()
+                assert "bronze thing" in t and "{" not in t
+            open(p, "w").write("x\n=== EVIDENCE ===\nFACT 1: 12 holes of unequal size | HARD | src\n")
+            assert "evidence:" in ce("material", R8, "evidence", "--file", p)
+            open(p, "w").write("=== ATTEMPTS ===\nATTEMPT 1: candle holder | 1900 | weak | WHY IT DID NOT SETTLE THE QUESTION: no wax | s\n"
+                               "=== IDEAS ===\nIDEA 1\nNAME: candle holder\nMECHANISM: holds a candle.\nVALUE: explains holes.\n")
+            ce("material", R8, "attempts", "--file", p); ce("ingest", R8, "known", "--arm", "K", "--file", p)
+            for tech in ("explain_crux", "explain_neg", "explain_mech"):
+                t = open(ce("prompt", R8, tech, "x_" + tech).strip()).read()
+                assert "unequal size" in t and "no wax" in t and "decisive test" in t and "{" not in t.replace("{N}", "")
+            da = os.path.join(tmp, "rx"); ce("redteamtask", R8, "--ids", "known#1", "--dir", da, "--blind", "--tpl", "redteam_explain")
+            t = open(os.path.join(da, "TASK.md")).read(); assert "FIT |" in t and "unequal size" in t and "candle holder" in t
+        finally:
+            shutil.rmtree(rd8, ignore_errors=True)
         print("OK: all engine commands passed")
     finally:
         shutil.rmtree(rd, ignore_errors=True); shutil.rmtree(tmp, ignore_errors=True)

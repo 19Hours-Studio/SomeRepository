@@ -113,7 +113,7 @@ def fill(run, body, n, extra=None, sources=None):
     gaps = load(run, "gaps.json", [])
     s = s.replace("{GAPS}", "\n".join(f"{g['code']}: {g['desc']}" for g in gaps) if gaps else "(no gaps recorded)")
     s = s.replace("{PLAINFILE}", path(run, "sets", "s00", "blind.txt"))
-    for key in ("FRONTIER", "LEDGER", "ATTEMPTS"):  # v3.0/v3.3: raw material for generators and the gate (`material`)
+    for key in ("FRONTIER", "LEDGER", "ATTEMPTS", "EVIDENCE"):  # v3.0-3.6: raw material for generators and checks (`material`)
         f = path(run, key.lower() + ".md")
         s = s.replace("{" + key + "}", open(f).read().strip() if os.path.exists(f) else "(none recorded)")
     for k, v in (extra or {}).items(): s = s.replace("{" + k + "}", v)
@@ -597,7 +597,7 @@ def cmd_repairtask(a):
 def cmd_redteamtask(a):
     """v2.2: adversarial reviewer with tools; its review feeds `repairtask --critique`."""
     ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
-    s = fill(a.run, tpl("redteam_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=not a.blind)})
+    s = fill(a.run, tpl(a.tpl), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=not a.blind)})
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
@@ -608,6 +608,13 @@ def cmd_attemptstask(a):
     s = fill(a.run, tpl("attempts_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=False)})
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
+
+def cmd_researchtask(a):
+    """v3.6 (explanation questions): a researcher with search builds raw material - the evidence ledger of hard facts
+    (`evidence_task`) or the ledger of earlier explanations and why each failed (`hypotheses_task`)."""
+    os.makedirs(a.dir, exist_ok=True)
+    s = fill(a.run, tpl(a.tpl), 0, {"WORKDIR": os.path.abspath(a.dir) + "/"})
+    open(os.path.join(a.dir, "TASK.md"), "w").write(s); print(os.path.join(a.dir, "TASK.md"))
 
 def cmd_material(a):
     """v3.0: store raw material for generators and the gate: the frontier scout's capabilities, the value ledger,
@@ -742,7 +749,7 @@ def main():
     sp = p.add_subparsers(dest="cmd", required=True)
     def src(x): x.add_argument("--transcript"); x.add_argument("--file")
     x = sp.add_parser("init"); x.add_argument("run"); x.add_argument("--question", required=True)
-    x.add_argument("--format", default="value", choices=["value", "difference", "arch"]); x.add_argument("--n", type=int, default=3)
+    x.add_argument("--format", default="value", choices=["value", "difference", "arch", "explain"]); x.add_argument("--n", type=int, default=3)
     x.add_argument("--force", action="store_true")
     x = sp.add_parser("prompt"); x.add_argument("run"); x.add_argument("tech", help="technique template or evolved species name"); x.add_argument("label")
     x.add_argument("--pairs", type=int, default=3); x.add_argument("--pair-from", type=int, default=0)
@@ -751,7 +758,9 @@ def main():
     x.add_argument("--gen", type=int, default=0); x.add_argument("--parents", help="ids (comma list or parents.json) the k-th idea descends from"); src(x)
     x = sp.add_parser("repairtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--critique", help="red-team review (file, or agent transcript .output)")
-    x = sp.add_parser("material"); x.add_argument("run"); x.add_argument("kind", choices=["frontier", "ledger", "attempts"]); src(x)
+    x = sp.add_parser("material"); x.add_argument("run"); x.add_argument("kind", choices=["frontier", "ledger", "attempts", "evidence"]); src(x)
+    x = sp.add_parser("researchtask"); x.add_argument("run"); x.add_argument("--tpl", required=True,
+        choices=["evidence_task", "hypotheses_task"]); x.add_argument("--dir", required=True)
     x = sp.add_parser("attemptstask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x = sp.add_parser("gatetask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--kit", action="store_true", help="v3.4: give the screener engine/kit and its catalog of killer classes")
@@ -768,6 +777,8 @@ def main():
     x.add_argument("--m", type=int, default=3, help="children per dead parent")
     x = sp.add_parser("redteamtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--blind", action="store_true", help="omit judges' scores (blind audit of mixed versions)")
+    x.add_argument("--tpl", default="redteam_task", choices=["redteam_task", "redteam_explain"],
+                   help="redteam_explain (v3.6): test explanations against the evidence ledger")
     x = sp.add_parser("set"); x.add_argument("run"); x.add_argument("set"); x.add_argument("--labels"); x.add_argument("--ids")
     x.add_argument("--arms"); x.add_argument("--prefix", default="S")
     x.add_argument("--basin-sources", help="e.g. observed,predicted — exclude visited families from judge prompts (fair final comparison)")

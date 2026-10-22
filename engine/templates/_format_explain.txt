@@ -1,0 +1,8 @@
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly {N} ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (3-5 sentences: what the thing was or what happened, how it worked, and what each distinctive feature in the evidence does in this explanation)
+VALUE: (2 sentences: which hard facts this explains that the rival explanations do not, and one cheap decisive test - a measurement on existing material or records - whose result would refute it)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
