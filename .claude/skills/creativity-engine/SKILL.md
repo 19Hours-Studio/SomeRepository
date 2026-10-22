@@ -89,6 +89,11 @@ Launch independent agents in one message; never read transcripts into your own c
   generating and aim generators only at archetype x link pairs whose ceiling exceeds the target (permafrost: oil 1.89x
   by taxes, gold earthmoving 2.08x, only Arctic settlement fuel had room; ~120 ideas mostly aimed where 'several
   times' was arithmetically impossible). Report ratios vs today AND vs the best competent alternative.
+- v3.6 explanation questions (mysteries, 'what was X'): `init R --format explain`; `researchtask R --tpl evidence_task`
+  -> `material R evidence`; `researchtask R --tpl hypotheses_task` -> `material R attempts` + `ingest` its IDEAS as the
+  known-explanations control (arm K); generators `explain_crux|explain_neg|explain_mech`; blind mixed review
+  `redteamtask ... --blind --tpl redteam_explain` (FATAL = contradicts a hard fact, FIT = facts explained). On the
+  Roman dodecahedron the engine beat the earlier explanations in both blind blocks; explain_mech was strongest.
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.

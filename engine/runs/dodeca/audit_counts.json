@@ -61,5 +61,68 @@
    6,
    15
   ]
+ },
+ "g1_neg#1": {
+  "FATAL": 0,
+  "MAJOR": 5,
+  "MINOR": 1,
+  "fit": [
+   9,
+   13
+  ]
+ },
+ "known#4": {
+  "FATAL": 0,
+  "MAJOR": 3,
+  "MINOR": 3,
+  "fit": [
+   6,
+   13
+  ]
+ },
+ "g1_crux#1": {
+  "FATAL": 1,
+  "MAJOR": 2,
+  "MINOR": 2,
+  "fit": [
+   7,
+   13
+  ]
+ },
+ "g1_mech#1": {
+  "FATAL": 0,
+  "MAJOR": 3,
+  "MINOR": 3,
+  "fit": [
+   6,
+   13
+  ]
+ },
+ "known#5": {
+  "FATAL": 1,
+  "MAJOR": 5,
+  "MINOR": 1,
+  "fit": [
+   3,
+   12
+  ]
+ },
+ "g1_mech#2": {
+  "FATAL": 0,
+  "MAJOR": 2,
+  "MINOR": 3,
+  "fit": [
+   10,
+   13
+  ]
+ },
+ "known#3": {
+  "FATAL": 0,
+  "MAJOR": 4,
+  "MINOR": 1,
+  "fit": [
+   6,
+   12
+  ]
  }
 }
