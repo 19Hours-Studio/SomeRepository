@@ -1,4 +1,58 @@
 {
+ "g2_evo#4": {
+  "FATAL": 1,
+  "MAJOR": 6,
+  "MINOR": 1,
+  "fit": [
+   9,
+   16
+  ]
+ },
+ "g1_mech#1": {
+  "FATAL": 0,
+  "MAJOR": 4,
+  "MINOR": 3,
+  "fit": [
+   9,
+   16
+  ]
+ },
+ "g2_evo#5": {
+  "FATAL": 0,
+  "MAJOR": 4,
+  "MINOR": 1,
+  "fit": [
+   7,
+   16
+  ]
+ },
+ "g2_evo#6": {
+  "FATAL": 0,
+  "MAJOR": 6,
+  "MINOR": 1,
+  "fit": [
+   11,
+   16
+  ]
+ },
+ "g1_mech#2": {
+  "FATAL": 0,
+  "MAJOR": 3,
+  "MINOR": 2,
+  "fit": [
+   12,
+   19
+  ]
+ },
+ "g2_evo#2": {
+  "FATAL": 0,
+  "MAJOR": 4,
+  "MINOR": 2,
+  "fit": [
+   17,
+   19
+  ]
+ },
  "g1_mech#3": {
   "FATAL": 0,
   "MAJOR": 4,

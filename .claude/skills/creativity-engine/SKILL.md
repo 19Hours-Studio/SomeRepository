@@ -97,6 +97,9 @@ Launch independent agents in one message; never read transcripts into your own c
   Run it in ONE PASS without stopping to ask: after the first blind review, append the reviewers' new hard facts to
   evidence.md, set the gap every explanation shares as `setcfg R crux`, `evolve R g2 --audit <dirs> --ids <best 4>
   --m 2 --tpl evolve_explain`, then one blind review of children mixed with their parents; report at the end.
+  Lesson from gen 2: children closed the shared gap but each through a historical anchor recalled without tools,
+  and the reviewers broke most anchors (MAJOR 3.75 -> 4.62). Put a researcher repair with search (v2.2-style:
+  check every source, date and reading) between `evolve` and the blind review, as in the invention pipeline.
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.
