@@ -100,6 +100,9 @@ Launch independent agents in one message; never read transcripts into your own c
   Lesson from gen 2: children closed the shared gap but each through a historical anchor recalled without tools,
   and the reviewers broke most anchors (MAJOR 3.75 -> 4.62). Put a researcher repair with search (v2.2-style:
   check every source, date and reading) between `evolve` and the blind review, as in the invention pipeline.
+  Done on the dodecahedron (`repairtask R --ids <leaders> --tpl repair_explain --audits <latest review dirs first>
+  --notes "<user notes>"`): the repaired synthesis ranked first in the final blind review. Feed the researcher's
+  corrections into evidence.md before the final review.
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.

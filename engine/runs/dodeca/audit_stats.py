@@ -26,7 +26,7 @@ print(f"{'rank':4s} {'id':10s} {'arm':3s} F/M/m   FIT     name")
 for r, i in enumerate(sorted(rows, key=key), 1):
     c = rows[i]; f = f"{c['fit'][0]}/{c['fit'][1]}" if c["fit"] else "-"
     print(f"{r:4d} {i:10s} {ideas[i]['arm']:3s} {c['FATAL']}/{c['MAJOR']}/{c['MINOR']}  {f:7s} {ideas[i]['name'][:45]}")
-for arm in ("E", "K", "E2"):
+for arm in ("E", "K", "E2", "F"):
     L = [rows[i] for i in rows if ideas[i]["arm"] == arm]
     if L: print(f"arm {arm}: n={len(L)} FATAL {sum(c['FATAL'] for c in L)/len(L):.2f} MAJOR {sum(c['MAJOR'] for c in L)/len(L):.2f}"
                 f" zero-FATAL {sum(c['FATAL'] == 0 for c in L)}/{len(L)}")
