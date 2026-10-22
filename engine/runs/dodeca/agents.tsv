@@ -13,3 +13,5 @@ REPAIR_FINAL	a4f1803f4d7056df8	repair	-
 AUDIT_5	af71201e04eec1c52	audit	6
 TEST_HOLES	a5a19e69ce12a8799	test	-
 TEST_WEAR	accc0ec42e8c6d82f	test	-
+MODELS3D	af2ec037a784fa35b	test	-
+MESH_TOOL	ab1e1fe3451e51a7f	tool	-
