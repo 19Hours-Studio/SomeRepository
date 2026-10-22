@@ -1,17 +1,19 @@
 """Blind evidence review of the dodecahedron explanations (14-dodecahedron.md): engine (E) vs earlier (K).
-Run from the repo root: python3 engine/runs/dodeca/audit_stats.py [audit_k=<agent transcript> ...]
-Each audit_k=transcript pair first saves that transcript's REVIEW section to audit_k/REVIEW.md."""
+Run from the repo root: python3 engine/runs/dodeca/audit_stats.py [--only=audit_3,audit_4] [audit_k=<agent transcript> ...]
+Each audit_k=transcript pair first saves that transcript's REVIEW section to audit_k/REVIEW.md; --only limits the
+ranking to those review rounds (generation 2 is ranked against its parents re-reviewed in the same round)."""
 import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "..")); import ce  # noqa: E402
 ideas = {i["id"]: i for i in json.load(open(os.path.join(HERE, "ideas.json")))}
-for arg in sys.argv[1:]:
+only = next((a.split("=", 1)[1].split(",") for a in sys.argv[1:] if a.startswith("--only=")), None)
+for arg in (a for a in sys.argv[1:] if not a.startswith("--only=")):
     d, tr = arg.split("=", 1); t = ce.transcript_text(tr); t = t[t.find("=== REVIEW ==="):]
     open(os.path.join(HERE, d, "REVIEW.md"), "w").write(t)
 rows = {}
 for d in sorted(x for x in os.listdir(HERE) if x.startswith("audit_") and os.path.isdir(os.path.join(HERE, x))):
     f = os.path.join(HERE, d, "REVIEW.md")
-    if not os.path.exists(f): continue
+    if not os.path.exists(f) or (only and d not in only): continue
     ids = json.load(open(os.path.join(HERE, d, "ids.json"))); text = open(f).read()
     blocks = re.split(r"^IDEA (\d+)\s*:", text, flags=re.M)[1:]
     for k, body in zip(blocks[0::2], blocks[1::2]):
@@ -24,7 +26,7 @@ print(f"{'rank':4s} {'id':10s} {'arm':3s} F/M/m   FIT     name")
 for r, i in enumerate(sorted(rows, key=key), 1):
     c = rows[i]; f = f"{c['fit'][0]}/{c['fit'][1]}" if c["fit"] else "-"
     print(f"{r:4d} {i:10s} {ideas[i]['arm']:3s} {c['FATAL']}/{c['MAJOR']}/{c['MINOR']}  {f:7s} {ideas[i]['name'][:45]}")
-for arm in ("E", "K"):
+for arm in ("E", "K", "E2"):
     L = [rows[i] for i in rows if ideas[i]["arm"] == arm]
     if L: print(f"arm {arm}: n={len(L)} FATAL {sum(c['FATAL'] for c in L)/len(L):.2f} MAJOR {sum(c['MAJOR'] for c in L)/len(L):.2f}"
                 f" zero-FATAL {sum(c['FATAL'] == 0 for c in L)}/{len(L)}")
