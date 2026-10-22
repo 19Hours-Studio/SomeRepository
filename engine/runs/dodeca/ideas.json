@@ -97,5 +97,32 @@
   "name": "Fumigation cage for aromatics",
   "mech": "Resin or herbs on a small ember went in through the largest hole; then it sat on a smaller-holed face, ember over that hole. Knobs lift it to admit air while upper holes vent smoke, and turning it to another face changes intake and smoulder rate, so holes needed only to differ within a piece; rings are ornament. The thin shell heats fast, knobs give cooler grips, use causes no wear, and the wax specimen is residue. Domestic, bath, theatre and funerary fumigation fits the mixed contexts, a regional form of a common rite, unnamed in texts.",
   "value": "It explains knobs as stand-offs, the perforated hollow and the wax specimen together, which symbolic and instrument readings do not. Clean interiors on 10+ pieces, with no soot, charred resin or heat tint and no resin markers by GC-MS, refute it."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Bronze serpent's-egg talisman",
+  "mech": "Pliny (NH 29.52) describes the anguinum, a Gaulish Druid badge, apple-sized with a cupped crust, carried to win lawsuits, often identified as a fossil sea urchin. The dodecahedron copies that urchin in bronze: pentagons give its five-fold symmetry, ten ringed holes its ten zones of ringed tubercles, the larger unringed opposite pair its mouth and anus, knobs its spine bosses. Smiths copied freely, so sizes vary. A private charm of a suppressed priesthood stays unworn, unlettered, unpictured and concentrated in Gaul, Britain and the Rhineland, ending in houses, graves, rivers and hoards.",
+  "value": "It explains the ten-plus-two layout, rings, knobs and Gallo-British distribution together, which rivals treat separately. Test: in Guggenberger's per-object tables, the five ringed holes around one unringed pole should differ systematically from the five around the other (urchin underside versus top); no difference refutes it."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Founder's hollow-casting masterpiece",
+  "mech": "Casting a closed polyhedron hollow with millimetre walls is among the hardest lost-wax tasks; the dodecahedron was a provincial founder's proof piece, kept or given to patrons. Every face is holed because the clay core must be pinned and raked out: the larger, unringed, sometimes oval opposite pair is the main core-pin axis, filed open, while the other ten got finishing rings. Corner knobs are feeders filling thin junctions; each founder set his own core and wax, so sizes vary. Display means no wear or lettering; graves, hoards and the Kortessem repair show value; the range maps a north-western casting tradition.",
+  "value": "It explains why every face is holed, why one pair is larger and unringed, the knobs and the thin walls, all arbitrary in use-based readings. Test: radiograph existing pieces; if core-pin, filing and porosity traces do not concentrate on the larger unringed axis, it is refuted."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Travelling founders' trade sample",
+  "mech": "Itinerant founders, casting on site for towns, villas and forts, carried a dodecahedron as proof they could cast closed, thin-walled hollows. Its form records casting: holes pin and empty the core, the larger unringed pair marks the main core axis, ringed holes display finishing, knobs fed thin corners; each team cast its own, so sizes vary. Seldom handled, samples show little wear and needed no words; they were lost at work sites, rivers, wells and pits, sold on into graves and hoards, and taken beyond the frontier by hired teams. Fixed Mediterranean workshops needed none.",
+  "value": "It explains the civil majority, military minority, river and pit losses and Slovak finds as one trade's itinerary, not a cult or army. Test: pXRF and core-clay analysis should show a few alloy-clay groups each spread over hundreds of kilometres; local matches at each findspot refute it."
  }
 ]
