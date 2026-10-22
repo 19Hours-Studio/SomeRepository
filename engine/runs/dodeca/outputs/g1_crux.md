@@ -1,0 +1,15 @@
+CRUX: FACT 2 (holes differ within every object, yet no scheme is shared between objects) and FACT 3 (commonest type: ten ringed holes plus one larger, unringed opposite pair). Symbol theories ignore the variation, instrument theories break on it, and almost none use the unringed axis.
+
+=== IDEAS ===
+IDEA 1
+NAME: Axle-spun lot, size-coded holes
+MECHANISM: A household oracle was threaded on an upright wooden or bone rod through the larger unringed opposite pair, which were its bearings. It was spun and read from whichever ringed hole stopped facing the consultant. The answer was that hole's size, so each object needs ten distinguishable diameters, never a scheme shared with others, and no letters. Rings frame the readable apertures; knobs give spinning grip and keep rims off surfaces. Soft rods and occasional private Gallo-British use leave bronze unworn and suit settlement finds and textual silence; the Gellep bone rod is its axle.
+VALUE: It alone makes within-object variation, no cross-object scheme, no inscriptions and the unringed pair all necessary. In Guggenberger's per-object measurements, if type-2a unringed pairs are often unequal or ringed holes on one object coincide within 0.5 mm, it is refuted.
+IDEA 2
+NAME: Hand-tuned bronze vessel whistle
+MECHANISM: Each piece was a Gallo-British edge-blown vessel flute: the player blew across one larger unringed hole, its opposite twin was a thumb vent, and the ring-marked holes were finger or wax stops. Pitch depends on open hole area against cavity volume, so graded holes give a fuller scale, and continuously varying bodies forced individual tuning, which rules out any shared hole standard. Knobs let it be held and set down without blocking holes. Wax, used to join and tune ancient pan-pipes, explains the German residue; lips and fingers leave bronze unworn; and the Kortessem repair restores airtightness.
+VALUE: It turns differing holes, continuous sizes, the unringed pair and the wax trace into requirements. Sound the intact Norton Disney piece with an artificial-mouth air jet across an unringed rim, other holes film-sealed: if no stable tone results, it is refuted.
+IDEA 3
+NAME: Hole-signature membership token
+MECHANISM: Each was a recognition token of a non-official Gallo-British association, its hole diameters a personal signature checked against a counterpart such as a pegged wooden gauge. A signature must vary within each object and never repeat between objects, exactly the observed pattern; the larger unringed opposite pair fixes the reference axis so the ten ringed sizes are read in order. Knobs and rings make imitation costly; shown rather than used, it stays unworn and uninscribed, while unofficial membership explains textual silence and spread from Gaul to Britain and beyond the frontier. Tokens followed owners into graves, hoards and rivers.
+VALUE: It makes the missing shared size scheme a design requirement and fits extra-imperial spread and valued deposition. Measure hole roundness on existing pieces: if scatter within single holes equals the steps between holes on one object, no signature exists and it is refuted.
