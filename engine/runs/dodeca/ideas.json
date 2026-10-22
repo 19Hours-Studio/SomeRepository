@@ -70,5 +70,32 @@
   "name": "Hole-signature membership token",
   "mech": "Each was a recognition token of a non-official Gallo-British association, its hole diameters a personal signature checked against a counterpart such as a pegged wooden gauge. A signature must vary within each object and never repeat between objects, exactly the observed pattern; the larger unringed opposite pair fixes the reference axis so the ten ringed sizes are read in order. Knobs and rings make imitation costly; shown rather than used, it stays unworn and uninscribed, while unofficial membership explains textual silence and spread from Gaul to Britain and beyond the frontier. Tokens followed owners into graves, hoards and rivers.",
   "value": "It makes the missing shared size scheme a design requirement and fits extra-imperial spread and valued deposition. Measure hole roundness on existing pieces: if scatter within single holes equals the steps between holes on one object, no signature exists and it is refuted."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Staff finial on tapering shaft",
+  "mech": "A light insignia head was slid onto a staff through the larger unringed opposite pair and wedged where the taper met that pair's smaller hole, so opposite pairs may differ widely. Ringed holes faced outward as decorated windows; knobs were ornamental terminals shielding the head when grounded. Each head fitted its own staff, so no size scheme was needed. Carried occasionally, it stayed unworn, followed its holder into graves (the Gellep rod), hoards or rivers, and as an unofficial regional badge escaped texts and art.",
+  "value": "It makes the unringed axis and unequal opposite pairs necessary, which symbolic and instrument readings leave unexplained. Under CT and microscopy, type-2a unringed pairs showing no more rim abrasion, organic traces or staining than ringed holes, or admitting no single tapering rod, refute it."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Touch-coded casting lot",
+  "mech": "Tossed onto cloth, it tumbles on its knobs and settles with one face up. That face is read by its hole (size, ringed or not; the large unringed pair a distinct outcome), legible by eye or finger, so no letters were needed, and since each owner knew their own piece, neither a shared scheme nor fairness mattered. A light shell landing on cloth wears little. It belongs to north-western lot-casting (Tacitus describes Germanic lots thrown onto a white cloth), not Mediterranean dice culture, fitting distribution, civil and grave contexts and textual silence.",
+  "value": "It explains why holes differ within each object yet share no scheme between objects, and why nothing is inscribed. On 10+ pieces, microscope knob tips against protected recesses: repeated tumbling polishes tips, so tips as fresh as recesses refute it."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Fumigation cage for aromatics",
+  "mech": "Resin or herbs on a small ember went in through the largest hole; then it sat on a smaller-holed face, ember over that hole. Knobs lift it to admit air while upper holes vent smoke, and turning it to another face changes intake and smoulder rate, so holes needed only to differ within a piece; rings are ornament. The thin shell heats fast, knobs give cooler grips, use causes no wear, and the wax specimen is residue. Domestic, bath, theatre and funerary fumigation fits the mixed contexts, a regional form of a common rite, unnamed in texts.",
+  "value": "It explains knobs as stand-offs, the perforated hollow and the wax specimen together, which symbolic and instrument readings do not. Clean interiors on 10+ pieces, with no soot, charred resin or heat tint and no resin markers by GC-MS, refute it."
  }
 ]
