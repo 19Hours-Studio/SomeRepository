@@ -271,6 +271,9 @@ def main():
             ce("setcfg", R8, "crux", "nobody explains the map")
             t = open(ce("evolve", R8, "ev", "--audit", da + "," + da, "--ids", "known#1", "--m", "2", "--tpl", "evolve_explain").strip()).read()
             assert "- MAJOR: no soot (museum)" in t and "nobody explains the map" in t and "exactly 2 ideas" in t and "{" not in t.replace("{N}", "")
+            dq = os.path.join(tmp, "rq"); ce("repairtask", R8, "--ids", "known#1", "--dir", dq, "--tpl", "repair_explain", "--audits", da, "--notes", "one piece may be a dud")
+            t = open(os.path.join(dq, "TASK.md")).read()
+            assert "BLIND REVIEW:\n- MAJOR: no soot (museum)" in t and "one piece may be a dud" in t and "unequal size" in t and "{" not in t
         finally:
             shutil.rmtree(rd8, ignore_errors=True)
         print("OK: all engine commands passed")

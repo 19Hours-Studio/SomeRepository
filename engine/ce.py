@@ -590,7 +590,14 @@ def cmd_repairtask(a):
                 + read_source(argparse.Namespace(transcript=a.critique if a.critique.endswith(".output") else None,
                                                  file=None if a.critique.endswith(".output") else a.critique))
                 + "\nREVIEW>>>\n")
-    s = fill(a.run, tpl("repair_task"), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids), "CRITIQUE": crit})
+    ideas_block = task_ideas(a.run, ids)
+    if a.audits:  # v3.6: each idea carries its latest blind review (first listed dir that has it)
+        parts = re.split(r"(?m)^(?=IDEA \d+)", ideas_block); parts = [x for x in parts if x.strip()]
+        for k, iid in enumerate(ids):
+            rev = next((r for d in a.audits.split(",") if (r := review_lines(d, iid, survives=True))), None) or ["- (not reviewed)"]
+            parts[k] = parts[k].rstrip("\n") + "\nBLIND REVIEW:\n" + "\n".join(rev) + "\n"
+        ideas_block = "\n".join(parts)
+    s = fill(a.run, tpl(a.tpl), len(ids), {"WORKDIR": wd + "/", "IDEAS": ideas_block, "CRITIQUE": crit, "NOTES": a.notes or "(none)"})
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "parents.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
@@ -758,6 +765,9 @@ def main():
     x.add_argument("--gen", type=int, default=0); x.add_argument("--parents", help="ids (comma list or parents.json) the k-th idea descends from"); src(x)
     x = sp.add_parser("repairtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--critique", help="red-team review (file, or agent transcript .output)")
+    x.add_argument("--tpl", default="repair_task", choices=["repair_task", "repair_explain"])
+    x.add_argument("--audits", help="v3.6: review dirs (latest first); each idea gets its blind review")
+    x.add_argument("--notes", help="notes from the user, passed to the researcher as data")
     x = sp.add_parser("material"); x.add_argument("run"); x.add_argument("kind", choices=["frontier", "ledger", "attempts", "evidence"]); src(x)
     x = sp.add_parser("researchtask"); x.add_argument("run"); x.add_argument("--tpl", required=True,
         choices=["evidence_task", "hypotheses_task"]); x.add_argument("--dir", required=True)

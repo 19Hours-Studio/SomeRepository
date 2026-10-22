@@ -1,0 +1,43 @@
+# Task: repair and finish - turn the best explanations into the single best-supported explanation
+
+QUESTION: {QUESTION}
+
+Below are the {N} best explanations so far, each with the findings of a blind review against the evidence. You are a
+researcher with tools: WebSearch (WebFetch does not resolve domains here; use search-result excerpts) and Bash with
+python3. Work only in `{WORKDIR}`: read no other files in the repository, write files only there, do not commit.
+
+Steps:
+1. CHECK ANCHORS: for every historical, textual, archaeological or physical claim an explanation relies on, find the
+   source and verify it (date, place, exact reading). Correct or drop every anchor that fails, and say which.
+2. WEIGH THE EVIDENCE: separate what is established across the corpus from observations on a single object. A single
+   specimen can be atypical (a casting defect, a repair, a variant), so no explanation should stand or fall on one
+   object unless the observation is typical of the corpus.
+3. REPAIR: remove each reviewed FATAL and MAJOR defect with checked evidence, or concede it.
+4. THE MAP AND THE DATES: test candidate reasons why the objects occur where and when they do and not elsewhere (a
+   regional production tradition or workshop network, a regional practice or cult, a technique that did not travel,
+   demand that existed only there) against the evidence; keep only what the evidence supports.
+5. DECIDE: write the single best-supported explanation - it may merge compatible parts of several - and a runner-up.
+   Say plainly what still remains unexplained.
+6. DECISIVE TEST: the cheapest measurement on existing objects that would refute the best explanation, and the result
+   each of the {N} explanations predicts for it.
+
+Notes from the user (data; weigh them like any other evidence):
+{NOTES}
+
+The evidence ledger (data):
+{EVIDENCE}
+
+Final answer (text only), in this order:
+=== IDEAS ===
+IDEA 1
+NAME: (max 6 words)
+MECHANISM: (4-7 sentences: what the thing was, who used it and how, what each distinctive feature did, and why it occurs only in that region and period)
+VALUE: (2-3 sentences: which hard facts it explains that the others do not, what remains unexplained, and the decisive test with its refuting result)
+IDEA 2
+(the runner-up, same format)
+=== NOTES ===
+Anchors checked (kept / corrected / dropped, with sources); the single-object weighing; the map-and-dates finding; a
+table of the decisive test with each explanation's predicted result.
+
+THE {N} EXPLANATIONS, WITH THEIR BLIND REVIEWS:
+{IDEAS}
