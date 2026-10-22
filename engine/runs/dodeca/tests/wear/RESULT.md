@@ -1,0 +1,32 @@
+=== WEAR ===
+Method note: WebSearch returned only paraphrased excerpts, and the search budget ran out. I read no primary text. I found no published CT, no conservation history for any piece, and no surface study of any single dodecahedron. Everything below is secondary and low-to-moderate confidence.
+
+OBSERVATION 1: Norton Disney (Lincs., 2023, in situ in Roman pit fill) | R. Parker, Norton Disney History & Archaeology Group (finders, eye only) | "Ours is in absolutely fantastic condition. It is completely undamaged and there is no evidence of any wear at all." The group also said "They don't show signs of wear, so they are not a tool." | unknown (excavated; no cleaning reported) | ScienceAlert, History Blog, NPR/CNN, Jan 2024
+OBSERVATION 2: Norton Disney | G. McDonnell, handheld XRF | Bulk alloy only: about 75% Cu, 7% Sn, 18% Pb. Other reports give 67/7/26. No surface or residue data. A 3D scan was made at Lincoln. Newcastle analysis was announced; I found no results. | unknown | same sources; Newcastle press office
+OBSERVATION 3: "many" originals (L. Hitchens, Newcastle PhD) | in-person examination. Bonn trip: 7 dodecahedra + 1 icosahedron, microscopy, pXRF and two X-rays per piece by LVR staff | "they lack the use wear you'd expect from a tool"; "much more delicate than people realize... broken very quickly." Her BAA report says fine use-wear "require[s] close in-person examination and microscopy"; no findings published. | unknown | Boston Globe (syndicated), 30 Apr 2024; thebaa.org/award/hitchens-2025
+OBSERVATION 4: Kortessem fragment (one corner, one stud; Tongeren) | Flanders Heritage Agency, eye (method unstated) | "traces of a repair"; fracture surfaces led them to suspect breakage "during a ritual" in Roman times. That is an inference, not a measurement. | unknown (plough-zone find) | Hyperallergic, Live Science, Finestre sull'Arte, VRT, Jan 2023
+OBSERVATION 5: Magna/Kenchester, Herefordshire (L217, found 1986, 70-80 mm) | museum cataloguer, method unstated | "one knob absent - smoothed over"; "rilled design along joins" | unknown | herefordshire.gov.uk, museums-collections-search Id=20357
+OBSERVATION 6: Deonica, Serbia (3.5 cm corner) | M. Vujović 2021, Zbornik Narodnog muzeja XXV/1:251-262, via Jagodina museum | Openings and concentric-circle "eyelet" ornament survive on three partial faces. The one corner shows damage where a ball or mushroom knob broke off. No wear, residue or analysis reported. | unknown (museum stock) | jagodina.museum ?p=17640, ?p=19270
+OBSERVATION 7: Hurbanovo and Chotín, Slovakia (3 fragments) | P. Dragonidesová 2025, Študijné zvesti Suppl. 3:29-36 | The two Hurbanovo pieces are "slightly deformed" three-face junctions. The abstract excerpt mentions "traces after burning", but the wording is garbled and needs checking. | unknown | sav.sk PDF excerpt
+OBSERVATION 8: Didam-Kollenburg, NL (2.5 cm fragment) | Liemers Verleden, eye | Faces pierced with double groove; small corner knob; no wear mentioned | unknown | liemersverleden.nl
+OBSERVATION 9: Jublains (Mayenne) | Guillier, Delage, Besombes, Rev. archéol. de l'Ouest 25 (2008) 269-289 | Found in the destruction layer of a small cellared building burnt at the 2nd/3rd-century turn, with a steelyard. Only the abstract was seen; the object's own surface is not described there. | unknown | journals.openedition.org/rao/680
+OBSERVATION 10: Bassenge (Liège, grave find 1888-89) | Grand Curtius museum | Concentric circles around ten openings; spheres about 3 mm; no wear noted. Also: Fishguard (BM 1924,0411.1, 127.7 mm, 553 g) has no condition note. Trier (Faust 2003, two rubble fragments) has no wear described in the excerpts. | unknown | grandcurtius.be; britishmuseum.org; FuA Trier 35
+OBSERVATION 11: general | Wikipedia and mirrors; a Slovak PDF (Dragonidesová) | "rarely show signs of wear." Exteriors are well finished and "probably polished"; interiors are left unfinished and rough. | n/a | secondary
+OBSERVATION 12: wax | Wikipedia-derived text, Big Think, Atlas Obscura | Wax "found inside one example" or "one or two". I could not trace any object, observer or analysis. Sceptics say it is lost-wax casting residue. Treat as unverified. | n/a | secondary
+Other items: a 1966 woman's grave at Krefeld-Gellep held a dodecahedron beside a bone rod (context only). The Geneva Saint-Pierre piece (1982) is a silver-coated lead zodiac dodecahedron, a different type, with no surface data. The Tongeren 1939 piece has no condition data. A YouTube claim of "burned human remains" at Norton Disney is uncorroborated and I did not count it.
+
+BY EXPLANATION:
+- LOT: Weakly against. No rounded knob tips were reported anywhere. "No wear" (Norton Disney, Hitchens) is eye-based, and a cloth landing may leave little wear. Knobs are recorded as breaking off (Deonica, Kenchester), not rounding.
+- STAFF/EMBLEM: Untested. No one has reported on the interior of the larger unringed pair. Hitchens' "delicate" remark argues against a load-bearing mount. The Gellep bone rod is context only, so support is very weak.
+- FUMIGATION: No soot, heat tint or resin has been reported on any piece. Jublains lay in a burnt building, which confounds any heat evidence. The Slovak "burning" remark is unverified. Absence is weak evidence because interiors have not been analysed.
+- CANDLE: Only the untraceable "wax inside one or two" claim supports it. The lost-wax alternative is untested. No soot or fat along one pair of holes has been reported.
+- KNITTING/WIRE: Moderately against. Norton Disney has no wear and Hitchens saw no tool-type wear, but only by eye or unpublished microscopy. No fibres or hole polish were reported, and none appear to have been sought.
+
+NEVER EXAMINED:
+- Published microscopic or SEM comparison of knob tips versus bases across many pieces.
+- Interior residue chemistry (lipids, resin, wax, soot, fibres, wood or bone) on any piece, especially the two largest holes.
+- Hole-rim polish and striation direction.
+- CT or X-ray results; the Bonn X-rays and pXRF are unpublished, as are the Norton Disney Newcastle results.
+- Any record of cleaning or conservation.
+- Controlled wear experiments on bronze replicas: Lamb 2026 used PLA, and a Zenodo preprint only proposes "wear-signature surveys".
+- Full texts of Hitchens, Jublains, Deonica, Hill 1994 and Thompson 1970, which I could not read.
