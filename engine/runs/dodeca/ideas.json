@@ -1,1 +1,47 @@
-[]
+[
+ {
+  "id": "known#1",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Platonic cosmic receptacle",
+  "mech": "The dodecahedron, the Platonic solid tied to the cosmos, was made in Gaul and Britain as a material \"receptacle\" in Pythagorean-Platonic spirit, a philosophy Druids were said to admire. The twelve pentagonal faces embody the universe; holes and knobs are decorative or ritual variation, hence no standard sizes. A rod-shaped bone object beside the Gellep grave specimen suggests staff mounting, like a scepter of spiritual authority. Absence from Italy follows from its Celtic provincial origin.",
+  "value": "It explains the geography, lack of wear, lack of standardisation and silence of texts. Proponents propose better-contexted finds and evidence of mounting."
+ },
+ {
+  "id": "known#2",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Gallo-Roman divination and magic",
+  "mech": "A private, non-official object of sorcery or fortune-telling, absent from literature and art because unofficial. Twelve faces echo zodiac or twelve-oracle systems like the Sortes Sangallenses and the zodiac-named Geneva die. In the Spindle-of-Necessity version, thread was wound across knobs and through holes to cast or read fate. Breakage and repair of finds such as Kortessem may mark ritual destruction.",
+  "value": "It explains absence from texts, lack of wear and the Celtic-area distribution. Its test is thread or fibre traces on knobs and holes, and deposition patterns showing deliberate burial or breakage."
+ },
+ {
+  "id": "known#3",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Farmer's sowing-date instrument",
+  "mech": "Aimed at the sun and steadied on its knobs, opposite holes of different diameters act as apertures whose sunlight geometry marks the equinoxes and the autumn window for sowing winter wheat. Different hole pairs correspond to different dates or latitudes, which is why dimensions vary. It needed no markings, being a calendar-by-light.",
+  "value": "It explains twelve differently sized holes, northern farming provinces and low wear (used a few days a year). Wagemans tested a bronze copy over several years at different latitudes."
+ },
+ {
+  "id": "known#4",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Wax-forming tool",
+  "mech": "Warm wax pressed into the hollow body through the holes forms discrete, repeatable wax elements, such as bullae securing cords or marking documents. Corner knobs act as spacers during compression and aid removal; aperture size controls thickness and the raised central boss. The tool turns a flexible craft action into a standard one.",
+  "value": "It explains knobs, variable holes and the single wax-bearing specimen. Lamb's plastic trials produced repeatable forms; the proposed test is bronze replicas, wax-residue analysis and matching ancient sealings."
+ },
+ {
+  "id": "known#5",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Coincidence rangefinder",
+  "mech": "Looking through a face's small hole at a standard-sized object (a man, a standard, a pole) until it exactly fills the large opposite hole gives distance by proportion. The faces form pairs of differing diameters, giving a range of calibrated distances; knobs let it rest flat or be gripped. Finds at forts link it to military engineering or surveying, like the dioptra.",
+  "value": "It explains the opposite-hole size contrast and finds in military camps. Sparavigna's test is measuring hole-pair ratios against plausible target sizes and ranges on real objects."
+ }
+]
