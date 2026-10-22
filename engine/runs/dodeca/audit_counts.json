@@ -1,128 +1,56 @@
 {
- "known#1": {
+ "g1_mech#3": {
   "FATAL": 0,
   "MAJOR": 4,
-  "MINOR": 1,
+  "MINOR": 2,
   "fit": [
-   5,
-   15
+   12,
+   19
+  ]
+ },
+ "g2_evo#7": {
+  "FATAL": 0,
+  "MAJOR": 5,
+  "MINOR": 2,
+  "fit": [
+   14,
+   19
+  ]
+ },
+ "g2_evo#3": {
+  "FATAL": 0,
+  "MAJOR": 3,
+  "MINOR": 3,
+  "fit": [
+   13,
+   19
   ]
  },
  "g1_crux#2": {
   "FATAL": 0,
-  "MAJOR": 3,
-  "MINOR": 3,
-  "fit": [
-   7,
-   15
-  ]
- },
- "g1_neg#2": {
-  "FATAL": 0,
-  "MAJOR": 5,
+  "MAJOR": 4,
   "MINOR": 1,
   "fit": [
-   7,
-   15
+   12,
+   19
   ]
  },
- "g1_neg#3": {
+ "g2_evo#8": {
   "FATAL": 0,
   "MAJOR": 4,
   "MINOR": 2,
   "fit": [
-   7,
-   15
+   12,
+   19
   ]
  },
- "known#2": {
-  "FATAL": 0,
-  "MAJOR": 3,
-  "MINOR": 2,
-  "fit": [
-   3,
-   15
-  ]
- },
- "g1_mech#3": {
-  "FATAL": 0,
-  "MAJOR": 2,
-  "MINOR": 3,
-  "fit": [
-   8,
-   15
-  ]
- },
- "g1_crux#3": {
-  "FATAL": 0,
-  "MAJOR": 4,
-  "MINOR": 2,
-  "fit": [
-   6,
-   15
-  ]
- },
- "g1_neg#1": {
+ "g2_evo#1": {
   "FATAL": 0,
   "MAJOR": 5,
-  "MINOR": 1,
-  "fit": [
-   9,
-   13
-  ]
- },
- "known#4": {
-  "FATAL": 0,
-  "MAJOR": 3,
-  "MINOR": 3,
-  "fit": [
-   6,
-   13
-  ]
- },
- "g1_crux#1": {
-  "FATAL": 1,
-  "MAJOR": 2,
   "MINOR": 2,
   "fit": [
-   7,
-   13
-  ]
- },
- "g1_mech#1": {
-  "FATAL": 0,
-  "MAJOR": 3,
-  "MINOR": 3,
-  "fit": [
-   6,
-   13
-  ]
- },
- "known#5": {
-  "FATAL": 1,
-  "MAJOR": 5,
-  "MINOR": 1,
-  "fit": [
-   3,
-   12
-  ]
- },
- "g1_mech#2": {
-  "FATAL": 0,
-  "MAJOR": 2,
-  "MINOR": 3,
-  "fit": [
-   10,
-   13
-  ]
- },
- "known#3": {
-  "FATAL": 0,
-  "MAJOR": 4,
-  "MINOR": 1,
-  "fit": [
-   6,
-   12
+   15,
+   22
   ]
  }
 }

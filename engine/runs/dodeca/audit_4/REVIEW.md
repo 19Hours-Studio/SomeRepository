@@ -1,0 +1,61 @@
+=== REVIEW ===
+IDEA 1: Fumigation cage for aromatics
+DEFECT | MAJOR | It calls this a regional form of a rite that was common everywhere, yet the Mediterranean had turibula/thymiateria and the north-west itself had ceramic and bronze incense cups (Räucherkelche, tazze), so nothing explains why this cage occurs only in the north-west and never in Italy, Spain or Africa. | FACTS 10, 11; bronze Räucherkelch from Trier (journals.ub.uni-heidelberg.de/index.php/tz/article/view/54937); Walheim incense cup (bawue.museum-digital.de object 418)
+DEFECT | MAJOR | It waves away the most distinctive feature of the corpus, the type-2a pattern (ten triple-ringed holes plus one larger unringed opposite pair), as "ornament", since changing the draught by turning the piece needs only holes of different sizes. | FACTS 3, 31
+DEFECT | MAJOR | Domestic, bath and funerary fumigation was an everyday practice, yet only ~130 pieces exist from three centuries and none is depicted, although incense burners appear widely in Roman art; this needs the unsupported assumption of a rare luxury variant. | FACTS 9, 18
+DEFECT | MAJOR | Nothing in the mechanism yields the 2nd-4th-century window or the ~90% concentration in the Gallic-Empire area. | FACTS 10, 13
+DEFECT | MINOR | Knobs cast on a 0.6-1.6 mm copper-alloy shell heat up as fast as the shell, so "cooler grips" is unsupported, and a stand-off needs 3-5 feet, not 20. | FACT 1; FACT 7 (soft)
+DEFECT | MINOR | Test caveat: most pieces are antiquarian or market finds and are probably cleaned, so a "clean interior" counts only on unconserved excavated pieces, and there are few of those. | FACT 16
+FIT | 12 of 19 | Accounts for the hollow perforated body, knobs, hole variation within a piece, the size spread, mixed contexts, no wear and the repair; not the rings or unringed pair, rarity, map, dates or the silence of texts and art.
+SURVIVES | No hard fact contradicts it, and its test (soot, heat alteration, diterpenoid resin markers by GC-MS in interiors) can refute it and is feasible on the Bonn, Tongeren, Jublains and Norton Disney pieces.
+
+IDEA 2: Native priest's radiate sceptre
+DEFECT | MAJOR | A priestly insignia should come mostly from shrines, graves and hoards, but over half of finds with a known findspot are civil settlements, under a fifth are military (forts at Feldberg, Zugmantel and Carnuntum), only ~8.5% are plausibly sacred, and Norton Disney lay in a rubbish/quarry pit; it needs unsupported loss or discard assumptions. | FACTS 14, 15, 24
+DEFECT | MAJOR | The excavated Romano-British regalia it invokes have a different form (Wanborough: 17 sceptre handles with wooden shafts and bronze bindings, 4 chain head-dresses; Farley Heath: sceptre cap), no dodecahedron is reported among them, and the Wanborough group (mid-1st to mid-2nd c.) is older than most dodecahedra. | surreyarchaeology.org.uk (Green Lane, Wanborough); Esposito, traj.openlibhums.org/article/3978
+DEFECT | MAJOR | Graded holes are not "necessary": a sprig or bundle sits in a hole of any size, so "stems differed" is an ad hoc reason for the hole variation inside every object, including repeated sizes. | FACTS 2, 31
+DEFECT | MAJOR | The 20 knobs get no real function: a polyhedron on a rod cannot roll, and one lying on a face is already stable. | FACTS 1, 34
+DEFECT | MAJOR | The test cannot refute it: soft plant stems do not scratch bronze, the theory itself predicts an unworn object, and plant residue seldom survives burial and conservation, so "no scratches, no residue" is also the result the theory expects. | FACTS 16, 20
+DEFECT | MINOR | The Gellep bone object is c. 3 cm thick, too wide for pieces whose largest hole is 17-21.5 mm (the Jublains ovals have a 21.5 mm minor axis), so each piece would need its own handle. | Cambridge 2025 core reader (bone object c. 15 x 3 cm); FACTS 2, 31
+DEFECT | MINOR | The Slovak fragments from Germanic settlements and the Deonica (Serbia) find lie outside the Gaulish and British priesthoods it names. | FACT 12
+FIT | 14 of 19 | Explains the unringed axis, the two five-fold crowns (Jublains pole averages 17.5/17.4 mm), the north-west map, the end date and the silence; not the knobs, hole grading, find contexts or the eastern finds.
+SURVIVES | The rod through the unringed pair matches the specialists' own handle suggestion for Gellep, the crown geometry is correct, and gutuatri are attested in inscriptions (two Autun altars, EDH HD032385/HD032388).
+
+IDEA 3: Tallow-candle draught shade
+DEFECT | MAJOR | The dating mechanism is misdated: in Britain oil lamps were already rare after the 1st century and confined mainly to forts and large towns, so tallow candles were the normal light about a century before the earliest dated pieces (c. 200 AD), and an oil decline after 200 cannot explain the start date. | FACT 13; Eckardt, Illuminating Roman Britain (2002); Colchester collections record (cim-web.adlibhosting.com/ais6/Details/collect/181098)
+DEFECT | MAJOR | A household lighting device used across a tallow-burning region for two centuries should survive in thousands, like lamps and candlesticks, not ~130, and lighting gear (candelabrum, laterna) is named and depicted while this object never is. | FACTS 9, 18
+DEFECT | MAJOR | The rings and the larger unringed opposite pair get only labels; a candle uses one bottom hole and one vent, so the other ten holes are idle leaks that defeat "draught-proof". | FACTS 1, 3
+DEFECT | MINOR | Lighting economics do not produce the Gallic-Empire concentration: Raetia, Noricum and Pannonia are equally north of the olive line but have few finds, and free Germania (fat lighting only, large imports of Roman bronze) has only fragments. | FACTS 10, 12
+DEFECT | MINOR | Repeated hole sizes in one piece (17/17, 22/22 mm) add nothing to a set of candle-sizing holes. | FACT 31
+DEFECT | MINOR | Test caveat: conservation cleaning removes soot and fats, so only unconserved excavated pieces are valid samples. | FACT 16
+FIT | 13 of 19 | Accounts for the hollow chamber, knobs as an air gap, differing holes, the size spread, household and grave contexts and the absence around the Mediterranean; not the rings or unringed pair, rarity, start date, the Gallic-Empire concentration or the silence.
+SURVIVES | The geometry works (the candle hole and the vent hole lie on one vertical axis when it rests on its knobs, FACT 34), and the GC-MS lipid plus soot test is feasible and can refute it.
+
+IDEA 4: Hand-tuned bronze vessel whistle
+DEFECT | MAJOR | The test cannot fail: any thin hollow shell with one 17-40 mm edge-blown hole and the other holes sealed gives a Helmholtz tone (my calculation: c. 1,070 Hz for a 40 mm piece, c. 410 Hz for a 100 mm piece), so a tone from Norton Disney would not separate a whistle from any perforated vessel. | python3 calculation on FACTS 2, 5, 7
+DEFECT | MAJOR | Fingering is impossible on many pieces: in some objects the smallest hole is 28 mm and the largest reach 40 mm, beyond an adult fingertip pad (c. 15-20 mm), and on 40 mm golf-ball-size pieces (faces c. 25 mm across) eleven stops cannot be fingered while the piece is held to the lips; falling back on wax stops cancels the "fuller scale". | FACTS 2, 5
+DEFECT | MAJOR | Nothing about an instrument explains the north-western, Gallic-Empire-area distribution or the 2nd-4th-century dates, and Roman instruments are richly depicted and named while this one is not. | FACTS 10, 11, 13, 18
+DEFECT | MAJOR | The 20 corner knobs are unexplained (a piece set down on a face blocks only one hole, knobs or not) and they would get in the way of lips and fingers. | FACT 1
+DEFECT | MINOR | The blowing edge would be the less round, oval hole that specialists read as a casting feature, a poor embouchure, and duplicated hole sizes (17/17, 22/22) add few new pitches. | FACT 31; FACT 33 (soft)
+FIT | 12 of 19 | Accounts for the unringed pair, opposite-pair variation, the size spread, the repair, no wear and the mixed contexts; not the knobs, the large-hole pieces, map, dates or silence.
+SURVIVES | The acoustics are real: these shells would sound at playable pitches, and wax tuning of pan-pipes is attested.
+
+IDEA 5: Spring-cult lustral sprinkler
+DEFECT | MAJOR | The graded-outlet mechanism fails physically: holes of 6-40 mm are 2-15 times the capillary length of water (2.7 mm; Bond number 1.2-55), so water drains freely and drop size is set by the herbs, not the hole. | FACT 2; python3 calculation
+DEFECT | MAJOR | The water-cult reading of the contexts fails: over half of finds with a known findspot are civil settlements, under a fifth military, only ~8.5% plausibly sacred, and Norton Disney lay in a dry quarry/rubbish pit; rivers and wells are a few named cases. | FACTS 14, 15, 24
+DEFECT | MAJOR | The test can hardly ever refute it: burial in calcareous soil leaves carbonate crust inside bronze whatever its use, so interiors will rarely lack "scale", and plant micro-remains seldom survive conservation. | FACT 16
+DEFECT | MAJOR | "Knobs let it stand to drain" contradicts its own handle through both unringed holes: resting on five knobs puts one axis vertical, so a protruding handle stops it standing, and any object drains lying on a face anyway. | FACTS 1, 34
+DEFECT | MINOR | The Roman sprinkler (aspergillum) appears as a pontifical emblem on coins, so lustral implements were depicted, which leaves the total silence about a provincial version unexplained. | FACT 18; Caesar denarius (Evans 1928, digi.ub.uni-heidelberg.de/diglit/evans1928a/0423)
+DEFECT | MINOR | Sacred-spring cults were not confined to Gaul and Britain (Italy had the Clitumnus spring, for one), so the map does not follow from water cult. | FACT 11; Pliny the Younger, Ep. 8.8
+FIT | 12 of 19 | Accounts for the handle axis, the unringed pair, the two rings of outlets, the size spread and the river/well finds; not graded holes, knobs, civil/military dominance, Norton Disney or the silence.
+SURVIVES | Mounting on a handle through the unringed pair fits the Gellep bone rod and the specialists' own suggestion, and a find from a spring-fed villa pond (Harlow) fits.
+
+IDEA 6: Post-Druidic yes-or-no lot
+DEFECT | MAJOR | The "window" is not unique: every landing puts an opposite hole pair vertical, so every throw opens a see-through window, and at Jublains the oval "yes" window (21.5 mm minor axis) is barely larger than the 21-22 mm ringed holes (area ratio c. 1.13), so the answer must be read from the rings and the holes become superfluous. | FACTS 31, 34; python3 calculation
+DEFECT | MAJOR | It explains away the hole sizes ("sizes may repeat"), yet holes differ within every object, so the corpus's most-measured feature does no work. | FACT 2
+DEFECT | MAJOR | Throwing a 35-580 g (one piece >1,000 g) thin-shelled bronze again and again should wear and dent the knobs, yet pieces rarely show wear and Norton Disney is unworn; it needs an extra assumption (throws onto cloth). | FACTS 6, 20; FACT 7 (soft)
+DEFECT | MAJOR | It needs a Druidic demand to persist for 150-300 years without evidence, and its only witness, the Historia Augusta "dryades", is judged fictional and describes spoken prophecy, not lots. | FACT 38; Historia Augusta, Numerian 14; Wawrzyniak 2021 (samai.uni.wroc.pl)
+DEFECT | MAJOR | A one-in-six lot was available from any ordinary die in a region with full dice culture, and nothing explains a rare, costly, hollow, perforated bronze dodecahedron instead. | FACT 35
+DEFECT | MINOR | Brigetio, Carnuntum and Deonica lie outside Druidic Gaul and Britain, and Caesar says Druids used Greek letters for other business, so "unwritten lore" does not explain the lack of marks. | FACT 12; Caesar, Gallic War 6.13-14
+DEFECT | MINOR | Pieces of other types that lack an unringed pair cannot give "yes" at all. | FACT 3
+FIT | 15 of 22 | Gets the five-knob rest and 1/6 odds right, plus rings versus unringed, the Mediterranean and free-German absence (Germanic lots), no letters and household contexts; not the hole sizes, lack of wear, the date gap, the dice redundancy or the eastern finds.
+SURVIVES | The geometry is correct (five-knob rest, one axis vertical, 2/12 = 1/6), and its knob-polish test is feasible and can refute it, provided pieces with antiquarian cleaning or handling are screened out.
