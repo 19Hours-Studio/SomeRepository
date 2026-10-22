@@ -267,6 +267,10 @@ def main():
                 assert "unequal size" in t and "no wax" in t and "decisive test" in t and "{" not in t.replace("{N}", "")
             da = os.path.join(tmp, "rx"); ce("redteamtask", R8, "--ids", "known#1", "--dir", da, "--blind", "--tpl", "redteam_explain")
             t = open(os.path.join(da, "TASK.md")).read(); assert "FIT |" in t and "unequal size" in t and "candle holder" in t
+            open(os.path.join(da, "REVIEW.md"), "w").write("=== REVIEW ===\nIDEA 1: candle holder\nDEFECT | MAJOR | no soot | museum\nFIT | 1 of 5 | x\n")
+            ce("setcfg", R8, "crux", "nobody explains the map")
+            t = open(ce("evolve", R8, "ev", "--audit", da + "," + da, "--ids", "known#1", "--m", "2", "--tpl", "evolve_explain").strip()).read()
+            assert "- MAJOR: no soot (museum)" in t and "nobody explains the map" in t and "exactly 2 ideas" in t and "{" not in t.replace("{N}", "")
         finally:
             shutil.rmtree(rd8, ignore_errors=True)
         print("OK: all engine commands passed")

@@ -665,16 +665,16 @@ GATE_W = {"ALIVE": 1.0, "WOUNDED": 0.4, "DEAD": 0.0}
 
 def cmd_evolve(a):
     """v3.2: evolution under the deep audit - a free generator (no tools) gets audited designs with their FATAL/MAJOR
-    review findings (from `redteamtask` + its REVIEW.md) and must build children the defects no longer apply to."""
-    ids = json.load(open(os.path.join(a.audit, "ids.json"))); text = open(os.path.join(a.audit, "REVIEW.md")).read()
-    found = dict(zip(*[iter(re.split(r"^IDEA (\d+)\s*:", text, flags=re.M)[1:])] * 2))
+    review findings (from `redteamtask` + its REVIEW.md) and must build children the defects no longer apply to.
+    --audit may list several review dirs; --ids picks the parents (default: every idea in the review dirs)."""
+    dirs = a.audit.split(",")
+    ids = a.ids.split(",") if a.ids else [i for d in dirs for i in json.load(open(os.path.join(d, "ids.json")))]
     allx = {i["id"]: i for i in load(a.run, "ideas.json", [])}; blocks = []
     for k, iid in enumerate(ids, 1):
         i = allx[iid]
-        defects = [l.split("|") for l in found.get(str(k), "").splitlines() if re.match(r"^DEFECT \| (FATAL|MAJOR)", l)]
-        lines = [f"- {d[1].strip()}: {d[2].strip()} ({d[3].strip() if len(d) > 3 else ''})" for d in defects[:a.max_defects]]
-        if not lines: sys.exit(f"no FATAL/MAJOR findings for review block {k} ({iid})")
-        blocks.append(f"DESIGN {k}\nNAME: {i['name']}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\nREVIEW FINDINGS:\n" + "\n".join(lines) + "\n")
+        rev = next((r for d in dirs if (r := review_lines(d, iid)) is not None), None)
+        if not rev: sys.exit(f"no FATAL/MAJOR findings for {iid} in {a.audit}")
+        blocks.append(f"DESIGN {k}\nNAME: {i['name']}\nMECHANISM: {i['mech']}\nVALUE: {i['value']}\nREVIEW FINDINGS:\n" + "\n".join(rev[:a.max_defects]) + "\n")
     if a.tpl == "evolve_attempts" and not os.path.exists(path(a.run, "attempts.md")): sys.exit("no attempts.md: run `material R attempts`")
     s = fill(a.run, tpl(a.tpl), len(ids) * a.m, {"PARENTS": "\n".join(blocks), "M": str(a.m)})
     p = path(a.run, "prompts", a.label + ".txt"); open(p, "w").write(s)
@@ -769,7 +769,8 @@ def main():
     x = sp.add_parser("evolve"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--audit", required=True,
         help="redteamtask dir holding ids.json and the auditor's REVIEW.md"); x.add_argument("--m", type=int, default=2)
     x.add_argument("--max-defects", type=int, default=6)
-    x.add_argument("--tpl", default="evolve_audit", choices=["evolve_audit", "evolve_attempts"],
+    x.add_argument("--ids", help="parents to evolve (default: every idea in the review dirs)")
+    x.add_argument("--tpl", default="evolve_audit", choices=["evolve_audit", "evolve_attempts", "evolve_explain"],
                    help="evolve_attempts (v3.3) also shows the ledger of earlier attempts and why they stopped short")
     x = sp.add_parser("composetask"); x.add_argument("run"); x.add_argument("--ids", required=True, help="surviving pieces")
     x.add_argument("--dir", required=True); x.add_argument("--audits", required=True, help="redteamtask dirs holding their reviews")

@@ -34,3 +34,12 @@ GAPS:
 - No casting workshop, mould or core debris is known; production site and date are unresolved, so the Gallic-Empire link is untested.
 - Grave and hoard associations (Gellep 3040 at Krefeld, Bachem, Saint-Parize) need full inventories to show which objects travel with them.
 - Reason for Mediterranean absence and Slovak imports remains unexplained; Hitchens pXRF data could show regional alloy groups.
+Found by the blind reviewers of round 1 (added to the ledger):
+FACT 31: Jublains dodecahedron, the only published per-hole table: ten ringed holes 10.5-22 mm with repeated sizes (17/17, 22/22, 21/21.5 mm); two oval unringed holes 26x21.5 and 25.5x21.5 mm; the five ringed holes around one pole average 17.5 mm, around the other 17.4 mm. | HARD (one object) | Sparavigna 2012, arXiv 1204.6497
+FACT 32: The Arloff icosahedron (Bonn) is hollow-cast with corner knobs, like the dodecahedra, but has holes in only two opposite faces. | SOFT (one object) | en.wikipedia.org/wiki/Roman_dodecahedron
+FACT 33: The larger unringed pair is less round and is read by the corpus specialists as a production feature. | SOFT (interpretation) | Guggenberger & Leach 2025, Antiquaries Journal 105
+FACT 34: Resting on its knobs, every dodecahedron has its opposite-hole axes at 26.565 or 90 degrees to the horizontal (dihedral angle 116.57 degrees). | HARD (geometry) | geometry
+FACT 35: The north-western provinces had full Roman dice culture, including a 4th-c. dice tower (Vettweiss-Froitzheim, Bonn). | HARD | LVR-LandesMuseum Bonn
+FACT 36: Germanic lots (Tacitus, Germania 10) were wooden slips marked with signs and thrown onto a white cloth; dodecahedra are almost absent from free Germania. | HARD | Tacitus, Germania 10; FACT 12
+FACT 37: Insignia staffs are shown on north-western provincial monuments (beneficiarius lance on the Friedberg altar). | SOFT | mithraeum.eu/monument/1480
+FACT 38: The Druids were suppressed under Tiberius and Claudius (Pliny NH 30.13; Suetonius, Claudius 25), 150-300 years before the objects. | HARD | Pliny NH 30.13; Suetonius, Claudius 25

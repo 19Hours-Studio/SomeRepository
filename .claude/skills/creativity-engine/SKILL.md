@@ -94,6 +94,9 @@ Launch independent agents in one message; never read transcripts into your own c
   known-explanations control (arm K); generators `explain_crux|explain_neg|explain_mech`; blind mixed review
   `redteamtask ... --blind --tpl redteam_explain` (FATAL = contradicts a hard fact, FIT = facts explained). On the
   Roman dodecahedron the engine beat the earlier explanations in both blind blocks; explain_mech was strongest.
+  Run it in ONE PASS without stopping to ask: after the first blind review, append the reviewers' new hard facts to
+  evidence.md, set the gap every explanation shares as `setcfg R crux`, `evolve R g2 --audit <dirs> --ids <best 4>
+  --m 2 --tpl evolve_explain`, then one blind review of children mixed with their parents; report at the end.
 - Then `select --by gate` -> `repairtask` (v2.2) -> `redteamtask --blind` final audit -> literature; report residual
   defects. Safety filters stopped 3 agents on benign mining content: never retry or rephrase a flagged request; keep
   bio-adjacent items out of judge sets.
