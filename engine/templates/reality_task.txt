@@ -17,7 +17,10 @@ python3 (pip install from PyPI works). At most 15 searches. Write files only in 
    count.
 3. Validate any calculation, statistic or simulation on a case with a KNOWN answer before using it (a fair die gives
    1/6, a synthetic object with known sizes is measured back correctly, a null model rejects no more than its alpha).
-4. Report each result as a new fact with its source or script; say which explanation each result supports or hurts.
+4. Validate the DATA as well as the method: where the numbers come from (a primary publication, not a page that
+   repeats them) and whether the labels your test needs are given there (which object, which hole is opposite which,
+   which find came from which context). If they are not, say so inside the fact ("labels unverified").
+5. Report each result as a new fact with its source or script; say which explanation each result supports or hurts.
 
 Final answer (text only), at most 700 words:
 === REALITY ===

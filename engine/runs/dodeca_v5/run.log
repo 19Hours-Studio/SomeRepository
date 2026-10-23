@@ -14,3 +14,41 @@ g1_mech: 3 ideas (594 words)
 g1_reframe: 3 ideas (548 words)
   triage: 16,868 tokens, 23.9 s
 /home/user/SomeRepository/engine/runs/dodeca_v5/audit_a/TASK.md
+  audit_a: 129,590 tokens, 172.4 s
+  audit_a: 5 new facts -> evidence.md
+  reality: 341,458 tokens, 184.8 s
+  reality: 4 new facts -> evidence.md
+/home/user/SomeRepository/engine/runs/dodeca_v5/repair/TASK.md
+  repair: 683,237 tokens, 286.6 s
+repair: 2 ideas (1836 words)
+/home/user/SomeRepository/engine/runs/dodeca_v5/audit_final/TASK.md
+  audit_final: 164,587 tokens, 233.7 s
+  audit_final: 4 new facts -> evidence.md
+  calibrate: 7,848 tokens, 17.8 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#1       F0/M4/m2 fit 0.69 ratio - known partly p 40%  Staff-mounted provincial symbolic bronze head
+  2. repair#2       F0/M4/m1 fit 0.62 ratio - known yes p 14%  Bronzesmith's hollow-casting display piece
+  3. g1_crux#2      F0/M4/m1 fit 0.44 ratio - known yes p 5%  Unwritten twelve-face lot
+  4. g1_neg#1       F0/M5/m1 fit 0.56 ratio - known yes p 9%  Thin-wall casting masterpiece
+  none of these: p 32%
+  weakest link: The staff-mount rests mainly on one bone object lying beside one piece (Gellep) and on the unringed pair being larger. No dodecahedron has been found actually fixed to a rod. The cosmological meaning is an add-on that explains none of the physical features.
+  flip test: Microscopy or CT of the rims of the unringed pair against the ringed holes, across roughly 20 or more pieces, plus residue analysis for wood or bone. | If the unringed rims show no fitting abrasion, burnish or organic residue that the ringed holes lack, and no piece shows a socket or fixing trace, Idea 1 drops below Idea 2 or "none". If such marks do appear consistently, Idea 1 rises above about 60%.
+spent 1,410,568 tokens, $4.36
+| arm | n | FATAL/idea | MAJOR/idea | no FATAL | median RATIO | mean FIT | known yes/partly |
+|---|---|---|---|---|---|---|---|
+| E | 2 | 0.00 | 4.50 | 2/2 | - | 0.50 | 2/0 of 2 |
+| F | 2 | 0.00 | 4.00 | 2/2 | - | 0.66 | 1/1 of 2 |
+| OLD | 4 | 0.00 | 3.75 | 4/4 | - | 0.58 | 2/2 of 4 |
+
+| rank | id | arm | F/M/m | ratio | known | name |
+|---|---|---|---|---|---|---|
+| 1 | OLD:g1_mech#3 | OLD | 0/3/2 | - | partly | Fumigation cage for aromatics |
+| 2 | repair#1 | F | 0/4/2 | - | partly | Staff-mounted provincial symbolic bronze head |
+| 3 | repair#2 | F | 0/4/1 | - | yes | Bronzesmith's hollow-casting display piece |
+| 4 | OLD:h2r4#1 | OLD | 0/4/2 | - | yes | Bronze head on a rod |
+| 5 | OLD:g2_evo#7 | OLD | 0/4/1 | - | partly | Native priest's radiate sceptre |
+| 6 | OLD:g2_evo#3 | OLD | 0/4/1 | - | yes | Tallow-candle draught shade |
+| 7 | g1_crux#2 | E | 0/4/1 | - | yes | Unwritten twelve-face lot |
+| 8 | g1_neg#1 | E | 0/5/1 | - | yes | Thin-wall casting masterpiece |
+

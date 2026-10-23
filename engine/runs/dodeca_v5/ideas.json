@@ -189,5 +189,23 @@
   "name": "Handled display object, never tool",
   "mech": "The dodecahedra were costly symbolic objects kept, shown and deposited, never used mechanically. The holes, rings and knobs are aesthetic and cosmological; they encode no function, hence no standard module or ratio. Any wax is casting residue from the lost-wax process. Deposition in graves, hoards, rivers and settlements reflects personal valuables, not a craft. This predicts handling polish that is diffuse and non-directional, with no feature worn more than another.",
   "value": "It accounts for no inscriptions, no wear, non-standard holes (Facts 2, 4, 5, 19) and the single wax report without special pleading. Refutation: wear is concentrated on specific rims or knobs, or GC-MS finds beeswax or lipid on the surfaces of interiors of several pieces rather than trapped in core voids."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Staff-mounted provincial symbolic bronze head",
+  "mech": "The dodecahedron was a prestige object with symbolic meaning, made in regional bronze workshops of Gaul, the Rhineland and Britain. It was a lost-wax shell about 1 mm thick cast around a clay core. Every face is pierced because the core had to be supported during casting and broken out afterwards. The holes were then finished to a six-axis plan. Opposite holes were sized alike, very clearly on Tongeren and weakly on the second published table. Ten holes were ringed. One larger, unringed and sometimes oval opposite pair formed a through-axis, by which the head could be fitted onto a rod or handle. The bone object (about 15 × 3 cm) found right beside the Gellep piece, in the grave of a wealthy woman from about AD 350, suggests this. When it was not mounted, the corner knobs let it stand on any face as a finished ornament. Its meaning was probably cosmological or astral: the 4th-century Geneva lead dodecahedron carries the twelve zodiac names, so in this region a twelve-face solid could stand for the twelve signs. Well-off civilians of both sexes owned it, and some soldiers did too. They used it rarely or in ceremonies, which is why wear is slight. They valued it enough to repair it (Kortessem) and to put it in rich graves and hoards. It belonged to a north-western provincial tradition, carried by people moving to the Danube forts and across the river. That explains why it is missing from the Mediterranean and why no Greek or Latin author describes it.",
+  "value": "It is the only reading that accounts at once for: - a hole in every face; - holes that vary in size but match axis by axis; - the special unringed opposite pair found across the corpus; - thin, unworn shells; - the repaired, grave and hoard contexts."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Bronzesmith's hollow-casting display piece",
+  "mech": "The dodecahedron was a showpiece from regional north-western workshops that demonstrated difficult thin-wall hollow casting. No guild \"masterpiece\" institution is needed for this, and there is no Roman evidence for one. The core was held and later removed through the face openings, set along the six axes, so opposite openings came out matched in size. Finishing (triple rings, one plain and sometimes oval pair) varied from workshop to workshop. The knobs were cast-on ornament and feet, not vents. Nobody used it for anything, so it shows no wear. People kept it as a valued item and placed it in graves and hoards, and its distribution follows the workshop tradition.",
+  "value": "It explains the pierced faces, the axis matching, the thin walls and the lack of wear without assuming any use. It cannot explain why one pair is consistently left unringed, made larger and sometimes oval across the corpus, or the rod beside the Gellep piece. The same rim test refutes it if the unringed pair does show fitting marks or wear that the ringed holes lack."
  }
 ]

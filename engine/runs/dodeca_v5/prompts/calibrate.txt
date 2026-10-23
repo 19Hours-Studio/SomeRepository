@@ -1,0 +1,72 @@
+What were the Roman dodecahedra? These are small hollow bronze objects with twelve pentagonal faces, a round hole of differing diameter in each face and knobs at the corners, found in the north-western provinces of the Roman Empire and dated to roughly the 2nd-4th centuries AD; no ancient text mentions them. Find the explanation of what they were and how they were used that best accounts for ALL the physical and archaeological evidence, and say how it can be tested.
+
+The final candidates with their blind reviews (data):
+IDEA 1
+NAME: Staff-mounted provincial symbolic bronze head
+MECHANISM: The dodecahedron was a prestige object with symbolic meaning, made in regional bronze workshops of Gaul, the Rhineland and Britain. It was a lost-wax shell about 1 mm thick cast around a clay core. Every face is pierced because the core had to be supported during casting and broken out afterwards. The holes were then finished to a six-axis plan. Opposite holes were sized alike, very clearly on Tongeren and weakly on the second published table. Ten holes were ringed. One larger, unringed and sometimes oval opposite pair formed a through-axis, by which the head could be fitted onto a rod or handle. The bone object (about 15 × 3 cm) found right beside the Gellep piece, in the grave of a wealthy woman from about AD 350, suggests this. When it was not mounted, the corner knobs let it stand on any face as a finished ornament. Its meaning was probably cosmological or astral: the 4th-century Geneva lead dodecahedron carries the twelve zodiac names, so in this region a twelve-face solid could stand for the twelve signs. Well-off civilians of both sexes owned it, and some soldiers did too. They used it rarely or in ceremonies, which is why wear is slight. They valued it enough to repair it (Kortessem) and to put it in rich graves and hoards. It belonged to a north-western provincial tradition, carried by people moving to the Danube forts and across the river. That explains why it is missing from the Mediterranean and why no Greek or Latin author describes it.
+VALUE: It is the only reading that accounts at once for: - a hole in every face; - holes that vary in size but match axis by axis; - the special unringed opposite pair found across the corpus; - thin, unworn shells; - the repaired, grave and hoard contexts.
+BLIND REVIEW:
+- MAJOR: It proposes no test at all. (text of the idea)
+- MAJOR: The zodiac link rests on the Geneva die. That is a different kind of object, an inscribed silvered-lead die, so it shows that when twelve faces carried a meaning it was written on them, which the bronze pieces never do. Its 4th-century date appears only on a collector's page. (FACT 19; grandcurtius.be/en/museums-collections/archaeology/dodecahedron; averweij.web.cern.ch/zodiac.htm)
+- MAJOR: "Cosmological or astral" meaning derives none of the features (knobs, rings, hole sizes). (FACT 1, FACT 3)
+- MAJOR: The spread by "people moving to the Danube forts and across the river" is unsupported, since no alloy groups or workshop are known. The Mediterranean absence is restated rather than explained. (FACT 30, GAPS, FACT 11)
+- FIT: 11 of 16 | The widest physical fit: core holes, axis pairing, the unringed through-axis, the unworn shells and the contexts.
+- SURVIVES: Combining core-support holes with a through-axis matches the recomputed pairing statistics (p = 0.0005).
+- KNOWN: partly | Sceptre head (Tongeren museum) plus Guggenberger's symbolic reading (Cambridge 2025); the Geneva link is drawn on the Grand Curtius page.
+
+IDEA 2
+NAME: Bronzesmith's hollow-casting display piece
+MECHANISM: The dodecahedron was a showpiece from regional north-western workshops that demonstrated difficult thin-wall hollow casting. No guild "masterpiece" institution is needed for this, and there is no Roman evidence for one. The core was held and later removed through the face openings, set along the six axes, so opposite openings came out matched in size. Finishing (triple rings, one plain and sometimes oval pair) varied from workshop to workshop. The knobs were cast-on ornament and feet, not vents. Nobody used it for anything, so it shows no wear. People kept it as a valued item and placed it in graves and hoards, and its distribution follows the workshop tradition.
+VALUE: It explains the pierced faces, the axis matching, the thin walls and the lack of wear without assuming any use. It cannot explain why one pair is consistently left unringed, made larger and sometimes oval across the corpus, or the rod beside the Gellep piece. The same rim test refutes it if the unringed pair does show fitting marks or wear that the ringed holes lack.
+BLIND REVIEW:
+- MAJOR: By its own admission it cannot explain the larger, unringed, sometimes oval pair, which is the defining feature of the commonest type. (FACT 3)
+- MAJOR: Core supports set along six axes would explain why pairs match, but not why the six axes are deliberately given different sizes inside each piece (Tongeren runs from 10.6 to 27 mm). (FACT 2, FACT 36)
+- MAJOR: "Distribution follows the workshop tradition" is circular. No workshop, mould or core debris is known, and thin-wall hollow casting was practised across the whole empire, so it does not explain the north-western limit. (GAPS (no workshop); FACT 11)
+- MAJOR: It is not specific: calling the dodecahedron and its knobs "ornament and feet" would fit any display casting. (FACT 1)
+- FIT: 10 of 16 | Explains the pierced faces, the axis matching, the thin walls and the lack of wear; fails on the unringed pair and the map.
+- SURVIVES: The rim test (fitting marks or wear on the unringed pair but not on the ringed holes) is feasible and would refute it.
+- KNOWN: yes | Wikipedia cites the idea of a metalsmith's skill test or portfolio, or a qualifying piece for a collegium.
+
+IDEA 3
+NAME: Unwritten twelve-face lot
+MECHANISM: The object was a lot for drawing omens, cast by hand onto soft ground or cloth. Each face was identified by its hole size instead of by numbers. Because the holes had to differ, variation within each object is required, and the lack of any shared scheme between objects follows from each maker setting their own sizes. The two large unringed holes marked the "special" outcomes, and the knobs made the object come to rest on a face. Occasional private use explains the lack of wear and the silence of the texts.
+VALUE: Unlike other divination ideas, it makes the absence of inscriptions and the varied holes necessary rather than awkward. Test: check knob tips under a microscope for even, all-round micro-flattening and compare it with the unused Norton Disney piece. If the corpus shows no such wear, the idea is refuted.
+BLIND REVIEW:
+- MAJOR: Because opposite holes match, the faces read in two opposite positions look nearly the same (Tongeren 13.8/14.0, 20.3/20.5). That leaves about six distinguishable outcomes rather than twelve, and the "special" unringed pair reads as one outcome. (FACT 36, FACT 37)
+- MAJOR: The knobs do not "make it rest on a face", since any dodecahedron does that. With knobs it rests on five points, as my hull check confirms. (FACT 34)
+- MAJOR: The test cannot refute it. Throwing onto soft ground or cloth, with only occasional use, already predicts no flattening of the knobs, and the comparison piece (Norton Disney) is itself unworn. (FACT 20)
+- MAJOR: The Geneva zodiac die shows that dodecahedral lots in the region were inscribed, which undercuts "unwritten"; dice were also used across the whole empire, so the map is unexplained. (grandcurtius.be; FACT 11)
+- FIT: 7 of 16 | Explains the lack of inscriptions and the variation within objects; fails on pairing, knobs and map.
+- SURVIVES: It does derive the absence of numbers from identifying faces by size.
+- KNOWN: yes | Heinevetter and Dornseiff on dodecahedral divination (archiv.ub.uni-heidelberg.de/propylaeumdok/id/eprint/1865); the Geneva die as divination (Grand Curtius).
+
+IDEA 4
+NAME: Thin-wall casting masterpiece
+MECHANISM: The object was a provincial bronzesmith's proof of mastery: a hollow geometric shell with a wall of about 0.6–1.6 mm, cast around a clay core. Each face hole held a support for the core and later let the core be broken out. That is why every face has a hole, why hole sizes are freehand and unstandardised, and why the interiors are rough. The knobs are vents or feeders at the corners, which are the last points to fill, later shaped into a decorative finish. The engraved rings and lack of wear show display rather than use. Its value as a valued keepsake explains its presence in graves, hoards and rich houses.
+VALUE: It explains the holes in all twelve faces, the varying diameters, the rough interiors, the thin walls that scale with size, and the absence of wear, without needing any user function. Refutation test: CT-scan pieces in Bonn or Tongeren. If the holes were cut through an originally closed shell (tool marks on the hole walls) and there are no core residues or chapter-pin traces, the idea fails.
+BLIND REVIEW:
+- MAJOR: "Freehand, unstandardised" hole sizes conflict with the axis-by-axis matching. I recomputed p = 0.0005 for Tongeren; Sparavigna's table gives p = 0.010. (FACT 36, FACT 37)
+- MAJOR: A spread of about 2.5× between holes inside one object (for example 10.6–27 mm) is design, not freehand scatter around core-support openings. (FACT 2)
+- MAJOR: The unringed, larger, sometimes oval pair is not addressed. (FACT 3)
+- MAJOR: "Knobs are vents or feeders" is unsupported. Feeders are cut off afterwards; twenty finished balls in one template across about 130 pieces are part of the design. (FACT 1)
+- MAJOR: There is no Roman masterpiece institution, no known workshop, and no reason the practice would stop at the north-west. (GAPS; FACT 11)
+- FIT: 9 of 16 | Explains the pierced faces, the thin walls that scale with size, and the lack of wear; fails on the hole system and the map.
+- SURVIVES: CT scanning for chaplet and core traces is feasible. But the refutation requires two conditions at once (holes cut after casting and no core residue), so the idea is hard to refute.
+- KNOWN: yes | Wikipedia cites the idea of a portfolio piece or collegium qualification test.
+
+
+Say how sure one should be, and where the answer is most likely wrong.
+1. Give each candidate a probability of being the best available answer, plus "none of these" so that the total is
+   100%. Base it on the reviews, not on how attractive a candidate sounds; a candidate with an unanswered FATAL
+   defect gets at most 10%.
+2. For the leader: its weakest link, the single observation that would most change the ranking, and what result of
+   that observation would flip it.
+3. One line on what remains unknown even if the leader is right.
+
+Final answer (text only), at most 350 words:
+=== CALIBRATION ===
+P | <candidate number> | <probability %> | <one-line reason>
+P | none | <probability %> | <reason>
+WEAKEST LINK: <...>
+FLIP TEST: <observation> | <result that would flip the ranking>
+UNKNOWN: <...>

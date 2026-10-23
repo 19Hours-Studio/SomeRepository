@@ -19,6 +19,9 @@ For each explanation:
    ("ritual", "status", "decoration" without a mechanism for the features is a MAJOR defect)?
 3. Is the decisive test it proposes actually able to refute it, is it feasible with existing material, and what
    result would refute it?
+Facts marked NEW were found by earlier checks in this run and are not yet verified: do not count them toward FIT,
+and do not base a FATAL or MAJOR defect on a NEW fact alone unless you have verified it yourself (its source and,
+for measurements, which object and which hole, face or item each number belongs to).
 Do not pad: a defect needs a fact and a source. If a part survives your check, say so in one line.
 
 Final answer (text only), exactly this format:
