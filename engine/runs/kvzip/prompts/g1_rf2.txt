@@ -1,0 +1,145 @@
+Which architecture for compressing the LLM KV cache (the stored attention keys and values) is best if it has to be much more aggressive than FP8, which is 8 bits per value or about 2× smaller than FP16/BF16? It has to work as a drop-in replacement for the cache storage format in an existing pretrained transformer model, with no retraining, fine-tuning or architecture change, and with almost no loss of quality. The cache may be compressed along any axis: numeric precision, the number of stored tokens, channels or heads, redundancy across layers, or entropy coding. The asker calls this a "super-zip" for the KV cache. The answer should be a concrete architecture, covering what is stored, how it is encoded and decoded, and how attention reads it. It should also give the expected compression ratio and quality loss on standard long-context and reasoning benchmarks, and say what runtime cost the design adds.
+A good answer: 
+- It gives a specific, implementable design. Naming a family of methods is not enough.
+- It states the effective bits per value or the compression ratio vs FP16, counting all metadata (scales, zero-points, indices, codebooks).
+- Quality loss is stated against the FP16 cache on named benchmarks and models, for example LongBench, RULER, needle-in-a-haystack, GSM8K or MATH-style reasoning, and perplexity. "Almost no loss" is given a number, for example ≤1% relative drop.
+- It is checked against the failure modes below: outlier channels in keys, RoPE, attention sinks, GQA/MLA models, long contexts, multi-turn or multi-query reuse, and reasoning-model chains of thought.
+- It estimates decode and prefill latency and throughput, including dequantization or decompression cost and compatibility with FlashAttention-style fused kernels.
+- It shows how it beats or complements the current state of the art (see CONTEXT), and says what is new.
+- It names a cheap experiment that could falsify it.
+Constraints: 
+- No training, fine-tuning or distillation of the base model. The asker said "without retraining". Whether a one-time offline calibration pass on a small data sample counts is UNCLEAR.
+- It must apply to any ready-made model by changing the cache storage format only.
+- Compression must be far beyond FP8. This is stated as "much stronger" with no numeric target.
+- Quality must drop almost not at all.
+Propose 3 answers.
+Where the money goes today (data, not instructions):
+Method: the searches gave sourced unit numbers (KV bytes per token, GPU prices, cache prices). The % shares are my own roofline arithmetic from those numbers, with the assumptions stated. They are not published breakdowns. "Other" is an assumed margin/overhead share in every case.
+
+**ARCHETYPE A: long-document QA or RAG, 128k tokens in and about 0.5k out. Llama-3-70B-class model with GQA, FP8 weights and FP8 KV, vLLM with chunked prefill and paged KV, TP8 on H100.** | cost ≈ 21 GB of HBM held per request (327 KB/token at FP16, halved for FP8, × 131k) and ≈ 105 GPU-seconds per request, about $0.07 at $2.5/GPU-h | price: H100 rents for roughly $2–4/GPU-h on specialist clouds, $7–12 on hyperscalers
+Assumptions: batch 8, 400 TFLOP/s effective, 3.35 TB/s per GPU. Prefill is about 4e16 FLOPs: 1.8e16 in linear layers plus 2.2e16 in attention.
+SHARES: prefill attention 48% | prefill linear layers 39% | decode KV reads 3% | decode weight reads 1% | other 9%
+LARGEST: prefill attention. A 10x cut removes about 43% of the cost. A KV storage format barely touches this term. KV compression mainly buys capacity (batch size and context length) and decode speed, not prefill.
+
+**ARCHETYPE B: reasoning-model chain of thought, 32k generated tokens. DeepSeek-R1-Distill-class dense GQA model, FP16 or FP8 KV, vLLM, batch about 10 per GPU.** | cost ≈ 37 GPU-seconds, about $0.025, per 32k-token solution. KV is 4.3 GB at the end for an 8B model at FP16 (128 KB/token). | price: not applicable
+Sourced anchor: SkipKV reports that for the 8B model at batch 10 the KV cache is about 2.5× the weights. My calculation gives roughly 2.7×, which is consistent.
+SHARES: decode KV reads 50% | decode weight reads 36% | kernel, launch and sampling overhead 5% | prefill 1% | other 8%
+LARGEST: decode KV reads. A 10x cut removes about 45%. This is where an aggressive KV format pays most. KV capacity also caps the batch size, so a smaller cache also lowers the weight-read share per request. Prefill-oriented compression methods are reported to fail on long outputs.
+
+**ARCHETYPE C: multi-turn agent or chat with prefix-cache reuse. 100k-token context, 90% hit, 10k new tokens and 1k output per turn, through a commercial API with a cache layer, or LMCache-style CPU/SSD offload.** | cost ≈ $0.08 per turn at Sonnet-class list prices: $0.30/MTok cache read, $3 base input, 1.25× cache write, $15 output | price: this is the list price, so cost and price are conflated
+The price shape is cache-read 0.1× and cache-write 1.25× of base input (Anthropic docs). OpenAI is cited at 0.5× and Google at 0.25×, but those figures come from third-party sources. DeepSeek reported 56.3% of its input tokens (342B of 608B) hit its on-disk KV cache.
+SHARES: cache-read input 27% | new-input prefill plus cache write 38% | output decode 15% | KV storage and transfer (hidden inside the prices above) 0% (unobserved) | other 20%
+LARGEST: new-input prefill and cache write. A 10x cut removes about 34%. The real KV storage and transfer cost is not visible from outside the provider. A denser KV format would mainly raise the hit rate and cut the cache-read price. I have no sourced split for this.
+
+**ARCHETYPE D: MLA model serving (DeepSeek-V3-class), 32k context, large expert-parallel decode.** | cost ≈ 70 KB of KV per token (the sourced figure, against 516 KB for Llama-3.1-405B and 327 KB for Qwen-2.5-72B), so about 2.2 GB of KV read per request per decode step at 32k, and 9.2 GB held at 128k | price: not found. The $87,072/day and 545% margin figures did not appear in the results, so I cite only the 56.3% hit rate.
+SHARES (estimate, no sourced breakdown): decode KV latent reads 30% | MoE expert weight reads 25% | attention compute including latent up-projection 15% | all-to-all communication 15% | other 15%
+LARGEST: decode KV latent reads. A 10x cut removes about 27%. This share is lower than in A and B because MLA already shrinks the cache about 5–7×. MLA latents are low-rank and RoPE is decoupled, so key-outlier and RoPE tricks designed for GQA may not transfer.
+
+**Reading across the archetypes for the "super-zip" question**
+- The gain is concentrated in reasoning and other decode-heavy, high-batch serving. There KV reads are about half the cost (B).
+- In prefill-dominated long-document QA, a KV format changes only about 4–5% of GPU time (A). Its value there is fitting more requests per GPU.
+- NVIDIA reports NVFP4 KV at up to 50% less memory than FP8, with under 1% accuracy loss on LiveCodeBench, MMLU-PRO, MBPP and RULER-64K. That is about 4 bits per value, or roughly 4× against FP16, which sets the bar to beat.
+- Any proposed format should be scored on the decode KV-read share (B), the HBM bytes per request (A), and the cache hit rate (C).
+
+SOURCES:
+- https://www.morphllm.com/grouped-query-attention
+- https://blogs.vmware.com/cloud-foundation/2024/09/25/llm-inference-sizing-and-performance-guidance/
+- https://arxiv.org/pdf/2505.09343
+- https://arxiv.org/pdf/2602.20732
+- https://developer.nvidia.com/blog/optimizing-inference-for-long-context-and-large-batch-sizes-with-nvfp4-kv-cache/
+- https://web.ece.ucsb.edu/~zhengzhang/conf/2026-MLSys-SkipKV.pdf
+- https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison
+- https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching
+- https://docs.helicone.ai/gateway/concepts/prompt-caching
+- https://gigazine.net/news/20250303-deepseek-ai-cost-profit
+- https://pypi.org/project/lmcache-cli/0.5.3.dev0/
+Where "several times cheaper" is arithmetically possible (ceilings computed from the ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: long-document QA or RAG, 128k tokens in and about 0.5k out. Llama-3-70B-class model with G | untouchable 9.0% -> ceiling 11.1x | 10x cut of one term: prefill attention 1.76x; prefill linear layers 1.54x; decode kv reads 1.03x; decode weight reads 1.01x | 3x needs: prefill attention, prefill linear layers | ROOM
+ARCHETYPE B: reasoning-model chain of thought, 32k generated tokens. DeepSeek-R1-Distill-class dense GQ | untouchable 8.0% -> ceiling 12.5x | 10x cut of one term: decode kv reads 1.82x; decode weight reads 1.48x; kernel, launch and sampling overhead 1.05x; prefill 1.01x | 3x needs: decode kv reads, decode weight reads | ROOM
+ARCHETYPE C: multi-turn agent or chat with prefix-cache reuse. 100k-token context, 90% hit, 10k new tok | untouchable 20.0% -> ceiling 5.0x | 10x cut of one term: new-input prefill plus cache write 1.52x; cache-read input 1.32x; output decode 1.16x; kv storage and transfer 1.00x | 3x needs: new-input prefill plus cache write, cache-read input, output decode | TIGHT
+ARCHETYPE D: MLA model serving (DeepSeek-V3-class), 32k context, large expert-parallel decode.** | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: decode kv latent reads 1.37x; moe expert weight reads 1.29x; attention compute including latent up-projection 1.16x; all-to-all communication 1.16x | 3x needs: decode kv latent reads, moe expert weight reads, attention compute including latent up-projection, all-to-all communication | NO ROOM
+What was tried before and why it did not solve the problem (data):
+Most figures below are self-reported by the method authors. Several come from secondary write-ups, and I mark those.
+
+ATTEMPT 1: FP8 (E4M3) KV cache, native in the attention kernels | vLLM/SGLang, NVIDIA, 2023–26 | standard | WHY IT DID NOT SOLVE IT: It gives only 2× and is not always safe. vLLM runs the whole attention in FP8, and one secondary write-up reports 128k needle-in-a-haystack falling from 91% (BF16) to 13% on Hopper until a two-level-accumulation fix restored it to 89%. | [vLLM blog](https://vllm.ai/blog/2026-04-22-fp8-kvcache), [dev.to summary](https://dev.to/ji_ai/fp8-kv-cache-quantization-the-memory-math-and-the-accuracy-cliff-1e9m)
+
+ATTEMPT 2: NVFP4 KV cache (4-bit with block scales) | NVIDIA, TensorRT-LLM/vLLM/SGLang, 2026 | standard (new) | WHY IT DID NOT SOLVE IT: It saves only "up to 50%" versus FP8, so about 4× versus FP16 at best. NVIDIA reports <1% loss (a vendor claim). Values must be dequantized to FP8 before the attention matmuls, so the compute path is not native. | [NVIDIA blog](https://developer.nvidia.com/blog/optimizing-inference-for-long-context-and-large-batch-sizes-with-nvfp4-kv-cache/)
+
+ATTEMPT 3: KIVI, tuning-free 2-bit: per-channel keys, per-token values, FP16 residual window | Rice/TAMU/Stevens, ICML 2024 | niche (the reference baseline) | WHY IT DID NOT SOLVE IT: Total peak memory is only 2.6× lower, because of group metadata and the FP16 window. On long-CoT reasoning, a later paper reports KIVI-K2V2 about 13 points below FP16 on AIME24/25 at 32K tokens. A separate paper found KIVI-2bit close to full-KV on Qwen3-8B, so the evidence conflicts. | [KIVI](https://proceedings.mlr.press/v235/liu24bz.html), [Kitty](https://arxiv.org/pdf/2511.18643), [faithfulness study](https://arxiv.org/pdf/2608.01631)
+
+ATTEMPT 4: KVQuant: per-channel pre-RoPE keys, sensitivity-weighted non-uniform codebooks, dense-and-sparse outliers | UC Berkeley, NeurIPS 2024 | niche | WHY IT DID NOT SOLVE IT: It reaches <0.1 perplexity loss at 3 bits, but the 3-bit setting is still 5× smaller than FP16 at best. Reaching 10M context needs nuq2 on 8 GPUs. It requires offline calibration and custom kernels (the paper reports only ~1.7× speedup on matrix-vector products), and the outlier handling costs extra bits. | [KVQuant](https://arxiv.org/pdf/2401.18079)
+
+ATTEMPT 5: TurboQuant: random rotation, Lloyd-Max bins, 1-bit QJL residual correction | Google Research, ICLR 2026 | newly standard (vLLM backend merged Apr 2026) | WHY IT DID NOT SOLVE IT: Paper claims quality neutrality at 3.5 bits and marginal loss at 2.5 bits. One review reports GSM8K falling from 0.900 to 0.720 at 3 bits on Qwen3-4B. A vLLM benchmark (secondhand) found FP8 gave the better overall balance. An independent test measured only +3.1% decode throughput on an RTX 5090, and community docs say QJL adds attention noise. | [summary and review](https://yage.ai/share/turboquant-kv-cache-3-bit-en-20260325.html), [reproduction](https://dev.to/carryologist/turboquant-four-months-later-chasing-googles-6x-vram-claim-into-the-wild-4gh1), [vLLM tag](https://vllm.ai/blog/tags/turboquant)
+
+ATTEMPT 6: Hybrid 2-bit schemes with dynamic precision boost or vector quantization (Kitty, VecInfer, MILLION) | 2025 preprints | niche | WHY IT DID NOT SOLVE IT: Kitty narrows the 2-bit gap on AIME-style reasoning only to 3–4 points. VecInfer reports plain KIVI and MILLION at 2 bits failing to produce coherent long-CoT output. | [Kitty](https://arxiv.org/pdf/2511.18643), [VecInfer](https://arxiv.org/pdf/2510.06175)
+
+ATTEMPT 7: Query-aware eviction: H2O (cumulative attention), SnapKV (end-of-prompt window), PyramidKV | 2023–24 | standard in open toolkits, not production-safe | WHY IT DID NOT SOLVE IT: Scores depend on the question. When the cache compressed from the first query is reused, accuracy drops sharply. On RULER, accuracy falls roughly linearly with retention in the query-agnostic setting. H2O also leaves the prompt cache uncompressed. | [KVzip](https://arxiv.org/pdf/2505.23416), [Compactor](https://arxiv.org/pdf/2507.08143), [SnapKV](https://arxiv.org/html/2404.14469v2)
+
+ATTEMPT 8: StreamingLLM: attention sinks plus a recent window | MIT, 2023 | niche | WHY IT DID NOT SOLVE IT: It gives a fixed-size cache but discards old content, so it cannot do retrieval. The multi-turn work cited here finds that keeping positional structure intact matters as much as the token-keep ratio. | [stateful KV study](https://arxiv.org/html/2511.04686v1)
+
+ATTEMPT 9: KVzip: query-agnostic eviction scored by context reconstruction | SNU, NeurIPS 2025 oral | niche (the best eviction result) | WHY IT DID NOT SOLVE IT: It gives 3–4× with negligible loss, up to 170K context, on three model families. That is below what quantization alone reaches. Scoring needs a reconstruction pass over the context. Aggressive budgets still collapse: RestoreKV reports 86.4 RULER at 16× only after adding learned restoration on top of KVzip+. | [KVzip](https://neurips.cc/virtual/2025/oral/118742), [RestoreKV](https://arxiv.org/pdf/2608.01247)
+
+ATTEMPT 10: Head-split caches: DuoAttention and RazorAttention (full cache only for retrieval heads) | MIT / Huawei, ICLR 2025 | niche | WHY IT DID NOT SOLVE IT: DuoAttention saves up to 2.55× on MHA models but only 1.67× on GQA models, the common modern case. RazorAttention claims >70% reduction. Both need a head-identification step. Savings are small where heads are already shared. | [DuoAttention](https://arxiv.org/abs/2410.10819), [RazorAttention](https://arxiv.org/html/2407.15891v1)
+
+ATTEMPT 11: Reasoning-specific eviction (R-KV: attention importance plus redundancy) | Microsoft et al., NeurIPS 2025 | niche | WHY IT DID NOT SOLVE IT: It is built for math chains of thought and shown on math reasoning only. Earlier eviction methods reach only about 60% of full performance there. The published and arXiv headline figures disagree (105% of full with 38% of the cache vs 16%). | [R-KV](https://arxiv.org/html/2505.24133v4), [NeurIPS page](https://neurips.cc/virtual/2025/poster/120110)
+
+ATTEMPT 12: Low-rank key/value projection (Palu: group-head SVD, Fisher rank search, then 3-bit quantization) | NTU/NVIDIA, ICLR 2025 | niche | WHY IT DID NOT SOLVE IT: It loses <1% on LongBench only at 30% rank reduction. At 50% the authors admit accuracy is hard to keep. Low-rank projection creates latent outliers that hurt low-bit quantization. Combined, it reaches about 11.4× with 3-bit latents. | [Palu](https://arxiv.org/html/2407.21118v2)
+
+ATTEMPT 13: Post-training cross-layer compression: MiniCache (merge adjacent layers), xKV and CommonKV (cross-layer SVD) | 2024–25 | niche | WHY IT DID NOT SOLVE IT: MiniCache assumes adjacent layers are similar, which xKV says often fails. xKV reports up to 6.8× more compression than inter-layer baselines, but the compression ratio is not stated per model. CommonKV holds quality only at a 0.6 compression ratio. | [xKV](https://arxiv.org/html/2503.18893v1), [MiniCache](https://ar5iv.labs.arxiv.org/html/2405.14366), [CommonKV](https://arxiv.org/html/2508.16134v1)
+
+ATTEMPT 14: Cross-Layer Attention (CLA): share one KV cache across adjacent layers | MIT-IBM, 2024 | rejected for this brief | WHY IT DID NOT SOLVE IT: It is an architecture change that needs training, so it cannot be applied to a ready-made model. | [xKV/CLA description](https://export.arxiv.org/pdf/2503.18893)
+
+ATTEMPT 15: Lossless entropy coding of BF16 KV (exponent-only: SplitZip, ZipNN-style, Intel FP8/FP4 extension) | 2025–26 | niche (used for KV transfer) | WHY IT DID NOT SOLVE IT: BF16 exponent entropy is only 2.89–3.59 bits. SplitZip's fixed-length code tops out near 4/3 (~25% smaller). A blog estimate is ~30% (not peer-reviewed). Slack shrinks as bit-width falls. | [SplitZip](https://arxiv.org/pdf/2605.01708), [Doubleword](https://blog.doubleword.ai/speculative-kv-coding)
+
+ATTEMPT 16: Predictor-based "speculative KV coding" on top of lossy FP8 | Doubleword, blog, 2026 | dropped/idea stage | WHY IT DID NOT SOLVE IT: It claims up to ~4× on top of lossy FP8 using a predictor model, but this is a blog with no peer review. It needs a second model run for decoding. | [Doubleword](https://blog.doubleword.ai/speculative-kv-coding)
+
+LESSONS:
+- The ceiling for plain quantization without recovery is about 3–4 bits (4–5×). Below 3 bits, hard reasoning degrades (AIME −13 points for KIVI-2bit; GSM8K 0.90→0.72 for TurboQuant at 3 bits, secondary report). Averages like perplexity and LongBench hide this, so a new design must be tested on long-CoT.
+- Eviction beyond 3–4× fails when the future query is unknown, and fails further for multi-turn reuse and reasoning chains. Any new design must be query-agnostic and must not lean on eviction for the main saving.
+- Accounting must include metadata, FP16 residual windows, outlier sidecars and codebooks. Many "2-bit" claims land near 2.6× total, not 8×.
+- Savings from heads and layers shrink on GQA/MLA models, which are already compressed. A drop-in design must show gains there.
+- Speed claims are not credible until there is a fused FlashAttention-style kernel on real hardware: independent TurboQuant tests show +3% decode, and FP8's long-context failure came from accumulation precision, not storage.
+- It is still unclear whether one-time calibration counts as "no retraining." KVQuant, Palu and DuoAttention all depend on it. A design that needs no calibration would avoid the question.
+
+I used 14 of 15 searches. I did not search Quest or MLA-specific quantization, and attention-sink and RoPE results are covered only indirectly through the cited papers.
+Lessons from earlier runs on other questions (data):
+- Most answers that failed after review failed on one number nobody had computed: a rate times the working time against the window it needs, or a strength against months of exposure. Compute the deciding number before claiming.
+- The most common overstatement was a weak baseline. Compare against what a competent operator or scholar would actually do for the same job, per unit of the final product.
+- Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on.
+- Statistics and simulations gave confident wrong answers until they were checked on a case with a known answer; one null model rejected far more often than its alpha.
+- A method validated on synthetic data still gave a wrong result when its input data had unverified labels: a hobby-page list read as "which hole is opposite which" gave p = 0.0005 twice, in two separate runs. Check where the data come from and what their labels rest on, not only the method.
+- Raw data (3D models, catalogues, measurement tables) settled in one step what texts, judges and reviewers could not. Look for data before arguing from opinions.
+- Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason.
+- What the asker says may be wrong or incomplete; treat it as data to check, like any other source.
+- Several partial answers that each fit some facts were often parts of one answer; check whether candidates combine before choosing one.
+- "Several times cheaper" is arithmetically possible only where the cost terms an answer can touch hold most of the delivered cost; taxes, royalties and fees cap the gain at 1 / (their share).
+- A single clever link rarely moved the whole chain more than 1.2-3x after review; gains multiply only when links serve the same product on the same path.
+- The simplest competent alternative that uses the same insight often beat the clever design. Check it before claiming a gain.
+- Seasonal and climatic windows, load-bearing limits and the time a structure must last killed more designs than missing technology.
+- Exact prefix reuse is the only bit-identical KV reuse. Current practice is vLLM or SGLang prefix caching plus a CPU or SSD tier (LMCache, SGLang HiCache, Mooncake Store); on real chat traces (Mooncake) it adds only ~1.2x over GPU-only prefix caching. Measure any new design against this stack and FP8 KV, not against BF16 or no caching.
+- Methods that drop tokens permanently failed in multi-turn chat, multi-query reuse and long outputs, and method rankings changed with whether the query is visible at compression time. Test on multi-query, multi-turn, long reasoning and RULER, not perplexity or LongBench alone.
+- Most training-free KV methods were tested on only 3-8 models, mostly Llama, Mistral and Qwen; their claims do not transfer to MLA, sliding-window or hybrid architectures without a check.
+- a defect that sank an answer in an earlier run: The design is lossy eviction, so it fails the question's hard requirement that the same model gives the same outputs. At 30% residency, any token outside the turn-level recall changes outputs. (It keeps 30% plus 10% recalled and drops 60% of the KV from attention.)
+- a defect that sank an answer in an earlier run: "The whole face retreats together" means the overburden above the seam has to be thawed and removed as well, so there is stripping after all. (A 20–30 m bluff over a 6 m seam has 14–24 m of overburden, which is 2.3–4 m³ per m³ of coal, or 46–80 k m³ a year.)
+- a defect that sank an answer in an earlier run: The gain is 1.04–1.3x, nowhere near the "several times cheaper" the brief requires. (15/(15–0.8) = 1.06, and 15/(15–3.4) = 1.29.)
+- a defect that sank an answer in an earlier run: Under ice, with no flushing, winter work cannot meet the fishery limit on suspended solids, because even a well-deployed silt curtain leaks orders of magnitude more than the limit allows. (The limit is +0.25 / +0.75 mg/L over background (Minselkhoz order 552, replaced in Sept 2025 by Rosrybolovstvo 
+- a defect that sank an answer in an earlier run: The face cannot be thawed as fast as the design advances: moving 3.7-8 m/h through 107 MJ/m³ frozen gravel takes 110-240 kW/m² over the whole 4.4-12 m² face, which means a face-averaged heat-transfer coefficient h of 18,000-79,000 W/m²K with 3-6 °C water, so neither the advance rate nor the 30% heat
+- a defect that sank an answer in an earlier run: The costed berth has 1.2 m of water, less than the measured end-of-winter ice, so the backwater freezes to the bed. The hull is then frozen to the bottom, the buoyancy and moat logic no longer applies, and the hull must ride out break-up and flood while frozen in. A hull that stays afloat needs ≥2.6
+- a defect that sank an answer in an earlier run: The window "stays open while worked, caves afterwards" does not exist: the 25 m working span is the failure span at the 30-second strength (1 MPa), and over the real 2.3–77 working days the strength has already fallen most of the way to its long-term value (Clamped beam σ=γL²/2t, γ=20 kN/m³, t=6 m: 
+- a defect that sank an answer in an earlier run: Open-water tailings discharge cannot meet the fishery limit: the plume figure assumes complete mixing into the whole river, and the cutter alone loses about the entire allowance before any plant tailings. (Back-calculating 1.0-2.6 mg/L at 5% escape (1.2 Mm³, 1.9 t/m³, 15-30% fines, 120 d) requires f
+Technique: work on this reformulation of the question, chosen as the most productive one by importance and possibility: What all-in format (≤2 bits per value including scales, indices, codebooks and residual window, about 2× better than NVFP4) keeps a ≤1% relative drop on AIME/MATH long-CoT and RULER-128k for GQA reasoning models? It must also have a fused decode kernel that turns the bytes saved into measured throughput.
+Say in the VALUE what the answer gives for the question as originally asked.
+Rules: aim only at targets whose ceiling leaves room for the gain you claim; name inside each MECHANISM the closest
+earlier attempt and why your answer is not stopped by its reason; name the one quantity that decides whether it works.
+Being unusual is not the goal; working is.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

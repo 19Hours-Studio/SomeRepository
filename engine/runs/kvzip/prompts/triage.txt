@@ -1,0 +1,156 @@
+Which architecture for compressing the LLM KV cache (the stored attention keys and values) is best if it has to be much more aggressive than FP8, which is 8 bits per value or about 2× smaller than FP16/BF16? It has to work as a drop-in replacement for the cache storage format in an existing pretrained transformer model, with no retraining, fine-tuning or architecture change, and with almost no loss of quality. The cache may be compressed along any axis: numeric precision, the number of stored tokens, channels or heads, redundancy across layers, or entropy coding. The asker calls this a "super-zip" for the KV cache. The answer should be a concrete architecture, covering what is stored, how it is encoded and decoded, and how attention reads it. It should also give the expected compression ratio and quality loss on standard long-context and reasoning benchmarks, and say what runtime cost the design adds.
+A good answer: 
+- It gives a specific, implementable design. Naming a family of methods is not enough.
+- It states the effective bits per value or the compression ratio vs FP16, counting all metadata (scales, zero-points, indices, codebooks).
+- Quality loss is stated against the FP16 cache on named benchmarks and models, for example LongBench, RULER, needle-in-a-haystack, GSM8K or MATH-style reasoning, and perplexity. "Almost no loss" is given a number, for example ≤1% relative drop.
+- It is checked against the failure modes below: outlier channels in keys, RoPE, attention sinks, GQA/MLA models, long contexts, multi-turn or multi-query reuse, and reasoning-model chains of thought.
+- It estimates decode and prefill latency and throughput, including dequantization or decompression cost and compatibility with FlashAttention-style fused kernels.
+- It shows how it beats or complements the current state of the art (see CONTEXT), and says what is new.
+- It names a cheap experiment that could falsify it.
+Constraints: 
+- No training, fine-tuning or distillation of the base model. The asker said "without retraining". Whether a one-time offline calibration pass on a small data sample counts is UNCLEAR.
+- It must apply to any ready-made model by changing the cache storage format only.
+- Compression must be far beyond FP8. This is stated as "much stronger" with no numeric target.
+- Quality must drop almost not at all.
+
+Candidate answers (data):
+IDEA 1
+NAME: Per-request online KLT bit-allocation
+MECHANISM: During prefill, the system accumulates each head's pre-RoPE key and value covariance. It stores one 128×128 FP16 basis per head per layer, which is under 0.01 bits per value at 32k. Bits are then allocated by reverse water-filling, about 2.5 on average, and RoPE is applied after dequantization inside the kernel. The closest earlier attempt is Palu, whose offline SVD truncation creates latent outliers and loses accuracy beyond 30% rank reduction. This design truncates nothing and needs no calibration data. The deciding quantity is the eigenvalue arithmetic-to-geometric-mean ratio, which must be at least 4 to save at least 1 bit. That ratio is likely too small on MLA latents.
+VALUE: For GQA models it is a calibration-free path to 2.5 bits per value (6.4×) whose quality follows rate-distortion theory rather than heuristics.
+
+IDEA 2
+NAME: Calibration-free trellis-coded KV
+MECHANISM: Each rotated 256-value token-channel block is coded with a QTIP-style trellis code over a fixed Gaussian code. This is sequence-level vector quantization at 2 bits plus one FP8 scale per 64 values, 2.13 bits per value or 7.5× vs FP16. A lookup-free decode fuses into the attention tile. The closest earlier attempts are KIVI-2bit and VecInfer, whose scalar or small-codebook error collapses long chains of thought; trellis codes cut MSE about 2× over scalar quantization at equal bits.
+VALUE: The deciding quantity is attention-logit MSE relative to 4-bit scalar codes, which must be ≤1.2×. If that holds, the target is ≤1% relative drop on AIME24, GSM8K, RULER-128K and NIAH for Qwen3-8B and Llama-3-70B at 7.5×, with ≈10% decode overhead. A 2-hour logit-MSE sweep falsifies it.
+
+IDEA 3
+NAME: Asymmetric dithered key-value codes
+MECHANISM: Keys are rotated before RoPE and stored at 3 bits per channel group, plus one FP16 scale per 128 values, which is 3.125 bits. Values are stored at 2 bits per token group with dither subtracted from a shared seed, so the dither needs no stored metadata. That is 2.125 bits, for an average of about 2.65 bits, or 6.0× vs FP16. The reasoning is that score error is exponentiated, while value error averages out over the attended tokens. The closest earlier attempt is KIVI K2V2, which lost 13 points on AIME. Its 2-bit keys broke sharp attention and its error was deterministic and biased; this design keeps keys at 3 bits and makes value error unbiased. The deciding quantity is the effective number of attended tokens in retrieval heads. If it is below about 4, the value noise does not average out.
+VALUE: 6× KV capacity with projected loss of ≤1% on RULER-64k and GSM8K and ≤2 points on AIME, and no calibration.
+
+IDEA 4
+NAME: MLA latent trellis quantization
+MECHANISM: The 512-dimension MLA latent is Hadamard-rotated and trellis-coded at 2 bits. The decoupled 64-dimension RoPE key stays in FP8, and one FP16 norm is stored per token. That totals about 2.7 bits per value, roughly 6× smaller than the BF16 MLA cache. The kernel decodes the latent before the absorbed up-projection. The closest earlier attempt is Palu, whose own low-rank projection created latent outliers that hurt low-bit quantization. Rotation flattens those outliers without calibration. The deciding quantity is the latent MSE after the absorbed up-projection.
+VALUE: Removes about 25% of DeepSeek-V3-class decode cost and fits about 6× more 128k contexts per GPU.
+
+IDEA 5
+NAME: Entropy-measured per-head bit allocation
+MECHANISM: During prefill, compute each KV head's attention entropy over the prompt's own queries. Assign bit widths from that: broad heads get K2V1, middle heads K3V2, and sharp retrieval heads K4V4. Every token is kept, and the bits average about 2.1 including scales, or 7.5×. The closest earlier attempts are RazorAttention and DuoAttention. They evicted tokens in non-retrieval heads and saved only 1.67× on GQA. This design only lowers precision, which works on already-shared GQA heads and keeps multi-turn reuse safe. The deciding quantity is how stable head entropy rankings are across prompts and decode phases, measured by a Spearman rank correlation of at least 0.9.
+VALUE: About 7.5× compression without calibration data, adapting per prompt to any GQA model.
+
+IDEA 6
+NAME: Hadamard-trellis 2-bit KV
+MECHANISM: Each pre-RoPE key and value head vector is rotated by a fixed random Hadamard matrix and stored as one FP16 norm plus trellis-coded indices at 1.875 bits per value. Four sink tokens and the last 128 tokens stay in FP8. The fused decode kernel decodes the trellis in registers, then applies RoPE and runs attention. The closest earlier attempt is TurboQuant, which lost 18 GSM8K points at 3 bits because its scalar bins plus noisy QJL correction waste about 3 dB. Trellis vector coding recovers about 2 dB of that, and the design has no QJL stage. The deciding quantity is the logit error relative to the per-head logit spread.
+VALUE: A drop-in, calibration-free 8× KV cache versus FP16, about 2× smaller than NVFP4, which should give roughly 1.6–2× reasoning decode throughput.
+
+IDEA 7
+NAME: Progressive bit-plane attention
+MECHANISM: K and V are stored after a Hadamard rotation as a 2-bit base plane plus a 2-bit refinement plane, with per-group FP8 scales, for about 4.3 bits per value in total. On each decode step the kernel first scores all tokens using the base plane. It then reads refinement planes only for the top 2% of pages by score plus the sink pages, and recomputes their logits and values at 4-bit precision. The closest earlier attempts are Quest and ShadowKV, which skip pages entirely and therefore act like eviction. Here every token is still attended, and only precision varies with the query, so multi-turn reuse and question changes are safe. The deciding quantity is the attention mass covered by the top 2%, which must be at least 99% on long CoT.
+VALUE: HBM reads fall to about 2.2 bits per value (about 7× fewer than FP16) at roughly NVFP4 quality. Refinement planes can be offloaded to host memory to gain capacity. The added cost is an estimated 10–15% from the two-pass kernel. It is falsified if logit KL divergence versus FP16 exceeds NVFP4's on RULER-niah-multikey.
+
+IDEA 8
+NAME: Coarse-HBM, refined-host residual
+MECHANISM: The HBM holds only 2-bit rotated codes, and every token is still attended. A 2-bit residual for each token sits in host DRAM. At each decode step, approximate scores from the 2-bit codes pick the top 256 tokens per KV head, and only those tokens' residuals are fetched. That costs about 10 MB per step for a 70B model at 128k, roughly 0.2 ms over PCIe 5 or less over NVLink-C2C. The closest earlier attempts are Quest and ShadowKV, which approximate or skip non-selected tokens. Here no token is dropped, so multi-turn reuse is safe. The deciding quantity is the softmax mass that falls outside the top-k set.
+VALUE: About 4-bit effective fidelity on the tokens that matter, at a 2-bit HBM footprint and read cost.
+
+IDEA 9
+NAME: Hadamard-E8 lattice KV
+MECHANISM: Each 128-dimensional head vector is rotated by a seeded random Hadamard transform, which spreads key outlier channels across all dimensions. The query gets the same rotation, so q·k is unchanged and keys can be stored post-RoPE. Keys use an E8 lattice code (2-bit E8P plus 1-bit residual, 3 bits per value). Values use 2-bit E8P. Each token and head also stores one FP8 scale. The first 4 sink tokens and the last 128 tokens stay in FP8. The fused FlashDecoding kernel decodes codewords from a 256-entry table in shared memory. Effective size is about 2.6 bits per value with metadata, or 6.1× smaller than FP16. On MLA models, the decoupled 64-dim RoPE part stays in FP8. The closest earlier attempt is VecInfer/MILLION, which used learned codebooks at a uniform 2 bits and broke long-CoT output. This design spends the extra bit on keys and uses a lattice code that needs no data. The deciding quantity is the AIME accuracy change at 32k tokens.
+VALUE: It cuts decode KV reads about 6× (about 1.7× cheaper per token in Archetype B), with predicted loss of ≤1% on RULER-64k and LongBench and ≤2 points on AIME24. It is falsified if R1-Distill-Qwen-7B on AIME24 loses more than 2 points versus FP16, a test of about 2 GPU-hours.
+
+IDEA 10
+NAME: Entropy-coded rotated tier cache
+MECHANISM: For the CPU/SSD prefix tier (LMCache or HiCache), K and V are Hadamard-rotated, quantized with a uniform step at 5-bit-equivalent mean squared error, and rANS-coded per page. Entropy-constrained scalar quantization saves about 0.5 bits over Lloyd-Max at equal error on Gaussian-like rotated data, so pages land near 3.5 bits per value plus a 1% table cost. The GPU decodes pages to FP8 on load. The closest earlier attempt is SplitZip, which only coded BF16 exponents and reached about 1.33×. This design codes after rotation and quantization, where the entropy gap is large. The deciding quantity is GPU rANS decode throughput, which must exceed about 50 GB/s of output so it stays below PCIe and NVMe bandwidth.
+VALUE: Each tier byte holds about 2.3× more prefixes than an FP8 tier at better-than-NVFP4 fidelity, which raises the multi-turn hit rate. It is falsified if the measured entropy of rotated KV codes on Llama-3-70B is above 4 bits per value.
+
+IDEA 11
+NAME: Bit-plane on-demand attention precision
+MECHANISM: Keys are stored pre-RoPE and rotated, then quantized to 4-bit codes laid out as bit-planes, at 4.5 bits per value in HBM. A FlashAttention tile reads only the top 2 planes plus scales (2.5 bits per value, 6.4× fewer bytes than FP16) to score every token. It then fetches the low planes only for the ≈2% of tokens whose coarse logit could land in the top softmax mass; the 4 sink tokens and a 64-token recent window always use full planes. The closest earlier attempts are Quest and ShadowKV, which drop the tokens they do not select and so lose them on reused or multi-turn queries; here no token is ever dropped, and the tail is still read at 2 bits. The deciding quantity is the softmax mass that falls on coarse-only tokens multiplied by their value error; it must stay ≤1e-3 per head.
+VALUE: About 2.6 bits read per value during decode, against NVFP4's 4.5. This should give a 1.5–1.6× decode speedup in reasoning workloads, with quality bounded by NVFP4 (≤1% drop on AIME24 and RULER-64K for R1-Distill-8B). It is falsified if a one-day PyTorch prototype misses NVFP4 accuracy on AIME24.
+
+IDEA 12
+NAME: Entropy-gated decision-step recompute
+MECHANISM: Decode runs on a 2.3-bit rotated cache. A full FP8 copy is kept on host or SSD, as LMCache already does. When next-token entropy exceeds a threshold τ, the step is a decision point. The model then refetches FP8 pages for the top-attention pages identified in the quantized pass, recomputes that step, and samples from the corrected distribution. The closest earlier attempt is speculative-decoding verification, which rechecks every token at full cost. This design rechecks only uncertain steps, and only on pages that carry attention mass. The deciding quantity is the fraction of steps above τ, which must be under about 10% for the overhead to stay below 15%.
+VALUE: It bounds where a 7× cache can change a reasoning chain's tokens, without any offline calibration.
+
+IDEA 13
+NAME: Bound-driven progressive bit-plane reads
+MECHANISM: Rotated keys and values are stored as 6-bit codes split into bit-planes. The top 2 planes plus scales, about 2.2 bits, stay in HBM, which is 7.3×. The lower 4 planes go to CPU memory. On each decode step the kernel computes an interval for every token's score from the coarse planes. It fetches finer planes only for tokens whose upper bound could carry more than ε=10⁻³ of the attention mass, so the error is provably bounded. The closest earlier attempts are Quest and ShadowKV, which use approximate page-level selection and skip tokens. This design never skips a token; it refines precision. The deciding quantity is the fraction of tokens refined per step. It must stay below about 2% at 128k to fit in PCIe bandwidth.
+VALUE: 7× HBM savings with a guaranteed attention-error bound, which makes it safe for chains of thought and reuse.
+
+IDEA 14
+NAME: Cross-layer conditional entropy coding
+MECHANISM: Values and pre-RoPE keys are rotated and quantized to NVFP4-grade 4-bit codes. Each token's codes at layer l are then coded losslessly with interleaved rANS, using a small count table conditioned on the same channel's code at layer l−1 and at token t−1. Pages decompress into SRAM inside the attention kernel or on transfer from a CPU or SSD tier. The closest earlier attempts are SplitZip and ZipNN, which code only BF16 exponents and reach about 25%; here the target is low-entropy indices that share the residual stream across layers. The deciding quantity is the conditional entropy H(code_l | code_{l−1}, code_{t−1}), which must be ≤2.5 bits.
+VALUE: Output is bit-identical to the 4-bit format, at ≈3.0 bits per value including tables and scales, or 5.3× vs FP16. This raises prefix-cache hit rates and the number of resident requests in LMCache-style deployments. GPU rANS throughput of roughly 300 GB/s (DietGPU class) limits its speed advantage in decode-heavy HBM serving. Measuring that entropy on 1k cached sequences from Llama-3-70B and DeepSeek-V3 latents falsifies it in one hour.
+
+IDEA 15
+NAME: Margin-flagged key residual promotion
+MECHANISM: Each head is rotated with a fixed Hadamard transform, which needs no calibration. Keys are stored at 2 bits pre-RoPE, values at 2 bits per token, and a 2-bit residual for every page is kept in host memory. During decode, the kernel flags any page whose quantized logit lies within ‖q‖·‖e‖max of the top logit. Only flagged pages fetch their residual over PCIe, so they are read at 4 bits. The closest earlier attempt is Kitty's dynamic precision boost, which uses a static importance heuristic and still trails FP16 by 3–4 AIME points. This design promotes exactly the pairs whose argmax can flip. The deciding quantity is the flagged-page fraction, which must stay under about 5% to fit PCIe bandwidth.
+VALUE: About 2.3 bits per value in HBM (7× vs FP16) with 4-bit fidelity where reasoning needs it, so batch size roughly doubles over NVFP4.
+
+
+Where "several times cheaper" is arithmetically possible (ceilings computed in code from the cost ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: long-document QA or RAG, 128k tokens in and about 0.5k out. Llama-3-70B-class model with G | untouchable 9.0% -> ceiling 11.1x | 10x cut of one term: prefill attention 1.76x; prefill linear layers 1.54x; decode kv reads 1.03x; decode weight reads 1.01x | 3x needs: prefill attention, prefill linear layers | ROOM
+ARCHETYPE B: reasoning-model chain of thought, 32k generated tokens. DeepSeek-R1-Distill-class dense GQ | untouchable 8.0% -> ceiling 12.5x | 10x cut of one term: decode kv reads 1.82x; decode weight reads 1.48x; kernel, launch and sampling overhead 1.05x; prefill 1.01x | 3x needs: decode kv reads, decode weight reads | ROOM
+ARCHETYPE C: multi-turn agent or chat with prefix-cache reuse. 100k-token context, 90% hit, 10k new tok | untouchable 20.0% -> ceiling 5.0x | 10x cut of one term: new-input prefill plus cache write 1.52x; cache-read input 1.32x; output decode 1.16x; kv storage and transfer 1.00x | 3x needs: new-input prefill plus cache write, cache-read input, output decode | TIGHT
+ARCHETYPE D: MLA model serving (DeepSeek-V3-class), 32k context, large expert-parallel decode.** | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: decode kv latent reads 1.37x; moe expert weight reads 1.29x; attention compute including latent up-projection 1.16x; all-to-all communication 1.16x | 3x needs: decode kv latent reads, moe expert weight reads, attention compute including latent up-projection, all-to-all communication | NO ROOM
+
+What was tried before and why it did not solve the problem (data):
+Most figures below are self-reported by the method authors. Several come from secondary write-ups, and I mark those.
+
+ATTEMPT 1: FP8 (E4M3) KV cache, native in the attention kernels | vLLM/SGLang, NVIDIA, 2023–26 | standard | WHY IT DID NOT SOLVE IT: It gives only 2× and is not always safe. vLLM runs the whole attention in FP8, and one secondary write-up reports 128k needle-in-a-haystack falling from 91% (BF16) to 13% on Hopper until a two-level-accumulation fix restored it to 89%. | [vLLM blog](https://vllm.ai/blog/2026-04-22-fp8-kvcache), [dev.to summary](https://dev.to/ji_ai/fp8-kv-cache-quantization-the-memory-math-and-the-accuracy-cliff-1e9m)
+
+ATTEMPT 2: NVFP4 KV cache (4-bit with block scales) | NVIDIA, TensorRT-LLM/vLLM/SGLang, 2026 | standard (new) | WHY IT DID NOT SOLVE IT: It saves only "up to 50%" versus FP8, so about 4× versus FP16 at best. NVIDIA reports <1% loss (a vendor claim). Values must be dequantized to FP8 before the attention matmuls, so the compute path is not native. | [NVIDIA blog](https://developer.nvidia.com/blog/optimizing-inference-for-long-context-and-large-batch-sizes-with-nvfp4-kv-cache/)
+
+ATTEMPT 3: KIVI, tuning-free 2-bit: per-channel keys, per-token values, FP16 residual window | Rice/TAMU/Stevens, ICML 2024 | niche (the reference baseline) | WHY IT DID NOT SOLVE IT: Total peak memory is only 2.6× lower, because of group metadata and the FP16 window. On long-CoT reasoning, a later paper reports KIVI-K2V2 about 13 points below FP16 on AIME24/25 at 32K tokens. A separate paper found KIVI-2bit close to full-KV on Qwen3-8B, so the evidence conflicts. | [KIVI](https://proceedings.mlr.press/v235/liu24bz.html), [Kitty](https://arxiv.org/pdf/2511.18643), [faithfulness study](https://arxiv.org/pdf/2608.01631)
+
+ATTEMPT 4: KVQuant: per-channel pre-RoPE keys, sensitivity-weighted non-uniform codebooks, dense-and-sparse outliers | UC Berkeley, NeurIPS 2024 | niche | WHY IT DID NOT SOLVE IT: It reaches <0.1 perplexity loss at 3 bits, but the 3-bit setting is still 5× smaller than FP16 at best. Reaching 10M context needs nuq2 on 8 GPUs. It requires offline calibration and custom kernels (the paper reports only ~1.7× speedup on matrix-vector products), and the outlier handling costs extra bits. | [KVQuant](https://arxiv.org/pdf/2401.18079)
+
+ATTEMPT 5: TurboQuant: random rotation, Lloyd-Max bins, 1-bit QJL residual correction | Google Research, ICLR 2026 | newly standard (vLLM backend merged Apr 2026) | WHY IT DID NOT SOLVE IT: Paper claims quality neutrality at 3.5 bits and marginal loss at 2.5 bits. One review reports GSM8K falling from 0.900 to 0.720 at 3 bits on Qwen3-4B. A vLLM benchmark (secondhand) found FP8 gave the better overall balance. An independent test measured only +3.1% decode throughput on an RTX 5090, and community docs say QJL adds attention noise. | [summary and review](https://yage.ai/share/turboquant-kv-cache-3-bit-en-20260325.html), [reproduction](https://dev.to/carryologist/turboquant-four-months-later-chasing-googles-6x-vram-claim-into-the-wild-4gh1), [vLLM tag](https://vllm.ai/blog/tags/turboquant)
+
+ATTEMPT 6: Hybrid 2-bit schemes with dynamic precision boost or vector quantization (Kitty, VecInfer, MILLION) | 2025 preprints | niche | WHY IT DID NOT SOLVE IT: Kitty narrows the 2-bit gap on AIME-style reasoning only to 3–4 points. VecInfer reports plain KIVI and MILLION at 2 bits failing to produce coherent long-CoT output. | [Kitty](https://arxiv.org/pdf/2511.18643), [VecInfer](https://arxiv.org/pdf/2510.06175)
+
+ATTEMPT 7: Query-aware eviction: H2O (cumulative attention), SnapKV (end-of-prompt window), PyramidKV | 2023–24 | standard in open toolkits, not production-safe | WHY IT DID NOT SOLVE IT: Scores depend on the question. When the cache compressed from the first query is reused, accuracy drops sharply. On RULER, accuracy falls roughly linearly with retention in the query-agnostic setting. H2O also leaves the prompt cache uncompressed. | [KVzip](https://arxiv.org/pdf/2505.23416), [Compactor](https://arxiv.org/pdf/2507.08143), [SnapKV](https://arxiv.org/html/2404.14469v2)
+
+ATTEMPT 8: StreamingLLM: attention sinks plus a recent window | MIT, 2023 | niche | WHY IT DID NOT SOLVE IT: It gives a fixed-size cache but discards old content, so it cannot do retrieval. The multi-turn work cited here finds that keeping positional structure intact matters as much as the token-keep ratio. | [stateful KV study](https://arxiv.org/html/2511.04686v1)
+
+ATTEMPT 9: KVzip: query-agnostic eviction scored by context reconstruction | SNU, NeurIPS 2025 oral | niche (the best eviction result) | WHY IT DID NOT SOLVE IT: It gives 3–4× with negligible loss, up to 170K context, on three model families. That is below what quantization alone reaches. Scoring needs a reconstruction pass over the context. Aggressive budgets still collapse: RestoreKV reports 86.4 RULER at 16× only after adding learned restoration on top of KVzip+. | [KVzip](https://neurips.cc/virtual/2025/oral/118742), [RestoreKV](https://arxiv.org/pdf/2608.01247)
+
+ATTEMPT 10: Head-split caches: DuoAttention and RazorAttention (full cache only for retrieval heads) | MIT / Huawei, ICLR 2025 | niche | WHY IT DID NOT SOLVE IT: DuoAttention saves up to 2.55× on MHA models but only 1.67× on GQA models, the common modern case. RazorAttention claims >70% reduction. Both need a head-identification step. Savings are small where heads are already shared. | [DuoAttention](https://arxiv.org/abs/2410.10819), [RazorAttention](https://arxiv.org/html/2407.15891v1)
+
+ATTEMPT 11: Reasoning-specific eviction (R-KV: attention importance plus redundancy) | Microsoft et al., NeurIPS 2025 | niche | WHY IT DID NOT SOLVE IT: It is built for math chains of thought and shown on math reasoning only. Earlier eviction methods reach only about 60% of full performance there. The published and arXiv headline figures disagree (105% of full with 38% of the cache vs 16%). | [R-KV](https://arxiv.org/html/2505.24133v4), [NeurIPS page](https://neurips.cc/virtual/2025/poster/120110)
+
+ATTEMPT 12: Low-rank key/value projection (Palu: group-head SVD, Fisher rank search, then 3-bit quantization) | NTU/NVIDIA, ICLR 2025 | niche | WHY IT DID NOT SOLVE IT: It loses <1% on LongBench only at 30% rank reduction. At 50% the authors admit accuracy is hard to keep. Low-rank projection creates latent outliers that hurt low-bit quantization. Combined, it reaches about 11.4× with 3-bit latents. | [Palu](https://arxiv.org/html/2407.21118v2)
+
+ATTEMPT 13: Post-training cross-layer compression: MiniCache (merge adjacent layers), xKV and CommonKV (cross-layer SVD) | 2024–25 | niche | WHY IT DID NOT SOLVE IT: MiniCache assumes adjacent layers are similar, which xKV says often fails. xKV reports up to 6.8× more compression than inter-layer baselines, but the compression ratio is not stated per model. CommonKV holds quality only at a 0.6 compression ratio. | [xKV](https://arxiv.org/html/2503.18893v1), [MiniCache](https://ar5iv.labs.arxiv.org/html/2405.14366), [CommonKV](https://arxiv.org/html/2508.16134v1)
+
+ATTEMPT 14: Cross-Layer Attention (CLA): share one KV cache across adjacent layers | MIT-IBM, 2024 | rejected for this brief | WHY IT DID NOT SOLVE IT: It is an architecture change that needs training, so it cannot be applied to a ready-made model. | [xKV/CLA description](https://export.arxiv.org/pdf/2503.18893)
+
+ATTEMPT 15: Lossless entropy coding of BF16 KV (exponent-only: SplitZip, ZipNN-style, Intel FP8/FP4 extension) | 2025–26 | niche (used for KV transfer) | WHY IT DID NOT SOLVE IT: BF16 exponent entropy is only 2.89–3.59 bits. SplitZip's fixed-length code tops out near 4/3 (~25% smaller). A blog estimate is ~30% (not peer-reviewed). Slack shrinks as bit-width falls. | [SplitZip](https://arxiv.org/pdf/2605.01708), [Doubleword](https://blog.doubleword.ai/speculative-kv-coding)
+
+ATTEMPT 16: Predictor-based "speculative KV coding" on top of lossy FP8 | Doubleword, blog, 2026 | dropped/idea stage | WHY IT DID NOT SOLVE IT: It claims up to ~4× on top of lossy FP8 using a predictor model, but this is a blog with no peer review. It needs a second model run for decoding. | [Doubleword](https://blog.doubleword.ai/speculative-kv-coding)
+
+LESSONS:
+- The ceiling for plain quantization without recovery is about 3–4 bits (4–5×). Below 3 bits, hard reasoning degrades (AIME −13 points for KIVI-2bit; GSM8K 0.90→0.72 for TurboQuant at 3 bits, secondary report). Averages like perplexity and LongBench hide this, so a new design must be tested on long-CoT.
+- Eviction beyond 3–4× fails when the future query is unknown, and fails further for multi-turn reuse and reasoning chains. Any new design must be query-agnostic and must not lean on eviction for the main saving.
+- Accounting must include metadata, FP16 residual windows, outlier sidecars and codebooks. Many "2-bit" claims land near 2.6× total, not 8×.
+- Savings from heads and layers shrink on GQA/MLA models, which are already compressed. A drop-in design must show gains there.
+- Speed claims are not credible until there is a fused FlashAttention-style kernel on real hardware: independent TurboQuant tests show +3% decode, and FP8's long-context failure came from accumulation precision, not storage.
+- It is still unclear whether one-time calibration counts as "no retraining." KVQuant, Palu and DuoAttention all depend on it. A design that needs no calibration would avoid the question.
+
+I used 14 of 15 searches. I did not search Quest or MLA-specific quantization, and attention-sink and RoPE results are covered only indirectly through the cited papers.
+
+Sort these candidates before the expensive checks. Without tools, for each candidate estimate:
+- I = importance 0-10: how much of the asker's aim it serves if it works - for a cost question, the share of the
+  delivered cost it removes, never more than the ceiling of its archetype allows;
+- P = possibility 0-10: how likely it is to work at the scale it claims with known physics, given the earlier
+  attempts that stopped short (a candidate that repeats one without beating its reason gets P <= 2);
+- the one number that decides whether it works.
+Being unusual earns nothing here; aiming at a term whose ceiling leaves no room earns a low I.
+
+Final answer (text only), one line per candidate in the order given, at most 400 words:
+=== TRIAGE ===
+IDEA 1 | I <0-10> | P <0-10> | DECIDES: <quantity> | <one line why>
+(same for the others)

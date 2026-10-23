@@ -1,0 +1,27 @@
+== Idea1 repaired: band-E8 keys 3.0b (4x4b,8x3b,4x2b groups of 8), values E8 2b, FP8 scale/token/head, FP16 sinks+window
+ L=  4096 K=3.479 V=2.512 mean=2.996 b/value  ratio vs FP16=5.34x  vs FP8=2.67x
+ L= 32768 K=3.115 V=2.119 mean=2.617 b/value  ratio vs FP16=6.11x  vs FP8=3.06x
+ L=131072 K=3.076 V=2.077 mean=2.576 b/value  ratio vs FP16=6.21x  vs FP8=3.11x
+== Idea2 repaired: KLT keys (post-RoPE) ~2.5b avg, values KLT 2.5b, FP8 norm/token, FP16 basis 128x128 + 128 mean per segment
+ L=  4096 segs=1 basis overhead=0.504 b  mean=3.499 b/value ratio=4.57x
+ L= 32768 segs=2 basis overhead=0.126 b  mean=2.743 b/value ratio=5.83x
+ L=131072 segs=4 basis overhead=0.063 b  mean=2.639 b/value ratio=6.06x
+ claimed '<0.01 b' basis overhead check at 32k, 1 basis FP16: 0.0625
+== serving cost at 32k context (decode, memory-bound model; quality numbers: R1-Distill-Qwen-7B AIME24, Block-GTQ paper)
+ BF16 KV                            16.00b batch=  13 tok/s=    606 $/Mtok= 1.371  AIME24 acc=54.2% -> $ per 1k correct answers (12k tok each)=  30.36
+ FP8 KV (assume lossless)            8.06b batch=  25 tok/s=   1194 $/Mtok= 0.696  AIME24 acc=54.2% -> $ per 1k correct answers (12k tok each)=  15.40
+ NVFP4 KV (quality on AIME unmeasured)  4.50b batch=  46 tok/s=   2151 $/Mtok= 0.386
+ Block-GTQ K3V2 (~2.5b+meta)         2.60b batch=  80 tok/s=   3728 $/Mtok= 0.223  AIME24 acc=51.7% -> $ per 1k correct answers (12k tok each)=   5.17
+ KITTY ~2.x b (-3..4 pts, Kitty paper)  2.20b batch=  94 tok/s=   4400 $/Mtok= 0.189  AIME24 acc=50.7% -> $ per 1k correct answers (12k tok each)=   4.47
+ KIVI K2V2 (~-13 pts AIME)           2.13b batch=  97 tok/s=   4543 $/Mtok= 0.183  AIME24 acc=41.0% -> $ per 1k correct answers (12k tok each)=   5.35
+ Idea1 band-E8 K3V2 (PREDICTED <=2pt)  2.57b batch=  81 tok/s=   3772 $/Mtok= 0.220  AIME24 acc=52.2% -> $ per 1k correct answers (12k tok each)=   5.06
+ Idea2 KLT 2.5b (PREDICTED)          2.60b batch=  80 tok/s=   3728 $/Mtok= 0.223  AIME24 acc=52.2% -> $ per 1k correct answers (12k tok each)=   5.12
+ GQA g=1: decode-only 12.5 op/B ; decode+dot on CUDA cores 18.8 op/B (ridge 20) 
+ GQA g=4: decode-only 12.5 op/B ; decode+dot on CUDA cores 37.5 op/B (ridge 20) 
+ GQA g=8: decode-only 12.5 op/B ; decode+dot on CUDA cores 62.5 op/B (ridge 20) 
+ Idea2 L=4096: q/o basis transforms 6.55e+04 FLOP vs attention 2.10e+06 per q-head -> +3.12%
+ Idea2 L=32768: q/o basis transforms 6.55e+04 FLOP vs attention 1.68e+07 per q-head -> +0.39%
+ Idea2 L=131072: q/o basis transforms 2.62e+05 FLOP vs attention 6.71e+07 per q-head -> +0.39%
+ original Idea2 (reconstruct each key): 819.2 FLOP/B vs H100 dense BF16 TC ridge 989e12/3.35e12= 295.2238805970149
+ Idea2 prefill covariance accumulation 6.87e+12 FLOP vs prefill matmul 4.59e+15 -> +0.15%
+ Idea1 prefill E8 encode 3.22e+11 op vs 4.59e+15 -> +0.007%

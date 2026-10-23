@@ -1,0 +1,12 @@
+{
+ "p": {
+  "repair#1": 0.38,
+  "repair#4": 0.12,
+  "repair#2": 0.08,
+  "repair#3": 0.03,
+  "none": 0.39
+ },
+ "weakest_link": "One FP8 scale per token and head is shared by 16 bands whose energies differ by up to about 30×. Proxy MSE rises from 0.118 to 0.76–3.19 at mismatched scales. Per-band scales would fix this but add about 0.25–1.0 b/value, which would push keys toward 3.5–4 b. Most of the edge over TurboQuant and KVTuner would then be gone.",
+ "flip_test": "On real post-RoPE keys from Llama-3.1-8B and Qwen2.5-7B, measure per-band relative MSE with the single scale and with per-band scales, then run RULER-32k and LongBench against Block-GTQ K3V2 and TurboQuant 3.5 b. | Idea 1 falls below \"none\" if either holds:",
+ "unknown": "Even if idea 1 is right, nobody knows whether any ~6× format keeps a ≤1% relative drop on long reasoning-model chains of thought (AIME, MATH at 32k+ generated tokens). The −2.5 AIME24 drop for Block-GTQ suggests the ceiling is nearer 5× than 6×. It is also still unclear whether offline calibration is allowed."
+}

@@ -1,0 +1,24 @@
+CHECK uniform data 4b g128 relMSE 0.00424  theory ~ (2/15)^2/12/(1/3)=0.00444
+rotated  2b g32                     rel-RMS err 0.322
+rotated  2b g128                    rel-RMS err 0.384
+rotated  4b g32                     rel-RMS err 0.063
+rotated  4b g128                    rel-RMS err 0.076
+rotated  bitplane top2 of 4b g32    rel-RMS err 0.263
+rotated  1b g128                    rel-RMS err 1.313
+rotated  NVFP4                      rel-RMS err 0.097
+unrotated 2b g128 rel-RMS err 1.114
+
+IDEA1 required tail mass <= 0.0038  (coverage >= 99.62%)
+IDEA1 read bits/value (32k ctx): 2.544
+
+IDEA2 70B fetch/req/step 10.5 MB ; 8B 4.2 MB
+IDEA2 A 70B TP8 b8 (per GPU): PCIe bytes 10.5 MB -> 1.03 ms/step incl 80 serial layer hops
+IDEA2 B 8B b10: PCIe bytes 41.9 MB -> 1.25 ms/step incl 32 serial layer hops
+
+IDEA4 bits: K2V1 1.75 K3V2 2.75 K4V4 4.25 ; max K4V4 head fraction at 2.1b avg = 0.140
+IDEA4 avg bits if 50% heads K4V4 (DuoAttention GQA) rest K2V1: 3.00
+
+CHAIN B cap=False NVFP4=64.1 units; I1 58.1 (RATIO 1.10) I2 66.8 (RATIO 0.96) I3 57.7 (RATIO 1.11) I4 56.6 (RATIO 1.13)
+
+CHAIN B cap=True NVFP4=35.8 units; I1 29.8 (RATIO 1.20) I2 36.4 (RATIO 0.98) I3 29.2 (RATIO 1.23) I4 26.2 (RATIO 1.37)
+note: I2 cap=True keeps PCIe at batch-10 size (optimistic for I2)

@@ -1,0 +1,4 @@
+E8 pts <=12: 117361
+E8ball 2b (2^16)                   MSE=0.0906 relRMS=0.301 SNR=10.43 dB
+E8 RVQ 3b (2b+1b)                  MSE=0.0299 relRMS=0.173 SNR=15.25 dB
+E8 RVQ 4b (2b+2b)                  MSE=0.0091 relRMS=0.095 SNR=20.42 dB

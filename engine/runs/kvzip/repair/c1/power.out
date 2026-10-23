@@ -1,0 +1,5 @@
+k=   1 samples/problem: SE(diff)=12.91 pp, 2-pt diff = 0.2 sigma, tokens/arm=0.4M, H100-h/arm@3700tok/s=0.03
+k=   4 samples/problem: SE(diff)=6.45 pp, 2-pt diff = 0.3 sigma, tokens/arm=1.4M, H100-h/arm@3700tok/s=0.11
+k=  16 samples/problem: SE(diff)=3.23 pp, 2-pt diff = 0.6 sigma, tokens/arm=5.8M, H100-h/arm@3700tok/s=0.43
+k=  64 samples/problem: SE(diff)=1.61 pp, 2-pt diff = 1.2 sigma, tokens/arm=23.0M, H100-h/arm@3700tok/s=1.73
+k= 340 samples/problem: SE(diff)=0.70 pp, 2-pt diff = 2.9 sigma, tokens/arm=122.4M, H100-h/arm@3700tok/s=9.19

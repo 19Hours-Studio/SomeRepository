@@ -1,0 +1,6 @@
+mild (Loki-like)   rho=0.0 r90 pre/post=78/96 | B_band8@2.0=1.93 Kpre@2.0=1.56 Kpost@2.0=1.91 KpostOracle@2.0=1.81 H@2.0=2.00 B_band8@3.0=2.93 Kpre@3.0=2.56 Kpost@3.0=2.91 KpostOracle@3.0=2.81 H@3.0=3.00
+mild (Loki-like)   rho=0.8 r90 pre/post=71/93 | B_band8@2.0=1.89 Kpre@2.0=1.42 Kpost@2.0=1.81 KpostOracle@2.0=1.71 H@2.0=2.00 B_band8@3.0=2.89 Kpre@3.0=2.42 Kpost@3.0=2.81 KpostOracle@3.0=2.71 H@3.0=3.00
+strong outliers    rho=0.0 r90 pre/post=26/53 | B_band8@2.0=0.98 Kpre@2.0=0.60 Kpost@2.0=0.79 KpostOracle@2.0=0.62 H@2.0=2.00 B_band8@3.0=1.98 Kpre@3.0=1.36 Kpost@3.0=1.79 KpostOracle@3.0=1.55 H@3.0=3.00
+strong outliers    rho=0.8 r90 pre/post=27/56 | B_band8@2.0=1.35 Kpre@2.0=0.67 Kpost@2.0=1.07 KpostOracle@2.0=0.92 H@2.0=2.00 B_band8@3.0=2.35 Kpre@3.0=1.37 Kpost@3.0=2.08 KpostOracle@3.0=1.84 H@3.0=3.00
+flat (worst)       rho=0.0 r90 pre/post=99/105 | B_band8@2.0=1.98 Kpre@2.0=1.83 Kpost@2.0=1.97 KpostOracle@2.0=1.93 H@2.0=2.00 B_band8@3.0=2.98 Kpre@3.0=2.83 Kpost@3.0=2.97 KpostOracle@3.0=2.93 H@3.0=3.00
+flat (worst)       rho=0.8 r90 pre/post=99/105 | B_band8@2.0=1.98 Kpre@2.0=1.82 Kpost@2.0=1.96 KpostOracle@2.0=1.92 H@2.0=2.00 B_band8@3.0=2.98 Kpre@3.0=2.82 Kpost@3.0=2.96 KpostOracle@3.0=2.92 H@3.0=3.00

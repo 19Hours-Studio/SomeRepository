@@ -50,3 +50,37 @@ g1_ledger: 3 ideas (659 words)
 g1_neg: 3 ideas (703 words)
   skip g1_mech (done)
 g1_mech: 3 ideas (660 words)
+  g1_rf1: 17,318 tokens, 47.4 s
+g1_rf1: 3 ideas (685 words)
+  g1_rf2: 17,256 tokens, 46.1 s
+g1_rf2: 3 ideas (691 words)
+  triage: 18,356 tokens, 42.3 s
+/home/user/SomeRepository/engine/runs/kvzip/gate/c1/TASK.md
+/home/user/SomeRepository/engine/runs/kvzip/gate/c2/TASK.md
+  gate.2: 82,060 tokens, 228.8 s
+  gate.1: 212,360 tokens, 248.7 s
+/home/user/SomeRepository/engine/runs/kvzip/gate/TASK.md
+  skip gate (done)
+gate: 8/8 parsed {'DEAD': 6, 'WOUNDED': 2}
+  gate: 8 new facts -> evidence.md
+/home/user/SomeRepository/engine/runs/kvzip/repair/TASK.md
+/home/user/SomeRepository/engine/runs/kvzip/repair/c2/TASK.md
+/home/user/SomeRepository/engine/runs/kvzip/repair/c1/TASK.md
+  repair.2: 516,996 tokens, 445.1 s
+  repair.1: 694,317 tokens, 879.7 s
+  skip repair (done)
+repair: 4 ideas (2288 words)
+/home/user/SomeRepository/engine/runs/kvzip/audit_final/TASK.md
+  audit_final: 375,354 tokens, 342.0 s
+  audit_final: 5 new facts -> evidence.md
+  calibrate: 11,770 tokens, 24.6 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#1       F0/M2/m4 fit 0.00 ratio 1.01 known yes p 38%  RoPE-band-ranked Hadamard-E8 KV
+  2. repair#4       F0/M3/m2 fit 0.00 ratio 1.0 known partly p 12%  Window-mass per-head precision gating
+  3. repair#2       F1/M2/m3 fit 0.00 ratio 1.0 known partly p 8%  Folded online KLT water-filling
+  4. repair#3       F1/M2/m2 fit 0.00 ratio 0.95 known partly p 3%  Mass-gated dithered value codes
+  none of these: p 39%
+  weakest link: One FP8 scale per token and head is shared by 16 bands whose energies differ by up to about 30×. Proxy MSE rises from 0.118 to 0.76–3.19 at mismatched scales. Per-band scales would fix this but add about 0.25–1.0 b/value, which would push keys toward 3.5–4 b. Most of the edge over TurboQuant and KVTuner would then be gone.
+  flip test: On real post-RoPE keys from Llama-3.1-8B and Qwen2.5-7B, measure per-band relative MSE with the single scale and with per-band scales, then run RULER-32k and LongBench against Block-GTQ K3V2 and TurboQuant 3.5 b. | Idea 1 falls below "none" if either holds:
+spent 2,422,187 tokens, $8.56

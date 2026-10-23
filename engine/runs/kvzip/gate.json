@@ -1,0 +1,58 @@
+{
+ "g1_neg#1": {
+  "killer": "share of attention mass outside the set read at full precision (top 2% of tokens + 4 sinks + 64 recent tokens), at 32k CoT, under the idea's own rule (tail mass × 2-bit value error ≤ 1e-3)",
+  "why": "The coverage it needs from the top 2% is above what published long-CoT sparsity data supports, and even if that held it saves only about 10–20% over NVFP4 because it stores as many bits.",
+  "margin": 0.16,
+  "ratio": 1.1,
+  "verdict": "DEAD"
+ },
+ "g1_rf2#2": {
+  "killer": "PCIe time per decode step to fetch the top-256 residuals, against the HBM read time saved compared with NVFP4 (archetype B, 8B, batch 10, 32k). Each layer's top-k depends on that layer's query, so the fetch cannot be prefetched",
+  "why": "The PCIe residual fetch costs more decode time than the 2-bit HBM reads save over NVFP4, and the quality gain comes from only 256 of 131k tokens (0.2%).",
+  "margin": 0.72,
+  "ratio": 0.96,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#2": {
+  "killer": "attention mass covered by the top 2% of pages on long CoT (the idea's own threshold)",
+  "why": "Its 99%-coverage-at-2% condition fails by about 6× on published long-CoT budgets, and the best-case gain over NVFP4 is about 11–23%.",
+  "margin": 0.16,
+  "ratio": 1.11,
+  "verdict": "DEAD"
+ },
+ "g1_mech#3": {
+  "killer": "share of KV heads that can be K4V4 within a 2.1-bit average (group-128 FP16 scale/zero, 0.25 bit/value, a favourable assumption)",
+  "why": "The 2.1-bit budget leaves room for only 14% retrieval-grade heads where GQA models need about 50%, and 1-bit min-max values give 1.31 relative RMS error (measured), worse than zeroing the value.",
+  "margin": 0.28,
+  "ratio": 1.13,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#3": {
+  "killer": "Decode time per token per head. Keys are stored in the KLT basis and RoPE is applied after dequantization, so the 128×128 basis cannot be folded into the query. Each cached key has to be rebuilt with a 128×128 matmul: 32,768 FLOP for 40 B read, or 819 FLOP/byte. The H100 ridge point is 295 FLOP/byte, so this part is compute-bound",
+  "why": "The 2.5-bit memory saving is mostly lost to the key-rebuild compute that comes from applying RoPE after dequantization, so at realistic tensor-core use decode attention gets slower than NVFP4 (values are fine, since their basis folds into the output). The AM/GM gain on real pre-RoPE keys is still unmeasured and needs a real-model KV dump.",
+  "margin": 0.65,
+  "ratio": 1.1,
+  "verdict": "WOUNDED"
+ },
+ "g1_neg#3": {
+  "killer": "Attention-logit MSE at 2 bits relative to 4-bit scalar codes. Logit error equals",
+  "why": "The idea's own criterion fails by 6× even at the rate-distortion limit, and per-token Viterbi encoding costs more than the bandwidth it saves.",
+  "margin": 0.17,
+  "ratio": 0.84,
+  "verdict": "DEAD"
+ },
+ "g1_mech#1": {
+  "killer": "Effective number of attended tokens (N_eff) in retrieval heads",
+  "why": "Subtractive dither removes bias (measured mean error −9e-5 vs −9e-4) but leaves MSE the same (0.302 vs 0.304), and retrieval heads do not average enough tokens to hide a 6 dB value SNR.",
+  "margin": 0.25,
+  "ratio": 1.17,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#1": {
+  "killer": "AIME24 accuracy change at 32k with 2-bit values",
+  "why": "The bit accounting holds (3.06 b keys + 2.06 b values + FP8 sinks and window ≈ 2.6 b, 6.1×) and the rotation is sound, but the 2-bit values are the very component that published long-CoT results penalize. The proposed 2-GPU-hour AIME test on R1-Distill-Qwen-7B is the right deciding experiment and needs a real model.",
+  "margin": 0.57,
+  "ratio": 1.18,
+  "verdict": "WOUNDED"
+ }
+}

@@ -1,32 +1,5 @@
 [
  {
-  "id": "g1_rf1#1",
-  "label": "g1_rf1",
-  "arm": "E",
-  "gen": 1,
-  "name": "Rotated 3-bit fixed-codebook cache",
-  "mech": "Keys and values are rotated with a fixed Hadamard matrix after RoPE. Each value is then coded with a fixed 3-bit Lloyd-Max Gaussian codebook, plus one FP8 scale per 64 values, for 3.125 bits per value or about 5.1× versus FP16. Sinks and the recent window stay in FP8, and a FlashAttention kernel dequantizes through an 8-entry lookup table in registers. The closest earlier attempt is TurboQuant, whose QJL residual added attention noise; this design drops QJL and spends that bit budget on the code itself. Anchors are KVQuant (<0.1 perplexity loss at 3 bits) and TurboQuant (neutral at 3.5 bits). The deciding quantity is the AIME accuracy gap at 32k tokens, which must be ≤1 point.",
-  "value": "A safe ~5× cache, against NVFP4's ~4×, with a predicted ≤1% drop on RULER and LongBench and no calibration."
- },
- {
-  "id": "g1_rf1#2",
-  "label": "g1_rf1",
-  "arm": "E",
-  "gen": 1,
-  "name": "Progressive residual, score-guided refinement",
-  "mech": "Each 16-token page stores a 2-bit rotated base code in HBM, plus a 2-bit residual in cold HBM or CPU memory, so no token is ever evicted. At decode, attention scores are computed from the base keys. For the pages holding the top ~5% of softmax mass, the residual is fetched and those pages are recomputed at 4 bits. The closest earlier attempts are KIVI-2bit, which loses about 13 AIME points because errors land on high-attention tokens, and Quest, which keeps full precision. Here only the high-attention tokens are refined. Hot storage is about 2.25 bits, roughly 7× versus FP16. The deciding quantity is the true softmax mass captured by the 2-bit top-k, which must be ≥0.99.",
-  "value": "About 7× HBM reduction that stays query-agnostic under multi-turn reuse and long chains of thought, cutting decode KV reads roughly 3.5× versus FP8."
- },
- {
-  "id": "g1_rf1#3",
-  "label": "g1_rf1",
-  "arm": "E",
-  "gen": 1,
-  "name": "E8 lattice 2-bit KV",
-  "mech": "Each group of 8 rotated values is coded as one 16-bit E8P lattice codeword, a fixed QuIP#-style codebook needing no calibration. One FP16 scale is stored per 128 values, giving about 2.13 bits per value, or 7.5× versus FP16. The kernel decodes from a 1 KB shared-memory table using sign flips. The closest earlier attempts are 2-bit scalar schemes such as KIVI and MILLION, which break on long chains of thought. E8's granular and shaping gain lowers distortion by about 0.2 bits' worth compared with scalar 2-bit codes. The deciding quantity is the key mean-squared error relative to scalar 3-bit codes, which must be ≤1.3×.",
-  "value": "If the AIME gap stays ≤2 points, it gives a near-8× drop-in cache that roughly doubles reasoning-serving batch size over NVFP4."
- },
- {
   "id": "g1_ledger#1",
   "label": "g1_ledger",
   "arm": "E",
@@ -106,5 +79,95 @@
   "name": "Entropy-measured per-head bit allocation",
   "mech": "During prefill, compute each KV head's attention entropy over the prompt's own queries. Assign bit widths from that: broad heads get K2V1, middle heads K3V2, and sharp retrieval heads K4V4. Every token is kept, and the bits average about 2.1 including scales, or 7.5×. The closest earlier attempts are RazorAttention and DuoAttention. They evicted tokens in non-retrieval heads and saved only 1.67× on GQA. This design only lowers precision, which works on already-shared GQA heads and keeps multi-turn reuse safe. The deciding quantity is how stable head entropy rankings are across prompts and decode phases, measured by a Spearman rank correlation of at least 0.9.",
   "value": "About 7.5× compression without calibration data, adapting per prompt to any GQA model."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Margin-flagged key residual promotion",
+  "mech": "Each head is rotated with a fixed Hadamard transform, which needs no calibration. Keys are stored at 2 bits pre-RoPE, values at 2 bits per token, and a 2-bit residual for every page is kept in host memory. During decode, the kernel flags any page whose quantized logit lies within ‖q‖·‖e‖max of the top logit. Only flagged pages fetch their residual over PCIe, so they are read at 4 bits. The closest earlier attempt is Kitty's dynamic precision boost, which uses a static importance heuristic and still trails FP16 by 3–4 AIME points. This design promotes exactly the pairs whose argmax can flip. The deciding quantity is the flagged-page fraction, which must stay under about 5% to fit PCIe bandwidth.",
+  "value": "About 2.3 bits per value in HBM (7× vs FP16) with 4-bit fidelity where reasoning needs it, so batch size roughly doubles over NVFP4."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Entropy-gated decision-step recompute",
+  "mech": "Decode runs on a 2.3-bit rotated cache. A full FP8 copy is kept on host or SSD, as LMCache already does. When next-token entropy exceeds a threshold τ, the step is a decision point. The model then refetches FP8 pages for the top-attention pages identified in the quantized pass, recomputes that step, and samples from the corrected distribution. The closest earlier attempt is speculative-decoding verification, which rechecks every token at full cost. This design rechecks only uncertain steps, and only on pages that carry attention mass. The deciding quantity is the fraction of steps above τ, which must be under about 10% for the overhead to stay below 15%.",
+  "value": "It bounds where a 7× cache can change a reasoning chain's tokens, without any offline calibration."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Per-request online KLT bit-allocation",
+  "mech": "During prefill, the system accumulates each head's pre-RoPE key and value covariance. It stores one 128×128 FP16 basis per head per layer, which is under 0.01 bits per value at 32k. Bits are then allocated by reverse water-filling, about 2.5 on average, and RoPE is applied after dequantization inside the kernel. The closest earlier attempt is Palu, whose offline SVD truncation creates latent outliers and loses accuracy beyond 30% rank reduction. This design truncates nothing and needs no calibration data. The deciding quantity is the eigenvalue arithmetic-to-geometric-mean ratio, which must be at least 4 to save at least 1 bit. That ratio is likely too small on MLA latents.",
+  "value": "For GQA models it is a calibration-free path to 2.5 bits per value (6.4×) whose quality follows rate-distortion theory rather than heuristics."
+ },
+ {
+  "id": "g1_rf2#1",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Hadamard-trellis 2-bit KV",
+  "mech": "Each pre-RoPE key and value head vector is rotated by a fixed random Hadamard matrix and stored as one FP16 norm plus trellis-coded indices at 1.875 bits per value. Four sink tokens and the last 128 tokens stay in FP8. The fused decode kernel decodes the trellis in registers, then applies RoPE and runs attention. The closest earlier attempt is TurboQuant, which lost 18 GSM8K points at 3 bits because its scalar bins plus noisy QJL correction waste about 3 dB. Trellis vector coding recovers about 2 dB of that, and the design has no QJL stage. The deciding quantity is the logit error relative to the per-head logit spread.",
+  "value": "A drop-in, calibration-free 8× KV cache versus FP16, about 2× smaller than NVFP4, which should give roughly 1.6–2× reasoning decode throughput."
+ },
+ {
+  "id": "g1_rf2#2",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Coarse-HBM, refined-host residual",
+  "mech": "The HBM holds only 2-bit rotated codes, and every token is still attended. A 2-bit residual for each token sits in host DRAM. At each decode step, approximate scores from the 2-bit codes pick the top 256 tokens per KV head, and only those tokens' residuals are fetched. That costs about 10 MB per step for a 70B model at 128k, roughly 0.2 ms over PCIe 5 or less over NVLink-C2C. The closest earlier attempts are Quest and ShadowKV, which approximate or skip non-selected tokens. Here no token is dropped, so multi-turn reuse is safe. The deciding quantity is the softmax mass that falls outside the top-k set.",
+  "value": "About 4-bit effective fidelity on the tokens that matter, at a 2-bit HBM footprint and read cost."
+ },
+ {
+  "id": "g1_rf2#3",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "MLA latent trellis quantization",
+  "mech": "The 512-dimension MLA latent is Hadamard-rotated and trellis-coded at 2 bits. The decoupled 64-dimension RoPE key stays in FP8, and one FP16 norm is stored per token. That totals about 2.7 bits per value, roughly 6× smaller than the BF16 MLA cache. The kernel decodes the latent before the absorbed up-projection. The closest earlier attempt is Palu, whose own low-rank projection created latent outliers that hurt low-bit quantization. Rotation flattens those outliers without calibration. The deciding quantity is the latent MSE after the absorbed up-projection.",
+  "value": "Removes about 25% of DeepSeek-V3-class decode cost and fits about 6× more 128k contexts per GPU."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "RoPE-band-ranked Hadamard-E8 KV",
+  "mech": "Anchor kept: a seeded Hadamard rotation plus an E8 lattice code decoded from a 256-entry shared-memory table. The original design rotated all 128 dimensions globally at one rate, and that is now published work (arXiv 2610.15384, E8 k2v2). It is also the configuration that collapses on reasoning: TurboQuant-MSE K3V2, which uses one rotation and one rate, scores 0.0 on AIME24 (Block-GTQ paper). In the repaired design, the 64 RoPE pairs are ranked by their prefill energy. RoPE never changes a pair's norm, so the ranking holds during decode. They are grouped into 16 bands of 8 dimensions, with a Hadamard rotation inside each band. Bands are coded at 4, 3 or 2 bits with E8 (2b+2b residual, 2b+1b, 2b), giving keys a 3.0-bit average. Values use E8 at 2 bits, which is where E8 helps most. Simulated MSE is 0.091 for E8 against 0.118 for Lloyd-Max and 0.25 for KIVI-style INT2 g128. Each token and head stores one FP8 scale. 4 sink tokens and the last 128 tokens stay in FP16. The query gets the same permutation and band rotation, so keys are stored post-RoPE exactly. Total is 2.62 b/value at 32k (6.1× vs FP16) and 3.0 b at 4k (5.3×). Decode dequantization is 12.5 op/B, under the H100 CUDA-core ridge of about 20 op/B. Prefill encode cost is +0.007%.",
+  "value": "Same 6× memory and about 6.2× the decode throughput of BF16 at 32k as Block-GTQ K3V2. The prediction is that it loses less on AIME (≤2 points vs −2.5). That would be about $5.06 vs $5.17 per 1,000 correct AIME answers, roughly 2% cheaper, which is a small edge."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Folded online KLT water-filling",
+  "mech": "Anchor kept: each request accumulates its own covariance during prefill, takes a KLT basis from it, and allocates bits per component by reverse water-filling, with no calibration data. The fatal step was rebuilding every key (819 FLOP/B against a 295 FLOP/B ridge). That is removed by computing the KLT on post-RoPE keys, so attention scores from the stored coefficients using q′ = Uᵀq, and by folding the value basis into the output (o = U_v·Σp·c). This adds +0.39% decode FLOPs at 32k. The distortion is weighted by the request's own prefill query covariance. The basis is refreshed every 32k generated tokens. Prompts under 1,024 tokens fall back to Hadamard. The corrected basis overhead is 0.0625 b/value per FP16 basis at 32k, not \"<0.01\". Total is about 2.74 b at 32k (5.8×). The model's decisive number is that the post-RoPE KLT gains only 0.0–0.3 b over plain RoPE-band energy allocation on RoPE keys. On stores with no RoPE it gains 0.17–1.6 b over Hadamard: values, MLA latents c_KV (folded into the absorbed W_UK/W_UV) and NoPE layers. So the design is retargeted at those stores.",
+  "value": "For MLA models (DeepSeek-V3/R1, Kimi-K2) and NoPE/iRoPE layers, it is a calibration-free way to read a compressed cache directly in HBM. If the real-tensor gain is ≥0.5 b, it would be about 1.2× cheaper per served token than Hadamard/TurboQuant at the same quality. On ordinary RoPE keys it is about equal to Block-GTQ (≈1.0×)."
+ },
+ {
+  "id": "repair#3",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Mass-gated dithered value codes",
+  "mech": "The anchor stays: keys and values are treated differently. Keys are always deterministic 4-bit (per-channel, 128-token groups, 4.25 bits with scales), because key error is exponentiated in the softmax. Values carry a subtractive dither regenerated from a position hash, so it costs no stored bits. The repair is where the dither matters. It does not reduce error per value (0.50 relative RMS at 2 bits either way), and simple per-block mean-centering beats it on channel-offset data (0.49 vs 1.33). It is, however, the only one of the three schemes that makes errors on repeated content (repeated phrases, code, CoT loops) shrink as more tokens are averaged: at 60 copies, 0.065 vs 0.44–0.52 for the other schemes. That makes a provable gate possible. Each KV head's value precision is chosen from E_h = √Σp² over its quantized tokens: 4-bit above 0.31, 3-bit for 0.133–0.31, 2-bit for 0.046–0.133, and 1-bit dithered at or below 0.046 (about 470 or more tokens effectively attended). At that 1-bit setting the simulated error is 0.025–0.063, under the 0.10 that single-token 4-bit already gives, while deterministic 1-bit stays at 0.38–1.10. Values are Hadamard-rotated and mean-centered, 4 sink tokens plus the last 128 tokens stay FP16, and E_h is accumulated inside the attention kernel (the maximum over the GQA group, 99th percentile over queries).",
+  "value": "3.46–3.95 bits (4.1–4.6×), with total attention-output error at most 1.2–1.43× that of uniform 4-bit. That is 55–60 vs 50 concurrent 32k requests on an H100 (+10–20% requests per GPU), with no calibration."
+ },
+ {
+  "id": "repair#4",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Window-mass per-head precision gating",
+  "mech": "The anchor stays: each KV head's precision is set per prompt from the prompt's own attention, measured during prefill, and no token is dropped. Four repairs remove the causes of death. First, 1-bit and 2-bit keys are banned; the menu is now K4V4, K4V3 or K3V2. Second, there is an error target instead of a fixed 2.1-bit budget. Third, ranking heads by entropy (which needed Spearman stability across prompts) is replaced by an absolute gate on m_q, the share of attention that falls outside the FP16 sink-plus-recent window. Fourth, every head gets per-block channel-mean centering (0.125 bit). Deterministic error can stay correlated across tokens, but it is still bounded by rel(b)·m_q, so the gate holds without dither. The thresholds are K3V2 if m_q ≤ 0.133, K4V3 if m_q ≤ 0.31, and K4V4 otherwise. A decode-time Σp² watchdog upgrades a head's new 128-token blocks if it turns sharp during chain-of-thought.",
+  "value": "3.22–3.80 bits (4.2–5.0×), with error at most 1.2–1.67× that of uniform 4-bit. That is 57–67 vs 50 concurrent requests (+14–34%). It matches the calibrated KVTuner (about 3.5 bits) while needing no calibration, and it beats uniform K3V3 (3.31 bits, about 2.15× error) on error at the same size."
  }
 ]
