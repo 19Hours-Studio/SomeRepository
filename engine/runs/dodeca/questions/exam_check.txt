@@ -1,0 +1,52 @@
+=== CHECK ===
+SOURCE 1: Gellep bone 15 cm long, 3 cm thick | CONFIRMED (approx., disputed) | Grüll 2016: c. 30 x 150 mm. A blog citing Guggenberger gives "just under 3 cm", c. 18 cm. Known only from a drawing (FACT 53).
+SOURCE 2: Gellep largest holes 2.4/2.3 cm | UNVERIFIED | no source found. Grüll's 10.5-22 mm repeats the Jublains/Newhall figures. The blog says the bone "corresponds to the largest opening-pair".
+SOURCE 3: bone thicker than holes, so a tenon | CORRECTED | does not follow: an estimated diameter over unverified holes. Bone width is about equal to the axis holes.
+SOURCE 4: Vienne | CONFIRMED | Duval 1981, Gallia 39 (FACT 45, 51).
+SOURCE 5: Arles bathhouse | UNVERIFIED | only nunc.ch (FACT 15, SOFT).
+SOURCE 6: Gallic Empire held Hispania 261-269 | CORRECTED | 260 (Postumus) to 269 (went over to Claudius II).
+SOURCE 7: Jupiter-giant columns limited to N. Gaul and Upper Germany | CORRECTED | concentrated Neckar-Moselle (Upper Germany and Belgica) from the mid-2nd c.; related columns in Lower Germany, Gaul and Britain.
+SOURCE 8: ring-and-dot on the Trier pieces (Faust) | CORRECTED | Faust names corner circle-eyes as a variant of the type, not specifically on the Trier pieces. The motif is common Roman ornament, not specifically north-western.
+SOURCE 9: Arloff ring-eyes | UNVERIFIED | only knobs and two opposite holes (FACT 32).
+SOURCE 10: Arloff misfiled 40 years | CONFIRMED (secondary) | catalogued as a dodecahedron from 1953 for about four decades: misclassified, not lost.
+SOURCE 11: Deonica found in study material | CONFIRMED | Jagodina museum (held since 2006, published 2021).
+SOURCE 12: Piercebridge river deposition | CONFIRMED | ritual deposition of some of c. 3,600 Tees finds "highly likely". No dodecahedron.
+SOURCE 13: Mainz bridge deposition | UNVERIFIED | Kappesser 2012. German literature mostly favours loss or rubbish.
+SOURCE 14: holes remove a third of face metal | CORRECTED | 27% (Kleiner Feldberg), 30% (Hunt), from the scan holes. calc_exam.py used a 45 mm height (scans: 50.4/48.9) and invented holes.
+SOURCE 15: Victorian trading (Hitchens) | CONFIRMED | Newcastle University 2024.
+SOURCE 16: Danube 3-4 pieces; detecting raises Britain, trade raises France | UNVERIFIED | no counts found.
+
+CONTRADICTION 1: Q3 tenon vs Sources 1-3 | drop the tenon. A hand-held rod or handle, mount medium.
+CONTRADICTION 2: Q4 "none around the Mediterranean" with an Arles/Vienne edge | Arles is unverified, Vienne lies in Narbonensis. Say: none in Italy, Iberia, Africa or the East.
+CONTRADICTION 3: Q4/Q10 Jupiter-column analogy | wrong distribution, and the columns carry inscriptions. Keep only as a loose parallel.
+CONTRADICTION 4: Q6 north-western ornament, Arloff ring-eyes | unsupported (Sources 8-9).
+CONTRADICTION 5: Q6 metal saving | 27-30% of 1-1.6 mm walls (FACT 54) is a few grams: a weak motive.
+CONTRADICTION 6: Q8 "once a woman's grave" vs FACT 15 (rich graves of both sexes) and Q1 | a few graves, both sexes.
+CONTRADICTION 7: Q8 rivers "deliberate" | not shown for any dodecahedron (Sources 12-13). Say "possibly".
+CONTRADICTION 8: Q1 dismisses priests because only 8.5% are sacred | a findspot does not show the owner's office. Keep open.
+CONTRADICTION 9: Q1 "soldiers" | fort finds show presence, not ownership.
+CONTRADICTION 10: Q2 "shown" | lack of wear does not show display.
+CONTRADICTION 11: Q5 collapse and Christianisation | no evidence.
+CONTRADICTION 12: Q7 "purse or handle" at medium | unsupported.
+CONTRADICTION 13: Q9 "several workshops" | two alloy readings, one unreliable (FACT 39).
+CONTRADICTION 14: Q11 and the picture: Geneva gives a cosmic sense | the die is outside the series (FACT 55), and its meaning lies in names the hollow pieces lack (FACT 19).
+CONTRADICTION 15: Q13 Hispania | held only nine years, weak evidence. The pre-260 dates decide.
+CONTRADICTION 16: Picture vs Q3/Q5 | the handle is asserted as fact (Q3: medium); "AD 150" goes beyond Q5.
+
+=== FINAL ANSWERS ===
+Q1: Owners | People of some means in towns, villas, shops and forts; in the 4th c. rich graves of both sexes (Gellep woman). Office, cult role and sex link unknown | medium; low (office)
+Q2: Occasions, keeping | Unknown. Little abrasive use. Found in houses, a commercial cellar (Jublains), forts and pits | low
+Q3: Mounting | Probably a rod or handle through the unringed axis pair: Gellep bone (c. 3 x 15-18 cm), Duval's rims, Kleiner Feldberg rims, the Arloff axis. Hunt's smooth rims and the core-hole reading leave it open. Rod form unknown | medium; low (form)
+Q4: Distribution | Real absence from Italy, Iberia, Africa and the East; rare in the Rhône valley. Bias shifts national shares only. Cause unknown; a regional custom is the best guess | high (absence); low (cause)
+Q5: Dates | In use by c. 200, probably from the later 2nd c. (forts lost before 260), to the mid-4th c. Causes of start and end unknown | medium; low (causes)
+Q6: Holes, rings, knobs | Probably design and type identity, not a code (FACT 46-48; Arloff). The holes possibly served the casting core. Knobs act as feet. Meaning unknown | medium; low (meaning)
+Q7: Sizes | Hand-made wax models, no module. Reason for a chosen size unknown | medium; low (reason)
+Q8: Contexts | Wherever provincials lived and served: settlements, forts, pits, hoards, rivers (possibly deliberate), a few rich graves. The repair at Kortessem shows they were kept | medium
+Q9: Makers, value | Probably regional smiths, direct lost-wax. Number of workshops unknown. Valued (skill, repair, graves), not precious | low-medium; low (value)
+Q10: Silence | Not surprising: the texts are Mediterranean and elite, and a small head is hard to spot on reliefs. Specific reason unknown | medium; low
+Q11: Arloff, Geneva | Arloff is a hollow knobbed sibling with one axial pair, so the axis, not the number twelve, links them. Geneva is a separate inscribed die and says nothing about their meaning | medium
+Q12: One use or several | Unknown. A change over time is not shown (about three dated pieces per phase) | low
+Q13: Gallic Empire | Not the origin (pre-260 use). The overlap reflects a shared area. No evidence of a boom | high; medium (no boost)
+Q14: Corpus | Weak: mostly unprovenanced, few stratified; shares and maps rough | high
+
+THE PICTURE: The hollow knobbed dodecahedra were a north-western provincial type, cast individually by lost-wax with no size module. They were in use by c. 200, probably from the later 2nd century, to the mid-4th, and were really absent from Italy, Iberia, Africa and the East. They were probably held on a rod or handle through the two largest opposite holes. Rings and knobs read as design, not as a measuring or dicing code. Owners were people of some means in towns, villas, shops and forts, later rich men and women buried with them. The pieces were rarely worn, sometimes repaired, and ended in settlements, pits, hoards, rivers and graves. Their meaning, any office, and why they began and ended remain unknown. The Gallic Empire did not create them, and the Geneva die does not explain them.

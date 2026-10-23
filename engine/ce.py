@@ -762,7 +762,9 @@ def cmd_usage(a):
     """v4: tokens and cost per step and in total (from <run>/usage.jsonl)."""
     import runner
     rows, tok, cost = runner.summary(rdir(a.run))
-    for r in rows: print(f"{r['step']:24s} {r['model']:7s} tools={r['tools'] or '-':28s} {r['tokens']:>9,} tok  ${r.get('cost_usd', 0):.3f}")
+    for r in rows:
+        cr = f" (cache re-reads {r['cache_read']:,})" if r.get("cache_read") else ""
+        print(f"{r['step']:24s} {r['model']:7s} tools={r['tools'] or '-':28s} {r['tokens']:>9,} tok{cr}  ${r.get('cost_usd', 0):.3f}")
     print(f"TOTAL {len(rows)} steps: {tok:,} tokens, ${cost:.2f}")
 
 # v4 one-pass pipelines. Estimates (tokens per step) are replaced by the run's own averages once usage.jsonl has them.

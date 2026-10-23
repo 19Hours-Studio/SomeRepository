@@ -31,6 +31,7 @@ def call(prompt, model="opus", tools="none", cwd=None, effort=None, budget_usd=N
     u = d.get("usage", {})
     tok = sum(u.get(k, 0) for k in ("input_tokens", "cache_creation_input_tokens", "cache_read_input_tokens", "output_tokens"))
     return d.get("result", ""), {"model": model, "tools": tl, "tokens": tok, "output_tokens": u.get("output_tokens", 0),
+                                 "cache_read": u.get("cache_read_input_tokens", 0), "fresh_input": u.get("input_tokens", 0) + u.get("cache_creation_input_tokens", 0),
                                  "cost_usd": d.get("total_cost_usd", 0.0), "turns": d.get("num_turns"),
                                  "seconds": round(time.time() - t0, 1)}
 
