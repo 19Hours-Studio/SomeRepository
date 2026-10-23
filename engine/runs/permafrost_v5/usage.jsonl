@@ -1,3 +1,4 @@
 {"step": "gen:reframe", "time": "2026-10-23 11:08:41", "model": "opus", "tools": "", "tokens": 15198, "output_tokens": 3158, "cache_read": 649, "fresh_input": 11391, "cost_usd": 0.15440979999999999, "turns": 1, "seconds": 38.1}
 {"step": "gen:g1_ledger", "time": "2026-10-23 11:09:53", "model": "opus", "tools": "", "tokens": 17273, "output_tokens": 5339, "cache_read": 1496, "fresh_input": 10438, "cost_usd": 0.1905752, "turns": 1, "seconds": 71.2}
 {"step": "gen:g1_neg", "time": "2026-10-23 11:11:07", "model": "opus", "tools": "", "tokens": 17534, "output_tokens": 5605, "cache_read": 1496, "fresh_input": 10433, "cost_usd": 0.19585519999999998, "turns": 1, "seconds": 74.1}
+{"step": "gen:g1_mech", "time": "2026-10-23 11:12:14", "model": "opus", "tools": "", "tokens": 17133, "output_tokens": 5198, "cache_read": 1496, "fresh_input": 10439, "cost_usd": 0.18776320000000002, "turns": 1, "seconds": 67.4}

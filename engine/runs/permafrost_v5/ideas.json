@@ -101,5 +101,32 @@
   "name": "Ship char, not coal",
   "mech": "A small retort at the pit turns coal into low-moisture char and burns the off-gas for its own heat and the pit's power. The settlement then receives more energy per tonne shipped. Char also self-heats in stockpiles less than raw low-rank coal. The closest attempt is Termokoks at Berezovsky, which suited a large market, not Arctic settlement flows. Deciding quantity: energy kept per tonne of char divided by energy per tonne of coal (about 1.2–1.4x for low-rank coal, near 1 for higher-rank coking coal such as Zyryanka's).",
   "value": "Every tonne-km of a fixed-capacity chain carries about a quarter more heat."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Frozen-in barge boilerhouse",
+  "mech": "A barge carries a full winter's coal in its hold and a containerised boiler on deck. In autumn it is moored and allowed to freeze in at a riverside settlement, and an insulated heat main of about 200 m runs ashore. The boiler burns straight from the hold all winter, so there is no unloading, no shore stockpile, no loader fleet and no second handling; the barge returns empty after breakup to refill at the pit. Barges already winter frozen-in in river backwaters, and no search found a barge used as boilerhouse and bunker (ATTEMPT 23). The deciding quantity is the share of the ~23,000 rub/t spent after the barge haul (handling, stockpile losses, last mile); it must exceed ~65% to reach 3x.",
+  "value": "Riverside settlements could get boiler coal for roughly the cost of the barge haul alone."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Burnable flood-season cargo rafts",
+  "mech": "In winter, crews at an upstream pit build log rafts or plank flatboats and load bagged coal onto them. The spring flood floats them downstream for 3-5 weeks at about 1-2 m/s, roughly 100+ km/day, using water too shallow for barges later in the season (ATTEMPT 22). At the settlement the hull is broken up and burned as fuel with the coal, so there is no return trip and the current does the hauling. The closest attempt is the 19th-century Lena *karbas* (disposable downstream boats), abandoned when steam barges beat hand labour; here the hulls are built in the idle winter season and their wood becomes delivered fuel. The deciding quantity is the fraction of rafts that arrive intact past gravel bars and ice jams; it must exceed ~85%.",
+  "value": "Settlements downstream of small pits on minor rivers could be supplied without barges or winter roads."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Long-season tracked sled trains",
+  "mech": "One wide-tracked tractor tows 8-12 low-pressure freight sleds over snow and river ice. Ground pressure is low enough to start in October and run into May, about 150+ days against the truck winter road's 45-54 (ATTEMPT 1). One driver moves 150-250 t instead of 25 t per truck, and sleds left at the settlement serve as the coal stockpile. The closest attempts are the 1950s Alaskan cat trains, displaced by trucks and air, and Antarctic traverses, which are costed for fuel loads rather than bulk coal; neither was set against a 45-day road window. The deciding quantity is cost per tonne-km; it must fall below ~5 rub/t-km against the winter road's 20.",
+  "value": "Inland settlements beyond barge reach could get a winter supply route about three times longer and several times cheaper per tonne."
  }
 ]
