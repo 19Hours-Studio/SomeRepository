@@ -1,0 +1,42 @@
+=== ATTEMPTS ===
+
+Searches were limited, so some entries have no number. Those are marked "unverified". The figures are the authors' own claims, and I found no independent replications.
+
+ATTEMPT 1: Paged blocks plus prefix sharing (PagedAttention) | vLLM, UC Berkeley, 2023 | standard | WHY IT DID NOT SOLVE IT: It removes fragmentation (throughput 2–4× over FasterTransformer and Orca; compared systems held real token state in only about 20–38% of KV memory, via a blog's reading of the paper). It does not shrink the live cache, which still grows linearly with context and users. | [arXiv 2309.06180](https://arxiv.org/abs/2309.06180), [blog](https://ithelp.ithome.com.tw/articles/10409678)
+
+ATTEMPT 2: FP8 KV cache | vLLM and others, 2024–26 | standard | WHY: It gives only 2× capacity and 2.6× burst throughput over BF16. Early FP8 attention kernels on Hopper had a large 128k needle regression, fixed only in a later accumulation patch. Sliding-window layers in hybrid models need FP8 skipped. So it is kernel- and version-dependent, and 2× is its ceiling. | [vLLM blog](https://vllm.ai/blog/fp8-kvcache), [TurboQuant study](https://vllm.ai/blog/turboquant)
+
+ATTEMPT 3: KIVI, 2-bit asymmetric (keys per-channel, values per-token) | Rice, TAMU and others, ICML 2024 | standard in research, niche in production | WHY: It gives 2.6× less peak memory and 2.35–3.47× throughput at near-baseline quality. Its evidence is on Llama-2, Falcon and Mistral. The 2-bit setting is not validated for long reasoning chains (see attempts 4 and 10). | [arXiv 2402.02750](https://arxiv.org/pdf/2402.02750)
+
+ATTEMPT 4: Low-bit quantization of other kinds (KVQuant 3-bit, TurboQuant 3–4-bit, PM-KVQ) | Berkeley 2024; vLLM 2026 test; PM-KVQ 2025 | niche | WHY: KVQuant reports <0.1 perplexity loss at 3-bit, but it needs calibration, non-uniform datatypes and custom kernels (up to 1.7× kernel speedup). vLLM measured "meaningful accuracy drops" for 3-bit TurboQuant variants on reasoning and very long context, plus worse latency and throughput. PM-KVQ's gain of up to 8% over baselines on reasoning shows naive low-bit quantization loses accuracy there. Perplexity does not predict these failures. | [KVQuant](https://neurips.cc/virtual/2024/poster/96936), [vLLM](https://vllm.ai/blog/turboquant), [PM-KVQ](https://arxiv.org/html/2505.18610v1)
+
+ATTEMPT 5: Query-aware eviction (SnapKV, H2O, StreamingLLM) | 2023–24 | standard in research, niche in production | WHY: At 20% density SnapKV trails full attention by about 1.3 points on LongBench (Llama-3.1-8B: 47.22 vs 48.50). With a long output, SnapKV scores 0 F1 on HTML-to-TSV, and chain-of-key accuracy is below 20. H2O's headline 29× is a peak against specific OPT baselines. Eviction cannot be undone, so it is hard to deploy on arbitrary traffic. | [RefreshKV](https://arxiv.org/pdf/2411.05787), [Nexus](https://arxiv.org/pdf/2606.23961), [H2O](https://arxiv.org/abs/2306.14048v2)
+
+ATTEMPT 6: Eviction under shared or multi-query cache | Eviction methods tested in the KVzip paper (Seoul Natl Univ), NeurIPS 2025 | niche | WHY: Query-aware eviction compressed on the first question degrades on later ones, with losses "even at 10% eviction". KVzip (query-agnostic, from context reconstruction) holds up to 70% eviction. That is 3–4× smaller and about 2× faster attention, but it costs an extra reconstruction pass. Tested on only three models (Llama-3.1-8B, Qwen2.5-14B, Gemma3-12B). Did not check RULER or SCBench. | [KVzip](https://arxiv.org/pdf/2505.23416)
+
+ATTEMPT 7: Eviction in multi-turn chat | FlowKV, SONIC, SCBench, 2025 | dropped or niche | WHY: SCBench finds sub-O(n) memory methods "suffer in multi-turn" while O(n)-memory sparse methods stay robust. FlowKV reports one Llama-3.1-8B score on PrefEval going from 10.9% to 75.4% after fixing the cache management. The failure is built in, because a permanent drop is a bet on future queries. | [SCBench](https://arxiv.org/pdf/2412.10319), [FlowKV](https://arxiv.org/pdf/2505.15347)
+
+ATTEMPT 8: Head-level split (DuoAttention; RazorAttention is the same idea, unverified) | MIT, 2024 | niche | WHY: Memory reduction is 2.55× on MHA models but only 1.67× on GQA, which is what most current models use. It needs an optimization-based calibration on synthetic data per model. | [arXiv 2410.10819](https://arxiv.org/abs/2410.10819)
+
+ATTEMPT 9: Top-k page retrieval (Quest) | MIT and UW, ICML 2024 | niche | WHY: It keeps the full cache in memory, so capacity is unchanged. Gains come only from reading less: up to 7.03× on self-attention and 2.23× on end-to-end decode. The sources conflict on which figure is which. About 16 GB of KV at 32k context spent over 50% of time just loading (secondary source). | [arXiv 2406.10774](https://arxiv.org/pdf/2406.10774)
+
+ATTEMPT 10: Compression on reasoning workloads | Benchmark study, NeurIPS 2025 | rejected as general-purpose | WHY: The best methods for reasoning models are H2O and a decoding-enabled SnapKV, while prefill-only compression is inadequate. Low budgets can lengthen reasoning traces, which gives back the saving. There is no single winner. | [Hold Onto That Thought](https://arxiv.org/html/2512.12008v1)
+
+ATTEMPT 11: Non-prefix reuse (CacheBlend, in LMCache) | UChicago, Microsoft, EuroSys 2025 | niche (RAG) | WHY: It cuts TTFT 2.2–3.3× and raises throughput 2.8–5× by recomputing a small set of tokens (about 15% in vendor material). The saving is only against full recompute, only on 3 models, and it depends on how well the recomputed tokens are picked. Exact prefix reuse stays the only bit-identical case. | [arXiv 2405.16444](https://arxiv.org/abs/2405.16444v2), [blog](https://blog.lmcache.ai/2024-10-09-cacheblend/)
+
+ATTEMPT 12: Compressed cache streaming and offload (CacheGen) | UChicago, 2023 | niche | WHY: It shrinks the cache 3.5–4.3× with ≤2% accuracy loss, but only helps when loading beats recompute (at 3 Gbps, TTFT is 3.1–4.7× better than sending text). Against 8-bit quantization the gain is only 1.67–1.81×. Needs encoder and decoder kernels. | [arXiv 2310.07240](https://arxiv.org/pdf/2310.07240)
+
+ATTEMPT 13: Low-rank or latent conversion (MHA2MLA, TransMLA, Palu) | China and others, 2025 | dropped as plug-and-play | WHY: MHA2MLA reports a 92% cache cut on Llama-2-7B with a 0.5% LongBench drop, but uses 0.6–1% of the training data in fine-tuning, which the constraint forbids. Direct conversion degrades speculative-decoding agreement. I could not confirm whether Palu or TransMLA run with zero retraining. | [MHA2MLA](https://arxiv.org/html/2502.14837v2), [TransMLA](https://arxiv.org/html/2502.07864v3)
+
+ATTEMPT 14: Learned eviction policy (KVP) | 2026 | niche | WHY: It beats heuristics on RULER and OASST2-4k, but it is learned, so it adds a training step per model. Baseline numbers not retrieved. | [arXiv 2602.10238](https://arxiv.org/pdf/2602.10238)
+
+ATTEMPT 15: Offloading with cache retrieval (FlexGen, InfiniGen) | 2023–24 | niche | WHY: Not verified; no source found in my searches.
+
+ATTEMPT 16: Rankings that depend on whether the query is visible | Matched-budget audit, 2026 | cautionary | WHY: Method rankings change with query visibility at compression time, so published leaderboards do not transfer between workloads. | [arXiv 2607.11942](https://arxiv.org/pdf/2607.11942)
+
+LESSONS:
+- Only methods that keep every token (paging, FP8, prefix reuse) are safe on all workloads. Their ceiling is about 2×, plus the savings from sharing a prefix.
+- Anything that drops tokens permanently depends on knowing the future query. It fails in multi-turn chat, multi-query reuse and long outputs, often at modest compression.
+- The sub-4-bit and head-level methods need calibration, custom kernels, or a particular architecture. For example, DuoAttention's gain falls from 2.55× to 1.67× on GQA. This is why none of them is truly plug-and-play on any model.
+- Methods are tested on few models, mostly Llama, Mistral and Qwen. None of the sources I found tested hybrid or state-space models, and SCBench only evaluated them as baselines.
+- Perplexity and LongBench hide the failures. Any new answer must be tested on multi-query reuse, multi-turn runs, long reasoning and RULER, at matched budgets, with the claimed gain measured against FP8 rather than FP16.

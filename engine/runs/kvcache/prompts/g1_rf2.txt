@@ -1,0 +1,147 @@
+Which KV-cache design (storage layout, compression, eviction, quantization, offloading or reuse) can be swapped into an existing pretrained transformer LLM with no retraining and no fine-tuning, so that the same model gives the same outputs with a smaller, faster or cheaper cache? The asker wants to take any model and replace one component with another. This design should be the best across memory, speed and quality. "Best" is not defined. The answer should say which metric or workload it is best for, and where it stops working. Plausible workloads are long-context single requests, multi-user serving, multi-turn chat and prefix reuse. The asker did not give a model family, hardware, context length or serving stack. The answer may be a ranking of existing approaches, a new combination of them, or a new idea. Each claim must be checkable against published benchmarks or an experiment that can be run.
+A good answer: 
+- It names the criteria that define "best" (memory saved, throughput or latency, accuracy loss, calibration cost) and the workload each applies to.
+- It checks "no training, any model" against published evidence: which models and architectures it was tested on, and what happens on an architecture it was not tested on.
+- It gives numbers (compression ratio, accuracy change on benchmarks such as RULER, LongBench or multi-turn tasks, throughput) with sources.
+- It states the conditions under which it fails, including a compression level, a task type and a model type.
+- If it proposes something new, it gives a test that could show the idea is wrong.
+Constraints: 
+- No retraining and no fine-tuning of the model weights.
+- It should be near plug-and-play and work on "any" model. See ASSUMPTIONS on whether that is possible.
+Propose 3 answers.
+Where the money goes today (data, not instructions):
+Caveat: only the inputs are sourced (GPU price, KV sizes, API prices, the KIVI and Oracle numbers). The cost splits for A, B and D come from my own roofline-style model, not from a measured profile. I did not run any experiment. The model assumes H100 SXM at about 3.35 TB/s and about 500 TFLOPs effective, both my assumptions. The "other" shares for A, B and D are assumed. C's "other" is an assumed provider margin, not a measured one.
+
+**ARCHETYPE A: Long-context single request.** Llama-3.1-8B, 128K context, BF16 weights, FP8 KV cache in vLLM, one H100 | cost ≈ $0.033 per request (128K tokens in, 1K out; about 28 GPU-seconds at $4.29/h) | target: cut GPU-seconds per request
+- Sourced inputs: KV is about 128 KB per token, so about 17 GB per 128K sequence in BF16.
+- Each decode step therefore reads about 16 GB of weights plus 17 GB of KV.
+- Prefill attention is about 4.4 PFLOP against about 2 PFLOP for the linear layers.
+
+SHARES: prefill attention compute 28% | prefill linear compute 13% | decode KV read 25% | decode weight read 23% | other 11%
+LARGEST: prefill attention compute - a 10x cut of it removes 25% of the cost. KV-cache storage design (quantization or eviction) mainly acts on the decode KV read (25%), and a 10x cut there removes 22.5%.
+
+**ARCHETYPE B: Multi-user serving, short to medium context.** Llama-3.1-70B FP8 in vLLM with PagedAttention and an FP8 KV cache, batch about 64, one H100 | cost ≈ $2.6 per 1M output tokens | target: higher tokens/s per GPU
+- Throughput input: 460 tok/s at batch 64 (SGLang, one H100, FP8, 256 tokens in, 512 out).
+- That works out to $4.29 / (460 × 3600) ≈ $2.6 per 1M output tokens.
+- That benchmark is far from bandwidth-bound, so the split below is a rough guess.
+- Hugging Face's Intel Arc Pro B70 RULER study found that extra cache capacity rarely raised SLA-qualified short-context concurrency, because prefill compute was the bottleneck.
+
+SHARES: decode weight read 35% | decode KV read 12% | prefill compute 20% | scheduling, comms and sampling overhead 23% | other 10%
+LARGEST: decode weight read - a 10x cut removes 31.5%. KV is only about 12% at about 1K context. It grows with context length, since 70B uses about 327 KB per token.
+
+**ARCHETYPE C: Multi-turn agent or chat through a hosted API with prompt caching.** 50K-token context, 1K new tokens and 500 output tokens per turn, Sonnet-class prices | cost ≈ $0.026 per turn with caching, against $0.158 without | price: $3/M input, $0.30/M cache read, $3.75/M cache write, $15/M output
+- Cache reads are priced at 0.1× the base input price.
+- OpenAI's discount is reported as only about 50%, but only third-party sources say so.
+
+SHARES: cache read 40% | output tokens 20% | cache write for the new turn 10% | other (provider margin, assumed) 30%
+LARGEST: cache read - a 10x cut removes 36%. The provider has already moved most of the saving into the price.
+
+**ARCHETYPE D: Self-hosted RAG or multi-turn chat with shared prefixes.** Llama-3.1-8B, 20K-token context, 200 output tokens, batch 16, vLLM prefix caching plus LMCache offload to CPU or SSD | cost ≈ $0.0014 per request without reuse (about 1.15 GPU-seconds) | target: skip prefill on cache hits
+- Without reuse, prefill dominates the split below.
+- With a hit, loading about 2.6 GB of KV over PCIe takes roughly 0.1 s and can overlap with compute. That is my estimate, not a benchmark.
+- Oracle's LMCache run on OCI (Granite 3.3 8B) reported about 2× throughput and a TTFT cut of 50% or more. That is a vendor figure for one setup.
+
+SHARES: prefill recompute 66% | decode KV read 18% | decode weight read 6% | other 10%
+LARGEST: prefill recompute - a 10x cut removes 59%. This is the largest and most reachable term anywhere in the ledger.
+
+**What this says for the question**
+- **Where KV design bites:** it matters most in D and A, through reuse and the decode KV read.
+- **Where it matters less:** in B at short context it is a small term, and in C the provider has already captured the saving.
+- **FP8 KV status:** it is the current practical default. Near-lossless RULER results were reported on 8 models, mainly dense GQA models such as Llama, Qwen and Mistral. Degradation was major on DeepSeek-R1-Distill-Qwen-7B and meaningful on Gemma-3-1B.
+- **KIVI 2-bit:** it reports 2.6× less peak memory including weights, and 2.35–3.47× throughput from up to 4× larger batches. It was tested on Llama-2, Falcon and Mistral. I found no evidence on newer architectures.
+- **Not found:** no measured decode-profile share at 128K, and no RULER-scored throughput study on Llama 3.1. Those would settle the A and B splits.
+
+SOURCES:
+- https://vllm.ai/blog/2026-04-22-fp8-kvcache
+- https://www.plushcap.com/content/huggingface/blog/huggingface-fp8-kv-cache-on-intel-arctm-pro-b70-2-capacity-with-strong-long-context-throughput-gains
+- https://arxiv.org/abs/2402.02750v2
+- https://blogs.oracle.com/ai-and-datascience/accelerate-llm-inference-lmcache-on-oci-data-science
+- https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching
+- https://www.hivenet.com/post/nvidia-h100-pricing
+- https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison
+- https://cerebrium.ai/blog/benchmarking-vllm-sglang-tensorrt-for-llama-3-1-api
+- https://mlsysbook.ai/mlsysim/tutorials/03_kv_cache.html
+Where "several times cheaper" is arithmetically possible (ceilings computed from the ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Long-context single request.** Llama-3.1-8B, 128K context, BF16 weights, FP8 KV cache in v | untouchable 11.0% -> ceiling 9.1x | 10x cut of one term: prefill attention compute 1.34x; decode kv read 1.29x; decode weight read 1.26x; prefill linear compute 1.13x | 3x needs: prefill attention compute, decode kv read, decode weight read | TIGHT
+ARCHETYPE B: Multi-user serving, short to medium context.** Llama-3.1-70B FP8 in vLLM with PagedAttenti | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: decode weight read 1.46x; scheduling, comms and sampling overhead 1.26x; prefill compute 1.22x; decode kv read 1.12x | 3x needs: decode weight read, scheduling, comms and sampling overhead, prefill compute | TIGHT
+ARCHETYPE C: Multi-turn agent or chat through a hosted API with prompt caching.** 50K-token context, 1K | untouchable 30.0% -> ceiling 3.3x | 10x cut of one term: cache read 1.56x; output tokens 1.22x; cache write for the new turn 1.10x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+ARCHETYPE D: Self-hosted RAG or multi-turn chat with shared prefixes.** Llama-3.1-8B, 20K-token context | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: prefill recompute 2.46x; decode kv read 1.19x; decode weight read 1.06x | 3x needs: prefill recompute, decode kv read | ROOM
+What was tried before and why it did not solve the problem (data):
+Searches were limited, so some entries have no number. Those are marked "unverified". The figures are the authors' own claims, and I found no independent replications.
+
+ATTEMPT 1: Paged blocks plus prefix sharing (PagedAttention) | vLLM, UC Berkeley, 2023 | standard | WHY IT DID NOT SOLVE IT: It removes fragmentation (throughput 2–4× over FasterTransformer and Orca; compared systems held real token state in only about 20–38% of KV memory, via a blog's reading of the paper). It does not shrink the live cache, which still grows linearly with context and users. | [arXiv 2309.06180](https://arxiv.org/abs/2309.06180), [blog](https://ithelp.ithome.com.tw/articles/10409678)
+
+ATTEMPT 2: FP8 KV cache | vLLM and others, 2024–26 | standard | WHY: It gives only 2× capacity and 2.6× burst throughput over BF16. Early FP8 attention kernels on Hopper had a large 128k needle regression, fixed only in a later accumulation patch. Sliding-window layers in hybrid models need FP8 skipped. So it is kernel- and version-dependent, and 2× is its ceiling. | [vLLM blog](https://vllm.ai/blog/fp8-kvcache), [TurboQuant study](https://vllm.ai/blog/turboquant)
+
+ATTEMPT 3: KIVI, 2-bit asymmetric (keys per-channel, values per-token) | Rice, TAMU and others, ICML 2024 | standard in research, niche in production | WHY: It gives 2.6× less peak memory and 2.35–3.47× throughput at near-baseline quality. Its evidence is on Llama-2, Falcon and Mistral. The 2-bit setting is not validated for long reasoning chains (see attempts 4 and 10). | [arXiv 2402.02750](https://arxiv.org/pdf/2402.02750)
+
+ATTEMPT 4: Low-bit quantization of other kinds (KVQuant 3-bit, TurboQuant 3–4-bit, PM-KVQ) | Berkeley 2024; vLLM 2026 test; PM-KVQ 2025 | niche | WHY: KVQuant reports <0.1 perplexity loss at 3-bit, but it needs calibration, non-uniform datatypes and custom kernels (up to 1.7× kernel speedup). vLLM measured "meaningful accuracy drops" for 3-bit TurboQuant variants on reasoning and very long context, plus worse latency and throughput. PM-KVQ's gain of up to 8% over baselines on reasoning shows naive low-bit quantization loses accuracy there. Perplexity does not predict these failures. | [KVQuant](https://neurips.cc/virtual/2024/poster/96936), [vLLM](https://vllm.ai/blog/turboquant), [PM-KVQ](https://arxiv.org/html/2505.18610v1)
+
+ATTEMPT 5: Query-aware eviction (SnapKV, H2O, StreamingLLM) | 2023–24 | standard in research, niche in production | WHY: At 20% density SnapKV trails full attention by about 1.3 points on LongBench (Llama-3.1-8B: 47.22 vs 48.50). With a long output, SnapKV scores 0 F1 on HTML-to-TSV, and chain-of-key accuracy is below 20. H2O's headline 29× is a peak against specific OPT baselines. Eviction cannot be undone, so it is hard to deploy on arbitrary traffic. | [RefreshKV](https://arxiv.org/pdf/2411.05787), [Nexus](https://arxiv.org/pdf/2606.23961), [H2O](https://arxiv.org/abs/2306.14048v2)
+
+ATTEMPT 6: Eviction under shared or multi-query cache | Eviction methods tested in the KVzip paper (Seoul Natl Univ), NeurIPS 2025 | niche | WHY: Query-aware eviction compressed on the first question degrades on later ones, with losses "even at 10% eviction". KVzip (query-agnostic, from context reconstruction) holds up to 70% eviction. That is 3–4× smaller and about 2× faster attention, but it costs an extra reconstruction pass. Tested on only three models (Llama-3.1-8B, Qwen2.5-14B, Gemma3-12B). Did not check RULER or SCBench. | [KVzip](https://arxiv.org/pdf/2505.23416)
+
+ATTEMPT 7: Eviction in multi-turn chat | FlowKV, SONIC, SCBench, 2025 | dropped or niche | WHY: SCBench finds sub-O(n) memory methods "suffer in multi-turn" while O(n)-memory sparse methods stay robust. FlowKV reports one Llama-3.1-8B score on PrefEval going from 10.9% to 75.4% after fixing the cache management. The failure is built in, because a permanent drop is a bet on future queries. | [SCBench](https://arxiv.org/pdf/2412.10319), [FlowKV](https://arxiv.org/pdf/2505.15347)
+
+ATTEMPT 8: Head-level split (DuoAttention; RazorAttention is the same idea, unverified) | MIT, 2024 | niche | WHY: Memory reduction is 2.55× on MHA models but only 1.67× on GQA, which is what most current models use. It needs an optimization-based calibration on synthetic data per model. | [arXiv 2410.10819](https://arxiv.org/abs/2410.10819)
+
+ATTEMPT 9: Top-k page retrieval (Quest) | MIT and UW, ICML 2024 | niche | WHY: It keeps the full cache in memory, so capacity is unchanged. Gains come only from reading less: up to 7.03× on self-attention and 2.23× on end-to-end decode. The sources conflict on which figure is which. About 16 GB of KV at 32k context spent over 50% of time just loading (secondary source). | [arXiv 2406.10774](https://arxiv.org/pdf/2406.10774)
+
+ATTEMPT 10: Compression on reasoning workloads | Benchmark study, NeurIPS 2025 | rejected as general-purpose | WHY: The best methods for reasoning models are H2O and a decoding-enabled SnapKV, while prefill-only compression is inadequate. Low budgets can lengthen reasoning traces, which gives back the saving. There is no single winner. | [Hold Onto That Thought](https://arxiv.org/html/2512.12008v1)
+
+ATTEMPT 11: Non-prefix reuse (CacheBlend, in LMCache) | UChicago, Microsoft, EuroSys 2025 | niche (RAG) | WHY: It cuts TTFT 2.2–3.3× and raises throughput 2.8–5× by recomputing a small set of tokens (about 15% in vendor material). The saving is only against full recompute, only on 3 models, and it depends on how well the recomputed tokens are picked. Exact prefix reuse stays the only bit-identical case. | [arXiv 2405.16444](https://arxiv.org/abs/2405.16444v2), [blog](https://blog.lmcache.ai/2024-10-09-cacheblend/)
+
+ATTEMPT 12: Compressed cache streaming and offload (CacheGen) | UChicago, 2023 | niche | WHY: It shrinks the cache 3.5–4.3× with ≤2% accuracy loss, but only helps when loading beats recompute (at 3 Gbps, TTFT is 3.1–4.7× better than sending text). Against 8-bit quantization the gain is only 1.67–1.81×. Needs encoder and decoder kernels. | [arXiv 2310.07240](https://arxiv.org/pdf/2310.07240)
+
+ATTEMPT 13: Low-rank or latent conversion (MHA2MLA, TransMLA, Palu) | China and others, 2025 | dropped as plug-and-play | WHY: MHA2MLA reports a 92% cache cut on Llama-2-7B with a 0.5% LongBench drop, but uses 0.6–1% of the training data in fine-tuning, which the constraint forbids. Direct conversion degrades speculative-decoding agreement. I could not confirm whether Palu or TransMLA run with zero retraining. | [MHA2MLA](https://arxiv.org/html/2502.14837v2), [TransMLA](https://arxiv.org/html/2502.07864v3)
+
+ATTEMPT 14: Learned eviction policy (KVP) | 2026 | niche | WHY: It beats heuristics on RULER and OASST2-4k, but it is learned, so it adds a training step per model. Baseline numbers not retrieved. | [arXiv 2602.10238](https://arxiv.org/pdf/2602.10238)
+
+ATTEMPT 15: Offloading with cache retrieval (FlexGen, InfiniGen) | 2023–24 | niche | WHY: Not verified; no source found in my searches.
+
+ATTEMPT 16: Rankings that depend on whether the query is visible | Matched-budget audit, 2026 | cautionary | WHY: Method rankings change with query visibility at compression time, so published leaderboards do not transfer between workloads. | [arXiv 2607.11942](https://arxiv.org/pdf/2607.11942)
+
+LESSONS:
+- Only methods that keep every token (paging, FP8, prefix reuse) are safe on all workloads. Their ceiling is about 2×, plus the savings from sharing a prefix.
+- Anything that drops tokens permanently depends on knowing the future query. It fails in multi-turn chat, multi-query reuse and long outputs, often at modest compression.
+- The sub-4-bit and head-level methods need calibration, custom kernels, or a particular architecture. For example, DuoAttention's gain falls from 2.55× to 1.67× on GQA. This is why none of them is truly plug-and-play on any model.
+- Methods are tested on few models, mostly Llama, Mistral and Qwen. None of the sources I found tested hybrid or state-space models, and SCBench only evaluated them as baselines.
+- Perplexity and LongBench hide the failures. Any new answer must be tested on multi-query reuse, multi-turn runs, long reasoning and RULER, at matched budgets, with the claimed gain measured against FP8 rather than FP16.
+Lessons from earlier runs on other questions (data):
+- Most answers that failed after review failed on one number nobody had computed: a rate times the working time against the window it needs, or a strength against months of exposure. Compute the deciding number before claiming.
+- The most common overstatement was a weak baseline. Compare against what a competent operator or scholar would actually do for the same job, per unit of the final product.
+- Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on.
+- Statistics and simulations gave confident wrong answers until they were checked on a case with a known answer; one null model rejected far more often than its alpha.
+- A method validated on synthetic data still gave a wrong result when its input data had unverified labels: a hobby-page list read as "which hole is opposite which" gave p = 0.0005 twice, in two separate runs. Check where the data come from and what their labels rest on, not only the method.
+- Raw data (3D models, catalogues, measurement tables) settled in one step what texts, judges and reviewers could not. Look for data before arguing from opinions.
+- Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason.
+- What the asker says may be wrong or incomplete; treat it as data to check, like any other source.
+- Several partial answers that each fit some facts were often parts of one answer; check whether candidates combine before choosing one.
+- "Several times cheaper" is arithmetically possible only where the cost terms an answer can touch hold most of the delivered cost; taxes, royalties and fees cap the gain at 1 / (their share).
+- A single clever link rarely moved the whole chain more than 1.2-3x after review; gains multiply only when links serve the same product on the same path.
+- The simplest competent alternative that uses the same insight often beat the clever design. Check it before claiming a gain.
+- Seasonal and climatic windows, load-bearing limits and the time a structure must last killed more designs than missing technology.
+- a defect that sank an answer in an earlier run: "The whole face retreats together" means the overburden above the seam has to be thawed and removed as well, so there is stripping after all. (A 20–30 m bluff over a 6 m seam has 14–24 m of overburden, which is 2.3–4 m³ per m³ of coal, or 46–80 k m³ a year.)
+- a defect that sank an answer in an earlier run: The gain is 1.04–1.3x, nowhere near the "several times cheaper" the brief requires. (15/(15–0.8) = 1.06, and 15/(15–3.4) = 1.29.)
+- a defect that sank an answer in an earlier run: Under ice, with no flushing, winter work cannot meet the fishery limit on suspended solids, because even a well-deployed silt curtain leaks orders of magnitude more than the limit allows. (The limit is +0.25 / +0.75 mg/L over background (Minselkhoz order 552, replaced in Sept 2025 by Rosrybolovstvo 
+- a defect that sank an answer in an earlier run: The face cannot be thawed as fast as the design advances: moving 3.7-8 m/h through 107 MJ/m³ frozen gravel takes 110-240 kW/m² over the whole 4.4-12 m² face, which means a face-averaged heat-transfer coefficient h of 18,000-79,000 W/m²K with 3-6 °C water, so neither the advance rate nor the 30% heat
+- a defect that sank an answer in an earlier run: The costed berth has 1.2 m of water, less than the measured end-of-winter ice, so the backwater freezes to the bed. The hull is then frozen to the bottom, the buoyancy and moat logic no longer applies, and the hull must ride out break-up and flood while frozen in. A hull that stays afloat needs ≥2.6
+- a defect that sank an answer in an earlier run: The window "stays open while worked, caves afterwards" does not exist: the 25 m working span is the failure span at the 30-second strength (1 MPa), and over the real 2.3–77 working days the strength has already fallen most of the way to its long-term value (Clamped beam σ=γL²/2t, γ=20 kN/m³, t=6 m: 
+- a defect that sank an answer in an earlier run: Open-water tailings discharge cannot meet the fishery limit: the plume figure assumes complete mixing into the whole river, and the cutter alone loses about the entire allowance before any plant tailings. (Back-calculating 1.0-2.6 mg/L at 5% escape (1.2 Mm³, 1.9 t/m³, 15-30% fines, 120 d) requires f
+- a defect that sank an answer in an earlier run: It is not cheaper than best current practice: the "3-5x" is measured against a method that already failed, and it mixes grades. (At equal grade the gain over the seasonal mode is 3.4x (78.8 vs 23 $k/t at 0.8 kg/m3). PT Timah's cash cost was $17.9k/t in FY24 (about $20k in FY25), so $23-37k/t is 1.15
+Technique: work on this reformulation of the question, chosen as the most productive one by importance and possibility: For self-hosted shared-prefix workloads (RAG and multi-turn, archetype D), which cache storage and reuse design cuts GPU-seconds per request the most against stock vLLM prefix caching? At what hit rate, prefix length and link bandwidth does loading stop beating recompute?
+Say in the VALUE what the answer gives for the question as originally asked.
+Rules: aim only at targets whose ceiling leaves room for the gain you claim; name inside each MECHANISM the closest
+earlier attempt and why your answer is not stopped by its reason; name the one quantity that decides whether it works.
+Being unusual is not the goal; working is.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

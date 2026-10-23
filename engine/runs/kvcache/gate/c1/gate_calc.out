@@ -1,0 +1,16 @@
+bytes/token bf16 131072 fp8 65536
+Idea1: max fraction of offloaded KV fetchable per step without stalling (KV-bound) = 0.64%
+  single 128K request: step 5.55 ms, offloaded 6.01 GB, fetchable/step 0.277 GB = 4.61%
+  ShadowKV-like need (1.56% budget, V-only) as fraction of offloaded = 1.11% -> margin 0.57
+  Quest-like need (1.56% budget, K+V) = 2.23% -> margin 0.29
+Idea2: 20K prefill 425 TFLOP -> 0.85s; KV 2.62 GB; PCIe load 0.052s (margin 16.2); NVMe load 0.374s (margin 2.3)
+  Mooncake hit 34%->55%: tiered vs GPU-only 1.20x ; tiered vs no reuse 1.52x ; GPU-only vs none 1.27x
+  hit rate needed for 1.5x vs no reuse: 0.54; for 2.4x: 0.94
+  GPU KV pool ~58GB holds 22 x 20K contexts; 1 TB DRAM holds 381
+Idea3: 30 min -> 32 RULER-128K samples per config
+  check: sim sd 0.0137 vs formula 0.0134
+  95% half-width at n=32: 14.7 pts; n needed for 2-pt resolution: 1729
+Idea4: f=0.1: KV bytes x1.82; archetype-A cost ratio vs BF16 KV 1.22
+Idea4: f=0.25: KV bytes x1.60; archetype-A cost ratio vs BF16 KV 1.18
+Idea4: f=0.5: KV bytes x1.33; archetype-A cost ratio vs BF16 KV 1.11
+Idea3/4 vs blanket FP8 on models where FP8 is safe: ratio <=1.0 (gating only adds BF16 layers)

@@ -1,0 +1,12 @@
+{
+ "p": {
+  "repair#4": 0.2,
+  "repair#1": 0.17,
+  "repair#2": 0.15,
+  "repair#3": 0.03,
+  "none": 0.45
+ },
+ "weakest_link": "Idea 1's 43–207% (HBM) and 37–95% (SSD) gains are measured only against LRU and random admission. Cost-aware eviction (Marconi, GDSF) and second-hit admission probably capture most of that gain.",
+ "flip_test": "Replay the Mooncake traces for DeepSeek-V3 at a 0.5–1M-token HBM cache and a 10–35% SSD write budget, against two baselines: Marconi-style FLOP/byte eviction and HiCache `write_through_selective`. | If Idea 1 beats both by less than about 10% in saved prefill FLOPs per byte, it falls below \"none\" and Idea 2 or the plain stock stack leads. If it keeps more than 30% over both, it rises to about 35%.",
+ "unknown": "Even if Idea 1 is right, it is unclear whether capacity-short, write-capped MLA last tiers are common enough in real deployments to matter. It is also untested whether the whole-chain score carries over to hybrid, SSM or sliding-window architectures, where prefix state is not per-token KV."
+}

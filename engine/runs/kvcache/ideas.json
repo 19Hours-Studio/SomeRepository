@@ -1,0 +1,173 @@
+[
+ {
+  "id": "g1_ledger#1",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Exact-prefix tiered KV reuse",
+  "mech": "Hash each KV block by its exact token prefix, as in vLLM prefix caching, and spill cold blocks to CPU or NVMe through LMCache in the model's native KV dtype. On a hit, the server streams blocks back over PCIe instead of recomputing prefill, so the outputs stay bit-identical. The closest earlier attempts are CacheBlend, which is approximate and limited to 3 models, and CacheGen, which only helps when loading beats recompute. This design avoids CacheBlend's problem because it accepts only exact prefixes. It avoids CacheGen's problem because local PCIe loads 2.6 GB in about 0.1 s against about 0.76 s of prefill (my estimate). The deciding quantity is the hit rate times the prefill saved, compared with the load time from the slowest tier used.",
+  "value": "In shared-prefix workloads it can cut cost up to about 2.4× with no change to outputs, but it fails on low hit rates, reordered RAG chunks and SSD-only tiers."
+ },
+ {
+  "id": "g1_ledger#2",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Reversible eviction with offload",
+  "mech": "Score tokens query-agnostically, in the style of KVzip, and keep about 30% on the GPU in FP8. Move the evicted blocks to CPU memory instead of deleting them. Each decode step, retrieve them page by page, as Quest does, whenever their score against the current query passes a threshold. The closest earlier attempt is permanent eviction, which fails in multi-turn chat (SCBench, FlowKV), whereas this keeps O(n) total memory. The deciding quantity is the recall rate of offloaded pages per step multiplied by the PCIe cost.",
+  "value": "It gives roughly 3× more concurrent users or context per GPU in multi-turn chat while staying close to FP8 accuracy, but it stalls when recall exceeds the PCIe budget."
+ },
+ {
+  "id": "g1_ledger#3",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Gated per-model FP8 KV",
+  "mech": "Before deployment, run a 30-minute check per model that compares FP8 KV against BF16 on RULER-128K needles and a reasoning set. Enable FP8 for each layer only where accuracy holds, and keep BF16 on sliding-window layers or any layer that fails. The closest earlier attempt is blanket FP8, which silently degraded R1-Distill and Gemma-3. This design avoids that by measuring each model before enabling FP8. The deciding quantity is the per-model accuracy delta at 128K.",
+  "value": "It gives a safe 2× capacity default on any dense model, but it is worth only about 1.14× in cost on long single requests and cannot reach 3×."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Lossless-coded offload tier",
+  "mech": "FP8 KV pages that are evicted to CPU or SSD are entropy-coded with per-layer, per-channel tables, and decoded on the GPU while they stream back, so restored caches are bit-identical. The closest earlier attempt is CacheGen, which is lossy, needs codec kernels and gains only 1.67–1.81× over 8-bit. Lossless coding avoids its accuracy risk, and it raises the prefix hit rate by fitting more prefixes into the same tier. The deciding quantity is the lossless ratio on FP8 KV. It can be falsified by measuring byte entropy on Llama-3.1-8B, Qwen and Gemma caches: below about 1.3×, or decode slower than PCIe (about 25 GB/s), and the idea is dead. It would then fail on models whose KV has near-uniform exponents.",
+  "value": "For RAG or chat with shared prefixes (D), it gives more cache hits per dollar of storage while keeping outputs exactly the same."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Certified-bound page skipping",
+  "mech": "Each KV page stores per-channel min/max key bounds. At decode, the method computes an upper bound on each page's softmax mass and skips a page only if all skipped pages together provably carry less than ε of the attention. Otherwise it reads the full page. The closest earlier attempt is Quest, whose top-k is heuristic and gives no guarantee. This design trades some speedup for a provable error bound. The deciding quantity is the fraction of pages that can be certified as skippable at ε=1e-3 on RULER at 128K. If it is under 50%, the gain is below about 1.15× and the idea fails. It also fails on diffuse-attention tasks such as aggregation and HTML-to-TSV.",
+  "value": "For long single requests (A), it cuts the decode KV read with a stated error bound and no calibration."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Compressed-draft, full-cache verify",
+  "mech": "Decoding drafts k tokens against a 2-bit or evicted copy of the cache. The full FP8 cache, kept in HBM or CPU, then verifies all k tokens in one pass, so the final output equals the full-cache output. The closest earlier attempts are TriForce and MagicDec, which target latency and keep the full cache on the GPU. This design moves the full cache to the verify path only, and spreads its read over the accepted tokens. The deciding quantity is the mean accepted length per verify, which must exceed about 3 to beat FP8. It can be falsified on long-reasoning traces, where acceptance falls once compressed drafts drift; that is where it stops working.",
+  "value": "It frees GPU KV memory and reduces KV reads while keeping outputs exactly the same on any model."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Exact tiered prefix store",
+  "mech": "Hash fixed-size token blocks of each prompt and keep their FP8 key/value tensors in GPU, CPU and SSD tiers. On a later request with a matching block chain, stream those blocks back instead of recomputing them, overlapping the transfer with prefill of the unmatched suffix. Unlike CacheGen or CacheBlend, nothing is lossily encoded or approximately stitched, so outputs match the uncached run. The deciding quantity is hit rate × prefix length × (recompute time − load time), roughly 32 µs versus 2.6 µs per token for an 8B model.",
+  "value": "Up to about 2.5× fewer GPU-seconds on shared-prefix RAG and chat, with outputs identical to the uncached run. The hypothesis is falsified if, measured against the same stack with prefix caching off, end-to-end throughput gains less than 1.5× at a 50% hit rate."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Query-refreshed two-precision cache",
+  "mech": "Keep every token in HBM at 2 bits (keys per-channel, values per-token), with an exact FP8 copy held in CPU memory. At each new query or turn, score pages by their min/max key bounds against the query, and promote the top ~10% back to FP8 in HBM in about 0.2 s. Unlike SnapKV or H2O, no token is dropped, so later turns can recover pages that the first query ignored. The deciding quantity is the RULER/SCBench gap at matched memory versus all-FP8.",
+  "value": "About 3× smaller decode KV at 128K context while staying safe for multi-turn use. The hypothesis is falsified if the loss exceeds 1 point versus FP8, or if it fails on long reasoning outputs where the relevant pages shift during decode."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Probe-gated per-layer precision",
+  "mech": "Run about 100 long prompts once with BF16 KV and once with FP8 KV, and measure per-layer attention-output error and final-logit KL divergence. Layers above a threshold stay in BF16; all others use stock FP8 kernels, so no custom datatypes are needed, unlike KVQuant. The deciding quantity is whether probe KL predicts the RULER loss.",
+  "value": "Turns \"FP8 everywhere\" into a model-checked default, with no weight changes. The hypothesis is falsified if the gated layers fail to restore RULER accuracy on Gemma-3-1B or R1-Distill."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Tiered exact-prefix KV reuse",
+  "mech": "Hash each prefix block, keep hot blocks on GPU and spill cold blocks to CPU/SSD in BF16 (lossless) or FP8, and load them on a hit instead of running prefill again. The closest earlier attempt is CacheBlend/CacheGen. Both are approximate, need extra kernels, and are measured only against full recompute. Exact-prefix hits avoid that limit because outputs are unchanged. The deciding quantity is hit rate h. The gain is 1/(1−0.66·h) minus load overhead, where loading about 2.6 GB over PCIe takes about 0.1 s against about 0.76 s of prefill. The idea is wrong if, on a replayed RAG or chat trace, h is below 0.4 or loads do not overlap with compute, giving a gain under 1.3×.",
+  "value": "It is the only verified several-fold saving (up to 2.46× ceiling) on self-hosted RAG and multi-turn chat, with identical outputs."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Layer-gated FP8 KV acceptance",
+  "mech": "For each new model, run a fixed RULER and multi-turn subset at BF16 and FP8 KV. Layers whose key outlier ratio or attention-output error is largest fall back to BF16 until the quality loss is ≤1 point. The closest earlier attempts are global FP8, which degrades R1-Distill and Gemma-3, and KVQuant, which needs calibration and custom datatypes. This method uses only stock FP8 kernels and a per-layer flag. The deciding quantity is the fraction of layers that must stay BF16. The idea is wrong if that fraction exceeds 50% on the degraded models, because the capacity gain then drops below 1.33×.",
+  "value": "It turns \"FP8 on any model\" from a gamble into a checkable per-model switch."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Reversible top-k page reads",
+  "mech": "Keep the full FP8 cache on CPU. Keep a working set of GPU pages chosen by Quest-style page min/max key bounds for each decode step, and fetch any missing pages instead of evicting them forever. The closest earlier attempts are SnapKV/H2O, which are irreversible and fail on later queries, and Quest, which keeps the whole cache on GPU so capacity is unchanged. The deciding quantity is top-k page recall per step against the PCIe bytes fetched per token. The idea is wrong if SCBench multi-turn or long-reasoning accuracy drops by more than 1 point at 10% of pages resident, or if fetch stalls exceed the 25% KV-read saving.",
+  "value": "It cuts long-context decode cost by up to about 1.29× and frees GPU memory without betting on future queries."
+ },
+ {
+  "id": "g1_rf2#1",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "FP8 tiered exact-prefix store",
+  "mech": "Store the FP8 KV blocks the model already produces, hash-keyed by prefix, in GPU, then DRAM, then NVMe, and load them layer by layer, overlapped with compute. The closest earlier attempt is CacheGen; it needed a codec and won only at low bandwidth, whereas this keeps the native FP8 bytes, so a hit gives exactly what recompute would give with no decoder kernel. The deciding quantity is link bandwidth against about 1.5 GB/s for 8B (64 KB/token ÷ about 42 µs/token). It is falsified if TTFT on hits over NVMe is not at least 3× lower than vLLM's GPU-only prefix cache at a matched hit rate.",
+  "value": "Gives a bit-identical, any-dense-model cut of up to about 2.5× in GPU-seconds for RAG and multi-turn at hit rates near 0.9."
+ },
+ {
+  "id": "g1_rf2#2",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Bandwidth-balanced split load/recompute",
+  "mech": "For each hit, choose a split point p: load KV for tokens [0,p) over the link while the GPU recomputes [p,n) from that KV as it arrives, picking p so both finish together using measured link and FLOP rates. The closest earlier attempt is Cake (2024); it is the same idea, without validation on GQA models or SSD tiers, and this design adds per-request re-estimation under batch load. The deciding quantity is the ratio of link time to compute time per token. It is falsified if TTFT is not at least 1.3× better than the better of pure-load or pure-recompute when the link is between 1 and 4 GB/s.",
+  "value": "Makes reuse pay off over slow network or remote storage links where pure loading only breaks even."
+ },
+ {
+  "id": "g1_rf2#3",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Recompute-cost-per-byte store eviction",
+  "mech": "Score each stored prefix by (expected reuses × FLOPs saved) ÷ bytes held. Long prefixes score higher because attention cost is superlinear, and expected reuses decay with time since last hit. Evict the lowest scores first, instead of LRU. The closest earlier attempt is CacheBlend, which raised effective hits through approximate non-prefix reuse; this design stays exact by raising the exact hit rate. The deciding quantity is the working set against tier capacity. It is falsified if, on a replayed RAG or chat trace, the hit-weighted FLOPs saved are not at least 15% above LRU at equal capacity.",
+  "value": "Raises the exact-reuse hit rate h, which sets the 1/(1−0.66h) gain, without changing any model output."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Audited exact-prefix agentic KV tier",
+  "mech": "The anchor stays: KV is reused only on an exact token-prefix match and kept in the deployment's own KV dtype, so the result is lossless by construction. In the repaired design, the CPU DRAM of all 8 GPUs in a node is pooled into one cache (about 1.6 TB). NVMe is written only for blocks that have already been hit twice. Each block gets a hash, and a 1% sample of cache hits is recomputed from scratch. That sample is checked against the server's own run-to-run noise. This replaces the claim that outputs are bit-identical, which would need batch-invariant kernels that cost 34–56% of throughput. The design is aimed at agentic or long multi-turn sessions whose working set is 4–40× larger than GPU memory. For a 30–60K-token context on Llama-3.1-8B, loading a 95% hit takes 0.15–0.30 s, against 1.4–3.8 s of prefill. That gives 2.04–2.19× less GPU time per request than prefix caching on the GPU alone. PCIe is busy 11–13% of the time and the audit adds about 1.4%.",
+  "value": "In agentic or multi-turn serving where the working set is larger than GPU memory, it needs about 2.0–2.2× less GPU time per request than vLLM prefix caching on the GPU alone. On chat traces like Mooncake the gain is only about 1.17–1.24×: $228 → $196 per 1M requests."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Two-arm probe-gated FP8 layers",
+  "mech": "The anchor stays: a cheap per-model probe compares BF16 KV with FP8 KV and picks which layers keep BF16. Everything else uses the stock vLLM FP8 kernels and the `--kv-cache-dtype-skip-layers` flag. The repaired probe runs three arms over 100 prompts of 32K tokens each, plus 512 decode tokens per prompt: BF16, the stock FP8 kernel, and a simulated FP8 rounding with BF16 attention. If the stock kernel fails but the simulated rounding does not, the problem is the kernel (as in vLLM's 128K NIAH drop from 91% to 13%). The answer is then to fix the kernel, not to gate layers. Gating is used only when the error sits in a few layers. NVIDIA's docs trace Qwen2.5-7B's FP8 loss to very large values in its last layer, and R1-Distill-Qwen-7B uses the same architecture. With 1 of 28 layers in BF16, R1-Distill gets 1.93× the KV capacity and decode tokens/s of BF16 at 32K. That is 96.5% of what FP8 everywhere would give. The probe costs about 9 GPU-minutes (about $0.38).",
+  "value": "On models where FP8 fails, it gives about 1.9× the throughput per request of the usual BF16 fallback, for $0.38 of probing. On models where FP8 already works, it changes nothing and only certifies FP8. On Gemma-3-1B it drops to 1.0–1.5×."
+ },
+ {
+  "id": "repair#3",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Turn-granular reversible KV eviction",
+  "mech": "Anchor kept: a query-agnostic score in the style of KVzip decides which ~30% of the FP8 KV stays on the GPU, and the evicted pages stay in CPU memory where they can be recalled, not deleted. The repair moves recall from every decode step to once per user turn. When a new message arrives, its query vectors are scored against page summaries (min/max keys, about 1% of HBM) and the top 10% of offloaded pages are fetched in one ~8 ms burst that overlaps the message's prefill. A per-step Quest-style \"valve\" is capped at ≤0.36% of the context per step. This cuts PCIe load from 25.8× the step time (the killed design) to 0.08×. At 32K context that is 64 vs 26 active users per H100 and 2.49× decode tokens/s over FP8-full. Turn-start reload from CPU drops from 84 to 34 ms. The binding quantity is the residency-scoring cost: the design only pays if scoring costs ≤0.29× prefill on trace-average turns (7.6K new tokens), or the turns are short follow-ups on a shared context. So the residency score has to be cheap (an observation window or KVzip's static head-level score), not KVzip's full context-reconstruction pass.",
+  "value": "In multi-turn shared-context chat (≈500 new tokens per turn) it costs 0.49–0.61× the GPU-seconds per request of FP8-full; on document-heavy turns with full KVzip scoring it costs 1.5–2.2× and loses."
+ },
+ {
+  "id": "repair#4",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "FLOP-per-byte bounded-tier admission",
+  "mech": "Anchor kept: score cached prefixes by (expected reuses × recompute FLOPs) ÷ bytes, with exact reuse only. The repair applies the score only where capacity or writes are actually bounded, since the replay confirmed it gives 0% at ≥25M tokens. The first place is the HBM-only prefix cache, as leaf-only eviction with a 180 s reuse half-life. On replayed Mooncake traces at 0.5–1M tokens it saves 43–75% more prefill FLOPs than LRU for Llama-8B and 156–207% more for DeepSeek-V3 (MLA), and it is never more than 5% worse at any capacity. The second place is SSD admission under an endurance budget. There the score must cover the whole prefix chain, because per-block admission keeps deep blocks whose ancestors are missing and gets about zero value. For DeepSeek-V3 it keeps 37–95% more SSD-hit FLOPs per byte written than random admission at a 10–35% write budget. In $ form the score gives the threshold directly: admit if P(reuse) ≥ $wear/byte ÷ $recompute/byte, which is 0.04 for DSv3 and 0.21 for 8B.",
+  "value": "For MLA-class models in a capacity-short or write-capped last tier it doubles or triples useful hits per byte. For dense 8B models, or any tier above about 5M tokens, it is worth ≤3% of node cost, because write-all SSD wear costs only $17 per day against $576 per day for the GPU node."
+ }
+]

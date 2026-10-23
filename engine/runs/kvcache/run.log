@@ -1,0 +1,72 @@
+  brief: 20,391 tokens
+initialized /home/user/SomeRepository/engine/runs/kvcache
+UNCLEAR (kept as assumptions):
+
+1. What matters most: memory, speed, long context, many users, or output quality? Is a small quality loss acceptable?
+2. Which models and serving stack (for example Llama or Qwen on vLLM or Hugging Face) and which GPU?
+3. Does "without calibration" also rule out a short data-driven calibration step?
+TYPE invent; MODE standard
+Sources:
+- [NVIDIA kvpress](https://github.com/NVIDIA/kvpress)
+- [KVPress leaderboard](https://nvidia-kvpress-leaderboard.hf.space)
+- [KIVI](https://arxiv.org/pdf/2402.02750)
+- [Expected Attention](https://arxiv.org/pdf/2510.00636)
+- [NaCl](https://arxiv.org/html/2408.03675v2)
+- [Multilingual audit of numeric retrieval under KV-cache eviction](https://neurips.cc/virtual/2026/173796)
+- [Learning to Evict from Key-Value Cache](https://arxiv.org/html/2602.10238)
+- [Protection Is (Nearly) All You Need](https://themodelwire.com/article/protection-is-nearly-all-you-need-structural-protection-dominates-scoring-in-glo-01KRZ1B88RPX4TF2V03S4Z2FYN)
+- [Hyperstack kvpress tutorial](https://www.hyperstack.cloud/technical-resources/tutorials/optimizing-long-context-llms-with-kvpress-compression-on-hyperstack)
+- [premai.io KV cache blog](https://blog.premai.io/kv-cache-optimization-pagedattention-prefix-caching-memory-management)
+- [introl.com KV cache guide](https://introl.com/blog/kv-cache-optimization-memory-efficiency-production-llms-guide)
+/home/user/SomeRepository/engine/runs/kvcache/ledger/TASK.md
+  ledger: 49,485 tokens, 73.6 s
+ledger: 828 words
+/home/user/SomeRepository/engine/runs/kvcache/attempts/TASK.md
+  attempts: 82,715 tokens, 75.6 s
+attempts: 1173 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Long-context single request.** Llama-3.1-8B, 128K context, BF16 weights, FP8 KV cache in v | untouchable 11.0% -> ceiling 9.1x | 10x cut of one term: prefill attention compute 1.34x; decode kv read 1.29x; decode weight read 1.26x; prefill linear compute 1.13x | 3x needs: prefill attention compute, decode kv read, decode weight read | TIGHT
+ARCHETYPE B: Multi-user serving, short to medium context.** Llama-3.1-70B FP8 in vLLM with PagedAttenti | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: decode weight read 1.46x; scheduling, comms and sampling overhead 1.26x; prefill compute 1.22x; decode kv read 1.12x | 3x needs: decode weight read, scheduling, comms and sampling overhead, prefill compute | TIGHT
+ARCHETYPE C: Multi-turn agent or chat through a hosted API with prompt caching.** 50K-token context, 1K | untouchable 30.0% -> ceiling 3.3x | 10x cut of one term: cache read 1.56x; output tokens 1.22x; cache write for the new turn 1.10x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+ARCHETYPE D: Self-hosted RAG or multi-turn chat with shared prefixes.** Llama-3.1-8B, 20K-token context | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: prefill recompute 2.46x; decode kv read 1.19x; decode weight read 1.06x | 3x needs: prefill recompute, decode kv read | ROOM
+  reframe: 15,382 tokens, 37.3 s
+  g1_ledger: 14,751 tokens, 33.9 s
+g1_ledger: 3 ideas (672 words)
+  g1_neg: 14,771 tokens, 36.3 s
+g1_neg: 3 ideas (610 words)
+  g1_mech: 15,608 tokens, 43.5 s
+g1_mech: 3 ideas (743 words)
+  g1_rf1: 14,959 tokens, 35.5 s
+g1_rf1: 3 ideas (687 words)
+  g1_rf2: 15,877 tokens, 45.6 s
+g1_rf2: 3 ideas (774 words)
+  triage: 14,948 tokens, 29.3 s
+/home/user/SomeRepository/engine/runs/kvcache/gate/c1/TASK.md
+/home/user/SomeRepository/engine/runs/kvcache/gate/c2/TASK.md
+  gate.2: 91,790 tokens, 112.0 s
+  gate.1: 106,118 tokens, 151.6 s
+/home/user/SomeRepository/engine/runs/kvcache/gate/TASK.md
+  skip gate (done)
+gate: 8/8 parsed {'DEAD': 6, 'WOUNDED': 2}
+  gate: 14 new facts -> evidence.md
+/home/user/SomeRepository/engine/runs/kvcache/repair/TASK.md
+/home/user/SomeRepository/engine/runs/kvcache/repair/c2/TASK.md
+/home/user/SomeRepository/engine/runs/kvcache/repair/c1/TASK.md
+  repair.1: 435,713 tokens, 282.5 s
+  repair.2: 1,068,968 tokens, 1004.1 s
+  skip repair (done)
+repair: 4 ideas (2758 words)
+/home/user/SomeRepository/engine/runs/kvcache/audit_final/TASK.md
+  audit_final: 192,796 tokens, 275.3 s
+  audit_final: 4 new facts -> evidence.md
+  calibrate: 10,775 tokens, 20.5 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#4       F0/M2/m3 fit 0.00 ratio 1.05 known yes p 20%  FLOP-per-byte bounded-tier admission
+  2. repair#1       F0/M3/m4 fit 0.00 ratio 0.99 known yes p 17%  Audited exact-prefix agentic KV tier
+  3. repair#2       F0/M4/m2 fit 0.00 ratio 1.0 known yes p 15%  Two-arm probe-gated FP8 layers
+  4. repair#3       F1/M3/m2 fit 0.00 ratio 0.9 known yes p 3%  Turn-granular reversible KV eviction
+  none of these: p 45%
+  weakest link: Idea 1's 43–207% (HBM) and 37–95% (SSD) gains are measured only against LRU and random admission. Cost-aware eviction (Marconi, GDSF) and second-hit admission probably capture most of that gain.
+  flip test: Replay the Mooncake traces for DeepSeek-V3 at a 0.5–1M-token HBM cache and a 10–35% SSD write budget, against two baselines: Marconi-style FLOP/byte eviction and HiCache `write_through_selective`. | If Idea 1 beats both by less than about 10% in saved prefill FLOPs per byte, it falls below "none" and Idea 2 or the plain stock stack leads. If it keeps more than 30% over both, it rises to about 35%.
+spent 2,165,047 tokens, $6.64
