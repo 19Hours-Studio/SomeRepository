@@ -1,0 +1,15 @@
+=== TRIAGE ===
+IDEA 1 | I 5 | P 3 | DECIDES: Spearman ρ of per-KV-head entropy rank, prompt vs. decode (≥0.9) | K2V1 on "broad" heads repeats 2-bit failures; GQA groups pool query heads, which blurs entropy; ranking taken at prefill can drift during CoT.
+IDEA 2 | I 5 | P 5 | DECIDES: AIME Δ at 32k (≤1 pt) | Essentially TurboQuant-MSE at 3.125 bpv, with the 3-bit GSM8K drop report unresolved; gains only ~1.25× over NVFP4.
+IDEA 3 | I 6 | P 5 | DECIDES: AIME24 Δ on R1-Distill-7B at 32k (≤2 pts) | 6.1× with K3/V2 asymmetry is sound, E8 adds ~0.2–0.3 bit of gain, and the falsifying test is cheap; V2 on long CoT is the open risk.
+IDEA 4 | I 3 | P 2 | DECIDES: H(code_l \| code_{l−1}, code_{t−1}) ≤2.5 bits | Rotated 4-bit codes are near maximum entropy (~3.6–3.8 bits), and different per-layer projections leave little cross-layer mutual information; it targets tier capacity, not decode.
+IDEA 5 | I 7 | P 2 | DECIDES: E8 2-bit key MSE / scalar 3-bit MSE (≤1.3×) | E8P at 2 bits is about 2.5× the MSE of 3-bit Lloyd-Max on Gaussian data, so it fails its own gate; uniform 2-bit keys is the known failure.
+IDEA 6 | I 6 | P 5 | DECIDES: Attention mass captured by top-2% pages chosen from base plane (≥0.99) | Read cut aims at the B ceiling (≤~1.5–1.6×), but storage is only 3.7×; diffuse heads may need more than 2%, and the two-pass kernel cost is real.
+IDEA 7 | I 6 | P 5 | DECIDES: Σ(mass on coarse-only tokens × value error) ≤1e-3 per head | Same mechanism as 6, with a better selection rule and a recent window; pre-RoPE keys add in-kernel RoPE cost, values are under-specified, and HBM capacity does not shrink.
+IDEA 8 | I 2 | P 6 | DECIDES: GPU rANS output throughput ≥50 GB/s | Feasible (DietGPU class), but ECSQ saves ~0.5 bit, so a 5-bit MSE costs ~4.5 bits, not 3.5; C's storage/transfer term has ~1.00× leverage.
+IDEA 9 | I 7 | P 3 | DECIDES: True softmax mass in 2-bit-selected top pages (≥0.99) | Fetching residuals from CPU per layer per decode step adds PCIe latency on the critical path; 2-bit key scores mis-rank, which is exactly where KIVI failed.
+IDEA 10 | I 7 | P 2 | DECIDES: Fraction of tokens refined per step at 128k (≤2%) | Intervals from 2-bit planes are wide, so many tokens' upper bounds will exceed ε; the per-token ε bound also sums loosely, and CPU fetches stall decode.
+IDEA 11 | I 6 | P 5 | DECIDES: Effective attended tokens in retrieval heads (≥~4) for value noise to average | K3V2 asymmetry follows the KIVI and KVQuant evidence, subtractive dither is free and unbiased, and no calibration is needed; sharp retrieval heads see V2 error undiluted.
+IDEA 12 | I 7 | P 1 | DECIDES: Logit MSE / 4-bit scalar MSE (≤1.2×) | A 2-bit QTIP trellis has ~6× the MSE of 4-bit scalar codes on Gaussian data, so its own gate is unreachable.
+
+Shortlist for expensive checks: 3, 11, 7/6 (merge), 2 as a safe fallback.

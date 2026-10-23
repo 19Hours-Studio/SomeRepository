@@ -1,0 +1,52 @@
+  brief: 20,756 tokens
+initialized /home/user/SomeRepository/engine/runs/kvzip
+UNCLEAR (kept as assumptions):
+
+1. What numeric target is wanted for compression (for example 4×, 8× or 16× vs FP16) and for allowed quality loss?
+2. Is a short offline calibration pass (statistics or codebooks, no weight updates) allowed? Are token eviction or merging allowed, or only lossy value encoding?
+3. What is the deployment setting (GPU type, serving stack such as vLLM, context length, batch size, and whether decode speed or memory capacity matters more)?
+TYPE invent; MODE standard
+/home/user/SomeRepository/engine/runs/kvzip/ledger/TASK.md
+  ledger: 71,947 tokens, 96.0 s
+ledger: 836 words
+/home/user/SomeRepository/engine/runs/kvzip/attempts/TASK.md
+  attempts: 64,244 tokens, 72.2 s
+attempts: 1317 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: long-document QA or RAG, 128k tokens in and about 0.5k out. Llama-3-70B-class model with G | untouchable 9.0% -> ceiling 11.1x | 10x cut of one term: prefill attention 1.76x; prefill linear layers 1.54x; decode kv reads 1.03x; decode weight reads 1.01x | 3x needs: prefill attention, prefill linear layers | ROOM
+ARCHETYPE B: reasoning-model chain of thought, 32k generated tokens. DeepSeek-R1-Distill-class dense GQ | untouchable 8.0% -> ceiling 12.5x | 10x cut of one term: decode kv reads 1.82x; decode weight reads 1.48x; kernel, launch and sampling overhead 1.05x; prefill 1.01x | 3x needs: decode kv reads, decode weight reads | ROOM
+ARCHETYPE C: multi-turn agent or chat with prefix-cache reuse. 100k-token context, 90% hit, 10k new tok | untouchable 20.0% -> ceiling 5.0x | 10x cut of one term: new-input prefill plus cache write 1.52x; cache-read input 1.32x; output decode 1.16x; kv storage and transfer 1.00x | 3x needs: new-input prefill plus cache write, cache-read input, output decode | TIGHT
+ARCHETYPE D: MLA model serving (DeepSeek-V3-class), 32k context, large expert-parallel decode.** | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: decode kv latent reads 1.37x; moe expert weight reads 1.29x; attention compute including latent up-projection 1.16x; all-to-all communication 1.16x | 3x needs: decode kv latent reads, moe expert weight reads, attention compute including latent up-projection, all-to-all communication | NO ROOM
+  reframe: 16,538 tokens, 37.9 s
+WARNING: no REFRAME lines parsed
+  g1_ledger: 17,481 tokens, 49.8 s
+g1_ledger: 3 ideas (659 words)
+  g1_neg: 17,384 tokens, 51.2 s
+g1_neg: 3 ideas (703 words)
+  g1_mech: 17,437 tokens, 50.7 s
+g1_mech: 3 ideas (660 words)
+  g1_rf1: 18,051 tokens, 47.7 s
+g1_rf1: 3 ideas (674 words)
+  triage: 18,039 tokens, 49.6 s
+/home/user/SomeRepository/engine/runs/kvzip/gate/c1/TASK.md/home/user/SomeRepository/engine/runs/kvzip/gate/c2/TASK.md
+
+  gate.1: 214,523 tokens, 233.2 s
+=== resume after reframe-parse fix 17:14:25 ===
+/home/user/SomeRepository/engine/runs/kvzip/ledger/TASK.md
+  skip ledger (done)
+ledger: 836 words
+/home/user/SomeRepository/engine/runs/kvzip/attempts/TASK.md
+  skip attempts (done)
+attempts: 1317 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: long-document QA or RAG, 128k tokens in and about 0.5k out. Llama-3-70B-class model with G | untouchable 9.0% -> ceiling 11.1x | 10x cut of one term: prefill attention 1.76x; prefill linear layers 1.54x; decode kv reads 1.03x; decode weight reads 1.01x | 3x needs: prefill attention, prefill linear layers | ROOM
+ARCHETYPE B: reasoning-model chain of thought, 32k generated tokens. DeepSeek-R1-Distill-class dense GQ | untouchable 8.0% -> ceiling 12.5x | 10x cut of one term: decode kv reads 1.82x; decode weight reads 1.48x; kernel, launch and sampling overhead 1.05x; prefill 1.01x | 3x needs: decode kv reads, decode weight reads | ROOM
+ARCHETYPE C: multi-turn agent or chat with prefix-cache reuse. 100k-token context, 90% hit, 10k new tok | untouchable 20.0% -> ceiling 5.0x | 10x cut of one term: new-input prefill plus cache write 1.52x; cache-read input 1.32x; output decode 1.16x; kv storage and transfer 1.00x | 3x needs: new-input prefill plus cache write, cache-read input, output decode | TIGHT
+ARCHETYPE D: MLA model serving (DeepSeek-V3-class), 32k context, large expert-parallel decode.** | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: decode kv latent reads 1.37x; moe expert weight reads 1.29x; attention compute including latent up-projection 1.16x; all-to-all communication 1.16x | 3x needs: decode kv latent reads, moe expert weight reads, attention compute including latent up-projection, all-to-all communication | NO ROOM
+  skip reframe (done)
+  skip g1_ledger (done)
+g1_ledger: 3 ideas (659 words)
+  skip g1_neg (done)
+g1_neg: 3 ideas (703 words)
+  skip g1_mech (done)
+g1_mech: 3 ideas (660 words)

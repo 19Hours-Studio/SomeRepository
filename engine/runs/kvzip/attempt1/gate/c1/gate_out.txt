@@ -1,0 +1,31 @@
+Lloyd-Max 1-bit Gaussian MSE = 0.3635  (known: 0.3634)
+Lloyd-Max 2-bit Gaussian MSE = 0.1177  (known: 0.1175)
+Lloyd-Max 3-bit Gaussian MSE = 0.0345  (known: 0.03454)
+
+Relative RMS error (rotated synthetic K / V):
+  3-bit LM fixed codebook, FP8 RMS scale /64 (Idea4, 3.125b) K 0.174  V 0.183  SQNR_V  14.7 dB
+  NVFP4 E2M1 + E4M3 /16 (4.5b)                               K 0.098  V 0.095  SQNR_V  20.4 dB
+  4-bit uniform /32 FP16 s+z (5.0b)                          K 0.073  V 0.078  SQNR_V  22.1 dB
+  top-2 planes of 4-bit uniform /32 (Idea2/3 coarse)         K 0.304  V 0.326  SQNR_V   9.7 dB
+  2-bit uniform /32 (KIVI-like)                              K 0.369  V 0.392  SQNR_V   8.1 dB
+  1-bit LM /64 FP8 scale (Idea1 V1)                          K 0.562  V 0.599  SQNR_V   4.4 dB
+  2-bit LM /64 FP8 scale                                     K 0.312  V 0.338  SQNR_V   9.4 dB
+
+Idea 1 bit arithmetic (scale overhead o bits/value):
+  o=0.125: K2V1=1.625 K3V2=2.625 K4V4=4.125; max K4V4 head fraction for 2.1b avg = 0.190; avg with 50% retrieval heads (DuoAttention GQA) = 2.88b -> 5.57x
+  o=0.25: K2V1=1.75 K3V2=2.75 K4V4=4.25; max K4V4 head fraction for 2.1b avg = 0.140; avg with 50% retrieval heads (DuoAttention GQA) = 3.00b -> 5.33x
+  o=0.5: K2V1=2.0 K3V2=3.0 K4V4=4.5; max K4V4 head fraction for 2.1b avg = 0.040; avg with 50% retrieval heads (DuoAttention GQA) = 3.25b -> 4.92x
+
+Idea 3: coarse value rel err 0.326; allowed coarse-only mass for 1e-3 = 0.0031
+  if coarse-only mass=0.05: mass*err=0.0163 -> margin 0.061
+  if coarse-only mass=0.1: mass*err=0.0326 -> margin 0.031
+  if coarse-only mass=0.2: mass*err=0.0651 -> margin 0.015
+
+Chain Archetype B vs NVFP4 baseline: base(fixed batch)=64.1, base(capacity)=38.2
+  Idea1 (2.1b read/store)                                        fixed-batch RATIO 1.13 | capacity-limited RATIO 1.51
+  Idea2 (2.2b read + 2%x2.15 refine, 4.3b store, +12.5% kernel)  fixed-batch RATIO 1.11 | capacity-limited RATIO 1.22
+  Idea3 (2.6b read, 4.5b store)                                  fixed-batch RATIO 1.10 | capacity-limited RATIO 1.18
+  Idea3 with +12.5% two-pass overhead                            fixed-batch RATIO 1.08 | capacity-limited RATIO 1.15
+  Idea4 (3.125b read/store; sinks+window FP8 negligible)         fixed-batch RATIO 1.07 | capacity-limited RATIO 1.24
+
+Idea2 host-offload: refine bytes/request/step = 11.3 MB; batch 40 over 50 GB/s PCIe = 9.0 ms/step vs HBM KV read at 4.5b batch 40 = 14.1 ms

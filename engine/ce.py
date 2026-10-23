@@ -910,12 +910,15 @@ LEVEL = {"high": 3, "medium": 2, "low": 1}
 
 def take_reframes(run, text):
     """v5 self-reformulation: store the model's reformulations (reframes.md) and keep the best two in config
-    'reframes' - the model's KEEP line, else importance x possibility."""
-    body = text.split("=== REFRAMES ===", 1)[-1]
-    rf = {int(k): q.strip() for k, q, *_ in RF.findall(body)}
-    score = {int(k): LEVEL.get(i.lower(), 1) * LEVEL.get(p.lower(), 1) for k, _, _, i, p, _ in RF.findall(body)}
+    'reframes' - the model's KEEP line, else importance x possibility. A reframe may be one line with | fields or a
+    block of lines (- CHANGES: ..., - IMPORTANCE: ...)."""
+    body = text.split("=== REFRAMES ===", 1)[-1]; rf, score = {}, {}
+    for k, blk in re.findall(r"(?ms)^\**REFRAME (\d+)\**\s*:\s*\**\s*(.+?)(?=^\**REFRAME \d+|^\**KEEP|\Z)", body):
+        q = re.split(r"\s*\|\s*CHANGES:|\n", blk.strip(), maxsplit=1)[0].strip(" *")
+        lv = {f: (m.group(1).lower() if (m := re.search(rf"{f}:\**\s*(\w+)", blk, re.I)) else "low") for f in ("IMPORTANCE", "POSSIBILITY")}
+        rf[int(k)] = q; score[int(k)] = LEVEL.get(lv["IMPORTANCE"], 1) * LEVEL.get(lv["POSSIBILITY"], 1)
     if not rf: print("WARNING: no REFRAME lines parsed"); return []
-    m = re.search(r"^\**KEEP\**\s*:\s*(.+)$", body, re.M)
+    m = re.search(r"^\**KEEP\**\s*:\s*\**\s*(.+)$", body, re.M)
     keep = [int(x) for x in re.findall(r"\d+", m.group(1)) if int(x) in rf] if m else []
     keep = list(dict.fromkeys(keep + sorted(rf, key=lambda k: -score[k])))[:2]
     open(path(run, "reframes.md"), "w").write(body.strip() + "\n")

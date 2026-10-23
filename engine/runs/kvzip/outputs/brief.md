@@ -1,0 +1,49 @@
+=== BRIEF ===
+TYPE: invent
+
+QUESTION: Which architecture for compressing the LLM KV cache (the stored attention keys and values) is best if it has to be much more aggressive than FP8, which is 8 bits per value or about 2× smaller than FP16/BF16? It has to work as a drop-in replacement for the cache storage format in an existing pretrained transformer model, with no retraining, fine-tuning or architecture change, and with almost no loss of quality. The cache may be compressed along any axis: numeric precision, the number of stored tokens, channels or heads, redundancy across layers, or entropy coding. The asker calls this a "super-zip" for the KV cache. The answer should be a concrete architecture, covering what is stored, how it is encoded and decoded, and how attention reads it. It should also give the expected compression ratio and quality loss on standard long-context and reasoning benchmarks, and say what runtime cost the design adds.
+
+SUCCESS:
+- It gives a specific, implementable design. Naming a family of methods is not enough.
+- It states the effective bits per value or the compression ratio vs FP16, counting all metadata (scales, zero-points, indices, codebooks).
+- Quality loss is stated against the FP16 cache on named benchmarks and models, for example LongBench, RULER, needle-in-a-haystack, GSM8K or MATH-style reasoning, and perplexity. "Almost no loss" is given a number, for example ≤1% relative drop.
+- It is checked against the failure modes below: outlier channels in keys, RoPE, attention sinks, GQA/MLA models, long contexts, multi-turn or multi-query reuse, and reasoning-model chains of thought.
+- It estimates decode and prefill latency and throughput, including dequantization or decompression cost and compatibility with FlashAttention-style fused kernels.
+- It shows how it beats or complements the current state of the art (see CONTEXT), and says what is new.
+- It names a cheap experiment that could falsify it.
+
+CONSTRAINTS:
+- No training, fine-tuning or distillation of the base model. The asker said "without retraining". Whether a one-time offline calibration pass on a small data sample counts is UNCLEAR.
+- It must apply to any ready-made model by changing the cache storage format only.
+- Compression must be far beyond FP8. This is stated as "much stronger" with no numeric target.
+- Quality must drop almost not at all.
+
+CONTEXT:
+- KIVI is a tuning-free 2-bit scheme (per-channel keys, per-token values) with near-baseline quality on classic tasks and about 2.6× lower peak memory including weights (arXiv 2402.02750). On Qwen3-8B reasoning tasks, KIVI-K2V2 averaged 61.4 vs 77.2 for FP16, and the 2-bit method Kitty reached 75.0 (arXiv 2511.18643). So 2-bit quality is not a solved problem for reasoning.
+- KVQuant uses pre-RoPE per-channel key quantization, non-uniform codebooks and outlier handling. It reports C4 perplexity for LLaMA, Llama-2, Llama-3 and Mistral. A secondary review says less than 0.1 perplexity degradation at 3-bit on LLaMA-7B (arXiv 2401.18079).
+- TurboQuant (Google, ICLR 2026) is a data-oblivious online quantizer with no per-block metadata (a random rotation plus scalar quantization plus 1-bit residual correction). It reports LongBench parity at 3.5 bits (50.06 vs 50.06) and 49.44 at 2.5 bits on Llama-3.1-8B-Instruct. These come from secondary sources; the 6× memory and 8× logit-speed figures are vendor claims (techinformed.com and kaitchup.substack.com summaries). AnchorKV reports that reproductions needed deviations, such as leaving the first and last 2 layers unquantized (arXiv 2608.02901).
+- KVzip is query-agnostic eviction (NeurIPS 2025) giving about 3–4× smaller cache with little loss at up to 170K context on LLaMA3.1, Qwen2.5 and Gemma3. It reports 4-bit quantization plus 70% eviction giving a 1.2 GB cache at 124K with negligible loss (arXiv 2505.23416). Query-aware eviction such as SnapKV degrades when one cache is reused for later queries.
+- An April 2026 preprint reports that at matched storage, quantization beats low-rank reduction on five models (arXiv 2604.25975 was returned in the search; check it, because it may be a different paper). The evidence is thin.
+- Memory-wall approaches such as XQuant store the layer input and recompute K and V (arXiv 2508.10395).
+
+DATA: Public checkpoints (Llama-3.x, Qwen2.5/3, Gemma3, Mistral) and benchmarks (LongBench, RULER, NIAH, GSM8K, MATH, HumanEval, GPQA, C4/WikiText perplexity). Real KV tensors can be dumped from those models to measure statistics: outlier channels, spectra, inter-token and inter-layer redundancy and entropy. Code: github.com/snu-mllab/KVzip, the KIVI, KVQuant and TurboQuant implementations, vLLM and LMDeploy KV-quantization paths. A Zenodo record (March 2026) titled "KV-Cache Compression Benchmarks — Quantization vs Eviction vs Pruning" exists, and its contents are not verified.
+
+ASSUMPTIONS:
+- A single architecture can be best across all models and tasks. Results differ by model family, GQA/MLA and task type.
+- A drop-in format change can give "much stronger than FP8" compression with almost no loss. The 2-bit results above show losses on reasoning tasks.
+- "Compress the KV cache itself" means lossy compression of the stored values. Dropping tokens may or may not count as compressing "itself".
+- Compression ratio is the main goal. Latency, throughput and kernel compatibility may matter just as much in practice.
+- The terms "super-zip" and "like zip" suggest lossless or entropy coding can give large gains. FP16 KV values are high-entropy, so this is doubtful.
+
+CORRECTED:
+- "Zip" is read as lossy, quality-preserving KV compression, not lossless compression.
+- FP8 is a baseline of about 2× vs FP16, so "much stronger" is read as a ratio well above 2×, with the target unspecified.
+- "Without retraining" is read as no gradient-based training of the base model. Calibration is listed under UNCLEAR.
+- "Almost no loss" is made measurable in SUCCESS.
+
+UNCLEAR:
+1. What numeric target is wanted for compression (for example 4×, 8× or 16× vs FP16) and for allowed quality loss?
+2. Is a short offline calibration pass (statistics or codebooks, no weight updates) allowed? Are token eviction or merging allowed, or only lossy value encoding?
+3. What is the deployment setting (GPU type, serving stack such as vLLM, context length, batch size, and whether decode speed or memory capacity matters more)?
+
+MODE: standard
