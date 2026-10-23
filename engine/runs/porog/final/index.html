@@ -1,0 +1,601 @@
+<title>Порог</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Unbounded:wght@500;700&display=swap");
+/* Layout: one column of sections; the hero is a threshold split into three framed openings (3 cols ≥ 900px, stacked below). */
+:root {
+  --bg: #e8ebe4;       /* stairwell whitewash */
+  --surface: #f5f6f1;  /* fresh coat */
+  --panel: #cfe0d6;    /* pale oil-paint wainscot */
+  --ink: #16211c;
+  --muted: #3d4d45;
+  --frame: #2f5e4e;    /* oil-paint green: door frames, rules */
+  --tread: #f0bf00;    /* signal-yellow stair edge: active opening, focus */
+  --display: "Unbounded", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --body: "Golos Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  --s-1: 0.875rem; --s0: 1.0625rem; --s1: 1.25rem; --s2: 1.75rem; --s3: clamp(2.25rem, 7vw, 4rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151d1a; --surface: #1e2a25; --panel: #23362e; --ink: #e5ece7; --muted: #a9bab1; --frame: #4f8a74; --tread: #f2c230;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #151d1a; --surface: #1e2a25; --panel: #23362e; --ink: #e5ece7; --muted: #a9bab1; --frame: #4f8a74; --tread: #f2c230;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 var(--s0)/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 24px;
+}
+.wrap { max-width: 1200px; margin: 0 auto; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -0.01em; }
+h2 { font-size: var(--s2); }
+h3 { font-size: var(--s1); font-weight: 500; }
+p { margin: 0 0 1em; max-width: 65ch; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 3px; }
+:focus-visible { outline: 3px solid var(--tread); outline-offset: 2px; box-shadow: 0 0 0 6px var(--ink); border-radius: 1px; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 8px; background: var(--tread); color: #1b1d1c; padding: 8px 12px; z-index: 10; }
+.mono { font-family: var(--mono); font-size: var(--s-1); }
+.muted { color: var(--muted); }
+.addr { font-family: var(--mono); font-size: var(--s-1); user-select: all; overflow-wrap: anywhere; }
+
+/* header */
+.top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding-block: 16px; border-bottom: 2px solid var(--frame); }
+.logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: var(--s1); text-decoration: none; }
+.top nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.top nav a { text-decoration: none; font-weight: 500; padding: 6px 0; display: inline-block; }
+.top nav a:hover { box-shadow: inset 0 -3px 0 var(--tread); }
+.theme { font: 500 var(--s-1) var(--body); background: transparent; color: var(--ink); border: 1px solid var(--frame); padding: 6px 10px; cursor: pointer; }
+
+/* hero: the threshold */
+.hero { padding-block: 40px 0; border-image: linear-gradient(to bottom, transparent 62%, var(--frame) 62%, var(--frame) calc(62% + 3px), var(--panel) calc(62% + 3px)) fill 0 / / 0 100vw; }
+.now { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin: 18px 0 0; padding: 10px 12px; background: var(--surface); border-left: 6px solid var(--tread); max-width: 40rem; }
+.now svg { width: 56px; height: 56px; flex: none; }
+.now div { min-width: 0; flex: 1 1 10rem; }
+.now .mono { display: block; line-height: 1.4; }
+.now b { display: block; }
+.now .btn { padding: 6px 12px; }
+.hero h1 { font-size: var(--s3); margin-bottom: .2em; }
+.hero .lead { font-size: var(--s1); max-width: 40ch; }
+.ask { font-family: var(--display); font-weight: 500; font-size: var(--s1); margin: 28px 0 14px; }
+.threshold { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 900px) { .threshold { grid-template-columns: repeat(3, 1fr); gap: 0; } }
+.door {
+  display: flex; flex-direction: column; min-width: 0;
+  border: 12px solid var(--frame); border-bottom: 0;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 0 var(--bg);
+  transition: box-shadow 120ms ease-out;
+}
+@media (min-width: 900px) { .door + .door { border-left-width: 6px; } .door:not(:last-child) { border-right-width: 6px; } }
+.door:hover, .door:focus-within { box-shadow: inset 0 0 0 8px var(--bg); }
+.door-in { padding: 22px 22px 18px; flex: 1; min-width: 0; }
+.door h2 { font-size: var(--s2); margin-bottom: .15em; }
+.door .who { color: var(--muted); margin-bottom: 14px; }
+.door ul { list-style: none; padding: 0; margin: 0; }
+.door li { border-top: 1px solid var(--frame); }
+.door li a { display: block; padding: 10px 0; text-decoration: none; font-weight: 500; }
+.door li a::after { content: " →"; color: var(--muted); }
+.door li a:hover { text-decoration: underline; }
+.plate { padding: 12px 22px; border-top: 2px solid var(--frame); background: var(--bg); }
+.plate small { display: block; color: var(--muted); font-size: var(--s-1); }
+.door .step { height: 10px; background: var(--frame); }
+.door:hover .step, .door:focus-within .step, .door.is-active .step { background: var(--tread); }
+.sill { height: 14px; background: var(--frame); margin-bottom: 0; }
+@media (max-width: 899px) {
+  .threshold { gap: 12px; }
+  .door { border-width: 6px; }
+  .door-in { padding: 14px 14px 12px; }
+  .door h2 { font-size: var(--s1); }
+  .door .who { margin-bottom: 10px; font-size: var(--s-1); }
+  .door ul { display: flex; flex-wrap: wrap; gap: 6px; }
+  .door li { border: 1px solid var(--frame); }
+  .door li a { padding: 6px 10px; font-size: var(--s-1); }
+  .door li a::after { content: none; }
+  .plate { padding: 8px 14px; display: flex; flex-wrap: wrap; gap: 0 10px; align-items: baseline; }
+  .door .step { height: 6px; }
+}
+
+/* sections */
+section.block { padding-block: 56px 8px; border-bottom: 2px solid var(--frame); min-width: 0; }
+.head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; margin-bottom: 20px; }
+.head h2 { margin: 0; padding-bottom: 6px; box-shadow: inset 0 -6px 0 var(--tread); }
+
+/* releases */
+.feature { display: grid; gap: 24px; grid-template-columns: 1fr; margin-bottom: 32px; }
+@media (min-width: 768px) { .feature { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+.cover { display: block; width: 100%; height: auto; aspect-ratio: 1; }
+.feature .meta { min-width: 0; }
+.cat { font-family: var(--mono); font-size: var(--s-1); background: var(--ink); color: var(--bg); padding: 2px 8px; display: inline-block; margin-bottom: 10px; }
+dl.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 16px; margin: 0 0 16px; }
+dl.facts dt { color: var(--muted); }
+dl.facts dd { margin: 0; min-width: 0; }
+ol.tracks { list-style: none; padding: 0; margin: 0 0 16px; max-width: 34rem; }
+ol.tracks li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) auto; gap: 8px; padding: 6px 0; border-top: 1px solid var(--frame); }
+ol.tracks .n, ol.tracks .t { font-family: var(--mono); font-size: var(--s-1); color: var(--muted); padding-top: 2px; }
+.side { font-family: var(--mono); font-size: var(--s-1); color: var(--muted); margin: 12px 0 2px; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 12px; }
+.btn { display: inline-block; padding: 10px 16px; border: 2px solid var(--ink); text-decoration: none; font-weight: 600; }
+.btn.primary { background: var(--tread); color: #1b1d1c; border-color: var(--tread); }
+.btn:hover { box-shadow: inset 0 0 0 3px var(--bg); text-decoration: none; }
+.credits { font-size: var(--s-1); color: var(--muted); }
+.cata { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.cata details { background: var(--surface); border: 1px solid var(--frame); min-width: 0; }
+.cata summary { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; padding: 12px; cursor: pointer; list-style: none; }
+.cata summary::-webkit-details-marker { display: none; }
+.cata summary b { display: block; }
+.cata .body { padding: 0 12px 12px; font-size: var(--s-1); }
+.cata .body ol { margin: 0 0 8px; padding-left: 1.4em; }
+.cata summary .more { font-size: var(--s-1); text-decoration: underline; }
+.cata details[open] .more { display: none; }
+.soon { margin-top: 24px; padding: 16px; border: 2px dashed var(--frame); }
+.soon p { margin: 0; }
+
+/* artists */
+.roster { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); }
+.artist { border: 8px solid var(--frame); border-bottom-width: 0; background: var(--surface); display: flex; flex-direction: column; min-width: 0; transition: box-shadow 120ms ease-out; }
+.artist:hover, .artist:focus-within, .artist:target { box-shadow: inset 0 0 0 6px var(--bg); }
+.artist:target .step { background: var(--tread); }
+.artist .step { height: 8px; background: var(--frame); margin-top: auto; }
+.artist svg { display: block; width: 100%; height: auto; }
+.artist .in { padding: 16px 18px; }
+@media (max-width: 767px) {
+  .feature .cover { max-width: 62%; }
+  .artist svg { aspect-ratio: 300 / 90; object-fit: cover; }
+}
+.artist .in p { font-size: var(--s0); }
+.artist .addr { display: block; }
+.artist .tag { color: var(--muted); font-size: var(--s-1); margin-bottom: 10px; }
+
+/* news */
+.news { list-style: none; padding: 0; margin: 0; }
+.news li { display: grid; grid-template-columns: 1fr; gap: 4px 24px; padding: 18px 0; border-top: 1px solid var(--frame); }
+@media (min-width: 768px) { .news li { grid-template-columns: 11rem minmax(0, 1fr); } }
+.news time { font-family: var(--mono); font-size: var(--s-1); color: var(--muted); padding-top: 4px; }
+.news h3 { margin-bottom: .3em; }
+.news p { margin: 0; }
+.shows { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.shows li { background: var(--surface); padding: 14px 16px; border-bottom: 6px solid var(--frame); min-width: 0; }
+.shows time { font-family: var(--mono); font-size: var(--s-1); display: block; }
+.shows b { display: block; }
+
+/* two-column text blocks */
+.cols { display: grid; gap: 28px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.cols > * { min-width: 0; }
+ul.rules { padding-left: 1.2em; margin: 0 0 16px; max-width: 60ch; }
+ul.rules li { margin-bottom: 6px; }
+.yes { display: inline-block; background: var(--tread); color: #1b1d1c; font-weight: 600; padding: 4px 10px; margin-bottom: 14px; }
+
+form { background: var(--surface); padding: 20px; border: 1px solid var(--frame); }
+label { display: block; font-weight: 500; margin-bottom: 4px; }
+input, select, textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--frame); padding: 10px; margin-bottom: 14px; }
+textarea { min-height: 110px; resize: vertical; }
+button.btn { font: inherit; font-weight: 600; cursor: pointer; }
+.result { margin-top: 14px; }
+.result pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--mono); font-size: var(--s-1); background: var(--bg); padding: 12px; border-left: 6px solid var(--tread); margin: 8px 0 0; }
+
+table.disco { border-collapse: collapse; width: 100%; font-size: var(--s-1); }
+table.disco th, table.disco td { text-align: left; padding: 6px 8px 6px 0; border-top: 1px solid var(--frame); vertical-align: top; }
+table.disco th { color: var(--muted); font-weight: 500; }
+.embargo { border-left: 6px solid var(--tread); padding: 10px 14px; background: var(--surface); margin: 16px 0; max-width: 65ch; }
+
+.inboxes { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.inboxes li { background: var(--surface); padding: 14px 16px; border-bottom: 6px solid var(--frame); min-width: 0; }
+.inboxes li:hover { border-bottom-color: var(--tread); }
+.inboxes b { display: block; margin-bottom: 4px; }
+
+footer { padding-block: 32px 8px; font-size: var(--s-1); color: var(--muted); display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; }
+footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+<meta name="description" content="Порог — независимый музыкальный лейбл: релизы на виниле, кассетах и в цифре, артисты, новости, приём демо и материалы для прессы.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235c625f'/%3E%3Crect x='9' y='5' width='14' height='20' fill='%231b1d1c'/%3E%3Crect x='5' y='25' width='22' height='4' fill='%23f0bf00'/%3E%3C/svg%3E">
+
+<a class="skip" href="#main">К содержанию</a>
+<div class="wrap">
+<header class="top">
+  <a class="logo" href="#top" id="top" aria-label="Порог — в начало">
+    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="var(--frame)"/><rect x="9" y="5" width="14" height="20" fill="var(--ink)"/><rect x="5" y="25" width="22" height="4" fill="var(--tread)"/></svg>
+    Порог
+  </a>
+  <nav aria-label="Разделы">
+    <ul>
+      <li><a href="#releases">Релизы</a></li>
+      <li><a href="#artists">Артисты</a></li>
+      <li><a href="#news">Новости и концерты</a></li>
+      <li><a href="#about">О лейбле</a></li>
+      <li><a href="#demo">Демо</a></li>
+      <li><a href="#press">Пресса</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </nav>
+  <button class="theme" type="button" id="theme" aria-label="Переключить тему">Тема: авто</button>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+  <h1 id="hero-title">Порог</h1>
+  <p class="lead">Небольшой лейбл тихой электроники, пост-панка и полевых записей. Выпускаем кассеты, винил и цифру с 2024 года.</p>
+  <div class="now">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#8a9a92"/><rect x="33" y="12" width="34" height="56" fill="#16211c"/><rect x="29" y="68" width="42" height="7" fill="#2f5e4e"/><rect x="29" y="68" width="42" height="2" fill="#f0bf00"/><rect x="24" y="75" width="52" height="7" fill="#3f6e5e"/><rect x="24" y="75" width="52" height="2" fill="#f0bf00"/><rect x="19" y="82" width="62" height="7" fill="#4f7e6e"/><rect x="19" y="82" width="62" height="2" fill="#f0bf00"/></svg>
+    <div><span class="mono muted">Новый релиз · ПОР-007 LP · 9 октября 2026</span><b><a href="#por-007">Тамбур — «Ступени»</a></b></div>
+    <a class="btn primary" href="https://example.com/porog/por-007/listen" rel="noopener">Слушать</a>
+  </div>
+  <p class="ask" id="ask">Кто вы? Выберите проём.</p>
+  <div class="threshold" role="list" aria-labelledby="ask">
+    <article class="door is-active" role="listitem" aria-labelledby="d1">
+      <div class="door-in">
+        <h2 id="d1">Слушаю</h2>
+        <p class="who">Для слушателей и тех, кто покупает пластинки.</p>
+        <ul>
+          <li><a href="#por-007">Новый релиз: Тамбур — «Ступени»</a></li>
+          <li><a href="#releases">Все релизы и тиражи</a></li>
+          <li><a href="#artists">Артисты лейбла</a></li>
+          <li><a href="#shows">Концерты и новости</a></li>
+        </ul>
+      </div>
+      <div class="plate"><small>Вопросы о заказах</small><a class="addr" href="mailto:hello@porog.example">hello@porog.example</a></div>
+      <div class="step"></div>
+    </article>
+    <article class="door" role="listitem" aria-labelledby="d2">
+      <div class="door-in">
+        <h2 id="d2">Пишу музыку</h2>
+        <p class="who">Для музыкантов, которые хотят прислать демо.</p>
+        <ul>
+          <li><a href="#demo">Принимаем ли демо — да</a></li>
+          <li><a href="#demo-rules">Что прислать и как</a></li>
+          <li><a href="#demo-form">Собрать письмо с демо</a></li>
+          <li><a href="#about">Что мы выпускаем</a></li>
+        </ul>
+      </div>
+      <div class="plate"><small>Только демо</small><a class="addr" href="mailto:demo@porog.example">demo@porog.example</a></div>
+      <div class="step"></div>
+    </article>
+    <article class="door" role="listitem" aria-labelledby="d3">
+      <div class="door-in">
+        <h2 id="d3">Пишу о музыке</h2>
+        <p class="who">Для журналистов, площадок и партнёров.</p>
+        <ul>
+          <li><a href="#press">Пресс-кит лейбла</a></li>
+          <li><a href="#embargo">Эмбарго на ПОР-008</a></li>
+          <li><a href="#artists">Букинг артистов</a></li>
+          <li><a href="#contact">Все адреса</a></li>
+        </ul>
+      </div>
+      <div class="plate"><small>Пресса и партнёры</small><a class="addr" href="mailto:press@porog.example">press@porog.example</a></div>
+      <div class="step"></div>
+    </article>
+  </div>
+  <div class="sill" aria-hidden="true"></div>
+</section>
+
+<section class="block" id="releases" aria-labelledby="rel-h">
+  <div class="head"><h2 id="rel-h">Релизы</h2><span class="muted">Каталог ПОР-001 — ПОР-007, новые сверху</span></div>
+
+  <article class="feature" id="por-007" aria-labelledby="r7">
+    <svg class="cover" viewBox="0 0 100 100" role="img" aria-label="Обложка ПОР-007: тёмный дверной проём, к нему ведут три ступени с жёлтой кромкой">
+      <rect width="100" height="100" fill="#8a9a92"/>
+      <rect x="33" y="12" width="34" height="56" fill="#16211c"/>
+      <rect x="29" y="68" width="42" height="7" fill="#2f5e4e"/><rect x="29" y="68" width="42" height="1.6" fill="#f0bf00"/>
+      <rect x="24" y="75" width="52" height="7" fill="#3f6e5e"/><rect x="24" y="75" width="52" height="1.6" fill="#f0bf00"/>
+      <rect x="19" y="82" width="62" height="7" fill="#4f7e6e"/><rect x="19" y="82" width="62" height="1.6" fill="#f0bf00"/>
+      <text x="6" y="10" font-family="monospace" font-size="5" fill="#1b1d1c">ПОР-007 LP</text>
+      <text x="6" y="96" font-family="monospace" font-size="5" fill="#1b1d1c">ТАМБУР · СТУПЕНИ</text>
+    </svg>
+    <div class="meta">
+      <span class="cat">ПОР-007 LP · новый</span>
+      <h3 id="r7" style="font-size:var(--s2);font-weight:700">Тамбур — «Ступени»</h3>
+      <dl class="facts">
+        <dt>Вышел</dt><dd><time datetime="2026-10-09">9 октября 2026</time></dd>
+        <dt>Формат</dt><dd>12" LP, 33⅓ об/мин, 180 г, жёлтый винил, 300 нумерованных копий; цифра</dd>
+        <dt>Жанр</dt><dd>пост-панк</dd>
+      </dl>
+      <div class="btns">
+        <a class="btn primary" href="https://example.com/porog/por-007/listen" rel="noopener">Слушать</a>
+        <a class="btn" href="https://example.com/porog/por-007/buy" rel="noopener">Купить винил</a>
+      </div>
+      <p class="side">Сторона A · 19:40</p>
+      <ol class="tracks">
+        <li><span class="n">A1</span><span>Первая ступень</span><span class="t">3:52</span></li>
+        <li><span class="n">A2</span><span>Площадка между этажами</span><span class="t">4:18</span></li>
+        <li><span class="n">A3</span><span>Перила</span><span class="t">3:05</span></li>
+        <li><span class="n">A4</span><span>Свет на пятом</span><span class="t">4:41</span></li>
+        <li><span class="n">A5</span><span>Почтовые ящики</span><span class="t">3:44</span></li>
+      </ol>
+      <p class="side">Сторона B · 19:12</p>
+      <ol class="tracks">
+        <li><span class="n">B1</span><span>Код домофона</span><span class="t">4:02</span></li>
+        <li><span class="n">B2</span><span>Сквозь подъезд</span><span class="t">5:10</span></li>
+        <li><span class="n">B3</span><span>Чердак закрыт</span><span class="t">4:27</span></li>
+        <li><span class="n">B4</span><span>Ступени</span><span class="t">5:33</span></li>
+      </ol>
+      <p class="credits">Записано и сведено группой Тамбур. Мастеринг для винила — отдельный, с тестовым прессом. ℗© Порог, 2026.</p>
+    </div>
+  </article>
+
+  <h3>Каталог</h3>
+  <div class="cata">
+    <details id="por-006">
+      <summary>
+        <svg viewBox="0 0 100 100" width="72" height="72" role="img" aria-label="Обложка ПОР-006"><rect width="100" height="100" fill="#3d4240"/><rect x="20" y="20" width="22" height="64" fill="#cdd0cc"/><rect x="14" y="84" width="72" height="5" fill="#f0bf00"/></svg>
+        <span><span class="mono">ПОР-006 LP</span><b>Сквозняк — «Сквозняк в подъезде»</b><span class="muted">Ноябрь 2025 · переиздание на виниле</span><br><span class="more">Треклист и ссылки</span></span>
+      </summary>
+      <div class="body">
+        <p>Кассета ПОР-001 впервые на виниле: 12", 180 г, 500 нумерованных копий. Добавлен бонус-трек.</p>
+        <ol><li>Форточка</li><li>Лифт не работает</li><li>Сквозняк в подъезде</li><li>Шаги снизу</li><li>Дверь хлопнула (бонус)</li></ol>
+        <a href="https://example.com/porog/por-006/listen">Слушать</a> · <a href="https://example.com/porog/por-006/buy">Купить</a> · <span class="muted">℗© Порог, 2025</span>
+      </div>
+    </details>
+    <details id="por-005">
+      <summary>
+        <svg viewBox="0 0 100 100" width="72" height="72" role="img" aria-label="Обложка ПОР-005"><rect width="100" height="100" fill="#cdd0cc"/><rect x="12" y="24" width="20" height="56" fill="#1b1d1c"/><rect x="40" y="24" width="20" height="56" fill="#1b1d1c"/><rect x="68" y="24" width="20" height="56" fill="#1b1d1c"/><rect x="8" y="80" width="84" height="5" fill="#f0bf00"/></svg>
+        <span><span class="mono">ПОР-005 MC</span><b>Сборник «Порог: первый год»</b><span class="muted">Июнь 2025 · кассета, 94 копии</span><br><span class="more">Треклист и ссылки</span></span>
+      </summary>
+      <div class="body">
+        <p>По треку от каждого из четырёх артистов лейбла. «Следующая» Тамбура — неизданная демо-версия. Тираж распродан, цифра доступна.</p>
+        <ol><li>Сквозняк — Вентиляция</li><li>Тамбур — Следующая (демо)</li><li>Створка — Скрип</li><li>Глухая площадка — Лестничный пролёт, 4 утра</li></ol>
+        <a href="https://example.com/porog/por-005/listen">Слушать</a> · <span class="muted">℗© Порог, 2025</span>
+      </div>
+    </details>
+    <details id="por-004">
+      <summary>
+        <svg viewBox="0 0 100 100" width="72" height="72" role="img" aria-label="Обложка ПОР-004"><rect width="100" height="100" fill="#6b716d"/><path d="M10 90 L10 70 L30 70 L30 50 L50 50 L50 30 L70 30 L70 10 L90 10 L90 90 Z" fill="#1b1d1c"/><path d="M10 70 h20 M30 50 h20 M50 30 h20 M70 10 h20" stroke="#f0bf00" stroke-width="2"/></svg>
+        <span><span class="mono">ПОР-004 LP</span><b>Глухая площадка — «Пролёт»</b><span class="muted">Март 2025 · 12", 140 г, 300 копий</span><br><span class="more">Треклист и ссылки</span></span>
+      </summary>
+      <div class="body">
+        <p>Полевые записи лестничных клеток девяти домов, собранные в две длинные пьесы.</p>
+        <ol><li>Пролёт, часть первая (сторона A)</li><li>Пролёт, часть вторая (сторона B)</li></ol>
+        <a href="https://example.com/porog/por-004/listen">Слушать</a> · <a href="https://example.com/porog/por-004/buy">Купить</a> · <span class="muted">℗© Порог, 2025</span>
+      </div>
+    </details>
+    <details id="por-003">
+      <summary>
+        <svg viewBox="0 0 100 100" width="72" height="72" role="img" aria-label="Обложка ПОР-003"><rect width="100" height="100" fill="#e4e6e2"/><rect x="30" y="14" width="40" height="72" fill="#5c625f"/><polygon points="30,14 52,20 52,80 30,86" fill="#1b1d1c"/><rect x="24" y="86" width="52" height="4" fill="#f0bf00"/></svg>
+        <span><span class="mono">ПОР-003 EP</span><b>Створка — «Петли»</b><span class="muted">Октябрь 2024 · цифра, 5 треков</span><br><span class="more">Треклист и ссылки</span></span>
+      </summary>
+      <div class="body">
+        <ol><li>Петли</li><li>Приоткрыто</li><li>Сухая смазка</li><li>Ключ под ковриком</li><li>Скрип</li></ol>
+        <a href="https://example.com/porog/por-003/listen">Слушать</a> · <span class="muted">℗© Порог, 2024</span>
+      </div>
+    </details>
+    <details id="por-002">
+      <summary>
+        <svg viewBox="0 0 100 100" width="72" height="72" role="img" aria-label="Обложка ПОР-002"><rect width="100" height="100" fill="#1b1d1c"/><rect x="18" y="18" width="30" height="66" fill="#8a8f8b"/><rect x="52" y="18" width="30" height="66" fill="#8a8f8b"/><rect x="10" y="84" width="80" height="5" fill="#f0bf00"/></svg>
+        <span><span class="mono">ПОР-002 7"</span><b>Тамбур — «Двери закрываются»</b><span class="muted">Июнь 2024 · сингл 7", 45 об/мин</span><br><span class="more">Треклист и ссылки</span></span>
+      </summary>
+      <div class="body">
+        <ol><li>A. Двери закрываются</li><li>B. Следующая</li></ol>
+        <a href="https://example.com/porog/por-002/listen">Слушать</a> · <span class="muted">Винил распродан · ℗© Порог, 2024</span>
+      </div>
+    </details>
+    <details id="por-001">
+      <summary>
+        <svg viewBox="0 0 100 100" width="72" height="72" role="img" aria-label="Обложка ПОР-001"><rect width="100" height="100" fill="#3d4240"/><rect x="20" y="20" width="22" height="64" fill="#cdd0cc"/><path d="M42 30 q20 10 46 0 M42 48 q20 10 46 0 M42 66 q20 10 46 0" stroke="#f0bf00" stroke-width="2" fill="none"/></svg>
+        <span><span class="mono">ПОР-001 MC</span><b>Сквозняк — «Сквозняк в подъезде»</b><span class="muted">Март 2024 · кассета, 50 копий</span><br><span class="more">Треклист и ссылки</span></span>
+      </summary>
+      <div class="body">
+        <p>Первый релиз лейбла. Кассета распродана, винил — <a href="#por-006">ПОР-006</a>.</p>
+        <ol><li>Форточка</li><li>Лифт не работает</li><li>Сквозняк в подъезде</li><li>Шаги снизу</li></ol>
+        <a href="https://example.com/porog/por-001/listen">Слушать</a> · <span class="muted">℗© Порог, 2024</span>
+      </div>
+    </details>
+  </div>
+  <div class="soon"><p><b>Скоро: ПОР-008 LP.</b> Створка, первый альбом. Выход 4 декабря 2026. Подробности — после 20 ноября.</p></div>
+</section>
+
+<section class="block" id="artists" aria-labelledby="art-h">
+  <div class="head"><h2 id="art-h">Артисты</h2><span class="muted">Четыре проекта. У каждого свой адрес для букинга.</span></div>
+  <div class="roster">
+    <article class="artist" id="tambur" aria-labelledby="a-tambur">
+      <svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Заглушка вместо фото группы Тамбур"><rect width="300" height="160" fill="#1b1d1c"/><rect x="40" y="30" width="60" height="130" fill="#5c625f"/><rect x="120" y="30" width="60" height="130" fill="#5c625f"/><rect x="200" y="30" width="60" height="130" fill="#5c625f"/></svg>
+      <div class="in">
+        <h3 id="a-tambur">Тамбур</h3>
+        <p class="tag">Пост-панк, трио</p>
+        <p>Бас, барабаны и гитара, которая звучит как домофон. Пишут песни про подъезды и электрички.</p>
+        <p><a href="#por-007">ПОР-007</a> · <a href="#por-002">ПОР-002</a></p>
+        <p>Букинг: <a class="addr" href="mailto:booking+tambur@porog.example">booking+tambur@porog.example</a></p>
+      </div>
+      <div class="step"></div>
+    </article>
+    <article class="artist" id="skvoznyak" aria-labelledby="a-skv">
+      <svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Заглушка вместо фото проекта Сквозняк"><rect width="300" height="160" fill="#3d4240"/><rect x="40" y="20" width="70" height="140" fill="#cdd0cc"/><path d="M110 50 q60 20 190 0 M110 90 q60 20 190 0 M110 130 q60 20 190 0" stroke="#f0bf00" stroke-width="3" fill="none"/></svg>
+      <div class="in">
+        <h3 id="a-skv">Сквозняк</h3>
+        <p class="tag">Тихая электроника, соло</p>
+        <p>Синтезатор, микрофон у форточки и много пауз. Первый артист лейбла.</p>
+        <p><a href="#por-006">ПОР-006</a> · <a href="#por-001">ПОР-001</a></p>
+        <p>Букинг: <a class="addr" href="mailto:booking+skvoznyak@porog.example">booking+skvoznyak@porog.example</a></p>
+      </div>
+      <div class="step"></div>
+    </article>
+    <article class="artist" id="stvorka" aria-labelledby="a-stv">
+      <svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Заглушка вместо фото дуэта Створка"><rect width="300" height="160" fill="#e4e6e2"/><rect x="110" y="20" width="80" height="140" fill="#5c625f"/><polygon points="110,20 160,32 160,150 110,160" fill="#1b1d1c"/></svg>
+      <div class="in">
+        <h3 id="a-stv">Створка</h3>
+        <p class="tag">Электроника и голос, дуэт</p>
+        <p>Скрипы, петли и медленные песни. Первый альбом выходит в декабре.</p>
+        <p><a href="#por-003">ПОР-003</a> · ПОР-008 скоро</p>
+        <p>Букинг: <a class="addr" href="mailto:booking+stvorka@porog.example">booking+stvorka@porog.example</a></p>
+      </div>
+      <div class="step"></div>
+    </article>
+    <article class="artist" id="ploshchadka" aria-labelledby="a-pl">
+      <svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Заглушка вместо фото проекта Глухая площадка"><rect width="300" height="160" fill="#6b716d"/><path d="M0 160 V130 H60 V100 H120 V70 H180 V40 H240 V10 H300 V160 Z" fill="#1b1d1c"/></svg>
+      <div class="in">
+        <h3 id="a-pl">Глухая площадка</h3>
+        <p class="tag">Полевые записи, соло</p>
+        <p>Записывает лестничные клетки ночью. Выступает редко и только в тихих залах.</p>
+        <p><a href="#por-004">ПОР-004</a></p>
+        <p>Букинг: <a class="addr" href="mailto:booking+ploshchadka@porog.example">booking+ploshchadka@porog.example</a></p>
+      </div>
+      <div class="step"></div>
+    </article>
+  </div>
+</section>
+
+<section class="block" id="news" aria-labelledby="news-h">
+  <div class="head"><h2 id="news-h">Новости и концерты</h2><span class="muted">Новые сверху</span></div>
+  <h3 id="shows">Концерты</h3>
+  <ul class="shows">
+    <li><time datetime="2026-11-14T20:00">14 ноября 2026, 20:00</time><b>Тамбур — презентация «Ступеней»</b>Зал «Чердак», Москва. Вход 800 ₽, винил на месте.</li>
+    <li><time datetime="2026-11-28T19:00">28 ноября 2026, 19:00</time><b>Глухая площадка</b>Тихий зал «Пролёт», Санкт-Петербург. Сидячие места, 60 человек.</li>
+    <li><time datetime="2026-12-05T20:00">5 декабря 2026, 20:00</time><b>Створка — первый альбом вживую</b>Клуб «Створ», Москва. Билеты с 20 ноября.</li>
+  </ul>
+  <h3>Новости</h3>
+  <ol class="news">
+    <li><time datetime="2026-10-20">20 октября 2026</time><div><h3>Три концерта до конца года</h3><p>Тамбур играют «Ступени» целиком, Глухая площадка — в зале на 60 мест, Створка — в день после выхода альбома. <a href="#shows">Даты и залы</a></p></div></li>
+    <li><time datetime="2026-10-09">9 октября 2026</time><div><h3>Вышел ПОР-007: Тамбур — «Ступени»</h3><p>Девять песен на жёлтом виниле, 300 копий. Тестовый пресс утвердили в августе, тираж уже на складе. <a href="#por-007">К релизу</a></p></div></li>
+    <li><time datetime="2026-09-18">18 сентября 2026</time><div><h3>Створка дописали альбом</h3><p>Это будет ПОР-008. Дату и обложку покажем 20 ноября. Пресса может запросить материалы заранее, под эмбарго. <a href="#embargo">Условия</a></p></div></li>
+    <li><time datetime="2026-07-02">2 июля 2026</time><div><h3>Разбираем демо быстрее</h3><p>Теперь отвечаем на каждое письмо с демо в течение двух недель, даже если ответ — «нет». <a href="#demo">Как прислать</a></p></div></li>
+    <li><time datetime="2026-04-15">15 апреля 2026</time><div><h3>Сквозняк: остаток тиража ПОР-006</h3><p>Нашли на складе 20 копий переиздания. Пишите на hello@porog.example.</p></div></li>
+  </ol>
+</section>
+
+<section class="block" id="about" aria-labelledby="about-h">
+  <div class="head"><h2 id="about-h">О лейбле</h2></div>
+  <div class="cols">
+    <div>
+      <p>Порог — это место между улицей и домом. Мы выпускаем музыку, которая звучит именно там: в подъездах, тамбурах, на лестничных клетках.</p>
+      <p>Работаем с 2024 года. Издаём маленькими нумерованными тиражами: кассеты от 50 копий, винил от 300. Цифра выходит на основных стриминговых сервисах через дистрибьютора.</p>
+    </div>
+    <div>
+      <p>Каждый релиз получает номер ПОР и суффикс формата: LP — пластинка 12", 7" — сингл, MC — кассета, EP — мини-альбом. Если кассета переходит на винил, у неё новый номер.</p>
+      <p>Офиса нет. Всё общение — по почте, адреса ниже.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="demo" aria-labelledby="demo-h">
+  <div class="head"><h2 id="demo-h">Демо</h2><span class="addr">demo@porog.example</span></div>
+  <div class="cols">
+    <div id="demo-rules">
+      <p class="yes">Да, мы принимаем демо</p>
+      <ul class="rules">
+        <li>Пришлите приватную ссылку на стриминг. Вложения не открываем.</li>
+        <li>Один–три законченных трека. Если нужны файлы — MP3 320 кбит/с.</li>
+        <li>В письме: кто вы, жанр, город, ссылки на соцсети.</li>
+        <li>Ответим в течение двух недель. Если ответа нет — напомните один раз.</li>
+        <li>Ищем тихую электронику, пост-панк и полевые записи. Остальное, скорее всего, не наше.</li>
+      </ul>
+    </div>
+    <form id="demo-form" novalidate aria-describedby="form-note">
+      <p id="form-note" class="muted">Форма соберёт текст письма. Отправить его нужно самим, на demo@porog.example.</p>
+      <label for="f-name">Имя или название проекта</label>
+      <input id="f-name" name="name" autocomplete="name" required>
+      <label for="f-genre">Жанр</label>
+      <select id="f-genre" name="genre">
+        <option>Тихая электроника</option><option>Пост-панк</option><option>Полевые записи</option><option>Другое</option>
+      </select>
+      <label for="f-link">Приватная ссылка на треки</label>
+      <input id="f-link" name="link" type="url" inputmode="url" placeholder="https://" required>
+      <label for="f-about">Пара слов о себе</label>
+      <textarea id="f-about" name="about"></textarea>
+      <button class="btn primary" type="submit">Собрать письмо</button>
+      <div class="result" id="result" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<section class="block" id="press" aria-labelledby="press-h">
+  <div class="head"><h2 id="press-h">Пресса и партнёры</h2><span class="addr">press@porog.example</span></div>
+  <div class="cols">
+    <div>
+      <h3>Коротко о лейбле</h3>
+      <p>Порог — независимый лейбл тихой электроники, пост-панка и полевых записей. С 2024 года выпустил семь релизов четырёх артистов тиражами от 50 до 500 копий.</p>
+      <h3>Пресс-фото и обложки</h3>
+      <p>Обложки всех релизов и фото артистов в высоком разрешении высылаем по запросу на press@porog.example. В письме укажите издание и дату публикации.</p>
+      <div class="embargo" id="embargo">
+        <b>Эмбарго: ПОР-008.</b> Материалы о новом альбоме Створки не публикуйте до <time datetime="2026-11-20T10:00+03:00">20 ноября 2026, 10:00 МСК</time>. Запрос — на press@porog.example.
+      </div>
+    </div>
+    <div>
+      <h3>Дискография</h3>
+      <table class="disco">
+        <thead><tr><th scope="col">Номер</th><th scope="col">Релиз</th><th scope="col">Год</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">ПОР-007 LP</td><td>Тамбур — «Ступени»</td><td>2026</td></tr>
+          <tr><td class="mono">ПОР-006 LP</td><td>Сквозняк — «Сквозняк в подъезде», переиздание</td><td>2025</td></tr>
+          <tr><td class="mono">ПОР-005 MC</td><td>Сборник «Порог: первый год»</td><td>2025</td></tr>
+          <tr><td class="mono">ПОР-004 LP</td><td>Глухая площадка — «Пролёт»</td><td>2025</td></tr>
+          <tr><td class="mono">ПОР-003 EP</td><td>Створка — «Петли»</td><td>2024</td></tr>
+          <tr><td class="mono">ПОР-002 7"</td><td>Тамбур — «Двери закрываются»</td><td>2024</td></tr>
+          <tr><td class="mono">ПОР-001 MC</td><td>Сквозняк — «Сквозняк в подъезде»</td><td>2024</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact" aria-labelledby="contact-h">
+  <div class="head"><h2 id="contact-h">Контакты</h2><span class="muted">Пишите на тот адрес, который подходит. Так ответим быстрее.</span></div>
+  <ul class="inboxes">
+    <li><b>Заказы и вопросы слушателей</b><a class="addr" href="mailto:hello@porog.example">hello@porog.example</a></li>
+    <li><b>Демо</b><a class="addr" href="mailto:demo@porog.example">demo@porog.example</a></li>
+    <li><b>Пресса и партнёры</b><a class="addr" href="mailto:press@porog.example">press@porog.example</a></li>
+    <li><b>Букинг артистов</b><span class="addr">booking+имя@porog.example</span> — адрес есть на <a href="#artists">странице артиста</a></li>
+  </ul>
+</section>
+</main>
+
+<footer>
+  <p>℗© Порог, 2024–2026</p>
+  <p>Это концепт-сайт вымышленного лейбла. Артисты, релизы, концерты, залы, даты и адреса придуманы; ссылки «Слушать» и «Купить» ведут на заглушки.</p>
+  <p><a href="#top">Наверх</a></p>
+</footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('theme');
+  var modes = ['auto', 'light', 'dark'], names = { auto: 'авто', light: 'светлая', dark: 'тёмная' }, i = 0;
+  btn.addEventListener('click', function () {
+    i = (i + 1) % 3;
+    if (modes[i] === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', modes[i]);
+    btn.textContent = 'Тема: ' + names[modes[i]];
+  });
+
+  var doors = document.querySelectorAll('.door');
+  doors.forEach(function (d) {
+    d.addEventListener('focusin', function () { doors.forEach(function (x) { x.classList.toggle('is-active', x === d); }); });
+    d.addEventListener('mouseenter', function () { doors.forEach(function (x) { x.classList.toggle('is-active', x === d); }); });
+  });
+
+  var form = document.getElementById('demo-form'), out = document.getElementById('result');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.name.value.trim(), link = form.link.value.trim();
+    out.textContent = '';
+    if (!name || !/^https?:\/\/\S+$/.test(link)) {
+      var p = document.createElement('p');
+      p.textContent = 'Нужны имя и ссылка, которая начинается с http:// или https://.';
+      out.appendChild(p);
+      (name ? form.link : form.name).focus();
+      return;
+    }
+    var text = 'Кому: demo@porog.example\nТема: Демо — ' + name + ' (' + form.genre.value + ')\n\n' +
+      'Здравствуйте! Меня зовут ' + name + '.\nЖанр: ' + form.genre.value + '.\nТреки: ' + link + '\n' +
+      (form.about.value.trim() ? '\n' + form.about.value.trim() + '\n' : '') + '\nСпасибо!';
+    var h = document.createElement('p');
+    h.innerHTML = '<b>Готово.</b> Скопируйте текст и отправьте сами — это концепт-сайт, письмо никуда не ушло.';
+    var pre = document.createElement('pre'); pre.textContent = text;
+    out.appendChild(h); out.appendChild(pre);
+  });
+})();
+</script>

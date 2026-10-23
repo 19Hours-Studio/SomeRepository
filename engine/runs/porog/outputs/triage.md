@@ -1,0 +1,15 @@
+=== TRIAGE ===
+IDEA 1 | I 8 | P 9 | RISK: The sticky index rail eats width at 360 px, or turns into a cryptic code list that hides the plain section names | The ПОР- numbering is subject-true and works as calm, ordinary navigation; it is the strongest base to build on.
+IDEA 2 | I 6 | P 7 | RISK: Drawing durations to scale against a 20-minute LP side produces faked or overflowing bars on phones, and the jargon puzzles listeners | The gate line is clever, but it speaks to engineers more than to fans or press.
+IDEA 3 | I 6 | P 6 | RISK: The cumulative right-indent causes horizontal scroll or very narrow rows at tablet width | The stair metaphor is apt, but it has less utility than Idea 1 with more layout fragility.
+IDEA 4 | I 8 | P 8 | RISK: Side timings drift from the tracklist sums, and an "on-page" demo form implies sending that can't happen without a server | It cleanly separates the two audiences from the brief, and its record logic is memorable without being a door cliché.
+IDEA 5 | I 7 | P 6 | RISK: Placing items by today's date means the sample "upcoming" releases silently move above the line, leaving empty or stale sections | The structural metaphor is good, but its runtime date dependence makes a fragile deliverable.
+IDEA 6 | I 6 | P 6 | RISK: Stepped section edges collide with content on phones, and the Web Audio tone may sound before the visitor expects it | It duplicates 1 and 3, with heavier decoration and two token sets to keep at good contrast.
+IDEA 7 | I 5 | P 7 | RISK: A grid of near-identical discs becomes the "wall of covers" failure, and circular SVG text is unreadable at small sizes | Vinyl imagery is generic for any label and doesn't express «Порог».
+IDEA 8 | I 7 | P 7 | RISK: The dBFS/LUFS liner data reads as real technical claims, and the play-synced peak lighting turns into a JS rabbit hole | Its demo framing «Как пройти порог» is excellent; the rest overlaps with 2 and 10.
+IDEA 9 | I 8 | P 9 | RISK: The three framed "openings" drift toward the literal doorway cliché, and the first screen gets text-heavy on phones | It best serves the three-click tasks with zero-click routing and inboxes; it is simple to build.
+IDEA 10 | I 6 | P 7 | RISK: The dB ruler as navigation is the "too artsy" menu: visitors can't read "−24 dB" as "Новости" | It is the third variant of the gate idea and the least legible of them.
+IDEA 11 | I 7 | P 7 | RISK: The text-only "downloadable-looking" press facts mislead, and the density of matrix strings overwhelms the cards | It is rich in subject detail but is mostly Idea 4 with heavier ornament.
+IDEA 12 | I 7 | P 9 | RISK: The UPC/ISRC placeholders look like valid real codes; they must be visibly marked as samples (e.g. "0000…") | It is nearly a duplicate of 1, and the reserved ПОР-013 row is a strong detail worth merging into it.
+
+Recommendation: build Idea 1 and merge in 12's reserved-number row, 9's audience routing on Home, and 8's «Как пройти порог» demo section. Self-host the OFL fonts (Unbounded, Golos Text, JetBrains/IBM Plex Mono) or fall back to system stacks.

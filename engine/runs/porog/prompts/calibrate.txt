@@ -1,0 +1,52 @@
+Build a ready-to-use website for a music label named «Порог» ("Threshold"). The asker calls it "an ordinary site" for a "conditional" (hypothetical) label. So the label is a placeholder with no real brand, catalogue, genre or country, and the content is to be invented as plausible sample material. The site is for the label's audience: listeners and fans, artists who might sign or submit demos, and press or partners. It must let a visitor learn what the label is, browse and listen to releases, find artists, read news, and contact the label. The asker gave no other details: genre, languages, visual style, technology, hosting and domain are all unspecified. The site must work as a standalone deliverable in the working directory.
+A good answer: 
+- A site opens locally with no build step, or with documented, minimal steps, and has working navigation across all pages.
+- Pages or sections: Home (label statement plus latest releases), Releases (list plus a page or block per release with cover placeholder, tracklist, date, and listen or buy links), Artists (list plus a profile per artist), News, About, Contact, and a demo-submission section or page.
+- A visitor can do each of these tasks in 3 clicks or fewer from Home: find the newest release, open an artist's page, read the latest news post, find the contact email, and learn how to submit a demo.
+- The site is responsive and checked at about 360 px (phone), 768 px (tablet) and 1280 px (desktop) widths, with no horizontal scroll.
+- The text is in Russian, with the name «Порог» used consistently. The sample content is clearly marked as placeholder and invents no real people, brands or claims.
+- The basics are covered: semantic HTML, alt text, readable contrast, keyboard navigation, a page title and meta description for each page, and a favicon.
+- The design has a coherent identity that fits the name (threshold or doorway), with no unlicensed images, fonts or audio.
+Constraints: The label name is «Порог». The site is "ordinary", so no experimental or unusual format is wanted. Writing files only in the working directory is the process rule, not an asker constraint. Nothing else is stated.
+
+The final candidates with their blind reviews (data):
+IDEA 1
+NAME: Три проёма у входа
+MECHANISM: The central move is structural: the hero is a threshold that splits into three framed openings, «Слушаю», «Пишу музыку» and «Пишу о музыке». Each opening lists that visitor's four links and their own inbox, so the routing table above becomes the first screen. Below it come the newest release (ПОР-007, cover drawn in SVG, tracklist, ℗© line, "listen" and "buy" links out), the artists as frames with bio and booking address, news with dates, the demo rules, an EPK with bio, discography and embargo note, and a footer stating it is a concept site for a fictional label. The palette is wet-concrete grey with a signal-yellow tread stripe like a stair edge, which marks the active opening and the focus ring. Display type is Unbounded for headings only, body is Golos Text, and the only motion is a 120 ms frame inset on hover, disabled under reduced motion. The detail only this subject has: each opening is captioned with its real inbox, so the address is the label of the door.
+VALUE: Every visitor type from the brief finds its task and correct inbox on the first screen, which answers the "3 clicks" requirement in zero to one click, and is remembered as the label that asked "who are you?" at the door.
+BLIND REVIEW:
+- MAJOR: The first screen is a second menu: the three doors repeat the header nav (releases, artists, news, demo, press, contacts), the newest release shrinks to a 56 px chip, and on a phone the Releases section starts only at 1541 px, about 1.8 screens down, on an 11527 px page (phone test: #releases top = 1541; report phone page_height 11527; index.html:220-226 vs 248-279; desktop-light.png hero)
+- MAJOR: The «Кто вы? Выберите проём» persona split (listener / musician / press) is the familiar SaaS and agency "I am a…" hero; only the thick green frames tie it to doorways (index.html:241-285; desktop-light.png)
+- FIT: 7 of 7 | Every section is there (home statement plus newest release, catalogue with tracklists and listen/buy links, artists, news plus shows, about, contact, demo with a working form, EPK); every visitor task takes 1 click from the doors; no overflow; Russian; placeholders declared in the footer
+- SURVIVES: It has the strongest identity of the two: a Soviet stairwell world (oil-paint green wainscot, yellow stair tread, door-frame cards, track titles like «Код домофона»), correct side timings (19:40 / 19:12), true catalogue suffixes, shows with venues, an embargo note, and a demo form that builds the email text on the page
+- KNOWN: partly | The persona-split hero is a stock SaaS/agency pattern; the palette and stairwell content are its own
+
+IDEA 2
+NAME: Каталог ПОР как оглавление
+MECHANISM: The page is organised as the label's catalogue ledger, and the catalogue number is the navigation. Every release is ПОР-001, ПОР-002 and so on, the prefix being the first three letters of «Порог», with a format suffix (ПОР-007LP, ПОР-008MC), and a sticky index rail lists these numbers next to the sections Новое, Релизы, Артисты, Новости, Демо, Контакты. From top to bottom: - a two-line statement of the label; - the newest release, open in full, with an SVG cover built from nested rectangular frames, a tracklist with durations, the date, the format and run ("180 г, 300 экз., пронумерованы"), credits, the ℗© line, a placeholder player marked "образец", and plain links to listen or buy; - the older releases as collapsible ledger rows (`<details>`); - artist profiles cross-linked to their catalogue numbers; - dated news; - demo rules: the label accepts unsolicited demos, wants one to three tracks as a private link, and replies within two weeks; - separate inboxes for demos, press and booking, shown as selectable text. The palette is index-card stock grey-blue with ink-navy text and one rubber-stamp maroon used only on catalogue numbers. Unbounded is the display face, set only for numbers and headings, with Golos Text for body copy and JetBrains Mono for the ledger. The detail only this subject would have is the "ПОР-" numbering that encodes release order and format.
+VALUE: A listener, an artist or a journalist reaches any release, rule or address within seconds from one index, and remembers a label whose catalogue literally spells its name.
+BLIND REVIEW:
+- MAJOR: There are no shows: a visitor looking for concerts finds only «Даты и площадки появятся здесь после подтверждения», although the brief asks for shows (index.html:481; no concerts section anywhere)
+- MAJOR: The fake player's «▶ Слушать» button animates a progress bar with no sound and sits right next to the real «Слушать онлайн» link, so the page has two "listen" controls and one of them is dead (index.html:251-256, :566-581)
+- MAJOR: The copy contradicts the catalogue: «Издаём четыре–пять релизов в год», but the ledger shows two releases a year from 2023 to 2026 (index.html:488 vs ledger dates :292-398)
+- MAJOR: Generic look and positioning: a sticky docs-style left rail, hairline rules everywhere and uppercase mono kickers make a "ledger/archive" template, and the h1 pun «Музыка, которая стоит на пороге» plus «тихие и шумные записи» say nothing about what the label releases (indie-folk, post-rock, electronics and choir with no common thread) (desktop-light.png; index.html:234-235, :427-464)
+- FIT: 7 of 7 | Every requirement is met: the newest release is open in full on the first screen, the ledger rows hold tracklists and listen/buy links, artists cross-link to catalogue numbers, news, about plus press, demo rules plus a working form, separate inboxes, no overflow, and placeholders declared in the footer
+- SURVIVES: The catalogue numbers work as real navigation (the rail and artist links open their <details> rows), the ℗ 2023 / © 2026 reissue line is accurate, and the newest release reaches a phone screen fast (at 737 px)
+- KNOWN: partly | It reads like a documentation-site sidebar layout over a Discogs-style release ledger
+
+
+Say how sure one should be, and where the answer is most likely wrong.
+1. Give each candidate a probability of being the best available answer, plus "none of these" so that the total is
+   100%. Base it on the reviews, not on how attractive a candidate sounds; a candidate with an unanswered FATAL
+   defect gets at most 10%.
+2. For the leader: its weakest link, the single observation that would most change the ranking, and what result of
+   that observation would flip it.
+3. One line on what remains unknown even if the leader is right.
+
+Final answer (text only), at most 350 words:
+=== CALIBRATION ===
+P | <candidate number> | <probability %> | <one-line reason>
+P | none | <probability %> | <reason>
+WEAKEST LINK: <...>
+FLIP TEST: <observation> | <result that would flip the ranking>
+UNKNOWN: <...>

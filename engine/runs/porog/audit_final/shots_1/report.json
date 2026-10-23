@@ -1,0 +1,60 @@
+{
+ "page": "/home/user/SomeRepository/engine/runs/porog/final/index.html",
+ "bytes": 44706,
+ "has_own_doctype": false,
+ "note": "web fonts and CDN scripts cannot load in this sandbox; screenshots use fallback fonts",
+ "views": [
+  {
+   "view": "desktop-light",
+   "width": 1280,
+   "overflow_px": 0,
+   "wider_than_screen": [],
+   "page_height": 5926,
+   "title": "Порог",
+   "body_bg": "rgb(232, 235, 228)",
+   "text_color": "rgb(22, 33, 28)",
+   "console_errors": [],
+   "failed_loads": [],
+   "screenshot": "/home/user/SomeRepository/engine/runs/porog/audit_final/shots_1/desktop-light.png"
+  },
+  {
+   "view": "desktop-dark",
+   "width": 1280,
+   "overflow_px": 0,
+   "wider_than_screen": [],
+   "page_height": 5926,
+   "title": "Порог",
+   "body_bg": "rgb(21, 29, 26)",
+   "text_color": "rgb(229, 236, 231)",
+   "console_errors": [],
+   "failed_loads": [],
+   "screenshot": "/home/user/SomeRepository/engine/runs/porog/audit_final/shots_1/desktop-dark.png"
+  },
+  {
+   "view": "phone-light",
+   "width": 390,
+   "overflow_px": 0,
+   "wider_than_screen": [],
+   "page_height": 11527,
+   "title": "Порог",
+   "body_bg": "rgb(232, 235, 228)",
+   "text_color": "rgb(22, 33, 28)",
+   "console_errors": [],
+   "failed_loads": [],
+   "screenshot": "/home/user/SomeRepository/engine/runs/porog/audit_final/shots_1/phone-light.png"
+  },
+  {
+   "view": "phone-dark",
+   "width": 390,
+   "overflow_px": 0,
+   "wider_than_screen": [],
+   "page_height": 11527,
+   "title": "Порог",
+   "body_bg": "rgb(21, 29, 26)",
+   "text_color": "rgb(229, 236, 231)",
+   "console_errors": [],
+   "failed_loads": [],
+   "screenshot": "/home/user/SomeRepository/engine/runs/porog/audit_final/shots_1/phone-dark.png"
+  }
+ ]
+}

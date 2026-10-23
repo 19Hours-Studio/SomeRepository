@@ -1,0 +1,60 @@
+{
+ "page": "/home/user/SomeRepository/engine/runs/porog/build/b1/index.html",
+ "bytes": 40690,
+ "has_own_doctype": false,
+ "note": "web fonts and CDN scripts cannot load in this sandbox; screenshots use fallback fonts",
+ "views": [
+  {
+   "view": "desktop-light",
+   "width": 1280,
+   "overflow_px": 0,
+   "wider_than_screen": [],
+   "page_height": 5484,
+   "title": "Порог",
+   "body_bg": "rgb(205, 208, 204)",
+   "text_color": "rgb(27, 29, 28)",
+   "console_errors": [],
+   "failed_loads": [],
+   "screenshot": "/home/user/SomeRepository/engine/runs/porog/review/shots_1/desktop-light.png"
+  },
+  {
+   "view": "desktop-dark",
+   "width": 1280,
+   "overflow_px": 0,
+   "wider_than_screen": [],
+   "page_height": 5484,
+   "title": "Порог",
+   "body_bg": "rgb(35, 38, 37)",
+   "text_color": "rgb(230, 232, 228)",
+   "console_errors": [],
+   "failed_loads": [],
+   "screenshot": "/home/user/SomeRepository/engine/runs/porog/review/shots_1/desktop-dark.png"
+  },
+  {
+   "view": "phone-light",
+   "width": 390,
+   "overflow_px": 0,
+   "wider_than_screen": [],
+   "page_height": 11511,
+   "title": "Порог",
+   "body_bg": "rgb(205, 208, 204)",
+   "text_color": "rgb(27, 29, 28)",
+   "console_errors": [],
+   "failed_loads": [],
+   "screenshot": "/home/user/SomeRepository/engine/runs/porog/review/shots_1/phone-light.png"
+  },
+  {
+   "view": "phone-dark",
+   "width": 390,
+   "overflow_px": 0,
+   "wider_than_screen": [],
+   "page_height": 11511,
+   "title": "Порог",
+   "body_bg": "rgb(35, 38, 37)",
+   "text_color": "rgb(230, 232, 228)",
+   "console_errors": [],
+   "failed_loads": [],
+   "screenshot": "/home/user/SomeRepository/engine/runs/porog/review/shots_1/phone-dark.png"
+  }
+ ]
+}

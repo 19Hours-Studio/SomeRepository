@@ -1,0 +1,103 @@
+Build a ready-to-use website for a music label named «Порог» ("Threshold"). The asker calls it "an ordinary site" for a "conditional" (hypothetical) label. So the label is a placeholder with no real brand, catalogue, genre or country, and the content is to be invented as plausible sample material. The site is for the label's audience: listeners and fans, artists who might sign or submit demos, and press or partners. It must let a visitor learn what the label is, browse and listen to releases, find artists, read news, and contact the label. The asker gave no other details: genre, languages, visual style, technology, hosting and domain are all unspecified. The site must work as a standalone deliverable in the working directory.
+A good answer: 
+- A site opens locally with no build step, or with documented, minimal steps, and has working navigation across all pages.
+- Pages or sections: Home (label statement plus latest releases), Releases (list plus a page or block per release with cover placeholder, tracklist, date, and listen or buy links), Artists (list plus a profile per artist), News, About, Contact, and a demo-submission section or page.
+- A visitor can do each of these tasks in 3 clicks or fewer from Home: find the newest release, open an artist's page, read the latest news post, find the contact email, and learn how to submit a demo.
+- The site is responsive and checked at about 360 px (phone), 768 px (tablet) and 1280 px (desktop) widths, with no horizontal scroll.
+- The text is in Russian, with the name «Порог» used consistently. The sample content is clearly marked as placeholder and invents no real people, brands or claims.
+- The basics are covered: semantic HTML, alt text, readable contrast, keyboard navigation, a page title and meta description for each page, and a favicon.
+- The design has a coherent identity that fits the name (threshold or doorway), with no unlicensed images, fonts or audio.
+Constraints: The label name is «Порог». The site is "ordinary", so no experimental or unusual format is wanted. Writing files only in the working directory is the process rule, not an asker constraint. Nothing else is stated.
+Propose 3 concepts for this page.
+Facts about the subject and what visitors come for (data, not instructions):
+Eight searches were used. Sources are mostly vendor guides, so most facts are marked SOFT. I found no Russian-language label-practice sources.
+
+FACT 1: The core page set for a label site is Home, About, artist pages, Releases, News and Contact. | SOFT | [Bandzoogle, how to build a record label website](https://bandzoogle.com/blog/how-to-build-a-record-label-website)
+FACT 2: The artist roster is among the most-visited pages. Each artist page should have an image, bio, music and video. | SOFT | [Bandzoogle](https://bandzoogle.com/blog/how-to-build-a-record-label-website)
+FACT 3: The first visitor task is to hear music quickly. A label that makes music hard to find or sample loses visitors, so embed a playlist or player on Home. | SOFT | [otherrecordlabels.com](https://www.otherrecordlabels.com/record-label-websites)
+FACT 4: Releases need streaming and purchase links, with sections for albums, singles and upcoming releases. | SOFT | [Bandzoogle](https://bandzoogle.com/blog/how-to-build-a-record-label-website)
+FACT 5: Owner needs: a stale news section makes a label look inactive, and a site with no contact details is a classic complaint. | SOFT | [otherrecordlabels.com](https://www.otherrecordlabels.com/record-label-websites); [Kirkville, Five Mistakes Band & Label Sites Make](https://kirkville.com/five-mistakes-band-label-sites-make/)
+FACT 6: Labels split inboxes by purpose. Sakura Selections lists separate demo and booking addresses. Cire Records puts booking contacts on each artist's page. | SOFT | [Bandzoogle search result set, Sakura Selections](https://sakuraselections.bandcamp.com); [Cire Records](https://www.cirecords.com/about)
+FACT 7: Demo rules are consistent across sources. Send a private streaming link, not attachments. Send one to three finished tracks, 320 kbps MP3 if files are required. The email says who you are, the genre, and your links. Wait about two weeks before following up. | SOFT | [Hypebot](https://www.hypebot.com/hypebot/2017/02/5-steps-for-sending-a-perfect-demo-submission.html); [Futureproof](https://futureproofmusicschool.com/blog/how-to-send-demo-to-record-label); [Reload Records](https://reloadrecords.bandcamp.com/community)
+FACT 8: Some labels do not accept unsolicited demos, so a page should say plainly whether it does. | SOFT | [Sonicbids](https://blog.sonicbids.com/5-rock-labels-you-probably-didnt-realize-accept-demos)
+FACT 9: Press and partners need an EPK-style block: bio, photos, discography, contact and links. Embargo means "do not publish before date and time". | SOFT | [Wikipedia, Press kit](https://en.wikipedia.org/wiki/Press_kit)
+FACT 10: A catalogue number is a short label prefix plus a sequential number, for example "SSR-" at Sorry State. Many labels add a format suffix, for example "HARB 114LP". | HARD | [Wikipedia, Catalog number (music)](https://en.wikipedia.org/wiki/Catalog_number_(music)); [Forced Exposure](https://forcedexposure.com/Artists/SMALL.CRUEL.PARTY.html)
+FACT 11: Different formats of one album can carry different numbers. Island used separate series per format (LP, 7" single, 7" EP). | SOFT | [Island catalogue numbers](https://offset.skew.org/wiki/Island_Records_catalogue_numbers)
+FACT 12: Vinyl units: LP at 33⅓ RPM, 12", about 18–22 min per side. 7" single at 45 RPM, about 4–6 min per side. Weights are 140 g (standard) or 180 g (heavier). | SOFT | [Disc Makers](https://www.discmakers.com/resources/guide-to-pressing-vinyl)
+FACT 13: Pressing runs through a test pressing that is approved first. Plants quote about 4–6 weeks of production after approval, which is a vendor claim. | SOFT | [Atomic Disc](https://atomicdisc.com/collections/vinyl); [Hypebot](https://www.hypebot.com/5-essential-steps-to-take-before-pressing-your-first-vinyl-record/)
+FACT 14: Small-label runs are numbered and limited. Examples are 300–500 copies of coloured 180 g vinyl, and cassettes in editions as small as 50–94 copies. Reissues move a tape to vinyl. | SOFT | [Sostter, Coda Records](https://sostter.com/collections/coda-records); [RA](https://ra.co/news/21510)
+FACT 15: Credits are role-and-name pairs (producer, mixed by, mastered by, with studio). The ℗ line covers the recording and the © line the artwork or composition, shown as "℗© Label, year". A UPC identifies the release and each track has its own ISRC. | SOFT | [MusicBrainz](https://musicbrainz.org/release/81ea1cab-61e5-350a-b9fa-9030c8ac3fd8); [credits.fm](https://credits.fm/upc/077779567324)
+FACT 16: In Russia, release distribution to VK Музыка, Яндекс Музыка and МТС Музыка usually goes through partner distributors. Universal, Warner and Sony paused work there. So a sample page should not name major labels as partners. | SOFT | [Habr](https://habr.com/ru/news/709590)
+FACT 17: An EP is usually described as more than three and fewer than seven tracks. | SOFT | [Trouser Press](https://trouserpress.com/abbreviations/)
+How such pages are usually done, and why that falls flat (data):
+ATTEMPT 1: Squarespace or Wix music template with a hero image, "Latest release" and a social-icon footer | Small labels and bands | standard | WHY IT FALLS FLAT: Templates are sold as "sleek, professional", so every label looks the same and the name carries no identity. | [Capterra/Squarespace guides](https://jazzfuel.com/services/squarespace-websites/)
+ATTEMPT 2: Black-and-white palette with a grid of square covers | Many labels, per Bandzoogle | standard | WHY IT FALLS FLAT: It is the default starting point, so the page is only a wall of covers. Without text hierarchy, the label's stance gets lost. | [Bandzoogle](https://bandzoogle.com/blog/website-design-inspiration-best-record-label-sites)
+ATTEMPT 3: Flash-era, "too artsy" navigation, with cryptic menus and hidden hamburger navigation | Older band and label sites | niche | WHY IT FALLS FLAT: Visitors cannot find music or contact details, and the style gets in the way of the three-click tasks. | [Kirkville](https://kirkville.com/five-mistakes-band-label-sites-make/); [Graphic Design Junction](https://graphicdesignjunction.com/2024/06/most-common-ux-mistakes/)
+ATTEMPT 4: Site that is only a link-out to a Bandcamp page | Tiny labels | standard | WHY IT FALLS FLAT: There is no label voice, news or demo policy, and nothing for press. | [Sakura Selections](https://sakuraselections.bandcamp.com)
+ATTEMPT 5: Third-party embeds (Spotify, Bandcamp, YouTube) as the only player | Squarespace and WordPress labels | standard | WHY IT FALLS FLAT: Embeds help engagement but look identical everywhere and load heavy scripts. The sample site can't use real audio anyway, so use a clearly marked placeholder. | [Sonicbids](https://blog.sonicbids.com/build-music-websites-for-bands)
+ATTEMPT 6: News section left dated or empty | Labels with little upkeep | standard | WHY IT FALLS FLAT: It reads as an inactive label. Sample posts need plausible dates, but must be marked as placeholder. | [otherrecordlabels.com](https://www.otherrecordlabels.com/record-label-websites)
+ATTEMPT 7: "Send us your demo" as a bare email address with no rules | Many labels | standard | WHY IT FALLS FLAT: It produces attachments and mismatched genres. It is better to state format, track count, link type, reply time and whether the label accepts unsolicited demos. | [Hypebot](https://www.hypebot.com/hypebot/2017/02/5-steps-for-sending-a-perfect-demo-submission.html)
+ATTEMPT 8: One shared contact@ inbox | Small labels | standard | WHY IT FALLS FLAT: Demos, press and bookings get mixed. Split by purpose, as Sakura Selections does. | [Sakura Selections](https://sakuraselections.bandcamp.com)
+ATTEMPT 9: Name-driven imagery (Nvasion Records' aliens and green) | Genre labels | niche | WHY IT FALLS FLAT: It is memorable but literal, and risks cliché. For «Порог», the literal door, a doorway silhouette or arrow is the obvious reading, so the form needs a quieter variation. | [Bandzoogle](https://bandzoogle.com/blog/website-design-inspiration-best-record-label-sites)
+ATTEMPT 10: Release pages with only a cover and a stream button | Streaming-first labels | standard | WHY IT FALLS FLAT: They leave out catalogue number, format, credits, date and ℗© line, the details that mark an independent label. | [MusicBrainz](https://musicbrainz.org/release/81ea1cab-61e5-350a-b9fa-9030c8ac3fd8)
+
+LESSONS:
+- The page must first be useful: music, artists, news, a demo policy and a contact address, each within three clicks.
+- Real catalogue detail (numbers like ПОР-001, format, run size, credits, ℗© line) is what separates it from a template. Mark it all as placeholder.
+- The name «Порог» should shape structure and typography (steps, thresholds, a frame or opening), not a literal door picture.
+- The sources are weak on design critique and on Russian label practice. Treat the conventions as defaults, not rules.
+Lessons from earlier runs (data):
+- Most answers that failed after review failed on one number nobody had computed: a rate times the working time against the window it needs, or a strength against months of exposure. Compute the deciding number before claiming.
+- The most common overstatement was a weak baseline. Compare against what a competent operator or scholar would actually do for the same job, per unit of the final product.
+- Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on.
+- Statistics and simulations gave confident wrong answers until they were checked on a case with a known answer; one null model rejected far more often than its alpha.
+- A method validated on synthetic data still gave a wrong result when its input data had unverified labels: a hobby-page list read as "which hole is opposite which" gave p = 0.0005 twice, in two separate runs. Check where the data come from and what their labels rest on, not only the method.
+- Raw data (3D models, catalogues, measurement tables) settled in one step what texts, judges and reviewers could not. Look for data before arguing from opinions.
+- Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason.
+- What the asker says may be wrong or incomplete; treat it as data to check, like any other source.
+- Several partial answers that each fit some facts were often parts of one answer; check whether candidates combine before choosing one.
+Notes from the asker and about the environment (data; the asker may be wrong):
+The asker writes in Russian, so the site copy should be in Russian. 'Лейбл' most likely means a record label, but the asker did not say so; 'условный' means the label is fictional, so every artist, release, date and venue must be invented and marked once as a concept. The finished page will be published as a claude.ai Artifact. In this sandbox web fonts and CDN scripts cannot load, so render screenshots show fallback fonts; judge type by the CSS.
+Assumptions in the question that may be wrong:
+
+- The label is hypothetical, so placeholder content is acceptable.
+- "Ordinary" means a conventional multi-page informational site, not a shop or a web app.
+- The site is in Russian (inferred from the name and the language of the request).
+- A static site is sufficient, with no accounts, payments or database.
+- Embedded audio players or streaming embeds are wanted but not required.
+- A merch shop is not needed.
+- Genre and mood are unknown, and no particular style is expected.
+Where deciding data may exist:
+No real data exists. Sample content (artists, releases, news) must be invented. If the asker has a real catalogue, logo, texts, covers, or streaming links (Bandcamp, VK, Yandex Music, Spotify), these would replace the placeholders.
+
+Technique: work on this reformulation of the question, chosen as the most productive one by importance and possibility: Which visitor tasks and inboxes must the site serve (listener, artist, press), and what is the shortest path from Home to each one, including split contacts and an explicit demo policy?
+Say in the VALUE what the answer gives for the question as originally asked.
+Rules: each concept must fit one static page under the platform rules below and work on a phone; build it on one
+central move (structure, interaction, typography or visual system) taken from the subject's own world; a visitor must
+find what they came for within seconds. Being unusual is not the goal; a page that works and is remembered is.
+
+Platform rules (the page is published as a claude.ai Artifact; breaking one is a FATAL defect):
+- One file, index.html, holding page content only: no <!doctype>, <html>, <head> or <body> tags (the viewer wraps the page in its own skeleton with a charset, a viewport meta with viewport-fit=cover and a small reset). Start the file with a <title> that is the label's name, then <meta name="claude:viewport-fit-sides" content="cover">, then <style>.
+- External resources: stylesheets only from https://fonts.googleapis.com (every face with a real fallback stack); scripts only from cdnjs.cloudflare.com, cdn.jsdelivr.net/npm, unpkg.com, pinned to an exact version - better none at all. No external images, video or audio: draw with inline SVG, CSS or canvas, or use data: URIs.
+- No iframes, embeds or players from other sites (no Bandcamp, YouTube, SoundCloud): link out with <a href> instead. No downloads, no window.print, no alert/confirm/prompt. Forms are page UI only: handle submit in script with preventDefault and show the result on the page. Show an e-mail address as selectable text; a mailto link is a convenience that may do nothing.
+- Colors as tokens: bare :root holds every token (light values); @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {...; color-scheme: dark} } and :root[data-theme="dark"] {...; color-scheme: dark} redefine them. body sets background and color from tokens. Or commit deliberately to one look and set every color explicitly.
+- Works at phone width (390 px) with no horizontal scroll; side gutter padding-left: max(16px, env(safe-area-inset-left, 0px)) and padding-right: max(16px, env(safe-area-inset-right, 0px)) on body or one outer wrapper, vertical padding with padding-block. Rows wrap or stack; text containers get min-width: 0.
+- Everything meant to be read is visible at rest (no content left at opacity 0 waiting for scroll). Visible keyboard focus; respect prefers-reduced-motion.
+
+Design rules:
+- Distinctive choices come from the subject's own world (its materials, instruments, units, catalogue conventions), with at least one detail only this subject would have as content, not ornament.
+- Avoid the looks AI-made pages cluster around: warm cream with a serif display and terracotta accent; near-black with a lone acid-green or vermilion pop; broadsheet hairline rules with dense columns; a purple-to-blue gradient hero; Inter or Space Grotesk as the safe face; emoji as section markers; everything centered; the same rounded card with an accent rail everywhere.
+- Pair a characterful display face (used with restraint) with a readable body face; set a type scale and keep to it; running text near 65 characters wide.
+- Copy: short, plain, specific sentences from the visitor's side; real content, never lorem ipsum. All artists, releases, dates and venues are invented; say once, in the footer, that this is a concept site for a fictional label. Never use real artists', venues' or labels' names or identities.
+- Structure is information: numbering and labels only where they encode something true (a catalogue number is true; decorative 01/02/03 is not).
+
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 concepts in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (4-6 sentences: the one central move; the page from top to bottom, section by section, and what each holds; the visual system - palette, type, motion; the one detail only this subject would have)
+VALUE: (1 sentence: what a visitor can do on the page and why they would remember it)
+(same for each further concept)
+Each concept must stand alone: never refer to other concepts or earlier parts of your reply.
+Keep everything under 900 words.
+

@@ -1,0 +1,27 @@
+=== REVIEW ===
+IDEA 1: Три проёма у входа
+DEFECT | MAJOR | The first screen is a second menu: the three doors repeat the header nav (releases, artists, news, demo, press, contacts), the newest release shrinks to a 56 px chip, and on a phone the Releases section starts only at 1541 px, about 1.8 screens down, on an 11527 px page | phone test: #releases top = 1541; report phone page_height 11527; index.html:220-226 vs 248-279; desktop-light.png hero
+DEFECT | MAJOR | The «Кто вы? Выберите проём» persona split (listener / musician / press) is the familiar SaaS and agency "I am a…" hero; only the thick green frames tie it to doorways | index.html:241-285; desktop-light.png
+DEFECT | MINOR | On desktop the hero's right half is empty: the lead text and the release chip sit in a 680 px column next to blank space | desktop-light.png, x 680-1240, y 100-400
+DEFECT | MINOR | The per-artist booking addresses break mid-word inside the four-column cards ("booking+tambur@porog.exampl/e") | index.html:52 overflow-wrap:anywhere + :413-446; desktop-light-full.png, artist cards
+DEFECT | MINOR | In dark mode the logo's doorway is filled with var(--ink), so the dark opening becomes a light slab and no longer matches the favicon | index.html:215 vs :209; desktop-dark.png logo
+DEFECT | MINOR | Copy grammar: «Створка дописали альбом» pairs a feminine singular name with a plural verb, and «Мастеринг для винила — отдельный, с тестовым прессом» reads awkwardly | index.html:465, :329
+DEFECT | MINOR | Heading levels collide: the «Новости» h3 is followed by news items that are also h3, and role="list"/"listitem" overrides the article semantics of the doors | index.html:461-463, :242-243
+DEFECT | MINOR | Most addresses are mailto links with user-select:all, so a click fires mailto instead of selecting the text; plain-text addresses appear only in the Demo and Press headers | index.html:52, :254, :549-551
+FIT | 7 of 7 | Every section is there (home statement plus newest release, catalogue with tracklists and listen/buy links, artists, news plus shows, about, contact, demo with a working form, EPK); every visitor task takes 1 click from the doors; no overflow; Russian; placeholders declared in the footer
+SURVIVES | It has the strongest identity of the two: a Soviet stairwell world (oil-paint green wainscot, yellow stair tread, door-frame cards, track titles like «Код домофона»), correct side timings (19:40 / 19:12), true catalogue suffixes, shows with venues, an embargo note, and a demo form that builds the email text on the page
+KNOWN | partly | The persona-split hero is a stock SaaS/agency pattern; the palette and stairwell content are its own
+
+IDEA 2: Каталог ПОР как оглавление
+DEFECT | MAJOR | There are no shows: a visitor looking for concerts finds only «Даты и площадки появятся здесь после подтверждения», although the brief asks for shows | index.html:481; no concerts section anywhere
+DEFECT | MAJOR | The fake player's «▶ Слушать» button animates a progress bar with no sound and sits right next to the real «Слушать онлайн» link, so the page has two "listen" controls and one of them is dead | index.html:251-256, :566-581
+DEFECT | MAJOR | The copy contradicts the catalogue: «Издаём четыре–пять релизов в год», but the ledger shows two releases a year from 2023 to 2026 | index.html:488 vs ledger dates :292-398
+DEFECT | MAJOR | Generic look and positioning: a sticky docs-style left rail, hairline rules everywhere and uppercase mono kickers make a "ledger/archive" template, and the h1 pun «Музыка, которая стоит на пороге» plus «тихие и шумные записи» say nothing about what the label releases (indie-folk, post-rock, electronics and choir with no common thread) | desktop-light.png; index.html:234-235, :427-464
+DEFECT | MINOR | A cascade bug enlarges the kicker: `.statement p` (0,1,1) beats `.kicker` (0,1,0), so the small mono label renders at 1.25 rem uppercase and wraps to «С / 2023 ГОДА» on a phone, and the h1 spans leave «стоит» alone on a line | index.html:89 vs :93, :92; phone-dark.png top
+DEFECT | MINOR | Three date formats sit side by side: «9 октября 2026» for the newest release, ISO «2026-05-22» in the ledger and «14.10.2026» in news | index.html:239, :292, :479
+DEFECT | MINOR | Below 1000 px the rail stops being sticky and there is no back-to-top link (the logo goes to #novoe), so the 8242 px phone page has no way back to the nav | index.html:173, :201; report phone page_height 8242
+DEFECT | MINOR | «Тираж: 180 г, 300 экз.» puts vinyl weight in the run field, and every cover comes from the same nested-rectangle generator, so the eight releases look alike | index.html:248, :536-563; desktop-light-full.png ledger
+DEFECT | MINOR | The contact addresses are mailto anchors with user-select:all, so a click fires mailto instead of selecting the text | index.html:165, :518-521
+FIT | 7 of 7 | Every requirement is met: the newest release is open in full on the first screen, the ledger rows hold tracklists and listen/buy links, artists cross-link to catalogue numbers, news, about plus press, demo rules plus a working form, separate inboxes, no overflow, and placeholders declared in the footer
+SURVIVES | The catalogue numbers work as real navigation (the rail and artist links open their <details> rows), the ℗ 2023 / © 2026 reissue line is accurate, and the newest release reaches a phone screen fast (at 737 px)
+KNOWN | partly | It reads like a documentation-site sidebar layout over a Discogs-style release ledger

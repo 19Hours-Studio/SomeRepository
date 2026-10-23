@@ -1,0 +1,10 @@
+{
+ "p": {
+  "final#1": 0.5,
+  "g1_neg#1": 0.37,
+  "none": 0.13
+ },
+ "weakest_link": "Idea 1's Home buries the latest release. It is a 56 px chip, and on a phone the Releases section starts at 1541 px, about 1.8 screens down. The doors repeat the header nav, so the first screen is a second menu, not \"label statement plus latest releases\".",
+ "flip_test": "Load Idea 1 at 360 px and check whether the first screen shows the statement and the newest release (cover, title, a link to its tracklist and listen links). If a grader holds that Home must visibly feature the latest release, and the chip fails that, Idea 2 leads. That holds if its dead player can be dropped without loss, which is a one-line fix and lighter than restructuring Idea 1's hero. If the chip is a clear, labelled link to the full release, Idea 1 holds.",
+ "unknown": "Whether either one meets the \"pages\" reading of the brief: separate HTML files, each with its own `<title>` and meta description. Also unknown: whether the fonts (Unbounded, Golos Text, JetBrains Mono, all OFL) are self-hosted with their licence files, rather than hot-linked or bundled with no licence notice."
+}

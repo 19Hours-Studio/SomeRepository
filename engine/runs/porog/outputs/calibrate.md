@@ -1,0 +1,10 @@
+=== CALIBRATION ===
+P | 1 | 50% | Strongest identity (stairwell world, tread-yellow focus ring, inbox-labelled doors), 7/7 fit, every task in one click. Its two MAJORs are about emphasis and cliché, not broken function.
+P | 2 | 37% | Also 7/7, and the newest release is open on the first screen, which fits "Home: statement plus latest releases" better. One MAJOR is invalid: the brief never asks for shows. The real defects are a dead fake "▶ Слушать" next to a live link, a release-rate claim that contradicts its own ledger, and a docs-template look.
+P | none | 13% | Both seem to be a single `index.html`, so "a title and meta description per page" and per-release or per-artist pages may be unmet by both. Neither review confirms contrast, the favicon or keyboard testing.
+
+WEAKEST LINK: Idea 1's Home buries the latest release. It is a 56 px chip, and on a phone the Releases section starts at 1541 px, about 1.8 screens down. The doors repeat the header nav, so the first screen is a second menu, not "label statement plus latest releases".
+
+FLIP TEST: Load Idea 1 at 360 px and check whether the first screen shows the statement and the newest release (cover, title, a link to its tracklist and listen links). If a grader holds that Home must visibly feature the latest release, and the chip fails that, Idea 2 leads. That holds if its dead player can be dropped without loss, which is a one-line fix and lighter than restructuring Idea 1's hero. If the chip is a clear, labelled link to the full release, Idea 1 holds.
+
+UNKNOWN: Whether either one meets the "pages" reading of the brief: separate HTML files, each with its own `<title>` and meta description. Also unknown: whether the fonts (Unbounded, Golos Text, JetBrains Mono, all OFL) are self-hosted with their licence files, rather than hot-linked or bundled with no licence notice.
