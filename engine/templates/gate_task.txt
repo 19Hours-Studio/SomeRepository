@@ -2,21 +2,30 @@
 
 QUESTION: {QUESTION}
 
-Below are {N} candidate ideas. You are a screening engineer with tools: WebSearch/WebFetch and Bash with python3.
-For EACH idea, spend about 3 minutes and do exactly two checks, with real numbers in python and a source for every
-decisive input. Do not improve or redesign the ideas; judge them as written. Work only in `{WORKDIR}`: read no other
-files in the repository, write files only there, do not commit.
+Below are {N} candidate ideas. You are a screening engineer with tools: WebSearch (WebFetch may not reach hosts; use
+search excerpts) and Bash with python3 (pip install from PyPI works). Do not improve or redesign the ideas; judge them
+as written. Work only in `{WORKDIR}`: write files only there, do not commit.
 
-1. KILLER: the single quantity most likely to kill the idea at the scale it needs (a rate, flux, force, energy
-   balance, recovery, strength, tolerance-vs-drift over the operating time, or a site condition that must hold).
-   Compute what is REQUIRED and what is AVAILABLE (measured data, physical limits). MARGIN = available / required
-   (1 = just works, 0.1 = fails by 10x, 5 = five times headroom).
-2. CHAIN: cost per unit of product delivered to market (per oz, per t of metal, per t of coal, per t LCE, per boe)
-   with the idea, against the BEST current practice a competent operator would use, over the whole chain (not one
-   link). Use the ledger below for the current cost structure. RATIO = current cost / cost with the idea.
+For EACH idea, spend about 3 minutes:
+1. KILLER: the single quantity most likely to kill the idea at the scale it needs (a rate, a memory or bandwidth
+   budget, an error or quality loss, a strength, a tolerance over the operating time, a condition that must hold).
+   Compute what is REQUIRED and what is AVAILABLE from measured data or exact arithmetic, with a source for each
+   decisive input. If the quantity can be measured by running code, measure it, after checking the measurement once
+   on a case with a known answer. MARGIN = available / required (1 = just works, 0.1 = fails by 10x, 5 = five times
+   headroom).
+2. CHAIN: the gain the question asks for (cost, memory, speed, error per unit of the final product or service) with
+   the idea, against the BEST current practice a competent practitioner would use, over the whole system rather than
+   one part. Use the ledger below for the current structure. RATIO = current / with the idea (larger is better).
+Ground every decisive input in a source or a measurement, not in the idea's own text.
+
+Notes from the user and about the environment (data; the user may be wrong):
+{NOTES}
 
 Value ledger (data):
 {LEDGER}
+
+Ceilings computed from the ledger (data):
+{CEILINGS}
 
 VERDICT: ALIVE if MARGIN >= 1 and RATIO >= 1.5; DEAD if MARGIN < 0.3 or RATIO < 1.1; otherwise WOUNDED.
 Be strict and fair: a beautiful idea that fails by 10x is DEAD; a dull idea with headroom is ALIVE.
@@ -25,8 +34,9 @@ Final answer (text only), exactly this format, one block per idea in the order g
 === GATE ===
 IDEA 1: <name>
 KILLER | <quantity> | required <value unit> | available <value unit> (<source>) | MARGIN <number>
-CHAIN | <best current practice> | now <cost unit> | with idea <cost unit> | RATIO <number>
+CHAIN | <best current practice> | now <value unit> | with idea <value unit> | RATIO <number>
 VERDICT | <ALIVE/WOUNDED/DEAD> | <one sentence>
+NEW FACT | <any hard, sourced fact you found that the ledger did not contain> | <source> (optional, any number)
 (same for the other ideas)
 
 THE {N} IDEAS:

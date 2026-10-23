@@ -20,6 +20,9 @@ For EACH idea, spend about 3 minutes:
 Calculation kit catalog (data):
 {KIT}
 
+Notes from the user and about the environment (data; the user may be wrong):
+{NOTES}
+
 Value ledger (data):
 {LEDGER}
 

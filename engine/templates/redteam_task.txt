@@ -10,12 +10,12 @@ You have tools: WebSearch/WebFetch and Bash with python3 (check every claim in r
 `{WORKDIR}`: read no other files in the repository, do not modify other files, do not commit.
 
 For each idea, attack in this order:
-1. Recompute every number the text states (arithmetic, units, mass/energy balances). Flag any that do not reproduce.
+1. Recompute every number the text states (arithmetic, units, mass, energy or memory balances). Flag any that do not reproduce.
 2. Consistency: list every tolerance, margin and window the design relies on, and check every rate in the design
-   against it over the whole operating time (rate x duration vs window). Check that the site/route/season named
-   really has the conditions assumed (temperatures, flows, ice, distances) - find measured data.
+   against it over the whole operating time (rate x duration vs window). Check that the conditions assumed really
+   hold where the idea is used (site, route, season, workload, hardware) - find measured data.
 3. Baseline: is the comparison against the best current practice a competent operator would use, per unit of
-   recovered/delivered product? Name the real competing alternatives it ignores and recompute the ratio.
+   recovered or delivered product or service? Name the real competing alternatives it ignores and recompute the ratio.
 4. Assumptions: which decisive numbers (efficiencies, friction, rates, loss fractions, costs) are assumed rather
    than sourced? How far can they move, and does the claim survive the plausible range?
 5. Evidence and statistics: are the proposed tests able to show what is claimed (sample sizes, confidence bounds)?

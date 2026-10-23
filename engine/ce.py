@@ -120,6 +120,7 @@ def fill(run, body, n, extra=None, sources=None):
     if "{LESSONS}" in s: s = s.replace("{LESSONS}", lessons_block(cfg))  # v5: memory between runs
     if "{MATERIAL}" in s: s = s.replace("{MATERIAL}", material_block(run, cfg))
     for k, v in (extra or {}).items(): s = s.replace("{" + k + "}", v)
+    s = s.replace("{NOTES}", cfg.get("notes") or "(none)")  # v5: notes from the user and about the environment, for every step
     return s.replace("{REFRAME}", (cfg.get("reframes") or ["(no reformulation recorded)"])[0]).replace("{TECH}", "")
 
 def cmd_prompt(a):
@@ -858,9 +859,11 @@ def parse_shares(ledger):
         if (m := re.match(r"^\**ARCHETYPE\s+(\w+)\**\s*:\s*(.+)", l)): name = f"{m.group(1)}: {m.group(2).split('|')[0].strip()[:90]}"
         if not l.lstrip("*").startswith("SHARES"): continue
         head, _, body = l.partition(":"); vals = {}
-        for part in body.split("|"):
-            p = part.strip().lower(); t = next((t for t in TERMS if p.startswith(t)), None); m = SHARE.search(p)
-            if t and m: vals[t] = [float(m.group(1))] + ([float(m.group(2))] if m.group(2) else [])
+        for part in body.split("|"):  # a term is the words before its share; physical-goods terms keep their short names
+            p = part.strip().lower(); m = SHARE.search(p)
+            if not m: continue
+            t = next((t for t in TERMS if p.startswith(t)), None) or re.sub(r"\([^)]*\)", "", p[:m.start()]).strip(" :-*") or "?"
+            vals["other" if t.startswith("other") else t] = [float(m.group(1))] + ([float(m.group(2))] if m.group(2) else [])
         nv = max((len(v) for v in vals.values()), default=0)
         lab = re.search(r"\(([^)]*)\)", head)
         labs = [x.strip() for x in re.sub(r"^est\.?,?", "", lab.group(1).strip()).split("/")] if lab else []
@@ -1006,6 +1009,24 @@ def cmd_bench(a):
                                 f"{r.get('ratio') or '-'} | {r.get('known') or '-'} | {ideas.get(i, {}).get('name', '')} |")
     s = "\n".join(out) + "\n"; open(os.path.join(a.dir, "bench.md"), "w").write(s); print(s)
 
+def merge_numbered(texts, sizes, tag):
+    """v5: chunk outputs (each numbering its ideas from 1) -> one output numbered over all chunks, under one tag."""
+    out, off = [tag], 0
+    for t, n in zip(texts, sizes):
+        body = t.split(tag, 1)[1] if tag in t else t; parts = re.split(r"^IDEA (\d+)\s*:", body, flags=re.M)
+        out += [f"IDEA {off + int(k)}:{b.rstrip()}" for k, b in zip(parts[1::2], parts[2::2]) if 1 <= int(k) <= n]
+        off += n
+    return "\n".join(out) + "\n"
+
+def merge_ideas(texts):
+    """v5: repaired ideas from several chunks -> one === IDEAS === section (renumbered) plus each chunk's notes."""
+    blocks, notes = [], []
+    for t in texts:
+        head, _, body = t.partition("=== IDEAS ===")
+        parts = re.split(r"(?m)^\**IDEA\s*\d+\**\s*$", body); notes.append(head.strip())
+        blocks += [b.strip() for b in parts[1:] if b.strip()]
+    return "\n\n".join(x for x in notes if x) + "\n=== IDEAS ===\n" + "\n\n".join(f"IDEA {k}\n{b}" for k, b in enumerate(blocks, 1)) + "\n"
+
 # v4-v5 one-pass pipelines. Estimates (tokens per step) are replaced by the run's own averages once usage.jsonl has them.
 EST = {"research": 150_000, "gen": 10_000, "review": 150_000, "repair": 200_000, "code": 0}
 EST_USD = {"research": 0.6, "gen": 0.2, "review": 2.5, "repair": 2.0, "code": 0.0}  # v5: tool steps are mostly cache re-reads (~10% price)
@@ -1065,6 +1086,7 @@ def cmd_run(a):
     if getattr(a, "tag", None): cfg["tag"] = a.tag
     if getattr(a, "lessons_exclude", None) is not None: cfg["lessons_exclude"] = [x for x in a.lessons_exclude.split(",") if x]
     if getattr(a, "slice_facts", None) is not None: cfg["slice_facts"] = a.slice_facts
+    if a.notes: cfg["notes"] = a.notes
     save(R, "config.json", cfg); budget = a.max_tokens; bench = [x for x in (getattr(a, "bench", None) or "").split(",") if x]
     def spent(): return runner.summary(D)[1]
     def spent_usd(): return runner.summary(D)[2]
@@ -1080,12 +1102,26 @@ def cmd_run(a):
         open(out, "w").write(text); runner.log(D, f"{kind_}:{name}", u)
         print(f"  {name}: {u['tokens']:,} tokens, {u['seconds']} s"); return text
     def saved(label, prompt): open(path(R, "prompts", label + ".txt"), "w").write(prompt); return prompt
-    def order(name, ids, f):  # a fresh blind order, or the stored one when the step is done (resume keeps numbering)
-        if done(name) and os.path.exists(f): return json.load(open(f))
+    def order(name, ids, f):  # a fresh blind order, or the stored one for the same ideas (a resumed step keeps its numbering and chunks)
+        if os.path.exists(f) and sorted(json.load(open(f))) == sorted(ids): return json.load(open(f))
         ids = list(ids); secrets.SystemRandom().shuffle(ids); return ids
     def task(dirname): return open(os.path.join(D, dirname, "TASK.md")).read()
-    def review(name, ids, tp):
+    def chunked(name, kind_, ids, write_task, size, merge):
+        """v5: a tool step over many ideas run as chunks of <= size ideas, at most 2 agents at a time. Every turn re-reads
+        the growing context, so cost grows ~ with turns squared: two half-size agents cost ~40% less than one."""
+        if not size or len(ids) <= size or done(name): return
+        dd = os.path.join(D, name); cs = [ids[i:i + size] for i in range(0, len(ids), size)]
+        def one(j):
+            cd = os.path.join(dd, f"c{j + 1}"); write_task(cs[j], cd)
+            return step(f"{name}.{j + 1}", kind_, open(os.path.join(cd, "TASK.md")).read(), a.model, "research", cwd=cd)
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(2) as ex: texts = list(ex.map(one, range(len(cs))))
+        open(path(R, "outputs", name + ".md"), "w").write(merge(texts, [len(c) for c in cs]))
+    def review(name, ids, tp, chunk=None):
         dd = os.path.join(D, name); ids = order(name, ids, os.path.join(dd, "ids.json"))
+        os.makedirs(dd, exist_ok=True); json.dump(ids, open(os.path.join(dd, "ids.json"), "w"))
+        chunked(name, "review", ids, lambda c, cd: cmd_redteamtask(argparse.Namespace(run=R, ids=",".join(c), dir=cd, blind=True, tpl=tp)),
+                a.chunk if chunk is None else chunk, lambda t, n: merge_numbered(t, n, "=== REVIEW ==="))
         cmd_redteamtask(argparse.Namespace(run=R, ids=",".join(ids), dir=dd, blind=True, tpl=tp))
         t = step(name, "review", task(name), a.model, "research", cwd=dd)
         open(os.path.join(dd, "REVIEW.md"), "w").write(t[t.find("=== REVIEW ==="):] if "=== REVIEW ===" in t else t)
@@ -1142,24 +1178,31 @@ def cmd_run(a):
         print(f"  reality: {add_new_facts(R, t, 'reality')} new facts -> evidence.md")
         found = t.split("=== REALITY ===", 1)[-1].strip() if "=== REALITY ===" in t else ""
         notes = "\n".join(x for x in (a.notes, found and "A check against reality found (data; its facts are also in the evidence):\n" + found) if x)
-        cmd_repairtask(argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_explain",
-                                          audits=",".join(dirs), notes=notes or None, gate=None))
+        rargs_last = argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_explain",
+                                        audits=",".join(dirs), notes=notes or None, gate=None); cmd_repairtask(rargs_last)
     else:  # 4i. triage by importance x possibility (no tools), kill test with the kit on the best, repair
         pick = triage([i["id"] for i in ideas() if i["arm"] == "E" and not i.get("fragment")], "triage_task")
-        gd = os.path.join(D, "gate"); pick = order("gate", pick, os.path.join(gd, "ids.json"))
-        cmd_gatetask(argparse.Namespace(run=R, ids=",".join(pick), dir=gd, kit=True))
+        gd = os.path.join(D, "gate"); pick = order("gate", pick, os.path.join(gd, "ids.json")); kit = bool(getattr(a, "kit", False) or cfg.get("kit"))
+        os.makedirs(gd, exist_ok=True); json.dump(pick, open(os.path.join(gd, "ids.json"), "w"))
+        chunked("gate", "review", pick, lambda c, cd: cmd_gatetask(argparse.Namespace(run=R, ids=",".join(c), dir=cd, kit=kit)),
+                a.chunk, lambda t, n: merge_numbered(t, n, "=== GATE ==="))
+        cmd_gatetask(argparse.Namespace(run=R, ids=",".join(pick), dir=gd, kit=kit))
         t = step("gate", "review", task("gate"), a.model, "research", cwd=gd)
         cmd_gate(argparse.Namespace(run=R, dir=gd, transcript=None, file=path(R, "outputs", "gate.md"), out=None))
         print(f"  gate: {add_new_facts(R, t, 'gate')} new facts -> evidence.md")
         g = load(R, "gate.json", {})
         top = sorted(pick, key=lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0)))[:4]
-        cmd_repairtask(argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_task",
-                                          audits=None, notes=a.notes, gate="gate.json"))
-    # 5. repair with search, 6. final blind review (+ earlier finalists for the benchmark)
+        rargs_last = argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_task",
+                                        audits=None, notes=a.notes, gate="gate.json"); cmd_repairtask(rargs_last)
+    # 5. repair with search (in chunks), 6. final blind review (+ earlier finalists for the benchmark: one reviewer for all)
+    rp = json.load(open(os.path.join(D, "repair", "parents.json"))); rargs = vars(rargs_last).copy()
+    def repair_chunk(c, cd): cmd_repairtask(argparse.Namespace(**{**rargs, "ids": ",".join(c), "dir": cd}))
+    chunked("repair", "repair", rp, repair_chunk, getattr(a, "repair_chunk", 0), lambda t, n: merge_ideas(t))
     step("repair", "repair", task("repair"), a.model, "research", cwd=os.path.join(D, "repair"))
     cmd_ingest(argparse.Namespace(run=R, label="repair", arm="F", gen=3, parents=None, transcript=None, file=path(R, "outputs", "repair.md")))
     own = [i["id"] for i in ideas() if i["label"] == "repair"] + (top[:2] if kind == "explain" else [])
-    fd = os.path.join(D, "audit_final"); rows = review("audit_final", own + bench, "redteam_explain" if kind == "explain" else "redteam_task")
+    fd = os.path.join(D, "audit_final")
+    rows = review("audit_final", own + bench, "redteam_explain" if kind == "explain" else "redteam_task", chunk=0 if bench else None)
     # 7. calibration: how sure, and where the answer is most likely wrong (no tools)
     own = [i for i in review_rank(rows) if i not in bench]
     s = fill(R, tpl("calibrate_task"), len(own), {"IDEAS": idea_blocks(R, own, {i: ["BLIND REVIEW:"] + latest_review([fd], i) for i in own}, scores=False)})
@@ -1211,8 +1254,8 @@ def cmd_ask(a):
                                   b.get("DATA") and "Where deciding data may exist:\n" + b["DATA"]) if x)
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
-                               lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=None, max_usd=None,
-                               target=3.0, triage_k=8, slice_facts=12))
+                               lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=None,
+                               target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd))
 
 def cmd_prompt_path(run, tech, label):
     """Build a technique prompt via cmd_prompt and return its path."""
@@ -1284,6 +1327,8 @@ def main():
     x.add_argument("--mode", choices=["lite", "standard"], help="default: the brief's MODE")
     x.add_argument("--model", default="opus"); x.add_argument("--lit-model", default="sonnet"); x.add_argument("--brief-model", default="sonnet")
     x.add_argument("--notes"); x.add_argument("--force", action="store_true"); x.add_argument("--tag", help="question tag for memory")
+    x.add_argument("--max-usd", type=float); x.add_argument("--chunk", type=int, default=4); x.add_argument("--repair-chunk", type=int, default=2)
+    x.add_argument("--kit", action="store_true")
     for nm in ("plan", "run"):
         x = sp.add_parser(nm); x.add_argument("run"); x.add_argument("--pipeline", choices=list(PIPE), help="default: the run's format")
         x.add_argument("--mode", default="lite", choices=["lite", "standard"])
@@ -1296,6 +1341,9 @@ def main():
             x.add_argument("--lessons-exclude", help="v5: memory tags to leave out (fair benchmark: the question's own tag)")
             x.add_argument("--bench", help="v5: imported earlier finalists to add to the final blind review")
             x.add_argument("--target", type=float, default=3.0, help="v5: the gain the ceilings are computed for")
+            x.add_argument("--chunk", type=int, default=4, help="v5: blind reviews and the kill test run in chunks of this many ideas, 2 agents at a time (0 = one agent)")
+            x.add_argument("--repair-chunk", type=int, default=2, help="v5: ideas per repair agent (0 = one agent)")
+            x.add_argument("--kit", action="store_true", help="v3.4: give the kill test the Arctic calculation kit (engine/kit)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")
             x.add_argument("--triage-k", type=int, default=8, help="v5: ideas the kill test (invent) or the first blind review (explain) gets after triage")
     x = sp.add_parser("ceilings"); x.add_argument("run"); x.add_argument("--target", type=float, default=3.0)

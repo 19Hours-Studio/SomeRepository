@@ -18,7 +18,7 @@ For each idea, loop until it works or you can prove it cannot:
    source in your notes).
 3. BASELINE: compare against the BEST current practice a competent operator would actually use for the same job
    (list at least two real alternatives, including the cheapest one), and compute cost per unit of RECOVERED or
-   DELIVERED product (per kg of metal recovered, per tonne delivered), not per tonne of raw material moved, with
+   DELIVERED product (per kg of metal recovered, per tonne delivered, per request served), not per tonne of raw material moved, with
    sourced numbers. Never compare against a strawman nobody would do.
 4. CONSISTENCY PASS: list every tolerance, window and limit your design relies on (buoyancy margins, temperature
    limits, strengths, breakdown fields, stage efficiencies, site conditions where you placed it) and check every

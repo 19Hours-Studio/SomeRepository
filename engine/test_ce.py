@@ -304,7 +304,10 @@ def main():
             env = dict(os.environ, CE_FAKE_LLM=fake)
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9, "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
             assert "FINAL (blind review" in out.stdout, out.stdout[-800:] + out.stderr[-800:]
-            assert sum(1 for _ in open(os.path.join(rd9, "usage.jsonl"))) == 13 and "TOTAL 13 steps" in ce("usage", R9)
+            assert sum(1 for _ in open(os.path.join(rd9, "usage.jsonl"))) == 16 and "TOTAL 16 steps" in ce("usage", R9)  # audit_a, repair and audit_final ran as 2 chunks each
+            assert len(json.load(open(os.path.join(rd9, "audit_a", "c1", "ids.json")))) == 4 and len(json.load(open(os.path.join(rd9, "audit_a", "ids.json")))) == 8
+            import re as _re
+            assert _re.findall(r"(?m)^IDEA (\d+):", open(os.path.join(rd9, "audit_a", "REVIEW.md")).read()) == ["1", "2", "3", "5", "6", "7"]  # chunks renumbered
             cfg9 = json.load(open(os.path.join(rd9, "config.json"))); assert cfg9["reframes"] == ["how was it held?", "who made it?"]
             assert "how was it held?" in open(os.path.join(rd9, "prompts", "g1_reframe.txt")).read()
             ev9 = open(os.path.join(rd9, "evidence.md")).read(); assert ev9.count("knobs worn on one face | NEW from") == 1  # new facts enter once
@@ -312,7 +315,7 @@ def main():
             assert "weakest link: wear data" in out.stdout and os.path.exists(os.path.join(tmp, "memory", "predictions.jsonl"))
             npred = sum(1 for _ in open(os.path.join(tmp, "memory", "predictions.jsonl")))
             out2 = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9], capture_output=True, text=True, env=env)
-            assert out2.stdout.count("skip ") == 13, out2.stdout[-500:]  # resumable: every step already done
+            assert out2.stdout.count("skip ") == 13, out2.stdout[-500:]  # one skip per (merged) step  # resumable: every step already done
             assert sum(1 for _ in open(os.path.join(tmp, "memory", "predictions.jsonl"))) == npred  # resume records nothing twice
             assert "predictions" in ce("calibration")
             shutil.rmtree(rd9, ignore_errors=True)
@@ -336,7 +339,7 @@ def main():
                                   "=== GATE ===\n" + "".join(f"IDEA {k}: n{k}\nKILLER | ice | required 2 m | available 1 m (s) | MARGIN {k}\n"
                                                               f"CHAIN | road | now 100 | with idea 50 | RATIO {k}\nVERDICT | ALIVE | ok\n" for k in (1, 2, 3)) +
                                   "NEW FACT | ice road open 45 days in 2026 | skillings\n=== TRIAGE ===\nIDEA 1 | I 2 | P 2 | DECIDES: x | y\nIDEA 2 | I 9 | P 8 | DECIDES: x | y\n"
-                                  "=== REVIEW ===\n" + "".join(f"IDEA {k}: x\nDEFECT | MAJOR | weak {k} | src\nRATIO | {k}.5 | b\nKNOWN | partly | p\n" for k in (1, 2, 3, 4)) +
+                                  "=== REVIEW ===\n" + "".join(f"IDEA {k}: x\nDEFECT | MAJOR | weak {k} | src\nRATIO | {k}.5 | b\nKNOWN | partly | p\n" for k in range(1, 9)) +
                                   "=== IDEAS ===\n" + ideas + v5)
             R11 = "_selftest50"; rd11 = os.path.join(HERE, "runs", R11); shutil.rmtree(rd11, ignore_errors=True)
             ce("init", R11, "--question", "Make Arctic coal cheaper", "--force")
@@ -355,7 +358,8 @@ def main():
             rp = open(os.path.join(rd11, "repair", "TASK.md")).read()
             assert "KILL TEST: killer ice" in rp and "ice road open 45 days in 2026 | NEW from gate" in rp and "{" not in rp
             assert "OLD:known#1" in json.load(open(os.path.join(rd11, "audit_final", "ids.json")))
-            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 13
+            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 15  # gate and repair in 2 chunks; the bench review is one agent
+            assert not os.path.exists(os.path.join(rd11, "audit_final", "c1"))
             assert json.load(open(os.path.join(rd11, "config.json")))["tag"] == "coal"
             # memory: lessons filtered by tag, killers from FATAL defects, killers come back as lessons for the same kind
             os.makedirs(os.path.join(tmp, "memory"), exist_ok=True)

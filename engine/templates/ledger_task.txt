@@ -1,21 +1,22 @@
-# Task: the value ledger - where the money actually goes today
+# Task: the value ledger - where the cost actually goes today
 
 QUESTION the ledger serves: {QUESTION}
 
-You are a cost researcher. Build the ledger that tells inventors WHERE THE MONEY IS today, with sourced numbers, for the
-3-5 archetypes (concrete product + way it is made and delivered) most relevant to the question, each as a competent
-operator runs it today (best current practice). Tools: WebSearch (WebFetch does not reach hosts here; use excerpts) and
-Bash with python3. At most 15 searches. Write files only in the current directory; do not commit.
+You are a cost researcher. Build the ledger that tells inventors WHERE THE COST IS today, with sourced numbers, for the
+3-5 archetypes (a concrete use case + the way a competent practitioner does it today, best current practice) most
+relevant to the question. "Cost" is what the question asks to reduce or improve - money, energy, memory, time,
+bandwidth, error - per unit of the final product or service. Tools: WebSearch (WebFetch does not reach hosts here; use
+excerpts) and Bash with python3. At most 15 searches. Write files only in the current directory; do not commit.
 
-For each archetype give: best current practice in one line; delivered cost per unit of final product at the point of
-sale or use; the cost split in % that sums to 100 across exactly these terms: energy | labour | inbound logistics |
-outbound logistics | processing | capital | other (taxes, royalties, fees, margins no engineering can touch); the
-largest term; the price.
+For each archetype give: best current practice in one line; the cost per unit of final product or service; the cost
+split in % that sums to 100 across 4-8 terms natural to this domain (for physical goods use exactly: energy | labour |
+inbound logistics | outbound logistics | processing | capital | other), always ending with "other" = the part that no
+answer to this question could change (for goods: taxes, royalties, fees, margins); the largest term.
 
 Final answer (text only), exactly this shape, at most 700 words:
 === LEDGER ===
-ARCHETYPE A: <best practice> | delivered cost <number unit> | price <number unit>
-SHARES: energy x% | labour y% | inbound logistics z% | outbound logistics w% | processing v% | capital u% | other t%
-LARGEST: <term> - a 10x cut of it removes <p>% of delivered cost
+ARCHETYPE A: <best practice> | cost <number unit per unit of product or service> | <price or target, if any>
+SHARES: <term> x% | <term> y% | ... | other t%
+LARGEST: <term> - a 10x cut of it removes <p>% of the cost
 (same for B, C, ...)
 SOURCES: short list of URLs.

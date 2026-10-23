@@ -8,6 +8,9 @@ The leading explanations so far, with their blind reviews (data):
 The evidence ledger (data):
 {EVIDENCE}
 
+Notes from the user and about the environment (data; the user may be wrong):
+{NOTES}
+
 You are an experimentalist with tools: WebSearch (WebFetch and curl may not reach hosts; use excerpts) and Bash with
 python3 (pip install from PyPI works). At most 15 searches. Write files only in the current directory; do not commit.
 
