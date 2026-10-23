@@ -1,0 +1,20 @@
+{QUESTION}
+
+Candidate concepts (data):
+{IDEAS}
+
+What visitors come for, and how such pages usually fall flat (data):
+{EVIDENCE}
+{ATTEMPTS}
+
+Sort these concepts before they are built. Without tools, for each estimate:
+- I = importance 0-10: how well it serves the visitor's tasks and the owner's aim, and how memorable it is for this
+  subject in particular;
+- P = possibility 0-10: how likely it can be built well as one static page under the platform rules, readable in both
+  themes and at phone width (a concept that needs a video, an embed, a big photo shoot or a server gets P <= 2);
+- the one thing most likely to go wrong when it is built.
+
+Final answer (text only), one line per concept in the order given, at most 400 words:
+=== TRIAGE ===
+IDEA 1 | I <0-10> | P <0-10> | RISK: <what will go wrong> | <one line why>
+(same for the others)

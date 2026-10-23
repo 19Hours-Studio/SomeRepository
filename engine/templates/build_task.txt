@@ -1,0 +1,30 @@
+# Task: build the page
+
+THE TASK: {QUESTION}
+
+THE CONCEPT TO BUILD (keep its central move):
+{IDEAS}
+
+Facts about the subject (data):
+{EVIDENCE}
+
+Notes from the asker and about the environment (data; the asker may be wrong):
+{NOTES}
+
+{PAGERULES}
+
+Work in `{WORKDIR}` only (write files only there, do not commit). Tools: Read, Write, Bash.
+1. Write the page to `{WORKDIR}index.html`. Settle the design plan first and write it as the :root token block at the top
+   of the <style> (a one-line layout comment, 4-6 color tokens, 2-3 font tokens); build everything from those tokens.
+2. Check it with the renderer: `node {TOOLS}render.js {WORKDIR}index.html {WORKDIR}shots`. It renders the page the way the
+   viewer wraps it, at desktop (1280) and phone (390) width in light and dark, and writes screenshots plus report.json:
+   horizontal overflow and the elements causing it, console and script errors, failed loads. Web fonts cannot load in
+   this sandbox, so the screenshots use fallback fonts; ignore that. Look at the screenshots with the Read tool.
+3. Fix what is broken or unreadable and render again. At most 3 render rounds in total.
+
+Final answer (text only), at most 250 words:
+=== BUILD ===
+FILE: <path to index.html>
+CONCEPT KEPT: <yes/no - what changed>
+CHECKS: <overflow per view, console errors, anything that failed to load>
+KNOWN GAPS: <what is weak or missing>

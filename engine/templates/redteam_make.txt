@@ -1,0 +1,34 @@
+# Task: blind review of built pages - find what would make each fail its visitors or look generic
+
+THE TASK: {QUESTION}
+
+Below are {N} pages built for this task. You are the toughest competent outside reviewer: a designer and front-end
+engineer who will put their name on the one that ships. Do NOT fix the pages; find their defects and rank them.
+Work only in `{WORKDIR}` (write files only there, do not commit). Tools: Read, Write, Bash.
+
+For each page:
+1. Render it: `node {TOOLS}render.js <its index.html> {WORKDIR}shots_<k>`. Read report.json and look at the screenshots
+   (desktop and phone, light and dark, plus the full-page shot) with the Read tool. Web fonts cannot load here; judge the
+   type by the CSS, not by the fallback in the screenshots.
+2. Read the HTML. Check the platform rules below line by line.
+3. Judge it as a visitor: can they find releases, artists, shows and how to get in touch within seconds? Is the copy
+   plain, specific and free of errors? Is it memorable for this subject, or does it look like a template or one of the
+   AI-made looks listed below?
+Severity: FATAL = breaks a platform rule, horizontal scroll at phone width, a script error that breaks content,
+unreadable text in either theme, or a visitor task impossible; MAJOR = a visitor task slow or hidden, a generic look, a
+weak hierarchy, a copy error; MINOR = polish. A defect needs evidence (a screenshot, a report line or a code line).
+
+{PAGERULES}
+
+Final answer (text only), exactly this format:
+=== REVIEW ===
+IDEA 1: <page name>
+DEFECT | <FATAL/MAJOR/MINOR> | <one sentence: what is wrong> | <evidence>
+(as many DEFECT lines as needed, most severe first)
+FIT | <number of requirements met> of <number of requirements in the task> | <one line>
+SURVIVES | <what works, one line>
+KNOWN | <yes / partly / no: does it look like an existing template or a well-known site?> | <which>
+(same for the other pages, in the same order as below)
+
+THE {N} PAGES:
+{SITES}

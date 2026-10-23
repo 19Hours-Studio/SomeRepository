@@ -1,0 +1,9 @@
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly {N} concepts in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (4-6 sentences: the one central move; the page from top to bottom, section by section, and what each holds; the visual system - palette, type, motion; the one detail only this subject would have)
+VALUE: (1 sentence: what a visitor can do on the page and why they would remember it)
+(same for each further concept)
+Each concept must stand alone: never refer to other concepts or earlier parts of your reply.
+Keep everything under 900 words.

@@ -16,11 +16,13 @@ Rules:
 - The asker may not know the field or may be mistaken: check the key facts behind the question and correct the
   wording if needed (say what you corrected).
 - TYPE is "explain" when the question asks what something was, why something happened or what is true; "invent" when
-  it asks for a way to do something better, cheaper or new.
+  it asks for a way to do something better, cheaper or new; "make" when it asks to build a concrete thing (a website, a
+  page, a text, a design). For "make", QUESTION says what is to be made, for whom and what it must let people do, and
+  SUCCESS lists checkable requirements (pages or sections, visitor tasks, devices).
 
 Final answer (text only), exactly this shape, at most 600 words:
 === BRIEF ===
-TYPE: explain | invent
+TYPE: explain | invent | make
 QUESTION: one self-contained paragraph stating the question precisely and neutrally, with the essential facts a
   reader needs (numbers, place, period, scale), and no hint of an answer.
 SUCCESS: what a good answer must achieve, in checkable terms.

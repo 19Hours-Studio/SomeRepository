@@ -646,7 +646,7 @@ def cmd_material(a):
     or (v3.3) the ledger of earlier attempts."""
     text = read_source(a); tag = "=== " + a.kind.upper() + " ==="
     if tag not in text: sys.exit(f"no '{tag}' section found")
-    body = text.split(tag, 1)[1].strip()
+    body = re.split(r"\n=== [A-Z]+ ===", text.split(tag, 1)[1])[0].strip()  # up to the next section
     open(path(a.run, a.kind + ".md"), "w").write(body + "\n"); print(f"{a.kind}: {len(body.split())} words")
 
 def cmd_gatetask(a):
@@ -793,7 +793,7 @@ def cmd_usage(a):
 MEM = os.environ.get("CE_MEMORY") or os.path.join(HERE, "memory")
 LTAG = re.compile(r"^-\s*((?:\[[\w-]+\])+)\s*(.+)$")
 
-def run_kind(cfg): return "explain" if cfg.get("format") == "explain" else "invent"
+def run_kind(cfg): return cfg.get("format") if cfg.get("format") in ("explain", "make") else "invent"
 
 def lessons_block(cfg, max_killers=8):
     """v5 learning from experience: curated lessons (memory/lessons.md) and defects that sank answers in earlier runs
@@ -815,7 +815,7 @@ def lessons_block(cfg, max_killers=8):
 
 def material_block(run, cfg):
     """The run's raw material for the reformulation step: evidence + earlier explanations, or ledger + ceilings + attempts."""
-    keys = ("evidence", "attempts") if run_kind(cfg) == "explain" else ("ledger", "ceilings", "attempts")
+    keys = ("evidence", "attempts") if run_kind(cfg) in ("explain", "make") else ("ledger", "ceilings", "attempts")
     return "\n\n".join(f"{k.upper()}:\n{open(f).read().strip()}" for k in keys if os.path.exists(f := path(run, k + ".md"))) or "(none recorded)"
 
 STOP = set("that this with from have were which their there they them than then what when where about into only also been more "
@@ -1040,9 +1040,17 @@ PIPE = {"explain": {"lite": ["research:evidence", "research:hypotheses", "gen:re
                     "standard": ["research:evidence", "research:hypotheses", "gen:reframe", "gen:g1_crux", "gen:g1_neg", "gen:g1_mech",
                                  "gen:g1_reframe", "gen:triage", "review:audit_a", "review:audit_b", "gen:g2_evo", "review:audit_c", "review:reality",
                                  "repair:repair", "review:audit_final", "gen:calibrate", "code:learn"]},
+        "make": {"lite": ["research:context", "gen:reframe", "gen:g1_neg", "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage",
+                          "repair:build.1", "repair:build.2", "review:review", "repair:repair", "review:audit_final", "gen:calibrate",
+                          "code:learn"]},
         "invent": {"lite": ["research:ledger", "research:attempts", "code:ceilings", "gen:reframe", "gen:g1_ledger", "gen:g1_neg",
                             "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "repair:repair", "review:audit_final",
                             "gen:calibrate", "code:learn"]}}
+TECH_MAKE = {"g1_neg": "Technique: first list honestly the 8 ways you and most designers would build this page (the usual hero, grid "
+                     "and look) and name in one sentence the paradigm they share; then propose only concepts outside it.",
+             "g1_mech": "Technique: start from the subject's own material - what its name means, what it physically and technically "
+                      "deals with, its formats, units and numbering - and derive the page's structure and interaction from that, not "
+                      "from web conventions."}
 TECH = {"g1_ledger": "Technique: aim each answer at the archetype and cost term with the most room under its ceiling, and make that "
                      "term fall by an order of magnitude; ignore terms that are easy to improve but small.",
         "g1_neg": "Technique: first list honestly the 8 answers that you and most experts would propose first and name in one sentence "
@@ -1069,6 +1077,52 @@ def cmd_plan(a):
     for s, t in rows: print(f"  {s:24s} ~{t:>11,.0f} tokens  ~${usd[s]:.2f}")
     print(f"ESTIMATE {pipe_kind(a)}/{a.mode}: ~{tot:,.0f} tokens, ~${sum(usd.values()):.2f} in {sum(1 for s, _ in rows if not s.startswith('code'))} model steps "
           f"({sum(1 for s, _ in rows if s.split(':')[0] in ('research', 'review', 'repair'))} need tools; their tokens are mostly cache re-reads)")
+
+def run_make(R, D, a, triage, step, saved, order, done):
+    """v5 make: the two best concepts (from different generators) are built as real pages, rendered by headless Chromium
+    at desktop and phone width in both themes (engine/tools/render.js), reviewed blind from the renders, the better one
+    repaired, then reviewed blind again against the other; the calibration says how sure the choice is."""
+    import runner, shutil
+    from concurrent.futures import ThreadPoolExecutor
+    tools_dir, pr = os.path.join(HERE, "tools") + "/", tpl("_page_rules")
+    ideas = lambda: {i["id"]: i for i in load(R, "ideas.json", [])}
+    pick = triage([i for i, x in ideas().items() if x["arm"] == "E" and not x.get("fragment")], "triage_make", k=2, cap=1)
+    bd = os.path.join(D, "build"); os.makedirs(bd, exist_ok=True)
+    pick = order("build", pick, os.path.join(bd, "ids.json")); json.dump(pick, open(os.path.join(bd, "ids.json"), "w"))
+    def build(j):
+        cd = os.path.join(bd, f"b{j + 1}"); os.makedirs(cd, exist_ok=True)
+        s = fill(R, tpl("build_task"), 1, {"WORKDIR": cd + "/", "TOOLS": tools_dir, "IDEAS": task_ideas(R, [pick[j]], scores=False), "PAGERULES": pr})
+        open(os.path.join(cd, "TASK.md"), "w").write(s); step(f"build.{j + 1}", "repair", s, a.model, "write", cwd=cd)
+    with ThreadPoolExecutor(2) as ex: list(ex.map(build, range(len(pick))))
+    pages = {i: f for j, i in enumerate(pick) if os.path.exists(f := os.path.join(bd, f"b{j + 1}", "index.html"))}
+    if not pages: sys.exit("no page was built (no index.html in build/b*)")
+    def review(name, items):
+        dd = os.path.join(D, name); os.makedirs(dd, exist_ok=True)
+        ids = order(name, list(items), os.path.join(dd, "ids.json")); json.dump(ids, open(os.path.join(dd, "ids.json"), "w")); X = ideas()
+        sites = "\n".join(f"PAGE {k}\nFILE: {items[i]}\nCONCEPT: {X[i]['name']}: {X[i]['mech']}\n" for k, i in enumerate(ids, 1))
+        s = fill(R, tpl("redteam_make"), len(ids), {"WORKDIR": dd + "/", "TOOLS": tools_dir, "SITES": sites, "PAGERULES": pr})
+        open(os.path.join(dd, "TASK.md"), "w").write(s); t = step(name, "review", s, a.model, "write", cwd=dd)
+        open(os.path.join(dd, "REVIEW.md"), "w").write(t[t.find("=== REVIEW ==="):] if "=== REVIEW ===" in t else t)
+        return parse_review(dd)
+    rows = review("review", pages); best = review_rank(rows)[0]; fd = os.path.join(D, "final")
+    if not done("repair"): shutil.copytree(os.path.dirname(pages[best]), fd, dirs_exist_ok=True, ignore=shutil.ignore_patterns("shots*", "TASK.md"))
+    s = fill(R, tpl("repair_make"), 1, {"WORKDIR": fd + "/", "TOOLS": tools_dir, "IDEAS": task_ideas(R, [best], scores=False),
+                                        "REVIEW": "\n".join(latest_review([os.path.join(D, "review")], best)), "PAGERULES": pr})
+    open(os.path.join(fd, "TASK.md"), "w").write(s); step("repair", "repair", s, a.model, "write", cwd=fd)
+    X = load(R, "ideas.json", [])
+    if not any(i["id"] == "final#1" for i in X):  # the repaired page keeps its concept's name, so the final review stays blind
+        X.append({**next(i for i in X if i["id"] == best), "id": "final#1", "label": "final", "arm": "F", "gen": 3, "parent": best}); save(R, "ideas.json", X)
+    rows = review("audit_final", {"final#1": os.path.join(fd, "index.html"), **{i: f for i, f in pages.items() if i != best}})
+    own = review_rank(rows); fa = os.path.join(D, "audit_final")
+    s = fill(R, tpl("calibrate_task"), len(own), {"IDEAS": idea_blocks(R, own, {i: ["BLIND REVIEW:"] + latest_review([fa], i) for i in own}, scores=False)})
+    fresh = not done("calibrate"); cal = take_calibration(R, step("calibrate", "gen", saved("calibrate", s), a.model, "none"), own, record=fresh)
+    if not done("learn"): open(path(R, "outputs", "learn.md"), "w").write(f"{learn(R, [fa], own)} defects -> memory\n")
+    X = ideas(); page = os.path.join(fd, "index.html") if own[0] == "final#1" else pages[own[0]]
+    print("\nFINAL (blind review of the rendered pages; p = stated probability of being the best page):")
+    for k, i in enumerate(own, 1):
+        r = rows[i]; print(f"  {k}. {i:12s} F{r['FATAL']}/M{r['MAJOR']}/m{r['MINOR']} fit {r['fit']:.2f} p {cal['p'].get(i, 0):.0%}  {X[i]['name']}")
+    print(f"  weakest link: {cal['weakest_link']}\nPAGE: {page}"); open(path(R, "winner.txt"), "w").write(page + "\n")
+    _, tok, cost = runner.summary(D); print(f"spent {tok:,} tokens, ${cost:.2f}")
 
 def cmd_run(a):
     """v4-v5: a whole pipeline in one pass; cost is kept by code (plan, stop before a step that would exceed --max-tokens,
@@ -1144,6 +1198,11 @@ def cmd_run(a):
         research("evidence", "evidence_task", "evidence"); research("hypotheses", "hypotheses_task", "attempts")
         if os.path.exists(path(R, "outputs", "hypotheses.md")):
             cmd_ingest(argparse.Namespace(run=R, label="hypotheses", arm="K", gen=0, parents=None, transcript=None, file=path(R, "outputs", "hypotheses.md")))
+    elif kind == "make":  # one research step writes both: facts about the subject and how such pages usually fall flat
+        if not (os.path.exists(path(R, "evidence.md")) and os.path.exists(path(R, "attempts.md")) and not done("context")):
+            dd = os.path.join(D, "context"); cmd_researchtask(argparse.Namespace(run=R, tpl="make_research_task", dir=dd))
+            step("context", "research", task("context"), a.lit_model, "research", cwd=dd)
+            for k in ("evidence", "attempts"): cmd_material(argparse.Namespace(run=R, kind=k, transcript=None, file=path(R, "outputs", "context.md")))
     else:
         research("ledger", "ledger_task", "ledger"); research("attempts", "attempts_open_task", "attempts")
         cmd_ceilings(argparse.Namespace(run=R, target=a.target))
@@ -1153,18 +1212,22 @@ def cmd_run(a):
     if kind == "explain":
         for t in ("crux", "neg", "mech"): gen("g1_" + t, open(cmd_prompt_path(R, "explain_" + t, "g1_" + t)).read())
         gen("g1_reframe", saved("g1_reframe", fill(R, tpl("explain_reframe"), cfg["n"], {"REFRAME": rfs[0]})))
+    elif kind == "make":
+        techs = dict(TECH_MAKE) | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
+        for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_make"), cfg["n"], {"TECH": tech, "PAGERULES": tpl("_page_rules")})))
     else:
         techs = {k: TECH[k] for k in ("g1_ledger", "g1_neg", "g1_mech")} | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})))
     ideas = lambda: load(R, "ideas.json", [])
-    def triage(ids, tp):  # importance x possibility without tools; the expensive check gets the best, at most 3 per generator
+    def triage(ids, tp, k=None, cap=3):  # importance x possibility without tools; the expensive check gets the best, at most cap per generator
         tids = order("triage", ids, path(R, "prompts", "triage.ids.json")); json.dump(tids, open(path(R, "prompts", "triage.ids.json"), "w"))
         tri = take_triage(step("triage", "gen", saved("triage", fill(R, tpl(tp), len(tids), {"IDEAS": task_ideas(R, tids, scores=False)})),
                                a.model, "none"), tids)
         lab = {i["id"]: i["label"] for i in ideas()}; pick, per = [], Counter()
         for i in sorted(tids, key=lambda i: -tri.get(i, 0)):
-            if len(pick) < a.triage_k and per[lab[i]] < 3: pick.append(i); per[lab[i]] += 1
+            if len(pick) < (k or a.triage_k) and per[lab[i]] < cap: pick.append(i); per[lab[i]] += 1
         return pick
+    if kind == "make": return run_make(R, D, a, triage, step, saved, order, done)
     if kind == "explain":  # 4e. triage, blind review, (evolution), reality check of the leaders
         allids = triage([i["id"] for i in ideas() if i["arm"] in ("E", "K") and not i.get("fragment")], "triage_explain")
         rows = review("audit_a", allids, "redteam_explain") if a.mode == "lite" else \
@@ -1246,11 +1309,11 @@ def cmd_ask(a):
         open(out, "w").write(text); runner.log(rdir(R), "brief:brief", u); print(f"  brief: {u['tokens']:,} tokens")
     b = parse_brief(text)
     if not b.get("QUESTION"): sys.exit(f"no QUESTION in the brief; see {out}")
-    kind = "explain" if b.get("TYPE", "").lower().startswith("explain") else "invent"
+    t = b.get("TYPE", "").lower(); kind = "explain" if t.startswith("explain") else "make" if t.startswith("make") else "invent"
     q = b["QUESTION"] + (f"\nA good answer: {b['SUCCESS']}" if b.get("SUCCESS") else "") + \
         (f"\nConstraints: {b['CONSTRAINTS']}" if b.get("CONSTRAINTS", "none").lower() not in ("none", "") else "")
     if a.force or "brief" not in load(R, "config.json", {}):  # resuming keeps the initialised run and its ideas
-        cmd_init(argparse.Namespace(run=R, question=q, format="explain" if kind == "explain" else "value", n=3, force=True))
+        cmd_init(argparse.Namespace(run=R, question=q, format={"explain": "explain", "make": "make"}.get(kind, "value"), n=3, force=True))
         cfg = load(R, "config.json", {}); cfg["brief"] = b; save(R, "config.json", cfg)
     if b.get("UNCLEAR", "none").lower() not in ("none", ""): print("UNCLEAR (kept as assumptions):\n" + b["UNCLEAR"])
     print(f"TYPE {kind}; MODE {b.get('MODE', 'lite')}")
@@ -1291,7 +1354,7 @@ def main():
     sp = p.add_subparsers(dest="cmd", required=True)
     def src(x): x.add_argument("--transcript"); x.add_argument("--file")
     x = sp.add_parser("init"); x.add_argument("run"); x.add_argument("--question", required=True)
-    x.add_argument("--format", default="value", choices=["value", "difference", "arch", "explain"]); x.add_argument("--n", type=int, default=3)
+    x.add_argument("--format", default="value", choices=["value", "difference", "arch", "explain", "make"]); x.add_argument("--n", type=int, default=3)
     x.add_argument("--force", action="store_true")
     x = sp.add_parser("prompt"); x.add_argument("run"); x.add_argument("tech", help="technique template or evolved species name"); x.add_argument("label")
     x.add_argument("--pairs", type=int, default=3); x.add_argument("--pair-from", type=int, default=0)

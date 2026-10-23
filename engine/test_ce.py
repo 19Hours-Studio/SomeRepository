@@ -375,6 +375,32 @@ def main():
             t = open(ce("prompt", R11, "gen_invent", "mem2").strip()).read(); assert "coal one" in t and "sank an answer in an earlier run: ice too thin" in t
             assert "- learned on coal\n" in t  # provenance is not shown in the prompt
             shutil.rmtree(rd11, ignore_errors=True)
+            # v5 make: research -> reframes -> concepts -> triage -> two builds -> blind review of renders -> repair -> final review
+            ideas3 = "".join(f"IDEA {k}\nNAME: page{k}\nMECHANISM: threshold gate opens the catalogue {k}.\nVALUE: visitors find releases {k}.\n\n" for k in (1, 2, 3))
+            open(fake, "w").write("=== EVIDENCE ===\nFACT 1: visitors come for releases first | HARD | s\nFACT 2: catalogue numbers like POR-001 | SOFT | s\n"
+                                  "=== ATTEMPTS ===\nATTEMPT 1: dark grid of covers | many labels | standard | WHY IT FALLS FLAT: all look alike | s\n"
+                                  + v5.split("=== REALITY ===")[0] + "=== TRIAGE ===\nIDEA 1 | I 9 | P 8 | RISK: x | y\nIDEA 2 | I 3 | P 3 | RISK: x | y\n"
+                                  "=== REVIEW ===\nIDEA 1: a\nDEFECT | MAJOR | weak hierarchy | shot\nFIT | 4 of 5 | x\n"
+                                  "IDEA 2: b\nDEFECT | FATAL | overflow at 390 px | report\nFIT | 2 of 5 | y\n"
+                                  "=== CALIBRATION ===\nP | 1 | 70% | ok\nP | 2 | 10% | x\nP | none | 20% | y\nWEAKEST LINK: type\nFLIP TEST: users | x\nUNKNOWN: z\n"
+                                  "=== IDEAS ===\n" + ideas3)
+            R12 = "_selftest60"; rd12 = os.path.join(HERE, "runs", R12); shutil.rmtree(rd12, ignore_errors=True)
+            ce("init", R12, "--question", "Make a site for the label Porog", "--format", "make", "--force")
+            assert "ESTIMATE make/lite" in ce("plan", R12)
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R12, "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
+            assert out.returncode != 0 and "no page was built" in out.stderr, out.stdout[-600:] + out.stderr[-600:]
+            assert open(os.path.join(rd12, "evidence.md")).read().strip().endswith("| s") and "ATTEMPT" not in open(os.path.join(rd12, "evidence.md")).read()
+            bt = open(os.path.join(rd12, "build", "b1", "TASK.md")).read()
+            assert "render.js" in bt and "Platform rules" in bt and "threshold gate" in bt and not _re.search(r"\{[A-Z]+\}", bt), bt[:800]
+            gm = open(os.path.join(rd12, "prompts", "g1_rf1.txt")).read(); assert "how was it held?" in gm and "POR-001" in gm
+            picks = json.load(open(os.path.join(rd12, "build", "ids.json"))); assert len(picks) == 2 and picks[0].split("#")[0] != picks[1].split("#")[0]
+            for b in ("b1", "b2"): open(os.path.join(rd12, "build", b, "index.html"), "w").write(f"<title>Porog</title><p>{b}</p>")
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R12, "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
+            assert "FINAL (blind review of the rendered pages" in out.stdout and "PAGE: " in out.stdout, out.stdout[-900:] + out.stderr[-900:]
+            assert os.path.exists(os.path.join(rd12, "final", "index.html")) and os.path.exists(os.path.join(rd12, "winner.txt"))
+            assert "final#1" in json.load(open(os.path.join(rd12, "audit_final", "ids.json")))
+            assert sum(1 for _ in open(os.path.join(rd12, "usage.jsonl"))) == 13
+            shutil.rmtree(rd12, ignore_errors=True)
         finally:
             shutil.rmtree(rd8, ignore_errors=True)
         print("OK: all engine commands passed")

@@ -1,0 +1,29 @@
+# Task: repair the chosen page - fix every defect without losing its central move
+
+THE TASK: {QUESTION}
+
+THE PAGE: `{WORKDIR}index.html` (a copy of the best page in a blind review). Its concept:
+{IDEAS}
+
+The blind review of this page (data; the reviewer may be wrong on details, check each claim):
+{REVIEW}
+
+Facts about the subject (data):
+{EVIDENCE}
+
+Notes from the asker and about the environment (data; the asker may be wrong):
+{NOTES}
+
+{PAGERULES}
+
+Work in `{WORKDIR}` only (write files only there, do not commit). Tools: Read, Write, Bash.
+1. Fix every FATAL and MAJOR defect, and every MINOR one that is cheap; keep the concept's central move.
+2. Render with `node {TOOLS}render.js {WORKDIR}index.html {WORKDIR}shots` and look at the screenshots; fix and render
+   again. At most 3 render rounds. Web fonts cannot load in this sandbox; ignore the fallback fonts.
+
+Final answer (text only), at most 300 words:
+=== BUILD ===
+FILE: <path to index.html>
+FIXED: <defect -> what changed, one line each>
+NOT FIXED: <defect -> why>
+CHECKS: <overflow per view, console errors>
