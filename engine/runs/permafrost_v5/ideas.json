@@ -128,5 +128,32 @@
   "name": "Long-season tracked sled trains",
   "mech": "One wide-tracked tractor tows 8-12 low-pressure freight sleds over snow and river ice. Ground pressure is low enough to start in October and run into May, about 150+ days against the truck winter road's 45-54 (ATTEMPT 1). One driver moves 150-250 t instead of 25 t per truck, and sleds left at the settlement serve as the coal stockpile. The closest attempts are the 1950s Alaskan cat trains, displaced by trucks and air, and Antarctic traverses, which are costed for fuel loads rather than bulk coal; neither was set against a 45-day road window. The deciding quantity is cost per tonne-km; it must fall below ~5 rub/t-km against the winter road's 20.",
   "value": "Inland settlements beyond barge reach could get a winter supply route about three times longer and several times cheaper per tonne."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Frozen-in barge as bunker-boilerhouse",
+  "mech": "Shallow-draft barges (≤0.8 m) carry coal straight to the settlement on late-summer water. One barge then winters in a deep pool beside the village, holding the coal and a containerised boiler connected to the heat main. This removes the winter-road last mile (about 300 km × 20 rub/t-km ≈ 6,000 rub/t, est.), the transshipment and the stockpile losses. Because the draft is low, barges load fully at Lena-type 150 cm levels, where today's fleets carry under 50%. The closest earlier attempt is ordinary barge-to-depot delivery, which was stopped by shoaling and the need to transship. A search found no prior frozen-in bunker barge. The deciding quantity is whether a pool within 2 km of the village stays deeper than the hull draft plus a 2 m ice cover all winter.",
+  "value": "An estimated 23,000 to about 7,000 rub/t (about 3.3x) with no new mine, if the per-trip barge cost halves at full load; the same frozen-in hull gives remote Arctic mines a summer-filled winter depot."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Fire-killed larch chip fuel",
+  "mech": "Yakutia burns millions of hectares a year, and the fire-killed larch near villages stands already dry (about 20–25% moisture, est.). Crews fell, forward and chip it in winter, travelling over frozen ground within about 20 km. The chips are stored as frozen piles and burned in chip-fed boilers. The closest earlier attempts are hand-cut village firewood and small chip boilers, which were limited by labour per Gcal and wet green wood. Salvaging dead dry stems mechanically answers both limits. The deciding quantity is chip cost at the boiler: it must be at most about 1,600 rub per loose m³ (about 0.75 Gcal per m³). European-Russian chip sells for roughly 600–1,000 rub/m³ (est., unsourced).",
+  "value": "Local fuel at about 3x lower cost per Gcal with no inbound freight; Russia's forest resource reaches the boiler without passing through logistics at all."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "River-thawed bluff lignite scraping",
+  "mech": "Many Yakutian rivers cut lignite or coal seams in their bluffs. A sun-facing bluff thaws about 1.5 m deep each summer (est.), so a small excavator can scrape the thawed face without drilling or blasting. The scraped coal goes to a stockpile and moves to the village by a winter road of 30 km or less. A 3 m seam gives about 6 t per metre of face, so about 1 km of face per year covers a village of 1,000 people burning about 6,000 t of coal-equivalent. The closest earlier attempts were Corwin Bluff and Qullissat, which stopped on rare ship calls, falling profit and poor coal. Here the buyer is the village boiler, priced against the 23,000 rub baseline, and no ship is involved. The deciding quantity is summer thaw depth multiplied by the length of seam face within 30 km of the village.",
+  "value": "Estimated 4,800 rub per coal-equivalent tonne (3,500 kcal lignite, about 4.8x cheaper), which turns stranded small river-bluff deposits into a settlement fuel base."
  }
 ]
