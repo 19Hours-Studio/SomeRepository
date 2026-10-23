@@ -863,7 +863,7 @@ def cmd_ceilings(a):
                    f"{a.target:g}x needs: {need} | {r['verdict']}" + (f" (shares summed to {r['sum']:.0f}%)" if abs(r["sum"] - 100) > 5 else ""))
     open(path(a.run, "ceilings.md"), "w").write("\n".join(out) + "\n"); print("\n".join(out))
 
-RF = re.compile(r"^\**REFRAME (\d+)\**\s*:\s*(.+?)\s*\|\s*CHANGES:\s*(.+?)\s*\|\s*IMPORTANCE:\s*(\w+)\s*\|\s*POSSIBILITY:\s*(\w+)"
+RF = re.compile(r"^\**REFRAME (\d+)\**\s*:\s*\**\s*(.+?)\s*\|\s*CHANGES:\s*(.+?)\s*\|\s*IMPORTANCE:\s*(\w+)\s*\|\s*POSSIBILITY:\s*(\w+)"
                 r"\s*\|\s*WHY:\s*(.+)$", re.M)
 LEVEL = {"high": 3, "medium": 2, "low": 1}
 
@@ -909,7 +909,7 @@ def take_calibration(run, text, ids, record=True):
         key = "none" if who.lower() == "none" else ids[int(who) - 1] if who.isdigit() and 1 <= int(who) <= len(ids) else None
         if key: cal["p"][key] = float(pr) / 100 if pc or float(pr) > 1 else float(pr)
     for k in ("WEAKEST LINK", "FLIP TEST", "UNKNOWN"):
-        m = re.search(rf"^\**{k}\**\s*:\s*(.+)$", body, re.M); cal[k.lower().replace(" ", "_")] = m.group(1).strip() if m else ""
+        m = re.search(rf"^\**{k}\**\s*:\s*\**\s*(.+)$", body, re.M); cal[k.lower().replace(" ", "_")] = m.group(1).strip() if m else ""
     save(run, "calibration.json", cal); cfg = load(run, "config.json", {}); names = {i["id"]: i["name"] for i in load(run, "ideas.json", [])}
     if not record: return cal
     os.makedirs(MEM, exist_ok=True)

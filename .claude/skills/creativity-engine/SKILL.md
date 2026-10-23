@@ -39,6 +39,22 @@ Why each step exists: `engine/README.md` and `research/stage1-creativity/03-deep
 - Tool-free steps (generators, evolution) cost ~13k tokens this way vs ~90k as a subagent. Use subagents only when
   the headless CLI is unavailable.
 
+## v5: the engine reformulates, remembers, checks against reality and says where it is likely wrong (17-engine-v5.md)
+- `ce.py run R` picks the pipeline from the run's format (`explain` -> explain, otherwise invent); `ce.py ask` now
+  starts either. Invent: ledger + attempts -> `ceilings` (code: 1/untouchable share, 10x cut per term, ROOM/TIGHT/NO ROOM)
+  -> reframe (model: hidden assumptions, 4-6 reformulations by importance x possibility, keeps 2) -> 5 tool-free
+  generators (ledger, neg, mech, two reformulations) -> triage I x P (tool-free) -> kill test with the kit on the best 8
+  -> repair 4 -> blind review -> calibration. Explain: + reframe, `g1_reframe`, reality check of the leaders, calibration.
+- Memory: `engine/memory/lessons.md` (curated, tagged `[all]`, `[invent]`, `[explain]`, `[<question>]`) and
+  `killers.jsonl` (FATAL defects, written by every run and by `ce.py learn R --audits ...`) enter prompts as {LESSONS}.
+  Tag a run with `--tag`; for a fair benchmark on a question the engine has seen, pass `--lessons-exclude <tag>`.
+- `NEW FACT | fact | source` lines from reviews, the kill test and the reality check enter `evidence.md` automatically.
+- Calibration writes stated probabilities to `memory/predictions.jsonl`; `ce.py calibration --resolve RUN ID 0|1`
+  records an outcome and prints the Brier score.
+- Benchmark: `ce.py import R OLDRUN --arm OLD --ids ...`, then `run R --bench OLD:id,...` puts old finalists into the
+  same final blind review; `ce.py bench R --dir runs/R/audit_final` prints FATAL/MAJOR per idea, share without FATAL,
+  median audited RATIO, share already known.
+
 ## Launching subagents
 Generator / judge prompt files are produced by `ce.py`. Launch each with the Agent tool:
 > Your task is in the file `<prompt path>`. Read it with the Read tool - that single Read is the only tool call you may make (no other tools, no sessions, no files written). Then follow it exactly and reply with text only.
