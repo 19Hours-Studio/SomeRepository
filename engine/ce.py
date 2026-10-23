@@ -114,6 +114,7 @@ def fill(run, body, n, extra=None, sources=None):
     s = s.replace("{GAPS}", "\n".join(f"{g['code']}: {g['desc']}" for g in gaps) if gaps else "(no gaps recorded)")
     s = s.replace("{PLAINFILE}", path(run, "sets", "s00", "blind.txt"))
     for key in ("FRONTIER", "LEDGER", "ATTEMPTS", "EVIDENCE", "CEILINGS", "REFRAMES"):  # v3.0-5: raw material (`material`, `ceilings`, reframe step)
+        if extra and key in extra: continue  # e.g. a fact slice instead of the whole ledger
         f = path(run, key.lower() + ".md")
         s = s.replace("{" + key + "}", open(f).read().strip() if os.path.exists(f) else "(none recorded)")
     if "{LESSONS}" in s: s = s.replace("{LESSONS}", lessons_block(cfg))  # v5: memory between runs
@@ -610,14 +611,17 @@ def cmd_repairtask(a):
         for iid in ids:
             if (r := g.get(iid)): extras[iid].append(f"KILL TEST: killer {r.get('killer', '?')} | margin {r.get('margin', '?')} | "
                                                      f"whole-chain ratio {r.get('ratio', '?')} | {r.get('verdict')}: {r.get('why', '')}")
-    s = fill(a.run, tpl(a.tpl), len(ids), {"WORKDIR": wd + "/", "IDEAS": idea_blocks(a.run, ids, extras), "CRITIQUE": crit, "NOTES": a.notes or "(none)"})
+    ideas = idea_blocks(a.run, ids, extras)
+    s = fill(a.run, tpl(a.tpl), len(ids), {"WORKDIR": wd + "/", "IDEAS": ideas, "CRITIQUE": crit, "NOTES": a.notes or "(none)",
+                                           "EVIDENCE": fact_slice(a.run, [ideas])})
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "parents.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
 def cmd_redteamtask(a):
     """v2.2: adversarial reviewer with tools; its review feeds `repairtask --critique`."""
     ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
-    s = fill(a.run, tpl(a.tpl), len(ids), {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=not a.blind)})
+    ideas = task_ideas(a.run, ids, scores=not a.blind)
+    s = fill(a.run, tpl(a.tpl), len(ids), {"WORKDIR": wd + "/", "IDEAS": ideas, "EVIDENCE": fact_slice(a.run, [ideas])})
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
@@ -812,6 +816,36 @@ def material_block(run, cfg):
     """The run's raw material for the reformulation step: evidence + earlier explanations, or ledger + ceilings + attempts."""
     keys = ("evidence", "attempts") if run_kind(cfg) == "explain" else ("ledger", "ceilings", "attempts")
     return "\n\n".join(f"{k.upper()}:\n{open(f).read().strip()}" for k in keys if os.path.exists(f := path(run, k + ".md"))) or "(none recorded)"
+
+STOP = set("that this with from have were which their there they them than then what when where about into only also been more "
+           "most some such these those other over under after before between each would could should while being does done made used "
+           "fact hard soft source".split())
+def words(t): return {w for w in re.findall(r"[a-zа-яё0-9]{4,}", t.lower()) if w not in STOP}
+
+def fact_slice(run, texts, k=None):
+    """v5 fact slices: a tool step re-reads its whole prompt on every turn, so it gets a shorter ledger. Every HARD fact
+    stays (they are what candidates are tested against), without its source; of the other facts (SOFT, NEW) only the k
+    that bear most on the candidates (shared words weighted by rarity) or on the question are kept; the full ledger
+    with sources stays on disk for the agent to read. k: config 'slice_facts' (0 or unset = whole ledger)."""
+    f = path(run, "evidence.md"); cfg = load(run, "config.json", {}); k = cfg.get("slice_facts", 0) if k is None else k
+    if not os.path.exists(f): return "(none recorded)"
+    text = open(f).read().strip(); facts = re.findall(r"^(FACT \d+\b[^:\n]*:.*)$", text, re.M)
+    if not k or not facts: return text
+    parts = [[x.strip() for x in l.split("|")] for l in facts]
+    hard = [len(p) > 1 and p[1].upper().startswith("HARD") for p in parts]
+    W = [words(p[0]) for p in parts]; df = Counter(w for x in W for w in x); n = len(facts)
+    idf = {w: math.log(n / c) for w, c in df.items()}
+    def top(q): return [i for i in sorted(range(n), key=lambda i: -sum(idf[w] for w in W[i] & q)) if not hard[i]]
+    keep = set(top(words(cfg["question"]))[:k // 3])  # a third for the question, the rest for these candidates
+    for i in top(words(" ".join(texts))):
+        if len(keep) >= k: break
+        keep.add(i)
+    keep |= {i for i in range(n) if hard[i]}
+    body = "\n".join(" | ".join(parts[i][:2]) for i in sorted(keep))
+    if len(body) > 0.85 * len(text): return text  # not worth losing the sources
+    return (f"(a slice: all {sum(hard)} HARD facts and the {len(keep) - sum(hard)} of {n - sum(hard)} other facts that bear most on "
+            f"these candidates, sources omitted; the full ledger with sources is {f} - read it if you need a source or a fact "
+            f"that is not here)\n" + body)
 
 TERMS = ("energy", "labour", "inbound logistics", "outbound logistics", "processing", "capital", "other")
 SHARE = re.compile(r"(\d+(?:\.\d+)?)(?:\s*/\s*(\d+(?:\.\d+)?))?\s*%")
@@ -1030,6 +1064,7 @@ def cmd_run(a):
     if a.mode not in PIPE[kind]: sys.exit(f"no {a.mode} mode for {kind}: {', '.join(PIPE[kind])}")
     if getattr(a, "tag", None): cfg["tag"] = a.tag
     if getattr(a, "lessons_exclude", None) is not None: cfg["lessons_exclude"] = [x for x in a.lessons_exclude.split(",") if x]
+    if getattr(a, "slice_facts", None) is not None: cfg["slice_facts"] = a.slice_facts
     save(R, "config.json", cfg); budget = a.max_tokens; bench = [x for x in (getattr(a, "bench", None) or "").split(",") if x]
     def spent(): return runner.summary(D)[1]
     def spent_usd(): return runner.summary(D)[2]
@@ -1101,7 +1136,8 @@ def cmd_run(a):
             kids = [i["id"] for i in ideas() if i["label"] == "g2_evo"]
             rows = review("audit_c", kids + top, "redteam_explain"); top = review_rank(rows)[:4]; dirs = [os.path.join(D, "audit_c")] + dirs
         dd = os.path.join(D, "reality"); os.makedirs(dd, exist_ok=True)
-        s = fill(R, tpl("reality_task"), len(top), {"IDEAS": idea_blocks(R, top, {i: ["BLIND REVIEW:"] + latest_review(dirs, i) for i in top}, scores=False)})
+        lead = idea_blocks(R, top, {i: ["BLIND REVIEW:"] + latest_review(dirs, i) for i in top}, scores=False)
+        s = fill(R, tpl("reality_task"), len(top), {"IDEAS": lead, "EVIDENCE": fact_slice(R, [lead])})
         open(os.path.join(dd, "TASK.md"), "w").write(s); t = step("reality", "review", s, a.model, "research", cwd=dd)
         print(f"  reality: {add_new_facts(R, t, 'reality')} new facts -> evidence.md")
         found = t.split("=== REALITY ===", 1)[-1].strip() if "=== REALITY ===" in t else ""
@@ -1176,7 +1212,7 @@ def cmd_ask(a):
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
                                lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=None, max_usd=None,
-                               target=3.0, triage_k=8))
+                               target=3.0, triage_k=8, slice_facts=12))
 
 def cmd_prompt_path(run, tech, label):
     """Build a technique prompt via cmd_prompt and return its path."""
@@ -1260,6 +1296,7 @@ def main():
             x.add_argument("--lessons-exclude", help="v5: memory tags to leave out (fair benchmark: the question's own tag)")
             x.add_argument("--bench", help="v5: imported earlier finalists to add to the final blind review")
             x.add_argument("--target", type=float, default=3.0, help="v5: the gain the ceilings are computed for")
+            x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")
             x.add_argument("--triage-k", type=int, default=8, help="v5: ideas the kill test (invent) or the first blind review (explain) gets after triage")
     x = sp.add_parser("ceilings"); x.add_argument("run"); x.add_argument("--target", type=float, default=3.0)
     x = sp.add_parser("learn"); x.add_argument("run"); x.add_argument("--audits", required=True); x.add_argument("--ids"); x.add_argument("--tag")

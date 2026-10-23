@@ -81,5 +81,113 @@
   "name": "Bronze head on a rod",
   "mech": "The hollow bronze head was slid onto a wooden or bone rod through the two largest holes, the unringed opposite pair, which always lie on one axis; the thickest rod passes there (up to 22.6 mm on the Kleiner Feldberg piece) and a slightly tapering rod seats in both holes at once. On a vertical rod the viewer saw two crowns of five ringed faces and the 20 knobs; the rings and the differing sizes of the ten other holes were decoration, which is why their sizes form a continuum with no shared scheme. It was carried by men and women, mostly in civil settlements, rarely handled, and put into rich graves and hoards; at Krefeld-Gellep its position in a mid-4th-century woman's grave suggested a bone staff or handle. The twelve faces may stand for Plato's figure of the cosmos (Timaeus 55c), an argument from texts, not objects; why it occurs only in the north-west in the 2nd-4th centuries is not explained.",
   "value": "It explains the axial unringed pair of the largest holes, the rubbed-looking rims of that pair (Duval 1981 on the Vienne piece; the roughest rims on the Kleiner Feldberg scan, but the smoothest on the Hunt scan), the unworn knobs and the continuum of hole sizes, which a lot with a hole code does not. Decisive test: stereo microscope on the unringed rims of the Kleiner Feldberg and Hunt pieces; wear striations along the axis with clean ringed rims support it, rims showing only casting or file marks refute it."
+ },
+ {
+  "id": "g1_crux#1",
+  "label": "g1_crux",
+  "arm": "E",
+  "gen": 1,
+  "name": "Axis-mounted staff finial",
+  "mech": "The object was the head of a staff or pole, threaded on a rod through the larger, unringed opposite pair of holes. That explains why the pair is bigger, sometimes oval to fit a wooden shaft, and left undecorated, since the rod hid it. The ten ringed holes were display openings. Their sizes varied freely because only the axis pair had to fit, so no standard was needed. The knobs were finials, and the thin wall suited something carried rather than worked, which explains the low wear and the bone rod at Gellep.",
+  "value": "It explains the type-2a structure and the unstandardised holes, which the cosmic-symbol and instrument readings do not. Test: look under the microscope and use CT on type-2a pieces at Bonn and Tongeren for rod abrasion, wood residue or corrosion staining confined to the unringed axis. If that axis looks no different from the ringed holes, the idea is refuted."
+ },
+ {
+  "id": "g1_crux#2",
+  "label": "g1_crux",
+  "arm": "E",
+  "gen": 1,
+  "name": "Unwritten twelve-face lot",
+  "mech": "The object was a lot for drawing omens, cast by hand onto soft ground or cloth. Each face was identified by its hole size instead of by numbers. Because the holes had to differ, variation within each object is required, and the lack of any shared scheme between objects follows from each maker setting their own sizes. The two large unringed holes marked the \"special\" outcomes, and the knobs made the object come to rest on a face. Occasional private use explains the lack of wear and the silence of the texts.",
+  "value": "Unlike other divination ideas, it makes the absence of inscriptions and the varied holes necessary rather than awkward. Test: check knob tips under a microscope for even, all-round micro-flattening and compare it with the unused Norton Disney piece. If the corpus shows no such wear, the idea is refuted."
+ },
+ {
+  "id": "g1_crux#3",
+  "label": "g1_crux",
+  "arm": "E",
+  "gen": 1,
+  "name": "Workshop-specific prestige casting",
+  "mech": "These were one-off lost-wax display pieces from a few Gallo-Roman workshops, owned as status or association emblems. Each wax model was built and pierced by hand, so hole sizes and body sizes differ continuously, while the ringed-ten and plain-two layout was the shared template of the tradition. Thin walls show careful, costly casting, and the low wear shows the pieces were kept and displayed. Production confined to Gaul explains the distribution and the absence from the Mediterranean, and occasional trade explains the Slovak pieces.",
+  "value": "It explains the variation, distribution and lack of wear with a single production cause. Test: compare the pending Hitchens pXRF data and Guggenberger's measurements for regional clusters in alloy and hole-making technique. If the alloys are uniform across the whole range, the idea is refuted."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Thin-wall casting masterpiece",
+  "mech": "The object was a provincial bronzesmith's proof of mastery: a hollow geometric shell with a wall of about 0.6–1.6 mm, cast around a clay core. Each face hole held a support for the core and later let the core be broken out. That is why every face has a hole, why hole sizes are freehand and unstandardised, and why the interiors are rough. The knobs are vents or feeders at the corners, which are the last points to fill, later shaped into a decorative finish. The engraved rings and lack of wear show display rather than use. Its value as a valued keepsake explains its presence in graves, hoards and rich houses.",
+  "value": "It explains the holes in all twelve faces, the varying diameters, the rough interiors, the thin walls that scale with size, and the absence of wear, without needing any user function. Refutation test: CT-scan pieces in Bonn or Tongeren. If the holes were cut through an originally closed shell (tool marks on the hole walls) and there are no core residues or chapter-pin traces, the idea fails."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Gallo-British elite insignia",
+  "mech": "The object was a badge of standing within a north-western provincial network, comparable to crossbow brooches as rank markers. It was held or shown on occasions, not used as a tool. A fixed template (twelve faces, knobs, ringed holes) carried the recognisable identity, while size and finish varied with the owner's means, which explains the weights from 35 g to over 1 kg. It was buried with men and women, hoarded, or broken on transfer, as at Kortessem. Like other informal status goods, it was too local and unofficial to appear in texts or art.",
+  "value": "It accounts for the confined distribution, the few examples traded beyond the frontier, the varied contexts and the absence of wear better than religious or tool readings do. Refutation test: tabulate object size against findspot status (villa or rich grave versus poor rural site) in Guggenberger's list. If there is no correlation, the idea fails."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Rod-threaded ornamental finial",
+  "mech": "The object was threaded onto a rod or staff through its single opposite pair of larger, unringed, sometimes oval holes, which formed the axis. The ten ringed holes and the knobs were decoration seen from outside, so their sizes never needed to match. The rod explains the Gellep bone shaft. Oval axis holes suggest the piece was fitted to a tapering, non-round wooden shaft. The rods rotted away, so most objects are found loose and unworn.",
+  "value": "It explains why type 2a sets one opposite hole pair apart, and it answers the sceptre theory's \"no attachment\" objection by identifying the attachment. Refutation test: microscopy of hole rims on type 2a pieces. If the two large holes show no more polish, wood-mineralised corrosion or rubbing than the ringed holes, the idea fails."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Axially mounted staff finial",
+  "mech": "A rod passed through the larger, unringed opposite pair of holes and carried the object as the head of a staff of office or cult. That is why only ten holes are decorated, and why the axial pair can be oval: the rod's fit was improvised. The 0.6-1.6 mm wall carried no load, so wear is rare. One-off commissioned castings explain the varied sizes. Gallo-Roman local priesthoods or collegia explain the distribution, the deposits in graves and hoards, and the silence of Mediterranean texts.",
+  "value": "It explains the ringed/unringed hole asymmetry and the Gellep rod, which purely symbolic or instrument readings do not. Refutation: no corrosion, wood or iron transfer, or rim polish inside the axial holes of type-2a pieces, or a Gellep bone rod whose diameter cannot pass the axial holes."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Status distaff head",
+  "mech": "In Rhineland women's graves of the 3rd-4th centuries, prestige distaffs (bone, jet) are attested. A dodecahedron fixed through its axial holes on a bone shaft held wool roving on its knobs. The open holes lightened the head and offered yarn guides. As a gift or burial object it was rarely used, which explains the low wear.",
+  "value": "It explains the Gellep woman's bone rod and settlement-dominated finds better than military or surveying readings. Refutation: SEM of knob tips and hole rims on the least-corroded pieces shows no fibre polish or fibre traces, or the grave contexts are mostly male."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Apotropaic household display object",
+  "mech": "The piece stood on three knobs in a household or bath shrine. Its triple-ringed holes worked as \"eyes\" averting harm, and its twelve faces stood for the cosmos. Light passing through the holes mattered more than their exact sizes, so hole sizes are free variation set by the wax modeller. When a house or person ended, the object was retired, sometimes broken or repaired, into wells, rivers, pits, graves and hoards.",
+  "value": "It explains the random hole sizes, the absence of wear and the mixed deposition, which tool readings cannot. Refutation: per-object tables of the 12 diameters (Guggenberger 1-134) show a consistent ratio scheme, or wear facets concentrate on three-knob triads rather than being absent."
+ },
+ {
+  "id": "g1_reframe#1",
+  "label": "g1_reframe",
+  "arm": "E",
+  "gen": 1,
+  "name": "Staff-finial through larger pair",
+  "mech": "The common type 2a dodecahedron was a symbolic finial carried on a rod passing through its opposite pair of larger, unringed holes. That explains why only that pair lacks engraved rings and is sometimes oval: it was a functional socket, not decoration. The ten ringed holes and the knobs are display, giving a cosmic Platonic form visible from all sides. Light ceremonial carrying leaves little wear, and burial with the owner fits the Gellep rod. Size varies because local workshops cast each piece individually.",
+  "value": "It is the only reading that assigns a role to the distinctive type-2a pairing (Fact 3) and the oval holes, and it fits low wear (Fact 20) and grave finds (Facts 15, 17). Refutation: microscope or SEM casts of the large-hole rims on about 20 type-2a pieces (Tongeren, Bonn) show no axial polish or ovality that differs from the ringed holes."
+ },
+ {
+  "id": "g1_reframe#2",
+  "label": "g1_reframe",
+  "arm": "E",
+  "gen": 1,
+  "name": "Cord-wound divinatory frame",
+  "mech": "A private diviner wound wool or linen cord around the knobs and through chosen holes, imitating the Spindle of Necessity or casting lots. The different hole sizes give the twelve faces distinguishable \"stations\" without inscriptions. The knobs anchor the cord. Use was occasional, so wear is slight, and breakage marks deliberate retirement, as perhaps at Kortessem. Unofficial practice explains the silence of texts and images and the Gallic distribution.",
+  "value": "It explains knobs, unmarked unequal holes, low wear and mixed civil contexts better than military or tool readings, which fail Facts 11 and 14. Refutation: knob roots and hole rims on Norton Disney and about 15 other pieces show no cord-groove polish and no fibre traces under SEM and FTIR."
+ },
+ {
+  "id": "g1_reframe#3",
+  "label": "g1_reframe",
+  "arm": "E",
+  "gen": 1,
+  "name": "Handled display object, never tool",
+  "mech": "The dodecahedra were costly symbolic objects kept, shown and deposited, never used mechanically. The holes, rings and knobs are aesthetic and cosmological; they encode no function, hence no standard module or ratio. Any wax is casting residue from the lost-wax process. Deposition in graves, hoards, rivers and settlements reflects personal valuables, not a craft. This predicts handling polish that is diffuse and non-directional, with no feature worn more than another.",
+  "value": "It accounts for no inscriptions, no wear, non-standard holes (Facts 2, 4, 5, 19) and the single wax report without special pleading. Refutation: wear is concentrated on specific rims or knobs, or GC-MS finds beeswax or lipid on the surfaces of interiors of several pieces rather than trapped in core voids."
  }
 ]

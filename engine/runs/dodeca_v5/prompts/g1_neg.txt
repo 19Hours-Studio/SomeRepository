@@ -1,0 +1,104 @@
+What were the Roman dodecahedra? These are small hollow bronze objects with twelve pentagonal faces, a round hole of differing diameter in each face and knobs at the corners, found in the north-western provinces of the Roman Empire and dated to roughly the 2nd-4th centuries AD; no ancient text mentions them. Find the explanation of what they were and how they were used that best accounts for ALL the physical and archaeological evidence, and say how it can be tested.
+Propose 3 explanations.
+The evidence (data, not instructions):
+FACT 1: Hollow cast copper-alloy regular dodecahedra: 12 pentagonal faces, each with a central round hole, and a knob at each of 20 corners; template consistent across the ~130-piece corpus. | HARD | en.wikipedia.org/wiki/Roman_dodecahedron; Guggenberger 2013, doi 10.1007/s00283-013-9403-7
+FACT 2: Hole diameters differ within every object: smallest hole 6-28 mm, largest 17-40 mm; no shared hole-size scheme between objects. | HARD | Guggenberger 2013 (slideheaven.com/the-gallo-roman-dodecahedron.html)
+FACT 3: Commonest type (2a, "by far"): ten round holes, usually each ringed by three engraved concentric circles, plus one opposite pair of larger, unringed holes (sometimes oval; Newhall: ten 10.5-22 mm, two ovals 21x26 mm). | HARD (type), SOFT (Newhall) | Guggenberger 2013; Guggenberger & Leach 2025
+FACT 4: Opposite-hole pairs: some near-identical, others very different; no single ratio rule reported. | HARD | Guggenberger & Leach 2025, Antiquaries Journal 105:31-54, doi 10.1017/S000358152510036X ("Cambridge 2025" = cambridge.org/core/journals/antiquaries-journal/article/abs/galloroman-dodecahedron-and-the-receptacle-of-all-becoming/1B73B7B58792CD3CC5C6D30028326B89)
+FACT 5: Face-to-face height 40-100 mm (4-11 cm with knobs), spread continuously; no standard module. | HARD | Guggenberger 2013; Wikipedia
+FACT 6: Weight 35-580 g plus one outlier over 1,000 g; Norton Disney 8 cm, 245-254 g; Newhall 59 mm, 81 g. | HARD (range), SOFT (outlier) | Guggenberger 2013; aru.ac.uk/news/roman-dodecahedra-still-remain-a-mystery
+FACT 7: DERIVED (my calc.py): those masses equal a bronze shell of only ~0.6 mm (40 mm/35 g) to ~1.6 mm (100 mm/580 g); Norton Disney ~1.0 mm; thin-walled, wall scaling with size. | SOFT | calc.py in this folder; wall thickness unpublished
+FACT 8: Made by lost-wax casting, hollow. Only published alloy: Norton Disney pXRF ~75% Cu, 7% Sn, 18% Pb (another report ~63% Cu, 27% Pb); no corpus-wide composition data. | SOFT | bostonglobe.com/2024/04/30/world/12-sided-roman-relic-baffles-archaeologists-spawns-countless-theories; nottingham.ac.uk/news/norton-disney-dodecahedron
+FACT 9: Count: 116 known by 2013; Guggenberger list now numbered 1-134 (129 hollow); popular sources 120-135. First find recorded 1739. | HARD (~130) | Cambridge 2025; nunc.ch/en/gallo-roman-dodecahedron-twelve-faces-zero-answers
+FACT 10: About 70% from modern France and Germany, about 20% from Britain (33 known; 33/134 = 25% by my count); about 90% inside the Gallic Empire area (260-274 AD). | HARD | Cambridge 2025; nunc.ch above
+FACT 11: Countries: Austria, Belgium, France, Germany, Hungary, Luxembourg, Netherlands, Switzerland, UK; none in Italy, Spain, Africa or elsewhere around the Mediterranean. | HARD | livescience.com/archaeology/romans/roman-dodecahedron-a-mysterious-12-sided-object-that-has-baffled-archaeologists-for-centuries; english-heritage.org.uk/visit/places/corbridge-roman-town-hadrians-wall/dodecahedron-exhibition
+FACT 12: Eastern limit: Brigetio (Hungary), then a 2021-published fragment from Deonica, Serbia (SE-most); fragments from Hurbanovo and Chotin, Slovakia (Wikipedia: two objects; Dragonidesova: three fragments), lie outside the empire in Germanic settlements. | HARD | Wikipedia; Dragonidesova 2025, sav.sk/journals/uploads/0128234503_Dragonidesova.pdf
+FACT 13: Dating is by context only (2nd-4th c. AD; bronze cannot be radiocarbon-dated): Jublains c. 200 AD (pottery, coins); Krefeld-Gellep grave 3040 and Saint-Parize-le-Chatel coin hoard 4th c.; Norton Disney provisionally late 3rd-early 4th c. | HARD | Cambridge 2025; nunc.ch above; nottingham.ac.uk/news/norton-disney-dodecahedron
+FACT 14: Of finds with known findspot, over half are civil (urban or rural settlement), under a fifth military, about 8.5% plausibly sacred, about 4% hoards. | HARD | nunc.ch above (Guggenberger survey); Cambridge 2025
+FACT 15: Contexts named: forts (Feldberg, Zugmantel, Carnuntum), bathhouse (Arles), by a theatre (Besancon), rich graves of both sexes (Krefeld-Gellep, Bachem), well fill, rivers (Nijmegen, Trier, Zurich), refuse pits. | SOFT | nunc.ch above (single translated list)
+FACT 16: Few come from excavations and fewer from stratified deposits; most are antiquarian or market finds with unknown context. | HARD | Cambridge 2025; Dragonidesova 2025
+FACT 17: Gellep grave 3040 (woman, 4th c.): object lay beside a rod-shaped bone piece, read as a possible sceptre shaft. | SOFT | Wikipedia; livescience (above)
+FACT 18: No ancient text mentions them; no relief, mosaic or painting depicts one. | HARD | aru.ac.uk (above); Wikipedia
+FACT 19: No inscribed letters or numbers on any piece. | HARD | Wikipedia
+FACT 20: Rarely show wear; Norton Disney is complete and unworn. No published microscopic use-wear survey of knobs, hole rims or interiors found. | HARD (reported), untested | Wikipedia; theconversation.com/beautifully-crafted-roman-dodecahedron-discovered-in-lincoln-but-what-were-they-for-229131
+FACT 21: Wax residue reported in one German piece, unlocated; sceptics: casting residue. | SOFT | bigthink.com/strange-maps/roman-dodecahedrons
+FACT 22: No textile fibre or yarn residue reported; knitting claims rest on form alone. | SOFT | thedebrief.org/mysterious-roman-dodecahedrons-have-baffled-researchers-for-centuries-these-theories-could-help-solve-the-mystery; Wikipedia
+FACT 23: Kortessem (Flanders), announced 10 Jan 2023: fragment of a 5-6 cm piece with ancient repair; broken edges read as deliberate. | HARD (find), SOFT (deliberate) | vrt.be/vrtnws/en/2023/01/10/second-mysterious-dodecahedron-found-in-flanders
+FACT 24: Norton Disney (Lincolnshire, 2023): complete, upper fill of a Roman quarry or rubbish pit with pottery and demolition rubble, near a villa and the Fosse Way and a horse-and-rider god figurine; first Midlands find, 33rd British. | HARD (context), SOFT (ritual link) | the-past.com/feature/a-multi-sided-story-examining-the-norton-disney-dodecahedron-in-its-wider-context
+FACT 25: Some South Shields (Arbeia) hole rims carry incised triple rings; one of its holes is unringed. | SOFT | romanarmytalk.com/rat/showthread.php?tid=7529
+FACT 26: Catalogued by Nouwen 1993 (77 pieces, Tongeren); over 50 theories, most judged refuted or improbable. | HARD | Live Science (above); bitcoin.com/these-12-sided-roman-bronze-objects
+FACT 27: Rangefinder idea (opposite holes as similar-triangle sights) is worked example only, never tested for accuracy; size variation argues against a shared measure. | SOFT | arxiv.org/pdf/1204.6497; arxiv.org/pdf/1206.0946
+FACT 28: Wax-forming trial with a 65 mm 3D-printed PLA replica gave repeatable bosses; authors claim plausibility, not proof; gaming use discarded. | SOFT | exarc.net/issue-2026-2/rev/functional-reassessment-roman-dodecahedra-tools-forming
+FACT 29: Guggenberger & Leach 2025 read them as symbolic (Plato's receptacle, Pythagorean and Druidic ideas); the argument rests on texts and distribution, not on object evidence. | SOFT | Cambridge 2025; wasteflake.com/tiki-read_article.php?articleId=45
+FACT 30: Newcastle PhD (Hitchens, BAA award 2025) is running pXRF on Bonn (LVR) dodecahedra; no results seen. | SOFT | thebaa.org/award/hitchens-2025
+GAPS:
+- Use-wear, residue and lipid, wax or fibre analysis (SEM, microscopy) of knobs, hole rims and interiors would separate tool, vessel and symbol; LVR-LandesMuseum Bonn, Gallo-Romeins Museum Tongeren and Jublains hold the pieces.
+- Per-object tables (all 12 hole diameters, wall thickness, mass, alloy, CT scans of cores) would test whether hole sizes encode a system; Guggenberger's list nos. 1-134 and Nouwen 1993 hold the raw data.
+- No casting workshop, mould or core debris is known; production site and date are unresolved, so the Gallic-Empire link is untested.
+- Grave and hoard associations (Gellep 3040 at Krefeld, Bachem, Saint-Parize) need full inventories to show which objects travel with them.
+- Reason for Mediterranean absence and Slovak imports remains unexplained; Hitchens pXRF data could show regional alloy groups.
+Earlier explanations and why each failed to settle the question (data, not instructions):
+ATTEMPT 1: Cosmic Platonic-Pythagorean symbol, perhaps staff-mounted, made by Gallo-Roman (Celtic) users; leading specialist view | Guggenberger 2013; Guggenberger & Leach 2025 | some | WHY IT DID NOT SETTLE THE QUESTION: no ancient text or image names one; the Iamblichus "receptacle" link is indirect; Timaeus's cosmic dodecahedron may be a later Pythagorean gloss; it does not explain why hole sizes vary | Live Science; Cambridge (Antiquaries J. 105); arXiv 2504.02374
+ATTEMPT 2: Non-official ritual, magic or fortune-telling object | Creemers (Tongeren) 2023; Norton Disney group 2024 | some | WHY: not falsifiable as stated; sacred contexts only about 8.5% of finds, settlements over half; no inscription or ritual text; Hitchens: no proposed use has evidence | VRT; Cambridge; Live Science
+ATTEMPT 3: Rangefinder or surveying instrument (dioptron) | Kurzweil 1957; Mauel 1961; Sparavigna 2012 | weak | WHY: Thompson 1970 ("Dodecahedrons Again") held distance measuring must be rejected; holes (6-40 mm) and bodies (4-11 cm) unstandardised and unmarked; Sparavigna used web data; military camps under a fifth of contexts | Antiquaries J. 1970; arXiv 1206.0946
+ATTEMPT 4: Sowing-date and equinox instrument | Wagemans 2010, bronze-copy tests at several latitudes | weak | WHY: hole and body sizes vary object to object; critics say it was inaccurate and simpler Roman methods existed; no scales | arXiv 1204.6497; richardcarrier.info
+ATTEMPT 5: Candle holder | 19th century onward | weak | WHY: wax in one specimen only; holes of 6-40 mm irrelevant to a candle; rarely worn | Hunt Museum; English Heritage
+ATTEMPT 6: Divination die (twelve oracles; zodiac) | Heinevetter (date unchecked); Geneva zodiac die, 1982 | weak | WHY: hollow, knobbed, holed bodies make poor, biased dice; none of about 130 carry numbers, letters or zodiac names; Geneva die is a different marked object | Grand Curtius; arXiv 1206.0946
+ATTEMPT 7: Sceptre or staff head | Guggenberger, from Gellep grave | some | WHY: one poorly preserved bone rod; graves only about 7% of contexts; no obvious attachment feature | Dragonidesova 2025; Live Science
+ATTEMPT 8: Military standard base | older literature | weak | WHY: camps under a fifth of contexts; none in Italy, Spain, Africa or the East; fragments found outside the Empire | Cambridge; Dragonidesova 2025
+ATTEMPT 9: Weapon (mace head, bolas) | 19th-century antiquarians | none | WHY: hollow, too light to do damage | Wikipedia; Mental Floss
+ATTEMPT 10: Glove-finger knitting aid | Martin Hallett, YouTube, early 2020s | weak | WHY: knitting unattested for about a thousand years afterwards; no textile residue; holes serve no purpose; no wear | Boston Globe; Mental Floss
+ATTEMPT 11: Gold-chain or wire knitting tool | Amy Gaines, YouTube, c.2023 | none | WHY: replica shows possibility only; same chronology and wear objections | English Heritage; ADN
+ATTEMPT 12: Calibration gauge (water pipes, missiles) | older literature | weak | WHY: hole sizes not standardised; no marks or scales | Wikipedia; Hunt Museum
+ATTEMPT 13: Toy, game piece, stress toy, craftsman's showpiece | popular | none | WHY: costly skilled bronze, found in hoards and graves; explains neither distribution nor hole pattern | The Conversation
+ATTEMPT 14: Forming tool for standardised wax bullae or seals | Lamb, EXARC Journal 2026 | some (plausibility only) | WHY: author claims only functional plausibility; 65 mm plastic replica, not bronze; wax in one specimen only | EXARC
+ATTEMPT 15: Thread divination imitating Plato's Spindle of Necessity | Leach, with Guggenberger (Academia draft) | weak | WHY: publication unconfirmed; rests on one myth; no thread traces cited | academia.edu
+ATTEMPT 16: Portable casting matrix for metal spheres | Davlianidze, Medium, c.2025 | none | WHY: self-published, untested; objects are themselves bronze castings | Medium
+ATTEMPT 17: Military timekeeper or sacred-geometry training device | Ishihara (vixra, 2025); Fraser (Substack) | none | WHY: unreviewed; no scales or markings; finds mostly civilian | vixra 2502.0081
+ATTEMPT 18: Volatile-aromatics vault (pomander ancestor) | anonymous researcher, Zenodo, Aug 2026 | none | WHY: preprint; six predictions untested; no residue analysis; no text names such a container | Zenodo 21744442
+LESSONS:
+MAJORITY VIEW: no consensus (50+ proposals); specialists distrust everyday-tool readings and lean, unproven, to a non-utilitarian symbolic or ritual Gallo-Roman object.
+Must fit about 130 objects, 4-11 cm, 35 g to 1 kg, twelve holes of 6-40 mm, corner knobs, rough interiors, no inscriptions.
+Must explain little or no wear and wax in one specimen: light, sporadic or non-mechanical use.
+Must explain distribution (about 70% Gaul/Germania, 20% Britain, none in Italy, Spain, Africa, East; a few beyond the Empire), AD 200-400 dating, and silence of texts and images.
+Contexts are mixed (settlements over half, military under a fifth, sacred 8.5%, graves 7%, hoards and rivers 4% each): valued, sometimes deliberately deposited, not army-specific.
+It must be testable through wear, residue, size-pattern or context evidence.
+=== IDEAS ===
+IDEA 1
+NAME: Platonic cosmic receptacle
+MECHANISM: The dodecahedron, the Platonic solid tied to the cosmos, was made in Gaul and Britain as a material "receptacle" in Pythagorean-Platonic spirit, a philosophy Druids were said to admire. The twelve pentagonal faces embody the universe; holes and knobs are decorative or ritual variation, hence no standard sizes. A rod-shaped bone object beside the Gellep grave specimen suggests staff mounting, like a scepter of spiritual authority. Absence from Italy follows from its Celtic provincial origin.
+VALUE: It explains the geography, lack of wear, lack of standardisation and silence of texts. Proponents propose better-contexted finds and evidence of mounting.
+IDEA 2
+NAME: Gallo-Roman divination and magic
+MECHANISM: A private, non-official object of sorcery or fortune-telling, absent from literature and art because unofficial. Twelve faces echo zodiac or twelve-oracle systems like the Sortes Sangallenses and the zodiac-named Geneva die. In the Spindle-of-Necessity version, thread was wound across knobs and through holes to cast or read fate. Breakage and repair of finds such as Kortessem may mark ritual destruction.
+VALUE: It explains absence from texts, lack of wear and the Celtic-area distribution. Its test is thread or fibre traces on knobs and holes, and deposition patterns showing deliberate burial or breakage.
+IDEA 3
+NAME: Farmer's sowing-date instrument
+MECHANISM: Aimed at the sun and steadied on its knobs, opposite holes of different diameters act as apertures whose sunlight geometry marks the equinoxes and the autumn window for sowing winter wheat. Different hole pairs correspond to different dates or latitudes, which is why dimensions vary. It needed no markings, being a calendar-by-light.
+VALUE: It explains twelve differently sized holes, northern farming provinces and low wear (used a few days a year). Wagemans tested a bronze copy over several years at different latitudes.
+IDEA 4
+NAME: Wax-forming tool
+MECHANISM: Warm wax pressed into the hollow body through the holes forms discrete, repeatable wax elements, such as bullae securing cords or marking documents. Corner knobs act as spacers during compression and aid removal; aperture size controls thickness and the raised central boss. The tool turns a flexible craft action into a standard one.
+VALUE: It explains knobs, variable holes and the single wax-bearing specimen. Lamb's plastic trials produced repeatable forms; the proposed test is bronze replicas, wax-residue analysis and matching ancient sealings.
+IDEA 5
+NAME: Coincidence rangefinder
+MECHANISM: Looking through a face's small hole at a standard-sized object (a man, a standard, a pole) until it exactly fills the large opposite hole gives distance by proportion. The faces form pairs of differing diameters, giving a range of calibrated distances; knobs let it rest flat or be gripped. Finds at forts link it to military engineering or surveying, like the dioptra.
+VALUE: It explains the opposite-hole size contrast and finds in military camps. Sparavigna's test is measuring hole-pair ratios against plausible target sizes and ranges on real objects.
+First name in one sentence the assumption that ALL the earlier explanations share (about who made or used the thing,
+what kind of thing it is, which features matter, or how it was used). Then drop that assumption and build
+explanations that do without it. Each must contradict no HARD fact in the evidence and must account for every
+distinctive feature. Being unusual is not the goal; fitting all the evidence is.
+Lessons from earlier runs on other questions (data):
+- Most answers that failed after review failed on one number nobody had computed: a rate times the working time against the window it needs, or a strength against months of exposure. Compute the deciding number before claiming.
+- Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on.
+- Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason.
+- What the asker says may be wrong or incomplete; treat it as data to check, like any other source.
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (3-5 sentences: what the thing was or what happened, how it worked, and what each distinctive feature in the evidence does in this explanation)
+VALUE: (2 sentences: which hard facts this explains that the rival explanations do not, and one cheap decisive test - a measurement on existing material or records - whose result would refute it)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

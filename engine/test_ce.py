@@ -269,6 +269,19 @@ def main():
             da = os.path.join(tmp, "rx"); ce("redteamtask", R8, "--ids", "known#1", "--dir", da, "--blind", "--tpl", "redteam_explain")
             t = open(os.path.join(da, "TASK.md")).read(); assert "FIT |" in t and "unequal size" in t and "candle holder" in t
             open(os.path.join(da, "REVIEW.md"), "w").write("=== REVIEW ===\nIDEA 1: candle holder\nDEFECT | MAJOR | no soot | museum\nFIT | 1 of 5 | x\n")
+            # v5 fact slices: every HARD fact stays (no source), only the most relevant other facts, full ledger on disk
+            src = " | " + "https://example.org/a-very-long-source-path/with/many/parts/and-a-doi-10.1000/xyz" * 3
+            open(os.path.join(rd8, "evidence.md"), "w").write("\n".join(
+                [f"FACT {k}: hard fact number {k} about holes{src.replace(' | ', ' | HARD | ', 1)}" for k in (1, 2)] +
+                ["FACT 3 (refines 1): candle soot found inside one piece | SOFT" + src, "FACT 4: textile fibres on a knob | SOFT" + src,
+                 "FACT 5: weather on market day | SOFT" + src]) + "\n")
+            ce("setcfg", R8, "slice_facts", "1")
+            dsl = os.path.join(tmp, "sl"); ce("redteamtask", R8, "--ids", "known#1", "--dir", dsl, "--blind", "--tpl", "redteam_explain")
+            t = open(os.path.join(dsl, "TASK.md")).read()
+            assert "a slice: all 2 HARD facts" in t and "FACT 1: hard fact number 1 about holes | HARD\n" in t and "example.org" not in t
+            assert ("FACT 3 (refines 1): candle soot" in t) and "weather on market day" not in t, t[:1500]
+            ce("setcfg", R8, "slice_facts", "0")
+            open(p, "w").write("x\n=== EVIDENCE ===\nFACT 1: 12 holes of unequal size | HARD | src\n"); ce("material", R8, "evidence", "--file", p)
             ce("setcfg", R8, "crux", "nobody explains the map")
             t = open(ce("evolve", R8, "ev", "--audit", da + "," + da, "--ids", "known#1", "--m", "2", "--tpl", "evolve_explain").strip()).read()
             assert "- MAJOR: no soot (museum)" in t and "nobody explains the map" in t and "exactly 2 ideas" in t and "{" not in t.replace("{N}", "")

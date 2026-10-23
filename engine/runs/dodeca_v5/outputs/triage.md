@@ -1,0 +1,13 @@
+=== TRIAGE ===
+
+IDEA 1 | I 7 | P 2 | REFUTED BY: CT and microscopy of type-2a pieces showing no rod abrasion or mounting traces in the unringed axial pair, plus a Gellep bone rod too wide to pass those holes | It repeats Attempt 1 unchanged. It fits geography, low wear and silence of texts, but calls hole variation "decorative" and ignores the ringed-ten/plain-two template (Fact 3). It also adds no object-based test.
+
+IDEA 2 | I 6 | P 2 | REFUTED BY: SEM and FTIR of knob roots and hole rims on Norton Disney and about 15 other well-preserved pieces finding no cord polish or fibre residue (Fact 22 already reports none) | It repeats Attempts 2, 6 and 15. Unmarked faces make bad lots (Fact 19), sacred contexts are only about 8.5% (Fact 14), and as stated it is barely falsifiable.
+
+IDEA 3 | I 8 | P 1 | REFUTED BY: Guggenberger's per-object hole tables showing that hole pairs do not vary with findspot latitude and follow no date scheme | It repeats Attempt 4 and contradicts HARD Fact 2 (no shared hole-size scheme) and Fact 5 (no standard module). An unmarked, uncalibrated sun-sight cannot encode dates. It would settle a lot if true, but it is very unlikely.
+
+IDEA 4 | I 6 | P 2 | REFUTED BY: GC-MS across several pieces finding beeswax only trapped in core voids or no wax at all, and no ancient sealings matching the formed bosses | It repeats Attempt 14, whose support is plausibility only: a plastic replica and one unlocated wax report (Fact 21). It does not explain the distribution, the absence from the Mediterranean, the deposition in graves and hoards, or the ringed/unringed asymmetry.
+
+IDEA 5 | I 5 | P 1 | REFUTED BY: corpus hole-pair ratios scattering continuously, with no clustering into usable calibrated ranges (already implied by Facts 2, 4 and 5) | It repeats Attempt 3, which Thompson 1970 rejected. Unstandardised bodies and holes, no markings, and military finds under a fifth (Fact 14) all contradict a calibrated surveying tool.
+
+Note: all five candidates are restatements of earlier failed attempts, and none beats the reason it failed. On this evidence the stronger candidates are the axial-pair staff-finial readings (Ideas 10, 13, 14 and 16 in the first list). They are the only ones that give a role to the HARD type-2a pairing (Fact 3), and they have a cheap, decisive use-wear test on the Bonn and Tongeren pieces. Those readings, and the thin-wall casting idea (Idea 3 in the first list), should go to the expensive checks first.

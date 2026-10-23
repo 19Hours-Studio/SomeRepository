@@ -1,0 +1,17 @@
+**Survey logic.** Each proposal predicts different traces on museum pieces. A staff mount predicts axial wear on one hole pair. Thread use predicts polish at knob roots and on rims. Wax forming predicts lipid or wax films inside many pieces, not one, plus rim deformation, since the walls are only about 0.6–1.6 mm thick (my calc.py, unpublished thickness). A sighting device predicts nothing physical, only consistent hole-pair ratios. The ratio test can already be run on published data, and Fact 4 (no ratio rule) together with Thompson 1970 already counts against it. Wax forming is weakened by a single unlocated residue, which may be casting wax. The proposals that survive the survey are symbolic or staff-mounted objects and possibly thread divination. A mixed result is also possible, in which use differs by type.
+
+=== IDEAS ===
+IDEA 1
+NAME: Staff-finial through larger pair
+MECHANISM: The common type 2a dodecahedron was a symbolic finial carried on a rod passing through its opposite pair of larger, unringed holes. That explains why only that pair lacks engraved rings and is sometimes oval: it was a functional socket, not decoration. The ten ringed holes and the knobs are display, giving a cosmic Platonic form visible from all sides. Light ceremonial carrying leaves little wear, and burial with the owner fits the Gellep rod. Size varies because local workshops cast each piece individually.
+VALUE: It is the only reading that assigns a role to the distinctive type-2a pairing (Fact 3) and the oval holes, and it fits low wear (Fact 20) and grave finds (Facts 15, 17). Refutation: microscope or SEM casts of the large-hole rims on about 20 type-2a pieces (Tongeren, Bonn) show no axial polish or ovality that differs from the ringed holes.
+
+IDEA 2
+NAME: Cord-wound divinatory frame
+MECHANISM: A private diviner wound wool or linen cord around the knobs and through chosen holes, imitating the Spindle of Necessity or casting lots. The different hole sizes give the twelve faces distinguishable "stations" without inscriptions. The knobs anchor the cord. Use was occasional, so wear is slight, and breakage marks deliberate retirement, as perhaps at Kortessem. Unofficial practice explains the silence of texts and images and the Gallic distribution.
+VALUE: It explains knobs, unmarked unequal holes, low wear and mixed civil contexts better than military or tool readings, which fail Facts 11 and 14. Refutation: knob roots and hole rims on Norton Disney and about 15 other pieces show no cord-groove polish and no fibre traces under SEM and FTIR.
+
+IDEA 3
+NAME: Handled display object, never tool
+MECHANISM: The dodecahedra were costly symbolic objects kept, shown and deposited, never used mechanically. The holes, rings and knobs are aesthetic and cosmological; they encode no function, hence no standard module or ratio. Any wax is casting residue from the lost-wax process. Deposition in graves, hoards, rivers and settlements reflects personal valuables, not a craft. This predicts handling polish that is diffuse and non-directional, with no feature worn more than another.
+VALUE: It accounts for no inscriptions, no wear, non-standard holes (Facts 2, 4, 5, 19) and the single wax report without special pleading. Refutation: wear is concentrated on specific rims or knobs, or GC-MS finds beeswax or lipid on the surfaces of interiors of several pieces rather than trapped in core voids.

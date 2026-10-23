@@ -2,3 +2,15 @@
   skip hypotheses (attempts.md present)
   reframe: 13,203 tokens, 32.0 s
 /home/user/SomeRepository/engine/runs/dodeca_v5/prompts/g1_crux.txt
+  g1_crux: 13,019 tokens, 35.0 s
+g1_crux: 3 ideas (575 words)
+/home/user/SomeRepository/engine/runs/dodeca_v5/prompts/g1_neg.txt
+  g1_neg: 14,136 tokens, 48.4 s
+g1_neg: 3 ideas (662 words)
+/home/user/SomeRepository/engine/runs/dodeca_v5/prompts/g1_mech.txt
+  g1_mech: 13,855 tokens, 44.0 s
+g1_mech: 3 ideas (594 words)
+  g1_reframe: 12,767 tokens, 31.9 s
+g1_reframe: 3 ideas (548 words)
+  triage: 16,868 tokens, 23.9 s
+/home/user/SomeRepository/engine/runs/dodeca_v5/audit_a/TASK.md
