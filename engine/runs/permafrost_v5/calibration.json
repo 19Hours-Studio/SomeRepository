@@ -1,0 +1,12 @@
+{
+ "p": {
+  "repair#3": 0.22,
+  "repair#2": 0.15,
+  "repair#4": 0.03,
+  "repair#1": 0.05,
+  "none": 0.55
+ },
+ "weakest_link": "Idea 1 depends on finding sheltered backwaters at tributary mouths that are at least 3.7 m deep at end-of-winter low stage, where a loaded barge can freeze in without grounding and survive break-up. Its novelty is also weak, because loaded vessels may already be wintered this way.",
+ "flip_test": "Survey the candidate tributary mouths for end-of-April depth, and pull the historical loss and damage rates for vessels wintered there. The ranking flips in either of two cases:",
+ "unknown": "Even if Idea 1 works, nobody knows how many tributaries depend on the flood crest alone and carry enough cargo for a saving of about 1.5–3.6x on one leg to matter in the full delivered cost. The total may be a small, niche saving rather than a change in how these resources reach market."
+}

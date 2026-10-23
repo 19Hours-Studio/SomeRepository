@@ -58,3 +58,33 @@ gate: 8/8 parsed {'WOUNDED': 2, 'DEAD': 6}
   skip repair (done)
 repair: 4 ideas (1273 words)
 /home/user/SomeRepository/engine/runs/permafrost_v5/audit_final/TASK.md
+  audit_final: 193,968 tokens, 295.0 s
+  audit_final: 2 new facts -> evidence.md
+  calibrate: 7,499 tokens, 18.5 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#3       F0/M2/m1 fit 0.00 ratio 1.3 known partly p 22%  Pre-staged flood-crest barges
+  2. repair#2       F0/M2/m1 fit 0.00 ratio 1.2 known partly p 15%  Fuel on empty coal-barge legs
+  3. repair#4       F1/M2/m1 fit 0.00 ratio 1.05 known partly p 3%  Self-heated barge boilerhouse
+  4. repair#1       F1/M2/m1 fit 0.00 ratio 0.8 known partly p 5%  Scrape-thawed river-bluff lignite
+  none of these: p 55%
+  weakest link: Idea 1 depends on finding sheltered backwaters at tributary mouths that are at least 3.7 m deep at end-of-winter low stage, where a loaded barge can freeze in without grounding and survive break-up. Its novelty is also weak, because loaded vessels may already be wintered this way.
+  flip test: Survey the candidate tributary mouths for end-of-April depth, and pull the historical loss and damage rates for vessels wintered there. The ranking flips in either of two cases:
+spent 2,916,094 tokens, $6.56
+| arm | n | FATAL/idea | MAJOR/idea | no FATAL | median RATIO | mean FIT | known yes/partly |
+|---|---|---|---|---|---|---|---|
+| F | 4 | 0.50 | 2.00 | 2/4 | 1.20 | 0.00 | 0/4 of 4 |
+| OLD | 5 | 0.80 | 2.80 | 1/5 | 0.90 | 0.00 | 0/5 of 5 |
+
+| rank | id | arm | F/M/m | ratio | known | name |
+|---|---|---|---|---|---|---|
+| 1 | repair#3 | F | 0/2/1 | 1.3 | partly | Pre-staged flood-crest barges |
+| 2 | repair#2 | F | 0/2/1 | 1.2 | partly | Fuel on empty coal-barge legs |
+| 3 | OLD:rep_att_b#4 | OLD | 0/3/1 | 1.0 | partly | Wintering Coal CHP Barge |
+| 4 | OLD:compose_1#1 | OLD | 1/1/2 | 0.75 | partly | Frozen-bluff auger coal, shallow bunker hulls |
+| 5 | repair#4 | F | 1/2/1 | 1.05 | partly | Self-heated barge boilerhouse |
+| 6 | repair#1 | F | 1/2/1 | 0.8 | partly | Scrape-thawed river-bluff lignite |
+| 7 | OLD:rep_att_b#3 | OLD | 1/3/1 | 0.9 | partly | Channel-Talik Seam Dredging |
+| 8 | OLD:rep_att_a#3 | OLD | 1/3/1 | 0.6 | partly | Barge-Mounted Bluff Auger Coal |
+| 9 | OLD:rep_att_b#1 | OLD | 1/4/0 | 1.0 | partly | Ice-Deck Borehole Talik Mining |
+

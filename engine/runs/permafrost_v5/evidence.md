@@ -8,3 +8,5 @@ FACT 7: Winter bottom water at candidate bubbler sites was measured at 0.01-0.2 
 FACT 8: SPoT: 8 tractors, ~768,000 lb/yr payload, one 24,000-gal four-bladder set per tractor, ~1 lb of support load per lb delivered | NEW from gate, check before relying on it | https://apps.dtic.mil/sti/pdfs/ADA602402.pdf ; https://www.equipmentworld.com/applications-and-innovations-get-ready-for-winter/
 FACT 9: Coal matrix thermal conductivity 0.22-0.55 W/mK (mean 0.33), 55 coals including 6 lignites | NEW from gate, check before relying on it | doi:10.1029/96JB01884 (Herrin & Deming 1996)
 FACT 10: Kolyma navigation opens 23 May (Oroek-Zyryanka) | NEW from gate, check before relying on it | https://www.korabel.ru/news/comments/opredeleny_sroki_zakrytiya_navigacii_v_lenskom_basseyne.html
+FACT 11: Kovin I installed power is 10,090 kW, with a 45–60 m dredging depth | NEW from audit_final, check before relying on it | [DredgePoint](https://dredgepoint.org/dredging-database/equipment/kovin-i)
+FACT 12: Zyryansky coal output was about 250 kt in 2021 | NEW from audit_final, check before relying on it | [GEM](https://www.gem.wiki/Ziryansky_Coal_Mine)
