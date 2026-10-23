@@ -848,6 +848,46 @@ def cmd_run(a):
         r = rows[i]; print(f"  {k}. {i:14s} F{r['FATAL']}/M{r['MAJOR']}/m{r['MINOR']} fit {r['fit']:.2f}  {ideas[i]['name']}")
     _, tok, cost = runner.summary(D); print(f"spent {tok:,} tokens, ${cost:.2f}")
 
+BRIEF_KEYS = ("TYPE", "QUESTION", "SUCCESS", "CONSTRAINTS", "CONTEXT", "DATA", "ASSUMPTIONS", "CORRECTED", "UNCLEAR", "MODE")
+
+def parse_brief(text):
+    """{KEY: value} from a === BRIEF === block (a value runs until the next KEY: line)."""
+    body = text.split("=== BRIEF ===", 1)[1] if "=== BRIEF ===" in text else text
+    out, key = {}, None
+    for line in body.splitlines():
+        if line.startswith("==="): break
+        m = re.match(r"^\**(%s)\**\s*:\s*(.*)$" % "|".join(BRIEF_KEYS), line.strip())
+        if m: key = m.group(1); out[key] = m.group(2).strip()
+        elif key and line.strip(): out[key] += "\n" + line.strip()
+    return out
+
+def cmd_ask(a):
+    """v4 step 0: an intake agent turns the raw question into a neutral brief (no answers), then the run is
+    initialised from the brief and the pipeline starts. Unclear points are reported and kept as assumptions."""
+    import runner
+    R = a.run; os.makedirs(rdir(R), exist_ok=True); os.makedirs(path(R, "outputs"), exist_ok=True)
+    out = path(R, "outputs", "brief.md")
+    if os.path.exists(out) and not a.force: text = open(out).read(); print("  skip brief (done)")
+    else:
+        text, u = runner.call(tpl("brief_task").replace("{RAWQ}", a.question), model=a.brief_model, tools="WebSearch", cwd=rdir(R))
+        open(out, "w").write(text); runner.log(rdir(R), "brief:brief", u); print(f"  brief: {u['tokens']:,} tokens")
+    b = parse_brief(text)
+    if not b.get("QUESTION"): sys.exit(f"no QUESTION in the brief; see {out}")
+    kind = "explain" if b.get("TYPE", "").lower().startswith("explain") else "invent"
+    q = b["QUESTION"] + (f"\nA good answer: {b['SUCCESS']}" if b.get("SUCCESS") else "") + \
+        (f"\nConstraints: {b['CONSTRAINTS']}" if b.get("CONSTRAINTS", "none").lower() not in ("none", "") else "")
+    if a.force or "brief" not in load(R, "config.json", {}):  # resuming keeps the initialised run and its ideas
+        cmd_init(argparse.Namespace(run=R, question=q, format="explain" if kind == "explain" else "value", n=3, force=True))
+        cfg = load(R, "config.json", {}); cfg["brief"] = b; save(R, "config.json", cfg)
+    if b.get("UNCLEAR", "none").lower() not in ("none", ""): print("UNCLEAR (kept as assumptions):\n" + b["UNCLEAR"])
+    print(f"TYPE {kind}; MODE {b.get('MODE', 'lite')}")
+    if kind != "explain": print("the one-pass invent pipeline is not built yet: brief saved, run initialised"); return
+    notes = "\n".join(x for x in (a.notes, b.get("ASSUMPTIONS") and "Assumptions in the question that may be wrong:\n" + b["ASSUMPTIONS"],
+                                  b.get("DATA") and "Where deciding data may exist:\n" + b["DATA"]) if x)
+    mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
+    cmd_run(argparse.Namespace(run=R, pipeline="explain", mode=mode, max_tokens=a.max_tokens, model=a.model,
+                               lit_model=a.lit_model, notes=notes or None, force=False))
+
 def cmd_prompt_path(run, tech, label):
     """Build a technique prompt via cmd_prompt and return its path."""
     cmd_prompt(argparse.Namespace(run=run, tech=tech, label=label, pairs=3, pair_from=0, n=None, crux=None))
@@ -913,6 +953,10 @@ def main():
     x.add_argument("--cwd"); x.add_argument("--effort"); x.add_argument("--budget-usd", type=float)
     x.add_argument("--ingest-arm"); x.add_argument("--gen", type=int, default=0); x.add_argument("--parents")
     x = sp.add_parser("usage"); x.add_argument("run")
+    x = sp.add_parser("ask"); x.add_argument("run"); x.add_argument("question"); x.add_argument("--max-tokens", type=int)
+    x.add_argument("--mode", choices=["lite", "standard"], help="default: the brief's MODE")
+    x.add_argument("--model", default="opus"); x.add_argument("--lit-model", default="sonnet"); x.add_argument("--brief-model", default="sonnet")
+    x.add_argument("--notes"); x.add_argument("--force", action="store_true")
     for nm in ("plan", "run"):
         x = sp.add_parser(nm); x.add_argument("run"); x.add_argument("--pipeline", default="explain", choices=list(PIPE))
         x.add_argument("--mode", default="lite", choices=["lite", "standard"])

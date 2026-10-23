@@ -290,6 +290,18 @@ def main():
             out2 = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9], capture_output=True, text=True, env=env)
             assert out2.stdout.count("skip ") == 8, out2.stdout[-500:]  # resumable: every step already done
             shutil.rmtree(rd9, ignore_errors=True)
+            # v4 step 0: ask -> neutral brief -> run initialised from it -> pipeline
+            rest = open(fake).read()
+            open(fake, "w").write("=== BRIEF ===\nTYPE: explain\nQUESTION: What was the bronze object for?\nSUCCESS: fits all facts\n"
+                                  "CONSTRAINTS: none\nASSUMPTIONS: it had one use\nUNCLEAR: none\nMODE: lite\n" + rest)
+            R10 = "_selftest41"; rd10 = os.path.join(HERE, "runs", R10)
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "ask", R10, "чем был этот предмет?"], capture_output=True, text=True, env=env)
+            assert "TYPE explain" in out.stdout and "FINAL (blind review):" in out.stdout, out.stdout[-600:] + out.stderr[-600:]
+            cfg10 = json.load(open(os.path.join(rd10, "config.json")))
+            assert cfg10["question"].startswith("What was the bronze object for?") and cfg10["brief"]["ASSUMPTIONS"] == "it had one use"
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "ask", R10, "чем был этот предмет?"], capture_output=True, text=True, env=env)
+            assert "skip brief" in out.stdout and out.stdout.count("skip ") >= 9, out.stdout[-400:]
+            shutil.rmtree(rd10, ignore_errors=True)
         finally:
             shutil.rmtree(rd8, ignore_errors=True)
         print("OK: all engine commands passed")

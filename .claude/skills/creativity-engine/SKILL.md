@@ -33,6 +33,9 @@ Why each step exists: `engine/README.md` and `research/stage1-creativity/03-deep
   `python3 engine/ce.py run R --pipeline explain --mode lite --max-tokens 900000` runs the whole explanation pipeline
   in one pass via headless `claude -p` (engine/runner.py), resumable, logging tokens to runs/R/usage.jsonl
   (`ce.py usage R`). Single steps: `ce.py exec R --prompt <file> --label L --tools none|research`.
+- Step 0: `python3 engine/ce.py ask R "<question as asked>" --max-tokens N`: an intake agent writes a neutral brief
+  (type, precise question, success criteria, constraints, context, data sources, hidden assumptions; never answers),
+  the run is initialised from it, and the explain pipeline starts.
 - Tool-free steps (generators, evolution) cost ~13k tokens this way vs ~90k as a subagent. Use subagents only when
   the headless CLI is unavailable.
 
