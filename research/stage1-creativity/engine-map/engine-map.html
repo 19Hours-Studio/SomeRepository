@@ -1,0 +1,97 @@
+<title>Схема движка идей</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one engineering schematic in a scroll box, a legend above it, the numbered proposals below. */
+:root {
+  --bg: #f4f6f8; --fg: #18212c; --muted: #5b6676; --box: #ffffff; --line: #18212c;
+  --part: #b45309; --part-bg: #fff7ec; --prop: #0b6e8a; --prop-bg: #eef8fb; --band: #e9edf2;
+  --f-display: "Unbounded", "IBM Plex Sans", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e131a; --fg: #e3e8ef; --muted: #95a1b2; --box: #151c26; --line: #c9d2de;
+  --part: #f2a33a; --part-bg: #2a1f10; --prop: #4fc3e0; --prop-bg: #0f2730; --band: #121922; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0e131a; --fg: #e3e8ef; --muted: #95a1b2; --box: #151c26; --line: #c9d2de;
+  --part: #f2a33a; --part-bg: #2a1f10; --prop: #4fc3e0; --prop-bg: #0f2730; --band: #121922; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 22px; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(22px, 3.4vw, 32px); letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.lede { margin: 0; max-width: 68ch; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 26px; height: 14px; border-radius: 3px; display: inline-block; }
+.sw.built { background: var(--box); border: 1.5px solid var(--line); }
+.sw.part { background: var(--part-bg); border: 1.5px solid var(--part); }
+.sw.prop { background: var(--prop-bg); border: 1.5px dashed var(--prop); }
+figure { margin: 0; }
+.scroll { overflow-x: auto; border-radius: 10px; }
+svg { display: block; width: 100%; min-width: 900px; height: auto; color: var(--fg); }
+figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; max-width: 80ch; }
+/* SVG classes (page CSS reaches inline SVG; every color is a token) */
+.b-built { fill: var(--box); stroke: var(--line); stroke-width: 1.4; }
+.b-part { fill: var(--part-bg); stroke: var(--part); stroke-width: 1.6; }
+.b-prop { fill: var(--prop-bg); stroke: var(--prop); stroke-width: 1.6; stroke-dasharray: 6 4; }
+.band { fill: var(--band); stroke: none; }
+.t { fill: var(--fg); font: 500 12.5px var(--f-body); }
+.t-code { fill: var(--fg); font: 500 12.5px var(--f-mono); }
+.sec { fill: var(--fg); font: 600 12px var(--f-body); letter-spacing: 0.08em; text-transform: uppercase; }
+.sec-sub { fill: var(--muted); font: 400 12px var(--f-body); }
+.al { fill: var(--muted); font: 400 11.5px var(--f-body); }
+.al-prop { fill: var(--prop); font: 500 11.5px var(--f-body); }
+.ln { stroke: var(--line); stroke-width: 1.4; }
+.ln-prop { stroke: var(--prop); stroke-width: 1.6; stroke-dasharray: 6 4; }
+.mk { fill: var(--line); } .mk-prop { fill: var(--prop); }
+.badge { fill: var(--prop); } .badge-t { fill: var(--bg); font: 700 11px var(--f-body); }
+h2 { font-family: var(--f-display); font-weight: 500; font-size: 19px; margin: 8px 0 0; }
+ol.props { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+ol.props li { background: var(--box); border-radius: 8px; padding: 12px 14px; display: grid; grid-template-columns: 30px 1fr; gap: 10px; min-width: 0; }
+.num { width: 24px; height: 24px; border-radius: 50%; background: var(--prop); color: var(--bg); font: 700 12px var(--f-body);
+  display: inline-flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+ol.props b { display: block; font-weight: 600; }
+ol.props p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.note { background: var(--box); border-left: 3px solid var(--line); border-radius: 0 8px 8px 0; padding: 12px 16px; max-width: 80ch; }
+.note p { margin: 0; }
+code { font-family: var(--f-mono); font-size: 0.92em; }
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:10px">
+    <h1>Схема движка идей</h1>
+    <p class="lede">Сверху вниз: что движок знает до генерации, как придумывает без инструментов, как отбирает с
+    инструментами и что выдаёт. Петли справа и слева — эволюция и новые факты. Внизу — то, что запускает каждый шаг.</p>
+  </header>
+  <div class="legend" aria-label="Обозначения">
+    <span><i class="sw built"></i>работает и проверено в прогонах</span>
+    <span><i class="sw part"></i>сделано вручную, ещё не встроено</span>
+    <span><i class="sw prop"></i>предложение (номер — в списке ниже)</span>
+  </div>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 1160 860" role="img" aria-label="Схема движка: вход, сырьё, генерация без инструментов, отбор правдой с инструментами, выход; петли эволюции и новых фактов; оркестрация через ce.py и runner; пунктиром отмечены предложения 1-11"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="mk"/></marker><marker id="arr-prop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="mk-prop"/></marker></defs><text x="40" y="22" class="sec">Вход</text><rect x="40" y="32" width="196" height="56" rx="6" class="b-built"/><text x="138.0" y="65" text-anchor="middle" class="t">Вопрос</text><rect x="260" y="32" width="196" height="56" rx="6" class="b-built"/><text x="358.0" y="56" text-anchor="middle" class="t">Тип вопроса:</text><text x="358.0" y="73" text-anchor="middle" class="t">изобрести · объяснить</text><rect x="480" y="32" width="196" height="56" rx="6" class="b-built"/><text x="578.0" y="56" text-anchor="middle" class="t">Подсказки человека</text><text x="578.0" y="73" text-anchor="middle" class="t">(необязательно)</text><rect x="700" y="32" width="196" height="56" rx="6" class="b-built"/><text x="798.0" y="65" text-anchor="middle" class="t">Бюджет токенов</text><line x1="248" y1="88" x2="248" y2="140" class="ln" marker-end="url(#arr)"/><text x="256" y="112" class="al">вопрос</text><line x1="578" y1="88" x2="578" y2="140" class="ln" marker-end="url(#arr)"/><text x="586" y="112" class="al">как данные, с проверкой</text><text x="40" y="134" class="sec">1 · Сырьё</text><text x="270" y="134" class="sec-sub">что известно до генерации</text><rect x="40" y="144" width="196" height="56" rx="6" class="b-built"/><text x="138.0" y="168" text-anchor="middle" class="t">Карта аттракторов</text><text x="138.0" y="185" text-anchor="middle" class="t">(типовые ответы модели)</text><rect x="260" y="144" width="196" height="56" rx="6" class="b-built"/><text x="358.0" y="168" text-anchor="middle" class="t">Ядро вопроса</text><text x="358.0" y="185" text-anchor="middle" class="t">и намерение</text><rect x="480" y="144" width="196" height="56" rx="6" class="b-built"/><text x="578.0" y="168" text-anchor="middle" class="t">Бухгалтерия затрат</text><text x="578.0" y="185" text-anchor="middle" class="t">или реестр фактов</text><rect x="700" y="144" width="196" height="56" rx="6" class="b-built"/><text x="798.0" y="168" text-anchor="middle" class="t">Прежние попытки</text><text x="798.0" y="185" text-anchor="middle" class="t">или прежние объяснения</text><rect x="920" y="144" width="196" height="56" rx="6" class="b-built"/><text x="1018.0" y="168" text-anchor="middle" class="t">Набор расчётов:</text><text x="1018.0" y="185" text-anchor="middle" class="t">13 классов убийц</text><rect x="40" y="214" width="196" height="56" rx="6" class="b-part"/><text x="138.0" y="238" text-anchor="middle" class="t">Потолки «в разы»</text><text x="138.0" y="255" text-anchor="middle" class="t">до генерации</text><circle cx="236" cy="214" r="10" class="badge"/><text x="236" y="218" text-anchor="middle" class="badge-t">11</text><rect x="260" y="214" width="196" height="56" rx="6" class="b-prop"/><text x="358.0" y="238" text-anchor="middle" class="t">Охота за сырыми</text><text x="358.0" y="255" text-anchor="middle" class="t">данными</text><circle cx="456" cy="214" r="10" class="badge"/><text x="456" y="218" text-anchor="middle" class="badge-t">2</text><rect x="480" y="214" width="196" height="56" rx="6" class="b-prop"/><text x="578.0" y="238" text-anchor="middle" class="t">Срезы фактов</text><text x="578.0" y="255" text-anchor="middle" class="t">для каждого шага</text><circle cx="676" cy="214" r="10" class="badge"/><text x="676" y="218" text-anchor="middle" class="badge-t">3</text><line x1="248" y1="270" x2="248" y2="322" class="ln" marker-end="url(#arr)"/><text x="256" y="296" class="al">сырьё</text><text x="40" y="316" class="sec">2 · Генерация</text><text x="270" y="316" class="sec-sub">без инструментов, ~13 тыс. токенов на шаг</text><rect x="40" y="326" width="196" height="56" rx="6" class="b-built"/><text x="138.0" y="350" text-anchor="middle" class="t">Портфель техник</text><text x="138.0" y="367" text-anchor="middle" class="t">против бассейнов</text><rect x="260" y="326" width="196" height="56" rx="6" class="b-built"/><text x="358.0" y="350" text-anchor="middle" class="t">Слои A → B → C</text><text x="358.0" y="367" text-anchor="middle" class="t">новизна, гениальность, ценность</text><rect x="480" y="326" width="196" height="56" rx="6" class="b-prop"/><text x="578.0" y="350" text-anchor="middle" class="t">Подвопросы</text><text x="578.0" y="367" text-anchor="middle" class="t">по отдельности</text><circle cx="676" cy="326" r="10" class="badge"/><text x="676" y="330" text-anchor="middle" class="badge-t">5</text><rect x="700" y="326" width="196" height="56" rx="6" class="b-built"/><text x="798.0" y="350" text-anchor="middle" class="t">Память аттракторов</text><text x="798.0" y="367" text-anchor="middle" class="t">(запрет найденного)</text><rect x="920" y="326" width="196" height="56" rx="6" class="b-built"/><text x="1018.0" y="350" text-anchor="middle" class="t">Эволюция: потомки</text><text x="1018.0" y="367" text-anchor="middle" class="t">из дефектов</text><line x1="248" y1="382" x2="248" y2="436" class="ln" marker-end="url(#arr)"/><text x="256" y="404" class="al">идеи</text><path d="M600 440 L600 408 L1018 408 L1018 386" class="ln" fill="none" marker-end="url(#arr)"/><text x="800" y="402" text-anchor="middle" class="al">дефекты аудита → потомки</text><text x="40" y="430" class="sec">3 · Отбор правдой</text><text x="270" y="430" class="sec-sub">поиск, Python, расчёты</text><rect x="40" y="440" width="196" height="56" rx="6" class="b-built"/><text x="138.0" y="464" text-anchor="middle" class="t">Тест на смерть</text><text x="138.0" y="481" text-anchor="middle" class="t">+ набор расчётов</text><rect x="260" y="440" width="196" height="56" rx="6" class="b-built"/><text x="358.0" y="464" text-anchor="middle" class="t">Починка с поиском</text><text x="358.0" y="481" text-anchor="middle" class="t">(−72% FATAL)</text><rect x="480" y="440" width="196" height="56" rx="6" class="b-built"/><text x="578.0" y="464" text-anchor="middle" class="t">Слепой аудит:</text><text x="578.0" y="481" text-anchor="middle" class="t">FATAL, MAJOR, FIT</text><rect x="700" y="440" width="196" height="56" rx="6" class="b-built"/><text x="798.0" y="473" text-anchor="middle" class="t">Сборщик цепочек</text><rect x="920" y="440" width="196" height="56" rx="6" class="b-part"/><text x="1018.0" y="464" text-anchor="middle" class="t">Измерь или смоделируй</text><text x="1018.0" y="481" text-anchor="middle" class="t">(3D, физика)</text><circle cx="1116" cy="440" r="10" class="badge"/><text x="1116" y="444" text-anchor="middle" class="badge-t">2</text><rect x="40" y="510" width="196" height="56" rx="6" class="b-prop"/><text x="138.0" y="534" text-anchor="middle" class="t">Матрица предсказаний</text><text x="138.0" y="551" text-anchor="middle" class="t">→ решающий опыт</text><circle cx="236" cy="510" r="10" class="badge"/><text x="236" y="514" text-anchor="middle" class="badge-t">1</text><rect x="260" y="510" width="196" height="56" rx="6" class="b-prop"/><text x="358.0" y="534" text-anchor="middle" class="t">Защита</text><text x="358.0" y="551" text-anchor="middle" class="t">проигравшего</text><circle cx="456" cy="510" r="10" class="badge"/><text x="456" y="514" text-anchor="middle" class="badge-t">7</text><rect x="480" y="510" width="196" height="56" rx="6" class="b-part"/><text x="578.0" y="534" text-anchor="middle" class="t">Проверка</text><text x="578.0" y="551" text-anchor="middle" class="t">согласованности</text><circle cx="676" cy="510" r="10" class="badge"/><text x="676" y="514" text-anchor="middle" class="badge-t">5</text><rect x="700" y="510" width="196" height="56" rx="6" class="b-built"/><text x="798.0" y="534" text-anchor="middle" class="t">Судьи: только</text><text x="798.0" y="551" text-anchor="middle" class="t">оригинальность</text><rect x="920" y="510" width="196" height="56" rx="6" class="b-built"/><text x="1018.0" y="534" text-anchor="middle" class="t">Проверка</text><text x="1018.0" y="551" text-anchor="middle" class="t">по литературе</text><path d="M480 468 L470 468 L470 172 L478 172" class="ln-prop" fill="none" marker-end="url(#arr-prop)"/><text x="478" y="301" class="al-prop">↑ новые факты</text><circle cx="470" cy="404" r="10" class="badge"/><text x="470" y="408" text-anchor="middle" class="badge-t">6</text><line x1="248" y1="566" x2="248" y2="618" class="ln" marker-end="url(#arr)"/><text x="256" y="596" class="al">лучшие</text><text x="40" y="612" class="sec">4 · Выход</text><rect x="40" y="622" width="196" height="56" rx="6" class="b-built"/><text x="138.0" y="646" text-anchor="middle" class="t">Победитель +</text><text x="138.0" y="663" text-anchor="middle" class="t">таблица уверенности</text><rect x="260" y="622" width="196" height="56" rx="6" class="b-built"/><text x="358.0" y="655" text-anchor="middle" class="t">Решающая проверка</text><rect x="480" y="622" width="196" height="56" rx="6" class="b-prop"/><text x="578.0" y="646" text-anchor="middle" class="t">Калибровка:</text><text x="578.0" y="663" text-anchor="middle" class="t">исход → оценка Брайера</text><circle cx="676" cy="622" r="10" class="badge"/><text x="676" y="626" text-anchor="middle" class="badge-t">8</text><rect x="700" y="622" width="196" height="56" rx="6" class="b-built"/><text x="798.0" y="655" text-anchor="middle" class="t">Отчёт пользователю</text><rect x="24" y="704" width="1112" height="138" rx="8" class="band"/><text x="40" y="728" class="sec">Оркестрация</text><text x="270" y="728" class="sec-sub">каждый шаг выше вызывает модель через runner</text><rect x="40" y="740" width="196" height="56" rx="6" class="b-built"/><text x="138.0" y="764" text-anchor="middle" class="t-code">ce.py</text><text x="138.0" y="781" text-anchor="middle" class="t">состояние, промпты, отбор</text><rect x="260" y="740" width="196" height="56" rx="6" class="b-built"/><text x="358.0" y="764" text-anchor="middle" class="t-code">runner</text><text x="358.0" y="781" text-anchor="middle" class="t">claude -p, модель, инструменты</text><rect x="480" y="740" width="196" height="56" rx="6" class="b-built"/><text x="578.0" y="764" text-anchor="middle" class="t-code">plan · run · usage</text><text x="578.0" y="781" text-anchor="middle" class="t">токены по шагам</text><rect x="700" y="740" width="196" height="56" rx="6" class="b-prop"/><text x="798.0" y="764" text-anchor="middle" class="t">Адаптивный конвейер</text><text x="798.0" y="781" text-anchor="middle" class="t">(ценность информации)</text><circle cx="896" cy="740" r="10" class="badge"/><text x="896" y="744" text-anchor="middle" class="badge-t">4</text><rect x="920" y="740" width="196" height="56" rx="6" class="b-prop"/><text x="1018.0" y="764" text-anchor="middle" class="t">Память между прогонами</text><text x="1018.0" y="781" text-anchor="middle" class="t">· полигон</text><circle cx="1116" cy="740" r="10" class="badge"/><text x="1116" y="744" text-anchor="middle" class="badge-t">9</text><circle cx="1090" cy="740" r="10" class="badge"/><text x="1090" y="744" text-anchor="middle" class="badge-t">10</text></svg></div>
+    <figcaption>Каждая стрелка — то, что передаётся дальше: вопрос, сырьё, идеи, лучшие, дефекты. Пунктирная петля «новые
+    факты» сейчас идёт через меня руками; предложение 6 делает её автоматической.</figcaption>
+  </figure>
+
+  <h2>Предложения</h2>
+  <ol class="props">
+    <li><span class="num">1</span><div><b>Матрица предсказаний → решающий опыт</b><p>Каждый финалист предсказывает одни и те же наблюдения; скрипт выбирает, где они сильнее всего расходятся, и делает этот опыт, если он выполним.</p></div></li>
+    <li><span class="num">2</span><div><b>Сырые данные и «измерь или смоделируй»</b><p>Искать модели, таблицы, каталоги; писать измерение или симуляцию и сначала проверять на случае с известным ответом. Так в раунде 4 опровергли жребий.</p></div></li>
+    <li><span class="num">3</span><div><b>Срезы фактов</b><p>Шаг с поиском получает только нужные факты. Проверка экзамена стоила 607 тыс. токенов, потому что весь реестр перечитывался ~80 раз.</p></div></li>
+    <li><span class="num">4</span><div><b>Адаптивный конвейер</b><p>Лидер оторвался — стоп. Двое рядом — решающий опыт или второй аудитор. Все слабые — эволюция.</p></div></li>
+    <li><span class="num">5</span><div><b>Подвопросы и согласованность</b><p>Разложить, соревноваться по частям, собрать и проверить на противоречия. Экзамен с проверяющим уже показал, что это работает.</p></div></li>
+    <li><span class="num">6</span><div><b>Факты из аудита — в реестр сами</b><p>Аудитор пишет строку <code>NEW FACT</code>, движок вносит её с пометкой происхождения.</p></div></li>
+    <li><span class="num">7</span><div><b>Защита проигравшего</b><p>Перед объявлением победителя — лучший довод за второе место и наблюдение, которое могло бы его спасти.</p></div></li>
+    <li><span class="num">8</span><div><b>Калибровка</b><p>У каждого вывода — вероятность; по разрешённым прогнозам (уже 29 пре-регистраций) считается, насколько движок самоуверен.</p></div></li>
+    <li><span class="num">9</span><div><b>Память между прогонами</b><p>Классы убийц, удачные приёмы, найденные факты переходят в следующий прогон.</p></div></li>
+    <li><span class="num">10</span><div><b>Полигон с известными ответами</b><p>Задачи, решённые после даты знаний модели; меряет, стал ли движок лучше, в дешёвом режиме lite.</p></div></li>
+    <li><span class="num">11</span><div><b>Потолки до генерации</b><p>Для изобретений: сначала посчитать по бухгалтерии, где «в разы» вообще возможно, и только туда направлять генераторы.</p></div></li>
+  </ol>
+
+  <div class="note"><p><b>Подсказки человека.</b> Человек может не знать или ошибиться, поэтому его слова входят в реестр как
+  данные и проходят ту же проверку, что и остальные факты. Без них движок работает так же.</p></div>
+</div>
