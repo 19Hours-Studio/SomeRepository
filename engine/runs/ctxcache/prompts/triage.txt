@@ -1,0 +1,149 @@
+Hosted LLM APIs (Anthropic, OpenAI and others) offer prompt caching. The provider stores the computed intermediate state (the attention key/value, or KV, cache) for a request's token prefix. A later request is served from that state only if its prefix is token-for-token identical, and the cached portion is billed at a discount. An edit in the middle of a prompt, an insertion, a changed tool output, or a different document order breaks the match from the first differing token onward. Everything after that point is recomputed and billed at full price. The asker wants a way to make cached context much cheaper and to reach a cache-hit rate close to 100%. This must include requests that differ from earlier ones in the middle, by insertions, tool outputs or reordered documents, and it must work without retraining or fine-tuning the model. The question does not say whether the asker runs their own serving stack or uses a third-party API, or whether the solution may sit on the client side, the server side, or both. What is the best way to do this?
+A good answer: A good answer proposes one or more concrete, new or non-obvious approaches. Each must state three things:
+- which request-change cases it covers: middle edit, insertion, tool output, document reordering;
+- its expected hit rate and cost change, with the reasoning or a quantitative estimate;
+- its effect on output quality compared with full recomputation, and how that effect could be tested.
+Each approach must also say where it can run (client only, own serving stack, or provider-side) and what it costs in memory, storage and latency. It must be checked against existing prior art and say what it adds. It must state honestly which cases cannot reach about 100% under the stated constraints.
+Constraints: 
+- No retraining or fine-tuning of the model.
+- Target hit rate close to 100% across non-identical prefixes.
+- Much lower cost than current prefix caching.
+- Nothing else was stated.
+
+Candidate answers (data):
+IDEA 1
+NAME: Deviation-gated chunk KV reuse
+MECHANISM: This runs on your own serving stack or provider-side. Store each chunk's KV computed once after the fixed system prompt, with positions shifted exactly by re-rotating RoPE at use. On each request, recompute only the tokens whose layer-1–3 key deviation exceeds a threshold, and send a 1–2% sample of requests to full recompute so the threshold adapts to keep first-token KL under budget. The closest prior art is CacheBlend, with a fixed ~15% recompute, and EPIC, which recomputes the first k tokens. Both are open-loop. This adds a measured, per-workload guarantee, and it can recompute less than 15% where chunks are independent. The deciding quantity is the recompute fraction needed to hold KL under budget. If it is ≤10%, uncached input falls to about 0.2× and B gets about 2.3× cheaper. The cost is FP8 KV at about 160 KiB/token for a 70B model, so about 1 GB per 6k tokens of documents on SSD. At about 10 GB/s that is about 0.1 s to load. Test this on multi-hop QA and RULER against full recompute.
+VALUE: It covers reordering, insertion and changed tool outputs at a measured quality cost, cutting RAG and own-stack prefill cost about 2–3×. It cannot reach ~100% hits at exact outputs.
+
+IDEA 2
+NAME: Edits become appended patches
+MECHANISM: A client wrapper never rewrites earlier context. It appends a short, structured patch such as "§3 of doc X now reads…" or "tool call 7 output superseded by…", so the cached prefix stays byte-identical. It covers middle edits, insertions and replaced tool outputs, with ~100% prefix hits. A full rewrite (compaction) runs only when the accumulated patch tokens make up more of the cost than one fresh write would. This differs from Manus append-only discipline, which forbids edits; here edits are allowed and converted into appends. The deciding quantity is how much answer accuracy the model loses when it reads patched text instead of clean text. Runs client-only, with no extra storage. In C, a mid-document edit drops from a ~25k-token 1.25× rewrite (~$0.09) to ~1k new tokens (~$0.004).
+VALUE: Edit-heavy document and agent sessions on hosted APIs keep near-100% hits, saving 1.3–1.7× in those sessions, not across all traffic.
+
+IDEA 3
+NAME: Append-only patch log
+MECHANISM: The client never edits earlier prompt text. It appends a compact patch instead, such as "doc X, §4 now reads …" or "tool output #12 is superseded by …", so the cached prefix stays byte-identical. Once the patches exceed a set fraction ε of the document, the client compacts them into one fresh cached copy. The closest prior art is Manus's append-only discipline, which forbids mid-prompt edits; this approach turns those edits into appends instead of forbidding them. The deciding quantity is how accurately the model applies patches as their number grows.
+VALUE: Mid-document edits and replaced tool outputs no longer trigger 1.25× rewrites, so near-100% prefix hits are possible on hosted APIs with no model access.
+
+IDEA 4
+NAME: Cluster-pinned RAG context
+MECHANISM: The corpus is clustered offline, and each cluster gets a fixed, ordered "hot set" of about 30k tokens that is cached once on the provider. Each query is routed to a cluster and its question appended after that cached prefix, so varying retrieval order no longer breaks the cache. Chunks outside the hot set are appended uncached. This extends cache-augmented generation (CAG), which preloads a whole small corpus, by routing per cluster so the method scales to large corpora. The deciding quantity is in-cluster recall: the fraction of needed chunks already inside the pinned set. Runs client-only. Estimated cost: 30k×$0.25/M + output ≈ $0.014 vs $0.022, about 1.6×. Quality risk is distraction from the longer context, tested with a RAG eval at matched recall.
+VALUE: Hosted-API RAG gets near-100% hits despite reordering, but stays well under the 3.6× ceiling.
+
+IDEA 5
+NAME: Edits shipped as appended patches
+MECHANISM: The client never rewrites earlier context. A changed document section or replaced tool output becomes a short appended note ("section 4 now reads: …; ignore the earlier version"), so the stored prefix stays identical and every earlier token is a cache read. The client rebuilds the prompt once patches exceed a set share of the context (for example 5%). The closest earlier attempt is append-only discipline (Manus), which stopped short because it forbids edits; this design keeps edits and changes only where they are written. Covers middle edits, insertions and tool-output replacement (not reordering), runs client-only on hosted APIs, and costs only the patch tokens. In C, rewriting after a mid-document edit drops from about $0.094 (25k tokens × 1.25 × $3/M) to about $0.002 for a 500-token patch. The deciding quantity is answer agreement between patched and inline prompts, which you can test with paired evaluations, including multi-hop questions that touch the edited text.
+VALUE: Hosted-API document edits stay at nearly 100% cache hits without access to the server.
+
+IDEA 6
+NAME: Query-gated selective KV recompute
+MECHANISM: Chunk KV is precomputed and stored in LMCache, then joined in any order. Layer by layer, the attention of the short query over the reused KV is computed, and only the tokens that carry the top attention mass are recomputed, stopping once the bound "attention mass on unrecomputed tokens × measured KV deviation" falls below ε. The closest prior art is CacheBlend, which picks about 15% of tokens by KV deviation without looking at the query, and Cache-Craft and EPIC, which use static or per-chunk rules. Gating on what the query actually reads aims at about 3% recompute, re-gating cheaply for each new query or turn and every N decode steps. The deciding quantity is the fraction of tokens needed to capture, say, 95% of the query's attention mass on multi-hop tasks.
+VALUE: It makes about 97% of document tokens reusable at a stated divergence bound, cutting own-stack prefill on missed tokens about 5× more than CacheBlend, which takes 0.85 + 0.15 recomputed to about 0.03 + probe overhead (estimated 1.6–1.8× total cost in archetype D).
+
+IDEA 7
+NAME: Canonical global document order
+MECHANISM: Every retrieved chunk is placed in one fixed corpus-wide order, such as popularity-ranked ID, not in per-query relevance order. Overlapping document sets then become shared prefixes in a radix cache, and requests are routed by their first document ID. The closest prior art is CacheWeaver and RAGCache, which order documents per request and miss when the same set arrives in another order. Here the order is fixed by the corpus, so a repeated set always forms the same prefix. The deciding quantity is the retrieval popularity skew.
+VALUE: Prefill compute on reordered RAG requests is reused exactly on your own stack, with no attention approximation.
+
+IDEA 8
+NAME: Append-only patch log
+MECHANISM: Instead of editing a document or tool output in place, the client appends a compact diff, written as "replace lines X–Y with …", after the cached content. It compacts the prompt into a fresh write only when the patch tokens exceed a threshold such as 5% of the context. The closest prior art is Manus append-only discipline, which forbids edits rather than encoding them. The deciding quantity is how accurately the model applies the patches, tested as answer agreement against a rewritten document on edit-heavy QA.
+VALUE: In archetype C, a 200-token mid-document edit costs 200 new tokens instead of a 1.25× rewrite of about 25k tokens, keeping cache hits near 100% between compactions on any hosted API.
+
+IDEA 9
+NAME: Canonical-order exact prefix trees
+MECHANISM: This is client-only. Emit retrieved chunks sorted by a stable corpus ID instead of by relevance, and put tool outputs into fixed slots. Any two queries that share their lowest-ID chunks then share an exact prefix in an SGLang radix tree or a provider prefix cache. The closest prior art is RAGCache and CacheWeaver, which reorder to fit the cache. This instead makes order a deterministic function of the chunk set, so all reuse is bit-exact. The deciding quantity is the chunk-set overlap between queries. The hit rate equals the shared-prefix fraction, so expect perhaps 30–60%, nowhere near 100%. Quality risk comes from losing relevance order ("lost in the middle"). A/B test sorted against relevance order on your own evaluation set.
+VALUE: It gives exact, zero-approximation savings on reordering, with no storage or latency added.
+
+IDEA 10
+NAME: Popularity-ranked document order
+MECHANISM: Before building the prompt, sort retrieved chunks by a global retrieval-frequency rank instead of by similarity. Common chunks then always sit first and in the same order, so the server's prefix tree reuses them exactly, bit-identically. The rank is refreshed daily, with hysteresis so the order rarely changes. The closest earlier attempts are RAGCache (order-sensitive, so it misses) and CacheWeaver (20–33% lower time to first token); this design makes the order identical across users rather than tuned per request. Covers reordering only, runs client-only or on your own stack, and costs nothing extra to store. The deciding quantity is how skewed retrieval frequencies are: strong skew might give 60–80% hits, a guess to be measured from your logs. Test the quality cost with permutation-sensitivity evaluations.
+VALUE: Reordered RAG context becomes exact cache hits, within B's 2.8x limit.
+
+IDEA 11
+NAME: Head-sparse blended recompute
+MECHANISM: Chunk KV is cached by content hash and re-rotated to each new position, as in CacheBlend. An offline per-model profile finds which layers and heads actually attend across chunk boundaries. Selective token recompute (~15%) then runs only in those layers, not in all of them. EPIC and CacheBlend choose tokens; this also chooses layers, so the recompute fraction can multiply down (for example 15% × 30% ≈ 5%). If the measured KV deviation exceeds a set threshold, the request falls back to exact recompute. The deciding quantity is the fraction of layers that can be skipped at <1% loss against full recompute; residual-stream coupling between layers may make it small. Runs on an own stack or provider-side, with roughly prefix-cache-scale storage for chunk KV (FP8). The method is lossy and must be offered opt-in. In D, prefill on missed tokens falls by up to ~10×, giving ~1.9× overall.
+VALUE: Reordered and inserted documents become cheap to reuse with a quality bound that is measured and can be enforced, and they bill near cache-read prices.
+
+IDEA 12
+NAME: Read-cost-gated turn collapsing
+MECHANISM: Read cost grows with turns times context length. The agent is therefore prompted to emit multi-step scripts or batched tool calls, and to stop and observe only when the predicted branch uncertainty is worth one more full context read. The closest prior art is CodeAct and parallel tool calling, which aim at task success. This approach adds explicit gating on cost per read. The deciding quantity is how much task success drops at 2–3x fewer turns.
+VALUE: It cuts the dominant cache-read term of long agent sessions by about 2x, beyond what any hit-rate gain can do.
+
+IDEA 13
+NAME: Drift-gated partial recompute
+MECHANISM: On your own serving stack, after an edit, first recompute only the edited span plus a few early layers for the tokens after it. Measure how far each later token's hidden state moved compared with the cached version. Fully recompute only tokens above a threshold, and stop at layers where drift has died out. Full recomputation of 1% of requests checks the threshold against output agreement. The closest earlier attempt is CacheBlend, which stopped short at a fixed ~15% recompute with no quality bound; this design sets the recompute share per edit from measured drift and audits it. Costs: one extra early-layer pass, and stored states (~320 KiB per token at FP16 for a 70B model, half that at FP8). The deciding quantity is the share of post-edit tokens above threshold. At ≤5% it cuts prefill on edited requests about 10x, worth about 1.8x on D overall. Test it with greedy-output agreement, RULER and multi-turn tasks.
+VALUE: Middle edits and tool-output swaps on your own stack cost close to the edited span, with a measured quality bound.
+
+IDEA 14
+NAME: Popularity-ordered chunk prefixes
+MECHANISM: The client or router places retrieved chunks in a global order by corpus popularity rather than by relevance score. Overlapping chunk sets then share long exact prefixes, and the question goes last. This works on any hosted prefix cache, with zero extra memory or latency. The closest prior art is RAGCache and CacheWeaver, which are server-side and keep order sensitivity. This idea works client-only and keeps exact KV, so only the effect of document order needs testing, through an order-ablation test on lost-in-the-middle benchmarks. The deciding quantity is the Zipf skew of retrieval, which sets the probability that the first k chunks repeat across queries.
+VALUE: In RAG on a closed API, it turns part of the 71% uncached document spend into 0.1× reads with no approximation. The hit rate is bounded by how much queries overlap, and the long tail stays uncovered.
+
+IDEA 15
+NAME: Append-patch history with stubbing
+MECHANISM: This is client-only, for agent loops. Never edit the history in place. A middle change is appended as a patch, which keeps the cached prefix exact. Every 10 turns, take one deliberate cache-rewrite and replace tool outputs older than 5 turns with a short stub, keeping the full text retrievable by a tool call. The closest prior art is Manus's append-only discipline, which still re-reads the whole history every turn. This changes the read volume instead. The deciding quantity is the share of tool output in the history. At about 70%, average context falls from about 60k to about 25k, so reads drop about 2.4×. Net of 4 rewrite writes, that is about 1.5× cheaper per task. Quality is lossy. Test pass rate and re-fetch rate on SWE-bench against the unstubbed baseline.
+VALUE: It covers middle edits and tool outputs on any hosted API, with about 1.5× lower cost for each long coding task.
+
+
+Where "several times cheaper" is arithmetically possible (ceilings computed in code from the cost ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE ? | untouchable 0.0% -> ceiling infx | 10x cut of one term: cache reads 1.95x; cache writes of new tool output 1.26x; output decode 1.26x; uncached input ~ 1.00x | 3x needs: cache reads, cache writes of new tool output | ROOM
+ARCHETYPE ? | untouchable 28.0% -> ceiling 3.6x | 10x cut of one term: uncached document and query input 2.77x; cached prefix 1.01x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+ARCHETYPE ? | untouchable 18.0% -> ceiling 5.6x | 10x cut of one term: cache write, amortized 1.66x; cache reads 1.48x; new uncached input 1.02x | 3x needs: cache write, amortized, cache reads | ROOM
+ARCHETYPE ? | untouchable 12.0% -> ceiling 8.3x | 10x cut of one term: prefill compute on cache-missed tokens 1.98x; decode compute 1.29x; kv memory, offload and transfer 1.08x | 3x needs: prefill compute on cache-missed tokens, decode compute | ROOM
+
+What was tried before and why it did not solve the problem (data):
+I used all 15 searches. Every number below comes from the cited page's own claims, not from a replication. Arithmetic marked "mine" is my own. I did not search attempts 14 and 15.
+
+ATTEMPT 1: Provider exact-prefix caching (Anthropic, OpenAI, Gemini) | Hosted APIs, 2024–25 | standard | WHY IT DID NOT SOLVE IT: Reads are billed at 0.1× and 5-minute writes at 1.25×, so the discount is large only up to the first differing token. Anthropic allows only 4 explicit breakpoints per request. OpenAI caches only prompts of 1024+ tokens, in 128-token steps. Gemini's own docs say implicit savings carry no guarantee. A mid-prompt edit forfeits all tokens after it. | [Helicone](https://docs.helicone.ai/gateway/concepts/prompt-caching), [OpenAI](https://developers.openai.com/cookbook/examples/prompt_caching_201), [Gemini](https://ai.google.dev/gemini-api/docs/caching?lang=node)
+
+ATTEMPT 2: Append-only prompt discipline (stable system prompt, deterministic JSON, no timestamps) | Manus, 2025 | standard | WHY IT DID NOT SOLVE IT: It is a convention, not a mechanism. Manus runs about 100:1 input to output tokens and prices cached Sonnet input at $0.30 vs $3 per million tokens. A single changed token still invalidates everything after it. It forbids exactly the middle edits, reorderings and tool-output replacements the question asks about. | [Manus](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)
+
+ATTEMPT 3: Self-hosted prefix caches (vLLM block hashing, SGLang RadixAttention) | Open source, 2023–25 | standard | WHY IT DID NOT SOLVE IT: Each vLLM block hash covers all earlier tokens, so any upstream change breaks every later block. Hit rates depend on prefix overlap. One vendor blog reports about 28% hit rate at 20% overlap and about 93% at 95% overlap (unverified). | [vLLM](https://docs.vllm.ai/design/prefix_caching.html), [SGLang](https://arxiv.org/pdf/2312.07104)
+
+ATTEMPT 4: Routing and keys to raise hits (OpenAI `prompt_cache_key`) | OpenAI, 2024–25 | standard | WHY IT DID NOT SOLVE IT: Hits also require landing on the same machine. One customer's hit rate rose from 60% to 87% with the key, which is anecdotal and still short of 100%. Routing cannot fix a changed prefix. | [OpenAI cookbook](https://developers.openai.com/cookbook/examples/prompt_caching_201), [summary](https://growwstacks.com/blog/master-next-gen-ai-development-prompt-caching)
+
+ATTEMPT 5: Paid retention (Anthropic 1-hour TTL, Gemini explicit caches) | Providers | standard | WHY IT DID NOT SOLVE IT: Retention extends only identical prefixes, and you pay for it. The 1-hour write costs 2× base input. Third-party-listed Gemini storage is $4.50 per million tokens per hour for 2.5 Pro, so a 100K-token cache costs about $0.45/hour (mine). | [Helicone](https://docs.helicone.ai/gateway/concepts/prompt-caching)
+
+ATTEMPT 6: CacheBlend (reuse non-prefix chunk KV, recompute about 15% of tokens) | Chicago/Microsoft/LMCache, EuroSys '25 | niche (open source, server-side only) | WHY IT DID NOT SOLVE IT: It gives 2.2–3.3× TTFT and 2.8–5× throughput, not about 100% savings. About 15% of tokens are always recomputed. If that were billed like a provider would, the cost would be about 0.85×0.1 + 0.15×1 ≈ 0.23 of full price (mine). It needs access to the KV tensors, so a closed API cannot offer it. | [arXiv](https://arxiv.org/html/2405.16444v3), [LMCache](https://blog.lmcache.ai/2025-03-31-eurosys)
+
+ATTEMPT 7: EPIC / LegoLink (static recompute of the first k≤32 tokens of each chunk) | PKU/NJU/Huawei, ICML 2025 | niche | WHY IT DID NOT SOLVE IT: It reports up to 8× TTFT and 7× throughput with "negligible" loss. All figures are the authors' own, I found no independent replication, and it works only on a self-hosted vLLM fork. | [arXiv](https://arxiv.org/html/2410.15332v3)
+
+ATTEMPT 8: Prompt Cache (schema-defined prompt modules with fixed positions) | Yale/Google, MLSys 2024 | niche | WHY IT DID NOT SOLVE IT: It reports 8× (GPU) and 60× (CPU) lower TTFT, but only for text declared in advance as modules at fixed positions. Free-form edits and tool outputs fall outside that. Reused states also skip attention to other modules. | [arXiv](https://arxiv.org/abs/2311.04934)
+
+ATTEMPT 9: APE (shared prefix, attention temperature and scaling on independently encoded contexts) | CMU/NVIDIA, ICLR 2025 | niche | WHY IT DID NOT SOLVE IT: It is training-free but lossy. It keeps 98% of sequential accuracy on RAG and 93% on in-context learning, so 2–7% is lost. Its 4.5× end-to-end gain is at 128K context, and it needs model internals. | [arXiv](https://arxiv.org/abs/2502.05431v1)
+
+ATTEMPT 10: Block-Attention (block-wise attention, with fine-tuning) | ICLR 2025 | niche | WHY IT DID NOT SOLVE IT: TTFT falls from 3638 ms to 45 ms at 32K tokens, which is the best speed result here. It needs fine-tuning, which the question rules out. | [arXiv](https://arxiv.org/html/2409.15355v1)
+
+ATTEMPT 11: TurboRAG (offline chunk KV with reordered RoPE) | Moore Threads, EMNLP 2025 | niche | WHY IT DID NOT SOLVE IT: It reports up to 9.4× TTFT (8.6× average). The arXiv version fine-tunes the model and the EMNLP abstract does not mention it, so whether fine-tuning is needed is unresolved. Chunks must be precomputed offline, which suits a fixed corpus, not live tool outputs. | [arXiv](https://arxiv.org/pdf/2410.07590), [ACL](https://preview.aclanthology.org/setup/2025.emnlp-main.334)
+
+ATTEMPT 12: KVLink (re-encoded positions plus trainable link tokens) | UCSB/Accenture, NeurIPS 2025 | niche | WHY IT DID NOT SOLVE IT: It cuts TTFT by 60–90% (headline "up to" 96%) and improves QA about 4%. The link tokens must be trained, so it breaks the no-training constraint. | [arXiv](https://arxiv.org/html/2502.16002v3)
+
+ATTEMPT 13: RAGCache (GPU/host-memory knowledge tree that is sensitive to document order) | PKU/ByteDance, 2024 | niche | WHY IT DID NOT SOLVE IT: It is still prefix-based. It gives 1.2–4× TTFT over vLLM and 1.1–3.5× over SGLang, so reordered documents still miss. A later paper calls prefix caching "overly strict" when retrieved chunks vary. | [arXiv](https://arxiv.org/html/2404.12457v1)
+
+ATTEMPT 14: Cache everything on larger tiers (CPU/disk offload, KV compression) | Self-hosted | rejected for hosted APIs by cost | WHY IT DID NOT SOLVE IT: Llama-3.1-70B needs about 320 KiB per token at FP16, so 100K tokens is about 33 GB (mine, from the layer and head counts). Storing KV for every chunk in every position is far too large. Trading storage for compute costs latency and money. | [size sources](https://tensorwave.com/blog/estimating-llm-inference-memory-requirements). I found no source this session for compression ratios or load times.
+
+ATTEMPT 15: Client-side shrinking (summarising, truncating or pruning tool output) and semantic response caches | Common practice | standard | WHY IT DID NOT SOLVE IT: Not searched, so no number is given. Rewriting history itself changes the prefix and breaks the cache, and it changes content. | none
+
+LESSONS:
+- Reuse that is exact (prefix caching) needs identical tokens, so the discount stops at the first change. Every method that goes beyond this approximates attention, because chunk KV depends on all earlier tokens.
+- The best training-free results keep about 93–98% of accuracy (APE) or still recompute about 15% of tokens (CacheBlend). Those are the 2–7% and 15% limits a new answer must beat. Nothing found reaches about 100% hits with zero quality change.
+- Methods that reach 90%+ TTFT savings need fine-tuning or special tokens (Block-Attention, KVLink, possibly TurboRAG), which the constraints exclude.
+- All the position-independent methods need the KV tensors, so they run on a self-hosted or provider-side stack. On a third-party API only client-side prompt layout is left (attempt 2). Providers expose no hook for approximate reuse.
+- Evidence is thin: reported speedups are the authors' own, and I found no independent replication or multi-hop failure study. Any new proposal needs a quality test against full recomputation.
+- Approximate reuse also changes outputs, and providers bill and promise exact semantics. That is a blocker for a provider-side rollout, which I infer and did not source.
+
+Sort these candidates before the expensive checks. Without tools, for each candidate estimate:
+- I = importance 0-10: how much of the asker's aim it serves if it works - for a cost question, the share of the
+  delivered cost it removes, never more than the ceiling of its archetype allows;
+- P = possibility 0-10: how likely it is to work at the scale it claims with known physics, given the earlier
+  attempts that stopped short (a candidate that repeats one without beating its reason gets P <= 2);
+- the one number that decides whether it works.
+Being unusual earns nothing here; aiming at a term whose ceiling leaves no room earns a low I.
+
+Final answer (text only), one line per candidate in the order given, at most 400 words:
+=== TRIAGE ===
+IDEA 1 | I <0-10> | P <0-10> | DECIDES: <quantity> | <one line why>
+(same for the others)

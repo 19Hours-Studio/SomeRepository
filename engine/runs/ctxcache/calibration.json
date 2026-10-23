@@ -1,0 +1,12 @@
+{
+ "p": {
+  "repair#2": 0.2,
+  "repair#3": 0.15,
+  "repair#4": 0.1,
+  "repair#1": 0.1,
+  "none": 0.45
+ },
+ "weakest_link": "Idea 1 assumes most calls after the threshold are foldable, and that the gain survives against the true baseline. With only 50% of calls foldable, the gain drops to 1.18–1.50×. Programmatic Tool Calling plus parallel calls already captures most of the folding and filtering.",
+ "flip_test": "Replay real long agent traces (40 and 150 turns) under three setups: Programmatic Tool Calling plus parallel calls, the same plus Idea 1's context-length gate, and Idea 3's ledger. | If the gate adds less than 1.05× cost reduction over Programmatic Tool Calling, or if fewer than 40% of post-threshold calls are read-only or idempotent, Idea 1 falls below Idea 3 or below \"none\". If Idea 3 beats tail-placed state by more than 1.3× without hurting accuracy on the latest values, Idea 3 leads.",
+ "unknown": "Even if Idea 1 is right, it leaves the core question open. No candidate shows how to get close to 100% cache hits for reordered documents or changed middle tool outputs on hosted APIs without provider-side approximate KV reuse. None has measured the quality cost of such reuse on models of 70B or larger."
+}

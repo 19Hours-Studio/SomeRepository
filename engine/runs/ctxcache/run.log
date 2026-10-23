@@ -1,0 +1,60 @@
+  brief: 21,437 tokens
+initialized /home/user/SomeRepository/engine/runs/ctxcache
+UNCLEAR (kept as assumptions):
+
+1. Do you run your own inference stack (such as vLLM or SGLang), or do you call a third-party API where you can only change the prompt?
+2. Is a small, bounded change in output quality acceptable in return for the higher hit rate, or must the output match full recomputation exactly?
+3. Which workload matters most: agents with tool outputs, RAG with reordered documents, or editable long documents?
+TYPE invent; MODE standard
+/home/user/SomeRepository/engine/runs/ctxcache/ledger/TASK.md
+  ledger: 40,992 tokens, 50.0 s
+ledger: 701 words
+/home/user/SomeRepository/engine/runs/ctxcache/attempts/TASK.md
+  attempts: 62,651 tokens, 79.3 s
+attempts: 1199 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE ? | untouchable 0.0% -> ceiling infx | 10x cut of one term: cache reads 1.95x; cache writes of new tool output 1.26x; output decode 1.26x; uncached input ~ 1.00x | 3x needs: cache reads, cache writes of new tool output | ROOM
+ARCHETYPE ? | untouchable 28.0% -> ceiling 3.6x | 10x cut of one term: uncached document and query input 2.77x; cached prefix 1.01x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+ARCHETYPE ? | untouchable 18.0% -> ceiling 5.6x | 10x cut of one term: cache write, amortized 1.66x; cache reads 1.48x; new uncached input 1.02x | 3x needs: cache write, amortized, cache reads | ROOM
+ARCHETYPE ? | untouchable 12.0% -> ceiling 8.3x | 10x cut of one term: prefill compute on cache-missed tokens 1.98x; decode compute 1.29x; kv memory, offload and transfer 1.08x | 3x needs: prefill compute on cache-missed tokens, decode compute | ROOM
+  reframe: 14,671 tokens, 35.7 s
+  g1_ledger: 15,349 tokens, 46.5 s
+g1_ledger: 3 ideas (655 words)
+  g1_neg: 16,084 tokens, 54.6 s
+g1_neg: 3 ideas (708 words)
+  g1_mech: 15,609 tokens, 49.4 s
+g1_mech: 3 ideas (692 words)
+  g1_rf1: 16,340 tokens, 55.5 s
+g1_rf1: 3 ideas (708 words)
+  g1_rf2: 14,825 tokens, 40.0 s
+g1_rf2: 3 ideas (636 words)
+  triage: 15,052 tokens, 27.8 s
+/home/user/SomeRepository/engine/runs/ctxcache/gate/c1/TASK.md
+/home/user/SomeRepository/engine/runs/ctxcache/gate/c2/TASK.md
+  gate.1: 93,931 tokens, 103.8 s
+  gate.2: 209,641 tokens, 155.2 s
+/home/user/SomeRepository/engine/runs/ctxcache/gate/TASK.md
+  skip gate (done)
+gate: 8/8 parsed {'WOUNDED': 5, 'DEAD': 3}
+  gate: 13 new facts -> evidence.md
+/home/user/SomeRepository/engine/runs/ctxcache/repair/TASK.md
+/home/user/SomeRepository/engine/runs/ctxcache/repair/c1/TASK.md
+/home/user/SomeRepository/engine/runs/ctxcache/repair/c2/TASK.md
+  repair.2: 304,684 tokens, 246.8 s
+  repair.1: 483,873 tokens, 274.8 s
+  skip repair (done)
+repair: 4 ideas (2841 words)
+/home/user/SomeRepository/engine/runs/ctxcache/audit_final/TASK.md
+  audit_final: 114,101 tokens, 196.2 s
+  audit_final: 1 new facts -> evidence.md
+  calibrate: 10,517 tokens, 21.3 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#2       F0/M3/m2 fit 0.00 ratio 1.1 known yes p 20%  Context-length-gated turn collapsing
+  2. repair#4       F0/M3/m1 fit 0.00 ratio 0.95 known partly p 10%  Cost-optimal patch folding
+  3. repair#3       F0/M4/m1 fit 0.00 ratio 1.0 known partly p 15%  Floating depth-1 override ledger
+  4. repair#1       F1/M4/m2 fit 0.00 ratio 1.0 known partly p 10%  Audit-calibrated chunk KV fusion
+  none of these: p 45%
+  weakest link: Idea 1 assumes most calls after the threshold are foldable, and that the gain survives against the true baseline. With only 50% of calls foldable, the gain drops to 1.18–1.50×. Programmatic Tool Calling plus parallel calls already captures most of the folding and filtering.
+  flip test: Replay real long agent traces (40 and 150 turns) under three setups: Programmatic Tool Calling plus parallel calls, the same plus Idea 1's context-length gate, and Idea 3's ledger. | If the gate adds less than 1.05× cost reduction over Programmatic Tool Calling, or if fewer than 40% of post-threshold calls are read-only or idempotent, Idea 1 falls below Idea 3 or below "none". If Idea 3 beats tail-placed state by more than 1.3× without hurting accuracy on the latest values, Idea 3 leads.
+spent 1,449,757 tokens, $5.42

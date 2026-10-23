@@ -1,0 +1,44 @@
+=== BRIEF ===
+TYPE: invent
+
+QUESTION: Hosted LLM APIs (Anthropic, OpenAI and others) offer prompt caching. The provider stores the computed intermediate state (the attention key/value, or KV, cache) for a request's token prefix. A later request is served from that state only if its prefix is token-for-token identical, and the cached portion is billed at a discount. An edit in the middle of a prompt, an insertion, a changed tool output, or a different document order breaks the match from the first differing token onward. Everything after that point is recomputed and billed at full price. The asker wants a way to make cached context much cheaper and to reach a cache-hit rate close to 100%. This must include requests that differ from earlier ones in the middle, by insertions, tool outputs or reordered documents, and it must work without retraining or fine-tuning the model. The question does not say whether the asker runs their own serving stack or uses a third-party API, or whether the solution may sit on the client side, the server side, or both. What is the best way to do this?
+
+SUCCESS: A good answer proposes one or more concrete, new or non-obvious approaches. Each must state three things:
+- which request-change cases it covers: middle edit, insertion, tool output, document reordering;
+- its expected hit rate and cost change, with the reasoning or a quantitative estimate;
+- its effect on output quality compared with full recomputation, and how that effect could be tested.
+
+Each approach must also say where it can run (client only, own serving stack, or provider-side) and what it costs in memory, storage and latency. It must be checked against existing prior art and say what it adds. It must state honestly which cases cannot reach about 100% under the stated constraints.
+
+CONSTRAINTS:
+- No retraining or fine-tuning of the model.
+- Target hit rate close to 100% across non-identical prefixes.
+- Much lower cost than current prefix caching.
+- Nothing else was stated.
+
+CONTEXT:
+- Anthropic: cache reads cost about 0.1× the base input price. Writes cost 1.25× for the 5-minute TTL and 2× for the 1-hour TTL. The TTL refreshes on use. There are up to 4 explicit breakpoints and a minimum of about 1024 tokens (2048 on some small models). Secondary sources only, so verify against official docs. https://portkey.ai/docs/aigw/integrations/llms/anthropic/prompt-caching ; https://docs.helicone.ai/gateway/concepts/prompt-caching
+- OpenAI: caching is automatic for prompts over 1024 tokens and needs an exact prefix match. Tool definitions and their order must also be identical. The input discount is 50% on early models, and a third-party blog claims up to 90% on newer ones (unverified). Cached prefixes live roughly 5–10 minutes, sometimes up to an hour, and hits are not guaranteed. https://developers.openai.com/cookbook/examples/prompt_caching101 ; https://community.openai.com/t/prompt-caching-automatic/963981
+- Prior art exists for non-prefix KV reuse in self-hosted serving, which any answer must account for. CacheBlend (EuroSys'25) reuses per-chunk KV caches at arbitrary positions and recomputes a small subset of tokens. It reports 2.2–3.3× lower time-to-first-token and 2.8–5× higher throughput, with no quality loss claimed. https://arxiv.org/html/2405.16444v3 ; https://blog.lmcache.ai/2025-03-31-eurosys
+- EPIC ("position-independent caching") claims up to 8× lower time-to-first-token with negligible accuracy loss (authors' own claim). https://arxiv.org/html/2410.15332v3
+- Follow-up work reports limits. One paper says existing methods can lose substantial accuracy and proposes training an added encoder. Another says per-request recomputation limits sharing in GPU memory. https://arxiv.org/pdf/2602.01519 ; https://arxiv.org/html/2512.16822v1
+- In a decoder-only transformer, each token's KV depends on all earlier tokens and on its position. This is why standard reuse is limited to identical prefixes (stated in the EPIC and CacheBlend papers above).
+- Third-party API users see only token counts and billing. They cannot access the provider's KV state, so any server-side reuse method is out of their reach (inferred from the API docs above).
+
+DATA: Open benchmarks and code are the likely decision data. They include the CacheBlend and EPIC papers' benchmarks (multi-hop QA, RAG) and the LMCache and vLLM open-source repositories. Others are agent and tool-use traces (for example SWE-style agent logs) for measuring real prefix-divergence patterns, and provider usage fields (cached_tokens, cache_read_input_tokens) for measuring hit rates.
+
+ASSUMPTIONS:
+- "Practically 100% hit rate" is achievable for non-prefix changes without any quality loss. Reused KV that was computed in a different context may not equal what full recomputation would give.
+- The asker can change the caching layer. This holds only for self-hosting or provider-side work, not for a plain API user.
+- Cost is dominated by input-token processing. Output tokens, cache-write premiums and TTL expiry may matter as much.
+- A hit rate near 100% and a much lower price can both be achieved at once. They may trade off against each other.
+- "Context caching" and "prompt caching" refer to the same thing. Some providers also sell explicit context caching with a separate storage fee.
+
+CORRECTED: Nothing was changed in substance. I made explicit that the cache stores KV state for an exact token prefix, so prefix matching is a property of current provider implementations and not a law of the model. I also noted that "100%" and "much cheaper" are goals, not established facts.
+
+UNCLEAR:
+1. Do you run your own inference stack (such as vLLM or SGLang), or do you call a third-party API where you can only change the prompt?
+2. Is a small, bounded change in output quality acceptable in return for the higher hit rate, or must the output match full recomputation exactly?
+3. Which workload matters most: agents with tool outputs, RAG with reordered documents, or editable long documents?
+
+MODE: standard

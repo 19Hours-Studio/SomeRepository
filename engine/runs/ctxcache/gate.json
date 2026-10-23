@@ -1,0 +1,56 @@
+{
+ "g1_mech#1": {
+  "killer": "Whether answers from the patched prompt match answers from the inline-edited prompt, including multi-hop questions that touch superseded text. It must hold before the client rebuilds at 5% patches",
+  "why": "It is cheap and runs client-only, but cache writes and reads still dominate, and the gain is capped at about 1.2× even when every session has an edit.",
+  "ratio": 1.21,
+  "verdict": "WOUNDED"
+ },
+ "g1_rf1#1": {
+  "killer": "Share of tokens that must be recomputed under query-driven selection to keep about full accuracy",
+  "why": "The query-driven approach is prior art (ProphetKV, QCFuse), and the best of it still needs about 7× more recompute than the idea assumes.",
+  "margin": 0.15,
+  "ratio": 1.1,
+  "verdict": "DEAD"
+ },
+ "g1_neg#2": {
+  "killer": "Cut in turns per task without losing task success",
+  "why": "It attacks the right term, but halving the reads is worth only 1.37×, and the measured turn reduction is short of 2×.",
+  "margin": 0.71,
+  "ratio": 1.37,
+  "verdict": "WOUNDED"
+ },
+ "g1_mech#2": {
+  "killer": "Share of post-edit tokens that need full recompute to keep quality",
+  "why": "Against the selective-recompute practice already in LMCache, the gain is about 1.05×. What it adds is mainly the audited quality bound, not lower cost.",
+  "margin": 0.33,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#1": {
+  "killer": "mid-document edits per 10-question session needed for the claimed ≥1.5× saving in archetype C",
+  "why": "The arithmetic holds, but the saving only appears in sessions with about 3 or more mid-document edits, and the quality cost of reading stale text plus a patch (instead of clean text) has not been measured on a real model.",
+  "margin": 0.37,
+  "ratio": 1.19,
+  "verdict": "WOUNDED"
+ },
+ "g1_rf2#3": {
+  "killer": "average context after stubbing (the read reduction)",
+  "why": "The rewrite writes cancel the read savings, and the mechanism itself already exists as Anthropic context editing and JetBrains-style observation masking.",
+  "margin": 0.58,
+  "ratio": 0.99,
+  "verdict": "DEAD"
+ },
+ "g1_neg#1": {
+  "killer": "answer accuracy when the model reads the original text plus N accumulated patches, compared with clean rewritten text, up to the compaction threshold ε",
+  "why": "It is nearly the same idea as Idea 1 but without a cost-based compaction rule. The saving needs frequent edits, and frequent edits are exactly where PI-LLM-type interference grows.",
+  "ratio": 1.19,
+  "verdict": "WOUNDED"
+ },
+ "g1_rf2#1": {
+  "killer": "recompute fraction that keeps quality equal to full recompute",
+  "why": "Most of the gain is CacheBlend's, which already exists. The ≤10% recompute target is not shown, and a first-token-KL gate may not catch multi-hop accuracy loss, which is the failure ContextPilot reports.",
+  "margin": 0.67,
+  "ratio": 1.9,
+  "verdict": "WOUNDED"
+ }
+}

@@ -856,7 +856,8 @@ def parse_shares(ledger):
     from the SHARES header, e.g. 'SHARES (est., export / settlement)'."""
     out, name = [], "?"
     for l in ledger.splitlines():
-        if (m := re.match(r"^\**ARCHETYPE\s+(\w+)\**\s*:\s*(.+)", l)): name = f"{m.group(1)}: {m.group(2).split('|')[0].strip()[:90]}"
+        if (m := re.match(r"^\**ARCHETYPE\s+(\w+)\b([^:|]*):\**\s*(.*)", l)):  # "ARCHETYPE A: ..." or "**ARCHETYPE A (label):** ..."
+            name = f"{m.group(1)}: " + (m.group(2).strip(" *()") or m.group(3).split("|")[0].strip(" *"))[:90]
         if not l.lstrip("*").startswith("SHARES"): continue
         head, _, body = l.partition(":"); vals = {}
         for part in body.split("|"):  # a term is the words before its share; physical-goods terms keep their short names

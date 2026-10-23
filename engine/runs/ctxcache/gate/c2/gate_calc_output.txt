@@ -1,0 +1,17 @@
+C session base $0.4215, rewrite extra $0.0862, patch $0.0053
+ edits/session 0.5 ratio 1.10
+ edits/session 1.0 ratio 1.19
+ edits/session 2.0 ratio 1.38
+ edits/session 3.0 ratio 1.56
+ edits/session 5.0 ratio 1.90
+ edits needed for 1.5x: 2.69
+A task base $1.383 stub $1.392 ratio 0.99
+FP8 KV bytes/token 163840 = 160.0 KiB; 6k tok GB 0.98304 load s @10GB/s 0.098304
+full prefill 6k tok on 2xH100 @40pct MFU s: 1.06
+recompute 10%: D ratio 1.90  B ratio 2.52
+recompute 15%: D ratio 1.80  B ratio 2.31
+vs CacheBlend@15%: D ratio 1.031
+stub False every 10 reads $0.708 writes $0.300 rewrites $0.000 avgctx 59k total(+out $0.30) $1.383
+stub True every 5 reads $0.481 writes $0.300 rewrites $0.295 avgctx 40k total(+out $0.30) $1.452
+stub True every 10 reads $0.512 writes $0.300 rewrites $0.205 avgctx 43k total(+out $0.30) $1.392
+stub True every 20 reads $0.572 writes $0.300 rewrites $0.145 avgctx 48k total(+out $0.30) $1.393
