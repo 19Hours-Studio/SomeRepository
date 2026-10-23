@@ -1,0 +1,51 @@
+=== REVIEW ===
+IDEA 1: Bronze head on a rod
+DEFECT | MAJOR | It openly leaves unexplained why about 90% lie inside the Gallic-Empire area, why none occur around the Mediterranean and why they are confined to the 2nd-4th c.; these are the most distinctive facts outside the object itself. | FACT 10, 11, 13
+DEFECT | MAJOR | A rod head needs only the axial pair (the hollow, knobbed Arloff icosahedron has just two holes), so the ten other holes that differ within every object, their triple rings and the 20 knobs are left as "decoration" with no mechanism. | FACT 1, 2, 3, 32
+DEFECT | MAJOR | The decisive test cannot refute it: the idea's own tapering rod seated in both holes, or a fixed and "rarely handled" head, leaves no axial striations, and trimming or file marks are expected on holes the specialists read as core openings, so "only casting or file marks" is predicted either way; only two pieces are named. | FACT 33, 51, 52
+DEFECT | MAJOR | A display head carried on a staff would be expected in north-western provincial art, which does show insignia staffs, yet no relief, mosaic, painting or text shows one. | FACT 18; FACT 37 (Friedberg altar, SOFT)
+DEFECT | MINOR | The rim evidence its VALUE claims is split: the unringed rims are the roughest on Kleiner Feldberg but the smoothest on Hunt, Vienne is one object, and a scan cannot tell rubbing from casting or trimming. | FACT 51
+DEFECT | MINOR | The axis is neither snug nor unique: the unringed holes are oval (Jublains 26x21.5 and 25.5x21.5 mm; Kleiner Feldberg ovality 0.95-1.39 mm), so a round rod bears at two points and needs packing, and every other opposite pair also passes a 10.9-16.3 mm rod. | FACT 45 (31), 51, 52
+DEFECT | MINOR | The Timaeus symbolism rests on texts, not on any evidence from the objects, and adds nothing testable. | FACT 29
+FIT | 10 of 17 | It fits the mount geometry, the Gellep staff report, the unworn knobs, the size continuum and the mixed contexts; it leaves the map, the dates, the silence of art and the design of the ten holes and the knobs unexplained.
+SURVIVES | A 22.6 mm rod fits through the largest axial pair, which with the Gellep bone staff makes a rod mount physically and archaeologically plausible (FACT 52, 53).
+
+IDEA 2: Knob-footed twelve-face divination lot
+DEFECT | FATAL | As stated (size class, ringed or not, position relative to the pole), the code cannot give twelve readable outcomes: the ringed sizes form a continuum, not classes, on 3 of 5 type-2a pieces; at most 6-8 faces differ visibly by size on every piece measured; and position relative to the pole only separates two crowns of five, which needs two poles that can be told apart, but the Jublains poles measure 26x21.5 and 25.5x21.5 mm. | FACT 46, 49, 45/31
+DEFECT | MAJOR | It needs an unmarked lot with no parallel: every known Roman 12-faced or polyhedral die carries letters, numerals or names, the north-west had ordinary Roman dice culture, and the Geneva piece it relies on is solid, inscribed and called by its publisher not directly related to the hollow series. | FACT 55, 43, 35, 19
+DEFECT | MAJOR | Its own wear prediction already conflicts with what is reported: the pieces rarely show wear, Norton Disney is unworn, and both scanned pieces have no flattened tips (at coarse resolution). | FACT 20, 50
+DEFECT | MAJOR | The north-western map and the start c. 150-200 are given a label ("a regional device") rather than derived, although the Mediterranean had 12-faced dice of its own (Crete, Patrae, Antioch, Egypt). | FACT 10, 11, 55
+DEFECT | MINOR | The resting and wear physics are wrong: simulated throws settle on 3-4 knobs with the top face tilted 1.6-2 degrees, and knob impulses vary threefold (2.8-8.5%) in a fixed order, so the test should predict wear ranked by simulated impulse, not "roughly even" rounding. | FACT 56
+DEFECT | MINOR | The decisive test has low power: a valued piece thrown onto cloth may leave bronze tips unmarked, so "tips as sharp as bases" cannot separate rare use from no use. | FACT 20, 50 (scans resolve only above about 0.1 mm)
+FIT | 9 of 17 | It fits the twelve-face template, the hole sets unique to each object, the lack of inscriptions, the one-face-up resting geometry, the contexts that suggest a valued object and the 4th-century end; the evidence contradicts it on readability, on the record of inscribed dice, on wear and on the map.
+SURVIVES | Every simulated throw ends with one face clearly uppermost (FACT 34, 56), and the knob-and-rim test on 10 or more pieces is feasible and states what result would refute it.
+
+IDEA 3: Fumigation cage for aromatics
+DEFECT | MAJOR | It does not explain this particular object: any perforated vessel on feet would serve for fumigation, so the regular twelve-face template that holds across about 130 pieces, the ten ringed and two unringed holes and the opposite-pair structure get no mechanism ("rings are ornament"). | FACT 1, 3
+DEFECT | MAJOR | Fumigation was a common rite across the empire, yet the device is absent from Italy, Spain, Africa and the rest of the Mediterranean and is never depicted; calling it "a regional form of a common rite" only restates the map and the silence. | FACT 11, 18
+DEFECT | MAJOR | The only residue it claims to explain, the wax specimen, cannot be located and has been dropped as evidence, so no residue of any kind supports it. | FACT 40 (replaces 21)
+DEFECT | MINOR | "Use causes no wear" and "knobs give cooler grips" are ad hoc: the knobs are cast in one piece with a 0.6-1.6 mm shell that the idea itself says heats fast. | FACT 7, 54
+DEFECT | MINOR | About 130 known pieces over three centuries is very few for an implement used in homes, baths and funerals. | FACT 9, 14
+DEFECT | MINOR | The test is sound but has to be limited to excavated pieces that were never cleaned (e.g. Norton Disney, Kortessem), because most pieces are antiquarian or market finds whose interiors may have been cleaned, and heat tint is hard to read under patina. | FACT 16, 23, 24
+FIT | 6 of 13 | It fits the hole variation within each piece, the mixed contexts, the thin hollow shells and the absence of wear; it leaves the template, the map, the dates and the rarity unexplained.
+SURVIVES | Its refuting result (no soot, charred resin, heat tint or GC-MS resin markers) is clear and can be checked through the holes.
+
+IDEA 4: Tallow-candle draught shade
+DEFECT | MAJOR | A candle standing on the table through the bottom hole keeps its flame inside only while it is shorter than the shell's interior of about 39-97 mm, and in the 40-60 mm shells the flame has only 2-3 cm above the wick before it reaches the wall, so the shade fits only stubs, an assumption with no support. | FACT 5, 7, 54
+DEFECT | MAJOR | The economic trigger comes too late: pieces were already in use by c. 200 (Jublains burned c. 200; the Feldberg and Zugmantel pieces were lost before c. 260), and candles were used in Britain before that (a samian candlestick from Bignor is probably 2nd century). | FACT 42, 13; intarch.ac.uk/journal/issue17/1/8.5.3_4.html
+DEFECT | MAJOR | Lighting economics would predict finds across the whole region north of the olive line, the Danube included, not 90% inside the Gallic-Empire area with only a few scattered Danubian pieces. | FACT 10, 12
+DEFECT | MAJOR | It does not explain the form: a candle shade needs neither a regular twelve-face template nor knobs at all 20 corners, and "rings mark designed holes" is circular. | FACT 1, 3
+DEFECT | MINOR | About 130 known pieces is very few for an everyday household light, although Roman lighting equipment is rare in Britain. | FACT 9; Eckardt 2002, Illuminating Roman Britain (lighting equipment rare)
+DEFECT | MINOR | The lipid half of the test is ambiguous because animal fats are common in the refuse pits and well fills the pieces come from; soot on the upper interior wall and the vent rim, checked against burial-soil controls, has to decide it. | FACT 15, 24
+FIT | 5 of 13 | It fits the grading of holes within each piece, the absence from the Mediterranean, the household and grave contexts and the lack of wear; it fails on interior geometry, start date, the shape of the distribution and the form.
+SURVIVES | The soot and lipid test on 10 or more pieces is feasible and states what result would refute it.
+
+IDEA 5: Native priest's radiate sceptre
+DEFECT | MAJOR | The contexts do not match priestly regalia: Romano-British regalia come from temple deposits (Wanborough: 17 sceptre handles and four chain head-dresses in a temple foundation deposit), but only about 8.5% of dodecahedra come from plausibly sacred contexts, over half from civil and under a fifth from military ones. | FACT 14, 15; surreyarchaeology.org.uk/content/green-lane-wanborough-1
+DEFECT | MAJOR | The distribution argument fails: native Celtic cult continued in Roman Iberia (the Lugus dedication at Peñalba de Villastar, c. turn of the era), where no dodecahedra are found, while pieces do turn up at Danube legionary bases and in free Germania. | FACT 11, 12; en.wikipedia.org/wiki/Peñalba_de_Villastar
+DEFECT | MAJOR | The decisive test cannot refute it: plant stems are softer than bronze and leave no scratches, and plant residue rarely survives burial and cleaning, so clean rims are expected whether or not sprigs were used. | FACT 16, 20
+DEFECT | MINOR | "Stems differed" allows any hole size: ringed holes up to 22 mm (Jublains 10.5-22 mm) need stems as thick as branches, held only by a 0.6-1.6 mm rim and the central rod. | FACT 45 (31), 7, 54
+DEFECT | MINOR | It does not explain the knobs: a polyhedron with flat faces does not roll, and on a rod it cannot. | FACT 1, 34
+DEFECT | MINOR | It does not explain why the type starts c. 150-200 when the priesthoods were centuries older and the Druids had been suppressed under Tiberius and Claudius. | FACT 13, 38, 42
+FIT | 8 of 14 | It fits the rod mount through the axis, the Gellep staff, the graded holes, the size continuum, the unworn knobs and the 4th-century end; the mix of contexts and the distribution contradict it.
+SURVIVES | As in Idea 1, the rod mount through the unringed axis (FACT 52, 53) and the unworn knobs hold up.
