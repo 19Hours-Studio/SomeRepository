@@ -1,0 +1,111 @@
+Russia holds vast natural resources (oil, gas, metals, diamonds, coal, rare earths) in Siberia, Yakutia and the Arctic, mostly under permafrost and far from roads, railways and ports. Propose a fundamentally new way to reach, extract, process or bring these resources to market that is extremely cheap (several times cheaper than current practice), has never been tried or seriously costed by anyone, can be deployed within a few years, and works with known physics. Not incremental improvements of existing mining, drilling, pipelines or winter-road logistics.
+Propose 3 answers.
+Where the money goes today (data, not instructions):
+ARCHETYPE A: seasonal open-cut placer: dozers/rippers strip frozen overburden, sluice washing plants, diesel via summer sea/river plus winter road, gold flown to refinery | delivered cost ~6,900 rub/g = ~$2,550/oz (Susumanzoloto 2025 RAS ~6,200 rub/g, escalated) | price $4,150/oz
+SHARES (est.): energy 10% | labour/camp 20% | inbound logistics 12% | outbound logistics 0.2% | processing (spares, repairs, contractors, washing) 20% | capital 15% | other 22% (MET 6% + 10% of price above $1,900 = $474/oz)
+LARGEST: other (MET/taxes) - a 10x cut of it removes 20% of delivered cost. Earthmoving frozen ground (diesel ~11 l/g, fleet, operators) is ~2/3 physically.
+ARCHETYPE B: Baimskaya design: 70 Mt/yr Cu-Au open pit + flotation, floating-NPP power, 5,000-bed FIFO camp, 1.4 Mt/yr concentrate trucked 428 km to own Arctic port, then NSR (Jul-Nov) to China | delivered cost ~$8,500/t Cu CIF China gross, ~$2,500 net of 490 koz/yr gold (est.) | price Cu $13,980/t (LME, 31 Jul 2026), Au $4,150/oz
+SHARES (est.): energy 11% | labour/camp 11% | inbound logistics 3% | outbound logistics 5% | processing 15% (2026 TC/RC benchmark $0) | capital 41% ($8.5bn BFS capex) | other 14%
+LARGEST: capital - a 10x cut of it removes 37% of delivered cost.
+ARCHETYPE C: export: open pit + wash plant, then RZD ~2,000 km to Vanino/Vostochny (Elga's own 531-km railway + Okhotsk port: ~$12/t vs ~$46/t, est.); settlements: small pit (Zyryanka, Dzhebariki-Khaya), then river/river-sea barge plus winter-road last mile | delivered cost export ~$83/t FOB; settlement ~23,000 rub/t (~$275/t) at the boiler (est.) | price $106/t FOB Vostochny, 5,500 kcal (Sep 2026); settlement: subsidised
+SHARES (est., export / settlement): energy 5/3% | labour/camp 10/4% | inbound logistics 4/1.5% | outbound logistics 55/85% | processing 11/3% | capital 11/2% | other 4/1.5%
+LARGEST: outbound logistics - a 10x cut of it removes 50% (export) / 76% (settlement) of delivered cost.
+ARCHETYPE D: Kolmozerskoye design: open-pit spodumene pegmatite (1.96 Mt ore/yr), DMS/flotation concentrate, chemical plant making 45 kt/yr Li2CO3/LiOH. Brine alternative: DLE on 169-383 mg/L oilfield brine (INK, since Apr 2026, costs undisclosed) | delivered cost ~$10,200/t LCE (est.) | price $19,750/t Li2CO3 CIF Asia (2 Sep 2026)
+SHARES (est.): energy 9% | labour/camp 14% | inbound logistics 4% | outbound logistics 1.5% | processing 18% | capital 42% (91 bn rub capex + 40 bn rub road) | other 12%
+LARGEST: capital - a 10x cut of it removes 38% of delivered cost.
+ARCHETYPE E: 0.2 Mt/yr East-Siberian field: early-production facility, associated-gas power, crude trucked ~300 km by winter/all-season road to ESPO, Transneft to Kozmino | delivered cost ~$82/bbl FOB Kozmino (est.) | price ESPO ~$100/bbl (Brent $106 on 12 Oct 2026; ESPO near Brent parity)
+SHARES (est.): energy 1% | labour/camp 6% | inbound logistics 2% | outbound logistics 20% (trucking $10 + ESPO tariff $6/bbl) | processing 5% | capital 13% | other 53% (MET+NDD ~$43/bbl; full Sep-2026 MET 38,312 rub/t = $62/bbl)
+LARGEST: other (fiscal take) - a 10x cut of it removes 48% of delivered cost (largest physical term: outbound, 10x removes 18%).
+CROSS-CUTTING:
+- Diesel (84 RUB/USD): exchange price 77k rub/t (~65 rub/l, Jun 2026); Yakutia retail 123 rub/l (Oct 2026); remote sites 120-150 rub/l ($1.4-1.8/l, est.), about half of it logistics.
+- Power: Sakhaenergo isolated-grid tariffs 80-362 rub/kWh (2024); mine-scale diesel ~41 rub/kWh ($0.49, est.); Baimskaya's floating NPP 6.45 rub/kWh (2020 prices); grid hook-up expected to cut Nezhda TCC ~$40/oz.
+- Freight: winter road ~20 rub/t-km ($0.24); LORP river barge ~8,000 rub/t per seasonal haul (~3-5 rub/t-km, est.); NSR general cargo Arkhangelsk-Pevek 15-17k rub/t; RZD coal tariff ~61% of FOB (Kuzbass); ESPO pipe ~3,750 rub/t (est.).
+- FIFO labour: wages Chukotka 261k, Magadan 214k rub/month (May 2026); fully loaded ~5 M rub (~$60k) per worker-year (est.), ~2 workers per post.
+- Construction premium: Far North builds cost 2-3x central Russia; Baimskaya capex is $28k per annual t Cu ($44k including state road/port/NPP, 1.1 trn rub) vs $22.4k global: 1.3-2x.
+SOURCES:
+https://ulus.media/2026/10/16/czeny-na-benzin-rastut-v-regionah-rossii-gde-toplivo-stoit-dorozhe-chem-v-yakutii/
+https://www.dp.ru/a/2026/06/15/cena-letnego-dizelja-na-birzhe
+https://base.garant.ru/408314055/f7ee959fd36b5699076b35abf4f52c5c/
+https://perevozka24.com/yakutiya/perevozki-po-zimniku-search
+https://paluba.media/news/206159
+https://umcashipping.ru/price/
+https://finance.mail.ru/article/na-chukotke-i-v-magadanskoj-oblasti-srednie-zarplaty-prevysili-200-tysyach-rublej-69198263/
+https://finance.rambler.ru/realty/56611182-ispytanie-holodom-kak-vedut-stroitelstvo-na-kraynem-severe/
+https://zolotodb.ru/article/13150/?page=all
+https://metallicheckiy-portal.ru/news/2026/5/27/susumanzoloto_v_2025_godu_na_354_sokratilo_chistuy_pribil_po_rsbu
+https://www.interfax.ru/business/964690
+https://www.kazminerals.com/media/22180/completion-of-baimskaya-feasibility-study-final-20210928.pdf
+https://www.eastrussia.ru/news/vsesezonnuyu-dorogu-ot-baimskogo-goka-postroyat-na-chukotke/
+https://www.bigpowernews.ru/news/document126824.phtml
+https://www.spglobal.com/market-intelligence/en/news-insights/research/2025/12/capital-demands-soar-for-new-copper-supply
+http://arctica-ac.ru/docs/journals/59/ocenka-potenciala-iperspektivy-osvoeniya-malyh-mestorojdeniy-tverdyh-poleznyh-is.pdf
+https://vgudok.com/novosti/tarif-rzhd-sostavlyaet-61-ot-stoimosti-uglya-fob-v-portah-vostoka
+https://www.vedomosti.ru/business/news/2026/09/21/1230393-ugol-portu-vostochnii
+https://www.interfax.ru/business/986137
+https://axis-intelligence.com/lithium-price/
+https://ru.themoscowtimes.com/2026/10/09/sbory-po-neftyanomu-ndpi-v-byudzhet-rf-mogut-vyrasti-na-38-v-oktsen-raschyot-reyter-a208245
+https://fomag.ru/news-streem/tsena-brent-na-birzhe-ice-prevyshala-106-za-barrel-vpervye-s-29-sentyabrya/
+Where "several times cheaper" is arithmetically possible (ceilings computed from the ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: seasonal open-cut placer: dozers/rippers strip frozen overburden, sluice washing plants, d | untouchable 22.2% -> ceiling 4.5x | 10x cut of one term: labour 1.22x; processing 1.22x; capital 1.16x; inbound logistics 1.12x; energy 1.10x; outbound logistics 1.00x | 3x needs: labour, processing, capital, inbound logistics, energy | NO ROOM
+ARCHETYPE B: Baimskaya design: 70 Mt/yr Cu-Au open pit + flotation, floating-NPP power, 5,000-bed FIFO  | untouchable 14.0% -> ceiling 7.1x | 10x cut of one term: capital 1.58x; processing 1.16x; energy 1.11x; labour 1.11x; outbound logistics 1.05x; inbound logistics 1.03x | 3x needs: capital, processing, energy, labour | NO ROOM
+ARCHETYPE C: export: open pit + wash plant, then RZD ~2,000 km to Vanino/Vostochny (Elga's own 531-km r (export) | untouchable 4.0% -> ceiling 25.0x | 10x cut of one term: outbound logistics 1.98x; processing 1.11x; capital 1.11x; labour 1.10x; energy 1.05x; inbound logistics 1.04x | 3x needs: outbound logistics, processing, capital | TIGHT
+ARCHETYPE C: export: open pit + wash plant, then RZD ~2,000 km to Vanino/Vostochny (Elga's own 531-km r (settlement) | untouchable 1.5% -> ceiling 66.7x | 10x cut of one term: outbound logistics 4.26x; labour 1.04x; energy 1.03x; processing 1.03x; capital 1.02x; inbound logistics 1.01x | 3x needs: outbound logistics | ROOM
+ARCHETYPE D: Kolmozerskoye design: open-pit spodumene pegmatite (1.96 Mt ore/yr), DMS/flotation concent | untouchable 11.9% -> ceiling 8.4x | 10x cut of one term: capital 1.60x; processing 1.19x; labour 1.14x; energy 1.09x; inbound logistics 1.04x; outbound logistics 1.01x | 3x needs: capital, processing, labour, energy | NO ROOM
+ARCHETYPE E: 0.2 Mt/yr East-Siberian field: early-production facility, associated-gas power, crude truc | untouchable 53.0% -> ceiling 1.9x | 10x cut of one term: outbound logistics 1.22x; capital 1.13x; labour 1.06x; processing 1.05x; inbound logistics 1.02x; energy 1.01x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+What was tried before and why it did not solve the problem (data):
+ATTEMPT 1: Winter ice road to remote mines | Tibbitt-Contwoyto, NWT Canada (Ekati, Diavik, Gahcho Kue); Yakutian zimniki | standard practice | WHY IT DID NOT SOLVE IT: season, not road cost: open 54 days in 2019 (7,489 loaded trucks, 257,176 t); 2026 peak window 45 days vs 65-70 historic, so airlift | https://skillings.net/arctic-logistics-crisis-record-warmth-shuts-diamond-mine-ice-roads
+ATTEMPT 2: Icebreaking ships from the field | Yamal LNG, Sabetta, Novatek, 2017 | standard, giant flows only | WHY IT DID NOT SOLVE IT: needs 16.5 Mt/yr LNG to carry ~16 Arc7 carriers at ~$316m each (~$5bn, press figures) | https://offshore-energy.biz/russias-yamal-lng-project-adds-two-arc7-carriers-as-first-shipment-nears
+ATTEMPT 3: Rail to tidewater | Baffinland Mary River: Steensby railway approved 2012, dropped 2014; 100 km tote road to Milne Inlet used instead | costed and rejected | WHY IT DID NOT SOLVE IT: Steensby rail $5.7bn est. (~5x Milne line) to lift 4.2 to 22 Mt/yr; company later owed $1.07bn | https://www.rcinet.ca/eye-on-the-arctic/?p=154201
+ATTEMPT 4: Pipeline over permafrost | Trans-Alaska 1975-77; Mackenzie Valley gas, Canada | TAPS built; Mackenzie costed and shelved | WHY IT DID NOT SOLVE IT: TAPS ~$8bn, ~half elevated, 124,000 heat pipes; Mackenzie C$16.2bn on hold 2012, abandoned 2017 as shale cut gas prices | https://en.wikipedia.org/wiki/Mackenzie_Valley_Pipeline
+ATTEMPT 5: Cold-water needle thawing, then bucket-line dredge | Fairbanks Exploration Co 1928-59; Klondike Dredge No. 4, April-November | standard until ~1960 | WHY IT DID NOT SOLVE IT: thaw leads a year ahead (points 16 ft apart, 6+ weeks each, 4-5 thaw months), 26 cents/yd3 in 1954-58; subarctic dredging costs 2-3x temperate | https://dggs.alaska.gov/webpubs/usbm/un/text/mulligan_1967.pdf https://www.911metallurgist.com/?p=978570
+ATTEMPT 6: Offshore dredge in Arctic water | Bima, Nome, Inspiration/WestGold, 1986-90 | pilot dropped | WHY IT DID NOT SOLVE IT: water open only from mid-June, storms; 126,924 oz in five seasons, two profitable | https://en.wikipedia.org/wiki/Bima_(dredge)
+ATTEMPT 7: Winter dredging with covers or hangar | Siberian Federal University, polycarbonate hangar over dredge pit, 2020-23 | paper stage, no operating case found | WHY IT DID NOT SOLVE IT: covers add only ~1.5 months; later solid ice blocks dredge movement | https://scholar.sfu.ru/publication/504653455-867958319
+ATTEMPT 8: Drain the lake, then dig | Diavik A154 dike, NWT, 2001-02 | standard for kimberlite | WHY IT DID NOT SOLVE IT: 3.9 km dike up to 25 m high, 30 m of lake-bottom sediment stripped first; mine C$1.3bn, viable only for diamonds | https://northernminer.com/news/canada-s-second-diamond-mine-prepares-for-startup/1000148810
+ATTEMPT 9: Dredge a talik under lake ice | NOT FOUND. Searched English and Russian: placer under thermokarst lake, подозерные талики россыпи драга, winter ice-cutting dredge, Kolyma/Yukon/Fairbanks winter dredging | -
+ATTEMPT 10: Rip, blast and dozer-strip frozen overburden | Yakutian open pits and placers | standard | WHY IT DID NOT SOLVE IT: frozen rock needs mandatory drilling and blasting, and blasted rock refreezes; no per-m3 figure found | https://vestnik.magtu.ru/en/134-archive/no-2-2026/1920-40.html
+ATTEMPT 11: Saw or cut frozen ground | Soviet trials, Sergeev, 1950s | dropped | WHY IT DID NOT SOLVE IT: disc saws and drop-hammer cutters "useless"; narrow-channel cutters wore blades fast | https://apps.dtic.mil/sti/html/tr/AD0648510/index.html
+ATTEMPT 12: Leave overburden frozen, mine by borehole | Ryveem River, Chukotka (semi-commercial); US Bureau of Mines prototype 1997-98 | pilot, stayed small | WHY IT DID NOT SOLVE IT: calculated ceiling 1 t gold/yr for a 30 m placer, one-well scale | https://www.rudmet.ru/journal/1793/article/30642/?language=en
+ATTEMPT 13: Quarry-style block cutting with jacks | wire-saw limestone quarry (Ireland), blocks to 1,000 t | standard in dimension stone | WHY IT DID NOT SOLVE IT: largest blocks are 1/30 of 30,400 t, and priced for premium stone | https://www.stonefed.org.uk/app/uploads/2021/02/McKeonFeature.pdf
+ATTEMPT 14: Drift mining under frozen cover | Fairbanks and Klondike 1890s-1920s; Magadan | niche | WHY IT DID NOT SOLVE IT: fire thawed ~12 in per night; steam thaw 34 cents/yd3 at Coal Creek, "too expensive"; dredges overtook | https://www.nps.gov/yuch/learn/historyculture/steam-boiler.htm
+ATTEMPT 15: Ships coal at a coast bluff | Corwin Bluff, Cape Beaufort, Alaska, 1880s-1901 | dropped | WHY IT DID NOT SOLVE IT: only seasonal ship calls, mine attempt c.1884, one Nome shipment 1900-01; no tonnage series found | https://dggs.alaska.gov/webpubs/usgs/of/text/of71-0061.pdf
+ATTEMPT 16: Floating dredge mining coal | Susquehanna River, Pennsylvania, c.1900-1972 | ended | WHY IT DID NOT SOLVE IT: ~75,000 t/yr, ~2 Mt in total, fines recovery not a mine | https://unchartedlancaster.com/2023/06/17/scraping-the-bottom-dredging-for-coal-on-the-susquehanna/
+ATTEMPT 17: Small Arctic pit for local heat | Qullissat, Greenland (closed 1972); Longyearbyen Mine 7 (plant closed 2023) | closed | WHY IT DID NOT SOLVE IT: Qullissat 30-40 kt/yr, 570 kt total, shut on falling profit and poor coal; Mine 7 ~30 kt/yr local, high-grade coal exhausted | https://en.wikipedia.org/wiki/Qullissat https://www.highnorthnews.com/en/node/58713
+ATTEMPT 18: Village coal instead of oil | NW Alaska, Dames & Moore for Alaska Power Authority, 1980 | studied, not built | WHY IT DID NOT SOLVE IT: oil is subsidized: Wainwright residents paid $1.50/gal vs $7.83 commercial (2009) | https://www.nrel.gov/state-local-tribal/etipp-community-wainwright-alaska
+ATTEMPT 19: Rock cover to keep ground frozen | Qinghai-Tibet railway crushed-rock revetment; Kivalina, Alaska | standard on rail; village niche | WHY IT DID NOT SOLVE IT: crushed rock alone cools less than thermosyphons (over 80 cm needed); Kivalina seawall lost 1,000 of 1,600 ft in 2007 | https://phys.org/news/2021-05-mitigation-permafrost-tibet-plateau.html https://gov.alaska.gov/admin-orders/administrative-order-no-231/
+ATTEMPT 20: Floating plant as village heat source | Akademik Lomonosov, Pevek, 2020 | in use | WHY IT DID NOT SOLVE IT: cost rose RUB 9bn to 37bn (4.1x); 70 MW and 50 Gcal/h, far above a village | https://bellona.org/news/nuclear-issues/2015-05-new-documents-show-cost-russian-nuclear-power-plant-skyrockets
+ATTEMPT 21: Winter fuel after missing the last barge | Nome, Alaska, 2012 | one-off | WHY IT DID NOT SOLVE IT: 1.3m gal needed a Russian tanker plus icebreaker through 300 nmi of ice; airlift meant 300+ flights | https://response.restoration.noaa.gov/node/342
+ATTEMPT 22: Shallow river barges to depots | Lena, Yana, Indigirka | standard | WHY IT DID NOT SOLVE IT: shoaling: Lena levels of 150 cm let shallow fleets load under 50% | https://en.portnews.ru/news/167121
+ATTEMPT 23: Barge as winter boilerhouse and coal bunker | NOT FOUND. Searched English and Russian: плавучая котельная баржа зимовка, floating boiler house, frozen-in barge heating, winter fuel barge storage | -
+LESSONS: Season, not distance, binds: ice road 45-54 days, dredges 5-6 months, open water from mid-June, thaw 4-5 months.
+Scale kills: ships, rail and pipe need 4-22 Mt/yr to repay ($316m carriers, $5.7bn rail, C$16bn pipe); village and placer flows (30-75 kt/yr, 1 t gold) never repaid.
+Frozen ground resists tools (blade wear, refreezing, saws useless); only summer-temperature water thaws cheaply, at a year's lead.
+Small coal and plant schemes died when a captive buyer or subsidy vanished, or when capital overran 4x.
+A new answer needs a winter-capable, sub-1 Mt/yr unit with no thaw lead, on-site storage and no subsidy dependence.
+Lessons from earlier runs on other questions (data):
+- Most answers that failed after review failed on one number nobody had computed: a rate times the working time against the window it needs, or a strength against months of exposure. Compute the deciding number before claiming.
+- The most common overstatement was a weak baseline. Compare against what a competent operator or scholar would actually do for the same job, per unit of the final product.
+- Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on.
+- Statistics and simulations gave confident wrong answers until they were checked on a case with a known answer; one null model rejected far more often than its alpha.
+- Raw data (3D models, catalogues, measurement tables) settled in one step what texts, judges and reviewers could not. Look for data before arguing from opinions.
+- Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason.
+- What the asker says may be wrong or incomplete; treat it as data to check, like any other source.
+- Several partial answers that each fit some facts were often parts of one answer; check whether candidates combine before choosing one.
+- "Several times cheaper" is arithmetically possible only where the cost terms an answer can touch hold most of the delivered cost; taxes, royalties and fees cap the gain at 1 / (their share).
+- A single clever link rarely moved the whole chain more than 1.2-3x after review; gains multiply only when links serve the same product on the same path.
+- The simplest competent alternative that uses the same insight often beat the clever design. Check it before claiming a gain.
+- Seasonal and climatic windows, load-bearing limits and the time a structure must last killed more designs than missing technology.
+Technique: first list honestly the 8 answers that you and most experts would propose first and name in one sentence the paradigm they share; then propose only answers outside that paradigm.
+Rules: aim only at targets whose ceiling leaves room for the gain you claim; name inside each MECHANISM the closest
+earlier attempt and why your answer is not stopped by its reason; name the one quantity that decides whether it works.
+Being unusual is not the goal; working is.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

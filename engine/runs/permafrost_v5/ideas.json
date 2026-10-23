@@ -47,5 +47,59 @@
   "name": "Frozen-bluff auger coal, shallow bunker hulls",
   "mech": "- A spudded floating auger (P5, repaired) bores a frozen coal seam in a 20-30 m river bluff during the 60-90 effective days of low water. The repairs use the reviewed 21-38 t/h at 75% availability and 30-50% field recovery, a frame with longer vertical travel, hole mouths kept above the campaign's low water, and remote operation from the tug with bluff monitoring. - It discharges straight into unpowered 2,000 t hulls drawing 1.26 m (P7). One tug and 3 hulls shuttle the coal 150-300 km to winter-road villages on a shoaling Yana/Indigirka-type river. This replaces about 2,000 km of river haul, a transshipment depot and about 450 km of winter road. - Coupling: low water is the only time the rig can reach the seam, and also the only time when nothing but hulls drawing 1.3 m or less can run the river (1,746-2,000 t payload at 1.5-2.0 m depth). The rig fills one hull every 5.9 days, so 3 hulls keep it loading with no mine stockpile, loader or transshipment. - Each hull's last cargo of the season winters loaded as the shore boiler-house's bunker, burned first (P7's anchor). The boiler stays on shore and the hull is empty by January. The coal leaves the seam frozen and has 8-26 days above 0 °C before air means fall below zero on about 21 Sep. Stokers cut a slot as the hull rises 0.96 m. No extra hull is needed. - Chains built with P4, P6 and the gold pieces all fell below 2x.",
   "value": "Fuel heat into village boilers costs 1,700 RUB/Gcal (1,360-2,160) against 4,380 today. That is 2.6x (2.0-3.2x; 20% chance of reaching 3x) against today's long-haul plus winter-road supply. Against the best competent alternative it is 0.82x (0.67-0.98): a bank pit at the same bluff with the same hulls is cheaper and on its own gives 3.2x. One rig supplies about 25 kt/yr, which is 12% of Arctic Yakutia's 205 kt of utility coal and about 8,300 people within 300 km of one bluff."
+ },
+ {
+  "id": "g1_ledger#1",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Burnable timber rafts drift coal",
+  "mech": "At a riverside pit such as Zyryanka, coal is loaded onto rafts made from local logs. About 2 m³ of logs carries 1 t of coal, assuming ~0.5 t of spare buoyancy per m³. The rafts are released on the spring flood and drift downstream (~100 km/day) to villages, which winch them ashore and burn both the coal and the logs. The closest earlier practice is the one-way Lena flatboats of the 17th–19th centuries (паузки), which were broken up at their destination; they lost out to steamers and diesel barges. Shoaling now caps those barges at under 50% load, while a raft draws only ~0.4 m and needs no fuel or return trip. The deciding quantity is the share of rafts lost or stranded over ~500 km, set against what logs cost at the pit.",
+  "value": "Delivers the winter's fuel downstream for almost no transport cost, and the raft itself arrives as extra fuel."
+ },
+ {
+  "id": "g1_ledger#2",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Frozen-in bunker-boiler barge",
+  "mech": "A barge carries the full year's coal in summer and stays for the winter in a sheltered backwater (затон) next to the village. Its hold is the coal store, and a boiler module on deck feeds the village heat main through an insulated link to shore. Searches found no frozen-in boiler-barge case. The closest is Akademik Lomonosov, which at 70 MW was far too big for a village and overran its budget 4.1x. This design uses a standard river barge and an off-the-shelf boiler. The deciding quantity is hull survival through about 8 months of ice and the spring breakup flood, which existing backwater wintering of river fleets suggests is manageable.",
+  "value": "Removes the winter-road last mile, the shore stockpile, double handling and a separate boilerhouse, which by these numbers roughly halves the cost of heat in the village."
+ },
+ {
+  "id": "g1_ledger#3",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Downstream coal on empty barges",
+  "mech": "On the Kolyma, the summer Northern Delivery convoys bring fuel and goods upstream from Chersky and come back down empty. They pass riverside pits like Zyryanka on the way, so they could carry coal down on that return leg. The cost is only marginal: a short loading stop plus a little extra draft. Return-cargo pricing is common in shipping, but no Kolyma coal-on-the-return contract was found. Such cargo normally fails when directions do not match, and here they do. The deciding quantity is how much load the empty barges can take at late-season water depths, given that shoaling already limits loaded barges to under 50%.",
+  "value": "Cuts the barge cost per tonne several-fold using vessels that already make the trip, with no new capital."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Frozen-in barge boilerhouse",
+  "mech": "A barge from the ageing Lena/Kolyma fleet, near scrap value, gets a containerised boiler and a 2–3 kt coal hold. It arrives at the settlement on high water and is frozen in at a berth, with an air-bubbler kept running to stop ice pressure. All winter it burns its own cargo and sends heat to shore through an insulated pipe. This deletes three steps: transshipment, the shore stockpile and the winter-road last mile. The closest attempt is the Akademik Lomonosov floating plant, which was stopped by 70 MW of scale and a 4x capital overrun. This uses a written-off hull and a boiler of about 1–5 MW. Deciding quantity: annualised hull plus boiler cost per hold-tonne against the last-mile and handling share it removes (about 11,000–15,000 rub/t, est.). That share needs sourcing.",
+  "value": "A settlement could be fuelled with no winter road and no shore coal yard."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Flood-crest barge launch",
+  "mech": "Coal goes from the pit in winter and is loaded onto barges wintering in a sheltered backwater near it. The barges wait out the ice drift and leave on the spring flood crest. That way they travel fully loaded, not under 50% as on summer shoal water. The closest attempt is the \"early delivery\" voyages, which hit drifting ice and lost the crest. Here the barges shelter during the drift, and the timing is computed from gauge forecasts. Deciding quantity: the days between the reach clearing of ice and water falling below loaded draft, compared with the transit time.",
+  "value": "The cost per tonne of the main barge haul roughly halves."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Ship char, not coal",
+  "mech": "A small retort at the pit turns coal into low-moisture char and burns the off-gas for its own heat and the pit's power. The settlement then receives more energy per tonne shipped. Char also self-heats in stockpiles less than raw low-rank coal. The closest attempt is Termokoks at Berezovsky, which suited a large market, not Arctic settlement flows. Deciding quantity: energy kept per tonne of char divided by energy per tonne of coal (about 1.2–1.4x for low-rank coal, near 1 for higher-rank coking coal such as Zyryanka's).",
+  "value": "Every tonne-km of a fixed-capacity chain carries about a quarter more heat."
  }
 ]

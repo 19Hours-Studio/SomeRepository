@@ -5,5 +5,9 @@
  "tag": "permafrost",
  "lessons_exclude": [
   "permafrost"
+ ],
+ "reframes": [
+  "How can the delivered cost of solid fuel or heat at isolated Yakutian and Arctic settlements fall 3x from about 23,000 rub/t at the boiler, using a winter-capable unit under 1 Mt/yr that has on-site storage, no thaw lead and no subsidy dependence?",
+  "How can permafrost placer gold be mined through winter, replacing the summer-only stripping of frozen overburden (about 2/3 of the physical cost, about 11 l diesel/g), with a target of 1.5-2x lower cost per oz rather than 3x?"
  ]
 }
