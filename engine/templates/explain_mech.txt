@@ -9,4 +9,6 @@ their variation, materials, manufacture, wear) make it physically good and bad a
 control to produce it. Only then ask which use in that time and place needed exactly those properties. Each
 explanation must contradict no HARD fact in the evidence and must account for every distinctive feature. Being
 unusual is not the goal; fitting all the evidence is.
+Lessons from earlier runs on other questions (data):
+{LESSONS}
 {FORMAT}

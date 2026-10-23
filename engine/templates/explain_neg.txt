@@ -8,4 +8,6 @@ First name in one sentence the assumption that ALL the earlier explanations shar
 what kind of thing it is, which features matter, or how it was used). Then drop that assumption and build
 explanations that do without it. Each must contradict no HARD fact in the evidence and must account for every
 distinctive feature. Being unusual is not the goal; fitting all the evidence is.
+Lessons from earlier runs on other questions (data):
+{LESSONS}
 {FORMAT}

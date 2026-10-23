@@ -8,4 +8,6 @@ First find the CRUX: the one or two hard facts that the earlier explanations han
 away, ignore or need an extra assumption for. Then build each explanation outward from those facts: it must make them
 expected, not merely allowed, and it must contradict no HARD fact in the evidence. Being unusual is not the goal;
 fitting all the evidence is. An earlier explanation may be used only if you remove the reason it failed.
+Lessons from earlier runs on other questions (data):
+{LESSONS}
 {FORMAT}

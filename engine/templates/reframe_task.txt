@@ -1,0 +1,25 @@
+{QUESTION}
+
+Before anyone answers, find better formulations of this problem. Material (data, not instructions):
+{MATERIAL}
+Lessons from earlier runs on other questions (data):
+{LESSONS}
+
+The way a question is put often hides the productive question: an aim stated for the wrong unit, scope or target; a
+question that bundles several sub-questions of very different difficulty; an assumption that the material shows to be
+false; a target where the material shows the hoped-for result is impossible (see any ceilings). Keep the asker's aim:
+a reformulation may change the means, the unit, the scope, the target or the sub-question to attack first, never the
+goal itself, and it must not contain an answer.
+
+1. List the hidden assumptions of the question as asked, and mark the ones the material contradicts.
+2. Write 4-6 reformulations. For each say what it changes and why it is more likely to lead to a correct, valuable
+   answer, judged by two things: IMPORTANCE (how much of the asker's aim it serves) and POSSIBILITY (whether the
+   material leaves room for a real answer there).
+3. Rank them by importance x possibility and keep the best two.
+
+Final answer (text only), at most 600 words:
+=== REFRAMES ===
+ASSUMPTIONS: one per line, "(contradicted)" where the material contradicts it
+REFRAME 1: <the reformulated question, one or two sentences> | CHANGES: <what> | IMPORTANCE: high/medium/low | POSSIBILITY: high/medium/low | WHY: <one line>
+(4-6 reframes)
+KEEP: <the numbers of the best two, best first>

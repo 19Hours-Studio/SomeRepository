@@ -8,6 +8,7 @@ def ce(*args):
     assert r.returncode == 0, r.stderr; return r.stdout
 def main():
     tmp = tempfile.mkdtemp(); rd = os.path.join(HERE, "runs", RUN)
+    os.environ["CE_MEMORY"] = os.path.join(tmp, "memory")  # v5: tests never write to engine/memory
     try:
         ce("init", RUN, "--question", "Q?", "--force")
         for lab, f, arm in [("B1", "B1.md", "control"), ("NEG", "NEG.md", "control"), ("MECH", "MECH.md", "control"), ("EVO2", "r4/EVO2.md", "engine")]:
@@ -278,17 +279,29 @@ def main():
             fake = os.path.join(tmp, "fake.txt")
             blocks = "".join(f"IDEA {k}: x\nDEFECT | MAJOR | weak {k} | src\nFIT | {k} of 5 | y\n" for k in (1, 2, 3))
             ideas = "".join(f"IDEA {k}\nNAME: n{k}\nMECHANISM: m{k} works.\nVALUE: v{k} explains.\n\n" for k in (1, 2, 3))
+            v5 = ("=== REFRAMES ===\nASSUMPTIONS: one use\nREFRAME 1: how was it held? | CHANGES: sub-question | IMPORTANCE: high | POSSIBILITY: high | WHY: wear\n"
+                  "REFRAME 2: who made it? | CHANGES: unit | IMPORTANCE: low | POSSIBILITY: low | WHY: x\nKEEP: 1, 2\n"
+                  "=== REALITY ===\nOBSERVABLE 1: wear | predictions: n1: high\nVALIDATION: fair die gives 1/6\nNEW FACT | knobs worn on one face | scan.py\nVERDICT: n1 holds\n"
+                  "=== CALIBRATION ===\nP | 1 | 60% | fits\nP | 2 | 25% | x\nP | none | 15% | y\nWEAKEST LINK: wear data\nFLIP TEST: CT of holes | rod marks absent\nUNKNOWN: owner\n")
             open(fake, "w").write("=== EVIDENCE ===\nFACT 1: holes | HARD | s\n=== ATTEMPTS ===\nATTEMPT 1: a | b | weak | WHY IT DID NOT SETTLE THE QUESTION: c | s\n"
-                                  "=== REVIEW ===\n" + blocks + "=== IDEAS ===\n" + ideas)
-            R9 = "_selftest40"; rd9 = os.path.join(HERE, "runs", R9)
+                                  "=== REVIEW ===\n" + blocks + "=== IDEAS ===\n" + ideas + v5)
+            R9 = "_selftest40"; rd9 = os.path.join(HERE, "runs", R9); shutil.rmtree(rd9, ignore_errors=True)  # leftovers would be skipped as done
             ce("init", R9, "--question", "What was it?", "--format", "explain", "--force")
             assert "ESTIMATE explain/lite" in ce("plan", R9)
             env = dict(os.environ, CE_FAKE_LLM=fake)
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9, "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
-            assert "FINAL (blind review):" in out.stdout, out.stdout[-800:] + out.stderr[-800:]
-            assert sum(1 for _ in open(os.path.join(rd9, "usage.jsonl"))) == 8 and "TOTAL 8 steps" in ce("usage", R9)
+            assert "FINAL (blind review" in out.stdout, out.stdout[-800:] + out.stderr[-800:]
+            assert sum(1 for _ in open(os.path.join(rd9, "usage.jsonl"))) == 12 and "TOTAL 12 steps" in ce("usage", R9)
+            cfg9 = json.load(open(os.path.join(rd9, "config.json"))); assert cfg9["reframes"] == ["how was it held?", "who made it?"]
+            assert "how was it held?" in open(os.path.join(rd9, "prompts", "g1_reframe.txt")).read()
+            ev9 = open(os.path.join(rd9, "evidence.md")).read(); assert ev9.count("knobs worn on one face | NEW from") == 1  # new facts enter once
+            cal9 = json.load(open(os.path.join(rd9, "calibration.json"))); assert abs(cal9["p"]["none"] - 0.15) < 1e-9 and cal9["flip_test"].startswith("CT")
+            assert "weakest link: wear data" in out.stdout and os.path.exists(os.path.join(tmp, "memory", "predictions.jsonl"))
+            npred = sum(1 for _ in open(os.path.join(tmp, "memory", "predictions.jsonl")))
             out2 = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9], capture_output=True, text=True, env=env)
-            assert out2.stdout.count("skip ") == 8, out2.stdout[-500:]  # resumable: every step already done
+            assert out2.stdout.count("skip ") == 12, out2.stdout[-500:]  # resumable: every step already done
+            assert sum(1 for _ in open(os.path.join(tmp, "memory", "predictions.jsonl"))) == npred  # resume records nothing twice
+            assert "predictions" in ce("calibration")
             shutil.rmtree(rd9, ignore_errors=True)
             # v4 step 0: ask -> neutral brief -> run initialised from it -> pipeline
             rest = open(fake).read()
@@ -296,12 +309,53 @@ def main():
                                   "CONSTRAINTS: none\nASSUMPTIONS: it had one use\nUNCLEAR: none\nMODE: lite\n" + rest)
             R10 = "_selftest41"; rd10 = os.path.join(HERE, "runs", R10)
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "ask", R10, "чем был этот предмет?"], capture_output=True, text=True, env=env)
-            assert "TYPE explain" in out.stdout and "FINAL (blind review):" in out.stdout, out.stdout[-600:] + out.stderr[-600:]
+            assert "TYPE explain" in out.stdout and "FINAL (blind review" in out.stdout, out.stdout[-600:] + out.stderr[-600:]
             cfg10 = json.load(open(os.path.join(rd10, "config.json")))
             assert cfg10["question"].startswith("What was the bronze object for?") and cfg10["brief"]["ASSUMPTIONS"] == "it had one use"
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "ask", R10, "чем был этот предмет?"], capture_output=True, text=True, env=env)
             assert "skip brief" in out.stdout and out.stdout.count("skip ") >= 9, out.stdout[-400:]
             shutil.rmtree(rd10, ignore_errors=True)
+            # v5 invent: ledger -> ceilings in code -> reframes -> generators -> triage -> kill test -> repair -> blind review (+ bench) -> calibration
+            open(fake, "w").write("=== LEDGER ===\nARCHETYPE A: river barge coal | delivered cost 100 | price 120\n"
+                                  "SHARES (est., export / settlement): energy 5/3% | labour 10/4% | inbound logistics 4/1.5% | outbound logistics 55/85% | "
+                                  "processing 11/3% | capital 11/2% | other 4/1.5%\nARCHETYPE B: oil | x\nSHARES: energy 1% | labour 6% | outbound logistics 20% | "
+                                  "processing 5% | capital 13% | other 55%\n=== ATTEMPTS ===\nATTEMPT 1: winter road | Yakutia | standard | WHY IT DID NOT SOLVE IT: 54 days | s\n"
+                                  "=== GATE ===\n" + "".join(f"IDEA {k}: n{k}\nKILLER | ice | required 2 m | available 1 m (s) | MARGIN {k}\n"
+                                                              f"CHAIN | road | now 100 | with idea 50 | RATIO {k}\nVERDICT | ALIVE | ok\n" for k in (1, 2, 3)) +
+                                  "NEW FACT | ice road open 45 days in 2026 | skillings\n=== TRIAGE ===\nIDEA 1 | I 2 | P 2 | DECIDES: x | y\nIDEA 2 | I 9 | P 8 | DECIDES: x | y\n"
+                                  "=== REVIEW ===\n" + "".join(f"IDEA {k}: x\nDEFECT | MAJOR | weak {k} | src\nRATIO | {k}.5 | b\nKNOWN | partly | p\n" for k in (1, 2, 3, 4)) +
+                                  "=== IDEAS ===\n" + ideas + v5)
+            R11 = "_selftest50"; rd11 = os.path.join(HERE, "runs", R11); shutil.rmtree(rd11, ignore_errors=True)
+            ce("init", R11, "--question", "Make Arctic coal cheaper", "--force")
+            ce("import", R11, R8, "--arm", "OLD", "--ids", "known#1")
+            assert "ESTIMATE invent/lite" in ce("plan", R11)
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R11, "--tag", "coal", "--lessons-exclude", "coal",
+                                  "--bench", "OLD:known#1", "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
+            assert "FINAL (blind review" in out.stdout and "| OLD | 1 |" in out.stdout, out.stdout[-900:] + out.stderr[-900:]
+            ceil = open(os.path.join(rd11, "ceilings.md")).read()
+            assert "(settlement) | untouchable 1.5% -> ceiling 66.7x" in ceil and "3x needs: outbound logistics | ROOM" in ceil
+            assert "ARCHETYPE B: oil" in ceil and "NO ROOM" in ceil and "(export)" in ceil
+            g = open(os.path.join(rd11, "prompts", "g1_ledger.txt")).read()
+            assert "ceiling 66.7x" in g and "winter road" in g and "most room under its ceiling" in g and "{" not in g
+            assert "how was it held?" in open(os.path.join(rd11, "prompts", "g1_rf1.txt")).read() and os.path.exists(os.path.join(rd11, "prompts", "g1_rf2.txt"))
+            gate_ids = json.load(open(os.path.join(rd11, "gate", "ids.json"))); assert len(gate_ids) == 8  # triage cut 15 ideas to 8
+            rp = open(os.path.join(rd11, "repair", "TASK.md")).read()
+            assert "KILL TEST: killer ice" in rp and "ice road open 45 days in 2026 | NEW from gate" in rp and "{" not in rp
+            assert "OLD:known#1" in json.load(open(os.path.join(rd11, "audit_final", "ids.json")))
+            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 13
+            assert json.load(open(os.path.join(rd11, "config.json")))["tag"] == "coal"
+            # memory: lessons filtered by tag, killers from FATAL defects, killers come back as lessons for the same kind
+            os.makedirs(os.path.join(tmp, "memory"), exist_ok=True)
+            open(os.path.join(tmp, "memory", "lessons.md"), "w").write("- [all] general one\n- [invent] invent one\n- [explain] explain one\n"
+                                                                     "- [invent][coal] coal one\n- [gold] gold one\n")
+            open(os.path.join(rd11, "audit_final", "REVIEW.md"), "w").write("=== REVIEW ===\nIDEA 1: x\nDEFECT | FATAL | ice too thin | 0.8 m\n")
+            assert "learned 1 defects" in ce("learn", R11, "--audits", os.path.join(rd11, "audit_final"))
+            t = open(ce("prompt", R11, "gen_invent", "mem1").strip()).read()
+            assert "general one" in t and "invent one" in t and "explain one" not in t and "coal one" not in t and "gold one" not in t
+            assert "ice too thin" not in t  # own tag excluded
+            ce("setcfg", R11, "lessons_exclude", "[]")
+            t = open(ce("prompt", R11, "gen_invent", "mem2").strip()).read(); assert "coal one" in t and "sank an answer in an earlier run: ice too thin" in t
+            shutil.rmtree(rd11, ignore_errors=True)
         finally:
             shutil.rmtree(rd8, ignore_errors=True)
         print("OK: all engine commands passed")

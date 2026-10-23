@@ -2,5 +2,6 @@
  "question": "What were the Roman dodecahedra? These are small hollow bronze objects with twelve pentagonal faces, a round hole of differing diameter in each face and knobs at the corners, found in the north-western provinces of the Roman Empire and dated to roughly the 2nd-4th centuries AD; no ancient text mentions them. Find the explanation of what they were and how they were used that best accounts for ALL the physical and archaeological evidence, and say how it can be tested.",
  "format": "explain",
  "n": 3,
- "crux": "No explanation derives the distribution: about 90% of finds lie inside the area of the Gallic Empire (AD 260-274), mostly in modern France, Germany and Britain, dated 2nd-4th c.; none around the Mediterranean, although incense, dice, lots, music, staffs, seals and calendars all existed there; a few fragments beyond the frontier. A convincing explanation must make this map and this date range expected."
+ "crux": "No explanation derives the distribution: about 90% of finds lie inside the area of the Gallic Empire (AD 260-274), mostly in modern France, Germany and Britain, dated 2nd-4th c.; none around the Mediterranean, although incense, dice, lots, music, staffs, seals and calendars all existed there; a few fragments beyond the frontier. A convincing explanation must make this map and this date range expected.",
+ "tag": "dodeca"
 }

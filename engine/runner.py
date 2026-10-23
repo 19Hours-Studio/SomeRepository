@@ -11,7 +11,7 @@ import json, os, subprocess, time
 TOOL_SETS = {"none": "", "research": "WebSearch,Bash,Read,Write", "write": "Read,Write,Bash"}
 
 
-def call(prompt, model="opus", tools="none", cwd=None, effort=None, budget_usd=None, timeout=3600):
+def call(prompt, model="opus", tools="none", cwd=None, effort=None, budget_usd=None, timeout=7200):
     """Run one step; returns (text, usage dict). tools: a TOOL_SETS key or a comma list of tool names."""
     tl = TOOL_SETS.get(tools, tools)
     fake = os.environ.get("CE_FAKE_LLM")

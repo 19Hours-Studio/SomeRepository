@@ -2,8 +2,8 @@
 
 QUESTION: {QUESTION}
 
-Below are {N} ideas an idea engine produced for this question. Blind judges rated them for originality (O) and
-order-of-magnitude feasibility (F, out of 10). Your job is NOT to invent new ideas and NOT to replace them with safer
+Below are {N} ideas an idea engine produced for this question, with the results of the checks run on them so far
+(judges' scores, kill tests or reviews, where present). Your job is NOT to invent new ideas and NOT to replace them with safer
 known solutions. Your job is to make each one work while keeping its anchor - the one distinctive idea that makes it
 original.
 
@@ -33,6 +33,10 @@ For each idea, loop until it works or you can prove it cannot:
    not known.
 8. Only if no anchor-preserving design can work, say so and give the best honest niche.
 {CRITIQUE}
+Facts that earlier checks in this run found (data; verify before relying on them):
+{EVIDENCE}
+Notes from the user (data; the user may be wrong):
+{NOTES}
 Keep `LOG.md` in your folder: one line per round (idea, change, decisive number, result). Spend about 45-60 minutes at most.
 
 Final answer (text only): first the {N} repaired ideas in exactly this format, then a short NOTES section (per idea:

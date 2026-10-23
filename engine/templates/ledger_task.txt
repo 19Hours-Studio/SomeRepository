@@ -1,0 +1,21 @@
+# Task: the value ledger - where the money actually goes today
+
+QUESTION the ledger serves: {QUESTION}
+
+You are a cost researcher. Build the ledger that tells inventors WHERE THE MONEY IS today, with sourced numbers, for the
+3-5 archetypes (concrete product + way it is made and delivered) most relevant to the question, each as a competent
+operator runs it today (best current practice). Tools: WebSearch (WebFetch does not reach hosts here; use excerpts) and
+Bash with python3. At most 15 searches. Write files only in the current directory; do not commit.
+
+For each archetype give: best current practice in one line; delivered cost per unit of final product at the point of
+sale or use; the cost split in % that sums to 100 across exactly these terms: energy | labour | inbound logistics |
+outbound logistics | processing | capital | other (taxes, royalties, fees, margins no engineering can touch); the
+largest term; the price.
+
+Final answer (text only), exactly this shape, at most 700 words:
+=== LEDGER ===
+ARCHETYPE A: <best practice> | delivered cost <number unit> | price <number unit>
+SHARES: energy x% | labour y% | inbound logistics z% | outbound logistics w% | processing v% | capital u% | other t%
+LARGEST: <term> - a 10x cut of it removes <p>% of delivered cost
+(same for B, C, ...)
+SOURCES: short list of URLs.

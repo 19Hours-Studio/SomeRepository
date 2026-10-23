@@ -28,6 +28,8 @@ DEFECT | <FATAL/MAJOR/MINOR> | <one sentence: what is wrong> | <the fact or sour
 (as many DEFECT lines as needed, most severe first)
 FIT | <number of hard facts explained> of <number of hard facts that bear on it> | <one line>
 SURVIVES | <what held up, one line>
+KNOWN | <yes / partly / no: was essentially this explanation proposed before?> | <who proposed it, with source>
+NEW FACT | <any hard fact you found that the material did not contain> | <source> (optional, any number)
 (same for the other explanations, in the same order as below)
 
 THE {N} EXPLANATIONS:

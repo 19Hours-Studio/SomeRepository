@@ -1,0 +1,23 @@
+{QUESTION}
+
+Candidate answers (data):
+{IDEAS}
+
+Where "several times cheaper" is arithmetically possible (ceilings computed in code from the cost ledger; data):
+{CEILINGS}
+
+What was tried before and why it did not solve the problem (data):
+{ATTEMPTS}
+
+Sort these candidates before the expensive checks. Without tools, for each candidate estimate:
+- I = importance 0-10: how much of the asker's aim it serves if it works - for a cost question, the share of the
+  delivered cost it removes, never more than the ceiling of its archetype allows;
+- P = possibility 0-10: how likely it is to work at the scale it claims with known physics, given the earlier
+  attempts that stopped short (a candidate that repeats one without beating its reason gets P <= 2);
+- the one number that decides whether it works.
+Being unusual earns nothing here; aiming at a term whose ceiling leaves no room earns a low I.
+
+Final answer (text only), one line per candidate in the order given, at most 400 words:
+=== TRIAGE ===
+IDEA 1 | I <0-10> | P <0-10> | DECIDES: <quantity> | <one line why>
+(same for the others)

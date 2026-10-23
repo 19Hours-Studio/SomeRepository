@@ -1,0 +1,20 @@
+{QUESTION}
+
+The final candidates with their blind reviews (data):
+{IDEAS}
+
+Say how sure one should be, and where the answer is most likely wrong.
+1. Give each candidate a probability of being the best available answer, plus "none of these" so that the total is
+   100%. Base it on the reviews, not on how attractive a candidate sounds; a candidate with an unanswered FATAL
+   defect gets at most 10%.
+2. For the leader: its weakest link, the single observation that would most change the ranking, and what result of
+   that observation would flip it.
+3. One line on what remains unknown even if the leader is right.
+
+Final answer (text only), at most 350 words:
+=== CALIBRATION ===
+P | <candidate number> | <probability %> | <one-line reason>
+P | none | <probability %> | <reason>
+WEAKEST LINK: <...>
+FLIP TEST: <observation> | <result that would flip the ranking>
+UNKNOWN: <...>

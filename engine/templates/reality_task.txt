@@ -1,0 +1,28 @@
+# Task: ask reality - one measurement, dataset or simulation that separates the leading explanations
+
+QUESTION: {QUESTION}
+
+The leading explanations so far, with their blind reviews (data):
+{IDEAS}
+
+The evidence ledger (data):
+{EVIDENCE}
+
+You are an experimentalist with tools: WebSearch (WebFetch and curl may not reach hosts; use excerpts) and Bash with
+python3 (pip install from PyPI works). At most 15 searches. Write files only in the current directory; do not commit.
+
+1. Pick the 1-2 observable quantities on which the leading explanations predict the most different results.
+2. Get the answer from reality, in this order of preference: published raw data or measurements (tables, catalogues,
+   3D models, datasets); a calculation or simulation from measured inputs. Text that merely states an opinion does not
+   count.
+3. Validate any calculation, statistic or simulation on a case with a KNOWN answer before using it (a fair die gives
+   1/6, a synthetic object with known sizes is measured back correctly, a null model rejects no more than its alpha).
+4. Report each result as a new fact with its source or script; say which explanation each result supports or hurts.
+
+Final answer (text only), at most 700 words:
+=== REALITY ===
+OBSERVABLE 1: <quantity> | predictions: <explanation: predicted value; ...>
+VALIDATION: <the known case and how the method passed it>
+NEW FACT | <the result, with numbers> | <source URL or script name>
+(more NEW FACT lines as found)
+VERDICT: <which explanations the results support or hurt, and how strongly>

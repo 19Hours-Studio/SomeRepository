@@ -23,6 +23,9 @@ Calculation kit catalog (data):
 Value ledger (data):
 {LEDGER}
 
+Ground every decisive input in a source or in measured data, not in the idea's own text. Before you use any
+calculation you wrote yourself (not from the kit), check it once on a case with a known answer.
+
 VERDICT: ALIVE if MARGIN >= 1 and RATIO >= 1.5; DEAD if MARGIN < 0.3 or RATIO < 1.1; otherwise WOUNDED.
 Be strict and fair: a beautiful idea that fails by 10x is DEAD; a dull idea with headroom is ALIVE.
 
@@ -33,6 +36,7 @@ SCREEN | <class: margin; class: margin; ...>
 KILLER | <quantity> | required <value unit> | available <value unit> (<source>) | MARGIN <number>
 CHAIN | <best current practice> | now <cost unit> | with idea <cost unit> | RATIO <number>
 VERDICT | <ALIVE/WOUNDED/DEAD> | <one sentence>
+NEW FACT | <any hard, sourced fact you found that the ledger did not contain> | <source> (optional, any number)
 (same for the other ideas)
 
 THE {N} IDEAS:

@@ -28,6 +28,9 @@ IDEA 1: <name>
 DEFECT | <FATAL/MAJOR/MINOR> | <one sentence: what is wrong> | <the number or source that shows it>
 (as many DEFECT lines as needed, most severe first)
 SURVIVES | <claims that held up under your check, one line>
+RATIO | <whole-chain cost ratio against the best current practice after your corrections: current cost / cost with the idea, one number> | <one line basis>
+KNOWN | <yes / partly / no: is this already done or seriously proposed?> | <the closest existing system, project or proposal, with source>
+NEW FACT | <any hard fact you found that the material did not contain> | <source> (optional, any number)
 (same for the other ideas, in the same order as below)
 
 THE {N} IDEAS:
