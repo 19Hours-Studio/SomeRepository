@@ -1,0 +1,20 @@
+== synthetic, perfect rims, noise 0.05 mm: poles (4, 7)
+   pole face 4: rim rms 0.031 mm, peak-valley 0.18 mm, ovality 4.52 mm
+   pole face 7: rim rms 0.030 mm, peak-valley 0.18 mm, ovality 0.01 mm
+   10 ringed: rim rms 0.027 (max 0.033), peak-valley 0.15 (max 0.18), ovality 0.02 (max 0.04)
+   rank of the pole rims by rms among 12 (1 = roughest): [2, 3]
+== synthetic, perfect rims, noise 0.1 mm: poles (10, 1)
+   pole face 1: rim rms 0.059 mm, peak-valley 0.35 mm, ovality 0.02 mm
+   pole face 10: rim rms 0.061 mm, peak-valley 0.35 mm, ovality 4.53 mm
+   10 ringed: rim rms 0.055 (max 0.067), peak-valley 0.29 (max 0.35), ovality 0.05 (max 0.08)
+   rank of the pole rims by rms among 12 (1 = roughest): [3, 2]
+== scan saalburg: poles (0, 9)
+   pole face 0: rim rms 0.275 mm, peak-valley 1.11 mm, ovality 0.95 mm
+   pole face 9: rim rms 0.223 mm, peak-valley 0.83 mm, ovality 1.39 mm
+   10 ringed: rim rms 0.078 (max 0.110), peak-valley 0.39 (max 0.56), ovality 0.24 (max 0.50)
+   rank of the pole rims by rms among 12 (1 = roughest): [1, 2]
+== scan hunt: poles (0, 9)
+   pole face 0: rim rms 0.012 mm, peak-valley 0.06 mm, ovality 0.04 mm
+   pole face 9: rim rms 0.014 mm, peak-valley 0.07 mm, ovality 0.10 mm
+   10 ringed: rim rms 0.034 (max 0.073), peak-valley 0.13 (max 0.34), ovality 0.05 (max 0.18)
+   rank of the pole rims by rms among 12 (1 = roughest): [12, 11]

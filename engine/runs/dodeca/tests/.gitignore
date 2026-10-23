@@ -1,0 +1,9 @@
+# round 4: local caches, third-party copies and unfinished agent work are not committed
+__pycache__/
+*/sources/
+models3d/files/
+sim_throw/results/*.json
+!sim_throw/results/wear_prediction.json
+sim_throw/figs/
+sim_throw/data/
+mesh/work/

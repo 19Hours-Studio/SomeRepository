@@ -1,0 +1,16 @@
+--- threshold 5%
+  Jublains: 10 ringed: distinguishable levels 5, confusable 7 of 10; + pole class -> at most 6 readable outcomes of 12
+  Vienne: 10 ringed: distinguishable levels 5, confusable 8 of 10; + pole class -> at most 6 readable outcomes of 12
+  Avenches: 10 ringed: distinguishable levels 7, confusable 6 of 10; + pole class -> at most 8 readable outcomes of 12
+  Carnuntum 1 (Mereaux): all 12 (ring info unknown): distinguishable levels 9, confusable 7 of 12
+  Tongeren (Mereaux): all 12 (ring info unknown): distinguishable levels 8, confusable 7 of 12
+  Kleiner Feldberg FMb 2103 (3D scan): 10 ringed: distinguishable levels 5, confusable 9 of 10; + pole class -> at most 6 readable outcomes of 12
+  Hunt Museum HCM 157 (3D scan): 10 ringed: distinguishable levels 6, confusable 7 of 10; + pole class -> at most 7 readable outcomes of 12
+--- threshold 10%
+  Jublains: 10 ringed: distinguishable levels 3, confusable 10 of 10; + pole class -> at most 4 readable outcomes of 12
+  Vienne: 10 ringed: distinguishable levels 4, confusable 10 of 10; + pole class -> at most 5 readable outcomes of 12
+  Avenches: 10 ringed: distinguishable levels 6, confusable 8 of 10; + pole class -> at most 7 readable outcomes of 12
+  Carnuntum 1 (Mereaux): all 12 (ring info unknown): distinguishable levels 7, confusable 9 of 12
+  Tongeren (Mereaux): all 12 (ring info unknown): distinguishable levels 7, confusable 7 of 12
+  Kleiner Feldberg FMb 2103 (3D scan): 10 ringed: distinguishable levels 4, confusable 10 of 10; + pole class -> at most 5 readable outcomes of 12
+  Hunt Museum HCM 157 (3D scan): 10 ringed: distinguishable levels 3, confusable 10 of 10; + pole class -> at most 4 readable outcomes of 12

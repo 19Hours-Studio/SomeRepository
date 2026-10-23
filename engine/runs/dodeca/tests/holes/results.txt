@@ -1,27 +1,103 @@
-Jublains (10 ringed) {'n': 10, 'LGR': 3.130434782608696, 'uniform': {'p_LGR': 0.38009, 'p_gap': 0.03745, 'gap': np.float64(1.323), 'kbest': 3}, 'graded+0.5': {'p_LGR': 0.00067, 'p_gap': 7e-05, 'gap': np.float64(1.708), 'kbest': 3}, 'graded+1.0': {'p_LGR': 0.05591, 'p_gap': 0.00491, 'gap': np.float64(1.592), 'kbest': 3}}
-Jublains (12, ovals as mean axis) {'n': 12, 'LGR': 3.320754716981132, 'uniform': {'p_LGR': 0.33913, 'p_gap': 0.06614, 'gap': np.float64(0.9), 'kbest': 4}, 'graded+0.5': {'p_LGR': 0.00012, 'p_gap': 0.0, 'gap': np.float64(1.365), 'kbest': 4}, 'graded+1.0': {'p_LGR': 0.03822, 'p_gap': 0.00463, 'gap': np.float64(1.194), 'kbest': 4}}
-Tongeren (12) {'n': 12, 'LGR': 1.676829268292683, 'uniform': {'p_LGR': 0.99592, 'p_gap': 0.65311, 'gap': np.float64(0.001), 'kbest': 2}, 'graded+0.5': {'p_LGR': 0.59434, 'p_gap': 0.09657, 'gap': np.float64(0.253), 'kbest': 3}, 'graded+1.0': {'p_LGR': 0.95057, 'p_gap': 0.38048, 'gap': np.float64(0.177), 'kbest': 3}}
-Romford (9 of 12) {'n': 9, 'LGR': 2.4668483197093525, 'uniform': {'p_LGR': 0.57302, 'p_gap': 0.82805, 'gap': np.float64(-0.226), 'kbest': 4}, 'graded+0.5': {'p_LGR': 0.01167, 'p_gap': 0.08149, 'gap': np.float64(0.461), 'kbest': 4}, 'graded+1.0': {'p_LGR': 0.22795, 'p_gap': 0.49682, 'gap': np.float64(0.152), 'kbest': 4}}
+RESULTS v2 (analyse.py, data.py v2, NSIM=100000 per null)
 
-Pooled Fisher p (gap statistic):
-  uniform: all three 0.2532 | Tongeren+Romford only 0.8732
-  graded+0.5: all three 0.0001 | Tongeren+Romford only 0.0460
-  graded+1.0: all three 0.0300 | Tongeren+Romford only 0.5039
-  LGR uniform: all three 0.8017 | Tongeren+Romford 0.8908
-  LGR graded+0.5: all three 0.0004 | Tongeren+Romford 0.0414
-  LGR graded+1.0: all three 0.1836 | Tongeren+Romford 0.5481
+====================================================================================================
+Jublains  [grade A; independent=True]
+  values: 1=23.75, 2=21.5, 3=16.5, 4=21, 5=11.5, 6=17, 1'=23.5, 2'=10.5, 3'=15.5, 4'=22, 5'=17, 6'=22
+  (a) 10 ringed: n=10 LGR=3.13 G2=0.70 | U: pGAP=0.0370 pLGR=0.3793 pG2=0.0604 (k*=3) ; N: pGAP=0.0125 pLGR=0.3222 pG2=0.0462 (k*=3) ; L0.5: pGAP=0.0001 pLGR=0.0007 pG2=0.0000 (k*=3) ; L1.0: pGAP=0.0043 pLGR=0.0565 pG2=0.0021 (k*=3)
+  (a) all 12   : n=12 LGR=3.32 G2=0.60 | U: pGAP=0.0549 pLGR=0.2364 pG2=0.0437 (k*=4) ; N: pGAP=0.0167 pLGR=0.3612 pG2=0.0820 (k*=4) ; L0.5: pGAP=0.0000 pLGR=0.0002 pG2=0.0000 (k*=4) ; L1.0: pGAP=0.0046 pLGR=0.0427 pG2=0.0020 (k*=4)
+  (b) opposite |d| per pair: [0.25, 11.0, 1.0, 1.0, 5.5, 5.0]
+  (b) all 12 (10395 matchings): {'obs': 23.75, 'p': 0.14747474747474748, 'n_match': 10395, 'mean': 31.295, 'sd': 7.578, 'min': 2.75, 'z': -0.996, 'ratio': 0.759}
+  (b) 10 ringed (945 matchings): {'obs': 23.5, 'p': 0.5682539682539682, 'n_match': 945, 'mean': 24.5, 'sd': 6.549, 'min': 2.5, 'z': -0.153, 'ratio': 0.959}
+  (b) SUPERSEDED pairing (Sparavigna 2012), 10 ringed: |d|=[6.5, 4.0, 0.5, 1.0, 0.5] {'obs': 12.5, 'p': 0.07301587301587302, 'n_match': 945, 'mean': 24.5, 'sd': 6.549, 'min': 2.5, 'z': -1.832, 'ratio': 0.51}
+  (c) ring A [21.5, 16.5, 21.0, 11.5, 17.0] | ring B [10.5, 15.5, 22.0, 17.0, 22.0]
+  (c) sorted A [11.5, 16.5, 17.0, 21.0, 21.5] | sorted B [10.5, 15.5, 17.0, 22.0, 22.0] -> multiset test {'L1': 3.5, 'p': 0.25396825396825395, 'n_split': 252}
+  (c) best pole-swapping congruence: {'proper': {'L1': 12.5, 'p': 0.34556}, 'improper': {'L1': 4.5, 'p': 0.04723}}
 
-(b) Jublains sorted-ring L1 distance 3.5 mm; P(random 5+5 split <=) = 0.254
-   classes A: ['L', 'M', 'L', 'S', 'M']  B: ['S', 'M', 'L', 'M', 'L']
-   P(same class multiset | 2S,4M,4L random) = 0.286
-   P(class pattern invariant under a pole-swapping 2-fold rotation) = 0.0476
-   best proper-rotation L1 = 4.5 mm; P(random <=) = 0.0466
-   antipodal (opposite-face) L1 = 12.5 mm
+====================================================================================================
+Vienne  [grade A; independent=True]
+  values: 1=24, 2=22, 3=15, 4=20, 5=13.5, 6=20, 1'=23, 2'=19, 3'=22, 4'=14, 5'=22, 6'=14
+  (a) 10 ringed: n=10 LGR=4.24 G2=0.71 | U: pGAP=0.0306 pLGR=0.0874 pG2=0.0607 (k*=3) ; N: pGAP=0.0104 pLGR=0.0675 pG2=0.0397 (k*=3) ; L0.5: pGAP=0.0007 pLGR=0.0000 pG2=0.0001 (k*=3) ; L1.0: pGAP=0.0073 pLGR=0.0059 pG2=0.0067 (k*=3)
+  (a) all 12   : n=12 LGR=4.19 G2=0.57 | U: pGAP=0.0741 pLGR=0.1337 pG2=0.1551 (k*=3) ; N: pGAP=0.0181 pLGR=0.1286 pG2=0.1476 (k*=3) ; L0.5: pGAP=0.0006 pLGR=0.0000 pG2=0.0002 (k*=4) ; L1.0: pGAP=0.0136 pLGR=0.0083 pG2=0.0179 (k*=3)
+  (b) opposite |d| per pair: [1.0, 3.0, 7.0, 6.0, 8.5, 6.0]
+  (b) all 12 (10395 matchings): {'obs': 31.5, 'p': 0.7229437229437229, 'n_match': 10395, 'mean': 26.955, 'sd': 7.341, 'min': 5.5, 'z': 0.619, 'ratio': 1.169}
+  (b) 10 ringed (945 matchings): {'obs': 30.5, 'p': 1.0, 'n_match': 945, 'mean': 20.944, 'sd': 6.718, 'min': 4.5, 'z': 1.422, 'ratio': 1.456}
+  (c) ring A [22.0, 15.0, 20.0, 13.5, 20.0] | ring B [19.0, 22.0, 14.0, 22.0, 14.0]
+  (c) sorted A [13.5, 15.0, 20.0, 20.0, 22.0] | sorted B [14.0, 14.0, 19.0, 22.0, 22.0] -> multiset test {'L1': 4.5, 'p': 0.42857142857142855, 'n_split': 252}
+  (c) best pole-swapping congruence: {'proper': {'L1': 8.5, 'p': 0.23792}, 'improper': {'L1': 4.5, 'p': 0.14241}}
 
-(c) Jublains ringed opposite pairs: sum|d|=12.5 (diffs [0.5, 0.5, 1.0, 4.0, 6.5]), P(random matching <=)=0.073 of 945, mean 24.5, min 2.5
-(c) Tongeren (pair4=26.3): sum|d|=10.1, P(random matching <=)=0.0005 of 10395, mean 40.2, min 7.9
-(c) Tongeren (pair4=26.0): sum|d|=9.8, P(random matching <=)=0.0005 of 10395, mean 39.9, min 8.2
-   Tongeren diffs: [2.4, 0.2, 1.8, 3.3, 2.2, 0.2]  ratios: [1.226, 1.014, 1.071, 1.143, 1.141, 1.01]
-Jublains10: G2=0.696  unif p=0.0605  gr0.5 p=0.0000  gr1.0 p=0.0019
-Tongeren12: G2=0.305  unif p=0.9894  gr0.5 p=0.3887  gr1.0 p=0.9027
-Romford9: G2=0.558  unif p=0.4610  gr0.5 p=0.0032  gr1.0 p=0.1409
+====================================================================================================
+Avenches  [grade A; independent=True]
+  values: 1=26.54, 2=15.44, 3=18.31, 4=13.4, 5=10.43, 6=17.615, 1'=24.62, 2'=20.165, 3'=8.68, 4'=14.475, 5'=20.615, 6'=14.18
+  (a) 10 ringed: n=10 LGR=2.24 G2=0.43 | U: pGAP=0.7513 pLGR=0.7659 pG2=0.8236 (k*=3) ; N: pGAP=0.5078 pLGR=0.7810 pG2=0.8342 (k*=3) ; L0.5: pGAP=0.0704 pLGR=0.0637 pG2=0.0823 (k*=4) ; L1.0: pGAP=0.4503 pLGR=0.4565 pG2=0.5378 (k*=4)
+  (a) all 12   : n=12 LGR=2.47 G2=0.39 | U: pGAP=0.8663 pLGR=0.7703 pG2=0.7988 (k*=4) ; N: pGAP=0.5970 pLGR=0.7646 pG2=0.8131 (k*=4) ; L0.5: pGAP=0.0394 pLGR=0.0033 pG2=0.0033 (k*=4) ; L1.0: pGAP=0.4096 pLGR=0.2125 pG2=0.2611 (k*=4)
+  (b) opposite |d| per pair: [1.92, 1.26, 1.07, 1.75, 2.3, 2.55]
+  (b) all 12 (10395 matchings): {'obs': 10.86, 'p': 0.0008658008658008658, 'n_match': 10395, 'mean': 38.025, 'sd': 7.796, 'min': 6.56, 'z': -3.484, 'ratio': 0.286}
+  (b) 10 ringed (945 matchings): {'obs': 8.94, 'p': 0.009523809523809525, 'n_match': 945, 'mean': 23.487, 'sd': 5.443, 'min': 4.64, 'z': -2.673, 'ratio': 0.381}
+  (b) ALTERNATIVE pairing (k,k'), 10 ringed: |d|=[4.72, 9.63, 1.07, 10.18, 3.44] {'obs': 29.05, 'p': 0.873015873015873, 'n_match': 945, 'mean': 23.487, 'sd': 5.443, 'min': 4.64, 'z': 1.022, 'ratio': 1.237}
+  (c) ring A (unprimed) [10.43, 13.4, 15.44, 17.615000000000002, 18.31] | ring B (primed) [8.68, 14.18, 14.475, 20.165, 20.615] -> {'L1': 8.35, 'p': 0.25396825396825395, 'n_split': 252}  [ring membership assumes labels 2-6 surround pole 1]
+
+====================================================================================================
+Carnuntum 1 (Mereaux)  [grade B; independent=True]
+  values: p1a=20.1, p1b=20.3, p2a=13.2, p2b=13.7, p3a=21.4, p3b=22.4, p4a=25, p4b=26.5, p5a=15.3, p5b=17.3, p6a=10.5, p6b=13
+  (a) all 12   : n=12 LGR=1.93 G2=0.34 | U: pGAP=0.6567 pLGR=0.9682 pG2=0.9526 (k*=2) ; N: pGAP=0.3644 pLGR=0.9692 pG2=0.9562 (k*=2) ; L0.5: pGAP=0.2447 pLGR=0.2496 pG2=0.1379 (k*=2) ; L1.0: pGAP=0.4385 pLGR=0.7922 pG2=0.7216 (k*=2)
+  (a) 10 (largest pair 25/26.5 dropped): n=10 LGR=2.12 G2=0.45 | U: pGAP=0.5220 pLGR=0.8537 pG2=0.7861 (k*=2) ; N: pGAP=0.3055 pLGR=0.8469 pG2=0.7863 (k*=2) ; L0.5: pGAP=0.1279 pLGR=0.1221 pG2=0.0505 (k*=2) ; L1.0: pGAP=0.3008 pLGR=0.5772 pG2=0.4546 (k*=2)
+  (b) opposite |d| per pair: [0.2, 0.5, 1.0, 1.5, 2.0, 2.5]
+  (b) all 12 (10395 matchings): {'obs': 7.7, 'p': 9.62000962000962e-05, 'n_match': 10395, 'mean': 36.791, 'sd': 8.631, 'min': 7.7, 'z': -3.37, 'ratio': 0.209}
+  (b) 10 (largest pair dropped, 945 matchings): {'obs': 6.2, 'p': 0.0010582010582010583, 'n_match': 945, 'mean': 24.733, 'sd': 6.758, 'min': 6.2, 'z': -2.742, 'ratio': 0.251}
+  (c) not testable (no pole/ring information)
+
+====================================================================================================
+Tongeren (Mereaux)  [grade B; independent=True]
+  values: p1a=16, p1b=16.2, p2a=7.5, p2b=8.5, p3a=10.5, p3b=12.5, p4a=20, p4b=22.5, p5a=12.5, p5b=15.5, p6a=12.5, p6b=16.5
+  (a) all 12   : n=12 LGR=2.57 G2=0.43 | U: pGAP=0.7539 pLGR=0.6925 pG2=0.5956 (k*=4) ; N: pGAP=0.4541 pLGR=0.7138 pG2=0.6302 (k*=4) ; L0.5: pGAP=0.0293 pLGR=0.0080 pG2=0.0013 (k*=4) ; L1.0: pGAP=0.3218 pLGR=0.2451 pG2=0.1523 (k*=4)
+  (a) 10 (largest pair 20/22.5 dropped): n=10 LGR=3.00 G2=0.56 | U: pGAP=0.1301 pLGR=0.3693 pG2=0.3401 (k*=4) ; N: pGAP=0.0563 pLGR=0.3772 pG2=0.3436 (k*=4) ; L0.5: pGAP=0.0022 pLGR=0.0076 pG2=0.0064 (k*=4) ; L1.0: pGAP=0.0337 pLGR=0.1304 pG2=0.1193 (k*=4)
+  (b) opposite |d| per pair: [0.2, 1.0, 2.0, 2.5, 3.0, 4.0]
+  (b) all 12 (10395 matchings): {'obs': 12.7, 'p': 0.006060606060606061, 'n_match': 10395, 'mean': 31.136, 'sd': 6.432, 'min': 6.3, 'z': -2.866, 'ratio': 0.408}
+  (b) 10 (largest pair dropped, 945 matchings): {'obs': 10.2, 'p': 0.06666666666666667, 'n_match': 945, 'mean': 19.044, 'sd': 5.083, 'min': 3.8, 'z': -1.74, 'ratio': 0.536}
+  (c) not testable (no pole/ring information)
+
+====================================================================================================
+Kleiner Feldberg FMb 2103 (3D scan)  [grade A; independent=True]
+  values: 1=23.37, 1'=24.645, 2=16.54, 2'=20.04, 3=15.22, 3'=16.42, 4=19.62, 4'=11.36, 5=11.87, 5'=13.91, 6=16.17, 6'=15.89
+  (a) 10 ringed: n=10 LGR=3.19 G2=0.59 | U: pGAP=0.4170 pLGR=0.2754 pG2=0.2267 (k*=4) ; N: pGAP=0.2130 pLGR=0.2879 pG2=0.2282 (k*=4) ; L0.5: pGAP=0.0272 pLGR=0.0029 pG2=0.0021 (k*=4) ; L1.0: pGAP=0.1654 pLGR=0.0844 pG2=0.0649 (k*=4)
+  (a) all 12   : n=12 LGR=2.76 G2=0.48 | U: pGAP=0.6186 pLGR=0.5500 pG2=0.3033 (k*=4) ; N: pGAP=0.3516 pLGR=0.6061 pG2=0.4171 (k*=4) ; L0.5: pGAP=0.0249 pLGR=0.0067 pG2=0.0003 (k*=4) ; L1.0: pGAP=0.2559 pLGR=0.1881 pG2=0.0621 (k*=4)
+  (b) opposite |d| per pair: [1.28, 3.5, 1.2, 8.26, 2.04, 0.28]
+  (b) all 12 (10395 matchings): {'obs': 16.555, 'p': 0.03434343434343434, 'n_match': 10395, 'mean': 28.795, 'sd': 6.082, 'min': 3.915, 'z': -2.013, 'ratio': 0.575}
+  (b) 10 ringed (945 matchings): {'obs': 15.28, 'p': 0.30793650793650795, 'n_match': 945, 'mean': 16.6, 'sd': 3.758, 'min': 2.64, 'z': -0.351, 'ratio': 0.92}
+  (c) ring A [16.54, 15.22, 19.62, 11.87, 16.17] | ring B [20.04, 16.42, 11.36, 13.91, 15.89]
+  (c) sorted A [11.87, 15.22, 16.17, 16.54, 19.62] | sorted B [11.36, 13.91, 15.89, 16.42, 20.04] -> multiset test {'L1': 2.64, 'p': 0.12698412698412698, 'n_split': 252}
+  (c) best pole-swapping congruence: {'proper': {'L1': 10.64, 'p': 0.34371}, 'improper': {'L1': 11.44, 'p': 0.58968}}
+
+====================================================================================================
+Hunt Museum HCM 157 (3D scan)  [grade A; independent=True]
+  values: 1=24.13, 1'=24.11, 2=14.01, 2'=15.09, 3=17.71, 3'=18.07, 4=13.14, 4'=17.46, 5=16.15, 5'=17.11, 6=18.06, 6'=15.05
+  (a) 10 ringed: n=10 LGR=1.94 G2=0.43 | U: pGAP=0.5782 pLGR=0.9301 pG2=0.8165 (k*=2) ; N: pGAP=0.3617 pLGR=0.9234 pG2=0.8497 (k*=2) ; L0.5: pGAP=0.4008 pLGR=0.8048 pG2=0.6496 (k*=3) ; L1.0: pGAP=0.4118 pLGR=0.8956 pG2=0.7985 (k*=2)
+  (a) all 12   : n=12 LGR=6.05 G2=0.65 | U: pGAP=0.0940 pLGR=0.0032 pG2=0.0232 (k*=4) ; N: pGAP=0.0267 pLGR=0.0061 pG2=0.0354 (k*=4) ; L0.5: pGAP=0.0003 pLGR=0.0000 pG2=0.0000 (k*=4) ; L1.0: pGAP=0.0135 pLGR=0.0000 pG2=0.0009 (k*=4)
+  (b) opposite |d| per pair: [0.02, 1.08, 0.36, 4.32, 0.96, 3.01]
+  (b) all 12 (10395 matchings): {'obs': 9.75, 'p': 0.03607503607503607, 'n_match': 10395, 'mean': 22.983, 'sd': 4.98, 'min': 2.15, 'z': -2.657, 'ratio': 0.424}
+  (b) 10 ringed (945 matchings): {'obs': 9.73, 'p': 0.3968253968253968, 'n_match': 945, 'mean': 10.454, 'sd': 2.785, 'min': 2.13, 'z': -0.26, 'ratio': 0.931}
+  (c) ring A [14.01, 17.71, 13.14, 16.15, 18.06] | ring B [15.09, 18.07, 17.46, 17.11, 15.05]
+  (c) sorted A [13.14, 14.01, 16.15, 17.71, 18.06] | sorted B [15.05, 15.09, 17.11, 17.46, 18.07] -> multiset test {'L1': 4.21, 'p': 0.38095238095238093, 'n_split': 252}
+  (c) best pole-swapping congruence: {'proper': {'L1': 7.81, 'p': 0.71438}, 'improper': {'L1': 7.03, 'p': 0.4991}}
+
+====================================================================================================
+POOLED (Fisher combination over independent objects; p floored at 1/NSIM)
+  (a) U     GAP: all 7: 0.1897 | grade A (5): 0.0748 | per object [0.037, 0.0306, 0.7513, 0.6567, 0.7539, 0.417, 0.5782]
+  (a) U     LGR: all 7: 0.6962 | grade A (5): 0.4343 | per object [0.3793, 0.0874, 0.7659, 0.9682, 0.6925, 0.2754, 0.9301]
+  (a) U     G2 : all 7: 0.3065 | grade A (5): 0.1328 | per object [0.0604, 0.0607, 0.8236, 0.9526, 0.5956, 0.2267, 0.8165]
+  (a) N     GAP: all 7: 0.0143 | grade A (5): 0.0067 | per object [0.0125, 0.0104, 0.5078, 0.3644, 0.4541, 0.213, 0.3617]
+  (a) N     LGR: all 7: 0.6433 | grade A (5): 0.3732 | per object [0.3222, 0.0675, 0.781, 0.9692, 0.7138, 0.2879, 0.9234]
+  (a) N     G2 : all 7: 0.2427 | grade A (5): 0.0928 | per object [0.0462, 0.0397, 0.8342, 0.9562, 0.6302, 0.2282, 0.8497]
+  (a) L0.5  GAP: all 7: 0.0000 | grade A (5): 0.0000 | per object [0.0001, 0.0007, 0.0704, 0.2447, 0.0293, 0.0272, 0.4008]
+  (a) L0.5  LGR: all 7: 0.0000 | grade A (5): 0.0000 | per object [0.0007, 0.0, 0.0637, 0.2496, 0.008, 0.0029, 0.8048]
+  (a) L0.5  G2 : all 7: 0.0000 | grade A (5): 0.0000 | per object [0.0, 0.0001, 0.0823, 0.1379, 0.0013, 0.0021, 0.6496]
+  (a) L1.0  GAP: all 7: 0.0045 | grade A (5): 0.0020 | per object [0.0043, 0.0073, 0.4503, 0.4385, 0.3218, 0.1654, 0.4118]
+  (a) L1.0  LGR: all 7: 0.0256 | grade A (5): 0.0117 | per object [0.0565, 0.0059, 0.4565, 0.7922, 0.2451, 0.0844, 0.8956]
+  (a) L1.0  G2 : all 7: 0.0021 | grade A (5): 0.0010 | per object [0.0021, 0.0067, 0.5378, 0.7216, 0.1523, 0.0649, 0.7985]
+
+  (b) opposite, Fisher: all 7 objects 0.00008 | grade A only 0.14565
+  (b) stratified MC, sum of z over all independent (7): sum z = -8.25, P(sim <= obs) = 0.00154
+  (b) stratified MC, sum of z over grade A (5): sum z = -2.01, P(sim <= obs) = 0.18218
+  (b) stratified MC, sum of z over without Mereaux (selection bias) (5): sum z = -2.01, P(sim <= obs) = 0.18403
+
+  (c) hemispheres, Fisher over ['Jublains', 'Vienne', 'Avenches', 'Kleiner Feldberg FMb 2103 (3D scan)', 'Hunt Museum HCM 157 (3D scan)']: 0.2109

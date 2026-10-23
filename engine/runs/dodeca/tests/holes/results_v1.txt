@@ -1,0 +1,27 @@
+Jublains (10 ringed) {'n': 10, 'LGR': 3.130434782608696, 'uniform': {'p_LGR': 0.38009, 'p_gap': 0.03745, 'gap': np.float64(1.323), 'kbest': 3}, 'graded+0.5': {'p_LGR': 0.00067, 'p_gap': 7e-05, 'gap': np.float64(1.708), 'kbest': 3}, 'graded+1.0': {'p_LGR': 0.05591, 'p_gap': 0.00491, 'gap': np.float64(1.592), 'kbest': 3}}
+Jublains (12, ovals as mean axis) {'n': 12, 'LGR': 3.320754716981132, 'uniform': {'p_LGR': 0.33913, 'p_gap': 0.06614, 'gap': np.float64(0.9), 'kbest': 4}, 'graded+0.5': {'p_LGR': 0.00012, 'p_gap': 0.0, 'gap': np.float64(1.365), 'kbest': 4}, 'graded+1.0': {'p_LGR': 0.03822, 'p_gap': 0.00463, 'gap': np.float64(1.194), 'kbest': 4}}
+Tongeren (12) {'n': 12, 'LGR': 1.676829268292683, 'uniform': {'p_LGR': 0.99592, 'p_gap': 0.65311, 'gap': np.float64(0.001), 'kbest': 2}, 'graded+0.5': {'p_LGR': 0.59434, 'p_gap': 0.09657, 'gap': np.float64(0.253), 'kbest': 3}, 'graded+1.0': {'p_LGR': 0.95057, 'p_gap': 0.38048, 'gap': np.float64(0.177), 'kbest': 3}}
+Romford (9 of 12) {'n': 9, 'LGR': 2.4668483197093525, 'uniform': {'p_LGR': 0.57302, 'p_gap': 0.82805, 'gap': np.float64(-0.226), 'kbest': 4}, 'graded+0.5': {'p_LGR': 0.01167, 'p_gap': 0.08149, 'gap': np.float64(0.461), 'kbest': 4}, 'graded+1.0': {'p_LGR': 0.22795, 'p_gap': 0.49682, 'gap': np.float64(0.152), 'kbest': 4}}
+
+Pooled Fisher p (gap statistic):
+  uniform: all three 0.2532 | Tongeren+Romford only 0.8732
+  graded+0.5: all three 0.0001 | Tongeren+Romford only 0.0460
+  graded+1.0: all three 0.0300 | Tongeren+Romford only 0.5039
+  LGR uniform: all three 0.8017 | Tongeren+Romford 0.8908
+  LGR graded+0.5: all three 0.0004 | Tongeren+Romford 0.0414
+  LGR graded+1.0: all three 0.1836 | Tongeren+Romford 0.5481
+
+(b) Jublains sorted-ring L1 distance 3.5 mm; P(random 5+5 split <=) = 0.254
+   classes A: ['L', 'M', 'L', 'S', 'M']  B: ['S', 'M', 'L', 'M', 'L']
+   P(same class multiset | 2S,4M,4L random) = 0.286
+   P(class pattern invariant under a pole-swapping 2-fold rotation) = 0.0476
+   best proper-rotation L1 = 4.5 mm; P(random <=) = 0.0466
+   antipodal (opposite-face) L1 = 12.5 mm
+
+(c) Jublains ringed opposite pairs: sum|d|=12.5 (diffs [0.5, 0.5, 1.0, 4.0, 6.5]), P(random matching <=)=0.073 of 945, mean 24.5, min 2.5
+(c) Tongeren (pair4=26.3): sum|d|=10.1, P(random matching <=)=0.0005 of 10395, mean 40.2, min 7.9
+(c) Tongeren (pair4=26.0): sum|d|=9.8, P(random matching <=)=0.0005 of 10395, mean 39.9, min 8.2
+   Tongeren diffs: [2.4, 0.2, 1.8, 3.3, 2.2, 0.2]  ratios: [1.226, 1.014, 1.071, 1.143, 1.141, 1.01]
+Jublains10: G2=0.696  unif p=0.0605  gr0.5 p=0.0000  gr1.0 p=0.0019
+Tongeren12: G2=0.305  unif p=0.9894  gr0.5 p=0.3887  gr1.0 p=0.9027
+Romford9: G2=0.558  unif p=0.4610  gr0.5 p=0.0032  gr1.0 p=0.1409

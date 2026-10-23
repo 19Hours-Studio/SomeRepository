@@ -1,0 +1,10 @@
+--- threshold 5%
+Jublains (10 ringed + 2 poles, pole = mean axis): n=12 confusable=9 levels<=6 close pairs=10
+Jublains (10 ringed only): n=10 confusable=7 levels<=5 close pairs=9
+Tongeren (12): n=12 confusable=7 levels<=9 close pairs=4
+Romford (9 of 12, mean of two axes): n=9 confusable=5 levels<=6 close pairs=4
+--- threshold 10%
+Jublains (10 ringed + 2 poles, pole = mean axis): n=12 confusable=12 levels<=4 close pairs=19
+Jublains (10 ringed only): n=10 confusable=10 levels<=3 close pairs=13
+Tongeren (12): n=12 confusable=9 levels<=7 close pairs=8
+Romford (9 of 12, mean of two axes): n=9 confusable=7 levels<=5 close pairs=5

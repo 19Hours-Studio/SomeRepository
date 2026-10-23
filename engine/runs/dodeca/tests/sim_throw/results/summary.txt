@@ -1,0 +1,76 @@
+== cube_wood_toss_1200_0.0005.json  n=1200
+   faces up: [200, 201, 211, 186, 196, 206]  chi2=1.8 p=0.869  (expected 200 each)
+   came to rest: 0.164; time to rest median 8.00 s; bounces median 37; travel median 38.6 cm (p90 75.5)
+   top-face tilt at rest: median 0.00 deg, p95 0.01, share > 3 deg 0.000
+   knob contacts per throw 12419.5; per knob max/min = 1.09 (CV 0.029); impulse max/min = 1.08 (CV 0.028)
+== cube_cloth_toss_1200_0.0005.json  n=1200
+   faces up: [206, 201, 194, 185, 213, 201]  chi2=2.3 p=0.800  (expected 200 each)
+   came to rest: 1.000; time to rest median 0.62 s; bounces median 2; travel median 19.5 cm (p90 32.0)
+   top-face tilt at rest: median 0.00 deg, p95 0.00, share > 3 deg 0.000
+   knob contacts per throw 10.8; per knob max/min = 1.18 (CV 0.057); impulse max/min = 1.07 (CV 0.023)
+== d12_wood_toss_1200_0.0005.json  n=1200
+   faces up: [106, 96, 105, 81, 110, 97, 95, 98, 93, 111, 101, 107]  chi2=8.0 p=0.717  (expected 100 each)
+   pole faces 0+9 up: 217 = 0.181 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.39 s; bounces median 161; travel median 47.3 cm (p90 98.5)
+   top-face tilt at rest: median 0.00 deg, p95 0.00, share > 3 deg 0.000
+   knob contacts per throw 866.0; per knob max/min = 1.27 (CV 0.055); impulse max/min = 1.45 (CV 0.122)
+== saalburg_board_toss_1200_0.0005.json  n=1200
+   faces up: [74, 89, 120, 185, 71, 65, 58, 148, 145, 61, 101, 83]  chi2=183.9 p=0.000  (expected 100 each)
+   pole faces 0+9 up: 135 = 0.113 (fair 2/12 = 0.167)
+   came to rest: 0.890; time to rest median 2.04 s; bounces median 404; travel median 68.4 cm (p90 146.2)
+   top-face tilt at rest: median 1.41 deg, p95 3.41, share > 3 deg 0.059
+   knob contacts per throw 1979.1; per knob max/min = 28.94 (CV 1.358); impulse max/min = 6.10 (CV 0.674)
+== saalburg_cloth_cup_1200_0.0005.json  n=1200
+   faces up: [95, 65, 121, 176, 74, 68, 45, 159, 166, 37, 116, 78]  chi2=247.4 p=0.000  (expected 100 each)
+   pole faces 0+9 up: 132 = 0.110 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.63 s; bounces median 29; travel median 39.8 cm (p90 74.7)
+   top-face tilt at rest: median 1.60 deg, p95 3.41, share > 3 deg 0.062
+   knob contacts per throw 56.8; per knob max/min = 2.00 (CV 0.221); impulse max/min = 2.79 (CV 0.284)
+== saalburg_cloth_toss_2400_0.0005.json  n=2400
+   faces up: [164, 174, 238, 382, 140, 120, 109, 306, 281, 118, 230, 138]  chi2=420.4 p=0.000  (expected 200 each)
+   pole faces 0+9 up: 282 = 0.117 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.54 s; bounces median 24; travel median 29.5 cm (p90 54.0)
+   top-face tilt at rest: median 1.60 deg, p95 3.41, share > 3 deg 0.058
+   knob contacts per throw 49.0; per knob max/min = 2.14 (CV 0.232); impulse max/min = 3.09 (CV 0.279)
+== saalburg_earth_toss_2400_0.0005.json  n=2400
+   faces up: [158, 151, 240, 342, 141, 111, 109, 313, 303, 105, 268, 159]  chi2=421.6 p=0.000  (expected 200 each)
+   pole faces 0+9 up: 263 = 0.110 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.72 s; bounces median 60; travel median 31.2 cm (p90 57.1)
+   top-face tilt at rest: median 1.62 deg, p95 3.41, share > 3 deg 0.059
+   knob contacts per throw 90.6; per knob max/min = 2.33 (CV 0.250); impulse max/min = 2.93 (CV 0.286)
+== saalburg_wood_toss_1200_0.00025.json  n=1200
+   faces up: [75, 67, 111, 188, 67, 66, 53, 190, 134, 51, 120, 78]  chi2=265.7 p=0.000  (expected 100 each)
+   pole faces 0+9 up: 126 = 0.105 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.84 s; bounces median 336; travel median 48.9 cm (p90 96.4)
+   top-face tilt at rest: median 1.63 deg, p95 3.40, share > 3 deg 0.056
+   knob contacts per throw 900.9; per knob max/min = 4.37 (CV 0.423); impulse max/min = 2.51 (CV 0.251)
+== saalburg_wood_toss_2400_0.0005.json  n=2400
+   faces up: [174, 148, 237, 348, 157, 121, 114, 279, 289, 113, 257, 163]  chi2=342.4 p=0.000  (expected 200 each)
+   pole faces 0+9 up: 287 = 0.120 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.83 s; bounces median 366; travel median 47.6 cm (p90 98.0)
+   top-face tilt at rest: median 1.63 deg, p95 3.40, share > 3 deg 0.065
+   knob contacts per throw 865.4; per knob max/min = 4.08 (CV 0.414); impulse max/min = 2.40 (CV 0.232)
+== hunt_cloth_drop_1200_0.0005.json  n=1200
+   faces up: [87, 121, 75, 82, 114, 96, 114, 76, 90, 112, 100, 133]  chi2=38.8 p=0.000  (expected 100 each)
+   pole faces 0+9 up: 199 = 0.166 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.24 s; bounces median 10; travel median 4.1 cm (p90 8.6)
+   top-face tilt at rest: median 1.95 deg, p95 4.23, share > 3 deg 0.212
+   knob contacts per throw 50.4; per knob max/min = 8.78 (CV 0.959); impulse max/min = 2.63 (CV 0.218)
+== hunt_cloth_toss_2400_0.0005.json  n=2400
+   faces up: [143, 208, 166, 160, 207, 194, 245, 173, 225, 199, 189, 291]  chi2=89.7 p=0.000  (expected 200 each)
+   pole faces 0+9 up: 342 = 0.142 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.65 s; bounces median 28; travel median 32.2 cm (p90 58.0)
+   top-face tilt at rest: median 1.95 deg, p95 4.23, share > 3 deg 0.208
+   knob contacts per throw 67.3; per knob max/min = 5.10 (CV 0.630); impulse max/min = 2.32 (CV 0.185)
+== hunt_earth_toss_2400_0.0005.json  n=2400
+   faces up: [156, 200, 167, 146, 239, 206, 255, 163, 161, 206, 209, 292]  chi2=110.0 p=0.000  (expected 200 each)
+   pole faces 0+9 up: 362 = 0.151 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.81 s; bounces median 67; travel median 33.1 cm (p90 60.9)
+   top-face tilt at rest: median 1.90 deg, p95 4.22, share > 3 deg 0.205
+   knob contacts per throw 112.5; per knob max/min = 4.62 (CV 0.485); impulse max/min = 2.58 (CV 0.199)
+== hunt_wood_toss_2400_0.0005.json  n=2400
+   faces up: [159, 250, 194, 140, 225, 188, 252, 156, 188, 196, 195, 257]  chi2=83.3 p=0.000  (expected 200 each)
+   pole faces 0+9 up: 355 = 0.148 (fair 2/12 = 0.167)
+   came to rest: 1.000; time to rest median 1.88 s; bounces median 385; travel median 49.3 cm (p90 100.7)
+   top-face tilt at rest: median 1.90 deg, p95 4.22, share > 3 deg 0.211
+   knob contacts per throw 898.8; per knob max/min = 6.26 (CV 0.317); impulse max/min = 2.25 (CV 0.178)
