@@ -28,6 +28,14 @@ Why each step exists: `engine/README.md` and `research/stage1-creativity/03-deep
   arithmetic, measurement and simulation yourself with scripts. Give each agent a narrow task and only the excerpts
   it needs, never whole papers. 8+ parallel agents used ~90% of the user's limit in ~20 minutes without results.
 
+## v4: let the engine call the model (preferred)
+- `python3 engine/ce.py plan R --pipeline explain --mode lite` (token estimate), then
+  `python3 engine/ce.py run R --pipeline explain --mode lite --max-tokens 900000` runs the whole explanation pipeline
+  in one pass via headless `claude -p` (engine/runner.py), resumable, logging tokens to runs/R/usage.jsonl
+  (`ce.py usage R`). Single steps: `ce.py exec R --prompt <file> --label L --tools none|research`.
+- Tool-free steps (generators, evolution) cost ~13k tokens this way vs ~90k as a subagent. Use subagents only when
+  the headless CLI is unavailable.
+
 ## Launching subagents
 Generator / judge prompt files are produced by `ce.py`. Launch each with the Agent tool:
 > Your task is in the file `<prompt path>`. Read it with the Read tool - that single Read is the only tool call you may make (no other tools, no sessions, no files written). Then follow it exactly and reply with text only.

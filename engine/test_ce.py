@@ -274,6 +274,22 @@ def main():
             dq = os.path.join(tmp, "rq"); ce("repairtask", R8, "--ids", "known#1", "--dir", dq, "--tpl", "repair_explain", "--audits", da, "--notes", "one piece may be a dud")
             t = open(os.path.join(dq, "TASK.md")).read()
             assert "BLIND REVIEW:\n- MAJOR: no soot (museum)" in t and "one piece may be a dud" in t and "unequal size" in t and "{" not in t
+            # v4: one-pass pipeline with a fake model (runner.call reads CE_FAKE_LLM), token log and plan
+            fake = os.path.join(tmp, "fake.txt")
+            blocks = "".join(f"IDEA {k}: x\nDEFECT | MAJOR | weak {k} | src\nFIT | {k} of 5 | y\n" for k in (1, 2, 3))
+            ideas = "".join(f"IDEA {k}\nNAME: n{k}\nMECHANISM: m{k} works.\nVALUE: v{k} explains.\n\n" for k in (1, 2, 3))
+            open(fake, "w").write("=== EVIDENCE ===\nFACT 1: holes | HARD | s\n=== ATTEMPTS ===\nATTEMPT 1: a | b | weak | WHY IT DID NOT SETTLE THE QUESTION: c | s\n"
+                                  "=== REVIEW ===\n" + blocks + "=== IDEAS ===\n" + ideas)
+            R9 = "_selftest40"; rd9 = os.path.join(HERE, "runs", R9)
+            ce("init", R9, "--question", "What was it?", "--format", "explain", "--force")
+            assert "ESTIMATE explain/lite" in ce("plan", R9)
+            env = dict(os.environ, CE_FAKE_LLM=fake)
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9, "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
+            assert "FINAL (blind review):" in out.stdout, out.stdout[-800:] + out.stderr[-800:]
+            assert sum(1 for _ in open(os.path.join(rd9, "usage.jsonl"))) == 8 and "TOTAL 8 steps" in ce("usage", R9)
+            out2 = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9], capture_output=True, text=True, env=env)
+            assert out2.stdout.count("skip ") == 8, out2.stdout[-500:]  # resumable: every step already done
+            shutil.rmtree(rd9, ignore_errors=True)
         finally:
             shutil.rmtree(rd8, ignore_errors=True)
         print("OK: all engine commands passed")

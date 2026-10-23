@@ -731,6 +731,126 @@ def cmd_resurrect(a):
     json.dump([iid for iid in ids for _ in range(a.m)], open(path(a.run, "prompts", a.label + ".parents.json"), "w"))
     print(p)
 
+def parse_review(d):
+    """{id: {FATAL, MAJOR, MINOR, fit}} from a redteamtask dir (ids.json + REVIEW.md)."""
+    f = os.path.join(d, "REVIEW.md")
+    if not os.path.exists(f): return {}
+    ids = json.load(open(os.path.join(d, "ids.json"))); out = {}
+    for k, body in zip(*[iter(re.split(r"^IDEA (\d+)\s*:", open(f).read(), flags=re.M)[1:])] * 2):
+        if not 1 <= int(k) <= len(ids): continue
+        sev = re.findall(r"^DEFECT \| (FATAL|MAJOR|MINOR)", body, flags=re.M)
+        fit = re.search(r"^FIT \| (\d+)\s*of\s*(\d+)", body, flags=re.M)
+        out[ids[int(k) - 1]] = {**{s: sev.count(s) for s in ("FATAL", "MAJOR", "MINOR")},
+                                "fit": int(fit.group(1)) / max(1, int(fit.group(2))) if fit else 0.0}
+    return out
+
+def review_rank(rows):
+    """Ids best first: fewer FATAL, then fewer MAJOR, then larger share of hard facts explained."""
+    return sorted(rows, key=lambda i: (rows[i]["FATAL"], rows[i]["MAJOR"], -rows[i]["fit"]))
+
+def cmd_exec(a):
+    """v4: run one step with a model (runner.call: headless `claude -p`), save the output, log tokens, optionally ingest."""
+    import runner
+    prompt = open(a.prompt).read(); out = path(a.run, "outputs", a.label + ".md")
+    text, u = runner.call(prompt, model=a.model, tools=a.tools, cwd=a.cwd, effort=a.effort, budget_usd=a.budget_usd)
+    open(out, "w").write(text); runner.log(rdir(a.run), a.label, u)
+    print(f"{a.label}: {u['tokens']} tokens, ${u['cost_usd']:.3f}, {u['seconds']} s -> {out}")
+    if a.ingest_arm:
+        cmd_ingest(argparse.Namespace(run=a.run, label=a.label, arm=a.ingest_arm, gen=a.gen, parents=a.parents, transcript=None, file=out))
+
+def cmd_usage(a):
+    """v4: tokens and cost per step and in total (from <run>/usage.jsonl)."""
+    import runner
+    rows, tok, cost = runner.summary(rdir(a.run))
+    for r in rows: print(f"{r['step']:24s} {r['model']:7s} tools={r['tools'] or '-':28s} {r['tokens']:>9,} tok  ${r.get('cost_usd', 0):.3f}")
+    print(f"TOTAL {len(rows)} steps: {tok:,} tokens, ${cost:.2f}")
+
+# v4 one-pass pipelines. Estimates (tokens per step) are replaced by the run's own averages once usage.jsonl has them.
+EST = {"research": 150_000, "gen": 10_000, "review": 150_000, "repair": 200_000}
+PIPE = {"explain": {"lite": ["research:evidence", "research:hypotheses", "gen:g1_crux", "gen:g1_neg", "gen:g1_mech",
+                             "review:audit_a", "repair:repair", "review:audit_final"],
+                    "standard": ["research:evidence", "research:hypotheses", "gen:g1_crux", "gen:g1_neg", "gen:g1_mech",
+                                 "review:audit_a", "review:audit_b", "gen:g2_evo", "review:audit_c", "repair:repair",
+                                 "review:audit_final"]}}
+
+def plan_rows(a):
+    import runner
+    rows, _, _ = runner.summary(rdir(a.run)); learned = defaultdict(list)
+    for r in rows: learned[r["step"].split(":")[0]].append(r["tokens"])
+    est = {k: (sum(v) // len(v) if (v := learned.get(k)) else EST[k]) for k in EST}
+    return [(s, est[s.split(":")[0]]) for s in PIPE[a.pipeline][a.mode]]
+
+def cmd_plan(a):
+    """v4: the steps of a one-pass pipeline with their estimated tokens, before spending anything."""
+    rows = plan_rows(a); tot = sum(t for _, t in rows)
+    for s, t in rows: print(f"  {s:24s} ~{t:>9,} tokens")
+    print(f"ESTIMATE {a.pipeline}/{a.mode}: ~{tot:,} tokens in {len(rows)} steps "
+          f"({sum(1 for s, _ in rows if not s.startswith('gen'))} need tools)")
+
+def cmd_run(a):
+    """v4: the explanation pipeline in one pass, with a token budget: research -> generate -> blind review ->
+    (standard: evolve under the review -> review) -> repair with search -> final blind review -> winner.
+    Resumable: a step whose output exists is skipped. Stops before a step that would exceed --max-tokens."""
+    import runner
+    R = a.run; D = rdir(R); cfg = load(R, "config.json", {})
+    if a.pipeline != "explain" or cfg.get("format") != "explain": sys.exit("v4 run supports --pipeline explain on runs initialised with --format explain")
+    budget = a.max_tokens
+    def spent(): return runner.summary(D)[1]
+    def step(name, kind, prompt, model, tools, cwd=None):
+        out = path(R, "outputs", name + ".md")
+        if os.path.exists(out) and not a.force: print(f"  skip {name} (done)"); return open(out).read()
+        est = dict(plan_rows(a)).get(f"{kind}:{name}", EST[kind])
+        if budget and spent() + est > budget: sys.exit(f"STOP before {name}: {spent():,} spent + ~{est:,} > budget {budget:,} (rerun with a larger --max-tokens to resume)")
+        text, u = runner.call(prompt, model=model, tools=tools, cwd=cwd)
+        open(out, "w").write(text); runner.log(D, f"{kind}:{name}", u)
+        print(f"  {name}: {u['tokens']:,} tokens, {u['seconds']} s"); return text
+    def task(dirname): return open(os.path.join(D, dirname, "TASK.md")).read()
+    def review(name, ids):
+        dd = os.path.join(D, name)
+        cmd_redteamtask(argparse.Namespace(run=R, ids=",".join(ids), dir=dd, blind=True, tpl="redteam_explain"))
+        t = step(name, "review", task(name), a.model, "research", cwd=dd)
+        open(os.path.join(dd, "REVIEW.md"), "w").write(t[t.find("=== REVIEW ==="):] if "=== REVIEW ===" in t else t)
+        return parse_review(dd)
+    # 1. raw material
+    for name, tp in (("evidence", "evidence_task"), ("hypotheses", "hypotheses_task")):
+        dd = os.path.join(D, name); cmd_researchtask(argparse.Namespace(run=R, tpl=tp, dir=dd))
+        step(name, "research", task(name), a.lit_model, "research", cwd=dd)
+    cmd_material(argparse.Namespace(run=R, kind="evidence", transcript=None, file=path(R, "outputs", "evidence.md")))
+    cmd_material(argparse.Namespace(run=R, kind="attempts", transcript=None, file=path(R, "outputs", "hypotheses.md")))
+    cmd_ingest(argparse.Namespace(run=R, label="hypotheses", arm="K", gen=0, parents=None, transcript=None, file=path(R, "outputs", "hypotheses.md")))
+    # 2. free generation (no tools: cheap)
+    for t in ("crux", "neg", "mech"):
+        p = cmd_prompt_path(R, "explain_" + t, "g1_" + t)
+        step("g1_" + t, "gen", open(p).read(), a.model, "none")
+        cmd_ingest(argparse.Namespace(run=R, label="g1_" + t, arm="E", gen=1, parents=None, transcript=None, file=path(R, "outputs", f"g1_{t}.md")))
+    allids = [i["id"] for i in load(R, "ideas.json", []) if i["arm"] in ("E", "K") and not i.get("fragment")]
+    secrets.SystemRandom().shuffle(allids)
+    rows = review("audit_a", allids) if a.mode == "lite" else {**review("audit_a", allids[0::2]), **review("audit_b", allids[1::2])}
+    top = review_rank(rows)[:4]; dirs = [os.path.join(D, x) for x in ("audit_a", "audit_b") if os.path.exists(os.path.join(D, x))]
+    if a.mode == "standard":  # 3. evolution under the blind review, children re-reviewed with their parents
+        cmd_evolve(argparse.Namespace(run=R, label="g2_evo", audit=",".join(dirs), ids=",".join(top), m=2, max_defects=6, tpl="evolve_explain"))
+        step("g2_evo", "gen", open(path(R, "prompts", "g2_evo.txt")).read(), a.model, "none")
+        cmd_ingest(argparse.Namespace(run=R, label="g2_evo", arm="E2", gen=2, parents=path(R, "prompts", "g2_evo.parents.json"), transcript=None, file=path(R, "outputs", "g2_evo.md")))
+        kids = [i["id"] for i in load(R, "ideas.json", []) if i["label"] == "g2_evo"]
+        rows = review("audit_c", kids + top); top = review_rank(rows)[:4]; dirs = [os.path.join(D, "audit_c")] + dirs
+    # 4. repair with search, 5. final blind review of the repaired explanations against the leaders
+    cmd_repairtask(argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_explain",
+                                      audits=",".join(dirs), notes=a.notes))
+    step("repair", "repair", task("repair"), a.model, "research", cwd=os.path.join(D, "repair"))
+    cmd_ingest(argparse.Namespace(run=R, label="repair", arm="F", gen=3, parents=None, transcript=None, file=path(R, "outputs", "repair.md")))
+    final = [i["id"] for i in load(R, "ideas.json", []) if i["label"] == "repair"] + top[:2]
+    rows = review("audit_final", final); win = review_rank(rows)
+    ideas = {i["id"]: i for i in load(R, "ideas.json", [])}
+    print("\nFINAL (blind review):")
+    for k, i in enumerate(win, 1):
+        r = rows[i]; print(f"  {k}. {i:14s} F{r['FATAL']}/M{r['MAJOR']}/m{r['MINOR']} fit {r['fit']:.2f}  {ideas[i]['name']}")
+    _, tok, cost = runner.summary(D); print(f"spent {tok:,} tokens, ${cost:.2f}")
+
+def cmd_prompt_path(run, tech, label):
+    """Build a technique prompt via cmd_prompt and return its path."""
+    cmd_prompt(argparse.Namespace(run=run, tech=tech, label=label, pairs=3, pair_from=0, n=None, crux=None))
+    return path(run, "prompts", label + ".txt")
+
 def cmd_report(a):
     arms = defaultdict(list)
     for i in load(a.run, "ideas.json", []):
@@ -786,6 +906,18 @@ def main():
     x.add_argument("--dir", required=True); x.add_argument("--audits", required=True, help="redteamtask dirs holding their reviews")
     x = sp.add_parser("resurrect"); x.add_argument("run"); x.add_argument("label"); x.add_argument("--ids", required=True)
     x.add_argument("--m", type=int, default=3, help="children per dead parent")
+    x = sp.add_parser("exec"); x.add_argument("run"); x.add_argument("--prompt", required=True); x.add_argument("--label", required=True)
+    x.add_argument("--model", default="opus"); x.add_argument("--tools", default="none", help="none | research | write | comma list")
+    x.add_argument("--cwd"); x.add_argument("--effort"); x.add_argument("--budget-usd", type=float)
+    x.add_argument("--ingest-arm"); x.add_argument("--gen", type=int, default=0); x.add_argument("--parents")
+    x = sp.add_parser("usage"); x.add_argument("run")
+    for nm in ("plan", "run"):
+        x = sp.add_parser(nm); x.add_argument("run"); x.add_argument("--pipeline", default="explain", choices=list(PIPE))
+        x.add_argument("--mode", default="lite", choices=["lite", "standard"])
+        if nm == "run":
+            x.add_argument("--max-tokens", type=int, help="stop before a step that would exceed this many tokens in total")
+            x.add_argument("--model", default="opus"); x.add_argument("--lit-model", default="sonnet")
+            x.add_argument("--notes", default=None); x.add_argument("--force", action="store_true")
     x = sp.add_parser("redteamtask"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--dir", required=True)
     x.add_argument("--blind", action="store_true", help="omit judges' scores (blind audit of mixed versions)")
     x.add_argument("--tpl", default="redteam_task", choices=["redteam_task", "redteam_explain"],
