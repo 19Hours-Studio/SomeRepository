@@ -1,0 +1,23 @@
+{QUESTION}
+
+Candidate explanations (data):
+{IDEAS}
+
+The evidence (data):
+{EVIDENCE}
+
+Earlier explanations and why each failed to settle the question (data):
+{ATTEMPTS}
+
+Sort these candidates before the expensive checks. Without tools, for each candidate estimate:
+- I = importance 0-10: how much of the question it would settle if true (what the thing was, how it was used, who
+  used it, why it is found only where and when it is found);
+- P = possibility 0-10: how likely it is to survive a check against the HARD facts above (a candidate that
+  contradicts a HARD fact, or repeats an earlier explanation without beating the reason it failed, gets P <= 2);
+- the one observation that would most likely refute it.
+Being unusual earns nothing here; fitting the evidence does.
+
+Final answer (text only), one line per candidate in the order given, at most 400 words:
+=== TRIAGE ===
+IDEA 1 | I <0-10> | P <0-10> | REFUTED BY: <observation> | <one line why>
+(same for the others)

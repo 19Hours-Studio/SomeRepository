@@ -1,0 +1,85 @@
+[
+ {
+  "id": "known#1",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Platonic cosmic receptacle",
+  "mech": "The dodecahedron, the Platonic solid tied to the cosmos, was made in Gaul and Britain as a material \"receptacle\" in Pythagorean-Platonic spirit, a philosophy Druids were said to admire. The twelve pentagonal faces embody the universe; holes and knobs are decorative or ritual variation, hence no standard sizes. A rod-shaped bone object beside the Gellep grave specimen suggests staff mounting, like a scepter of spiritual authority. Absence from Italy follows from its Celtic provincial origin.",
+  "value": "It explains the geography, lack of wear, lack of standardisation and silence of texts. Proponents propose better-contexted finds and evidence of mounting."
+ },
+ {
+  "id": "known#2",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Gallo-Roman divination and magic",
+  "mech": "A private, non-official object of sorcery or fortune-telling, absent from literature and art because unofficial. Twelve faces echo zodiac or twelve-oracle systems like the Sortes Sangallenses and the zodiac-named Geneva die. In the Spindle-of-Necessity version, thread was wound across knobs and through holes to cast or read fate. Breakage and repair of finds such as Kortessem may mark ritual destruction.",
+  "value": "It explains absence from texts, lack of wear and the Celtic-area distribution. Its test is thread or fibre traces on knobs and holes, and deposition patterns showing deliberate burial or breakage."
+ },
+ {
+  "id": "known#3",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Farmer's sowing-date instrument",
+  "mech": "Aimed at the sun and steadied on its knobs, opposite holes of different diameters act as apertures whose sunlight geometry marks the equinoxes and the autumn window for sowing winter wheat. Different hole pairs correspond to different dates or latitudes, which is why dimensions vary. It needed no markings, being a calendar-by-light.",
+  "value": "It explains twelve differently sized holes, northern farming provinces and low wear (used a few days a year). Wagemans tested a bronze copy over several years at different latitudes."
+ },
+ {
+  "id": "known#4",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Wax-forming tool",
+  "mech": "Warm wax pressed into the hollow body through the holes forms discrete, repeatable wax elements, such as bullae securing cords or marking documents. Corner knobs act as spacers during compression and aid removal; aperture size controls thickness and the raised central boss. The tool turns a flexible craft action into a standard one.",
+  "value": "It explains knobs, variable holes and the single wax-bearing specimen. Lamb's plastic trials produced repeatable forms; the proposed test is bronze replicas, wax-residue analysis and matching ancient sealings."
+ },
+ {
+  "id": "known#5",
+  "label": "known",
+  "arm": "K",
+  "gen": 0,
+  "name": "Coincidence rangefinder",
+  "mech": "Looking through a face's small hole at a standard-sized object (a man, a standard, a pole) until it exactly fills the large opposite hole gives distance by proportion. The faces form pairs of differing diameters, giving a range of calibrated distances; knobs let it rest flat or be gripped. Finds at forts link it to military engineering or surveying, like the dioptra.",
+  "value": "It explains the opposite-hole size contrast and finds in military camps. Sparavigna's test is measuring hole-pair ratios against plausible target sizes and ranges on real objects."
+ },
+ {
+  "id": "OLD:g1_mech#3",
+  "label": "OLD:g1_mech",
+  "arm": "OLD",
+  "gen": 1,
+  "name": "Fumigation cage for aromatics",
+  "mech": "Resin or herbs on a small ember went in through the largest hole; then it sat on a smaller-holed face, ember over that hole. Knobs lift it to admit air while upper holes vent smoke, and turning it to another face changes intake and smoulder rate, so holes needed only to differ within a piece; rings are ornament. The thin shell heats fast, knobs give cooler grips, use causes no wear, and the wax specimen is residue. Domestic, bath, theatre and funerary fumigation fits the mixed contexts, a regional form of a common rite, unnamed in texts.",
+  "value": "It explains knobs as stand-offs, the perforated hollow and the wax specimen together, which symbolic and instrument readings do not. Clean interiors on 10+ pieces, with no soot, charred resin or heat tint and no resin markers by GC-MS, refute it."
+ },
+ {
+  "id": "OLD:g2_evo#3",
+  "label": "OLD:g2_evo",
+  "arm": "OLD",
+  "gen": 2,
+  "name": "Tallow-candle draught shade",
+  "mech": "A home-dipped tallow candle passed up through whichever hole fitted its thickness, its foot on the table between the knobs; the flame burned draught-proof inside, the opposite hole venting smoke. Graded holes suit irregular candles, so no shared scheme was needed; the unringed core openings admitted a light, and rings mark designed holes. North of the olive line Baetican lamp oil dwindled after c. 200, making candles the light until c. 400.",
+  "value": "It derives hole range, knobs, scarce wax (tallow was normal) and map from lighting economics. Rims and interiors of 10+ pieces lacking both animal-fat lipids (GC-MS) and soot refute it.",
+  "parent": "g1_mech#3"
+ },
+ {
+  "id": "OLD:g2_evo#7",
+  "label": "OLD:g2_evo",
+  "arm": "OLD",
+  "gen": 2,
+  "name": "Native priest's radiate sceptre",
+  "mech": "A short rod (as at Gellep) passed through the unringed core openings, so the ten ringed holes formed two radiating five-fold crowns, each holding a sacred-plant sprig; stems differed, hence varied holes and no shared scheme. Never grounded, it stayed unworn; knobs stopped it rolling on altars. Native priesthoods (Gaulish gutuatri; Romano-British priestly crowns and sceptres, known from finds, not images) existed only in the Celtic north-west and ended with the Theodosian bans.",
+  "value": "It makes the unringed axis, the five-fold form and graded holes necessary and derives art's silence. Ringed rims on 10+ pieces without stem scratches or plant residue refute it.",
+  "parent": "g1_mech#1"
+ },
+ {
+  "id": "OLD:h2r4#1",
+  "label": "OLD:h2r4",
+  "arm": "OLD",
+  "gen": 4,
+  "name": "Bronze head on a rod",
+  "mech": "The hollow bronze head was slid onto a wooden or bone rod through the two largest holes, the unringed opposite pair, which always lie on one axis; the thickest rod passes there (up to 22.6 mm on the Kleiner Feldberg piece) and a slightly tapering rod seats in both holes at once. On a vertical rod the viewer saw two crowns of five ringed faces and the 20 knobs; the rings and the differing sizes of the ten other holes were decoration, which is why their sizes form a continuum with no shared scheme. It was carried by men and women, mostly in civil settlements, rarely handled, and put into rich graves and hoards; at Krefeld-Gellep its position in a mid-4th-century woman's grave suggested a bone staff or handle. The twelve faces may stand for Plato's figure of the cosmos (Timaeus 55c), an argument from texts, not objects; why it occurs only in the north-west in the 2nd-4th centuries is not explained.",
+  "value": "It explains the axial unringed pair of the largest holes, the rubbed-looking rims of that pair (Duval 1981 on the Vienne piece; the roughest rims on the Kleiner Feldberg scan, but the smoothest on the Hunt scan), the unworn knobs and the continuum of hole sizes, which a lot with a hole code does not. Decisive test: stereo microscope on the unringed rims of the Kleiner Feldberg and Hunt pieces; wear striations along the axis with clean ringed rims support it, rims showing only casting or file marks refute it."
+ }
+]

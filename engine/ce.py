@@ -793,13 +793,16 @@ def run_kind(cfg): return "explain" if cfg.get("format") == "explain" else "inve
 def lessons_block(cfg, max_killers=8):
     """v5 learning from experience: curated lessons (memory/lessons.md) and defects that sank answers in earlier runs
     (memory/killers.jsonl). A lesson is used when all its tags are in {all, this kind, this question's tag} and none is
-    excluded: a fair benchmark excludes the question's own tag, so earlier answers to it cannot leak in."""
+    excluded, by tag or by where it was learned ("(from: tag, ...)" at the end of the line): a fair benchmark excludes
+    the question's own tag, so neither earlier answers to it nor lessons learned on it leak in."""
     kind, tag, excl = run_kind(cfg), cfg.get("tag"), set(cfg.get("lessons_exclude", []))
     ok = {"all", kind} | ({tag} if tag else set()); out = []
     f = os.path.join(MEM, "lessons.md")
     for l in (open(f) if os.path.exists(f) else []):
         m = LTAG.match(l.strip()); tags = set(re.findall(r"\[([\w-]+)\]", m.group(1))) if m else None
-        if tags and tags <= ok and not tags & excl: out.append("- " + m.group(2))
+        if not tags: continue
+        text, frm = re.match(r"^(.*?)\s*(?:\(from:\s*([\w, -]+)\))?$", m.group(2)).groups()  # where the lesson was learned
+        if tags <= ok and not (tags | set(re.split(r"[,\s]+", frm or "")) - {""}) & excl: out.append("- " + text)
     f = os.path.join(MEM, "killers.jsonl"); kill = []
     for r in reversed([json.loads(l) for l in open(f)] if os.path.exists(f) else []):
         if r.get("kind") == kind and r.get("tag") not in excl and r["defect"] not in kill: kill.append(r["defect"])
@@ -973,9 +976,10 @@ def cmd_bench(a):
 EST = {"research": 150_000, "gen": 10_000, "review": 150_000, "repair": 200_000, "code": 0}
 EST_USD = {"research": 0.6, "gen": 0.2, "review": 2.5, "repair": 2.0, "code": 0.0}  # v5: tool steps are mostly cache re-reads (~10% price)
 PIPE = {"explain": {"lite": ["research:evidence", "research:hypotheses", "gen:reframe", "gen:g1_crux", "gen:g1_neg", "gen:g1_mech",
-                             "gen:g1_reframe", "review:audit_a", "review:reality", "repair:repair", "review:audit_final", "gen:calibrate", "code:learn"],
+                             "gen:g1_reframe", "gen:triage", "review:audit_a", "review:reality", "repair:repair", "review:audit_final", "gen:calibrate",
+                             "code:learn"],
                     "standard": ["research:evidence", "research:hypotheses", "gen:reframe", "gen:g1_crux", "gen:g1_neg", "gen:g1_mech",
-                                 "gen:g1_reframe", "review:audit_a", "review:audit_b", "gen:g2_evo", "review:audit_c", "review:reality",
+                                 "gen:g1_reframe", "gen:triage", "review:audit_a", "review:audit_b", "gen:g2_evo", "review:audit_c", "review:reality",
                                  "repair:repair", "review:audit_final", "gen:calibrate", "code:learn"]},
         "invent": {"lite": ["research:ledger", "research:attempts", "code:ceilings", "gen:reframe", "gen:g1_ledger", "gen:g1_neg",
                             "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "repair:repair", "review:audit_final",
@@ -1013,7 +1017,8 @@ def cmd_run(a):
     model reformulates the question before anyone answers, facts found by checks enter the evidence, the run ends with
     stated probabilities (where it is likely wrong) and writes its FATAL defects to engine/memory.
     explain: evidence + earlier explanations -> reformulation -> free generation (one generator on the best reformulation)
-      -> blind review -> (standard: evolution -> review) -> reality check of the leaders (data or validated calculation)
+      -> triage by importance x possibility -> blind review of the best 8 -> (standard: evolution -> review) -> reality check
+      of the leaders (data or validated calculation)
       -> repair with search -> final blind review -> calibration.
     invent: value ledger + earlier attempts -> ceilings in code -> reformulation -> free generation aimed by the ceilings
       (two generators on reformulations) -> triage by importance x possibility -> kill test with the calculation kit
@@ -1077,8 +1082,16 @@ def cmd_run(a):
         techs = {k: TECH[k] for k in ("g1_ledger", "g1_neg", "g1_mech")} | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})))
     ideas = lambda: load(R, "ideas.json", [])
-    if kind == "explain":  # 4e. blind review, (evolution), reality check of the leaders
-        allids = [i["id"] for i in ideas() if i["arm"] in ("E", "K") and not i.get("fragment")]
+    def triage(ids, tp):  # importance x possibility without tools; the expensive check gets the best, at most 3 per generator
+        tids = order("triage", ids, path(R, "prompts", "triage.ids.json")); json.dump(tids, open(path(R, "prompts", "triage.ids.json"), "w"))
+        tri = take_triage(step("triage", "gen", saved("triage", fill(R, tpl(tp), len(tids), {"IDEAS": task_ideas(R, tids, scores=False)})),
+                               a.model, "none"), tids)
+        lab = {i["id"]: i["label"] for i in ideas()}; pick, per = [], Counter()
+        for i in sorted(tids, key=lambda i: -tri.get(i, 0)):
+            if len(pick) < a.triage_k and per[lab[i]] < 3: pick.append(i); per[lab[i]] += 1
+        return pick
+    if kind == "explain":  # 4e. triage, blind review, (evolution), reality check of the leaders
+        allids = triage([i["id"] for i in ideas() if i["arm"] in ("E", "K") and not i.get("fragment")], "triage_explain")
         rows = review("audit_a", allids, "redteam_explain") if a.mode == "lite" else \
             {**review("audit_a", allids[0::2], "redteam_explain"), **review("audit_b", allids[1::2], "redteam_explain")}
         top = review_rank(rows)[:4]; dirs = [os.path.join(D, x) for x in ("audit_a", "audit_b") if os.path.exists(os.path.join(D, x))]
@@ -1096,13 +1109,7 @@ def cmd_run(a):
         cmd_repairtask(argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_explain",
                                           audits=",".join(dirs), notes=notes or None, gate=None))
     else:  # 4i. triage by importance x possibility (no tools), kill test with the kit on the best, repair
-        allids = [i["id"] for i in ideas() if i["arm"] == "E" and not i.get("fragment")]
-        tids = order("triage", allids, path(R, "prompts", "triage.ids.json")); json.dump(tids, open(path(R, "prompts", "triage.ids.json"), "w"))
-        tri = take_triage(step("triage", "gen", saved("triage", fill(R, tpl("triage_task"), len(tids), {"IDEAS": task_ideas(R, tids, scores=False)})),
-                               a.model, "none"), tids)
-        lab = {i["id"]: i["label"] for i in ideas()}; pick, per = [], Counter()
-        for i in sorted(tids, key=lambda i: -tri.get(i, 0)):  # at most 3 per generator: the kill test sees several directions
-            if len(pick) < a.triage_k and per[lab[i]] < 3: pick.append(i); per[lab[i]] += 1
+        pick = triage([i["id"] for i in ideas() if i["arm"] == "E" and not i.get("fragment")], "triage_task")
         gd = os.path.join(D, "gate"); pick = order("gate", pick, os.path.join(gd, "ids.json"))
         cmd_gatetask(argparse.Namespace(run=R, ids=",".join(pick), dir=gd, kit=True))
         t = step("gate", "review", task("gate"), a.model, "research", cwd=gd)
@@ -1253,7 +1260,7 @@ def main():
             x.add_argument("--lessons-exclude", help="v5: memory tags to leave out (fair benchmark: the question's own tag)")
             x.add_argument("--bench", help="v5: imported earlier finalists to add to the final blind review")
             x.add_argument("--target", type=float, default=3.0, help="v5: the gain the ceilings are computed for")
-            x.add_argument("--triage-k", type=int, default=8, help="v5 invent: ideas the kill test gets after triage")
+            x.add_argument("--triage-k", type=int, default=8, help="v5: ideas the kill test (invent) or the first blind review (explain) gets after triage")
     x = sp.add_parser("ceilings"); x.add_argument("run"); x.add_argument("--target", type=float, default=3.0)
     x = sp.add_parser("learn"); x.add_argument("run"); x.add_argument("--audits", required=True); x.add_argument("--ids"); x.add_argument("--tag")
     x = sp.add_parser("calibration"); x.add_argument("--resolve", nargs=3, metavar=("RUN", "ID", "OUTCOME"))

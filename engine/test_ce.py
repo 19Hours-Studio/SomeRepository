@@ -291,7 +291,7 @@ def main():
             env = dict(os.environ, CE_FAKE_LLM=fake)
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9, "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
             assert "FINAL (blind review" in out.stdout, out.stdout[-800:] + out.stderr[-800:]
-            assert sum(1 for _ in open(os.path.join(rd9, "usage.jsonl"))) == 12 and "TOTAL 12 steps" in ce("usage", R9)
+            assert sum(1 for _ in open(os.path.join(rd9, "usage.jsonl"))) == 13 and "TOTAL 13 steps" in ce("usage", R9)
             cfg9 = json.load(open(os.path.join(rd9, "config.json"))); assert cfg9["reframes"] == ["how was it held?", "who made it?"]
             assert "how was it held?" in open(os.path.join(rd9, "prompts", "g1_reframe.txt")).read()
             ev9 = open(os.path.join(rd9, "evidence.md")).read(); assert ev9.count("knobs worn on one face | NEW from") == 1  # new facts enter once
@@ -299,7 +299,7 @@ def main():
             assert "weakest link: wear data" in out.stdout and os.path.exists(os.path.join(tmp, "memory", "predictions.jsonl"))
             npred = sum(1 for _ in open(os.path.join(tmp, "memory", "predictions.jsonl")))
             out2 = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9], capture_output=True, text=True, env=env)
-            assert out2.stdout.count("skip ") == 12, out2.stdout[-500:]  # resumable: every step already done
+            assert out2.stdout.count("skip ") == 13, out2.stdout[-500:]  # resumable: every step already done
             assert sum(1 for _ in open(os.path.join(tmp, "memory", "predictions.jsonl"))) == npred  # resume records nothing twice
             assert "predictions" in ce("calibration")
             shutil.rmtree(rd9, ignore_errors=True)
@@ -347,14 +347,16 @@ def main():
             # memory: lessons filtered by tag, killers from FATAL defects, killers come back as lessons for the same kind
             os.makedirs(os.path.join(tmp, "memory"), exist_ok=True)
             open(os.path.join(tmp, "memory", "lessons.md"), "w").write("- [all] general one\n- [invent] invent one\n- [explain] explain one\n"
-                                                                     "- [invent][coal] coal one\n- [gold] gold one\n")
+                                                                     "- [invent][coal] coal one\n- [gold] gold one\n- [all] learned on coal (from: coal, gold)\n")
             open(os.path.join(rd11, "audit_final", "REVIEW.md"), "w").write("=== REVIEW ===\nIDEA 1: x\nDEFECT | FATAL | ice too thin | 0.8 m\n")
             assert "learned 1 defects" in ce("learn", R11, "--audits", os.path.join(rd11, "audit_final"))
             t = open(ce("prompt", R11, "gen_invent", "mem1").strip()).read()
             assert "general one" in t and "invent one" in t and "explain one" not in t and "coal one" not in t and "gold one" not in t
+            assert "learned on coal" not in t  # learned on the excluded question
             assert "ice too thin" not in t  # own tag excluded
             ce("setcfg", R11, "lessons_exclude", "[]")
             t = open(ce("prompt", R11, "gen_invent", "mem2").strip()).read(); assert "coal one" in t and "sank an answer in an earlier run: ice too thin" in t
+            assert "- learned on coal\n" in t  # provenance is not shown in the prompt
             shutil.rmtree(rd11, ignore_errors=True)
         finally:
             shutil.rmtree(rd8, ignore_errors=True)
