@@ -1,0 +1,130 @@
+Russia holds vast natural resources (oil, gas, metals, diamonds, coal, rare earths) in Siberia, Yakutia and the Arctic, mostly under permafrost and far from roads, railways and ports. Propose a fundamentally new way to reach, extract, process or bring these resources to market that is extremely cheap (several times cheaper than current practice), has never been tried or seriously costed by anyone, can be deployed within a few years, and works with known physics. Not incremental improvements of existing mining, drilling, pipelines or winter-road logistics.
+
+Candidate answers (data):
+IDEA 1
+NAME: Burnable timber rafts drift coal
+MECHANISM: At a riverside pit such as Zyryanka, coal is loaded onto rafts made from local logs. About 2 m³ of logs carries 1 t of coal, assuming ~0.5 t of spare buoyancy per m³. The rafts are released on the spring flood and drift downstream (~100 km/day) to villages, which winch them ashore and burn both the coal and the logs. The closest earlier practice is the one-way Lena flatboats of the 17th–19th centuries (паузки), which were broken up at their destination; they lost out to steamers and diesel barges. Shoaling now caps those barges at under 50% load, while a raft draws only ~0.4 m and needs no fuel or return trip. The deciding quantity is the share of rafts lost or stranded over ~500 km, set against what logs cost at the pit.
+VALUE: Delivers the winter's fuel downstream for almost no transport cost, and the raft itself arrives as extra fuel.
+
+IDEA 2
+NAME: Summer-thaw, foam-banked winter digging
+MECHANISM: Thaw a full year's block in summer with cold-water needles or flooding using river water. In autumn, cover it with foam board or snow-compacted insulation. Over winter the cover lets only about 0.75 m refreeze, so the block can be dug in a covered cut from October to May. The closest attempt is Fairbanks needle thawing (1928-59), which was bound by a year's lead and a 5-6 month digging season; here the lead stays, but the season doubles, halving fleet and camp cost per m³. Deciding quantity: summer thaw rate in m³ per needle-season times the area thawed, which must equal annual excavation.
+VALUE: Spreads capital and labour across 12 months instead of 5 and replaces dozer ripping, for an estimated 1.4-1.7x cut in cost per oz; this is short of the 3x originally asked for.
+
+IDEA 3
+NAME: Roadheader drift on pay streak
+MECHANISM: Leave the 10-20 m of overburden frozen and cut only the 1-2 m pay streak in winter with a modern roadheader. Frozen gravel is self-supporting, and the ore is stockpiled frozen at the surface for summer washing. The closest attempts failed for specific reasons: Klondike drift mining because fire and steam thawing cost 34 cents/yd³, and Soviet trials because their saws were "useless". Mechanical picks avoid thawing, and the stripping ratio of about 8:1 disappears. Deciding quantity: pick consumption and cutting rate per m³ in frozen cobbly gravel, which must keep underground cost per m³ under about 4x the open-cut stripping cost.
+VALUE: Moves about 5x less ground per gram on deep, narrow placers, for an estimated 1.5x cut in cost per oz if the pick-wear test passes; this does not deliver the 3x originally asked for.
+
+IDEA 4
+NAME: Frozen-in bunker-boiler barge
+MECHANISM: A barge carries the full year's coal in summer and stays for the winter in a sheltered backwater (затон) next to the village. Its hold is the coal store, and a boiler module on deck feeds the village heat main through an insulated link to shore. Searches found no frozen-in boiler-barge case. The closest is Akademik Lomonosov, which at 70 MW was far too big for a village and overran its budget 4.1x. This design uses a standard river barge and an off-the-shelf boiler. The deciding quantity is hull survival through about 8 months of ice and the spring breakup flood, which existing backwater wintering of river fleets suggests is manageable.
+VALUE: Removes the winter-road last mile, the shore stockpile, double handling and a separate boilerhouse, which by these numbers roughly halves the cost of heat in the village.
+
+IDEA 5
+NAME: Flood-crest barge launch
+MECHANISM: Coal goes from the pit in winter and is loaded onto barges wintering in a sheltered backwater near it. The barges wait out the ice drift and leave on the spring flood crest. That way they travel fully loaded, not under 50% as on summer shoal water. The closest attempt is the "early delivery" voyages, which hit drifting ice and lost the crest. Here the barges shelter during the drift, and the timing is computed from gauge forecasts. Deciding quantity: the days between the reach clearing of ice and water falling below loaded draft, compared with the transit time.
+VALUE: The cost per tonne of the main barge haul roughly halves.
+
+IDEA 6
+NAME: River-thawed bluff lignite scraping
+MECHANISM: Many Yakutian rivers cut lignite or coal seams in their bluffs. A sun-facing bluff thaws about 1.5 m deep each summer (est.), so a small excavator can scrape the thawed face without drilling or blasting. The scraped coal goes to a stockpile and moves to the village by a winter road of 30 km or less. A 3 m seam gives about 6 t per metre of face, so about 1 km of face per year covers a village of 1,000 people burning about 6,000 t of coal-equivalent. The closest earlier attempts were Corwin Bluff and Qullissat, which stopped on rare ship calls, falling profit and poor coal. Here the buyer is the village boiler, priced against the 23,000 rub baseline, and no ship is involved. The deciding quantity is summer thaw depth multiplied by the length of seam face within 30 km of the village.
+VALUE: Estimated 4,800 rub per coal-equivalent tonne (3,500 kcal lignite, about 4.8x cheaper), which turns stranded small river-bluff deposits into a settlement fuel base.
+
+IDEA 7
+NAME: Fire-killed larch chip fuel
+MECHANISM: Yakutia burns millions of hectares a year, and the fire-killed larch near villages stands already dry (about 20–25% moisture, est.). Crews fell, forward and chip it in winter, travelling over frozen ground within about 20 km. The chips are stored as frozen piles and burned in chip-fed boilers. The closest earlier attempts are hand-cut village firewood and small chip boilers, which were limited by labour per Gcal and wet green wood. Salvaging dead dry stems mechanically answers both limits. The deciding quantity is chip cost at the boiler: it must be at most about 1,600 rub per loose m³ (about 0.75 Gcal per m³). European-Russian chip sells for roughly 600–1,000 rub/m³ (est., unsourced).
+VALUE: Local fuel at about 3x lower cost per Gcal with no inbound freight; Russia's forest resource reaches the boiler without passing through logistics at all.
+
+IDEA 8
+NAME: Long-season tracked sled trains
+MECHANISM: One wide-tracked tractor tows 8-12 low-pressure freight sleds over snow and river ice. Ground pressure is low enough to start in October and run into May, about 150+ days against the truck winter road's 45-54 (ATTEMPT 1). One driver moves 150-250 t instead of 25 t per truck, and sleds left at the settlement serve as the coal stockpile. The closest attempts are the 1950s Alaskan cat trains, displaced by trucks and air, and Antarctic traverses, which are costed for fuel loads rather than bulk coal; neither was set against a 45-day road window. The deciding quantity is cost per tonne-km; it must fall below ~5 rub/t-km against the winter road's 20.
+VALUE: Inland settlements beyond barge reach could get a winter supply route about three times longer and several times cheaper per tonne.
+
+IDEA 9
+NAME: Ship char, not coal
+MECHANISM: A small retort at the pit turns coal into low-moisture char and burns the off-gas for its own heat and the pit's power. The settlement then receives more energy per tonne shipped. Char also self-heats in stockpiles less than raw low-rank coal. The closest attempt is Termokoks at Berezovsky, which suited a large market, not Arctic settlement flows. Deciding quantity: energy kept per tonne of char divided by energy per tonne of coal (about 1.2–1.4x for low-rank coal, near 1 for higher-rank coking coal such as Zyryanka's).
+VALUE: Every tonne-km of a fixed-capacity chain carries about a quarter more heat.
+
+IDEA 10
+NAME: Covered-pond dredging of taliks
+MECHANISM: Dredge placers that lie in natural taliks, the ground that never freezes under deep thermokarst lakes and river channels. The dredge works all winter in a pond under floating foam pontoons that lose about 7 W/m², so the dredge's waste heat keeps the water open. The closest attempt is the Siberian Federal University polycarbonate hangar (2020-23). It added only 1.5 months because the cover's U-value of about 2-3 W/m²K let ice grow, and its dredge still faced frozen banks; talik ground needs no thaw lead at all. Deciding quantity: payable gold volume inside surveyed taliks (by ground-penetrating radar or electrical resistivity, plus drilling) versus one dredge's annual throughput.
+VALUE: Removes stripping and diesel thawing for talik-hosted reserves and gives 12-month dredge use, plausibly 1.5-2x lower cost per oz on that subset; it does not reach the 3x originally asked for.
+
+IDEA 11
+NAME: Frozen-in barge boilerhouse
+MECHANISM: A barge carries a full winter's coal in its hold and a containerised boiler on deck. In autumn it is moored and allowed to freeze in at a riverside settlement, and an insulated heat main of about 200 m runs ashore. The boiler burns straight from the hold all winter, so there is no unloading, no shore stockpile, no loader fleet and no second handling; the barge returns empty after breakup to refill at the pit. Barges already winter frozen-in in river backwaters, and no search found a barge used as boilerhouse and bunker (ATTEMPT 23). The deciding quantity is the share of the ~23,000 rub/t spent after the barge haul (handling, stockpile losses, last mile); it must exceed ~65% to reach 3x.
+VALUE: Riverside settlements could get boiler coal for roughly the cost of the barge haul alone.
+
+IDEA 12
+NAME: Burnable flood-season cargo rafts
+MECHANISM: In winter, crews at an upstream pit build log rafts or plank flatboats and load bagged coal onto them. The spring flood floats them downstream for 3-5 weeks at about 1-2 m/s, roughly 100+ km/day, using water too shallow for barges later in the season (ATTEMPT 22). At the settlement the hull is broken up and burned as fuel with the coal, so there is no return trip and the current does the hauling. The closest attempt is the 19th-century Lena *karbas* (disposable downstream boats), abandoned when steam barges beat hand labour; here the hulls are built in the idle winter season and their wood becomes delivered fuel. The deciding quantity is the fraction of rafts that arrive intact past gravel bars and ice jams; it must exceed ~85%.
+VALUE: Settlements downstream of small pits on minor rivers could be supplied without barges or winter roads.
+
+IDEA 13
+NAME: Frozen-in barge boilerhouse
+MECHANISM: A barge from the ageing Lena/Kolyma fleet, near scrap value, gets a containerised boiler and a 2–3 kt coal hold. It arrives at the settlement on high water and is frozen in at a berth, with an air-bubbler kept running to stop ice pressure. All winter it burns its own cargo and sends heat to shore through an insulated pipe. This deletes three steps: transshipment, the shore stockpile and the winter-road last mile. The closest attempt is the Akademik Lomonosov floating plant, which was stopped by 70 MW of scale and a 4x capital overrun. This uses a written-off hull and a boiler of about 1–5 MW. Deciding quantity: annualised hull plus boiler cost per hold-tonne against the last-mile and handling share it removes (about 11,000–15,000 rub/t, est.). That share needs sourcing.
+VALUE: A settlement could be fuelled with no winter road and no shore coal yard.
+
+IDEA 14
+NAME: Downstream coal on empty barges
+MECHANISM: On the Kolyma, the summer Northern Delivery convoys bring fuel and goods upstream from Chersky and come back down empty. They pass riverside pits like Zyryanka on the way, so they could carry coal down on that return leg. The cost is only marginal: a short loading stop plus a little extra draft. Return-cargo pricing is common in shipping, but no Kolyma coal-on-the-return contract was found. Such cargo normally fails when directions do not match, and here they do. The deciding quantity is how much load the empty barges can take at late-season water depths, given that shoaling already limits loaded barges to under 50%.
+VALUE: Cuts the barge cost per tonne several-fold using vessels that already make the trip, with no new capital.
+
+IDEA 15
+NAME: Frozen-in barge as bunker-boilerhouse
+MECHANISM: Shallow-draft barges (≤0.8 m) carry coal straight to the settlement on late-summer water. One barge then winters in a deep pool beside the village, holding the coal and a containerised boiler connected to the heat main. This removes the winter-road last mile (about 300 km × 20 rub/t-km ≈ 6,000 rub/t, est.), the transshipment and the stockpile losses. Because the draft is low, barges load fully at Lena-type 150 cm levels, where today's fleets carry under 50%. The closest earlier attempt is ordinary barge-to-depot delivery, which was stopped by shoaling and the need to transship. A search found no prior frozen-in bunker barge. The deciding quantity is whether a pool within 2 km of the village stays deeper than the hull draft plus a 2 m ice cover all winter.
+VALUE: An estimated 23,000 to about 7,000 rub/t (about 3.3x) with no new mine, if the per-trip barge cost halves at full load; the same frozen-in hull gives remote Arctic mines a summer-filled winter depot.
+
+
+Where "several times cheaper" is arithmetically possible (ceilings computed in code from the cost ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: seasonal open-cut placer: dozers/rippers strip frozen overburden, sluice washing plants, d | untouchable 22.2% -> ceiling 4.5x | 10x cut of one term: labour 1.22x; processing 1.22x; capital 1.16x; inbound logistics 1.12x; energy 1.10x; outbound logistics 1.00x | 3x needs: labour, processing, capital, inbound logistics, energy | NO ROOM
+ARCHETYPE B: Baimskaya design: 70 Mt/yr Cu-Au open pit + flotation, floating-NPP power, 5,000-bed FIFO  | untouchable 14.0% -> ceiling 7.1x | 10x cut of one term: capital 1.58x; processing 1.16x; energy 1.11x; labour 1.11x; outbound logistics 1.05x; inbound logistics 1.03x | 3x needs: capital, processing, energy, labour | NO ROOM
+ARCHETYPE C: export: open pit + wash plant, then RZD ~2,000 km to Vanino/Vostochny (Elga's own 531-km r (export) | untouchable 4.0% -> ceiling 25.0x | 10x cut of one term: outbound logistics 1.98x; processing 1.11x; capital 1.11x; labour 1.10x; energy 1.05x; inbound logistics 1.04x | 3x needs: outbound logistics, processing, capital | TIGHT
+ARCHETYPE C: export: open pit + wash plant, then RZD ~2,000 km to Vanino/Vostochny (Elga's own 531-km r (settlement) | untouchable 1.5% -> ceiling 66.7x | 10x cut of one term: outbound logistics 4.26x; labour 1.04x; energy 1.03x; processing 1.03x; capital 1.02x; inbound logistics 1.01x | 3x needs: outbound logistics | ROOM
+ARCHETYPE D: Kolmozerskoye design: open-pit spodumene pegmatite (1.96 Mt ore/yr), DMS/flotation concent | untouchable 11.9% -> ceiling 8.4x | 10x cut of one term: capital 1.60x; processing 1.19x; labour 1.14x; energy 1.09x; inbound logistics 1.04x; outbound logistics 1.01x | 3x needs: capital, processing, labour, energy | NO ROOM
+ARCHETYPE E: 0.2 Mt/yr East-Siberian field: early-production facility, associated-gas power, crude truc | untouchable 53.0% -> ceiling 1.9x | 10x cut of one term: outbound logistics 1.22x; capital 1.13x; labour 1.06x; processing 1.05x; inbound logistics 1.02x; energy 1.01x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+
+What was tried before and why it did not solve the problem (data):
+ATTEMPT 1: Winter ice road to remote mines | Tibbitt-Contwoyto, NWT Canada (Ekati, Diavik, Gahcho Kue); Yakutian zimniki | standard practice | WHY IT DID NOT SOLVE IT: season, not road cost: open 54 days in 2019 (7,489 loaded trucks, 257,176 t); 2026 peak window 45 days vs 65-70 historic, so airlift | https://skillings.net/arctic-logistics-crisis-record-warmth-shuts-diamond-mine-ice-roads
+ATTEMPT 2: Icebreaking ships from the field | Yamal LNG, Sabetta, Novatek, 2017 | standard, giant flows only | WHY IT DID NOT SOLVE IT: needs 16.5 Mt/yr LNG to carry ~16 Arc7 carriers at ~$316m each (~$5bn, press figures) | https://offshore-energy.biz/russias-yamal-lng-project-adds-two-arc7-carriers-as-first-shipment-nears
+ATTEMPT 3: Rail to tidewater | Baffinland Mary River: Steensby railway approved 2012, dropped 2014; 100 km tote road to Milne Inlet used instead | costed and rejected | WHY IT DID NOT SOLVE IT: Steensby rail $5.7bn est. (~5x Milne line) to lift 4.2 to 22 Mt/yr; company later owed $1.07bn | https://www.rcinet.ca/eye-on-the-arctic/?p=154201
+ATTEMPT 4: Pipeline over permafrost | Trans-Alaska 1975-77; Mackenzie Valley gas, Canada | TAPS built; Mackenzie costed and shelved | WHY IT DID NOT SOLVE IT: TAPS ~$8bn, ~half elevated, 124,000 heat pipes; Mackenzie C$16.2bn on hold 2012, abandoned 2017 as shale cut gas prices | https://en.wikipedia.org/wiki/Mackenzie_Valley_Pipeline
+ATTEMPT 5: Cold-water needle thawing, then bucket-line dredge | Fairbanks Exploration Co 1928-59; Klondike Dredge No. 4, April-November | standard until ~1960 | WHY IT DID NOT SOLVE IT: thaw leads a year ahead (points 16 ft apart, 6+ weeks each, 4-5 thaw months), 26 cents/yd3 in 1954-58; subarctic dredging costs 2-3x temperate | https://dggs.alaska.gov/webpubs/usbm/un/text/mulligan_1967.pdf https://www.911metallurgist.com/?p=978570
+ATTEMPT 6: Offshore dredge in Arctic water | Bima, Nome, Inspiration/WestGold, 1986-90 | pilot dropped | WHY IT DID NOT SOLVE IT: water open only from mid-June, storms; 126,924 oz in five seasons, two profitable | https://en.wikipedia.org/wiki/Bima_(dredge)
+ATTEMPT 7: Winter dredging with covers or hangar | Siberian Federal University, polycarbonate hangar over dredge pit, 2020-23 | paper stage, no operating case found | WHY IT DID NOT SOLVE IT: covers add only ~1.5 months; later solid ice blocks dredge movement | https://scholar.sfu.ru/publication/504653455-867958319
+ATTEMPT 8: Drain the lake, then dig | Diavik A154 dike, NWT, 2001-02 | standard for kimberlite | WHY IT DID NOT SOLVE IT: 3.9 km dike up to 25 m high, 30 m of lake-bottom sediment stripped first; mine C$1.3bn, viable only for diamonds | https://northernminer.com/news/canada-s-second-diamond-mine-prepares-for-startup/1000148810
+ATTEMPT 9: Dredge a talik under lake ice | NOT FOUND. Searched English and Russian: placer under thermokarst lake, подозерные талики россыпи драга, winter ice-cutting dredge, Kolyma/Yukon/Fairbanks winter dredging | -
+ATTEMPT 10: Rip, blast and dozer-strip frozen overburden | Yakutian open pits and placers | standard | WHY IT DID NOT SOLVE IT: frozen rock needs mandatory drilling and blasting, and blasted rock refreezes; no per-m3 figure found | https://vestnik.magtu.ru/en/134-archive/no-2-2026/1920-40.html
+ATTEMPT 11: Saw or cut frozen ground | Soviet trials, Sergeev, 1950s | dropped | WHY IT DID NOT SOLVE IT: disc saws and drop-hammer cutters "useless"; narrow-channel cutters wore blades fast | https://apps.dtic.mil/sti/html/tr/AD0648510/index.html
+ATTEMPT 12: Leave overburden frozen, mine by borehole | Ryveem River, Chukotka (semi-commercial); US Bureau of Mines prototype 1997-98 | pilot, stayed small | WHY IT DID NOT SOLVE IT: calculated ceiling 1 t gold/yr for a 30 m placer, one-well scale | https://www.rudmet.ru/journal/1793/article/30642/?language=en
+ATTEMPT 13: Quarry-style block cutting with jacks | wire-saw limestone quarry (Ireland), blocks to 1,000 t | standard in dimension stone | WHY IT DID NOT SOLVE IT: largest blocks are 1/30 of 30,400 t, and priced for premium stone | https://www.stonefed.org.uk/app/uploads/2021/02/McKeonFeature.pdf
+ATTEMPT 14: Drift mining under frozen cover | Fairbanks and Klondike 1890s-1920s; Magadan | niche | WHY IT DID NOT SOLVE IT: fire thawed ~12 in per night; steam thaw 34 cents/yd3 at Coal Creek, "too expensive"; dredges overtook | https://www.nps.gov/yuch/learn/historyculture/steam-boiler.htm
+ATTEMPT 15: Ships coal at a coast bluff | Corwin Bluff, Cape Beaufort, Alaska, 1880s-1901 | dropped | WHY IT DID NOT SOLVE IT: only seasonal ship calls, mine attempt c.1884, one Nome shipment 1900-01; no tonnage series found | https://dggs.alaska.gov/webpubs/usgs/of/text/of71-0061.pdf
+ATTEMPT 16: Floating dredge mining coal | Susquehanna River, Pennsylvania, c.1900-1972 | ended | WHY IT DID NOT SOLVE IT: ~75,000 t/yr, ~2 Mt in total, fines recovery not a mine | https://unchartedlancaster.com/2023/06/17/scraping-the-bottom-dredging-for-coal-on-the-susquehanna/
+ATTEMPT 17: Small Arctic pit for local heat | Qullissat, Greenland (closed 1972); Longyearbyen Mine 7 (plant closed 2023) | closed | WHY IT DID NOT SOLVE IT: Qullissat 30-40 kt/yr, 570 kt total, shut on falling profit and poor coal; Mine 7 ~30 kt/yr local, high-grade coal exhausted | https://en.wikipedia.org/wiki/Qullissat https://www.highnorthnews.com/en/node/58713
+ATTEMPT 18: Village coal instead of oil | NW Alaska, Dames & Moore for Alaska Power Authority, 1980 | studied, not built | WHY IT DID NOT SOLVE IT: oil is subsidized: Wainwright residents paid $1.50/gal vs $7.83 commercial (2009) | https://www.nrel.gov/state-local-tribal/etipp-community-wainwright-alaska
+ATTEMPT 19: Rock cover to keep ground frozen | Qinghai-Tibet railway crushed-rock revetment; Kivalina, Alaska | standard on rail; village niche | WHY IT DID NOT SOLVE IT: crushed rock alone cools less than thermosyphons (over 80 cm needed); Kivalina seawall lost 1,000 of 1,600 ft in 2007 | https://phys.org/news/2021-05-mitigation-permafrost-tibet-plateau.html https://gov.alaska.gov/admin-orders/administrative-order-no-231/
+ATTEMPT 20: Floating plant as village heat source | Akademik Lomonosov, Pevek, 2020 | in use | WHY IT DID NOT SOLVE IT: cost rose RUB 9bn to 37bn (4.1x); 70 MW and 50 Gcal/h, far above a village | https://bellona.org/news/nuclear-issues/2015-05-new-documents-show-cost-russian-nuclear-power-plant-skyrockets
+ATTEMPT 21: Winter fuel after missing the last barge | Nome, Alaska, 2012 | one-off | WHY IT DID NOT SOLVE IT: 1.3m gal needed a Russian tanker plus icebreaker through 300 nmi of ice; airlift meant 300+ flights | https://response.restoration.noaa.gov/node/342
+ATTEMPT 22: Shallow river barges to depots | Lena, Yana, Indigirka | standard | WHY IT DID NOT SOLVE IT: shoaling: Lena levels of 150 cm let shallow fleets load under 50% | https://en.portnews.ru/news/167121
+ATTEMPT 23: Barge as winter boilerhouse and coal bunker | NOT FOUND. Searched English and Russian: плавучая котельная баржа зимовка, floating boiler house, frozen-in barge heating, winter fuel barge storage | -
+LESSONS: Season, not distance, binds: ice road 45-54 days, dredges 5-6 months, open water from mid-June, thaw 4-5 months.
+Scale kills: ships, rail and pipe need 4-22 Mt/yr to repay ($316m carriers, $5.7bn rail, C$16bn pipe); village and placer flows (30-75 kt/yr, 1 t gold) never repaid.
+Frozen ground resists tools (blade wear, refreezing, saws useless); only summer-temperature water thaws cheaply, at a year's lead.
+Small coal and plant schemes died when a captive buyer or subsidy vanished, or when capital overran 4x.
+A new answer needs a winter-capable, sub-1 Mt/yr unit with no thaw lead, on-site storage and no subsidy dependence.
+
+Sort these candidates before the expensive checks. Without tools, for each candidate estimate:
+- I = importance 0-10: how much of the asker's aim it serves if it works - for a cost question, the share of the
+  delivered cost it removes, never more than the ceiling of its archetype allows;
+- P = possibility 0-10: how likely it is to work at the scale it claims with known physics, given the earlier
+  attempts that stopped short (a candidate that repeats one without beating its reason gets P <= 2);
+- the one number that decides whether it works.
+Being unusual earns nothing here; aiming at a term whose ceiling leaves no room earns a low I.
+
+Final answer (text only), one line per candidate in the order given, at most 400 words:
+=== TRIAGE ===
+IDEA 1 | I <0-10> | P <0-10> | DECIDES: <quantity> | <one line why>
+(same for the others)

@@ -1,0 +1,66 @@
+{
+ "g1_ledger#3": {
+  "killer": "payload at late-season depth",
+  "why": "Zyryanka coal already goes down the Kolyma on coal barges, most upbound fuel comes in tankers that can't carry coal, and a coal-loaded return hull hits the same shoals, so the barge leg (35% of cost) shrinks only slightly.",
+  "screen": "11 draught at late-season depth: 0.41-0.66; 9 baseline (barge leg is 35% of cost, ceiling 1.53): 1.21; 8 market: n/a (Zyryanka already ships 160-250 kt/yr downstream)",
+  "margin": 0.41,
+  "ratio": 1.21,
+  "verdict": "WOUNDED"
+ },
+ "g1_ledger#2": {
+  "killer": "removed handling cost vs added hull-year + deck boiler",
+  "why": "A village a barge can winter beside has no winter-road last mile anyway, so the idea saves only about 1,200 RUB/t of handling and ties up a whole hull for the year at about 10,900 RUB/t.",
+  "screen": "3 depth under loaded hull: needs 3.63 m (not checked for a backwater by the village); 11 uplift on the ice as 3 kt is burnt: 0.20-0.38; 8 hull-year cost vs removed cost: 0.09; 9 baseline: 0.39",
+  "margin": 0.09,
+  "ratio": 0.39,
+  "verdict": "DEAD"
+ },
+ "g1_neg#1": {
+  "killer": "heat to keep a 1 m moat open round the hull",
+  "why": "A bubbler works only on stored heat, and 0-0.2 °C river water holds about 2 days of it against 200 days of ice, while the saving the idea claims (11-15k RUB/t) is really about 1.2k at a settlement the barge can already reach.",
+  "screen": "6 bubbler heat budget: 0.010; 11 uplift as cargo is burnt: 0.20-0.38; 8 hull-year vs removed cost: 0.17; 9 baseline: 0.58",
+  "margin": 0.01,
+  "ratio": 0.58,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#1": {
+  "killer": "coal one 0.8 m hull can hold",
+  "why": "A 0.8 m draught holds about 1/8 of a village's year of coal per hull, and \"full load\" at 0.8 m carries the same tonnes per m² of hull as today's deeper barges at 50%, so the per-trip cost does not halve.",
+  "screen": "11 payload at 0.8 m draught vs the village's year of coal: 0.13-0.17; 3 pool depth: needs 2.23 m (kit) / 2.8 m (idea), not checked; 11 uplift: 0.20-0.38; 9 baseline: 0.53",
+  "margin": 0.13,
+  "ratio": 0.53,
+  "verdict": "DEAD"
+ },
+ "g1_mech#3": {
+  "killer": "cost per t-km",
+  "why": "The heaviest unit, not ground pressure, sets the ice season (the same as for trucks), a tractor tows about 73 t of measured payload rather than 200 t, and the only modern costed tractor train runs about 400 RUB/t-km.",
+  "screen": "2/1 ice season for a 40 t tractor (needs 1.07 m, same as a loaded truck): 139 d vs 150 claimed, 0.93; 9 cost per t-km vs 5 RUB target: 0.012 (0.12 even if 10x cheaper than Antarctica); 11 tow load per tractor, measured 73 t vs 200 t claimed: 0.36",
+  "margin": 0.012,
+  "ratio": 0.5,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#3": {
+  "killer": "summer thaw depth of a lignite face",
+  "why": "The economics hold at 2.2x, but the face thaws only 0.9-1.35 m, so a village needs about 1.1-1.6 km of seam face a year, and it is not proven that this much exists within 30 km or that the river turbidity limits can be met.",
+  "screen": "5/6 summer thaw depth of the face: 0.61-0.90; 7 turbidity at a small river (2% of fines into the water, est.): 0.30-1.8; 1 scraping window: 4.5; 8 face length needed: 838 m/yr (seams within 30 km not checked)",
+  "margin": 0.61,
+  "ratio": 2.2,
+  "verdict": "WOUNDED"
+ },
+ "g1_neg#2": {
+  "killer": "ice-edge line load when 2,214 t is loaded into a frozen-in hull",
+  "why": "Only the first trip of the season goes full, which cuts the barge leg by about 17% rather than 50%, and loading a frozen-in hull in winter breaks the ice it is frozen into.",
+  "screen": "1 crest window vs transit: ~10 (flood mid-May to Sep, BRE; ~4 d transit); 3 loaded hull in backwater: needs 2.90 m at winter low water (not checked); 11/2 winter loading of a frozen-in hull (the ice must let it sink 1.85 m): 0.23-0.36; 9 trips improved: 1 of ~5",
+  "margin": 0.23,
+  "ratio": 1.06,
+  "verdict": "DEAD"
+ },
+ "g1_mech#1": {
+  "killer": "share of delivered cost after the barge haul",
+  "why": "Where a barge can freeze in beside the village there is no winter road, so only about 15% of cost comes after the barge, well short of the 65% needed (ceiling 1.17x even if it were free), and the idle hull costs more than it saves.",
+  "screen": "9 share of cost after the barge haul: 0.23; 8 hull-year vs removed cost: 0.09; 11 uplift as cargo is burnt: 0.20-0.38; 3 depth under loaded hull: needs 3.63 m",
+  "margin": 0.23,
+  "ratio": 0.39,
+  "verdict": "DEAD"
+ }
+}

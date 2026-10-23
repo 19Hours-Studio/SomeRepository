@@ -1,0 +1,68 @@
+ice flexural strength (500000.0, 1000000.0) [REF] round2/audit_b/c3_pods.py; repair_evo_a (0.5-0.8)
+village coal t/yr 3000.0 | boiler 23000.0 | Kolyma depot 6962.0 | LORP haul 8000.0
+
+barge 80x15: lightship 486 t, full payload 2214 t
+
+=== IDEA 1
+ late-season depth 1.5 m -> payload 918 t = 0.41 of full
+ late-season depth 2.0 m -> payload 1458 t = 0.66 of full
+ barge share 0.35; ceiling if barge free 1.53
+ ratio at boiler (barge halves) 1.21; riverside depot 1.33
+
+=== frozen-in barge family (2,3,4,8)
+ new 3 kt barge 185 M RUB -> 32.6 M RUB/yr = 10850 RUB/t
+ boiler+pipe 9.3 M RUB/yr = 3085 RUB/t (existing shore boilerhouse is sunk)
+ removed at riverside settlement ~1209 RUB/t = 0.15 of delivered
+ burn 3000 t: hull wants to rise 2.50 m; uplift 155 kN/m vs ice 1.2 m capacity 31 kN/m (sigma 1.0 MPa) margin 0.20
+ burn 3000 t: hull wants to rise 2.50 m; uplift 155 kN/m vs ice 1.5 m capacity 41 kN/m (sigma 1.0 MPa) margin 0.27
+ burn 3000 t: hull wants to rise 2.50 m; uplift 155 kN/m vs ice 2.0 m capacity 59 kN/m (sigma 1.0 MPa) margin 0.38
+
+=== IDEA 2
+ loaded draught 3.23 m, ice 1.05 m -> depth needed 3.63 m
+ loaded draught 3.23 m, ice 2.5 m -> depth needed 3.63 m
+ chain riverside: now 8171, with idea 20897, ratio 0.39
+ removed cost / added hull+boiler cost margin 0.09
+
+=== IDEA 3
+ open-water loss 525 W/m2 x 190 m2 = 100 kW; pool heat at 0.2 C = 16.6 GJ -> 1.9 d vs 200 d: margin 0.010
+ through-flow needed at 0.1 K above freezing: 0.24 m3/s of that water drawn to the hull
+ near-scrap hull 12.2 M RUB -> 8.5 M/yr; added per hold-t (2.5 kt) 7118 vs removed 1209 (claimed 11-15k)
+ chain riverside ratio 0.58
+
+=== IDEA 4
+ hull 80x15 at 0.8 m: payload 378 t vs village 3000 t -> margin 0.13
+ hull 100x16.5 at 0.8 m: payload 520 t vs village 3000 t -> margin 0.17
+ pool depth needed (kit) 2.23 m; idea own rule 2.8 m
+ winter road 6000; 7.9 hulls frozen in -> added 27933 RUB/t; with idea 43724; ratio 0.53
+
+=== IDEA 5
+ tractor 40.0 t needs 1.07 m (Gold A 3.5), same as 40.0 t truck; days with ice >= that and T<-5 C: 139 (Verkhoyansk normals)
+ season margin 0.93 vs claimed 150 d; first day-of-year 346
+ SPoT delivered 3.6 $/lb over 1660 km = 402 RUB/t-km; target 5 -> margin 0.012; even /10 for flat Arctic: 0.12
+ measured tow per tractor 4 bladder sleds 24,000 gal = 73 t vs 150-250 t claimed: margin 0.36
+
+=== IDEA 6
+ k 0.33 n 1.0: Stefan thaw 0.92 m vs 1.5 m claimed -> margin 0.61
+ k 0.33 n 1.3: Stefan thaw 1.04 m vs 1.5 m claimed -> margin 0.70
+ k 0.55 n 1.0: Stefan thaw 1.18 m vs 1.5 m claimed -> margin 0.79
+ k 0.55 n 1.3: Stefan thaw 1.35 m vs 1.5 m claimed -> margin 0.90
+ lignite 4714 t/yr, face 838 m/yr; cost 10402 RUB per hard-coal-equivalent t; ratio 2.21
+
+=== IDEA 7
+ loaded 2.50 m wintering, ice 1.05 m -> depth needed 2.90 m
+ loaded 2.50 m wintering, ice 2.5 m -> depth needed 2.90 m
+ winter loading 2214 t into frozen-in hull: 114 kN/m vs ice 1.05 m 26 kN/m -> margin 0.23; sink 1.85 m
+ winter loading 2214 t into frozen-in hull: 114 kN/m vs ice 1.5 m 41 kN/m -> margin 0.36; sink 1.85 m
+ trips 5: barge cost/t falls 0.17 (not 0.5)
+  boiler 23k: ratio 1.06
+  riverside depot: ratio 1.09
+ crest window: flood mid-May..Sep (BRE), transit ~4 d; window/transit ~ 10
+
+=== IDEA 8
+ share after barge haul (riverside) 0.15 vs required 0.65 -> margin 0.23
+ ceiling ratio if all of it removed free 1.17; with hull-year cost ratio 0.39
+
+IDEA 6 turbidity: 0.042 kg/s needs 167 m3/s full mixing at +0.25 mg/L (small Yakutian river summer Q ~10-300 m3/s, est.)
+  Q 50: margin 0.30
+  Q 300: margin 1.80
+IDEA 6 window margin 4.5

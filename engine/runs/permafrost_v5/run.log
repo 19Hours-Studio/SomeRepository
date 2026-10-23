@@ -16,3 +16,45 @@ g1_neg: 3 ideas (563 words)
 g1_mech: 3 ideas (602 words)
   g1_rf1: 17,413 tokens, 68.4 s
 g1_rf1: 3 ideas (569 words)
+  g1_rf2: 16,131 tokens, 51.2 s
+g1_rf2: 3 ideas (637 words)
+  triage: 14,662 tokens, 23.4 s
+/home/user/SomeRepository/engine/runs/permafrost_v5/gate/TASK.md
+  gate: 1,582,434 tokens, 504.1 s
+gate: 8/8 parsed {'WOUNDED': 2, 'DEAD': 6}
+  gate: 10 new facts -> evidence.md
+/home/user/SomeRepository/engine/runs/permafrost_v5/repair/TASK.md
+  repair: 1,016,849 tokens, 508.2 s
+repair: 4 ideas (1273 words)
+/home/user/SomeRepository/engine/runs/permafrost_v5/audit_final/TASK.md
+STOP before audit_final: 2,714,627 spent + ~1,582,434 > budget 2,000,000 (rerun with a larger --max-tokens to resume)
+=== resume 11:32:15 ===
+  skip ledger (ledger.md present)
+  skip attempts (attempts.md present)
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: seasonal open-cut placer: dozers/rippers strip frozen overburden, sluice washing plants, d | untouchable 22.2% -> ceiling 4.5x | 10x cut of one term: labour 1.22x; processing 1.22x; capital 1.16x; inbound logistics 1.12x; energy 1.10x; outbound logistics 1.00x | 3x needs: labour, processing, capital, inbound logistics, energy | NO ROOM
+ARCHETYPE B: Baimskaya design: 70 Mt/yr Cu-Au open pit + flotation, floating-NPP power, 5,000-bed FIFO  | untouchable 14.0% -> ceiling 7.1x | 10x cut of one term: capital 1.58x; processing 1.16x; energy 1.11x; labour 1.11x; outbound logistics 1.05x; inbound logistics 1.03x | 3x needs: capital, processing, energy, labour | NO ROOM
+ARCHETYPE C: export: open pit + wash plant, then RZD ~2,000 km to Vanino/Vostochny (Elga's own 531-km r (export) | untouchable 4.0% -> ceiling 25.0x | 10x cut of one term: outbound logistics 1.98x; processing 1.11x; capital 1.11x; labour 1.10x; energy 1.05x; inbound logistics 1.04x | 3x needs: outbound logistics, processing, capital | TIGHT
+ARCHETYPE C: export: open pit + wash plant, then RZD ~2,000 km to Vanino/Vostochny (Elga's own 531-km r (settlement) | untouchable 1.5% -> ceiling 66.7x | 10x cut of one term: outbound logistics 4.26x; labour 1.04x; energy 1.03x; processing 1.03x; capital 1.02x; inbound logistics 1.01x | 3x needs: outbound logistics | ROOM
+ARCHETYPE D: Kolmozerskoye design: open-pit spodumene pegmatite (1.96 Mt ore/yr), DMS/flotation concent | untouchable 11.9% -> ceiling 8.4x | 10x cut of one term: capital 1.60x; processing 1.19x; labour 1.14x; energy 1.09x; inbound logistics 1.04x; outbound logistics 1.01x | 3x needs: capital, processing, labour, energy | NO ROOM
+ARCHETYPE E: 0.2 Mt/yr East-Siberian field: early-production facility, associated-gas power, crude truc | untouchable 53.0% -> ceiling 1.9x | 10x cut of one term: outbound logistics 1.22x; capital 1.13x; labour 1.06x; processing 1.05x; inbound logistics 1.02x; energy 1.01x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+  skip reframe (done)
+  skip g1_ledger (done)
+g1_ledger: 3 ideas (552 words)
+  skip g1_neg (done)
+g1_neg: 3 ideas (563 words)
+  skip g1_mech (done)
+g1_mech: 3 ideas (602 words)
+  skip g1_rf1 (done)
+g1_rf1: 3 ideas (569 words)
+  skip g1_rf2 (done)
+g1_rf2: 3 ideas (637 words)
+  skip triage (done)
+/home/user/SomeRepository/engine/runs/permafrost_v5/gate/TASK.md
+  skip gate (done)
+gate: 8/8 parsed {'WOUNDED': 2, 'DEAD': 6}
+  gate: 0 new facts -> evidence.md
+/home/user/SomeRepository/engine/runs/permafrost_v5/repair/TASK.md
+  skip repair (done)
+repair: 4 ideas (1273 words)
+/home/user/SomeRepository/engine/runs/permafrost_v5/audit_final/TASK.md

@@ -95,7 +95,7 @@ Lessons from earlier runs on other questions (data):
 - A single clever link rarely moved the whole chain more than 1.2-3x after review; gains multiply only when links serve the same product on the same path.
 - The simplest competent alternative that uses the same insight often beat the clever design. Check it before claiming a gain.
 - Seasonal and climatic windows, load-bearing limits and the time a structure must last killed more designs than missing technology.
-Technique: work on this reformulation of the question, chosen as the most productive one by importance and possibility: ** How can the delivered cost of solid fuel or heat at isolated Yakutian and Arctic settlements fall 3x from about 23,000 rub/t at the boiler, using a winter-capable unit under 1 Mt/yr that has on-site storage, no thaw lead and no subsidy dependence?
+Technique: work on this reformulation of the question, chosen as the most productive one by importance and possibility: How can the delivered cost of solid fuel or heat at isolated Yakutian and Arctic settlements fall 3x from about 23,000 rub/t at the boiler, using a winter-capable unit under 1 Mt/yr that has on-site storage, no thaw lead and no subsidy dependence?
 Say in the VALUE what the answer gives for the question as originally asked.
 Rules: aim only at targets whose ceiling leaves room for the gain you claim; name inside each MECHANISM the closest
 earlier attempt and why your answer is not stopped by its reason; name the one quantity that decides whether it works.

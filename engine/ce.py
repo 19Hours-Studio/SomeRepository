@@ -779,9 +779,10 @@ def cmd_usage(a):
     import runner
     rows, tok, cost = runner.summary(rdir(a.run))
     for r in rows:
-        cr = f" (cache re-reads {r['cache_read']:,})" if r.get("cache_read") else ""
+        new = r.get("fresh_input", 0) + r.get("output_tokens", 0)
+        cr = f" = new {new:,} + cache re-reads {r['cache_read']:,}" if r.get("cache_read") else ""
         print(f"{r['step']:24s} {r['model']:7s} tools={r['tools'] or '-':28s} {r['tokens']:>9,} tok{cr}  ${r.get('cost_usd', 0):.3f}")
-    print(f"TOTAL {len(rows)} steps: {tok:,} tokens, ${cost:.2f}")
+    print(f"TOTAL {len(rows)} steps: {tok:,} tokens (new {sum(r.get('fresh_input', 0) + r.get('output_tokens', 0) for r in rows):,}), ${cost:.2f}")
 
 # ---------- v5: memory between runs, ceilings, reformulations, facts from checks, calibration ----------
 MEM = os.environ.get("CE_MEMORY") or os.path.join(HERE, "memory")
@@ -970,6 +971,7 @@ def cmd_bench(a):
 
 # v4-v5 one-pass pipelines. Estimates (tokens per step) are replaced by the run's own averages once usage.jsonl has them.
 EST = {"research": 150_000, "gen": 10_000, "review": 150_000, "repair": 200_000, "code": 0}
+EST_USD = {"research": 0.6, "gen": 0.2, "review": 2.5, "repair": 2.0, "code": 0.0}  # v5: tool steps are mostly cache re-reads (~10% price)
 PIPE = {"explain": {"lite": ["research:evidence", "research:hypotheses", "gen:reframe", "gen:g1_crux", "gen:g1_neg", "gen:g1_mech",
                              "gen:g1_reframe", "review:audit_a", "review:reality", "repair:repair", "review:audit_final", "gen:calibrate", "code:learn"],
                     "standard": ["research:evidence", "research:hypotheses", "gen:reframe", "gen:g1_crux", "gen:g1_neg", "gen:g1_mech",
@@ -990,19 +992,20 @@ TECH = {"g1_ledger": "Technique: aim each answer at the archetype and cost term 
 def pipe_kind(a):
     return getattr(a, "pipeline", None) or run_kind(load(a.run, "config.json", {}))
 
-def plan_rows(a):
+def plan_rows(a, usd=False):
+    """[(step, estimated tokens or dollars)]: the run's own averages per kind of step once it has some, else EST."""
     import runner
-    rows, _, _ = runner.summary(rdir(a.run)); learned = defaultdict(list)
-    for r in rows: learned[r["step"].split(":")[0]].append(r["tokens"])
-    est = {k: (sum(v) // len(v) if (v := learned.get(k)) else EST[k]) for k in EST}
+    rows, _, _ = runner.summary(rdir(a.run)); learned = defaultdict(list); base = EST_USD if usd else EST
+    for r in rows: learned[r["step"].split(":")[0]].append(r.get("cost_usd", 0.0) if usd else r["tokens"])
+    est = {k: (sum(v) / len(v) if (v := learned.get(k)) else base[k]) for k in base}
     return [(s, est[s.split(":")[0]]) for s in PIPE[pipe_kind(a)][a.mode]]
 
 def cmd_plan(a):
-    """v4: the steps of a one-pass pipeline with their estimated tokens, before spending anything."""
-    rows = plan_rows(a); tot = sum(t for _, t in rows)
-    for s, t in rows: print(f"  {s:24s} ~{t:>9,} tokens")
-    print(f"ESTIMATE {pipe_kind(a)}/{a.mode}: ~{tot:,} tokens in {sum(1 for s, _ in rows if not s.startswith('code'))} model steps "
-          f"({sum(1 for s, _ in rows if s.split(':')[0] in ('research', 'review', 'repair'))} need tools)")
+    """v4: the steps of a one-pass pipeline with their estimated tokens and dollars, before spending anything."""
+    rows = plan_rows(a); usd = dict(plan_rows(a, usd=True)); tot = sum(t for _, t in rows)
+    for s, t in rows: print(f"  {s:24s} ~{t:>11,.0f} tokens  ~${usd[s]:.2f}")
+    print(f"ESTIMATE {pipe_kind(a)}/{a.mode}: ~{tot:,.0f} tokens, ~${sum(usd.values()):.2f} in {sum(1 for s, _ in rows if not s.startswith('code'))} model steps "
+          f"({sum(1 for s, _ in rows if s.split(':')[0] in ('research', 'review', 'repair'))} need tools; their tokens are mostly cache re-reads)")
 
 def cmd_run(a):
     """v4-v5: a whole pipeline in one pass; cost is kept by code (plan, stop before a step that would exceed --max-tokens,
@@ -1024,12 +1027,15 @@ def cmd_run(a):
     if getattr(a, "lessons_exclude", None) is not None: cfg["lessons_exclude"] = [x for x in a.lessons_exclude.split(",") if x]
     save(R, "config.json", cfg); budget = a.max_tokens; bench = [x for x in (getattr(a, "bench", None) or "").split(",") if x]
     def spent(): return runner.summary(D)[1]
+    def spent_usd(): return runner.summary(D)[2]
     def done(name): return os.path.exists(path(R, "outputs", name + ".md")) and not a.force
     def step(name, kind_, prompt, model, tools, cwd=None):
         out = path(R, "outputs", name + ".md")
         if done(name): print(f"  skip {name} (done)"); return open(out).read()
-        est = dict(plan_rows(a)).get(f"{kind_}:{name}", EST[kind_])
-        if budget and spent() + est > budget: sys.exit(f"STOP before {name}: {spent():,} spent + ~{est:,} > budget {budget:,} (rerun with a larger --max-tokens to resume)")
+        est = dict(plan_rows(a)).get(f"{kind_}:{name}", EST[kind_]); eu = dict(plan_rows(a, usd=True)).get(f"{kind_}:{name}", EST_USD[kind_])
+        if budget and spent() + est > budget: sys.exit(f"STOP before {name}: {spent():,} spent + ~{est:,.0f} > budget {budget:,} tokens (rerun with a larger --max-tokens to resume)")
+        if getattr(a, "max_usd", None) and spent_usd() + eu > a.max_usd:
+            sys.exit(f"STOP before {name}: ${spent_usd():.2f} spent + ~${eu:.2f} > budget ${a.max_usd:.2f} (rerun with a larger --max-usd to resume)")
         text, u = runner.call(prompt, model=model, tools=tools, cwd=cwd)
         open(out, "w").write(text); runner.log(D, f"{kind_}:{name}", u)
         print(f"  {name}: {u['tokens']:,} tokens, {u['seconds']} s"); return text
@@ -1162,7 +1168,7 @@ def cmd_ask(a):
                                   b.get("DATA") and "Where deciding data may exist:\n" + b["DATA"]) if x)
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
-                               lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=None,
+                               lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=None, max_usd=None,
                                target=3.0, triage_k=8))
 
 def cmd_prompt_path(run, tech, label):
@@ -1240,6 +1246,7 @@ def main():
         x.add_argument("--mode", default="lite", choices=["lite", "standard"])
         if nm == "run":
             x.add_argument("--max-tokens", type=int, help="stop before a step that would exceed this many tokens in total")
+            x.add_argument("--max-usd", type=float, help="v5: stop before a step that would exceed this many dollars (closer to real cost: cache re-reads are cheap)")
             x.add_argument("--model", default="opus"); x.add_argument("--lit-model", default="sonnet")
             x.add_argument("--notes", default=None); x.add_argument("--force", action="store_true")
             x.add_argument("--tag", help="v5: question tag (memory lessons and killers are filed under it)")
