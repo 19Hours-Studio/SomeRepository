@@ -22,6 +22,12 @@ Why each step exists: `engine/README.md` and `research/stage1-creativity/03-deep
   in A/B it cut repeats of earlier findings by 15 pp but lowered O and V (a technique's recurring niche can be its value peak).
 - Re-running a question and want NEW ground (coverage, not best ideas)? Before gen 1: `import-basins R <previous run> --source visited --as prior`.
 
+## Agent budget (user's limits)
+- Agents cost the user's usage limit; in local Claude Code they cost much more than on the web. Run at most 1-2
+  agents at a time, only for steps that need tools or a fresh blind context (research, repair, blind review); do
+  arithmetic, measurement and simulation yourself with scripts. Give each agent a narrow task and only the excerpts
+  it needs, never whole papers. 8+ parallel agents used ~90% of the user's limit in ~20 minutes without results.
+
 ## Launching subagents
 Generator / judge prompt files are produced by `ce.py`. Launch each with the Agent tool:
 > Your task is in the file `<prompt path>`. Read it with the Read tool - that single Read is the only tool call you may make (no other tools, no sessions, no files written). Then follow it exactly and reply with text only.
