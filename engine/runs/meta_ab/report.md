@@ -4,21 +4,26 @@
 
 | arm | n | O | C | V | O×V | top3 O×V | NEW-доля | R=Y (все судьи) |
 |---|---|---|---|---|---|---|---|---|
-| C | 6 | 3.08 | 5.00 | 5.25 | 16.0 | 20.2 | 1.00 | 3/6 |
-| COMP | 6 | 5.08 | 5.58 | 6.08 | 30.8 | 35.0 | 1.00 | 0/6 |
-| INS | 6 | 3.58 | 4.92 | 5.67 | 20.2 | 25.7 | 1.00 | 2/6 |
+| AUDIT | 6 | 2.25 | 4.50 | 5.50 | 12.2 | 13.8 | 1.00 | 5/6 |
+| C | 6 | 3.33 | 4.75 | 5.25 | 17.4 | 22.2 | 1.00 | 2/6 |
+| CLEAR | 6 | 3.83 | 5.08 | 5.75 | 22.0 | 28.2 | 1.00 | 2/6 |
+| COMP | 6 | 4.67 | 5.17 | 5.83 | 27.2 | 31.2 | 1.00 | 0/6 |
+| INS | 6 | 3.42 | 4.50 | 5.50 | 18.8 | 22.7 | 1.00 | 1/6 |
+| PRESS | 6 | 4.25 | 3.92 | 5.92 | 24.9 | 31.8 | 1.00 | 2/6 |
+| RIVAL | 6 | 4.25 | 5.08 | 5.92 | 25.5 | 33.7 | 1.00 | 1/6 |
+| ZERO | 6 | 2.67 | 4.83 | 5.17 | 13.8 | 17.2 | 1.00 | 3/6 |
 
 ## Лучшие идеи
 
 | id | arm | O | V | O×V | бассейны | литература | name |
 |---|---|---|---|---|---|---|---|
-| comp1#2 | COMP | 6.0 | 6.0 | 36.0 | NEW/NEW | — | Checksum-governed adaptive precision |
-| comp2#2 | COMP | 6.0 | 6.0 | 36.0 | NEW/NEW | — | Circulating optical weight broadcast |
-| comp1#3 | COMP | 5.5 | 6.0 | 33.0 | NEW/NEW | — | Softmax-merging optical switches |
-| comp2#3 | COMP | 5.0 | 5.5 | 27.5 | NEW/NEW | — | Error-budgeted escalating numerics |
-| ins1#1 | INS | 4.0 | 6.5 | 26.0 | NEW/NEW | — | Near-Bank Associative Attention |
-| ins2#2 | INS | 4.0 | 6.5 | 26.0 | NEW/NEW | — | Associative in-DRAM attention retrieval |
-| comp1#1 | COMP | 4.0 | 6.5 | 26.0 | NEW/NEW | — | Retrieval-native HBM base die |
-| comp2#1 | COMP | 4.0 | 6.5 | 26.0 | NEW/NEW | — | Compressed-domain attention in HBM |
-| ins2#3 | INS | 5.0 | 5.0 | 25.0 | NEW/NEW | — | Wavelength-addressed expert routing fabric |
-| c2#3 | C | 5.5 | 4.5 | 24.8 | NEW/NEW | — | Compiler-Scheduled Power Envelope |
+| rival2#3 | RIVAL | 6.0 | 6.5 | 39.0 | NEW/NEW | — | Optical Weight-Broadcast Fabric |
+| comp1#3 | COMP | 6.0 | 6.0 | 36.0 | NEW/NEW | — | Softmax-merging optical switches |
+| rival1#2 | RIVAL | 6.0 | 6.0 | 36.0 | NEW/NEW | — | Photonic Multicast Weight Streaming |
+| press1#3 | PRESS | 6.0 | 6.0 | 36.0 | NEW/NEW | — | Physical Optical Gradient Summation |
+| comp2#2 | COMP | 5.0 | 6.0 | 30.0 | NEW/NEW | — | Circulating optical weight broadcast |
+| clear2#3 | CLEAR | 5.0 | 6.0 | 30.0 | NEW/NEW | — | Optical weight broadcast fabric |
+| press1#2 | PRESS | 6.0 | 5.0 | 30.0 | NEW/NEW | — | Retrieval-Replaced Feed-Forward Layers |
+| press2#2 | PRESS | 4.5 | 6.5 | 29.2 | NEW/NEW | — | Charge-Recycling Resonant Tensor Arrays |
+| comp1#2 | COMP | 5.0 | 5.5 | 27.5 | NEW/NEW | — | Checksum-governed adaptive precision |
+| clear1#3 | CLEAR | 5.5 | 5.0 | 27.5 | NEW/NEW | — | Early-Terminating MSB-First Arithmetic |

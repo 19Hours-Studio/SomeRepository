@@ -1,0 +1,270 @@
+<title>Continuum</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; two mechanism figures carry the argument, numbers and verdict follow. */
+:root {
+  --bg: #eef1f3;        /* cleanroom grey-blue */
+  --surface: #ffffff;
+  --fg: #15202a;
+  --muted: #55626e;
+  --line: #9aa6b1;
+  --copper: #a8541f;    /* the path under discussion: weights read locally, the token's hop */
+  --ghost: #b9c2ca;
+  --display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10161c; --surface: #18212a; --fg: #e3e9ef; --muted: #9eabb7; --line: #5d6b78; --copper: #e3894c; --ghost: #3a4652;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10161c; --surface: #18212a; --fg: #e3e9ef; --muted: #9eabb7; --line: #5d6b78; --copper: #e3894c; --ghost: #3a4652;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 400 1rem/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 32px;
+}
+main { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; min-width: 0; }
+main > *, figure, .fig, .table-wrap { min-width: 0; max-width: 100%; }
+header.hero { padding-block: 48px 0; display: grid; gap: 14px; }
+.kicker { font: 500 0.8125rem var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0; }
+h1 { font: 600 clamp(3rem, 9vw, 5.5rem)/0.95 var(--display); letter-spacing: 0.01em; margin: 0; }
+h1 span { color: var(--copper); }
+h2 { font: 600 clamp(1.6rem, 4vw, 2.1rem)/1.1 var(--display); letter-spacing: 0.01em; margin: 0 0 12px; text-wrap: balance; }
+h3 { font: 600 1.05rem/1.3 var(--body); margin: 0 0 8px; }
+p { margin: 0 0 12px; max-width: 68ch; }
+.lead { font-size: 1.2rem; max-width: 60ch; }
+.target { font: 400 0.9375rem var(--mono); color: var(--muted); }
+.strip { display: flex; flex-wrap: wrap; gap: 10px 28px; padding: 14px 0 0; border-top: 1px solid var(--line); margin-top: 6px; }
+.strip div { min-width: 0; }
+.strip b { display: block; font: 600 1.6rem/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.strip span { font-size: 0.875rem; color: var(--muted); }
+figure { margin: 0; display: grid; gap: 10px; }
+.fig { background: var(--surface); border: 1px solid var(--line); padding: 12px; overflow-x: auto; }
+.fig svg { display: block; width: 100%; min-width: 640px; height: auto; color: var(--fg); }
+figcaption { font-size: 0.9375rem; color: var(--muted); max-width: 72ch; }
+.t { fill: currentColor; font: 500 13px var(--body); }
+.ts { fill: currentColor; font: 400 12px var(--body); opacity: 0.8; }
+.tm { fill: currentColor; font: 500 12px var(--mono); }
+.tc { fill: var(--copper); font: 600 13px var(--body); }
+.box { fill: none; stroke: currentColor; stroke-width: 1.5; }
+.ghost { fill: none; stroke: var(--ghost); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.tghost { fill: var(--muted); font: 500 12px var(--body); }
+.pkg { fill: none; stroke: var(--line); stroke-width: 1.2; }
+.ln { stroke: currentColor; stroke-width: 1.6; fill: none; }
+.hot { stroke: var(--copper); stroke-width: 3; fill: none; }
+.fill-c { fill: var(--copper); }
+.fill-s { fill: var(--bg); stroke: currentColor; stroke-width: 1.2; }
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-top: 1px solid var(--line); }
+thead th { border-top: 0; font: 500 0.8125rem var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .was { display: block; color: var(--muted); font-size: 0.8125rem; }
+.two { display: grid; gap: 20px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.two > div { min-width: 0; }
+ul.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
+.verdict { border-left: 4px solid var(--copper); padding: 4px 0 4px 18px; display: grid; gap: 10px; }
+.verdict p { margin: 0; }
+.prob { display: grid; gap: 6px; max-width: 520px; }
+.bar { display: grid; grid-template-columns: 12rem minmax(0, 1fr) 3rem; gap: 10px; align-items: center; font-size: 0.9375rem; }
+.bar i { display: block; height: 10px; background: var(--line); }
+.bar i.lead { background: var(--copper); }
+.bar span:last-child { font-family: var(--mono); text-align: right; }
+@media (max-width: 520px) { .bar { grid-template-columns: 8.5rem minmax(0, 1fr) 2.6rem; font-size: 0.875rem; } }
+footer { max-width: 1040px; margin: 0 auto; padding-top: 32px; border-top: 1px solid var(--line); font-size: 0.875rem; color: var(--muted); display: grid; gap: 8px; }
+footer p { max-width: 80ch; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+</style>
+
+<main>
+  <header class="hero">
+    <p class="kicker">Архитектура ИИ-чипа · придумана и проверена движком идей</p>
+    <h1>Continuum<span>-D</span></h1>
+    <p class="lead">Веса модели постоянно лежат во встроенной памяти SRAM сотен обычных кристаллов, а кэш каждого пользователя — в дешёвой LPDDR рядом с кристаллом. Ни одного стека HBM и никакой упаковки CoWoS.</p>
+    <p class="target">Цель: генерация токенов большой модели-«смеси экспертов» класса DeepSeek-V3 (671 млрд параметров), контекст 32K, от 1000 токенов в секунду на пользователя.</p>
+    <div class="strip" aria-label="Главные цифры">
+      <div><b>0</b><span>стеков HBM и CoWoS</span></div>
+      <div><b>333</b><span>кристалла по 800 мм²</span></div>
+      <div><b>414 тыс.</b><span>токенов в секунду всего</span></div>
+      <div><b>1.5×</b><span>дешевле токен, по аудиту</span></div>
+    </div>
+  </header>
+
+  <section aria-labelledby="h-diff">
+    <h2 id="h-diff">Что меняется по сравнению с GPU</h2>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 1000 400" role="img" aria-label="Слева GPU: на каждом шаге веса и кэш идут из стеков HBM через интерпозер CoWoS. Справа кристалл Continuum-D: веса читаются из собственной SRAM, из внешней LPDDR идёт только кэш пользователей, HBM нет.">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+            <marker id="arc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="fill-c"/></marker>
+          </defs>
+          <!-- left: GPU today -->
+          <text x="250" y="30" text-anchor="middle" class="t">GPU сегодня (класс Rubin)</text>
+          <rect x="30" y="50" width="440" height="300" class="pkg" rx="4"/>
+          <text x="250" y="340" text-anchor="middle" class="ts">интерпозер CoWoS — дефицит 2026–28</text>
+          <rect x="175" y="130" width="150" height="150" class="box"/>
+          <text x="250" y="200" text-anchor="middle" class="t">вычисления</text>
+          <text x="250" y="218" text-anchor="middle" class="ts">мало SRAM</text>
+          <g>
+            <rect x="55" y="80" width="70" height="60" class="box"/><text x="90" y="115" text-anchor="middle" class="tm">HBM</text>
+            <rect x="55" y="170" width="70" height="60" class="box"/><text x="90" y="205" text-anchor="middle" class="tm">HBM</text>
+            <rect x="375" y="80" width="70" height="60" class="box"/><text x="410" y="115" text-anchor="middle" class="tm">HBM</text>
+            <rect x="375" y="170" width="70" height="60" class="box"/><text x="410" y="205" text-anchor="middle" class="tm">HBM</text>
+          </g>
+          <line x1="125" y1="110" x2="173" y2="160" class="ln" marker-end="url(#ar)"/>
+          <line x1="125" y1="200" x2="173" y2="200" class="ln" marker-end="url(#ar)"/>
+          <line x1="375" y1="110" x2="327" y2="160" class="ln" marker-end="url(#ar)"/>
+          <line x1="375" y1="200" x2="327" y2="200" class="ln" marker-end="url(#ar)"/>
+          <text x="250" y="305" text-anchor="middle" class="t">веса + KV из HBM на каждом шаге</text>
+
+          <!-- right: one Continuum-D die -->
+          <text x="750" y="30" text-anchor="middle" class="t">Continuum-D: один из 333 кристаллов</text>
+          <rect x="530" y="50" width="440" height="300" class="pkg" rx="4"/>
+          <text x="750" y="340" text-anchor="middle" class="ts">обычная органическая подложка</text>
+          <rect x="600" y="80" width="300" height="140" class="box"/>
+          <rect x="616" y="96" width="140" height="108" class="fill-s"/>
+          <text x="686" y="140" text-anchor="middle" class="t">SRAM 1.25 ГБ</text>
+          <text x="686" y="158" text-anchor="middle" class="ts">свой кусок весов</text>
+          <text x="686" y="176" text-anchor="middle" class="ts">428 мм²</text>
+          <rect x="784" y="96" width="100" height="108" class="fill-s"/>
+          <text x="834" y="146" text-anchor="middle" class="t">FP8</text>
+          <text x="834" y="164" text-anchor="middle" class="ts">~1.3 PF</text>
+          <line x1="756" y1="150" x2="782" y2="150" class="hot" marker-end="url(#arc)"/>
+          <text x="750" y="70" text-anchor="middle" class="tc">веса — внутри кристалла</text>
+          <g>
+            <rect x="600" y="262" width="66" height="40" class="box"/><rect x="678" y="262" width="66" height="40" class="box"/>
+            <rect x="756" y="262" width="66" height="40" class="box"/><rect x="834" y="262" width="66" height="40" class="box"/>
+            <text x="633" y="287" text-anchor="middle" class="tm">LPDDR6</text><text x="711" y="287" text-anchor="middle" class="tm">LPDDR6</text>
+            <text x="789" y="287" text-anchor="middle" class="tm">LPDDR6</text><text x="867" y="287" text-anchor="middle" class="tm">LPDDR6</text>
+          </g>
+          <line x1="750" y1="260" x2="750" y2="222" class="ln" marker-end="url(#ar)"/>
+          <text x="760" y="252" class="ts">KV, ~1.1 ТБ/с</text>
+          <text x="935" y="290" text-anchor="end" class="ts">48 ГБ</text>
+          <rect x="912" y="96" width="50" height="108" class="ghost"/>
+          <text x="937" y="146" text-anchor="middle" class="tghost">HBM</text>
+          <text x="937" y="162" text-anchor="middle" class="tghost">нет</text>
+        </svg>
+      </div>
+      <figcaption>У GPU каждое новое слово требует заново прочитать из HBM и веса, и кэш внимания: это около половины энергии при длинном контексте. В Continuum-D веса не двигаются — каждый кристалл хранит свой кусок модели в SRAM. Наружу ходит только кэш пользователей, и для него хватает дешёвой LPDDR.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="h-flow">
+    <h2 id="h-flow">Как токен проходит через систему</h2>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 1000 300" role="img" aria-label="Активации токена идут через 61 группу слоёв: в каждой группе рассылаются на кристаллы с нужными весами и собираются обратно. Весь проход занимает 85 микросекунд, отсюда потолок около 11.8 тысячи токенов в секунду на пользователя. Каждый кристалл хранит копию кэша соседа.">
+          <defs>
+            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="fill-c"/></marker>
+          </defs>
+          <text x="20" y="150" class="tc">токен</text>
+          <line x1="64" y1="146" x2="96" y2="146" class="hot" marker-end="url(#ar2)"/>
+          <!-- group template drawn four times plus the last -->
+          <g id="grp">
+            <circle cx="110" cy="146" r="6" class="fill-c"/>
+            <line x1="110" y1="146" x2="150" y2="76" class="hot"/><line x1="110" y1="146" x2="150" y2="146" class="hot"/><line x1="110" y1="146" x2="150" y2="216" class="hot"/>
+            <rect x="150" y="58" width="48" height="36" class="box"/><rect x="150" y="128" width="48" height="36" class="box"/><rect x="150" y="198" width="48" height="36" class="box"/>
+            <line x1="198" y1="76" x2="238" y2="146" class="hot"/><line x1="198" y1="146" x2="238" y2="146" class="hot"/><line x1="198" y1="216" x2="238" y2="146" class="hot"/>
+            <circle cx="238" cy="146" r="6" class="fill-c"/>
+            <path d="M 174 94 C 186 108, 186 116, 174 128" class="ghost"/>
+            <path d="M 174 164 C 186 178, 186 186, 174 198" class="ghost"/>
+            <text x="174" y="262" text-anchor="middle" class="ts">группа слоёв</text>
+          </g>
+          <use href="#grp" x="170"/>
+          <use href="#grp" x="340"/>
+          <line x1="238" y1="146" x2="278" y2="146" class="hot"/>
+          <line x1="408" y1="146" x2="448" y2="146" class="hot"/>
+          <line x1="578" y1="146" x2="640" y2="146" class="hot" stroke-dasharray="2 6"/>
+          <text x="660" y="150" class="t">… всего 61 группа</text>
+          <use href="#grp" x="680"/>
+          <line x1="918" y1="146" x2="960" y2="146" class="hot" marker-end="url(#ar2)"/>
+          <text x="980" y="128" text-anchor="end" class="tc">слово</text>
+          <text x="174" y="40" text-anchor="middle" class="ts">рассылка → свёртка</text>
+          <text x="500" y="292" text-anchor="middle" class="tm">333 кристалла · 85 мкс на проход · потолок ~11.8 тыс. ток/с на пользователя</text>
+        </svg>
+      </div>
+      <figcaption>Слои модели разбиты на 61 группу. Внутри группы активации токена рассылаются на кристаллы с нужными весами и собираются обратно, затем идут в следующую группу. Первая версия была конвейером из 333 ступеней с 233 мкс на токен; починка сократила задержку до 85 мкс. Пунктир — копия кэша соседнего кристалла: без неё отказ одного кристалла стёр бы часть кэша у всех пользователей.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="h-num">
+    <h2 id="h-num">Цифры</h2>
+    <p>Слева то, что посчитал починщик, справа — что осталось после слепого аудита, где они расходятся.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Что</th><th scope="col">Значение</th><th scope="col">Откуда</th></tr></thead>
+        <tbody>
+          <tr><td>Модель</td><td class="n">377 ГБ</td><td>671 млрд параметров в NVFP4, 4.5 бита на вес; починщик исправил исходные 335 ГБ</td></tr>
+          <tr><td>Кристалл</td><td class="n">800 мм², N3</td><td>1.25 ГБ SRAM занимает 428 мм² при 31.8 Мбит/мм² и 70% эффективности массива; аудит повторил</td></tr>
+          <tr><td>Вычисления</td><td class="n">~1.3 PF FP8</td><td>на кристалл; внимание MLA требует ~484 FLOP на байт</td></tr>
+          <tr><td>Память KV</td><td class="n">48 ГБ LPDDR6</td><td>~1.1 ТБ/с на кристалл (26 каналов ×24); KV на пользователя при 32K — 0.65 ГБ</td></tr>
+          <tr><td>Поток</td><td class="n">414 тыс. ток/с</td><td>при 32K контексте упор в вычисления; память вытянула бы 514 тыс.</td></tr>
+          <tr><td>Себестоимость</td><td class="n">$0.81 млн, 117 кВт</td><td>$2.44 млн при наценке 3×</td></tr>
+          <tr><td>Энергия</td><td class="n">0.283 Дж/токен<span class="was">было: 0.19–0.20</span></td><td>аудит: 117 кВт ÷ 414 тыс. ток/с. Это в 1.5 раза хуже Rubin, а не на 9%</td></tr>
+          <tr><td>Цена токена</td><td class="n">1.5× дешевле<span class="was">было: 2.8×</span></td><td>против Rubin NVL72 при ≥1000 ток/с на пользователя ($0.077 против $0.214 за млн), после учёта LPDDR по $20/ГБ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-where">
+    <h2 id="h-where">Где выигрывает, где проигрывает</h2>
+    <div class="two">
+      <div>
+        <h3>Выигрывает</h3>
+        <ul class="plain">
+          <li>На очень быстрой генерации, от 1000 токенов в секунду на пользователя: веса не читаются из внешней памяти совсем.</li>
+          <li>Не зависит от HBM и упаковки CoWoS, которые в 2026–28 годах ограничивают выпуск всех GPU и TPU.</li>
+          <li>Кэш пользователей растёт за счёт дешёвой LPDDR, а не дорогой SRAM. Этим она отличается от Groq, которому на модель 70B нужно 576 чипов.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Проигрывает</h3>
+        <ul class="plain">
+          <li>При 500 токенах в секунду на пользователя и медленнее — только паритет с GPU (1.1×).</li>
+          <li>Энергия на токен в 1.5 раза хуже Rubin.</li>
+          <li>Привязана к размеру модели: модель на 1 трлн параметров требует ~470 кристаллов и новую систему. SRAM стоит ~$560 за ГБ против $15–17 у HBM4.</li>
+          <li>Отказ одного кристалла останавливает всю систему; при частоте отказов из обучения Llama 3 это раз в ~12 дней.</li>
+          <li>LPDDR взята с запасом: 16 ТБ при 268 ГБ кэша в работе.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-verdict">
+    <h2 id="h-verdict">Вердикт</h2>
+    <div class="verdict">
+      <p><b>Лучшая из того, что движок придумал и проверил,</b> но не новая: аудитор отметил её как уже известную. Близкие системы — многосотчиповые установки Groq с весами в SRAM, Nvidia Groq 3 LPX (GTC 2026) и d-Matrix Corsair, где SRAM соединена с 256 ГБ LPDDR. Вклад движка — расчёт, при каких условиях эта схема выигрывает у GPU, и честные цифры.</p>
+      <div class="prob" aria-label="Калибровка: насколько уверен движок">
+        <div class="bar"><span>Continuum-D</span><i class="lead" style="width:42%"></i><span>42%</span></div>
+        <div class="bar"><span>Узлы-стеки внимания</span><i style="width:18%"></i><span>18%</span></div>
+        <div class="bar"><span>Ничего из этого</span><i style="width:31%"></i><span>31%</span></div>
+      </div>
+      <p><b>Слабое звено:</b> цена Rubin $0.214 за млн токенов при ≥1000 ток/с на пользователя ничем не подтверждена, а опубликованные рекорды Blackwell — сотни токенов в секунду. Если база дешевле или не достигает такой скорости вообще, выигрыш сильно сдвигается в любую сторону.</p>
+      <p><b>Решающий опыт:</b> симулировать или измерить декодирование DeepSeek-V3 при 32K и ≥1000 ток/с на пользователя на Rubin NVL72 (широкий параллелизм экспертов и спекулятивное декодирование), на трёх стойках Groq 3 LPX и на Continuum-D по полной себестоимости. Если лучшая база окажется не дороже 1.2× от Continuum-D, лидерство теряется.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-second">
+    <h2 id="h-second">Второе место: узлы-стеки внимания</h2>
+    <p>Стек HBM4 снимают с интерпозера GPU и ставят отдельным узлом на обычную подложку (стандарт SPHBM4, июль 2026). Его логический кристалл сам считает внимание по кэшу и отдаёт наружу только частичные результаты: байтов кэша читается в ~8000 раз больше, чем уходит по связи. По аудиту 1.2× к лучшей практике. Но HBM на токен нужно в 1.57 раза больше, чем Rubin, а против разреженного внимания (MLA, выбор top-2048) выигрыш почти исчезает.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Как получено: движок идей одним проходом за $8.96. Бриф → бухгалтерия «куда уходят энергия и деньги» по 4 сценариям → переформулировка задачи моделью → 15 идей от 5 генераторов → сортировка по важности и возможности → тест на смерть на 8 идеях (1 живая, 2 раненые) → починка 4 лучших с расчётами → слепой аудит → калибровка.</p>
+  <p>Это концепт, а не кремний. Цифры — расчёты по формулам производительности и энергии и опубликованные данные, которые нашли агенты движка. Часть источников новее моей даты знаний (Rubin, Groq 3 LPX, SPHBM4); их пересчитывал аудитор, но сам я их не проверял. Название Continuum выбрано пользователем и с устройством чипа не связано.</p>
+</footer>

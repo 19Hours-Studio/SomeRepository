@@ -1,0 +1,31 @@
+Your previous answer to the question below was:
+<<<
+=== IDEAS ===
+IDEA 1
+NAME: Attention Inside Memory Stacks
+MECHANISM: Each 3D DRAM stack's base die holds a small engine that scores queries against locally stored, compressed KV cache, runs top-k selection and softmax, and returns only the weighted value vectors. Inactive KV moves to deeper layers of the stack, and frequently attended entries are promoted to faster layers based on observed attention statistics.
+VALUE: Long-context decode no longer streams the full KV cache over the memory bus, so it is bounded by in-stack bandwidth instead of HBM pins.
+
+IDEA 2
+NAME: Lookup-Accumulate Codebook Compute
+MECHANISM: Weights are stored as 4–6-bit indices into small codebooks learned for each layer, and activations are pre-multiplied into on-tile lookup tables. Matrix products then become table reads plus adds, with no multiplier arrays. Codebooks are re-fitted offline per model and can be hot-swapped per layer.
+VALUE: Arithmetic energy and die area drop by several times at near-FP8 quality, which frees silicon for more memory bandwidth.
+
+IDEA 3
+NAME: Compiler-Scheduled Optical Circuits
+MECHANISM: Co-packaged photonic links form a circuit-switched mesh whose paths are set by the compiler at each phase of the model, such as prefill, expert dispatch and all-reduce. There are no packet routers or runtime arbitration. Spare circuits absorb variance in MoE routing, and the schedule is recompiled when the traffic profile drifts.
+VALUE: A rack of chips behaves like one deterministic, low-latency machine, without the switch power and tail latency of packet networks.>>>
+The reviewers judged all three ordinary. The bar is far higher. Answer the question again.
+
+Propose a new architecture for an AI accelerator chip, named "Continuum", that could credibly be called the best in the world. The asker has not said which workloads count: training, inference, or both. They have not said what "best" is measured by, or which kind of target (data center, edge, or other) the chip is for. A good answer therefore has to state its own target workloads and metrics, then defend the architecture against the current leading designs. Those designs include GPUs such as the Nvidia Rubin class, Google TPUs such as Ironwood, and SRAM-centric dataflow chips such as Cerebras WSE-3 and Groq LPU. The architecture should cover compute, memory hierarchy, interconnect, numerics, programming model, packaging and power. It should cite known physical, economic and manufacturing limits, and say what would need to be true for it to work. Reported 2026 reference points are listed in CONTEXT. Many are vendor or blog figures, and the sources disagree on some numbers.
+Propose 3 fundamentally new answers (not incremental variations of existing approaches).
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

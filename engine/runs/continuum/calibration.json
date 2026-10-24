@@ -1,0 +1,12 @@
+{
+ "p": {
+  "repair#1": 0.42,
+  "repair#4": 0.18,
+  "repair#3": 0.05,
+  "repair#2": 0.04,
+  "none": 0.31
+ },
+ "weakest_link": "Idea 1's advantage is measured against a Rubin NVL72 wide-EP cost of $0.214/Mtok at ≥1000 tok/s/user on a 671B MoE. That figure is unsourced, and published Blackwell-class records only reach hundreds of tok/s/user. If the baseline is cheaper, or cannot reach that tier at all, the ratio moves sharply in either direction.",
+ "flip_test": "Measure or simulate DeepSeek-V3 decode at 32K context and ≥1000 tok/s/user, comparing Rubin NVL72 (wide EP plus speculative decoding) and a 3-rack Groq 3 LPX against Continuum-D. Continuum-D should be costed at its full BOM with LPDDR at $20/GB and its 0.283 J/token energy. If the best baseline reaches ≤1.2× of Continuum-D's all-in $/Mtok, Idea 1 loses the lead and \"none\" becomes the most likely outcome. If the baseline cannot reach the tier at all, Idea 1 rises above 60%.",
+ "unknown": "Even if Idea 1 is right, it is unclear whether a market for ≥1000 tok/s/user on frontier MoE models is large enough to define \"best.\" It is also unclear whether 333-die SRAM residency survives the next model-size jump (1T+), or whether die failures and stragglers at that scale erase the yield and cost edge."
+}

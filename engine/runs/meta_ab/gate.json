@@ -1,0 +1,84 @@
+{
+ "clear1#2": {
+  "killer": "Capacity of the ferroelectric CAM needed to hold 4-bit keys for 1M-token decode at a batch of 32 (Llama-70B-class GQA: 80 layers × 8 KV heads × 128 dim)",
+  "why": "Keys for one million-token user already fill a full reticle at a cell density no FeFET CAM has shown, and digital sparse attention (DSA) already captures most of the traffic saving.",
+  "margin": 0.03,
+  "ratio": 1.29,
+  "verdict": "DEAD"
+ },
+ "c2#1": {
+  "killer": "Compute rate in the DRAM banks per package, needed to match the incumbent's decode throughput (DeepSeek R1, 37B active, 74 GFLOP per token)",
+  "why": "Logic built on a DRAM process delivers about 1/30 of the FLOP/s that batched MoE decode needs, so the energy saved per token is lost to a roughly 4x higher cost per token.",
+  "margin": 0.03,
+  "ratio": 0.23,
+  "verdict": "DEAD"
+ },
+ "comp2#3": {
+  "killer": "Share of tiles that must escalate when the cheap, provable per-tile bound is held to the same kind of bound computed for NVFP4 (measured: K=128 tiles, 3-bit absmax quantization, 20k samples, Gaussian and Student-t(3) activations)",
+  "why": "A provable worst-case bound on 3-bit tiles always exceeds an FP4- or FP8-grade budget, so every tile escalates and the chip runs slower than plain NVFP4.",
+  "margin": 0.125,
+  "ratio": 0.36,
+  "verdict": "DEAD"
+ },
+ "rival2#3": {
+  "killer": "Optical ingress bandwidth per chip, which must exceed local HBM bandwidth to \"break the per-chip decode bandwidth limit\"",
+  "why": "Optical ingress per chip is 5x below the HBM it claims to beat, and batching plus expert parallelism already amortize weight reads, leaving almost nothing to save.",
+  "margin": 0.2,
+  "ratio": 1.01,
+  "verdict": "DEAD"
+ },
+ "rival2#1": {
+  "killer": "Attention energy gain from doing top-k plus flash-decode in the base die, compared with running the same top-k sparse attention on the GPU. Keeping data on the stack saves only the off-stack I/O energy; the DRAM array, row activation and TSV energy are still spent",
+  "why": "The order-of-magnitude saving comes from the top-k sparsity, which GPUs already run in production (DSA). Moving it into the base die saves only the 7–10% of HBM energy spent on off-stack I/O.",
+  "margin": 0.11,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ },
+ "rival1#1": {
+  "killer": "Data-movement energy cut from scoring keys with LSH in the base die, against the same LSH or top-k selection done on the GPU. Only the off-stack PHY hop is removed",
+  "why": "The base die reads its data through the same TSVs, at about the same bandwidth as the external interface, so it removes neither the bandwidth bottleneck nor most of the energy. The >10x figure is the sparsity gain, and GPUs already get that.",
+  "margin": 0.11,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ },
+ "comp1#1": {
+  "killer": "Energy and cost cut per long-context token, beyond what a GPU gets by reading the same 1–2-bit key sketches and then the selected K/V rows. Only the sketch's off-stack crossing is saved. It is true that traffic crossing to the compute die falls 10–50x, but the energy behind it does not",
+  "why": "The claimed traffic cut counts interface bits and ignores array and TSV energy. Once on-GPU sparse attention is the baseline, about 1.04x is left for the system.",
+  "margin": 0.11,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ },
+ "clear2#3": {
+  "killer": "Optical ingress bandwidth each package needs to receive 15/16 of all expert weights every decode step. At serving batch sizes almost every expert is touched each step. Figures: 671 GB FP8 DeepSeek-class model, 50–85 tok/s/user",
+  "why": "Expert parallelism already reads each weight once per step across the group by moving activations, which are KB per token. Moving weights instead, which are hundreds of GB per step, fails by about 20–30x on bandwidth and saves no HBM reads.",
+  "margin": 0.034,
+  "verdict": "DEAD"
+ },
+ "c2#3": {
+  "killer": "supply-voltage guardband the compiler can remove beyond what adaptive clocking already recovers",
+  "why": "Even at the full claimed 20% voltage cut, the saving reaches only the power-linked 35% of cost and gives at most 1.08x. That is below the 1.1 line, and running near threshold also needs more area to keep the same throughput, which the idea says it avoids.",
+  "margin": 0.5,
+  "ratio": 1.02,
+  "verdict": "DEAD"
+ },
+ "rival2#2": {
+  "killer": "bits per weight needed at near-FP8 accuracy",
+  "why": "The codec works at about 3 bits, but the real baseline is FP4, not FP8. Against FP4 the claimed 3x shrinks to about 1.5x on weight traffic and about 1.2x end to end, and the decoder also feeds FP8-rate MACs rather than FP4-rate ones.",
+  "margin": 0.89,
+  "ratio": 1.2,
+  "verdict": "WOUNDED"
+ },
+ "clear1#1": {
+  "killer": "weight storage density in BEOL memory",
+  "why": "Density falls short by 6–24x, so \"5 reticles\" becomes about 30–120. And 10k-cycle endurance rules out holding the KV cache, the part that grows with context.",
+  "margin": 0.04,
+  "ratio": 1.3,
+  "verdict": "DEAD"
+ },
+ "c1#3": {
+  "killer": "circuit reconfiguration time, against the per-layer switches between expert dispatch, combine and all-reduce in decode",
+  "why": "Deployed optical circuit switches reconfigure about 1,000x too slowly for per-layer MoE phase changes. Even a free network could not bring inference cost below 1/1.12 of today's.",
+  "margin": 0.0005,
+  "verdict": "DEAD"
+ }
+}

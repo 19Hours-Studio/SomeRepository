@@ -15,6 +15,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "MagicPIG LSH attention + PIM"
+  },
+  "s02:K1": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "In-DRAM LSH sparse attention"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Reformer LSH plus DRAM-PIM"
   }
  },
  "c2#3": {
@@ -33,6 +49,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "adaptive droop guardband removal, Groq determinism"
+  },
+  "s02:K1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Groq determinism + predictive voltage regulation"
+  },
+  "s02:K2": {
+   "O": 5,
+   "C": 5,
+   "V": 4,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Groq determinism plus predictive voltage regulation"
   }
  },
  "comp1#1": {
@@ -51,6 +83,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Quest/Loki sparse attention + HBM-PIM"
+  },
+  "s02:K1": {
+   "O": 4,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Quest/InfiniGen top-k in HBM base die"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Quest/InfiniGen top-k in HBM base die"
   }
  },
  "ins1#3": {
@@ -69,6 +117,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "TPU Apollo OCS, weight-stationary pipelining"
+  },
+  "s02:K1": {
+   "O": 2,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "TPU v4 OCS, resident pipeline slices"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "OCS phase-reconfigured pipeline parallelism"
   }
  },
  "ins1#1": {
@@ -87,6 +151,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "PQCache + in-DRAM ANN search"
+  },
+  "s02:K1": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "PQCache + in-bank PIM"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "PQ KV cache in DRAM-PIM"
   }
  },
  "comp2#2": {
@@ -105,6 +185,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "weight streaming, optical delay-line rings"
+  },
+  "s02:K1": {
+   "O": 5,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Optical ring weight circulation"
+  },
+  "s02:K2": {
+   "O": 5,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Optical ring weight circulation"
   }
  },
  "comp2#1": {
@@ -123,6 +219,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "PQCache, PQ-ADC lookup in HBM-PIM"
+  },
+  "s02:K1": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "PQCache in HBM base die"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "PQCache in HBM logic die"
   }
  },
  "ins2#3": {
@@ -141,6 +253,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "AWGR wavelength routing, expert parallelism"
+  },
+  "s02:K1": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Expert parallelism + WDM routing"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Expert parallelism over WDM optics"
   }
  },
  "comp1#2": {
@@ -159,6 +287,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Huang-Abraham ABFT + dynamic mixed precision"
+  },
+  "s02:K1": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ABFT + adaptive precision"
+  },
+  "s02:K2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ABFT-guided adaptive precision"
   }
  },
  "comp2#3": {
@@ -177,6 +321,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "Ozaki residual correction, outlier recomputation"
+  },
+  "s02:K1": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mixed-precision residual recompute (B12 variant)"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Low-bit compute with bounded recompute"
   }
  },
  "c2#2": {
@@ -195,6 +355,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "AQLM / LUT-NN / MADDNESS"
+  },
+  "s02:K1": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-NN / codebook GEMM"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AQLM / LUT-based VQ inference"
   }
  },
  "c2#1": {
@@ -213,6 +389,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Duplex/MoNDE MoE PIM, HBM-PIM"
+  },
+  "s02:K1": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Duplex / MoNDE MoE PIM"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Duplex / MoE DRAM-PIM"
   }
  },
  "c1#3": {
@@ -231,6 +423,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Groq software-scheduled network, Lightmatter Passage"
+  },
+  "s02:K1": {
+   "O": 3,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "TPU OCS / circuit-switched photonics"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Compiler-scheduled optical circuit switching"
   }
  },
  "ins1#2": {
@@ -249,6 +457,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "Bit-Pragmatic/Laconic MSB-first early termination"
+  },
+  "s02:K1": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bit-serial MSB-first early termination"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "MSB-first bit-serial early termination"
   }
  },
  "comp1#3": {
@@ -267,6 +491,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "SHARP in-network reduction + flash-decoding/Tree Attention"
+  },
+  "s02:K1": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SHARP in-network reduction + ring attention"
+  },
+  "s02:K2": {
+   "O": 6,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "SHARP in-network reduction plus ring attention"
   }
  },
  "c1#1": {
@@ -285,6 +525,22 @@
    "R": "N",
    "B": "NEW",
    "closest": "HBM-PIM sparse attention, KV tiering"
+  },
+  "s02:K1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AttAcc PIM attention + tiering"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AttAcc / NeuPIMs KV PIM"
   }
  },
  "ins2#1": {
@@ -303,6 +559,22 @@
    "R": "Y",
    "B": "NEW",
    "closest": "FeFET/analog CIM (IBM Hermes)"
+  },
+  "s02:K1": {
+   "O": 3,
+   "C": 4,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "3D FeFET compute-in-memory"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "FeFET analog compute-in-memory"
   }
  },
  "c1#2": {
@@ -321,6 +593,562 @@
    "R": "Y",
    "B": "NEW",
    "closest": "LUT-NN / PQ-DNN, duplicate of A11"
+  },
+  "s02:K1": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-GEMM / T-MAC codebook lookup"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-GEMM / T-MAC codebook lookup"
+  }
+ },
+ "press1#1": {
+  "s02:K1": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Razor/ThUnderVolt + ABFT undervolting"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Razor undervolting with ABFT checksums"
+  }
+ },
+ "zero2#2": {
+  "s02:K1": {
+   "O": 2,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Dark silicon computational sprinting"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 4,
+   "V": 4,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Dark silicon, computational sprinting, activity migration"
+  }
+ },
+ "zero2#3": {
+  "s02:K1": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Dynamic precision scaling, shadow sampling"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Dynamic precision scaling, shadow sampling"
+  }
+ },
+ "rival1#2": {
+  "s02:K1": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Optical broadcast weight sharing"
+  },
+  "s02:K2": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Optical broadcast weight sharing"
+  }
+ },
+ "audit1#3": {
+  "s02:K1": {
+   "O": 3,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "TopoOpt / SiP-ML reconfigurable optics"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 4,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "TPU OCS / TopoOpt reconfigurable topology"
+  }
+ },
+ "rival2#3": {
+  "s02:K1": {
+   "O": 6,
+   "C": 5,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Optical weight broadcast, token-stationary"
+  },
+  "s02:K2": {
+   "O": 6,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Photonic broadcast, token-stationary batching"
+  }
+ },
+ "audit1#1": {
+  "s02:K1": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AttAcc / NeuPIMs HBM-PIM attention"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AttAcc attention PIM"
+  }
+ },
+ "rival1#3": {
+  "s02:K1": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mixed-precision residual recompute"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Mixed-precision recompute of outlier rows"
+  }
+ },
+ "zero1#3": {
+  "s02:K1": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "ABFT undervolting (B01 duplicate)"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "ABFT near-threshold timing speculation"
+  }
+ },
+ "press2#1": {
+  "s02:K1": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SeedLM PRNG-seed weights"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SeedLM PRNG-seed weights"
+  }
+ },
+ "audit1#2": {
+  "s02:K1": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AQLM/LUT-GEMM codebook lookup"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AQLM codebook quantization, LUT GEMM"
+  }
+ },
+ "clear1#1": {
+  "s02:K1": {
+   "O": 3,
+   "C": 4,
+   "V": 7,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "N3XT monolithic BEOL RRAM"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Monolithic 3D RRAM (N3XT)"
+  }
+ },
+ "rival2#2": {
+  "s02:K1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "QTIP trellis quantization, inline decode"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "QTIP trellis-coded quantization decoder"
+  }
+ },
+ "zero2#1": {
+  "s02:K1": {
+   "O": 2,
+   "C": 4,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SeedLM"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "SeedLM"
+  }
+ },
+ "press2#2": {
+  "s02:K1": {
+   "O": 5,
+   "C": 3,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Adiabatic charge-recovery logic"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 3,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Adiabatic resonant-clock computing (Vaire)"
+  }
+ },
+ "clear1#2": {
+  "s02:K1": {
+   "O": 4,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "FeFET CAM approximate attention"
+  },
+  "s02:K2": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "FeFET CAM attention retrieval"
+  }
+ },
+ "clear2#3": {
+  "s02:K1": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Optical weight broadcast (B09 variant)"
+  },
+  "s02:K2": {
+   "O": 5,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Optical splitter weight broadcast"
+  }
+ },
+ "clear1#3": {
+  "s02:K1": {
+   "O": 6,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bit-serial early exit, decision-aware"
+  },
+  "s02:K2": {
+   "O": 5,
+   "C": 5,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Bit-serial interval arithmetic early exit"
+  }
+ },
+ "clear2#1": {
+  "s02:K1": {
+   "O": 3,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "HBM base-die flash-decoding PIM"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 6,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "HBM-PIM flash-decoding partials"
+  }
+ },
+ "zero1#1": {
+  "s02:K1": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-GEMM codebook lookup"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 7,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-GEMM codebook lookup"
+  }
+ },
+ "rival1#1": {
+  "s02:K1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "LSH sparse attention in HBM PIM"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "LSH KV retrieval in HBM base die"
+  }
+ },
+ "press1#3": {
+  "s02:K1": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Analog optical over-the-air aggregation"
+  },
+  "s02:K2": {
+   "O": 6,
+   "C": 4,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Analog over-the-air aggregation, optical"
+  }
+ },
+ "rival2#1": {
+  "s02:K1": {
+   "O": 4,
+   "C": 6,
+   "V": 7,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Top-k retrieval + flash-decoding PIM"
+  },
+  "s02:K2": {
+   "O": 4,
+   "C": 6,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "Quest plus flash-decoding in HBM PIM"
+  }
+ },
+ "press1#2": {
+  "s02:K1": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "FFN memoization / LUT-NN in NAND"
+  },
+  "s02:K2": {
+   "O": 6,
+   "C": 4,
+   "V": 5,
+   "R": "N",
+   "B": "NEW",
+   "closest": "FFN output memoization in NAND"
+  }
+ },
+ "audit2#2": {
+  "s02:K1": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-GEMM codebook lookup"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-GEMM VQ inference"
+  }
+ },
+ "audit2#1": {
+  "s02:K1": {
+   "O": 2,
+   "C": 5,
+   "V": 7,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Hybrid-bonded DRAM-on-logic (SeDRAM)"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 4,
+   "V": 7,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Hybrid-bonded DRAM-on-logic stacking"
+  }
+ },
+ "press2#3": {
+  "s02:K1": {
+   "O": 3,
+   "C": 3,
+   "V": 7,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Decoupled greedy local learning"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 3,
+   "V": 7,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "Decoupled greedy local learning"
+  }
+ },
+ "zero1#2": {
+  "s02:K1": {
+   "O": 3,
+   "C": 5,
+   "V": 6,
+   "R": "N",
+   "B": "NEW",
+   "closest": "AttAcc PIM + H2O eviction"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 5,
+   "V": 6,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "AttAcc KV PIM"
+  }
+ },
+ "audit2#3": {
+  "s02:K1": {
+   "O": 2,
+   "C": 3,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "CXL memory pool with attention engines"
+  },
+  "s02:K2": {
+   "O": 3,
+   "C": 3,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "CXL memory pool with attention offload"
+  }
+ },
+ "clear2#2": {
+  "s02:K1": {
+   "O": 2,
+   "C": 5,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-GEMM codebook lookup"
+  },
+  "s02:K2": {
+   "O": 2,
+   "C": 6,
+   "V": 5,
+   "R": "Y",
+   "B": "NEW",
+   "closest": "LUT-GEMM / T-MAC"
   }
  }
 }

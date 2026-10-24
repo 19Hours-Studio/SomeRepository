@@ -1,0 +1,192 @@
+B01
+MECHANISM: Tensor tiles run at about 0.45 V, where timing faults are frequent, instead of carrying the usual guard-band margins. Every matrix tile carries row and column checksums computed in a small, full-voltage sidecar. A mismatch triggers a local recompute, and per-tile voltage is retuned continuously from the observed fault rate. The compiler gives each tensor an error budget, so tolerant layers run lower than sensitive ones.
+VALUE: Energy per operation falls about 3× through V² scaling while results stay exact, which raises tokens per joule beyond any guard-banded GPU or TPU.
+
+B02
+MECHANISM: The die has about three times more compute tiles than its steady-state power budget can run. A scheduler runs a subset of tiles at high voltage and frequency and moves work to cold regions before local temperature crosses its limit. On-die thermal sensors close the control loop every millisecond. Pipeline stages follow the moving hot spot.
+VALUE: It delivers sustained throughput above the cooling limit for a fixed area by spending cheap silicon instead of scarce power and cooling capacity.
+
+B03
+MECHANISM: Every tensor tile carries a precision tag and a running error estimate, computed by sparse high-precision shadow MACs that sample the low-precision results. A controller lowers a tile's precision, from 8-bit down to 2-bit logarithmic, until the accumulated error approaches an accuracy budget set per request. When drift is detected, it raises precision again.
+VALUE: It lets each token use the minimum arithmetic needed for a guaranteed output quality, instead of a worst-case fixed datatype.
+
+B04
+MECHANISM: Weights are stored as 4–6-bit indices into small codebooks learned for each layer, and activations are pre-multiplied into on-tile lookup tables. Matrix products then become table reads plus adds, with no multiplier arrays. Codebooks are re-fitted offline per model and can be hot-swapped per layer.
+VALUE: Arithmetic energy and die area drop by several times at near-FP8 quality, which frees silicon for more memory bandwidth.
+
+B05
+MECHANISM: Each stacked DRAM bank stores KV-cache keys alongside locality-sensitive hash signatures and has logic for parallel signature matching. A query is broadcast, banks return only the top-k candidate keys and values, and exact attention is computed on that small set. Hash functions are retuned per layer from observed attention statistics.
+VALUE: It makes million-token decode cost scale with the number of retrieved keys instead of context length.
+
+B06
+MECHANISM: Each weight shard is read from memory once and broadcast optically on separate wavelengths to every chip in a replica group at the same time. Each chip consumes the weights in lockstep against its own batch of users. A scheduler adjusts group size to match live MoE expert popularity.
+VALUE: Weight-read energy is shared across many chips, so large batches no longer require each chip to hold its own copy of the weights.
+
+B07
+MECHANISM: Co-packaged silicon-photonic switches rewire the connections between chips at microsecond timescales. Each rewiring follows the expert-routing histogram that the MoE gate predicts for the next batch. Experts that are used heavily get direct optical links, and rarely used experts share links over multiple hops.
+VALUE: The physical network matches the shifting traffic pattern of MoE expert routing, which reduces all-to-all communication bottlenecks at cluster scale.
+
+B08
+MECHANISM: Each 3D DRAM stack's base die holds a small engine that scores queries against locally stored, compressed KV cache, runs top-k selection and softmax, and returns only the weighted value vectors. Inactive KV moves to deeper layers of the stack, and frequently attended entries are promoted to faster layers based on observed attention statistics.
+VALUE: Long-context decode no longer streams the full KV cache over the memory bus, so it is bounded by in-stack bandwidth instead of HBM pins.
+
+B09
+MECHANISM: A layer's weights are read from memory once and sent through passive photonic splitters to as many as 16 chips at the same time. Each chip holds activations and KV cache for a different set of users, so the chips are token-stationary while the weights stream past. A scheduler aligns layer timing across the group and changes the fan-out to match load.
+VALUE: The cost of the HBM weight read is shared across many chips, which breaks the per-chip decode bandwidth limit without needing wafer-scale SRAM.
+
+B10
+MECHANISM: Each DRAM stack holding the KV cache gets a logic layer that computes query-key scores, softmax and the value-weighted sum next to the stored keys and values. Only query vectors go into the stack and only attention outputs come back. Cache pages are compressed and evicted in place according to accumulated attention scores.
+VALUE: KV-cache traffic stops crossing the memory bus, so long-context decode is no longer limited by memory bandwidth.
+
+B11
+MECHANISM: Each HBM4 stack's logic base die stores a 1–2-bit sketch of every key. For each decode query it runs an approximate top-k search beside the DRAM. Only the selected K/V rows cross to the compute die. The value of k adapts per head from observed attention entropy.
+VALUE: Long-context decode traffic falls by an estimated 10–50×, so million-token contexts cost roughly what short ones do today.
+
+B12
+MECHANISM: Every matrix multiply runs first in FP4, and hardware computes a cheap error bound for each output row from the operands' exponent statistics. Only rows whose bound exceeds a per-layer budget are recomputed in FP8 using a stored residual. The budgets are calibrated online from the drift in downstream logits.
+VALUE: Most operations run at FP4 throughput and energy while accuracy stays close to FP8.
+
+B13
+MECHANISM: Execution is fully deterministic, so the compiler knows the switching activity of every tile in every cycle. It emits a matching per-tile voltage and current profile alongside the instruction stream. Voltage regulators are pre-staged ahead of load steps, so the chip needs no safety margin for sudden current surges.
+VALUE: Removing the usual 10–20% voltage guardband lets tiles run near-threshold safely, giving double-digit energy-per-token savings at no extra area cost.
+
+B14
+MECHANISM: Matrix engines run at about 0.45 V, below safe timing margins, and accept occasional bit errors. Algorithm-based fault-tolerance checksums on every tile product detect corrupted results, and only the affected tiles are recomputed. A controller tracks the error rate per voltage island and lowers each island's voltage until recompute overhead equals the energy saved.
+VALUE: It delivers about 2–3× better compute energy efficiency on the same process node without sacrificing output correctness.
+
+B15
+MECHANISM: Each weight tile is stored as a few bytes: a pseudo-random generator seed, a handful of mixing coefficients and a tiny low-rank correction. Hardware generators beside every tensor array expand these into full weights at the moment of use. Training updates only the coefficients and corrections, using gradients projected onto each seed's basis, and re-searches seeds when error grows.
+VALUE: Turns the decode memory wall into spare compute, so a trillion-parameter model's weights fit in on-chip SRAM without wafer-scale cost or HBM bandwidth limits.
+
+B16
+MECHANISM: Co-packaged photonic links form a circuit-switched mesh whose paths are set by the compiler at each phase of the model, such as prefill, expert dispatch and all-reduce. There are no packet routers or runtime arbitration. Spare circuits absorb variance in MoE routing, and the schedule is recompiled when the traffic profile drifts.
+VALUE: A rack of chips behaves like one deterministic, low-latency machine, without the switch power and tail latency of packet networks.
+
+B17
+MECHANISM: Weights are stored as 2–3-bit indices into small learned codebooks, one per block. Tiles precompute products of activations with codebook entries and then accumulate by table lookup instead of multiplying. Codebooks are periodically re-fit to the activation statistics seen in deployment.
+VALUE: Weights take roughly half the bytes of 4-bit formats, which roughly doubles bandwidth-limited decode throughput per watt.
+
+B18
+MECHANISM: Several layers of ReRAM/FeFET crossbar are built monolithically in the back-end metal stack directly above the MAC arrays. They store model weights permanently, so a weight travels only micrometres from where it is stored to where it is computed. Weights are rewritten only when the model is updated, and idle tiles are power-gated with no reload cost.
+VALUE: Frontier-model weights stay resident on the compute at near-SRAM energy, using about 5 reticles instead of roughly 2,200 SRAM chips.
+
+B19
+MECHANISM: Weights are stored only in a learned trellis/codebook compressed form at about 2–3 bits per weight. A decoder sits directly beside each MAC array and expands the weights in-line, so uncompressed weights are never written to memory. Codebooks are trained per layer and can be swapped at runtime by a small resident manager. The manager switches to finer codes for layers whose activation outliers grow.
+VALUE: Each HBM byte delivers about 3× more weights at near-FP8 accuracy, so both capacity and bandwidth effectively triple.
+
+B20
+MECHANISM: Weights are stored as indices into small learned vector codebooks rather than as numbers. The cores precompute products of activations with codebook entries, then compute by table lookup and addition instead of multiplication. Codebooks are trained jointly with the model and can be re-fit per layer during fine-tuning.
+VALUE: Weights take roughly 2–3 bits each, and the energy of each operation drops below FP4 without the accuracy loss of uniform quantization.
+
+B21
+MECHANISM: Each weight block is stored as a pseudo-random generator seed plus a few low-precision projection coefficients, found offline by search and fine-tuning. On-die hardware generators regenerate the full block next to the MAC arrays each time it is needed, at femtojoules per bit. HBM and SRAM therefore hold kilobytes where they would otherwise hold megabytes. The compiler re-searches seeds whenever the model is updated.
+VALUE: It turns the memory-bandwidth wall of LLM decode into cheap local compute, cutting energy per token by several times.
+
+B22
+MECHANISM: The multiply-accumulate arrays use adiabatic logic driven by sinusoidal power-clocks. These come from LC resonators built into the package interposer. Charge moved onto the wires is steered back into the resonator rather than dumped to ground, recovering most of the energy each switching transition would otherwise waste. Slower clocks are offset by far wider arrays, because AI workloads are massively parallel and tolerate higher latency per operation.
+VALUE: Breaks the CV² energy floor that all current accelerators pay, aiming for several-fold lower joules per operation at equal silicon area.
+
+B23
+MECHANISM: Attention keys are stored as 4-bit values in a ferroelectric content-addressable array. The array computes every query–key similarity in analog form in place and returns only the indices of the top-k matches. Only the matching values are then fetched from HBM and rescored exactly in digital logic, and k adapts per head to how sharp its attention scores are.
+VALUE: Attention traffic for each decoded token becomes nearly independent of context length, so million-token decode stops being limited by memory bandwidth.
+
+B24
+MECHANISM: Each MoE expert is pinned permanently to one chiplet, and tokens rather than weights travel between chips. The router's choice of expert maps directly onto an optical wavelength channel on co-packaged photonics. A compiler-generated schedule, rebalanced from measured expert popularity, replicates hot experts and reassigns wavelengths between batches.
+VALUE: It turns MoE all-to-all from a congestion-bound bottleneck into near-constant-latency, low-pJ/bit point-to-point delivery at rack scale.
+
+B25
+MECHANISM: The KV cache lives in DRAM that is stacked over logic and stored as product-quantized codes, with small comparator arrays at each bank. A query is broadcast to every bank. Each bank scores its keys locally and returns only the top-k candidates plus a residual bound, so the full KV cache never crosses the memory interface. Codebooks are periodically re-fit on chip as the context grows.
+VALUE: Long-context decode energy becomes nearly independent of context length, rather than scaling linearly with it.
+
+B26
+MECHANISM: Multipliers process operands one bit-plane at a time, starting from the most significant bit, and track a running worst-case bound on the remaining error. Each dot product stops as soon as its bound falls below the error budget the compiler assigned to that tensor. Hardware counters record the average depth reached per layer, and the compiler adjusts budgets from that feedback.
+VALUE: Precision is spent only where it changes the output, which saves an estimated 2–4× in energy compared with fixed FP4/FP8 formats.
+
+B27
+MECHANISM: Each package holds 1/16 of the expert weights. Weights are read from HBM once and sent through passive 1:16 optical splitters to 16 packages at the same time. Each package keeps different users' KV caches and activations. The compiler schedules one weight stream per layer and lets each receiving package consume it in batch.
+VALUE: Divides HBM weight-read energy per token by about 16 without SRAM-scale chip counts, making frontier MoE serving cheaper than either HBM-bound GPUs or SRAM-bound wafers.
+
+B28
+MECHANISM: Each matmul tile carries algorithm-based fault-tolerance checksums computed at higher precision. Hardware compares the low-precision result against the checksum and uses the residual to step that tile's precision per token (ternary, FP4, FP6, or FP8), staying within a compiler-specified error budget. The same residuals flag silent data corruption.
+VALUE: The chip runs each operation at the lowest precision that is provably safe, and it catches the silent hardware errors that plague large fleets.
+
+B29
+MECHANISM: Each package keeps one model slice permanently resident in its stacked DRAM. Only activations move between packages, over co-packaged optics routed through microsecond-scale optical circuit switches. The switch fabric is reconfigured per batch phase, such as prefill versus decode or between mixture-of-experts routing patterns, to match the dataflow graph. Expert placement migrates according to observed routing statistics.
+VALUE: Weights are never refetched, and the network topology tracks the workload instead of forcing the workload to fit a fixed topology.
+
+B30
+MECHANISM: Matrix multiplies process bit-planes starting from the most significant bit and keep a running interval bound on each output. Each output stops computing once its downstream result is mathematically settled, such as the argmax, the router's expert choice, or a saturated activation. The compiler sets a per-layer error budget that controls how early outputs may stop.
+VALUE: Average compute and operand traffic fall in proportion to how certain the model is, with a certified error bound instead of blanket quantization.
+
+B31
+MECHANISM: The KV cache is sharded across chips over co-packaged optics. Fabric switches contain ALUs that combine partial attention results (running max, sum, and weighted output) using the online-softmax rule as packets pass through. A query reaches all shards and gets back one merged vector in a single round trip.
+VALUE: One sequence's context can span hundreds of chips at near single-chip latency, with no all-gather of KV data.
+
+B32
+MECHANISM: Expert weights are not replicated per chip. Instead, weight shards circulate on a wavelength-multiplexed co-packaged optical ring. Each chip keeps its users' activations and hot KV stationary in SRAM and computes on weights as they pass, so a single weight read serves every chip in the ring. The scheduler reorders expert broadcast slots each step to match the router's predicted demand.
+VALUE: The effective decode batch becomes cluster-wide, so weight-read energy per token falls by roughly the number of chips in the ring.
+
+B33
+MECHANISM: Each HBM4 stack's logic base die holds that stack's KV-cache slices and computes the attention scores, softmax partials and value sums locally. Only query vectors and partial outputs (a few KB per head) cross the PHY, not gigabytes of KV. A host-side merge combines the partial softmaxes from all stacks exactly, and the cache is re-sharded as sequences grow.
+VALUE: Long-context decode energy no longer scales with interface bandwidth, cutting the roughly 0.29 J per token of KV traffic by an order of magnitude.
+
+B34
+MECHANISM: Weights are stored only as 2–4-bit indices into small learned codebooks, one per 256-weight block. The datapath never decompresses them: each activation is multiplied once against the 16 codebook entries, and indices then select and accumulate those precomputed products. Codebooks are refit per layer after deployment, using calibration traffic, without changing the indices.
+VALUE: It cuts weight-movement energy and bandwidth 4–8× versus FP8 while replacing multipliers with adders and table reads.
+
+B35
+MECHANISM: Logic on the base die of each HBM stack keeps a learned locality-sensitive hash index over the KV cache stored in that stack. For every query, it scores keys locally and returns only the top-k keys and values, or a partial softmax result, to the compute die. The index is updated as tokens are appended and is retuned per model from attention statistics.
+VALUE: Long-context decode no longer depends on HBM-to-compute bandwidth, which could cut attention data movement by more than 10×.
+
+B36
+MECHANISM: Each MoE expert is permanently pinned inside a DRAM bank that has its own multiply-accumulate logic beneath it, so weights are never transferred. The router sends each token's small activation vector across an on-stack mesh to the banks that hold its selected experts, and partial results are returned and reduced along the way. Expert placement is periodically rebalanced from observed routing statistics so that popular experts are replicated across banks.
+VALUE: Decode energy falls to bank-local access levels while capacity stays at DRAM scale, so trillion-parameter models fit in a few packages instead of racks.
+
+B37
+MECHANISM: The KV cache is stored as learned product-quantization codes, never as dense values. The HBM base die computes the query-to-codeword dot-product tables once per head. It then scores attention by table lookup and accumulation inside the memory stack, and returns only the top-k scores and a weighted value sum. Codebooks are retrained per layer offline and can be refreshed online when the drift in reconstruction error crosses a threshold.
+VALUE: It cuts KV bytes crossing the HBM interface by about 8–20×, so million-token decode stops being memory-bound.
+
+B38
+MECHANISM: Each chip intensity-modulates its gradient shard onto a shared wavelength, and photodetectors read the summed optical power, so the network performs the reduction in a single hop. Error-feedback buffers on each chip store the quantization and noise residual and re-inject it in the next step. Precision per pass adapts to the measured signal-to-noise ratio.
+VALUE: All-reduce becomes a constant-latency, switchless physical operation, so data-parallel training scales across racks without collective bottlenecks.
+
+B39
+MECHANISM: Each HBM4 stack's logic base die stores its share of the KV cache and runs two steps locally: approximate top-k block retrieval, then exact flash-decoding partial attention. Only small partial results (softmax numerators, denominators and max values) leave the stack, not the KV data itself. A retrieval index in the base die is updated as tokens are appended. The die adjusts how many blocks it selects based on the entropy of the attention scores.
+VALUE: Million-token decode no longer needs to pull KV bandwidth off the stack, which cuts long-context attention energy by roughly an order of magnitude.
+
+B40
+MECHANISM: Each FFN layer's input space is clustered offline, and for each centroid the precomputed outputs are stored in dense 3D NAND stacked beside the compute die. At runtime, a locality-sensitive hash finds the nearest centroid, its stored output is prefetched, and only a low-rank correction is computed for the residual. Cache entries are added or refined online from serving traffic.
+VALUE: Most FFN FLOPs and weight bandwidth become cheap flash reads, so cost per million tokens is set by bit density instead of HBM or SRAM supply.
+
+B41
+MECHANISM: Weights are stored as roughly 4-bit indices into small learned per-block codebooks. Activations are precombined into lookup tables, so a matrix multiply becomes table reads plus additions instead of multiplications. Codebooks are refit per layer at deployment, trading compression against accuracy.
+VALUE: It halves bytes per weight relative to FP8 and replaces most multipliers with adders, cutting both bandwidth and compute energy.
+
+B42
+MECHANISM: Each compute tile has its own DRAM stack hybrid-bonded directly above it at a fine pitch, giving every tile a private, very wide memory port. Weights are stored where they are consumed, so data travels microns instead of millimeters. The tile's temperature telemetry adapts DRAM refresh rate per bank.
+VALUE: It delivers DRAM capacity at near-SRAM energy per bit, removing the memory-movement power that dominates low-batch decode.
+
+B43
+MECHANISM: Each chip trains its block of layers against a local learned objective, so no backward pass crosses chip boundaries. No full-model activations are stored, and no global all-reduce is needed. Chips stream activations forward only and keep short-lived local state. The hardware has no global synchronization and no large activation memory, and blocks retune their local objectives by checking periodically against a small end-to-end signal.
+VALUE: Training scales linearly to millions of chips over cheap one-way optical links, removing the collective-communication and activation-memory costs that dominate frontier training clusters.
+
+B44
+MECHANISM: The KV cache lives in DRAM dies whose bonded logic layer computes QKᵀ, an online softmax, and the V-weighted sum locally per bank. Only the query vector enters each stack and only a partial output plus a normalizer leaves. Each bank tracks which tokens draw little attention and demotes them to lower precision or evicts them, so capacity adapts to each conversation.
+VALUE: Million-token-context decode costs roughly the same per token as short-context decode, because KV bytes never cross a chip boundary.
+
+B45
+MECHANISM: Model weights are written once into 3D-stacked FeFET compute-in-memory tiers that are hybrid-bonded over logic. Matrix-vector products happen inside the storage array, and a digital pass corrects analog error using stored residuals. Periodic on-die recalibration tracks drift, and new models are loaded by rewriting the arrays in minutes.
+VALUE: It removes per-token weight movement, the dominant energy cost of decode, cutting joules per token by an estimated 5–10× versus HBM-fed designs.
+
+B46
+MECHANISM: Long-context KV caches sit in pooled memory modules that contain their own attention engines. Only queries go in and attention outputs come back, so the cache never crosses the network. Hot sequences migrate between modules based on access frequency.
+VALUE: Context length scales with pooled memory capacity instead of accelerator-local memory, without paying interconnect bandwidth for KV traffic.
+
+B47
+MECHANISM: Weights are stored as 4-bit indices into 16-entry codebooks fitted per channel group. For each activation, the chip computes 16 products once and keeps them in SRAM. Every multiply-accumulate then becomes a table lookup plus an add. Codebooks are refit offline per layer, and the hardware can switch between 8- and 16-entry tables.
+VALUE: Removes multiplier area and energy from expert GEMMs while keeping FP4-level storage at near-FP8 accuracy.
+
+B48
+MECHANISM: Matmul tiles run at 3-bit, and each tile carries a cheap hardware running bound on its rounding error. A tile whose bound exceeds the compiler-assigned budget for its layer is recomputed at FP8 by deterministic residual correction. The budget per layer is tuned from observed escalation rates and output-sensitivity statistics.
+VALUE: It gives near-3-bit throughput and energy with a provable bound on accuracy loss, instead of relying on empirical quantization guesses.
+

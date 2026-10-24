@@ -295,5 +295,140 @@
   "name": "Routing-Shaped Photonic Fabric",
   "mech": "Co-packaged silicon-photonic switches rewire the connections between chips at microsecond timescales. Each rewiring follows the expert-routing histogram that the MoE gate predicts for the next batch. Experts that are used heavily get direct optical links, and rarely used experts share links over multiple hops.",
   "value": "The physical network matches the shifting traffic pattern of MoE expert routing, which reduces all-to-all communication bottlenecks at cluster scale."
+ },
+ {
+  "id": "audit2#1",
+  "label": "audit2",
+  "arm": "AUDIT",
+  "gen": 0,
+  "name": "DRAM Carpet Over Logic",
+  "mech": "Each compute tile has its own DRAM stack hybrid-bonded directly above it at a fine pitch, giving every tile a private, very wide memory port. Weights are stored where they are consumed, so data travels microns instead of millimeters. The tile's temperature telemetry adapts DRAM refresh rate per bank.",
+  "value": "It delivers DRAM capacity at near-SRAM energy per bit, removing the memory-movement power that dominates low-batch decode."
+ },
+ {
+  "id": "audit2#2",
+  "label": "audit2",
+  "arm": "AUDIT",
+  "gen": 0,
+  "name": "Codebook Lookup Matrix Engines",
+  "mech": "Weights are stored as roughly 4-bit indices into small learned per-block codebooks. Activations are precombined into lookup tables, so a matrix multiply becomes table reads plus additions instead of multiplications. Codebooks are refit per layer at deployment, trading compression against accuracy.",
+  "value": "It halves bytes per weight relative to FP8 and replaces most multipliers with adders, cutting both bandwidth and compute energy."
+ },
+ {
+  "id": "audit2#3",
+  "label": "audit2",
+  "arm": "AUDIT",
+  "gen": 0,
+  "name": "Attention Executed Where KV Lives",
+  "mech": "Long-context KV caches sit in pooled memory modules that contain their own attention engines. Only queries go in and attention outputs come back, so the cache never crosses the network. Hot sequences migrate between modules based on access frequency.",
+  "value": "Context length scales with pooled memory capacity instead of accelerator-local memory, without paying interconnect bandwidth for KV traffic."
+ },
+ {
+  "id": "zero1#1",
+  "label": "zero1",
+  "arm": "ZERO",
+  "gen": 0,
+  "name": "Codebook-Native Lookup Compute",
+  "mech": "Weights are stored only as 2–4-bit indices into small learned codebooks, one per 256-weight block. The datapath never decompresses them: each activation is multiplied once against the 16 codebook entries, and indices then select and accumulate those precomputed products. Codebooks are refit per layer after deployment, using calibration traffic, without changing the indices.",
+  "value": "It cuts weight-movement energy and bandwidth 4–8× versus FP8 while replacing multipliers with adders and table reads."
+ },
+ {
+  "id": "zero1#2",
+  "label": "zero1",
+  "arm": "ZERO",
+  "gen": 0,
+  "name": "Attention-In-DRAM KV Stacks",
+  "mech": "The KV cache lives in DRAM dies whose bonded logic layer computes QKᵀ, an online softmax, and the V-weighted sum locally per bank. Only the query vector enters each stack and only a partial output plus a normalizer leaves. Each bank tracks which tokens draw little attention and demotes them to lower precision or evicts them, so capacity adapts to each conversation.",
+  "value": "Million-token-context decode costs roughly the same per token as short-context decode, because KV bytes never cross a chip boundary."
+ },
+ {
+  "id": "zero1#3",
+  "label": "zero1",
+  "arm": "ZERO",
+  "gen": 0,
+  "name": "Checksum-Guarded Near-Threshold Compute",
+  "mech": "Matrix engines run at about 0.45 V, below safe timing margins, and accept occasional bit errors. Algorithm-based fault-tolerance checksums on every tile product detect corrupted results, and only the affected tiles are recomputed. A controller tracks the error rate per voltage island and lowers each island's voltage until recompute overhead equals the energy saved.",
+  "value": "It delivers about 2–3× better compute energy efficiency on the same process node without sacrificing output correctness."
+ },
+ {
+  "id": "zero2#1",
+  "label": "zero2",
+  "arm": "ZERO",
+  "gen": 0,
+  "name": "Procedural Weights From Seeds",
+  "mech": "Each weight block is stored as a pseudo-random generator seed plus a few low-precision projection coefficients, found offline by search and fine-tuning. On-die hardware generators regenerate the full block next to the MAC arrays each time it is needed, at femtojoules per bit. HBM and SRAM therefore hold kilobytes where they would otherwise hold megabytes. The compiler re-searches seeds whenever the model is updated.",
+  "value": "It turns the memory-bandwidth wall of LLM decode into cheap local compute, cutting energy per token by several times."
+ },
+ {
+  "id": "zero2#2",
+  "label": "zero2",
+  "arm": "ZERO",
+  "gen": 0,
+  "name": "Heat-Rotating Oversubscribed Silicon",
+  "mech": "The die has about three times more compute tiles than its steady-state power budget can run. A scheduler runs a subset of tiles at high voltage and frequency and moves work to cold regions before local temperature crosses its limit. On-die thermal sensors close the control loop every millisecond. Pipeline stages follow the moving hot spot.",
+  "value": "It delivers sustained throughput above the cooling limit for a fixed area by spending cheap silicon instead of scarce power and cooling capacity."
+ },
+ {
+  "id": "zero2#3",
+  "label": "zero2",
+  "arm": "ZERO",
+  "gen": 0,
+  "name": "Error-Budgeted Adaptive Precision Hardware",
+  "mech": "Every tensor tile carries a precision tag and a running error estimate, computed by sparse high-precision shadow MACs that sample the low-precision results. A controller lowers a tile's precision, from 8-bit down to 2-bit logarithmic, until the accumulated error approaches an accuracy budget set per request. When drift is detected, it raises precision again.",
+  "value": "It lets each token use the minimum arithmetic needed for a guaranteed output quality, instead of a worst-case fixed datatype."
+ },
+ {
+  "id": "press1#1",
+  "label": "press1",
+  "arm": "PRESS",
+  "gen": 0,
+  "name": "Error-Budgeted Near-Threshold Silicon",
+  "mech": "Tensor tiles run at about 0.45 V, where timing faults are frequent, instead of carrying the usual guard-band margins. Every matrix tile carries row and column checksums computed in a small, full-voltage sidecar. A mismatch triggers a local recompute, and per-tile voltage is retuned continuously from the observed fault rate. The compiler gives each tensor an error budget, so tolerant layers run lower than sensitive ones.",
+  "value": "Energy per operation falls about 3× through V² scaling while results stay exact, which raises tokens per joule beyond any guard-banded GPU or TPU."
+ },
+ {
+  "id": "press1#2",
+  "label": "press1",
+  "arm": "PRESS",
+  "gen": 0,
+  "name": "Retrieval-Replaced Feed-Forward Layers",
+  "mech": "Each FFN layer's input space is clustered offline, and for each centroid the precomputed outputs are stored in dense 3D NAND stacked beside the compute die. At runtime, a locality-sensitive hash finds the nearest centroid, its stored output is prefetched, and only a low-rank correction is computed for the residual. Cache entries are added or refined online from serving traffic.",
+  "value": "Most FFN FLOPs and weight bandwidth become cheap flash reads, so cost per million tokens is set by bit density instead of HBM or SRAM supply."
+ },
+ {
+  "id": "press1#3",
+  "label": "press1",
+  "arm": "PRESS",
+  "gen": 0,
+  "name": "Physical Optical Gradient Summation",
+  "mech": "Each chip intensity-modulates its gradient shard onto a shared wavelength, and photodetectors read the summed optical power, so the network performs the reduction in a single hop. Error-feedback buffers on each chip store the quantization and noise residual and re-inject it in the next step. Precision per pass adapts to the measured signal-to-noise ratio.",
+  "value": "All-reduce becomes a constant-latency, switchless physical operation, so data-parallel training scales across racks without collective bottlenecks."
+ },
+ {
+  "id": "press2#1",
+  "label": "press2",
+  "arm": "PRESS",
+  "gen": 0,
+  "name": "Synthesized, Never-Fetched Weights",
+  "mech": "Each weight tile is stored as a few bytes: a pseudo-random generator seed, a handful of mixing coefficients and a tiny low-rank correction. Hardware generators beside every tensor array expand these into full weights at the moment of use. Training updates only the coefficients and corrections, using gradients projected onto each seed's basis, and re-searches seeds when error grows.",
+  "value": "Turns the decode memory wall into spare compute, so a trillion-parameter model's weights fit in on-chip SRAM without wafer-scale cost or HBM bandwidth limits."
+ },
+ {
+  "id": "press2#2",
+  "label": "press2",
+  "arm": "PRESS",
+  "gen": 0,
+  "name": "Charge-Recycling Resonant Tensor Arrays",
+  "mech": "The multiply-accumulate arrays use adiabatic logic driven by sinusoidal power-clocks. These come from LC resonators built into the package interposer. Charge moved onto the wires is steered back into the resonator rather than dumped to ground, recovering most of the energy each switching transition would otherwise waste. Slower clocks are offset by far wider arrays, because AI workloads are massively parallel and tolerate higher latency per operation.",
+  "value": "Breaks the CV² energy floor that all current accelerators pay, aiming for several-fold lower joules per operation at equal silicon area."
+ },
+ {
+  "id": "press2#3",
+  "label": "press2",
+  "arm": "PRESS",
+  "gen": 0,
+  "name": "Backprop-Free Pipeline Silicon",
+  "mech": "Each chip trains its block of layers against a local learned objective, so no backward pass crosses chip boundaries. No full-model activations are stored, and no global all-reduce is needed. Chips stream activations forward only and keep short-lived local state. The hardware has no global synchronization and no large activation memory, and blocks retune their local objectives by checking periodically against a small end-to-end signal.",
+  "value": "Training scales linearly to millions of chips over cheap one-way optical links, removing the collective-communication and activation-memory costs that dominate frontier training clusters."
  }
 ]

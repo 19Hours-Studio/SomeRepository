@@ -8,3 +8,29 @@ rival2: 6318 tokens, $0.060, 39.5 s -> /home/user/SomeRepository/engine/runs/met
 rival2: 3 ideas (693 words)
 audit1: 6000 tokens, $0.068, 35.3 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/audit1.md
 audit1: 3 ideas (646 words)
+audit2: 7046 tokens, $0.075, 47.3 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/audit2.md
+audit2: 3 ideas (637 words)
+zero1: 5687 tokens, $0.062, 33.7 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/zero1.md
+zero1: 3 ideas (604 words)
+zero2: 6397 tokens, $0.062, 41.8 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/zero2.md
+zero2: 3 ideas (691 words)
+press1: 7038 tokens, $0.082, 43.3 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/press1.md
+press1: 3 ideas (572 words)
+press2: 6590 tokens, $0.072, 38.4 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/press2.md
+press2: 3 ideas (505 words)
+set s02: 48 items -> /home/user/SomeRepository/engine/runs/meta_ab/sets/s02/blind.txt (+ prompt_judge/family/lit.txt)
+K1: 25155 tokens, $0.187, 47.0 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/K1.md
+judge K1 on s02: 48/48 parsed
+K2: 25242 tokens, $0.092, 50.5 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/K2.md
+judge K2 on s02: 48/48 parsed
+best single-part arm: RIVAL {'C': 17.4, 'COMP': 27.2, 'CLEAR': 22.0, 'RIVAL': 25.5, 'AUDIT': 12.2, 'ZERO': 13.8, 'PRESS': 24.9, 'INS': 18.8}
+/home/user/SomeRepository/engine/runs/meta_ab/gate/c1/TASK.md
+gate1: 229555 tokens, $0.785, 222.3 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/gate1.md
+gate: 4/4 parsed {'DEAD': 4}
+/home/user/SomeRepository/engine/runs/meta_ab/gate/c2/TASK.md
+gate2: 89976 tokens, $0.418, 144.6 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/gate2.md
+gate: 4/4 parsed {'DEAD': 4}
+/home/user/SomeRepository/engine/runs/meta_ab/gate/c3/TASK.md
+gate3: 64432 tokens, $0.376, 99.9 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/gate3.md
+gate: 4/4 parsed {'DEAD': 3, 'WOUNDED': 1}
+/home/user/SomeRepository/engine/runs/meta_ab/gate/c4/TASK.md
