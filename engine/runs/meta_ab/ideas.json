@@ -268,5 +268,32 @@
   "name": "Optical Weight-Broadcast Fabric",
   "mech": "A layer's weights are read from memory once and sent through passive photonic splitters to as many as 16 chips at the same time. Each chip holds activations and KV cache for a different set of users, so the chips are token-stationary while the weights stream past. A scheduler aligns layer timing across the group and changes the fan-out to match load.",
   "value": "The cost of the HBM weight read is shared across many chips, which breaks the per-chip decode bandwidth limit without needing wafer-scale SRAM."
+ },
+ {
+  "id": "audit1#1",
+  "label": "audit1",
+  "arm": "AUDIT",
+  "gen": 0,
+  "name": "Attention Inside the Memory",
+  "mech": "Each DRAM stack holding the KV cache gets a logic layer that computes query-key scores, softmax and the value-weighted sum next to the stored keys and values. Only query vectors go into the stack and only attention outputs come back. Cache pages are compressed and evicted in place according to accumulated attention scores.",
+  "value": "KV-cache traffic stops crossing the memory bus, so long-context decode is no longer limited by memory bandwidth."
+ },
+ {
+  "id": "audit1#2",
+  "label": "audit1",
+  "arm": "AUDIT",
+  "gen": 0,
+  "name": "Codebook-Native Lookup Compute",
+  "mech": "Weights are stored as 2–3-bit indices into small learned codebooks, one per block. Tiles precompute products of activations with codebook entries and then accumulate by table lookup instead of multiplying. Codebooks are periodically re-fit to the activation statistics seen in deployment.",
+  "value": "Weights take roughly half the bytes of 4-bit formats, which roughly doubles bandwidth-limited decode throughput per watt."
+ },
+ {
+  "id": "audit1#3",
+  "label": "audit1",
+  "arm": "AUDIT",
+  "gen": 0,
+  "name": "Routing-Shaped Photonic Fabric",
+  "mech": "Co-packaged silicon-photonic switches rewire the connections between chips at microsecond timescales. Each rewiring follows the expert-routing histogram that the MoE gate predicts for the next batch. Experts that are used heavily get direct optical links, and rarely used experts share links over multiple hops.",
+  "value": "The physical network matches the shifting traffic pattern of MoE expert routing, which reduces all-to-all communication bottlenecks at cluster scale."
  }
 ]
