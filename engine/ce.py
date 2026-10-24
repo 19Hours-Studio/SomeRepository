@@ -849,7 +849,7 @@ def fact_slice(run, texts, k=None):
             f"that is not here)\n" + body)
 
 TERMS = ("energy", "labour", "inbound logistics", "outbound logistics", "processing", "capital", "other")
-SHARE = re.compile(r"(\d+(?:\.\d+)?)(?:\s*/\s*(\d+(?:\.\d+)?))?\s*%")
+SHARE = re.compile(r"(?<![\w.])(\d+(?:\.\d+)?)(?:\s*/\s*(\d+(?:\.\d+)?))?\s*%?(?![\w.])")  # "45", "45%", "5/3%"; not the 3 in "HBM3E"
 
 def parse_shares(ledger):
     """[(archetype, {term: share %})] from the ledger's ARCHETYPE and SHARES lines; 'a/b%' gives two variants named
@@ -861,9 +861,9 @@ def parse_shares(ledger):
         if not l.lstrip("*").startswith("SHARES"): continue
         head, _, body = l.partition(":"); vals = {}
         for part in body.split("|"):  # a term is the words before its share; physical-goods terms keep their short names
-            p = part.strip().lower(); m = SHARE.search(p)
+            p = re.sub(r"\([^)]*\)", " ", part).strip().lower(); m = SHARE.search(p)  # numbers in brackets are notes, not shares
             if not m: continue
-            t = next((t for t in TERMS if p.startswith(t)), None) or re.sub(r"\([^)]*\)", "", p[:m.start()]).strip(" :-*") or "?"
+            t = next((t for t in TERMS if p.startswith(t)), None) or re.sub(r"\s+", " ", p[:m.start()]).strip(" :-*~") or "?"
             vals["other" if t.startswith("other") else t] = [float(m.group(1))] + ([float(m.group(2))] if m.group(2) else [])
         nv = max((len(v) for v in vals.values()), default=0)
         lab = re.search(r"\(([^)]*)\)", head)

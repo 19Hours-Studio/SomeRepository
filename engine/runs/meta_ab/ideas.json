@@ -1,1 +1,164 @@
-[]
+[
+ {
+  "id": "c1#1",
+  "label": "c1",
+  "arm": "C",
+  "gen": 0,
+  "name": "Attention Inside Memory Stacks",
+  "mech": "Each 3D DRAM stack's base die holds a small engine that scores queries against locally stored, compressed KV cache, runs top-k selection and softmax, and returns only the weighted value vectors. Inactive KV moves to deeper layers of the stack, and frequently attended entries are promoted to faster layers based on observed attention statistics.",
+  "value": "Long-context decode no longer streams the full KV cache over the memory bus, so it is bounded by in-stack bandwidth instead of HBM pins."
+ },
+ {
+  "id": "c1#2",
+  "label": "c1",
+  "arm": "C",
+  "gen": 0,
+  "name": "Lookup-Accumulate Codebook Compute",
+  "mech": "Weights are stored as 4–6-bit indices into small codebooks learned for each layer, and activations are pre-multiplied into on-tile lookup tables. Matrix products then become table reads plus adds, with no multiplier arrays. Codebooks are re-fitted offline per model and can be hot-swapped per layer.",
+  "value": "Arithmetic energy and die area drop by several times at near-FP8 quality, which frees silicon for more memory bandwidth."
+ },
+ {
+  "id": "c1#3",
+  "label": "c1",
+  "arm": "C",
+  "gen": 0,
+  "name": "Compiler-Scheduled Optical Circuits",
+  "mech": "Co-packaged photonic links form a circuit-switched mesh whose paths are set by the compiler at each phase of the model, such as prefill, expert dispatch and all-reduce. There are no packet routers or runtime arbitration. Spare circuits absorb variance in MoE routing, and the schedule is recompiled when the traffic profile drifts.",
+  "value": "A rack of chips behaves like one deterministic, low-latency machine, without the switch power and tail latency of packet networks."
+ },
+ {
+  "id": "c2#1",
+  "label": "c2",
+  "arm": "C",
+  "gen": 0,
+  "name": "Tokens Travel, Experts Stay",
+  "mech": "Each MoE expert is permanently pinned inside a DRAM bank that has its own multiply-accumulate logic beneath it, so weights are never transferred. The router sends each token's small activation vector across an on-stack mesh to the banks that hold its selected experts, and partial results are returned and reduced along the way. Expert placement is periodically rebalanced from observed routing statistics so that popular experts are replicated across banks.",
+  "value": "Decode energy falls to bank-local access levels while capacity stays at DRAM scale, so trillion-parameter models fit in a few packages instead of racks."
+ },
+ {
+  "id": "c2#2",
+  "label": "c2",
+  "arm": "C",
+  "gen": 0,
+  "name": "Lookup-Accumulate Tensor Cores",
+  "mech": "Weights are stored as indices into small learned vector codebooks rather than as numbers. The cores precompute products of activations with codebook entries, then compute by table lookup and addition instead of multiplication. Codebooks are trained jointly with the model and can be re-fit per layer during fine-tuning.",
+  "value": "Weights take roughly 2–3 bits each, and the energy of each operation drops below FP4 without the accuracy loss of uniform quantization."
+ },
+ {
+  "id": "c2#3",
+  "label": "c2",
+  "arm": "C",
+  "gen": 0,
+  "name": "Compiler-Scheduled Power Envelope",
+  "mech": "Execution is fully deterministic, so the compiler knows the switching activity of every tile in every cycle. It emits a matching per-tile voltage and current profile alongside the instruction stream. Voltage regulators are pre-staged ahead of load steps, so the chip needs no safety margin for sudden current surges.",
+  "value": "Removing the usual 10–20% voltage guardband lets tiles run near-threshold safely, giving double-digit energy-per-token savings at no extra area cost."
+ },
+ {
+  "id": "ins1#1",
+  "label": "ins1",
+  "arm": "INS",
+  "gen": 0,
+  "name": "Near-Bank Associative Attention",
+  "mech": "The KV cache lives in DRAM that is stacked over logic and stored as product-quantized codes, with small comparator arrays at each bank. A query is broadcast to every bank. Each bank scores its keys locally and returns only the top-k candidates plus a residual bound, so the full KV cache never crosses the memory interface. Codebooks are periodically re-fit on chip as the context grows.",
+  "value": "Long-context decode energy becomes nearly independent of context length, rather than scaling linearly with it."
+ },
+ {
+  "id": "ins1#2",
+  "label": "ins1",
+  "arm": "INS",
+  "gen": 0,
+  "name": "MSB-First Anytime Arithmetic",
+  "mech": "Multipliers process operands one bit-plane at a time, starting from the most significant bit, and track a running worst-case bound on the remaining error. Each dot product stops as soon as its bound falls below the error budget the compiler assigned to that tensor. Hardware counters record the average depth reached per layer, and the compiler adjusts budgets from that feedback.",
+  "value": "Precision is spent only where it changes the output, which saves an estimated 2–4× in energy compared with fixed FP4/FP8 formats."
+ },
+ {
+  "id": "ins1#3",
+  "label": "ins1",
+  "arm": "INS",
+  "gen": 0,
+  "name": "Optically Rewired Weight-Stationary Pipeline",
+  "mech": "Each package keeps one model slice permanently resident in its stacked DRAM. Only activations move between packages, over co-packaged optics routed through microsecond-scale optical circuit switches. The switch fabric is reconfigured per batch phase, such as prefill versus decode or between mixture-of-experts routing patterns, to match the dataflow graph. Expert placement migrates according to observed routing statistics.",
+  "value": "Weights are never refetched, and the network topology tracks the workload instead of forcing the workload to fit a fixed topology."
+ },
+ {
+  "id": "ins2#1",
+  "label": "ins2",
+  "arm": "INS",
+  "gen": 0,
+  "name": "Non-volatile weight-stationary compute stacks",
+  "mech": "Model weights are written once into 3D-stacked FeFET compute-in-memory tiers that are hybrid-bonded over logic. Matrix-vector products happen inside the storage array, and a digital pass corrects analog error using stored residuals. Periodic on-die recalibration tracks drift, and new models are loaded by rewriting the arrays in minutes.",
+  "value": "It removes per-token weight movement, the dominant energy cost of decode, cutting joules per token by an estimated 5–10× versus HBM-fed designs."
+ },
+ {
+  "id": "ins2#2",
+  "label": "ins2",
+  "arm": "INS",
+  "gen": 0,
+  "name": "Associative in-DRAM attention retrieval",
+  "mech": "Each stacked DRAM bank stores KV-cache keys alongside locality-sensitive hash signatures and has logic for parallel signature matching. A query is broadcast, banks return only the top-k candidate keys and values, and exact attention is computed on that small set. Hash functions are retuned per layer from observed attention statistics.",
+  "value": "It makes million-token decode cost scale with the number of retrieved keys instead of context length."
+ },
+ {
+  "id": "ins2#3",
+  "label": "ins2",
+  "arm": "INS",
+  "gen": 0,
+  "name": "Wavelength-addressed expert routing fabric",
+  "mech": "Each MoE expert is pinned permanently to one chiplet, and tokens rather than weights travel between chips. The router's choice of expert maps directly onto an optical wavelength channel on co-packaged photonics. A compiler-generated schedule, rebalanced from measured expert popularity, replicates hot experts and reassigns wavelengths between batches.",
+  "value": "It turns MoE all-to-all from a congestion-bound bottleneck into near-constant-latency, low-pJ/bit point-to-point delivery at rack scale."
+ },
+ {
+  "id": "comp1#1",
+  "label": "comp1",
+  "arm": "COMP",
+  "gen": 0,
+  "name": "Retrieval-native HBM base die",
+  "mech": "Each HBM4 stack's logic base die stores a 1–2-bit sketch of every key. For each decode query it runs an approximate top-k search beside the DRAM. Only the selected K/V rows cross to the compute die. The value of k adapts per head from observed attention entropy.",
+  "value": "Long-context decode traffic falls by an estimated 10–50×, so million-token contexts cost roughly what short ones do today."
+ },
+ {
+  "id": "comp1#2",
+  "label": "comp1",
+  "arm": "COMP",
+  "gen": 0,
+  "name": "Checksum-governed adaptive precision",
+  "mech": "Each matmul tile carries algorithm-based fault-tolerance checksums computed at higher precision. Hardware compares the low-precision result against the checksum and uses the residual to step that tile's precision per token (ternary, FP4, FP6, or FP8), staying within a compiler-specified error budget. The same residuals flag silent data corruption.",
+  "value": "The chip runs each operation at the lowest precision that is provably safe, and it catches the silent hardware errors that plague large fleets."
+ },
+ {
+  "id": "comp1#3",
+  "label": "comp1",
+  "arm": "COMP",
+  "gen": 0,
+  "name": "Softmax-merging optical switches",
+  "mech": "The KV cache is sharded across chips over co-packaged optics. Fabric switches contain ALUs that combine partial attention results (running max, sum, and weighted output) using the online-softmax rule as packets pass through. A query reaches all shards and gets back one merged vector in a single round trip.",
+  "value": "One sequence's context can span hundreds of chips at near single-chip latency, with no all-gather of KV data."
+ },
+ {
+  "id": "comp2#1",
+  "label": "comp2",
+  "arm": "COMP",
+  "gen": 0,
+  "name": "Compressed-domain attention in HBM",
+  "mech": "The KV cache is stored as learned product-quantization codes, never as dense values. The HBM base die computes the query-to-codeword dot-product tables once per head. It then scores attention by table lookup and accumulation inside the memory stack, and returns only the top-k scores and a weighted value sum. Codebooks are retrained per layer offline and can be refreshed online when the drift in reconstruction error crosses a threshold.",
+  "value": "It cuts KV bytes crossing the HBM interface by about 8–20×, so million-token decode stops being memory-bound."
+ },
+ {
+  "id": "comp2#2",
+  "label": "comp2",
+  "arm": "COMP",
+  "gen": 0,
+  "name": "Circulating optical weight broadcast",
+  "mech": "Expert weights are not replicated per chip. Instead, weight shards circulate on a wavelength-multiplexed co-packaged optical ring. Each chip keeps its users' activations and hot KV stationary in SRAM and computes on weights as they pass, so a single weight read serves every chip in the ring. The scheduler reorders expert broadcast slots each step to match the router's predicted demand.",
+  "value": "The effective decode batch becomes cluster-wide, so weight-read energy per token falls by roughly the number of chips in the ring."
+ },
+ {
+  "id": "comp2#3",
+  "label": "comp2",
+  "arm": "COMP",
+  "gen": 0,
+  "name": "Error-budgeted escalating numerics",
+  "mech": "Matmul tiles run at 3-bit, and each tile carries a cheap hardware running bound on its rounding error. A tile whose bound exceeds the compiler-assigned budget for its layer is recomputed at FP8 by deterministic residual correction. The budget per layer is tuned from observed escalation rates and output-sensitivity statistics.",
+  "value": "It gives near-3-bit throughput and energy with a provable bound on accuracy loss, instead of relying on empirical quantization guesses."
+ }
+]

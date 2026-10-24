@@ -351,6 +351,9 @@ def main():
             ceil = open(os.path.join(rd11, "ceilings.md")).read()
             assert "(settlement) | untouchable 1.5% -> ceiling 66.7x" in ceil and "3x needs: outbound logistics | ROOM" in ceil
             assert "ARCHETYPE B: oil" in ceil and "NO ROOM" in ceil and "(export)" in ceil
+            sh = __import__("importlib").import_module("ce").parse_shares(
+                "**ARCHETYPE A:** chips | x\nSHARES (est.): HBM3E stacks 45 (about $2,900) | packaging 17 | logic 33 (Epoch adds 23% overhead) | other (fees) 5\n")
+            assert sh == [("A: chips", {"hbm3e stacks": 45.0, "packaging": 17.0, "logic": 33.0, "other": 5.0})], sh  # shares without %, notes in brackets
             g = open(os.path.join(rd11, "prompts", "g1_ledger.txt")).read()
             assert "ceiling 66.7x" in g and "winter road" in g and "most room under its ceiling" in g and "{" not in g
             assert "how was it held?" in open(os.path.join(rd11, "prompts", "g1_rf1.txt")).read() and os.path.exists(os.path.join(rd11, "prompts", "g1_rf2.txt"))

@@ -29,3 +29,10 @@ g1_ledger: 3 ideas (563 words)
 g1_neg: 3 ideas (733 words)
   g1_mech: 16,010 tokens, 42.3 s
 g1_mech: 3 ideas (638 words)
+  g1_rf1: 18,865 tokens, 72.2 s
+g1_rf1: 3 ideas (733 words)
+  g1_rf2: 15,854 tokens, 42.3 s
+g1_rf2: 3 ideas (578 words)
+  triage: 17,021 tokens, 48.5 s
+/home/user/SomeRepository/engine/runs/continuum/gate/c2/TASK.md
+/home/user/SomeRepository/engine/runs/continuum/gate/c1/TASK.md

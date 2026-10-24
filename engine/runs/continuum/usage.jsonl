@@ -5,3 +5,6 @@
 {"step": "gen:g1_ledger", "time": "2026-10-24 20:41:19", "model": "opus", "tools": "", "tokens": 16419, "output_tokens": 3999, "cache_read": 1496, "fresh_input": 10924, "cost_usd": 0.16766319999999998, "turns": 1, "seconds": 48.8}
 {"step": "gen:g1_neg", "time": "2026-10-24 20:42:04", "model": "opus", "tools": "", "tokens": 16163, "output_tokens": 3748, "cache_read": 1496, "fresh_input": 10919, "cost_usd": 0.1626032, "turns": 1, "seconds": 44.2}
 {"step": "gen:g1_mech", "time": "2026-10-24 20:42:46", "model": "opus", "tools": "", "tokens": 16010, "output_tokens": 3589, "cache_read": 1496, "fresh_input": 10925, "cost_usd": 0.1594712, "turns": 1, "seconds": 42.3}
+{"step": "gen:g1_rf1", "time": "2026-10-24 20:43:58", "model": "opus", "tools": "", "tokens": 18865, "output_tokens": 6324, "cache_read": 1496, "fresh_input": 11045, "cost_usd": 0.2151312, "turns": 1, "seconds": 72.2}
+{"step": "gen:g1_rf2", "time": "2026-10-24 20:44:40", "model": "opus", "tools": "", "tokens": 15854, "output_tokens": 3373, "cache_read": 1496, "fresh_input": 10985, "cost_usd": 0.1556312, "turns": 1, "seconds": 42.3}
+{"step": "gen:triage", "time": "2026-10-24 20:45:29", "model": "opus", "tools": "", "tokens": 17021, "output_tokens": 4363, "cache_read": 1496, "fresh_input": 11162, "cost_usd": 0.17684719999999998, "turns": 1, "seconds": 48.5}

@@ -1,0 +1,7 @@
+{"step": "c1", "time": "2026-10-24 20:43:08", "model": "opus", "tools": "", "tokens": 5569, "output_tokens": 2265, "cache_read": 1496, "fresh_input": 1808, "cost_usd": 0.0600552, "turns": 1, "seconds": 32.3}
+{"step": "c2", "time": "2026-10-24 20:43:41", "model": "opus", "tools": "", "tokens": 5764, "output_tokens": 2460, "cache_read": 3302, "fresh_input": 2, "cost_usd": 0.0498684, "turns": 1, "seconds": 33.3}
+{"step": "ins1", "time": "2026-10-24 20:44:14", "model": "opus", "tools": "", "tokens": 5720, "output_tokens": 2315, "cache_read": 1496, "fresh_input": 1909, "cost_usd": 0.06186319999999999, "turns": 1, "seconds": 32.3}
+{"step": "ins2", "time": "2026-10-24 20:44:48", "model": "opus", "tools": "", "tokens": 5818, "output_tokens": 2413, "cache_read": 3403, "fresh_input": 2, "cost_usd": 0.04894860000000001, "turns": 1, "seconds": 34.2}
+{"step": "meta1", "time": "2026-10-24 20:45:09", "model": "opus", "tools": "", "tokens": 9432, "output_tokens": 1367, "cache_read": 4908, "fresh_input": 3157, "cost_usd": 0.05355360000000001, "turns": 2, "seconds": 20.4}
+{"step": "comp1", "time": "2026-10-24 20:46:55", "model": "opus", "tools": "", "tokens": 6670, "output_tokens": 3271, "cache_read": 1496, "fresh_input": 1903, "cost_usd": 0.0809352, "turns": 1, "seconds": 44.1}
+{"step": "comp2", "time": "2026-10-24 20:47:32", "model": "opus", "tools": "", "tokens": 5956, "output_tokens": 2557, "cache_read": 3397, "fresh_input": 2, "cost_usd": 0.051827399999999996, "turns": 1, "seconds": 37.2}
