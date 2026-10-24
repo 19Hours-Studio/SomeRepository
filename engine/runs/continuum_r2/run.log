@@ -1,0 +1,27 @@
+/home/user/SomeRepository/engine/runs/continuum_r2/ledger/TASK.md
+  skip ledger (done)
+ledger: 842 words
+/home/user/SomeRepository/engine/runs/continuum_r2/attempts/TASK.md
+  skip attempts (done)
+attempts: 1214 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Data-center inference of a large MoE model (GLM, DeepSeek or Kimi class) on owned GB200 NV | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: accelerator vendor margin 1.34x; facility power, cooling and building 1.22x; electricity 1.16x; network 1.11x; accelerator silicon, hbm and packaging 1.08x; cpu, server and other hardware 1.08x; ops and software 1.05x | 3x needs: accelerator vendor margin, facility power, cooling and building, electricity, network, accelerator silicon, hbm and packaging | NO ROOM
+ARCHETYPE B: Frontier pretraining on a rented or owned GPU cluster (H100/B200 class), with FP8/BF16 mix | untouchable 6.0% -> ceiling 16.7x | 10x cut of one term: accelerator chips and servers 1.66x; r&d staff including equity 1.42x; cluster networking 1.13x; energy 1.04x | 3x needs: accelerator chips and servers, r&d staff including equity | ROOM
+ARCHETYPE C: Long-context decode on HBM GPUs (GQA model, batch-limited, KV cache streamed from HBM ever | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: hbm streaming of weights and kv cache 1.82x; static, idle and uncore power 1.19x; tensor-core compute 1.16x; scale-up and scale-out interconnect 1.07x; cooling and power-conversion overhead 1.05x | 3x needs: hbm streaming of weights and kv cache, static, idle and uncore power, tensor-core compute | TIGHT
+ARCHETYPE D: Manufacturing one flagship accelerator: B200-class, TSMC 4NP logic dies, 8 HBM3E stacks, C | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: hbm 1.68x; logic dies, substrate, test and other 1.42x; advanced packaging 1.18x | 3x needs: hbm, logic dies, substrate, test and other | ROOM
+  skip reframe (done)
+  skip g1_ledger (done)
+g1_ledger: 3 ideas (563 words)
+  skip g1_neg (done)
+g1_neg: 3 ideas (733 words)
+  skip g1_mech (done)
+g1_mech: 3 ideas (638 words)
+  skip g1_rf1 (done)
+g1_rf1: 3 ideas (733 words)
+  skip g1_rf2 (done)
+g1_rf2: 3 ideas (578 words)
+  skip triage (done)
+/home/user/SomeRepository/engine/runs/continuum_r2/gate/TASK.md
+  skip gate (done)
+gate: 8/8 parsed {'DEAD': 5, 'WOUNDED': 2, 'ALIVE': 1}
+  gate: 0 new facts -> evidence.md

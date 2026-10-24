@@ -16,7 +16,7 @@ Constraints:
 
 Below are 8 candidate ideas. You are a screening engineer with tools: WebSearch (WebFetch may not reach hosts; use
 search excerpts) and Bash with python3 (pip install from PyPI works). Do not improve or redesign the ideas; judge them
-as written. Work only in `/home/user/SomeRepository/engine/runs/continuum/gate/`: write files only there, do not commit.
+as written. Work only in `/home/user/SomeRepository/engine/runs/continuum_r2/gate/`: write files only there, do not commit.
 
 For EACH idea, spend about 3 minutes:
 1. KILLER: the single quantity most likely to kill the idea at the scale it needs (a rate, a memory or bandwidth
