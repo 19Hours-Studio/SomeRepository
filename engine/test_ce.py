@@ -346,7 +346,7 @@ def main():
             ce("import", R11, R8, "--arm", "OLD", "--ids", "known#1")
             assert "ESTIMATE invent/lite" in ce("plan", R11)
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R11, "--tag", "coal", "--lessons-exclude", "coal",
-                                  "--bench", "OLD:known#1", "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
+                                  "--bench", "OLD:known#1", "--rivals", "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
             assert "FINAL (blind review" in out.stdout and "| OLD | 1 |" in out.stdout, out.stdout[-900:] + out.stderr[-900:]
             ceil = open(os.path.join(rd11, "ceilings.md")).read()
             assert "(settlement) | untouchable 1.5% -> ceiling 66.7x" in ceil and "3x needs: outbound logistics | ROOM" in ceil

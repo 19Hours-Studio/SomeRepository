@@ -187,5 +187,41 @@
   "name": "Line-rate lossless exponent coding",
   "mech": "The memory controllers and fabric SerDes entropy-code the exponent fields of BF16/FP8 tensors in hardware at line rate. This covers weights, KV, activations, checkpoints and gradients. DFloat11 shows BF16 weights compress losslessly to about 70% of their size. The coder adapts its tables per tensor during prefetch. The closest earlier attempt was DFloat11's GPU software decoding, which was limited to small batches by kernel overhead. Nvidia's compute-data compression mostly targets zeros. Doing the coding in fixed hardware next to the PHY removes that overhead and keeps results bit-exact. Deciding quantity: the compression ratio on real FP8 tensors, which have fewer redundant exponent bits than BF16. It needs to be 0.85 or below to justify the roughly 3% die area.",
   "value": "About 1.2–1.4× effective bandwidth and capacity for both training and inference, with bit-identical outputs and no change to models or frameworks."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Continuum-D: SRAM experts, LPDDR sparse-KV",
+  "mech": "The anchor survives: a 671B MoE (DeepSeek-V3.2 class) sits fully resident in SRAM across standard-packaged dies with no HBM and no CoWoS, and the KV cache goes to commodity LPDDR. The repair changes three things. First, SRAM area is recomputed at a realistic 55% of N3E bitcell density, so 1 GB takes 436 mm² rather than 258 mm². That gives 36 experts per die and one 8+1-die stage per MoE layer, so all-to-all traffic stays inside a stage. The system grows to 527 dies costing $1.44M, under the $1.5M kill line. Second, the target changes from dense-MLA attention to sparse-attention (DSA) MoE models at 32K–128K context. The binding quantity is \"drain time\": how long a memory takes to be read end to end. Sparse KV at 128K needs about 55 ms at 100 tok/s per user, and LPDDR drains in about 62 ms. HBM4 drains in 13 ms, so it strands bandwidth or runs out of capacity. Dense MLA needs 10 ms, and there the design only ties GPUs ($0.138 vs $0.135–0.157 per million tokens). Third, the system is decode-only: prefill runs on separate GPUs and arrives as about 1.5 GB/s per die of KV writes.",
+  "value": "At 128K context, sparse attention and 200–400 tok/s per user, it costs about $0.095 per million tokens. The best Vera Rubin NVL72 setup (HBM only, or with CPU-memory KV offload) costs $0.127–0.136, so Continuum-D is 1.34–1.44× cheaper. Against LPX+Rubin it is about 2.9× cheaper, but that figure depends on an estimated LPX price. It is one of the few options above 1,000 tok/s per user."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Node-scale expert-stationary SRAM stacks",
+  "mech": "The anchor survives: hybrid-bonded multi-layer SRAM stacked under each compute die holds all expert weights, so HBM carries only KV. Capacity is repaired by putting the stacks on 2-die Rubin-class packages using N5 SRAM dies (est. 2.29 MB/mm²). Three layers give 790 GB per rack, a margin of 1.38 on Kimi K2 and 2.15 on V3; the original design had 0.96. But removing weight reads can save at most W/(N·BW) per step, which is 0.40–0.62 ms on an EP72 rack. Rack-scale gain is therefore only 1.19–1.33×, which fails the 1.5× bar. The repair moves the design to where that term is large: an 8-GPU node, without a 72-GPU NVLink rack (NVL72), serving MoE models of 120B parameters or less (gpt-oss-120b). Four layers give 117 GB per node, a 1.86 capacity margin. Gain is 1.39× at 500 tok/s per user and 1.86× at 800, and above 1,000 tok/s per user the stacked node keeps working where the baseline node cannot reach that speed. The SRAM adds about $24k to a ~$0.95M node.",
+  "value": "At 500–800 tok/s per user on 8-GPU nodes, cost falls from $0.024–0.032 to $0.017 per million tokens (1.4–1.9× cheaper). Against the same model spread across a full NVL72 rack, the gain is only about 1.06×."
+ },
+ {
+  "id": "repair#3",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Touch-rate-split DSA KV tier",
+  "mech": "The anchor is kept. The model's own lightning indexer picks the top-2,048 entries, and a hardware engine gathers exactly those 656-B MLA latents from on-package LPDDR6. The 132-B FP8 indexer keys stay in HBM and are scanned in full every step. The repair drops the bandwidth and energy claim, which was false: against FlashMLA-sparse, HBM bytes per step fall only 1.137→1.055 GB (1.08×), and memory energy is 31.3 vs 31.7 mJ per token, so no gain. The design is restated as a capacity split by touch rate. The indexer needs about 100 reads per second of its own capacity, which nearly matches HBM4's 76 per second, while the latent is touched at only 2,048/L. Each byte class therefore goes to the memory whose bandwidth-to-capacity ratio fits it. The decode die (Continuum-D) has 4 HBM4 stacks, 4 LPDDR6 modules (512 GB, ~0.7 TB/s), a hardware per-layer top-k unit and an LRU hot-buffer tag directory in HBM. At 128K context and 100 tok/s it serves 74 users, or 18.4 per HBM stack, against 5.0 per stack for an all-HBM Rubin. That is 3.9×, and the limit is HBM bandwidth spent on the indexer scan. LPDDR miss traffic (79 GB/s) and gather latency (37 of 164 µs per layer) both have headroom down to a hot-buffer hit rate of about 0.4.",
+  "value": "Cost per 128K user slot is 1.0× (2026 prices) to 1.0× (2027) that of the best practice, Rubin+Vera with HiSparse offload ($86–100 vs $102 per user slot). The win is 1.9× users per HBM stack when top-k locality is low (hit ≤0.4), and 1.8–3.4× users per chip on accelerators that lack a large coherent host memory, such as Ironwood-class chips (47.7–89.5 vs 26.6 users)."
+ },
+ {
+  "id": "repair#4",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "SRAM-tiled LPDDR prefill die",
+  "mech": "The anchor is kept: a prefill die with no HBM, sharing an ISA with the decode tier and passing it KV (132 B to decode-tier HBM, 656 B to its LPDDR, 1.8 GB/s per die). The original threshold was wrong. The die's ridge is 12,500 FLOP/B (17.5 PF ÷ 1.4 TB/s), not 300. MoE expert-stationary streaming is also capped at about 2·F_expert = 4,096 FLOP/B whatever the batch, so an LPDDR-only die with 256 MB of SRAM reaches only 34% of its compute at 128K. Two changes fix this. First, each package holds a full NVFP4 replica of the model (377 GB in 512 GB LPDDR6), so there is no expert-parallel all-to-all. Second, a hybrid-bonded SRAM token-tile buffer (≥0.75 GB per die at 128K, ≥1.0 GB at 32K; 1.45 GB planned) keeps tiles of 31–65K tokens resident while weights stream past. The package then becomes compute-bound at 76.5k tok/s at 128K, the same as Rubin. A CPX-like part that needs EP3 over a 200 GB/s NIC is network-bound at 30k tok/s. The price is at least 64K tokens per pass, which means about 1–2 s of batching latency.",
+  "value": "Prefill throughput per FLOP matches Rubin with zero HBM stacks. BOM per ktok/s is 1.0× Rubin at 2026 HBM prices ($115 vs $114) and 1.6× cheaper at 2027 prices ($115 vs $187). Energy per token is the same (23.8 vs 24.2 mJ)."
  }
 ]

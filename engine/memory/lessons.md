@@ -9,6 +9,7 @@ excluded (`run --lessons-exclude <tag>` keeps a benchmark fair). One line per le
 - [all] Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on. (from: permafrost)
 - [all] Statistics and simulations gave confident wrong answers until they were checked on a case with a known answer; one null model rejected far more often than its alpha. (from: dodeca)
 - [all] A method validated on synthetic data still gave a wrong result when its input data had unverified labels: a hobby-page list read as "which hole is opposite which" gave p = 0.0005 twice, in two separate runs. Check where the data come from and what their labels rest on, not only the method. (from: dodeca)
+- [all] State the scope of every claimed gain (which steps of the chain, which speed or load tier): the same chip design was audited at 1.5x for decode alone and 1.05x once the prefill hardware it needs was counted. (from: aichip)
 - [all] Raw data (3D models, catalogues, measurement tables) settled in one step what texts, judges and reviewers could not. Look for data before arguing from opinions. (from: dodeca)
 - [all] Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason. (from: permafrost)
 - [all] What the asker says may be wrong or incomplete; treat it as data to check, like any other source. (from: user)

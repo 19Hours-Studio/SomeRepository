@@ -1044,8 +1044,7 @@ PIPE = {"explain": {"lite": ["research:evidence", "research:hypotheses", "gen:re
                           "repair:build.1", "repair:build.2", "review:review", "repair:repair", "review:audit_final", "gen:calibrate",
                           "code:learn"]},
         "invent": {"lite": ["research:ledger", "research:attempts", "code:ceilings", "gen:reframe", "gen:g1_ledger", "gen:g1_neg",
-                            "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "gen:g2_rival_a", "gen:g2_rival_b",
-                            "gen:triage2", "review:gate2", "repair:repair", "review:audit_final",
+                            "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "repair:repair", "review:audit_final",
                             "gen:calibrate", "code:learn"]}}
 TECH_MAKE = {"g1_neg": "Technique: first list honestly the 8 ways you and most designers would build this page (the usual hero, grid "
                      "and look) and name in one sentence the paradigm they share; then propose only concepts outside it.",
@@ -1278,7 +1277,7 @@ def cmd_run(a):
         t = step("gate", "review", task("gate"), a.model, "research", cwd=gd)
         cmd_gate(argparse.Namespace(run=R, dir=gd, transcript=None, file=path(R, "outputs", "gate.md"), out=None))
         print(f"  gate: {add_new_facts(R, t, 'gate')} new facts -> evidence.md")
-        if not getattr(a, "no_rivals", False): pick += rival_round(pick)
+        if getattr(a, "rivals", False): pick += rival_round(pick)
         g = load(R, "gate.json", {})
         top = sorted(pick, key=lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0)))[:4]
         rargs_last = argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_task",
@@ -1344,7 +1343,7 @@ def cmd_ask(a):
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
                                lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=None,
-                               target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd, no_rivals=False))
+                               target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd, rivals=False))
 
 def cmd_prompt_path(run, tech, label):
     """Build a technique prompt via cmd_prompt and return its path."""
@@ -1433,7 +1432,8 @@ def main():
             x.add_argument("--chunk", type=int, default=4, help="v5: blind reviews and the kill test run in chunks of this many ideas, 2 agents at a time (0 = one agent)")
             x.add_argument("--repair-chunk", type=int, default=2, help="v5: ideas per repair agent (0 = one agent)")
             x.add_argument("--kit", action="store_true", help="v3.4: give the kill test the Arctic calculation kit (engine/kit)")
-            x.add_argument("--no-rivals", action="store_true", help="v5 invent: skip the rival round (round-2 generators that see round 1 as rivals)")
+            x.add_argument("--rivals", action="store_true", help="v5 invent: add the rival round (round-2 generators see round 1 and its kill tests as rivals); "
+                           "+~$1.3, no survival gain shown yet (20-continuum.md)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")
             x.add_argument("--triage-k", type=int, default=8, help="v5: ideas the kill test (invent) or the first blind review (explain) gets after triage")
     x = sp.add_parser("ceilings"); x.add_argument("run"); x.add_argument("--target", type=float, default=3.0)
