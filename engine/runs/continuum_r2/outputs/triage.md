@@ -1,0 +1,16 @@
+=== TRIAGE ===
+IDEA 1 | I 6 | P 4 | DECIDES: delivered stacked-SRAM GB per chip and $/GB | The numbers don't add up: 64 × 7 GB is 448 GB, not 178 GB. Either figure is also too small for a 671B FP4 MoE (about 335 GB), and 7 GB per die at 4 layers is optimistic SRAM density.
+IDEA 2 | I 5 | P 3 | DECIDES: FP4/FP8 loss gap at ≥70B over 10T tokens | It is IDEA 3 without the auto-promotion. Training without CoWoS still needs HBM bandwidth, and it rests on an unproven FP4 scale-up.
+IDEA 3 | I 5 | P 5 | DECIDES: tokens-to-target-loss at ≥70B within 10% of FP8 | Hardware is 44% of training cost, so the honest gain is about 1.3×. The per-layer promotion directly targets the NVFP4 failure mode, and one 70B run can falsify it.
+IDEA 4 | I 7 | P 4 | DECIDES: cost of 340 dies vs ≈$1.5M | It beats Groq's reason for failure by moving KV to LPDDR and batching MoE. At about $5k per die the total is around $1.7M, right at the kill line. 1 TB/s of LPDDR6 per die needs a ~1024-bit bus, which is heavy beachfront.
+IDEA 5 | I 7 | P 3 | DECIDES: delivered pJ/bit at ≥60% of peak bandwidth | The roofline checks out: 275 mJ falls to 34 mJ, about 1.8×. Hybrid-bonded 64 GB DRAM on logic is not in volume production, and the thermals are unproven.
+IDEA 6 | I 5 | P 4 | DECIDES: decode GB/s per $ vs GB300 (needs ≈2×) | Rubin CPX validates the GDDR7 path, but GDDR7 is itself short. The "7 users at 128K in 32 GB" figure is inconsistent, and the design loses on J/token.
+IDEA 7 | I 6 | P 3 | DECIDES: pJ/bit at junction temperature, including refresh | It is IDEA 10 with no quantities.
+IDEA 8 | I 5 | P 5 | DECIDES: attention FLOP/B × in-stack bandwidth vs base-die thermal budget | The 16 FLOP/B × 2 TB/s ≈ 32 TFLOPS arithmetic holds, and HBM4 custom base dies exist. Excluding MLA shrinks the importance as frontier models adopt it.
+IDEA 9 | I 6 | P 4 | DECIDES: all-to-all link time vs DRAM read time per token | Expert-stationary placement on commodity DRAM is sound. It leaves KV bandwidth unaddressed, and the 2× cost claim is unsupported.
+IDEA 10 | I 8 | P 3 | DECIDES: delivered pJ/bit including refresh at 95 °C | It has the highest payoff because it fixes weights, KV and supply together. About 120 GB in 4 layers on 800 mm² is near the density limit. Heat from the logic must cross the DRAM or the reverse, which is the main risk.
+IDEA 11 | I 5 | P 6 | DECIDES: prefill FLOP/byte ≥300 | The concept is proven by Rubin CPX. The "halves HBM demand" claim is an assumption.
+IDEA 12 | I 6 | P 6 | DECIDES: MFU loss at half HBM bandwidth per FLOP (<15%) | The B200 ridge of about 560 FLOP/B is correct. Large GEMMs clear it, but capacity loss and memory-bound ops are the risk. It is cheaply testable by down-clocking HBM on existing hardware.
+IDEA 13 | I 5 | P 6 | DECIDES: sustained prefill MFU ≥50% on LPDDR | It is the best-quantified prefill idea: 8K chunks give 16–32K FLOP/B against a 10K ridge. Long-context attention and KV handoff are the gaps.
+IDEA 14 | I 4 | P 5 | DECIDES: PHY share of HBM read energy | It duplicates IDEA 8 but gives an honest 1.2–1.5× estimate.
+IDEA 15 | I 6 | P 4 | DECIDES: tokens per expert per step vs fabric round-trip within a 10 ms budget | It extends MegaScale-Infer. Optical scale-up latency and gathering 2,000 concurrent requests are unproven at scale.

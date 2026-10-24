@@ -1,0 +1,36 @@
+== sanity: B200 FP8 ridge 4.5e15/8e12 = 562.5 FLOP/B (known ~562)
+GEMM 8192^3 FP8 intensity 5461.333333333333 (known 2n/3=5461)
+
+== IDEA 1: HBM base-die attention ==
+energy saved by skipping PHY/interposer: 0.50 of 3.44 pJ/b = 15%
+idea requires saving 2.4 pJ/b; MARGIN=0.21
+GQA g=8 FP8 intensity 16 FLOP/B
+chain: energy/token ratio = 1.046
+
+== IDEA 2: SRAM weights + LPDDR KV ==
+1 GiB SRAM area at N3E: 258 mm2
+MLA KV/token FP8 35.1 KB; 32K user 1.15 GB (BF16 2.30)
+MLA absorbed decode intensity ~484 FLOP/B
+users@100tok/s, ctx 8.5K: 7969 ; throughput 796903 tok/s
+per-die FP8 compute need: attention 338 TF + MoE 173 TF
+gross dies/wafer 65, die cost @75% yield $412
+LPDDR $/GB 12.2; per-die all-in $2256; 340 dies $0.77M; MARGIN vs $1.5M = 1.96
+NVL72 implied throughput 466667 tok/s
+hw cost/throughput 0.42, power/throughput 0.53 -> RATIO 1.93
+32K ctx users 2067 thr 206716
+
+== IDEA 3: memory-light prefill die ==
+ridge FP4 die w/ 1TB/s LPDDR: 30000 FLOP/B (idea assumes 300)
+tokens/expert needed 7500 -> global tokens per step 240000 (top8/256)
+MARGIN on stated 300 FLOP/B rule = 0.010 (300/ridge means rule underestimates)
+ p=0.3 k=2 RATIO 1.18
+ p=0.3 k=3 RATIO 1.25
+ p=0.5 k=2 RATIO 1.33
+ p=0.5 k=3 RATIO 1.50
+
+== IDEA 4: HBM-lean training ==
+power-law alpha 0.54 (arXiv 2506.15006 16x BW->4.5x); half-BW throughput retention 0.69
+MARGIN retention/0.85 = 0.81
+ retention 0.69: chip cost x0.968 -> RATIO 0.78
+ retention 0.85: chip cost x0.968 -> RATIO 0.91
+idea3 FP4 intensity @16K tok/die, EP32: 65536.0 margin 2.1845333333333334

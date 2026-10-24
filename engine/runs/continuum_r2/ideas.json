@@ -1,0 +1,137 @@
+[
+ {
+  "id": "g1_ledger#1",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum-D 3D-DRAM decode",
+  "mech": "A logic die is hybrid-bonded under 4 DRAM stacks (est. 64 GB, 16 TB/s, ~0.5 pJ/bit, versus ~4 pJ/bit for HBM3E). Each chip holds its expert shard plus the KV of its own users, so no byte crosses a PHY. Roofline: at 4 pJ/bit, reading 8.6 GB of KV per token costs ~275 mJ; at 0.5 pJ/bit it costs ~34 mJ. If HBM streaming is ~50% of decode energy (est.), total energy/token falls ~1.8×. The closest earlier attempt is HBM-PIM, which stalled on programmability; here the DRAM is plain addressable memory with no in-DRAM logic. The deciding quantity is delivered pJ/bit at ≥60% of peak bandwidth (H100 reached only 27%).",
+  "value": "About 1.8× more tokens per joule at long context, with no HBM supply dependence."
+ },
+ {
+  "id": "g1_ledger#2",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum-P LPDDR prefill die",
+  "mech": "A reticle-sized FP4/FP8 compute die (est. 10 PFLOPS) sits with 256 GB of LPDDR6 (~1 TB/s) on an organic substrate, with no CoWoS and no HBM. An 8K-token prefill chunk does ~16K FLOP per weight byte, which is above the 10K FLOP/B ridge point, so cheap memory does not throttle it. Estimated BOM is ~$2.5k against $6.4k. The closest earlier attempt is Rubin CPX on GDDR7; Continuum is open-licensed rather than tied to one vendor's margin. The deciding quantity is sustained prefill MFU ≥50%, given the LPDDR bandwidth.",
+  "value": "About 2.5× lower BOM per prefill FLOP, built from uncontended supply chains."
+ },
+ {
+  "id": "g1_ledger#3",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum-T FP4 training mode",
+  "mech": "The tensor cores run NVFP4 with per-block FP8 fallback, chosen per layer by a hardware overflow and stochastic-rounding monitor that promotes unstable layers and the final phase of training. This doubles throughput per mm² over FP8. The closest earlier attempt is NVFP4, which is proven only to 12B and lost on code benchmarks; the automatic promotion bounds that loss. The deciding quantity is tokens-to-target-loss at ≥70B within 10% of FP8. Hardware is 44% of training cost, so the gain is ≈1.3× cost, not 3×.",
+  "value": "Frontier training about 1.3× cheaper, and the design is falsifiable on a single 70B run."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Hybrid-bonded DRAM-over-MAC decode die",
+  "mech": "DRAM layers are hybrid-bonded directly over a logic die, so weights and KV stay stationary within micrometres of the GEMV units, and the compiler sees the bank-edge matmul as an ordinary tensor op. The closest earlier attempt is HBM-PIM, which stalled on programmability and DRAM-process logic. Here the logic sits on a logic-process die and is exposed only through a standard compiler path. The deciding quantity is delivered pJ/bit at the junction temperature, including refresh.",
+  "value": "About 1.6x lower decode energy per token without any HBM supply."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Commodity-DRAM air-cooled MoE decoder",
+  "mech": "Each chip carries about 512 GB of LPDDR-class DRAM (A) on an organic substrate, holds fixed experts locally, and moves activations instead of weights. The rack stays at or below 40 kW, which allows air cooling. The closest earlier attempts are Groq and Cerebras, whose SRAM capacity forced hundreds of chips or off-wafer streaming; capacity here comes from commodity DRAM. The deciding quantity is all-to-all link time per token relative to DRAM read time.",
+  "value": "MoE decode on standard packaging in existing air-cooled halls, at an estimated 2x lower cost per token."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Memory-light prefill compute die",
+  "mech": "A dense FP4/FP8 compute die with only LPDDR runs the compute-bound prefill phase. It hands KV to the decode tier over a fabric and shares an ISA and compiler with that tier. The closest earlier attempt is Nvidia's Rubin CPX, which uses a separate GDDR7 stack. This design avoids GDDR shortages and keeps a single toolchain across both phases. The deciding quantity is prefill FLOP/byte, which must stay above about 300.",
+  "value": "Takes prefill off scarce HBM and CoWoS, roughly halving HBM demand per served token (A)."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum stacked-DRAM decode die",
+  "mech": "Four DRAM layers are hybrid-bonded directly onto an 800 mm² logic die, holding about 120 GB of expert weights and KV at about 40 TB/s and about 0.5 pJ/bit (assumed), with no HBM or CoWoS interposer. Logic sits next to the cold plate, and refresh rate tracks measured die temperature. The closest earlier attempt, HBM-PIM, stalled on programmability; here the logic is an ordinary compiler target and the DRAM is plain memory. Deciding quantity: delivered pJ/bit including refresh at 95 °C.",
+  "value": "About 1.6–1.9x tokens per joule on MoE decode versus Rubin-class HBM, without consuming HBM supply."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum split attention-expert fabric",
+  "mech": "Attention dies keep each request's KV in near-stacked DRAM. Separate expert dies hold FFN weights in cheap LPDDR and gather tokens from about 2,000 concurrent requests, so each expert becomes compute-bound. Routing runs over an optical scale-up fabric. The closest earlier attempt, attention-FFN disaggregation such as MegaScale-Infer, still used HBM on both sides. Deciding quantity: tokens batched per expert per step versus the fabric round-trip latency within a 10 ms token budget.",
+  "value": "Moves weight capacity onto commodity DRAM, cutting accelerator BOM by roughly 30–40%."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum air-cooled FP4 trainer",
+  "mech": "Digital FP4 matrix units with per-16-element scales and FP8 fallback for sensitive layers run in 40 kW air-coolable racks on organic-substrate packaging, avoiding CoWoS. The closest earlier attempt, NVFP4 training, stayed within 1–1.5% of FP8 only up to 12B parameters. Deciding quantity: the FP4/FP8 loss gap at 70B or more over 10T tokens.",
+  "value": "About 1.3–1.5x cheaper pretraining in existing data halls, a gain capped by staff cost."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Attention in HBM4 base die",
+  "mech": "Each HBM4 stack's custom logic base die runs GQA decode attention (QKᵀ, softmax, AV at FP8) on KV read through the TSVs, skipping the PHY and interposer, and sends only the partial outputs to the main die. The closest attempt, HBM-PIM, stalled on general programmability. Here a single fixed compiler op with a small vector unit avoids that. The deciding quantity is attention intensity × in-stack bandwidth against the base-die thermal budget: about 16 FLOP/B × 2 TB/s ≈ 32 TFLOPS ≈ 16 W per stack, which I estimate is tolerable. MLA, at about 480 FLOP/B, falls outside it.",
+  "value": "Cuts KV-movement energy about 2× (est. ~1.5 vs ~3.9 pJ/bit) for long-context GQA decode, the largest term in decode energy."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Expert-stationary stacked SRAM",
+  "mech": "Four-high hybrid-bonded SRAM layers (V-Cache-style; est. ~7 GB per chip) hold all MoE expert weights resident across a 64-chip rack. Each step therefore reads weights at about 0.2 pJ/bit instead of streaming them from HBM, and HBM is left serving only KV. The closest attempts, Groq (230 MB) and Cerebras (44 GB), failed on capacity because they tried to fit KV too. Here 3D stacking gives about 30× Groq's per-chip capacity, and KV stays off-SRAM. The deciding quantity is SRAM $/GB: about $170/GB (est.) × 178 GB ≈ $30k per rack, negligible next to rack cost.",
+  "value": "Gives about 1.4–1.6× lower J/token and about 1.6× more users per rack at 50 tok/s/user, because all HBM bandwidth goes to KV."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "HBM-free air-cooled decode rack",
+  "mech": "Organic-substrate accelerators (no CoWoS) are each paired with 16 GDDR7 devices, giving about 2 TB/s and 32 GB per chip. That holds about 7 users at 128K and 230 GB/s each, so capacity and bandwidth are balanced. Racks are capped at 40 kW so they fit existing air-cooled halls. The closest attempt, CXL memory pooling, offered capacity without bandwidth. Here every KV byte is local at full rate. The deciding quantity is decode bandwidth per dollar against GB300, which must beat it about 2×; this holds only if GDDR7 supply and its ~5 pJ/bit energy do not erase the saving.",
+  "value": "Lowers $/token by removing HBM and packaging (about 62% of BOM) and the 120 kW facility requirement, though it loses roughly 1.3× on J/token."
+ },
+ {
+  "id": "g1_rf2#1",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum-D: SRAM weights, LPDDR KV",
+  "mech": "A FP4 671B-parameter MoE (about 335 GB) sits resident in SRAM across about 340 standard-packaged, CoWoS-free dies of about 800 mm² each, with roughly 1 GB per die. Weight reads cost no HBM and about 40x less energy. The KV cache, which is about 2.2 GB per 32K-token MLA user, lives in commodity LPDDR6 at about 1 TB/s per die. The closest earlier attempt is Groq, which needed 576 chips for one 70B model because it put everything in SRAM. Continuum-D avoids this because the weights are shared across a large MoE batch, and the per-user KV goes to cheap, abundant DRAM instead of SRAM. The deciding quantity is SRAM cost per GB of resident weights versus HBM-rack cost per GB/s of weight traffic. It fails if 340 dies cost more than about $1.5M.",
+  "value": "It delivers high tok/s per user on frontier MoE models with zero HBM stacks and zero CoWoS wafers, which bypasses the 2026–28 supply limits that cap every GPU and TPU."
+ },
+ {
+  "id": "g1_rf2#2",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum-T: HBM-lean training die",
+  "mech": "A training die carries 4 HBM4 stacks instead of 8 and adds 3D-stacked SRAM (SoIC) for GEMM tiles. Optimizer state and activations are sharded over the fabric in ZeRO style. The bet is that large training GEMMs exceed about 560 FLOP/B, so they do not need B200-class HBM bandwidth. The closest earlier attempt is TPU Ironwood, which still provisions 8 stacks. The deciding quantity is achieved MFU when HBM bandwidth per FLOP is halved. This can be tested today by down-clocking HBM on B200s during a 10B+ parameter run.",
+  "value": "It gives about 1.6–2x the training throughput per HBM stack, which makes it the best FLOP-per-scarce-input design if MFU falls by less than 15%."
+ },
+ {
+  "id": "g1_rf2#3",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Continuum-K: attention on HBM base-die",
+  "mech": "Fixed-function attention units on the custom HBM4 base die read the KV cache over TSVs. Only the query vectors in and the attention outputs back cross the PHY, which is kilobytes instead of gigabytes per step. The closest earlier attempts are Samsung HBM-PIM and UPMEM, which died on general programmability. Continuum-K exposes exactly one kernel that the compiler emits, so programmability is not required. The deciding quantity is the PHY's share of HBM read energy. If it is about 50%, decode energy falls only about 1.3x.",
+  "value": "It cuts long-context decode joules per token and lifts the KV-limited batch per facility kW, but the gain is likely about 1.2–1.5x, not several-fold."
+ }
+]

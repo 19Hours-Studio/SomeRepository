@@ -361,7 +361,10 @@ def main():
             rp = open(os.path.join(rd11, "repair", "TASK.md")).read()
             assert "KILL TEST: killer ice" in rp and "ice road open 45 days in 2026 | NEW from gate" in rp and "{" not in rp
             assert "OLD:known#1" in json.load(open(os.path.join(rd11, "audit_final", "ids.json")))
-            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 15  # gate and repair in 2 chunks; the bench review is one agent
+            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 19  # gate and repair in 2 chunks, rival round 4 steps, one bench reviewer
+            rv = open(os.path.join(rd11, "prompts", "g2_rival_a.txt")).read()
+            assert "ranked blind against" in rv and "[kill test: ALIVE - ok]" in rv and "most room under its ceiling" in rv
+            assert len(json.load(open(os.path.join(rd11, "gate2", "ids.json")))) == 4 and any(i.startswith("g2_rival") for i in json.load(open(os.path.join(rd11, "gate.json"))))
             assert not os.path.exists(os.path.join(rd11, "audit_final", "c1"))
             assert json.load(open(os.path.join(rd11, "config.json")))["tag"] == "coal"
             # memory: lessons filtered by tag, killers from FATAL defects, killers come back as lessons for the same kind

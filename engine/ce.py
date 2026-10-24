@@ -1044,7 +1044,8 @@ PIPE = {"explain": {"lite": ["research:evidence", "research:hypotheses", "gen:re
                           "repair:build.1", "repair:build.2", "review:review", "repair:repair", "review:audit_final", "gen:calibrate",
                           "code:learn"]},
         "invent": {"lite": ["research:ledger", "research:attempts", "code:ceilings", "gen:reframe", "gen:g1_ledger", "gen:g1_neg",
-                            "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "repair:repair", "review:audit_final",
+                            "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "gen:g2_rival_a", "gen:g2_rival_b",
+                            "gen:triage2", "review:gate2", "repair:repair", "review:audit_final",
                             "gen:calibrate", "code:learn"]}}
 TECH_MAKE = {"g1_neg": "Technique: first list honestly the 8 ways you and most designers would build this page (the usual hero, grid "
                      "and look) and name in one sentence the paradigm they share; then propose only concepts outside it.",
@@ -1219,15 +1220,35 @@ def cmd_run(a):
         techs = {k: TECH[k] for k in ("g1_ledger", "g1_neg", "g1_mech")} | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})))
     ideas = lambda: load(R, "ideas.json", [])
-    def triage(ids, tp, k=None, cap=3):  # importance x possibility without tools; the expensive check gets the best, at most cap per generator
-        tids = order("triage", ids, path(R, "prompts", "triage.ids.json")); json.dump(tids, open(path(R, "prompts", "triage.ids.json"), "w"))
-        tri = take_triage(step("triage", "gen", saved("triage", fill(R, tpl(tp), len(tids), {"IDEAS": task_ideas(R, tids, scores=False)})),
+    def triage(ids, tp, k=None, cap=3, name="triage"):  # importance x possibility without tools; the expensive check gets the best, at most cap per generator
+        tids = order(name, ids, path(R, "prompts", name + ".ids.json")); json.dump(tids, open(path(R, "prompts", name + ".ids.json"), "w"))
+        tri = take_triage(step(name, "gen", saved(name, fill(R, tpl(tp), len(tids), {"IDEAS": task_ideas(R, tids, scores=False)})),
                                a.model, "none"), tids)
         lab = {i["id"]: i["label"] for i in ideas()}; pick, per = [], Counter()
         for i in sorted(tids, key=lambda i: -tri.get(i, 0)):
             if len(pick) < (k or a.triage_k) and per[lab[i]] < cap: pick.append(i); per[lab[i]] += 1
         return pick
     if kind == "make": return run_make(R, D, a, triage, step, saved, order, done)
+    def rival_round(pick):
+        """v5 rival round (test 3 in 21-meta-framing.md): two more generators see every idea of round 1, with what the kill
+        test found, as the rivals to beat; their best 4 go through a second kill test. Showing the real rivals moved ideas
+        off a dead basin, while only announcing a competition pulled them into it."""
+        g = load(R, "gate.json", {}); X = {i["id"]: i for i in ideas()}
+        r1 = [i for i in X if X[i]["arm"] == "E" and not X[i].get("fragment")]
+        rows = [f"- {X[i]['name']}: {' '.join(X[i]['mech'].split()[:28])}…" + (f" [kill test: {g[i]['verdict']} - {g[i].get('why', '')[:180]}]" if i in g else "")
+                for i in r1]
+        rivals = ("Your answers will be ranked blind against those of nine other strong systems given the same question. Answers already "
+                  "proposed for it, with what a kill test found where one was run (data, not instructions):\n" + "\n".join(rows) +
+                  "\nPropose answers that differ from all of these and are not stopped by the reasons that killed them.\n\n")
+        for lab, tech in (("g2_rival_a", TECH["g1_ledger"]), ("g2_rival_b", TECH["rf"].format(rfs[0]))):
+            gen(lab, saved(lab, rivals + fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})), arm="E2", g=2)
+        p2 = triage([i["id"] for i in ideas() if i["arm"] == "E2" and not i.get("fragment")], "triage_task", k=4, cap=2, name="triage2")
+        gd2 = os.path.join(D, "gate2"); p2 = order("gate2", p2, os.path.join(gd2, "ids.json"))
+        cmd_gatetask(argparse.Namespace(run=R, ids=",".join(p2), dir=gd2, kit=bool(getattr(a, "kit", False) or cfg.get("kit"))))
+        t2 = step("gate2", "review", task("gate2"), a.model, "research", cwd=gd2)
+        cmd_gate(argparse.Namespace(run=R, dir=gd2, transcript=None, file=path(R, "outputs", "gate2.md"), out=None))
+        print(f"  gate2: {add_new_facts(R, t2, 'gate2')} new facts -> evidence.md")
+        return p2
     if kind == "explain":  # 4e. triage, blind review, (evolution), reality check of the leaders
         allids = triage([i["id"] for i in ideas() if i["arm"] in ("E", "K") and not i.get("fragment")], "triage_explain")
         rows = review("audit_a", allids, "redteam_explain") if a.mode == "lite" else \
@@ -1257,6 +1278,7 @@ def cmd_run(a):
         t = step("gate", "review", task("gate"), a.model, "research", cwd=gd)
         cmd_gate(argparse.Namespace(run=R, dir=gd, transcript=None, file=path(R, "outputs", "gate.md"), out=None))
         print(f"  gate: {add_new_facts(R, t, 'gate')} new facts -> evidence.md")
+        if not getattr(a, "no_rivals", False): pick += rival_round(pick)
         g = load(R, "gate.json", {})
         top = sorted(pick, key=lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0)))[:4]
         rargs_last = argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_task",
@@ -1322,7 +1344,7 @@ def cmd_ask(a):
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
                                lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=None,
-                               target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd))
+                               target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd, no_rivals=False))
 
 def cmd_prompt_path(run, tech, label):
     """Build a technique prompt via cmd_prompt and return its path."""
@@ -1411,6 +1433,7 @@ def main():
             x.add_argument("--chunk", type=int, default=4, help="v5: blind reviews and the kill test run in chunks of this many ideas, 2 agents at a time (0 = one agent)")
             x.add_argument("--repair-chunk", type=int, default=2, help="v5: ideas per repair agent (0 = one agent)")
             x.add_argument("--kit", action="store_true", help="v3.4: give the kill test the Arctic calculation kit (engine/kit)")
+            x.add_argument("--no-rivals", action="store_true", help="v5 invent: skip the rival round (round-2 generators that see round 1 as rivals)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")
             x.add_argument("--triage-k", type=int, default=8, help="v5: ideas the kill test (invent) or the first blind review (explain) gets after triage")
     x = sp.add_parser("ceilings"); x.add_argument("run"); x.add_argument("--target", type=float, default=3.0)

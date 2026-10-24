@@ -1,0 +1,22 @@
+== IDEA 1: LPDDR prefill die ==
+dense FP8 8K intensity 16384.0 ridge 10000.0
+MoE FP8 expert intensity 512 FLOP/B margin 0.051
+MoE FP4 expert intensity 1024 FLOP/B margin 0.102
+tokens needed for overlap: 50945.94594594595
+LPDDR alone $ 2560 vs idea BOM 2500
+Continuum-P $/PF 386.0  B200 $/PF 711.1111111111111
+TCO ratio vs B200 if accel BOM (8% share) falls by 1.8422567645365573 -> 1.0379635155824274
+== IDEA 2: FP4 training ==
+L=1.936, 1.5% gap -> FP4 equals FP8 at D/2.61: tokens-to-target x2.61
+GEMM time 0.656, step speedup 1.32, cost ratio 1.19
+== IDEA 3: stacked SRAM ==
+rack SRAM 364 GB; DSV3 NVFP4 377 GB margin 0.96; K2 585 GB margin 0.62
+SRAM cost at $170/GB for DSV3: 64164.375
+weight share 0.23: decode x1.30, system (70% decode) x1.19
+weight share 0.3: decode x1.43, system (70% decode) x1.27
+weight share 0.36: decode x1.56, system (70% decode) x1.34
+== IDEA 4: LPDDR MoE decoder ==
+Vera LPDDR5X 3.65 pJ/bit vs HBM3E 3.44
+$/TB/s LPDDR 4267 HBM 362 margin 0.085
+TCO/GPU-equiv now 65100, with idea 92427, ratio 0.70
+per-chip a2a bytes/step 62.3616 MB -> 0.15590400000000001 ms at 400GB/s vs 10 ms step
