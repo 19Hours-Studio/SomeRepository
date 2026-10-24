@@ -1,0 +1,14 @@
+B200 ridge 562.5
+4xHBM4 ridge 562.5  4xHBM3E ridge 1125.0
+gpu path 4.74  base path 3.93  ratio 1.21
+base logic pJ/bit 0.54  MLA g=128: 7.14
+base-die extra W/stack @2TB/s: 8.64
+KV-attributable mJ @16K 180.0
+idea4 requires KV energy cut to 0.4888888888888889
+ledger C (HBM 50%, KV~60% of bytes) token energy ratio 1.0540360240160107
+measured differential token energy ratio 1.0426047662782603
+idea2 BW margin 0.5  energy margin 0.3417721518987342
+idea1 energy/bit margin 0.8040712468193384
+BOM ratio 1.3763440860215055
+training RATIO 1.099184199227136
+idea3 margin (dense, non-GEMM/FA 6%) 2.5

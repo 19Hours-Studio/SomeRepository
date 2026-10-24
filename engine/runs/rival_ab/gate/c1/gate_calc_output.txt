@@ -1,0 +1,42 @@
+known-answer checks OK: Llama70B KV/token 320.0 KiB; DSV3 MLA 68.625 KiB
+IDEA1 $/(GB/s): HBM3E dev 0.350 +CoWoS 0.138 +energy -> 0.672; GDDR7 0.417-0.495; ratio 1.36-1.61
+  BOM/(GB/s): GPU 0.80; GDDR7 attention card 0.32-0.41
+  KV share of decode cost f=0.5 cheaper by r=1.5: $/token ratio 1.20
+  KV share of decode cost f=0.5 cheaper by r=2.0: $/token ratio 1.33
+  KV share of decode cost f=0.5 cheaper by r=2.5: $/token ratio 1.43
+  KV share of decode cost f=0.6 cheaper by r=1.5: $/token ratio 1.25
+  KV share of decode cost f=0.6 cheaper by r=2.0: $/token ratio 1.43
+  KV share of decode cost f=0.6 cheaper by r=2.5: $/token ratio 1.56
+  KV share of decode cost f=0.7 cheaper by r=1.5: $/token ratio 1.30
+  KV share of decode cost f=0.7 cheaper by r=2.0: $/token ratio 1.54
+  KV share of decode cost f=0.7 cheaper by r=2.5: $/token ratio 1.72
+IDEA2 ctx 16384 B 8: KV share of bytes 0.23
+IDEA2 ctx 16384 B 32: KV share of bytes 0.55
+IDEA2 ctx 32768 B 8: KV share of bytes 0.38
+IDEA2 ctx 32768 B 32: KV share of bytes 0.71
+IDEA2 ctx 131072 B 8: KV share of bytes 0.71
+IDEA2 ctx 131072 B 32: KV share of bytes 0.91
+  GQA flop/B at 2B KV: 8
+  GQA flop/B at 1B KV: 16
+  io 0.25 gpu 0.5: removable/bit 0.19; HBM share 0.5 KV 0.7: token energy saved 0.07 -> ratio 1.07; margin vs 50% 0.13
+  io 0.25 gpu 0.5: removable/bit 0.19; HBM share 0.6 KV 0.8: token energy saved 0.09 -> ratio 1.10; margin vs 50% 0.18
+  io 0.25 gpu 1.0: removable/bit 0.28; HBM share 0.5 KV 0.7: token energy saved 0.10 -> ratio 1.11; margin vs 50% 0.20
+  io 0.25 gpu 1.0: removable/bit 0.28; HBM share 0.6 KV 0.8: token energy saved 0.14 -> ratio 1.16; margin vs 50% 0.27
+  io 1.0 gpu 1.0: removable/bit 0.45; HBM share 0.5 KV 0.7: token energy saved 0.16 -> ratio 1.19; margin vs 50% 0.32
+  io 1.0 gpu 1.0: removable/bit 0.45; HBM share 0.6 KV 0.8: token energy saved 0.22 -> ratio 1.28; margin vs 50% 0.43
+  even with 100% of KV movement energy removed (0.5*0.7): 1.54 x  -> halving impossible unless HBM share >= ~70%
+IDEA3 SRAM need/package 3.93 GB vs 4 GB
+  SRAM area 2560 mm2 = 853 mm2/layer (reticle ~858); N7 cost at $10k/60k mm2 usable, 80% yld: $533
+  ctx 8192 B/gpu 4: weight share 0.82 comp 0.2ms mem 0.8ms -> speedup 4.69
+  ctx 8192 B/gpu 16: weight share 0.53 comp 0.7ms mem 1.2ms -> speedup 1.80
+  ctx 8192 B/gpu 32: weight share 0.36 comp 1.4ms mem 1.8ms -> speedup 1.32
+  ctx 8192 B/gpu 64: weight share 0.22 comp 2.7ms mem 3.0ms -> speedup 1.08
+  ctx 32768 B/gpu 4: weight share 0.53 comp 0.5ms mem 1.2ms -> speedup 2.14
+  ctx 32768 B/gpu 16: weight share 0.22 comp 2.0ms mem 3.0ms -> speedup 1.28
+  ctx 32768 B/gpu 32: weight share 0.12 comp 4.0ms mem 5.3ms -> speedup 1.14
+  ctx 32768 B/gpu 64: weight share 0.07 comp 8.1ms mem 9.9ms -> speedup 1.07
+  ctx 131072 B/gpu 4: weight share 0.22 comp 1.8ms mem 3.0ms -> speedup 1.28
+  ctx 131072 B/gpu 16: weight share 0.07 comp 7.4ms mem 9.9ms -> speedup 1.07
+  ctx 131072 B/gpu 32: weight share 0.03 comp 14.7ms mem 19.1ms -> speedup 1.04
+  ctx 131072 B/gpu 64: weight share 0.02 comp 29.5ms mem 37.5ms -> speedup 1.02
+  MLA absorbed attn intensity 484 FLOP/B vs ridge 625

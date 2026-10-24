@@ -1,0 +1,86 @@
+{
+ "mc_g1_rf1#2": {
+  "killer": "Cost of delivered KV bandwidth, GDDR7 versus HBM3E. It counts the memory device, CoWoS share, and electricity over 4 years at 100% use, $0.13/kWh and PUE 1.3. The \"halving\" claim needs the HBM-to-GDDR7 cost ratio to be at least 2x.",
+  "why": "The bandwidth cost gain is real but nearer 1.4–1.6x than 2x. Also, each chip has only about 2 TB/s of GDDR7 pins, so the design needs about 4 attention chips for each HBM GPU. The board, power and network for those chips use up part of the saving.",
+  "margin": 0.75,
+  "ratio": 1.3,
+  "verdict": "WOUNDED"
+ },
+ "mrival_g1_neg#2": {
+  "killer": "Share of token energy actually removed. A base-die engine still pays for row activation, on-die data movement and TSVs. It saves only the PHY/interposer energy and the GPU-side NoC/L2 energy. \"Halving\" means removing 50% of token energy.",
+  "why": "The idea's own deciding condition does hold: KV share is 0.55–0.91 at 16K–128K with batch 32. But even removing 100% of KV movement energy only gives 1.54x, and a base die can only remove about a quarter of it.",
+  "margin": 0.2,
+  "ratio": 1.1,
+  "verdict": "DEAD"
+ },
+ "mc_g1_rf2#2": {
+  "killer": "Weight share of HBM bytes per decode step at deployed batch, for 671B FP4 DeepSeek-class MLA on GB200-class parts (5 PF FP8 dense, 8 TB/s, 4.66 GB of weights per GPU)",
+  "why": "Capacity (3.93 of 4 GB) and SRAM cost (about $530 on N7) both check out. But at throughput batch sizes the KV cache dominates the bytes, and the MLA step is nearly compute-bound, so the 2x shrinks to about 1.1x at 32K.",
+  "margin": 0.24,
+  "ratio": 1.08,
+  "verdict": "DEAD"
+ },
+ "mrival_g1_rf2#2": {
+  "killer": "DRAM-core share of access energy. The idea assumes it is ≤40%, i.e. at least 60% of per-bit energy can be removed.",
+  "why": "The core-share assumption is backwards: the DRAM core is roughly 70–93% of access energy, not ≤40%. So a base-die engine cuts token energy by about 10%, not 50%. Like Idea 2, it gives nothing on MLA.",
+  "margin": 0.2,
+  "ratio": 1.1,
+  "verdict": "DEAD"
+ },
+ "mreal_g1_ledger#2": {
+  "killer": "energy-per-KV-bit reduction from moving attention into the HBM base die (the FP4 byte cut does not count here, because GPUs can already store KV in NVFP4)",
+  "why": "The claimed 5–6x comes almost entirely from FP4 KV, which current GPUs already use; the base die itself saves only ~1.2x per KV bit on ~30% of decode energy.",
+  "margin": 0.8,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "mrival_g1_rf1#2": {
+  "killer": "base-die-visible TSV bandwidth relative to PHY bandwidth (the idea needs it to double KV bytes/s)",
+  "why": "Exact outputs are real, but there is no bandwidth gain and only ~17% saved per KV bit, so energy per token improves ~1.05x instead of the claimed 2x.",
+  "margin": 0.5,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "mc_g1_rf2#1": {
+  "killer": "share of training step time in ops below the ridge (the idea's own limit is 15%)",
+  "why": "The physics works for dense models, but a 1.38x BOM cut on a chip sold at 82% margin, inside a run whose cost is a third staff, gives at most ~1.10x and probably less once extra ZeRO traffic is counted.",
+  "margin": 2.5,
+  "ratio": 1.1,
+  "verdict": "DEAD"
+ },
+ "mc_g1_mech#1": {
+  "killer": "base-die logic energy per KV bit (the idea's target is ≤1 pJ)",
+  "why": "The ≤1 pJ/bit logic target is reachable for GQA, but even at zero logic cost the idea saves only the PHY/NoC share of energy, far short of the 1.6x it promises.",
+  "margin": 1.85,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "mreal_g1_neg#1": {
+  "killer": "accepted tokens per verify pass at T=1 on a frontier MoE target, with an EAGLE-3-class tree drafter",
+  "why": "At T=1 acceptance only just reaches the required 3 tokens/pass, and today's GPU EAGLE-3 already gets most of the gain, so the hardware can recover only the overhead, not the claimed 3x.",
+  "margin": 0.99,
+  "ratio": 1.3,
+  "verdict": "WOUNDED"
+ },
+ "mreal_g1_rf2#2": {
+  "killer": "whole-step FLOP/B needed to keep 5 PFLOPS FP8 fed from 32 LPDDR6 channels",
+  "why": "LPDDR6 delivers about 60% of the bandwidth the idea assumes, MoE GEMM intensity falls below what the die needs, and 2026 LPDDR prices make 512 GB of it cost more than the HBM it replaces.",
+  "margin": 0.66,
+  "ratio": 0.6,
+  "verdict": "DEAD"
+ },
+ "mreal_g1_rf1#1": {
+  "killer": "LPDDR efficiency on random 656-B row gathers at 150 users per chip",
+  "why": "The physics works with headroom, but Grace offload on today's GB300 already gets about 2x, so the dedicated silicon adds only about 1.4x, and the HBM bandwidth spent on index keys is nearly saturated.",
+  "margin": 1.5,
+  "ratio": 1.4,
+  "verdict": "WOUNDED"
+ },
+ "mrival_g1_rf2#1": {
+  "killer": "decode tokens per facility kW at 8K context, which the 80-tile LPDDR6 KV bandwidth limits. MLA KV is 656 B × 61 layers × 8K = 328 MB read per token, so 10⁵ tok/s already needs about 0.41 TB/s of LPDDR per tile",
+  "why": "Moving the KV cache from HBM (about 576 TB/s per NVL72) to LPDDR (about 40 TB/s for 80 tiles) caps throughput below today's GPU racks, so the claimed 1.5–3x per joule or per kW is actually about a 2x loss. Stacked-SRAM cost per GB doesn't matter until this is fixed.",
+  "margin": 0.16,
+  "ratio": 0.47,
+  "verdict": "DEAD"
+ }
+}

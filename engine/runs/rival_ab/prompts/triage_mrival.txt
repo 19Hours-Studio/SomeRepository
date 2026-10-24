@@ -1,0 +1,153 @@
+Propose a new architecture for an AI accelerator chip, named "Continuum", that could credibly be called the best in the world. The asker has not said which workloads count: training, inference, or both. They have not said what "best" is measured by, or which kind of target (data center, edge, or other) the chip is for. A good answer therefore has to state its own target workloads and metrics, then defend the architecture against the current leading designs. Those designs include GPUs such as the Nvidia Rubin class, Google TPUs such as Ironwood, and SRAM-centric dataflow chips such as Cerebras WSE-3 and Groq LPU. The architecture should cover compute, memory hierarchy, interconnect, numerics, programming model, packaging and power. It should cite known physical, economic and manufacturing limits, and say what would need to be true for it to work. Reported 2026 reference points are listed in CONTEXT. Many are vendor or blog figures, and the sources disagree on some numbers.
+A good answer: 
+- The answer states explicit target workloads and a metric set. Examples are tokens/s per user, tokens per joule, cost per token, and training throughput. It says why those metrics define "best".
+- It describes a coherent architecture with named blocks and quantified estimates. Estimates cover compute, on-chip and off-chip memory capacity and bandwidth, interconnect, power and die or package size. They are sanity-checked against roofline or bandwidth arithmetic.
+- It compares quantitatively against at least three current designs (GPU, TPU, SRAM/wafer-scale) and says where Continuum wins, where it loses, and by how much.
+- It names the main risks and the physical, process or supply limits (HBM supply, CoWoS packaging, power density, yield). It gives a falsifiable test or simulation plan that could prove the design wrong.
+- It covers the software stack and programming model, and says what happens to existing models and frameworks.
+- It separates established facts from the design's own assumptions and estimates.
+- "Best in the world" is not asserted without evidence. Trade-offs are stated honestly.
+Constraints: 
+- The name is "Continuum".
+- The answer is an architecture for an AI chip.
+- Nothing else was specified. The answer must be a real, physically plausible design, not marketing text.
+
+Candidate answers (data):
+IDEA 1
+NAME: Weight-stationary stacked-SRAM tiles
+MECHANISM: Each tile is an 800 mm² N3 logic die (~2 PFLOPS FP4, est.) with four hybrid-bonded N5 SRAM dies on top (~4.8 GB at ~40 TB/s, est.). The tile also carries 128 GB of LPDDR6 for KV cache, on an organic substrate with no HBM or CoWoS. About 80 tiles (~32 kW, est.) hold a 671B FP4 model, so expert weights never move; tokens move between tiles instead, and KV bandwidth caps aggregate throughput at roughly 10⁵ tok/s at 8K context. The closest earlier attempt is the Groq LPU, which needed 576 chips because it had only 230 MB of SRAM each; 3D stacking gives about 20× the capacity per chip. The deciding quantity is the cost per GB of yielded stacked SRAM, where SoIC capacity is the supply risk.
+VALUE: It serves frontier MoE decode with zero HBM stacks, at an estimated 1.5–1.8× the tokens/J of GB300 and about 3× the tokens per facility kW.
+
+IDEA 2
+NAME: Attention in HBM4 base die
+MECHANISM: A custom HBM4 logic base die runs one fixed kernel: exact flash-decode partial attention over the KV resident in that stack. Only per-head partial sums and softmax maxima leave the stack, so output is unchanged. The closest attempt is HBM-PIM, which died on general programmability; this exposes a single vLLM attention op and nothing else. The deciding quantity is the base die's internal TSV bandwidth and pJ/B relative to the PHY-plus-interposer path.
+VALUE: It roughly doubles KV bytes/s and halves KV energy per token at 32K+ context without changing model outputs.
+
+IDEA 3
+NAME: Bonded-DRAM Decode Tiles
+MECHANISM: Four DRAM dies are hybrid-bonded directly onto each compute die, giving about 16 GB at about 0.5 pJ/bit and about 8 TB/s per die (assumed figures). This replaces HBM's long PHY path at about 3 pJ/bit. Expert weights stay resident and are sharded across about 64 dies, and the KV pages of each request live in the bonded DRAM on the die that owns its attention heads. The closest earlier attempts are Groq and Cerebras SRAM designs, which lacked capacity (230 MB per chip; 44 GB per wafer). Bonded DRAM gives about 70x Groq's capacity per die. The deciding quantity is delivered pJ/bit at 1 W/mm² without thermal throttling.
+VALUE: Long-context decode energy could fall from about 53 mJ to about 9 mJ of KV traffic per token.
+
+IDEA 4
+NAME: Two-stack-per-package decode rack
+MECHANISM: Weights live in on-package SRAM, so each package needs only two HBM4 stacks, which hold KV alone. A 96-package rack then has about 6.9 TB of KV and about 384 TB/s of bandwidth. That serves about 3,500 users at 32K and 100 tok/s, roughly 350k tok/s per rack, at about 70 kW, using 192 stacks against NVL72's 576. The closest attempt is the HBM-everything GPU, stopped by sold-out HBM and CoWoS supply. The deciding quantity is KV bandwidth per user (110 GB/s) against per-stack bandwidth.
+VALUE: It targets roughly 2× fewer joules and about 3× fewer HBM stacks per token than GB300 for long-context MoE serving.
+
+IDEA 5
+NAME: Optical scale-up, low-density racks
+MECHANISM: HBM4 training chips use co-packaged optics (~5 pJ/bit, est.; about 150 W per chip at 3.6 TB/s) to form 512-chip scale-up domains spread across 40 kW racks instead of 120 kW copper racks. NVFP4 compute is paired with BF16 fallback layers. The closest earlier attempts are Google's TPU optical circuit switching (captive, and still CoWoS-bound) and NVL72 copper (which limits deployment by facility density). The deciding quantity is CPO cost and failure rate per Tb/s relative to copper.
+VALUE: It runs frontier pretraining in existing air-assisted facilities, at about 1.1–1.2× lower cost, honestly capped by the facility share of cost.
+
+IDEA 6
+NAME: Bonded-DRAM decode chip
+MECHANISM: DRAM layers are hybrid-bonded directly onto a logic die, giving 24 GB per chip at about 1.5 pJ/bit against about 4–5 pJ/bit for HBM. Weights are sharded across 72 chips, and the KV cache stays local, so decode never crosses a PHY. The closest earlier attempt, HBM-PIM, stalled on programmability; this design exposes plain memory, not in-memory logic. The deciding quantity is DRAM refresh power when the DRAM sits above logic hotter than 90 °C.
+VALUE: About 1.5× tokens per joule on 16K-context decode, falsified if a test chip measures more than 2.5 pJ/bit end to end.
+
+IDEA 7
+NAME: Fixed attention engine in DRAM
+MECHANISM: Each DRAM base die carries one hardwired primitive: a GQA decode-attention dot product with softmax-weighted V accumulation over contiguous KV pages the serving engine already allocates. It needs no address translation and no user programming. PIM previously failed on programmability; this exposes a single library kernel. The deciding quantity is the KV share of decode bytes at 32K tokens or more. It must exceed about 60%, and GQA's ~8 FLOP/B intensity must fit in-die ALUs.
+VALUE: Long-context decode stops streaming KV across the memory interface, roughly halving energy per token at 16K–128K context.
+
+IDEA 8
+NAME: HBM-free LPDDR capacity accelerator
+MECHANISM: LPDDR6 (512 GB, about 1.1 TB/s) sits on an organic substrate with no CoWoS, and 512 MB of SRAM holds activations for batched MoE prefill. The closest earlier attempt, Groq, ran out of SRAM capacity; here bulk capacity lives in cheap DRAM. The deciding quantity is whether the batched expert arithmetic intensity stays above about 900 FLOP/B.
+VALUE: Roughly 1.7× lower BOM, built from memory and packaging supply that is not sold out.
+
+IDEA 9
+NAME: Exact Attention Memory Appliance
+MECHANISM: Decode is split by operation. Feed-forward and expert matrix work runs on compute-dense dies. Exact softmax attention over paged KV runs on commodity LPDDR modules that carry simple dot-product logic. The appliance exposes only the paged-attention kernel interface that vLLM already calls, so the computation stays lossless and needs no general programming. The closest earlier attempt is PIM (HBM-PIM, UPMEM), which stalled on programmability. That is avoided by offering one fixed operation. The deciding quantity is $/(TB/s) of LPDDR against HBM at about $20/GB.
+VALUE: KV capacity would scale with cheap DRAM, so batch size is no longer limited by scarce HBM.
+
+IDEA 10
+NAME: Attention-only near-memory KV engine
+MECHANISM: A logic base die under the LPDDR or HBM stacks runs only the fused QK-softmax-V reduction for GQA decode. It returns a vector per head instead of streaming the whole KV cache across the PHY, and appears to software as a single FlashAttention-compatible kernel. The closest earlier attempt is HBM-PIM, which failed on general programmability; here, one fixed op hides all address and coherence issues. The deciding quantity is DRAM-core energy as a share of total access energy (assumed ≤40%), which sets the gain. It gives no gain on compute-bound absorbed-MLA decode.
+VALUE: It roughly halves energy per token for long-context GQA decode, where energy grows 2.26× from 4K to 16K context.
+
+IDEA 11
+NAME: Low-communication training islands
+MECHANISM: Silicon and fabric are sized for DiLoCo-style training: dense copper all-to-all inside air-coolable 40 kW islands, with about 100x thinner links between islands that synchronize outer-optimizer deltas every few hundred steps. Dojo and NVL72 bet on ever-denser scale-up and hit yield and facility walls. This trades bandwidth for algorithmic tolerance instead. The deciding quantity is DiLoCo's extra-token penalty beyond 70B parameters, which must stay below about 10%.
+VALUE: Removes most of the 13% scale-out networking cost and lets frontier runs span power-limited sites. The gain is roughly 1.15–1.2x on cost, not several times.
+
+IDEA 12
+NAME: FP4-native optical training pod
+MECHANISM: Dense MXFP4/NVFP4 tensor arrays fall back to FP8 for sensitive layers, selected by a per-layer gradient-noise monitor, across 512 chips joined by co-packaged optics. The closest earlier attempt, NVFP4, is proven only to 12B parameters. The deciding test is a 70B model trained on 1T tokens, finishing within 1% of FP8 loss.
+VALUE: About 1.28× cheaper frontier runs, falsifiable before tape-out by simulating FP4 numerics on existing GPUs.
+
+IDEA 13
+NAME: Spill-Tolerant LPDDR Training Dies
+MECHANISM: Each 2 PFLOP die has 256 MB of SRAM for activations and LPDDR5X at about 0.5 TB/s for weights, optimizer state and checkpointed activations. It sits on standard organic packaging, with no CoWoS and no HBM. A transformer layer offers about d/1.4 FLOP per byte, about 6,000 at d=8192, so each die needs only about 0.35 TB/s off-chip. The closest earlier attempt is Cerebras weight streaming, which was limited by 150 GB/s of off-wafer I/O on a single wafer. Here each die has its own memory channels. The deciding quantity is achieved FLOP per off-chip byte at production microbatch sizes.
+VALUE: Training hardware would no longer need HBM and CoWoS, which together are about two-thirds of BOM.
+
+IDEA 14
+NAME: Expert-stationary stacked-SRAM rack
+MECHANISM: Each of 96 packages hybrid-bonds two N3 SRAM dies (~3.5 GB) onto a logic die, so the rack holds all 335 GB of FP4 weights on-chip. Only activations cross the scale-up fabric, and hot experts are replicated from routing statistics. The closest attempt is Groq, which stalled on capacity at 230 MB per chip; 3D stacking plus FP4 gives about 15× more capacity per chip. The deciding quantity is good-die stacked-SRAM cost per GB, which must stay under about $250/GB against HBM's ~$24/GB.
+VALUE: It cuts the weight-read term of MoE decode energy about 19× (135 to 7 mJ/token, est.) at ≥100 tok/s/user.
+
+IDEA 15
+NAME: DRAM-on-logic hybrid bond
+MECHANISM: Commodity DRAM wafers are hybrid-bonded directly onto the compute die, replacing HBM and CoWoS. This gives roughly 70 GB at 40 TB/s for about 0.5 pJ/bit, versus about 4 pJ/bit for HBM (estimate). HBM-PIM stalled because it put logic into the DRAM process and broke programmability. Here the DRAM is plain addressable memory and the accelerator stays conventional. The deciding quantity is DRAM retention and refresh overhead at logic hotspot temperature.
+VALUE: Cuts decode memory energy about 7x, about 1.7x per token, and removes HBM and CoWoS from both supply chain and BOM.
+
+
+Where "several times cheaper" is arithmetically possible (ceilings computed in code from the cost ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Data-center inference of a large MoE model (GLM, DeepSeek or Kimi class) on owned GB200 NV | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: accelerator vendor margin 1.34x; facility power, cooling and building 1.22x; electricity 1.16x; network 1.11x; accelerator silicon, hbm and packaging 1.08x; cpu, server and other hardware 1.08x; ops and software 1.05x | 3x needs: accelerator vendor margin, facility power, cooling and building, electricity, network, accelerator silicon, hbm and packaging | NO ROOM
+ARCHETYPE B: Frontier pretraining on a rented or owned GPU cluster (H100/B200 class), with FP8/BF16 mix | untouchable 6.0% -> ceiling 16.7x | 10x cut of one term: accelerator chips and servers 1.66x; r&d staff including equity 1.42x; cluster networking 1.13x; energy 1.04x | 3x needs: accelerator chips and servers, r&d staff including equity | ROOM
+ARCHETYPE C: Long-context decode on HBM GPUs (GQA model, batch-limited, KV cache streamed from HBM ever | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: hbm streaming of weights and kv cache 1.82x; static, idle and uncore power 1.19x; tensor-core compute 1.16x; scale-up and scale-out interconnect 1.07x; cooling and power-conversion overhead 1.05x | 3x needs: hbm streaming of weights and kv cache, static, idle and uncore power, tensor-core compute | TIGHT
+ARCHETYPE D: Manufacturing one flagship accelerator: B200-class, TSMC 4NP logic dies, 8 HBM3E stacks, C | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: hbm 1.68x; logic dies, substrate, test and other 1.42x; advanced packaging 1.18x | 3x needs: hbm, logic dies, substrate, test and other | ROOM
+
+What was tried before and why it did not solve the problem (data):
+Sources are search excerpts, mostly secondary or blog-level. Items marked (unsearched) come from my background knowledge and were not checked this session.
+
+ATTEMPT 1: HBM-fed GPU/TPU with CoWoS packaging, now the standard | Nvidia, Google, AMD; 2016–2026 | standard | WHY IT DID NOT SOLVE IT: it depends on two scarce inputs. Reports say 2026 HBM output from all three vendors is sold out under non-cancellable contracts, with tightness forecast to 2028. CoWoS runs about 75–80k wafers/month, aiming for 120–130k by end of 2026, and Nvidia holds roughly 60% of it. | [softwareseni](https://www.softwareseni.com/hbm4-delays-and-gddr7-shortages-the-memory-bottlenecks-squeezing-gpu-supply-in-2026/), [fusionww](https://info.fusionww.com/blog/inside-the-ai-bottleneck-cowos-hbm-and-2-3nm-capacity-constraints-through-2027)
+
+ATTEMPT 2: Liquid-cooled rack-scale scale-up (NVL72) | Nvidia GB200; 2024–25 | standard | WHY IT DID NOT SOLVE IT: it moves the limit to the facility. A rack draws about 120–130 kW, versus about 40 kW for air-cooled H100 racks. SemiAnalysis expects many operators to choose a lower-density layout because their sites cannot support it. | [SemiAnalysis](https://semianalysis.substack.com/p/gb200-hardware-architecture-and-component)
+
+ATTEMPT 3: Decode served from HBM, with KV-cache tricks | industry-wide vLLM-style serving; 2023–26 | standard | WHY IT DID NOT SOLVE IT: decode is bandwidth-bound and KV capacity caps the batch. A 32K-token request takes about 8.6 GB of KV cache, so an 80 GB GPU fits about 9 requests. Offloading to CPU DRAM does not remove the HBM residency needed on the decode path. | [OasisKV](https://arxiv.org/pdf/2608.08097)
+
+ATTEMPT 4: Wafer-scale SRAM (Cerebras WSE-3) | Cerebras; 2019–26 | niche, but commercial | WHY IT DID NOT SOLVE IT: 44 GB of on-wafer SRAM is far below frontier weights plus KV. Weights are streamed from external MemoryX (1.5 TB, 12 TB or 1.2 PB). One analysis says off-wafer I/O is only about 150 GB/s, which hurts large models and long contexts. | [Introl](https://introl.com/blog/cerebras-wafer-scale-engine-cs3-alternative-ai-architecture-guide-2025), [Cerebras IPO analysis](https://www.itiger.com/news/1116797856)
+
+ATTEMPT 5: SRAM-only streaming dataflow (Groq LPU) | Groq; 2016–25 | niche; licensed to Nvidia in Dec 2025 | WHY IT DID NOT SOLVE IT: about 230 MB per chip means hundreds of chips for one 70B model. Reports give 576 chips for the Llama 2 70B demo and about 305 cards for int8 weights alone. One blog estimates about $13M of hardware. The roughly $20B Nvidia deal is reported as a non-exclusive license. | [arXiv review](https://arxiv.org/html/2503.09650v1), [01.me](https://01.me/en/2024/02/groq/), [The Register](https://www.theregister.com/2025/12/31/groq_nvidia_analysis/)
+
+ATTEMPT 6: Large on-chip SRAM IPU with a new programming model | Graphcore; 2016–24 | dropped (sold to SoftBank in July 2024 for about $500–600M) | WHY IT DID NOT SOLVE IT: 2022 revenue was about $2.7M against about $205M of losses, after $684M raised. The sources attribute this to Nvidia's software ecosystem and weak sales. One source gives 47.5 MB of SRAM for the Bow IPU. | [itpro](https://itpro.com/business/acquisition/beleaguered-ai-chip-firm-graphcore-acquired-by-softbank), [DCD](https://www.datacenterdynamics.com/en/news/softbank-acquires-british-ai-chip-designer-graphcore/)
+
+ATTEMPT 7: Wafer-scale training tiles (Dojo) | Tesla; 2021–25 | dropped (team disbanded Aug 2025; a Dojo3 restart is reported by one source only) | WHY IT DID NOT SOLVE IT: Musk called Dojo 2 "an evolutionary dead end" once the AI6 path converged. Reporting also cites manufacturing difficulty and memory-capacity limits. The Dojo 2 target was about 100k H100-equivalents by 2026. | [TechCrunch](https://techcrunch.com/2025/09/02/tesla-dojo-the-rise-and-fall-of-elon-musks-ai-supercomputer/), [roic.ai](https://www.roic.ai/news/tesla-shuts-down-dojo-ai-supercomputer-project-reassigns-engineers-08-12-2025)
+
+ATTEMPT 8: Merchant GPU challenger (Gaudi 3, Falcon Shores) | Intel/Habana; 2019–25 | dropped | WHY IT DID NOT SOLVE IT: Intel said in Nov 2024 it would miss its $500M Gaudi 3 target because of software problems. In Jan 2025 it cancelled Falcon Shores as a product. | [TechCrunch](https://techcrunch.com/2025/01/30/intel-wont-bring-its-falcon-shores-ai-chip-to-market), [HPCwire](https://www.hpcwire.com/2025/02/04/intel-falcon-shores-another-swing-and-a-miss/)
+
+ATTEMPT 9: Processing-in-memory (Samsung HBM-PIM, UPMEM) | 2019–25 | niche | WHY IT DID NOT SOLVE IT: the binding problem is programmability, not silicon. PIM logic has no address translation or cache coherence. A Facebook team called programmability the biggest obstacle. Mixing logic with DRAM process costs density, so the return on investment was poor. I found no volume-deployment figures. | [Mutlu et al.](https://arxiv.org/pdf/1802.00320), [arXiv overview](https://arxiv.org/pdf/2401.14428)
+
+ATTEMPT 10: Analog compute-in-memory (Mythic, IBM PCM) | 2015–present | niche | WHY IT DID NOT SOLVE IT: analog noise and drift limit precision to roughly 8-bit class, so it is inference-only. I could not verify drift figures or Mythic's finances from these results. I recall Mythic's near-collapse in 2022 but did not confirm it. | [Mythic overview](https://www.electronicdesign.com/technologies/embedded-revolution/article/21806389/a-closer-look-at-machine-learning-chip-maker-mythic)
+
+ATTEMPT 11: Photonic matrix compute (Lightmatter, Lightelligence) | 2017–26 | niche, shifting to interconnect | WHY IT DID NOT SOLVE IT: Lightmatter's chip was 8-bit-equivalent and so inference-only (2021). Lightelligence now sells optical switches, near-packaged optics and PCIe/CXL optical links alongside its compute card, positioned as augmenting GPUs. | [IEEE Spectrum](https://spectrum.ieee.org/deep-learning-at-the-speed-of-light), [PIC Magazine](https://picmagazine.net/article/123902/Lightelligence_Targets_AI_Bottlenecks_with_Photonics)
+
+ATTEMPT 12: Transformer-only fixed-function ASIC (Etched Sohu) | Etched; 2022–present | niche | WHY IT DID NOT SOLVE IT: claims of about 20x an H100 have no independent verification in these results. It cannot run non-transformer models, so the bet is that transformers stay dominant. | [ComputerBase](https://www.computerbase.de/2024-06/transformer-models-sohu-asic-von-etched-soll-20x-schneller-als-nvidia-h100-sein/)
+
+ATTEMPT 13: 4-bit training numerics (MXFP4, then NVFP4) | Nvidia; 2025 | standard for inference, early for training | WHY IT DID NOT SOLVE IT: MXFP4 had about 2.5% relative loss error versus about 1.5% for NVFP4. MXFP4 needed about 36% more tokens to match NVFP4. NVFP4 on a 12B model over 10T tokens stayed within about 1–1.5% of FP8, but code benchmarks dropped. Some layers or the final phase need higher precision, and the scale-up beyond 12B is unproven. | [arXiv 2509.25149](https://arxiv.org/pdf/2509.25149)
+
+ATTEMPT 14: Offloading KV or weights to host DRAM or flash (HBF) | research and industry; 2024–26 | niche or research | WHY IT DID NOT SOLVE IT: the offloaded data still has to come back over a link far slower than HBM before it can be used. Papers rely on sparse prefetch and report only 1.7–2.1x gains, with a small accuracy cost. | [OasisKV](https://arxiv.org/pdf/2608.08097), [FlashAccel](https://arxiv.org/pdf/2607.10186)
+
+ATTEMPT 15 (unsearched): Optical circuit-switched TPU pods | Google; 2020–26 | standard inside Google | WHY IT DID NOT SOLVE IT: it still sits on HBM and CoWoS-class packaging. The software stack is XLA/JAX, tied to one cloud.
+
+ATTEMPT 16 (unsearched): Chiplet or disaggregated memory over CXL | industry; 2021–25 | niche | WHY IT DID NOT SOLVE IT: CXL bandwidth is tens of GB/s per link, against several TB/s for an HBM stack. It works as capacity, not as bandwidth.
+
+LESSONS:
+- **Capacity versus bandwidth.** SRAM gives bandwidth but cannot hold frontier weights plus KV. Examples are 230 MB per Groq chip and 44 GB per wafer, and they force hundreds of chips or off-wafer streaming. HBM gives capacity but is supply-limited and still bandwidth-bound at decode. A new design must say where the weights live, where the KV lives, and the byte/s each tier costs.
+- **Supply and facility limits.** Any plan that needs scarce HBM, scarce CoWoS or 120 kW racks inherits those limits. Lower-density, standard-packaging options are a real advantage.
+- **Software killed more challengers than silicon.** Gaudi, Graphcore and PIM all stalled on it. Unmodified PyTorch, or a compiler path that does not lose to CUDA, is required from the start.
+- **Exotic compute stays inference-only.** Analog and photonic compute give about 8-bit precision, so they cannot train. A claim to beat GPUs needs digital low-precision numerics, with FP4-class training evidence beyond 12B.
+- **Fixed-function bets are risky.** Transformer-only silicon fails if the model architecture shifts. Wafer-scale yield and memory limits were cited in the Dojo end.
+- **Search gaps.** I used 14 of 15 searches. Rubin per-chip power, Ironwood specs and SambaNova/d-Matrix status were not found, so do not treat them as established.
+
+Sort these candidates before the expensive checks. Without tools, for each candidate estimate:
+- I = importance 0-10: how much of the asker's aim it serves if it works - for a cost question, the share of the
+  delivered cost it removes, never more than the ceiling of its archetype allows;
+- P = possibility 0-10: how likely it is to work at the scale it claims with known physics, given the earlier
+  attempts that stopped short (a candidate that repeats one without beating its reason gets P <= 2);
+- the one number that decides whether it works.
+Being unusual earns nothing here; aiming at a term whose ceiling leaves no room earns a low I.
+
+Final answer (text only), one line per candidate in the order given, at most 400 words:
+=== TRIAGE ===
+IDEA 1 | I <0-10> | P <0-10> | DECIDES: <quantity> | <one line why>
+(same for the others)

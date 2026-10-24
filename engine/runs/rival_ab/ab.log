@@ -1,0 +1,59 @@
+mc_g1_ledger: 17436 tokens, $0.181, 52.4 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mc_g1_ledger.md
+mc_g1_ledger: 3 ideas (737 words)
+mc_g1_neg: 17064 tokens, $0.173, 49.1 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mc_g1_neg.md
+mc_g1_neg: 3 ideas (714 words)
+mc_g1_mech: 16901 tokens, $0.170, 46.5 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mc_g1_mech.md
+mc_g1_mech: 3 ideas (671 words)
+mc_g1_rf1: 19041 tokens, $0.211, 67.7 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mc_g1_rf1.md
+mc_g1_rf1: 3 ideas (836 words)
+mc_g1_rf2: 19392 tokens, $0.219, 73.7 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mc_g1_rf2.md
+mc_g1_rf2: 3 ideas (626 words)
+mrival_g1_ledger: 17283 tokens, $0.177, 51.6 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mrival_g1_ledger.md
+mrival_g1_ledger: 3 ideas (647 words)
+mrival_g1_neg: 18217 tokens, $0.196, 66.4 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mrival_g1_neg.md
+mrival_g1_neg: 3 ideas (730 words)
+mrival_g1_mech: 16080 tokens, $0.153, 39.0 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mrival_g1_mech.md
+mrival_g1_mech: 3 ideas (626 words)
+mrival_g1_rf1: 18070 tokens, $0.192, 57.3 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mrival_g1_rf1.md
+mrival_g1_rf1: 3 ideas (648 words)
+mrival_g1_rf2: 19192 tokens, $0.215, 70.1 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mrival_g1_rf2.md
+mrival_g1_rf2: 3 ideas (723 words)
+mreal_g1_ledger: 19933 tokens, $0.214, 62.7 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mreal_g1_ledger.md
+mreal_g1_ledger: 3 ideas (927 words)
+mreal_g1_neg: 18264 tokens, $0.181, 52.7 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mreal_g1_neg.md
+mreal_g1_neg: 3 ideas (641 words)
+mreal_g1_mech: 17732 tokens, $0.170, 44.9 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mreal_g1_mech.md
+mreal_g1_mech: 3 ideas (560 words)
+mreal_g1_rf1: 26278 tokens, $0.339, 135.6 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mreal_g1_rf1.md
+mreal_g1_rf1: 3 ideas (606 words)
+mreal_g1_rf2: 20180 tokens, $0.218, 68.2 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/mreal_g1_rf2.md
+mreal_g1_rf2: 3 ideas (652 words)
+triage_mc: 17487 tokens, $0.182, 52.0 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/triage_mc.md
+triage_mrival: 18015 tokens, $0.192, 55.2 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/triage_mrival.md
+triage_mreal: 20721 tokens, $0.234, 73.9 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/triage_mreal.md
+/home/user/SomeRepository/engine/runs/rival_ab/gate/c1/TASK.md
+gate1: 205622 tokens, $0.822, 236.6 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/gate1.md
+gate: 4/4 parsed {'WOUNDED': 1, 'DEAD': 3}
+/home/user/SomeRepository/engine/runs/rival_ab/gate/c2/TASK.md
+gate2: 148060 tokens, $0.694, 180.9 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/gate2.md
+gate: 4/4 parsed {'DEAD': 4}
+/home/user/SomeRepository/engine/runs/rival_ab/gate/c3/TASK.md
+gate3: 194950 tokens, $0.883, 247.3 s -> /home/user/SomeRepository/engine/runs/rival_ab/outputs/gate3.md
+gate: 4/4 parsed {'WOUNDED': 2, 'DEAD': 2}
+MC [('DEAD', 0.24, 1.08), ('DEAD', 2.5, 1.1), ('WOUNDED', 0.75, 1.3), ('DEAD', 1.85, 1.05)]
+MRIVAL [('DEAD', 0.5, 1.05), ('DEAD', 0.2, 1.1), ('DEAD', 0.2, 1.1), ('DEAD', 0.16, 0.47)]
+MREAL [('WOUNDED', 1.5, 1.4), ('WOUNDED', 0.99, 1.3), ('DEAD', 0.8, 1.05), ('DEAD', 0.66, 0.6)]
+MC | GDDR7 disaggregated attention rack | WOUNDED | The bandwidth cost gain is real but nearer 1.4–1.6x than 2x. Also, each chip has only about 2 TB/s of GDDR7 pins, so the design needs about 4 attention chips for each HBM
+MRIVAL | Fixed attention engine in DRAM | DEAD | The idea's own deciding condition does hold: KV share is 0.55–0.91 at 16K–128K with batch 32. But even removing 100% of KV movement energy only gives 1.54x, and a base di
+MC | Stacked-SRAM weights, HBM KV | DEAD | Capacity (3.93 of 4 GB) and SRAM cost (about $530 on N7) both check out. But at throughput batch sizes the KV cache dominates the bytes, and the MLA step is nearly comput
+MRIVAL | Attention-only near-memory KV engine | DEAD | The core-share assumption is backwards: the DRAM core is roughly 70–93% of access energy, not ≤40%. So a base-die engine cuts token energy by about 10%, not 50%. Like Ide
+MREAL | Base-die FP4 KV attention | DEAD | The claimed 5–6x comes almost entirely from FP4 KV, which current GPUs already use; the base die itself saves only ~1.2x per KV bit on ~30% of decode energy.
+MRIVAL | Attention in HBM4 base die | DEAD | Exact outputs are real, but there is no bandwidth gain and only ~17% saved per KV bit, so energy per token improves ~1.05x instead of the claimed 2x.
+MC | Half-HBM training die | DEAD | The physics works for dense models, but a 1.38x BOM cut on a chip sold at 82% margin, inside a run whose cost is a third staff, gives at most ~1.10x and probably less onc
+MC | Attention inside memory base | DEAD | The ≤1 pJ/bit logic target is reachable for GQA, but even at zero logic cost the idea saves only the PHY/NoC share of energy, far short of the 1.6x it promises.
+MREAL | Continuum on-die speculative tree verifier | WOUNDED | At T=1 acceptance only just reaches the required 3 tokens/pass, and today's GPU EAGLE-3 already gets most of the gain, so the hardware can recover only the overhead, not 
+MREAL | Continuum-T HBM-free tiled trainer | DEAD | LPDDR6 delivers about 60% of the bandwidth the idea assumes, MoE GEMM intensity falls below what the die needs, and 2026 LPDDR prices make 512 GB of it cost more than the
+MREAL | Two-tier exact sparse-KV decode | WOUNDED | The physics works with headroom, but Grace offload on today's GB300 already gets about 2x, so the dedicated silicon adds only about 1.4x, and the HBM bandwidth spent on i
+MRIVAL | Weight-stationary stacked-SRAM tiles | DEAD | Moving the KV cache from HBM (about 576 TB/s per NVL72) to LPDDR (about 40 TB/s for 80 tiles) caps throughput below today's GPU racks, so the claimed 1.5–3x per joule or 
+RIVAL_AB_DONE
+TOTAL 21 steps: 885,918 tokens (new 478,649), $6.02

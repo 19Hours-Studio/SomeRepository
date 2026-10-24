@@ -1,0 +1,36 @@
+{
+ "pick": {
+  "MC": [
+   "mc_g1_rf2#2",
+   "mc_g1_rf2#1",
+   "mc_g1_rf1#2",
+   "mc_g1_mech#1"
+  ],
+  "MRIVAL": [
+   "mrival_g1_rf1#2",
+   "mrival_g1_neg#2",
+   "mrival_g1_rf2#2",
+   "mrival_g1_rf2#1"
+  ],
+  "MREAL": [
+   "mreal_g1_rf1#1",
+   "mreal_g1_neg#1",
+   "mreal_g1_ledger#2",
+   "mreal_g1_rf2#2"
+  ]
+ },
+ "order": [
+  "mc_g1_rf1#2",
+  "mrival_g1_neg#2",
+  "mc_g1_rf2#2",
+  "mrival_g1_rf2#2",
+  "mreal_g1_ledger#2",
+  "mrival_g1_rf1#2",
+  "mc_g1_rf2#1",
+  "mc_g1_mech#1",
+  "mreal_g1_neg#1",
+  "mreal_g1_rf2#2",
+  "mreal_g1_rf1#1",
+  "mrival_g1_rf2#1"
+ ]
+}
