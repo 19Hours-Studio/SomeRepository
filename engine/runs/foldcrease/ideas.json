@@ -133,5 +133,41 @@
   "name": "Large-radius tensioning teardrop hinge",
   "mech": "A teardrop hinge with R ≥ 3 mm keeps every bonded layer below 0.3% strain. On opening, sliding wing plates put the panel under about 0.1% in-plane tension, pulling any residual curvature flat against a continuous, interlocking plate. This differs from current teardrop hinges, which leave the panel slack and depend on hinge tolerance. The deciding quantity is the residual depth under tension after dwell, versus the tension the edge bonds can hold.",
   "value": "It actively flattens the panel each time it opens, using shipped materials, at a cost of about 1.5 mm more folded thickness."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Glass-tendon tensioned clothoid hinge",
+  "mech": "The anchor is kept: when the phone opens, the panel is put under in-plane tension that pulls any residual curvature flat. The tension now goes through the 45 µm UTG alone. Titanium rails grip the glass's two outer edges, and a force-controlled flexure spring, latched by a cam in the last few degrees of opening, sets the load at T ≈ 2000 N/m. That is 44 MPa in the glass, 0.063% strain and 300 N in total. A soft silicone optical gel (G ≈ 2 kPa) replaces the acrylic OCA under the glass. Through the acrylic OCA only 30% of the tension reached the fold, at about 48 kPa sustained shear. Through the gel 97% reaches it, at 1.9 kPa. The hinge path changes from a sharp teardrop to a teardrop with R = 3 mm and clothoid curvature ramps of at least 2 mm. Without the ramps, features narrower than √(D/T) ≈ 0.57 mm cannot be pulled flat. In a beam-column model with plate contact, calibrated so that today's creases come out at 60–150 µm, the result is a crease ≤2.1 µm deep with slope ≤0.82 mrad. The targets are ≤5 µm and ≤1 mrad. This holds for any untensioned crease up to about 180 µm.",
+  "value": "The cost is an estimated $13–50 per phone that meets the spec, about 16–72% of a $70–80 hinge. The reported baselines (Fold 7, Apple/Samsung Display drilled plate, Oppo N6) deliver essentially no phones that meet a ≤5 µm / ≤1 mrad spec, so no meaningful cost ratio exists."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Per-layer sub-creep strain budget",
+  "mech": "The anchor is kept: every polymer layer in the bend zone stays below its measured no-set strain, so no crease forms in the first place. The budget is now set per layer, not for the whole stack. With soft interlayers, each layer bends about its own mid-plane, so its strain is t_i/2R. The kill test's \"60 µm stack at R = 5 mm = 0.6%\" therefore does not apply. The thickest polymer layer is capped at 25 µm: the PET protector is removed, the UTG is hard-coated, and the back film is 25 µm CPI. The OCA is a low-relaxation silicone, because OCA slip (πd/2) does not shrink with radius. The locked shear drops from 92 kPa (acrylic) to 6 kPa. The polymers' share of bending stiffness falls from 16.9% to 2.4%. The hinge sets R ≥ 4.2 mm, which gives 0.30% per layer and about a 10.2 mm spine at the hinge.",
+  "value": "Any crease that remains is elastic and recovers, so flatness can be certified. The estimated cost is $7–33 per phone that meets the spec, about 8–47% of the hinge cost, plus about 1.3 mm more thickness than the 8.9 mm Fold 7."
+ },
+ {
+  "id": "repair#3",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Floating glass on fluid",
+  "mech": "Anchor kept: an index-matched liquid film, not an adhesive, couples the ultra-thin glass (UTG) to the panel where it bends. Because a liquid has no shape memory, the visible surface sits on a layer that cannot take a set. The repair fixes the flaw the kill test found: wherever the liquid strip met bonded adhesive, the layers had to slip 157 µm past each other, a shear strain of 6.3 against the 2.5–4 that folding adhesives are designed for. So the fluid (20 µm of phenyl-silicone, refractive index 1.51 ±0.02, viscosity 0.05–0.1 Pa·s) now covers the whole display, and the 149 µm of slip at each edge runs out at the perimeter. There it is taken by a pinned meniscus plus a 5 µm polyimide loop seal, which pushes back with at most 0.1 N/m; the glass would buckle at 0.34 N/m. The rest of the stack: 30 µm UTG with no polymer film on top (a bonded 5 µm hardcoat would print a 10 µm crease); a polarizer-free colour-filter OLED panel with touch built in; adhesive plus a 30 µm laser-patterned titanium plate; and a waterdrop hinge with a 3 mm minimum radius, so the glass and panel strain is 0.50% instead of 2.5% for a bonded stack. With the glass free to slip, any set in the layers below is levelled out by fluid flow in 5–10 s. Gravity, heat and stylus effects all stay inside their limits (a gravity tilt of at most 0.27 mrad, a 1.2 µm dome over 140 mm across 60 K, interface reflectance below 10⁻⁴). An earlier round with spacer pillars and a slight vacuum failed: the glass could then sag 360 µm into any dip and the crease printed straight through, so that version was dropped.",
+  "value": "It removes the layer that creeps from under the viewed surface for an estimated +$2–6 per phone, against roughly +$5–15 (my estimate) for the Apple/Samsung patterned plate or Oppo's ~20-pass printed hinge. On paper it is the only one of these aimed at zero crease rather than a smaller one, so cost per crease-free phone delivered is finite against undefined for the baselines."
+ },
+ {
+  "id": "repair#4",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Spectrum-matched drumhead hinge",
+  "mech": "Anchor kept: on opening, a hinge cam puts in-plane tension on the display and pulls any set flat over a flat plate. That tension works as a long-wavelength filter: the residual is w = w₀·k²/(k² + T/D), so it beats wide sets and loses to narrow ones. I reproduced the kill result (a 20 µm × 3 mm set leaves 3.3 µm and 2.3 mrad at 600 N/m; flattening it needs 3.9 kN/m). At today's 1.5 mm radius, 9.6–56 kN/m would be needed, which no phone can take. So the repair moves the design to where the anchor is strong. A thick hinge spine with a 4–5 mm bend radius spreads the set over a ~9 mm width. At the design tension of 1000 N/m (150 N total), the residual is ≤1 µm and ≤0.5 mrad as long as the set stays below 2.1–3.7% of the fold curvature. Clamping every layer together at the panel ends means the tension never passes through the adhesive as shear: shear in the viewing area drops from the kill's 25 kPa to 9.4 kPa, against a 10.5 kPa creep-test stress. A titanium frame and a 1 mm-stroke constant-force spring keep the tension within ±2% from −20 to +40 °C (±8% with aluminium). Glass strain from the tension is only 0.04%, and the cam releases the tension before folding starts.",
+  "value": "It turns any set below about 2.5% of the fold curvature into an invisible one, adding about +$8–20 per phone (cam, springs, titanium frame) and about 3 mm of spine thickness. Today's phones sit near 8% by my rough estimate, and the best current alternatives reduce the crease rather than remove it."
  }
 ]

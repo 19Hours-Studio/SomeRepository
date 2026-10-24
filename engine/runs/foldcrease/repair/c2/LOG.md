@@ -1,0 +1,11 @@
+# LOG (repair c2) — one line per round
+- I1 R0 | original: 10 mm fluid strip bonded both sides | slip pi*d=157 um into 25 um OCA -> gamma 6.3 (OCA folding range 2.5-4); if both ends bonded the mismatch is 2.5% membrane strain | FAIL (kill confirmed)
+- I1 R1 | decouple only UTG/panel, R=3 mm | own-NA strain 0.50% UTG & panel (vs 2.5% bonded 150 um stack) but slip still 134 um at any bonded edge | FAIL if an edge is bonded
+- I1 R2 | fluid over WHOLE display, slip run out to perimeter; seal options | gap-height elastomer gamma 6.7 FAIL; tall gel bead 4 N/m > UTG Euler 0.34 N/m FAIL; 5 um PI loop bellows + pinned meniscus 1e-4..0.1 N/m PASS
+- I1 R3 | index-matched photo-spacer pillars + 3 kPa sub-ambient fluid (stylus support, anti-gravity) | UTG sag capacity into 9.4 mm dip = 360 um at 3 kPa -> glass conforms to sub-stack set, crease prints through | FAIL, dropped
+- I1 R4 | no pillars, dp~0, mu 0.05-0.1 Pa s phenyl silicone n=1.51, h=20 um | leveling tau 0.3-0.7 s (6 mm), 5-10 s (9.4 mm); fold drag 0.05-0.19 N/m; gravity wedge slope <=2h/L=0.27 mrad; thermal dome 1.2 um/140 mm; R per interface <1e-4 | WORKS on paper; decisive unknown = sub-stack set printed through in first ~10 s + panel-layer reflection
+- I2 R0 | reproduce kill: 20 um x 3 mm set, D=1.6e-4, T=600 N/m | residual 3.3 um / 2.28 mrad; need 3.9 kN/m | FAIL (kill confirmed)
+- I2 R1 | spectrum shift: big bend radius -> wide set (w_hat=w0_hat k^2/(k^2+T/D)) | R=1.5 mm needs 9.6-56 kN/m; R=5 mm f=2% needs 0.44-2.6 kN/m | anchor strongest at long wavelength
+- I2 R2 | iso-strain through-thickness end clamp (no tension transfer through OCA) | view-area OCA shear 9.4 kPa at f=3% (vs 25 kPa in kill, 10.5 kPa creep-test) | PASS, thin margin
+- I2 R3 | design T=1000 N/m, R=4-5 mm spine, Ti frame, 1 mm constant-force spring | f_allowed 2.1-3.7%; 150 N total; UTG strain 0.04%; thermal swing +-2% (Ti) vs +-8% (Al); 0.1 J/cycle | NICHE-WORKS; decisive unknown f at R=5 mm after 2000 cyc + 24 h/60 C
+- novelty | tension hinges exist (US12641738, EP4738056, EP4567555); no liquid-interlayer cover patent found in quick search | I2 novel only as spectrum rule + iso-strain clamp; I1 novel as LCD-cell-like floating cover
