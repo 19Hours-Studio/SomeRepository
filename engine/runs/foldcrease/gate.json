@@ -1,0 +1,58 @@
+{
+ "g1_rf2#1": {
+  "killer": "Locked-in interlayer slip at the edges of the gel band. The layers are still bonded outside the band, so the full 157 µm slip (π × 50 µm, exact arithmetic) has to be carried by the OCA just beyond each band edge: about 630% shear spread over a ~12 mm shear-lag length. The gel does not stop the adhesive from creeping; it moves the creep to the band edges. For ≤20 µm depth over a 4.7 mm band, residual slip must stay ≤1.7 µm, i.e. ≤1.1% of the slip",
+  "why": "Bending kinematics put the slip back into adhesive at the band edges, so the crease moves instead of disappearing, and the residual-slip budget fails by about 10x.",
+  "margin": 0.11,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "g1_mech#1": {
+  "killer": "Peak strain in the bend zone compared with the strain at which polyimide shows no residual strain. A 60 µm bonded stack at R = 5 mm gives t/2R = 0.60%, not the claimed 0.3–0.5%. CPI wrapped on mandrels keeps no residual strain only at R ≳ 5 mm, which is ≈0.5% if the test film was ~50 µm (film thickness not confirmed; test probably at room temperature, not 60 °C)",
+  "why": "It is close to the measured no-set radius for CPI, but the stated stack is 20% over that strain, any adhesive in it never stops creeping, and the hinge geometry cannot reach the claimed 10 mm.",
+  "margin": 0.83,
+  "ratio": 2.5,
+  "verdict": "WOUNDED"
+ },
+ "g1_mech#2": {
+  "killer": "Fluid volume needed to keep the gap uniform when folded. The layers are bonded outside the 15 mm zone, so the glass and the OLED (d ≈ 30 µm) differ in arc length by π·d = 94 µm, which is 1.5% membrane strain. If that mismatch is not taken up as strain, the inner layer buckles by ~0.49 mm and needs ~1.96 mm² of fluid per mm of width. The sealed 5 µm × 15 mm film holds 0.075 mm²/mm. The ±0.5 µm gap target also fails within 0.35 s under a 1 N stylus (squeeze film with 1 Pa·s fluid)",
+  "why": "Layers of equal length bonded at both ends cannot stay concentric through a 180° fold, so the ±0.5 µm gap criterion fails by more than 25x.",
+  "margin": 0.04,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "g1_rf2#3": {
+  "killer": "Panel tension left after OCA stress relaxation, compared with the tension needed to flatten the crease 5x (50 µm → ≤10 µm). The beam-column model was checked by finite differences, which match the analytic result and give w/w₀ = 1 at T = 0. The stack bending stiffness is D = 6.6×10⁻⁴ N·m (45 µm UTG). At 0.1% strain the tension is 3,550 N/m. Assuming a 50% loss from the measured 40–50% OCA relaxation at 60 °C, ~1,775 N/m remains. A sharp crease profile (L = 4 mm) needs 1,625 N/m; at L = πR = 9.4 mm it needs only 294 N/m (margin 6). Risk: the OCA must carry a sustained ~89 kPa peak shear, above its G′ of 45–65 kPa",
+  "why": "This is the only idea whose mechanism gets stronger rather than weaker with residual creep, but the margin is thin and theoretical: the phone must be flat only while under tension, the crease must not be sharper than ~4 mm, and the OCA must not keep relaxing beyond 50%. The cheapest test is a 45 µm UTG/CPI/OCA strip folded 8 h at R = 3 mm and 60 °C, then profiled flat at 0 and at 0.1% tension, re-measured after a 24 h held-open dwell.",
+  "margin": 1.09,
+  "ratio": 5.4,
+  "verdict": "ALIVE"
+ },
+ "g1_ledger#2": {
+  "killer": "Sustained shear stress the OCA must carry to feed the flattening tension into the UTG. I modelled the set as a plate under tension, w_k = w0_k·Dk²/(Dk²+T), and checked the code against the exact single-sinusoid case (0.229207 computed vs 0.229205 exact). Flattening a 20 µm, 3 mm-wide set to ≤1 µm depth and ≤0.5 mrad slope takes T ≈ 4,100 N/m with the UTG's stiffness alone (D = 1.66e-4 N·m) and about 10,000 N/m with the whole stack's (4.0e-4 N·m). The 0.5 mrad slope limit is my own assumption. Through a 25 µm OCA (G = 90 kPa, shear-lag length 24 mm) that means τ = T/24 mm",
+  "why": "The tension that flattens even a 20 µm set needs ~16x more sustained OCA shear than the adhesive tolerates without creeping, and the tension the adhesive can carry only cuts the crease 2–3x.",
+  "margin": 0.06,
+  "ratio": 2.2,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#3": {
+  "killer": "OCA shear stress (and UTG membrane stress) needed to reach ≤1 µm depth. Starting from a 50 µm, 3 mm set (Oppo-class residual), it takes T ≈ 10,700 N/m (UTG stiffness) to 26,000 N/m (stack stiffness). That is τ ≈ 440 kPa in the OCA and about 360 MPa of sustained membrane tension in 30 µm UTG. A sharper 1 mm-wide set needs 3×10⁵ N/m or more",
+  "why": "Reaching ≤1 µm needs about 40x the adhesive's sustainable shear and puts sustained tension of hundreds of MPa in the glass. The tension that is feasible leaves a visible crease.",
+  "margin": 0.02,
+  "ratio": 2.2,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#1": {
+  "killer": "Shear strain at the boundary where the fluid strip meets the bonded region. If each layer bends about its own neutral plane, adjacent layers must slip past each other by θ·d. For a 180° fold with mid-planes ~50 µm apart, that is π·50 µm ≈ 157 µm. It has to be absorbed by the perimeter seal or the bonded OCA (~25 µm thick) where the strip ends. The idea's stated deciding quantity, gap uniformity within ±1 µm, comes after this",
+  "why": "The slip does not disappear; it moves to the strip edges at about 2–3x what adhesives are quoted to take, and the polymer layers' own set remains.",
+  "margin": 0.4,
+  "ratio": 1.3,
+  "verdict": "WOUNDED"
+ },
+ "g1_neg#2": {
+  "killer": "In-plane tension needed for an invisible residual. At the idea's own 600 N/m (its √(D/T) ≈ 0.5 mm and 0.03% glass strain both check out), a 20 µm, 3 mm set falls only to 3.4–6.1 µm with a 2.3–3.9 mrad slope. Reaching ≤1 µm / ≤0.5 mrad takes ≥4,100 N/m. Even 600 N/m puts ~25 kPa of shear on the OCA, about 2.4x the 10.5 kPa creep-test stress",
+  "why": "600 N/m is 7x too little to flatten the set, and it already overloads the OCA in shear by about 2.4x.",
+  "margin": 0.15,
+  "ratio": 3.3,
+  "verdict": "DEAD"
+ }
+}

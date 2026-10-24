@@ -1,0 +1,24 @@
+check slip: d=50um -> 157.07963267948966 um (idea 1 states 157 um)
+
+IDEA1 band L=4.7 mm, allowed residual rotation 0.034 rad -> residual slip <= 1.70 um of 157 um = 1.08%
+  OCA residual 10% -> margin 0.11
+  OCA residual 15% -> margin 0.07
+  shear-lag length beyond band 12.2 mm; peak OCA shear strain 628%
+
+IDEA2 strain bonded 60um at R=5mm: 0.60%; CPI zero-residual threshold ~5mm*(50um film)->0.50%; margin 0.83
+  spine thickness >= 11.7 mm (2R+2t+2x0.8mm walls) vs claimed 10 mm vs Fold7 8.9 mm
+  idea's own 0.05% residual strain, free 60um film: sag 514 um
+  residual strain fraction allowed for 20um: 0.32%
+
+IDEA3 glass-OLED d=30um: length mismatch 94 um = membrane strain 1.50%; buckle amp 490 um; extra fluid 1.96 mm^2/mm vs available 0.075
+   fluid-volume margin 0.038
+
+IDEA3 glass-plate d=82um: length mismatch 258 um = membrane strain 4.10%; buckle amp 810 um; extra fluid 3.24 mm^2/mm vs available 0.075
+   fluid-volume margin 0.023
+   squeeze 5->4.5um under 1N stylus: 0.35 s
+
+IDEA4 D=6.59e-04 N.m
+  FD check T=0: w/w0=1.000 (expect 1)
+  T at 0.1% = 3550 N/m; force over 151mm fold line = 536 N; glass shear-lag 40 mm; peak OCA shear 89 kPa vs G'(60C) 45-65 kPa
+  L=9.4mm Tcr=74 N/m; reduction x25.1 (analytic) x25.1 (FD); T needed for x5 = 294 N/m; margin 6.03; 50um->2.0 um
+  L=4.0mm Tcr=406 N/m; reduction x5.4 (analytic) x5.4 (FD); T needed for x5 = 1625 N/m; margin 1.09; 50um->9.3 um

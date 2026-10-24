@@ -1,0 +1,42 @@
+  brief: 32,105 tokens
+initialized /home/user/SomeRepository/engine/runs/foldcrease
+UNCLEAR (kept as assumptions):
+
+1. Must the phone still fold inward, with a flat full-width inner display, or could the form factor change (outward fold, rollable, multi-hinge)?
+2. Is "invisible" judged by eye, by touch, or by instrument? What viewing conditions apply?
+3. Is there a thickness, weight or cost limit?
+TYPE invent; MODE standard
+/home/user/SomeRepository/engine/runs/foldcrease/ledger/TASK.md
+  ledger: 46,416 tokens, 53.8 s
+ledger: 768 words
+/home/user/SomeRepository/engine/runs/foldcrease/attempts/TASK.md
+  attempts: 101,115 tokens, 71.7 s
+attempts: 1211 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Samsung Galaxy Z Fold 7 style (inward book fold, ultra-thin glass (UTG) plus polymer stack | untouchable 44.0% -> ceiling 2.3x | 10x cut of one term: processing 1.56x; capital 1.10x; labour 1.02x; inbound logistics 1.02x; outbound logistics 1.01x; energy 1.01x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+ARCHETYPE B: Reported Apple foldable (Samsung Display panel, laser-drilled metal plate, micro metal-inj | untouchable 44.0% -> ceiling 2.3x | 10x cut of one term: processing 1.52x; capital 1.12x; labour 1.02x; inbound logistics 1.02x; outbound logistics 1.01x; energy 1.01x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+ARCHETYPE C: Oppo Find N6 (second-generation titanium hinge; "3D liquid printing" polymer deposited und | untouchable 40.0% -> ceiling 2.5x | 10x cut of one term: processing 1.61x; capital 1.12x; labour 1.02x; inbound logistics 1.02x; outbound logistics 1.01x; energy 1.01x | 3x needs: impossible even with every physical term cut 10x | NO ROOM
+ARCHETYPE D: The foldable display module alone (the part that determines the crease: OLED on polyimide, | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: processing 1.82x; capital 1.22x; labour 1.06x; energy 1.05x; inbound logistics 1.03x; outbound logistics 1.01x | 3x needs: processing, capital, labour | TIGHT
+  reframe: 16,446 tokens, 45.3 s
+  g1_ledger: 16,436 tokens, 49.0 s
+g1_ledger: 3 ideas (679 words)
+  g1_neg: 17,350 tokens, 60.9 s
+g1_neg: 3 ideas (748 words)
+  g1_mech: 15,784 tokens, 44.0 s
+g1_mech: 3 ideas (690 words)
+  g1_rf1: 16,102 tokens, 47.1 s
+g1_rf1: 3 ideas (644 words)
+  g1_rf2: 16,679 tokens, 50.9 s
+g1_rf2: 3 ideas (842 words)
+  triage: 17,168 tokens, 53.4 s
+/home/user/SomeRepository/engine/runs/foldcrease/gate/c1/TASK.md
+/home/user/SomeRepository/engine/runs/foldcrease/gate/c2/TASK.md
+  gate.2: 164,922 tokens, 255.8 s
+  gate.1: 253,826 tokens, 390.9 s
+/home/user/SomeRepository/engine/runs/foldcrease/gate/TASK.md
+  skip gate (done)
+gate: 8/8 parsed {'DEAD': 5, 'WOUNDED': 2, 'ALIVE': 1}
+  gate: 10 new facts -> evidence.md
+/home/user/SomeRepository/engine/runs/foldcrease/repair/TASK.md
+/home/user/SomeRepository/engine/runs/foldcrease/repair/c2/TASK.md
+/home/user/SomeRepository/engine/runs/foldcrease/repair/c1/TASK.md

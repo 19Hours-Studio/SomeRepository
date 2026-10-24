@@ -1,0 +1,137 @@
+[
+ {
+  "id": "g1_ledger#1",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Liquid-coupled slip stack",
+  "mech": "In a 10 mm bend strip, the bonded OCA is replaced by a sealed, index-matched fluid film. This lets the UTG, the touch/polarizer layer and the OLED-on-PI each bend about their own neutral plane, so ε ≈ 30 µm/(2×2 mm) ≈ 0.75% instead of about 4% for a bonded stack. Outside the strip, the layers stay bonded with normal OCA. The closest attempt, thin or high-recovery OCA, failed because it stays bonded and so stays strained; a fluid has no shape memory. The deciding quantity is whether the perimeter seal holds the fluid gap uniform to within ±1 µm through 2000 cycles at 45 °C.",
+  "value": "Removes the creeping layer itself rather than reducing its creep."
+ },
+ {
+  "id": "g1_ledger#2",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Tensioned drumhead hinge",
+  "mech": "In the last few degrees of opening, the hinge cams pull the panel edges outward, applying a measured in-plane membrane tension that elastically pulls any residual dent flat. Load cells in the hinge store the tension that gives zero slope and adapt it with temperature. The closest attempts, perforated plates and the Oppo-mapped hinge, only support the panel from below, and supports cannot remove the panel's own set. The deciding quantity is the tension needed to flatten a 20 µm, 3 mm-wide set compared with the OCA edge-shear creep limit.",
+  "value": "Flatness becomes an actively controlled state rather than a material hope."
+ },
+ {
+  "id": "g1_ledger#3",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Post-shakedown counter-shaped support",
+  "mech": "Each panel is first aged in the factory with about 300 hot folds until its crease depth saturates. Its residual profile is then laser-mapped at 0.3 µm, and a matching inverse shim is printed onto the support plate. The closest attempt, Oppo's liquid printing, maps the surface before use, while the creep has not happened yet. Here the mapping happens after the creep has stopped. The deciding quantity is whether depth drift between cycle 300 and cycle 2300 stays ≤2 µm under 60 °C folded holds.",
+  "value": "Cancels the stable part of the crease while reusing existing Oppo-style tooling."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Fold-native polymer lamination",
+  "mech": "The OCA and polyimide layers are laminated while the panel is held at its fold radius. Their stress-free shape is therefore the folded state, so the long hours folded in a pocket cause no creep. When the phone is open, the polymers try to re-curl, but the stress-free flat glass and the plate are much stiffer and hold the panel flat. The closest earlier attempt is neutral-plane balancing, which is tuned for one state and still creeps; here the creep-prone layers spend their long holds at zero stress. The deciding quantity is the polymer's relaxing moment compared with the bending stiffness of the glass plus plate, which must be at least 50× larger to keep depth under 2 µm.",
+  "value": "It removes the cause of the crease instead of repairing its effect, at near-zero material cost."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Drumhead tension hinge",
+  "mech": "A cam in the hinge slides both panel ends outward on opening and applies about 600 N/m of in-plane tension. This pulls any set curvature down onto a flat lapped support plate. With UTG bending stiffness of about 1.6×10⁻⁴ N·m, flattening decays over √(D/T) ≈ 0.5 mm, while the glass strain stays at about 0.03%. The closest earlier attempt is Oppo's tolerance fill, which is static and cannot follow creep; tension adapts automatically as the set grows. The deciding quantity is roughly 90 N of sustained hinge force without causing OCA shear delamination.",
+  "value": "Flatness is restored on every opening, whatever creep has accumulated."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Closed-loop active fold support",
+  "mech": "A row of about 30 piezo or wedge actuators under the fold zone has about 60 µm of stroke and 1 µm resolution. Strain gauges printed on the polyimide estimate the crease profile at each opening, and a stored map drives the actuators to cancel it. The map is updated as creep grows. The closest earlier attempt is Oppo's laser-mapped liquid printing, a one-time static fill that cannot track drift. The deciding quantity is whether the panel's bending stiffness lets discrete supports cancel slope below 0.5 mrad between actuators.",
+  "value": "Flatness is held under 2 µm across temperature, humidity and wear by measuring and correcting it, not by hoping the materials recover."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Sub-creep strain budget fold",
+  "mech": "The hinge holds the bend zone at a radius of at least 5 mm. This is done with a deep teardrop cavity, with the panel sliding into each half on rails, so the closed phone stays about 10 mm thick. The panel stack in the bend zone is thinned to about 60 µm of polymer, so peak strain stays at or below 0.3–0.5%, under the yield and creep onset of polyimide and adhesive at 60 °C. The closest earlier attempt is the teardrop hinge, which stopped near R = 1.5–2 mm and therefore stayed in the creep regime. Translating the panel into the halves lifts the thickness cap that stopped it. The deciding quantity is the residual strain after an 8 h hold at 60 °C in the worst layer, which must be at or below 0.05%.",
+  "value": "Any crease that remains is elastic and recovers fully, giving a fold whose flatness can be certified rather than merely improved."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Unbonded sliding bend-zone laminate",
+  "mech": "Across the 15 mm bend zone, the glass, OLED-on-polyimide and support plate are left unbonded. They are separated by a sealed index-matched silicone fluid film (n ≈ 1.47, about 5 µm thick) and bonded only outside the zone. Each layer then bends about its own neutral axis, so strain is t_i/2R: about 0.75% for 30 µm glass and 0.5% for 20 µm polyimide at R = 2 mm. No adhesive shear creep can lock in a dent. The closest earlier attempt is low-modulus, high-recovery adhesive, which still couples the layers and creeps under heat and humidity. This design removes the adhesive from the bend zone entirely. The deciding quantity is fluid retention and edge-seal integrity over 2,000 cycles, measured as gap uniformity within ±0.5 µm.",
+  "value": "The polymer creep that sets every shipped crease is removed without adding thickness."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Tensioned glass flattening hinge",
+  "mech": "When the phone opens, cam-driven sliders in the hinge put the display under in-plane tension, about 20–40 N/m. The hinge also overbends about 2° past flat before settling. A force sensor stores the residual-curvature history and adjusts the overbend over the device's life. Tension reduces out-of-plane waviness in proportion to the residual bending moment divided by the tension. Because the glass is elastic, it returns the stack to flat as long as the polymer set stays small. The closest earlier attempt is Oppo's one-time laser mapping and liquid fill, which is static and cannot track creep that develops later. This design corrects on every cycle. The deciding quantity is the tension needed to reach 5 µm compared with the edge-flaw strength of the glass.",
+  "value": "The crease is held at zero throughout the device's life, so slow creep in the field never becomes visible."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Glass-dominated elastic fold zone",
+  "mech": "Two 30 µm UTG sheets enclose the OLED, joined by ≤10 µm low-modulus OCA across the fold zone only. More than 99% of the bending moment is then carried by glass that cannot creep, and the residual curvature scales with the polymer's moment share. The closest attempt is SDC Advanced Crease-less with a possible second UTG, which still leaves a thick PI/OCA stack bearing load. This design removes that load path. The deciding quantity is the polymer moment fraction times its unrecovered creep strain, which must give ≤0.5 mrad slope.",
+  "value": "An inward book-fold phone whose open-state flatness is set by elastic glass instead of creeping polymer."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Hinge reverse-bend creep cancellation",
+  "mech": "On opening, the hinge briefly over-extends 2–4° past flat, then settles at 180°. The reverse bend applies a counter-moment that, by Boltzmann superposition, cancels the stored viscoelastic creep from the folded hold. The dwell time adapts to the logged closed time and temperature. The closest attempt is neutral-plane balancing, which suits only one state, and this approach adds the missing second state. The deciding quantity is the reverse strain-time needed against a 72 h folded hold at 60 °C.",
+  "value": "Turns accumulated polymer creep from a permanent dent into a cancelled transient without adding layers."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Tensioned membrane open state",
+  "mech": "In the flat state, hinge cams pull the wing plates apart, putting the fold-zone stack in in-plane tension. The tension straightens residual curvature: deflection falls as tension rises relative to bending stiffness. The closest attempt is Oppo's tolerance-mapped hinge, which fills gaps but applies no restoring force. The deciding quantity is the tension needed for ≤1 µm depth against OCA shear-creep and UTG edge stress limits.",
+  "value": "Actively flattens whatever crease the materials leave, while reusing hinge parts that phones already have."
+ },
+ {
+  "id": "g1_rf2#1",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Gel-slip decoupled glass stack",
+  "mech": "In the fold band, the OCA is replaced by an index-matched, sealed silicone gel or fluid that carries the 157 µm interlayer slip as flow with no shape memory. Each solid layer then bends about its own midplane at ε = t/2R ≤ 1%. This differs from creep-recovery OCAs, which still store shear; the deciding quantity is the gel's residual shear set after 8 h folded at 60 °C. The polarizer is replaced by colour-filter-on-encapsulation, which cuts layer separation by about 50 µm.",
+  "value": "It removes the layer that dominates crease formation, so a crease cannot form under worst-case dwell."
+ },
+ {
+  "id": "g1_rf2#2",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "OLED directly on UTG",
+  "mech": "The TFT and OLED are built on a 30 µm strengthened glass substrate instead of PI, and the panel is sealed with a second UTG. Only glass carries strain, at 0.75% for R = 2 mm. Glass shows no creep at room temperature, so there is no material that can take a permanent set. This differs from earlier thick-UTG covers, which still sat on PI and OCA that creep. The deciding quantity is the 2000-cycle fatigue survival of glass at 0.75% strain with TFT films on it.",
+  "value": "Every load-bearing layer stays fully elastic, which makes crease persistence a non-issue."
+ },
+ {
+  "id": "g1_rf2#3",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Large-radius tensioning teardrop hinge",
+  "mech": "A teardrop hinge with R ≥ 3 mm keeps every bonded layer below 0.3% strain. On opening, sliding wing plates put the panel under about 0.1% in-plane tension, pulling any residual curvature flat against a continuous, interlocking plate. This differs from current teardrop hinges, which leave the panel slack and depend on hinge tolerance. The deciding quantity is the residual depth under tension after dwell, versus the tension the edge bonds can hold.",
+  "value": "It actively flattens the panel each time it opens, using shipped materials, at a cost of about 1.5 mm more folded thickness."
+ }
+]
