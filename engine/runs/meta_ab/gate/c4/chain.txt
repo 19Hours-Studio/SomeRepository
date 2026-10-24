@@ -1,0 +1,4 @@
+I1 weights 377 GB, step 11.8 ms, required per-link 32.1 TB/s; margin vs Lightmatter M1000 14.25 TB/s = 0.44; vs NVLink6 1.8 TB/s/dir = 0.056
+I2 (LUT 5x on compute, 5 vs 4.5 bits): 1.069  if bytes neutral: 1.136
+I3 4-bit per-layer: 1.213  6-bit: 0.955
+I4 FP8 master weights, compute -1/3, +1/128 checksum: 0.746

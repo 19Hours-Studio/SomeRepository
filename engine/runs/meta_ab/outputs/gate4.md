@@ -1,0 +1,40 @@
+=== GATE ===
+IDEA 1: Circulating optical weight broadcast
+KILLER | ring bandwidth per link: every chip must see the full weight set of a DeepSeek-V3-class model (671B params at about 4.5 bits, so 377 GB) once per decode step, and a step is 11.8 ms at the ledger's 85 tok/s/user | required 32 TB/s per link per direction | available 14.25 TB/s, using the best claimed optical package (Lightmatter Passage M1000 at 114 Tbps, a vendor figure). A shipping Rubin NVLink 6 link carries 3.6 TB/s bidirectional, about 1.8 TB/s per direction, which gives a margin of 0.056 | MARGIN 0.44
+CHAIN | wide expert parallelism on GB200/Rubin NVL72 racks. Each expert lives on one GPU and the whole batch is routed to it, so each expert's weights are already read once per step for every user | now 1 weight read per step per expert (weight-read share about 50% of decode energy, ledger C) | with idea still 1 HBM read per step, plus optical transmit at about 5 pJ/bit on each of N ring hops (Ayar TeraPHY figure). That means at least as much energy, not N times less | RATIO ≈1.0 (≤1)
+VERDICT | DEAD | The "N times less weight-read energy" claim is measured against per-chip weight replication, which no competent MoE deployment uses; against expert parallelism the gain is about zero, and the ring falls about 2.3x short of the bandwidth it needs even with the best photonics claimed so far.
+NEW FACT | Lightmatter Passage M1000 is claimed at 114 Tbps total optical bandwidth on a >4,000 mm² photonic interposer with 256 fibers; the L200/L200X are 34/64 Tbps | https://lightmatter.co/press-release/lightmatter-unveils-passage-m1000-photonic-superchip-worlds-fastest-ai-interconnect/
+NEW FACT | Rubin GPU: 288 GB HBM4 at 22 TB/s, NVLink 6 at 3.6 TB/s bidirectional per GPU (third-party spec pages citing Nvidia) | https://www.guru3d.com/story/nvidia-details-rubin-gpu-architecture-with-hbm4-nvlink-6-and-336-billion-transistors/
+NEW FACT | Co-packaged optical chiplets are about 5 pJ/bit (Ayar TeraPHY), against 10–15 pJ/bit for pluggable modules | https://viewmm.com/en/what-are-co-packaged-optics/
+
+IDEA 2: Codebook-gather arithmetic
+KILLER | weight-reconstruction quality of a 16-entry k-means codebook per 128-element group, against NVFP4, the current 4-bit practice already treated as near-FP8. Measured with `measure.py` and `check_cb.py` on synthetic weights; the quantizer was first checked against the known Lloyd-Max Gaussian result (MSE 0.00965 vs theory 0.009497). Signal-to-quantization-noise ratio (SQNR): FP8 32.0 dB, NVFP4 20.8 dB, codebook 17.4 dB on heavy-tailed weights with outlier channels (best grouping, within one channel) and 19.6 dB on Gaussian weights. "Near-FP8" would need about 32 dB | required MSE ≤ NVFP4 (20.8 dB SQNR) | available 17.4–19.6 dB, so codebook MSE is 1.2–2.2x that of NVFP4 and about 18–30x that of FP8 (own measurement; Hugging Face download was blocked, so no real model weights were used) | MARGIN 0.46 (0.83 on Gaussian weights)
+CHAIN | NVFP4 decode on HBM GPUs (ledger C: HBM 50%, tensor-core compute 15%) | now 100 energy units per token | with idea, taking LUT Tensor Core's 4–6x power saving on the tensor-core term: compute 15→3, but storage rises from 4.5 to 5 bits per weight (16 FP8 entries per 128 weights), so HBM 50→55.6; total 93.6 units | RATIO 1.07 (1.14 if codebook overhead is negligible)
+VERDICT | DEAD | Multipliers are only about 15% of decode energy, and the codebook's own storage overhead eats most of the saving, so the end-to-end gain is under 1.1x and it is not even better than NVFP4 on accuracy.
+NEW FACT | LUT Tensor Core (ISCA 2025): 4–6x power and area reduction against a conventional tensor core, at 16% of its area, with 2.06–5.51x end-to-end speedups on low-bit LLMs | https://arxiv.org/abs/2408.06003
+
+IDEA 3: Lookup-Accumulate Codebook Compute
+KILLER | quality of one codebook per layer, with no per-group scales, on weights with outlier channels (measured, same harness as Idea 2) | required ≥ NVFP4 quality (20.8 dB SQNR) | available 13.5 dB at 4 bits (16 entries) and 16.4 dB at 6 bits (64 entries), so MSE is 5.4x and 2.8x that of NVFP4 (own measurement) | MARGIN 0.18 (4-bit), 0.36 (6-bit)
+CHAIN | NVFP4 decode on HBM GPUs (ledger C) | now 100 energy units per token | with idea, at 6 bits (needed to get close on quality) bytes rise 1.33x, so HBM 50→66.7, compute 15→3, total 104.7; at 4 bits the ratio would be 1.21, but quality fails as above. Freed die area does not buy bandwidth, which is set by the HBM stack count and shoreline (Rubin gets 22 TB/s from HBM4 stacks, not from logic area) | RATIO 0.96 (6-bit)
+VERDICT | DEAD | Per-layer codebooks lose badly to NVFP4 at 4 bits, the 6 bits needed to recover quality cost more in HBM traffic than the multipliers save, and logic area cannot be turned into memory bandwidth.
+NEW FACT | (none beyond Idea 2)
+
+IDEA 4: Checksum-governed adaptive precision
+KILLER | how well the algorithm-based fault-tolerance (ABFT) row-checksum residual predicts each tile's true quantization error. Measured on 400 tiles of 128×128 with NVFP4 weights of varying tail weight; the exact-arithmetic case gives a residual of 2e-13, as expected | required correlation ≥0.9 (to choose precision "provably safely") | available correlation 0.28 between log residual and log true error; the above/below-median call is right 58% of the time, where a coin flip gives 50%. Errors cancel inside the sum, so the residual bounds nothing per element (own measurement) | MARGIN 0.31
+CHAIN | static NVFP4 with FP8 kept for sensitive layers, decode on HBM GPUs (ledger C) | now 100 energy units per token | with idea, stepping any tile up to FP8 per token means weights must be stored at FP8: bytes go from 4.5 to 8 bits, so HBM 50→89; compute about 15→10 including the 1/128 checksum overhead; total 134 | RATIO 0.75
+VERDICT | DEAD | The checksum residual barely tracks per-tile error, so it cannot govern precision, and keeping weights in FP8 so precision can rise makes decode about 1.3x more expensive than static NVFP4. Silent-data-corruption detection by ABFT already exists and is a small cost term on its own.
+NEW FACT | Llama 3 405B pretraining (16,384 H100s, 54 days): 419 unexpected interruptions, of which only 6 were attributed to silent data corruption; effective training time was above 90% | https://www.3dtested.com/tech-industry/artificial-intelligence/faulty-nvidia-h100-gpus-and-hbm3-memory-caused-half-of-the-failures-during-llama-3-training-one-failure-every-three-hours-for-metas-16384-gpu-training-cluster
+
+Notes:
+- Hugging Face was blocked by the proxy, so all quantization numbers come from synthetic weights: Gaussian, and Student-t(5) with a lognormal scale per input channel. Real model weights might narrow the codebook-vs-NVFP4 gap.
+- The decode energy shares come from ledger C, which is your own estimate (the ledger says no source gives that breakdown).
+- I wrote three files in the working directory and committed nothing: `measure.py`, `check_cb.py` and `chain.txt`.
+
+Sources:
+- [LUT Tensor Core (arXiv 2408.06003)](https://arxiv.org/abs/2408.06003)
+- [Lightmatter M1000 press release](https://lightmatter.co/press-release/lightmatter-unveils-passage-m1000-photonic-superchip-worlds-fastest-ai-interconnect/)
+- [DataCenterDynamics, L200](https://datacenterdynamics.com/en/news/lightmatter-unveils-m1000-and-l200-passage-photonic-interconnects)
+- [CPO pJ/bit](https://viewmm.com/en/what-are-co-packaged-optics/)
+- [Rubin specs (Guru3D)](https://www.guru3d.com/story/nvidia-details-rubin-gpu-architecture-with-hbm4-nvlink-6-and-336-billion-transistors/)
+- [Llama 3 failures](https://www.3dtested.com/tech-industry/artificial-intelligence/faulty-nvidia-h100-gpus-and-hbm3-memory-caused-half-of-the-failures-during-llama-3-training-one-failure-every-three-hours-for-metas-16384-gpu-training-cluster)
+- [SDC in LLM training (arXiv 2502.12340)](https://arxiv.org/html/2502.12340v1)

@@ -80,5 +80,32 @@
   "why": "Deployed optical circuit switches reconfigure about 1,000x too slowly for per-layer MoE phase changes. Even a free network could not bring inference cost below 1/1.12 of today's.",
   "margin": 0.0005,
   "verdict": "DEAD"
+ },
+ "comp2#2": {
+  "killer": "ring bandwidth per link: every chip must see the full weight set of a DeepSeek-V3-class model (671B params at about 4.5 bits, so 377 GB) once per decode step, and a step is 11.8 ms at the ledger's 85 tok/s/user",
+  "why": "The \"N times less weight-read energy\" claim is measured against per-chip weight replication, which no competent MoE deployment uses; against expert parallelism the gain is about zero, and the ring falls about 2.3x short of the bandwidth it needs even with the best photonics claimed so far.",
+  "margin": 0.44,
+  "verdict": "DEAD"
+ },
+ "clear2#2": {
+  "killer": "weight-reconstruction quality of a 16-entry k-means codebook per 128-element group, against NVFP4, the current 4-bit practice already treated as near-FP8. Measured with `measure.py` and `check_cb.py` on synthetic weights; the quantizer was first checked against the known Lloyd-Max Gaussian result (MSE 0.00965 vs theory 0.009497). Signal-to-quantization-noise ratio (SQNR): FP8 32.0 dB, NVFP4 20.8 dB, codebook 17.4 dB on heavy-tailed weights with outlier channels (best grouping, within one channel) and 19.6 dB on Gaussian weights. \"Near-FP8\" would need about 32 dB",
+  "why": "Multipliers are only about 15% of decode energy, and the codebook's own storage overhead eats most of the saving, so the end-to-end gain is under 1.1x and it is not even better than NVFP4 on accuracy.",
+  "margin": 0.46,
+  "ratio": 1.07,
+  "verdict": "DEAD"
+ },
+ "c1#2": {
+  "killer": "quality of one codebook per layer, with no per-group scales, on weights with outlier channels (measured, same harness as Idea 2)",
+  "why": "Per-layer codebooks lose badly to NVFP4 at 4 bits, the 6 bits needed to recover quality cost more in HBM traffic than the multipliers save, and logic area cannot be turned into memory bandwidth.",
+  "margin": 0.18,
+  "ratio": 0.96,
+  "verdict": "DEAD"
+ },
+ "comp1#2": {
+  "killer": "how well the algorithm-based fault-tolerance (ABFT) row-checksum residual predicts each tile's true quantization error. Measured on 400 tiles of 128×128 with NVFP4 weights of varying tail weight; the exact-arithmetic case gives a residual of 2e-13, as expected",
+  "why": "The checksum residual barely tracks per-tile error, so it cannot govern precision, and keeping weights in FP8 so precision can rise makes decode about 1.3x more expensive than static NVFP4. Silent-data-corruption detection by ABFT already exists and is a small cost term on its own.",
+  "margin": 0.31,
+  "ratio": 0.75,
+  "verdict": "DEAD"
  }
 }
