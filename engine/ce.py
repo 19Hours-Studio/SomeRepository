@@ -661,7 +661,7 @@ def cmd_gatetask(a):
     open(os.path.join(a.dir, "TASK.md"), "w").write(s); json.dump(ids, open(os.path.join(a.dir, "ids.json"), "w"))
     print(os.path.join(a.dir, "TASK.md"))
 
-GATE_NUM = re.compile(r"(MARGIN|RATIO)\s*[:=]?\s*~?\s*([0-9]*\.?[0-9]+(?:e-?[0-9]+)?)", re.I)
+GATE_NUM = re.compile(r"(MARGIN|RATIO)\s*[:=]?\s*[~≈]?\s*([0-9]*\.?[0-9]+(?:e-?[0-9]+)?)", re.I)
 
 def cmd_gate(a):
     """Parse a kill-test transcript into gate.json: {id: {margin, ratio, verdict, killer, why}}."""
@@ -758,7 +758,7 @@ def parse_review(d):
         if not 1 <= int(k) <= len(ids): continue
         sev = re.findall(r"^DEFECT \| (FATAL|MAJOR|MINOR)", body, flags=re.M)
         fit = re.search(r"^FIT \| (\d+)\s*of\s*(\d+)", body, flags=re.M)
-        rt = re.search(r"^RATIO \| ~?\s*([0-9]*\.?[0-9]+)", body, flags=re.M)  # v5: audited whole-chain cost ratio (invent)
+        rt = re.search(r"^RATIO \| [~≈]?\s*([0-9]*\.?[0-9]+)", body, flags=re.M)  # v5: audited whole-chain cost ratio (invent)
         kn = re.search(r"^KNOWN \| (yes|partly|no)\b", body, flags=re.M | re.I)  # v5: already done or proposed?
         out[ids[int(k) - 1]] = {**{s: sev.count(s) for s in ("FATAL", "MAJOR", "MINOR")},
                                 "fit": int(fit.group(1)) / max(1, int(fit.group(2))) if fit else 0.0,
@@ -954,7 +954,8 @@ def take_calibration(run, text, ids, record=True):
         key = "none" if who.lower() == "none" else ids[int(who) - 1] if who.isdigit() and 1 <= int(who) <= len(ids) else None
         if key: cal["p"][key] = float(pr) / 100 if pc or float(pr) > 1 else float(pr)
     for k in ("WEAKEST LINK", "FLIP TEST", "UNKNOWN"):
-        m = re.search(rf"^\**{k}\**\s*:\s*\**\s*(.+)$", body, re.M); cal[k.lower().replace(" ", "_")] = m.group(1).strip() if m else ""
+        m = re.search(rf"^\**{k}\**\s*:\s*\**\s*(.+?)(?=^\**(?:WEAKEST LINK|FLIP TEST|UNKNOWN|P\s*\|)|\Z)", body, re.M | re.S)
+        cal[k.lower().replace(" ", "_")] = m.group(1).strip() if m else ""  # a section may run over several lines
     save(run, "calibration.json", cal); cfg = load(run, "config.json", {}); names = {i["id"]: i["name"] for i in load(run, "ideas.json", [])}
     if not record: return cal
     os.makedirs(MEM, exist_ok=True)

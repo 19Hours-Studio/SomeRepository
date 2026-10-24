@@ -312,6 +312,9 @@ def main():
             assert "how was it held?" in open(os.path.join(rd9, "prompts", "g1_reframe.txt")).read()
             ev9 = open(os.path.join(rd9, "evidence.md")).read(); assert ev9.count("knobs worn on one face | NEW from") == 1  # new facts enter once
             cal9 = json.load(open(os.path.join(rd9, "calibration.json"))); assert abs(cal9["p"]["none"] - 0.15) < 1e-9 and cal9["flip_test"].startswith("CT")
+            calm = __import__("importlib").import_module("ce").take_calibration(R9, "=== CALIBRATION ===\nP | 1 | 30% | x\nWEAKEST LINK: D\n"
+                   "FLIP TEST: bench test.\n- fold 2000 times\n\nIt flips if > 5 um.\nUNKNOWN: gel", ["a"], record=False)
+            assert calm["flip_test"].endswith("> 5 um.") and "2000" in calm["flip_test"] and calm["unknown"] == "gel"  # multi-line sections
             assert "weakest link: wear data" in out.stdout and os.path.exists(os.path.join(tmp, "memory", "predictions.jsonl"))
             npred = sum(1 for _ in open(os.path.join(tmp, "memory", "predictions.jsonl")))
             out2 = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R9], capture_output=True, text=True, env=env)

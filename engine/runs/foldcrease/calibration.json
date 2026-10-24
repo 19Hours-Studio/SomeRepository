@@ -1,0 +1,12 @@
+{
+ "p": {
+  "repair#1": 0.34,
+  "repair#3": 0.08,
+  "repair#2": 0.06,
+  "repair#4": 0.03,
+  "none": 0.49
+ },
+ "weakest_link": "The bending stiffness D of the layers that actually carry the set (panel, back film and support plate, coupled through the 2 kPa gel), compared with 45 µm UTG alone. If D is about 3× the UTG value, the minimum flattenable feature width √(D/T) grows. A 180 µm set then leaves about 9 µm and 2.1 mrad, which misses the ≤5 µm / ≤1 mrad target.",
+ "flip_test": "The cheapest experiment is a bench test, with no hinge build.\n- Take a real panel stack and laminate 45 µm UTG onto it with the gel.\n- Fold it 2000 times at R = 3 mm, including 12 h holds at 60 °C and 90% RH.\n- Clamp it flat on titanium rails at 2000 N/m.\n- Map the fold with white-light interferometry and deflectometry, and also measure the untensioned set amplitude.\n\nIt flips if the residual is above 5 µm or 1 mrad, or if the untensioned set exceeds about 180 µm. Idea 1 would then fall below 10% and \"none\" would lead.",
+ "unknown": "Even if the flat state is perfect, it is not known whether a crease visible at partial and flex-mode angles meets \"invisible\". Also unknown are the long-term behaviour of the gel (pump-out, outgassing, cavitation at cold temperatures) and the fatigue of the 300 N rail grip on the glass edges."
+}

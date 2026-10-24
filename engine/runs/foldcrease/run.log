@@ -45,3 +45,16 @@ gate: 8/8 parsed {'DEAD': 5, 'WOUNDED': 2, 'ALIVE': 1}
   skip repair (done)
 repair: 4 ideas (3099 words)
 /home/user/SomeRepository/engine/runs/foldcrease/audit_final/TASK.md
+  audit_final: 218,710 tokens, 395.5 s
+  audit_final: 4 new facts -> evidence.md
+  calibrate: 11,224 tokens, 21.3 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#1       F0/M3/m2 fit 0.00 ratio - known yes p 34%  Glass-tendon tensioned clothoid hinge
+  2. repair#2       F1/M1/m3 fit 0.00 ratio - known partly p 6%  Per-layer sub-creep strain budget
+  3. repair#4       F1/M3/m2 fit 0.00 ratio - known yes p 8%  Spectrum-matched drumhead hinge
+  4. repair#3       F1/M3/m3 fit 0.00 ratio - known partly p 3%  Floating glass on fluid
+  none of these: p 49%
+  weakest link: The bending stiffness D of the layers that actually carry the set (panel, back film and support plate, coupled through the 2 kPa gel), compared with 45 µm UTG alone. If D is about 3× the UTG value, the minimum flattenable feature width √(D/T) grows. A 180 µm set then leaves about 9 µm and 2.1 mrad, which misses the ≤5 µm / ≤1 mrad target.
+  flip test: The cheapest experiment is a bench test, with no hinge build.
+spent 2,537,748 tokens, $9.23
