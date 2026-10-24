@@ -133,5 +133,59 @@
   "name": "Continuum-K: attention on HBM base-die",
   "mech": "Fixed-function attention units on the custom HBM4 base die read the KV cache over TSVs. Only the query vectors in and the attention outputs back cross the PHY, which is kilobytes instead of gigabytes per step. The closest earlier attempts are Samsung HBM-PIM and UPMEM, which died on general programmability. Continuum-K exposes exactly one kernel that the compiler emits, so programmability is not required. The deciding quantity is the PHY's share of HBM read energy. If it is about 50%, decode energy falls only about 1.3x.",
   "value": "It cuts long-context decode joules per token and lifts the KV-limited batch per facility kW, but the gain is likely about 1.2–1.5x, not several-fold."
+ },
+ {
+  "id": "g2_rival_a#1",
+  "label": "g2_rival_a",
+  "arm": "E2",
+  "gen": 2,
+  "name": "Fusion-enforced LPDDR training die",
+  "mech": "A reticle-sized N3 die (about 2 PFLOPS FP8, about 600 W, air-cooled) carries 512 MB of on-die SRAM and 256 GB of LPDDR6 at about 1 TB/s on an organic substrate, with no HBM or CoWoS. The compiler takes torch.compile graphs and rejects any schedule where norms, activations, attention softmax or optimizer steps spill to DRAM. It keeps them fused in SRAM epilogues, so only GEMM operands, layer-input checkpoints and FSDP shards leave the chip. The closest earlier attempts are the HBM-lean trainer, which died on memory-bound non-GEMM time (fusion removes that traffic), and Graphcore, which died on software (this design accepts unmodified PyTorch). The deciding quantity is off-chip bytes per FLOP over a full training step, which must stay below 1/2000; that needs at least 2K tokens per expert per pass.",
+  "value": "Removing HBM and CoWoS, about 62% of today's BOM, cuts the cost per training FLOP by about 1.5–2× (estimate) and frees training from the HBM and CoWoS supply limits."
+ },
+ {
+  "id": "g2_rival_a#2",
+  "label": "g2_rival_a",
+  "arm": "E2",
+  "gen": 2,
+  "name": "Optically spread air-cooled scale-up",
+  "mech": "Co-packaged optics at about 5 pJ/bit stretch one 72-chip MoE expert-parallel domain across three 40 kW air-cooled racks, instead of one 130 kW liquid-cooled rack. A switch keeps all-to-all latency under 2 µs. The closest earlier attempts are Google's optical-switched pods, which are captive and still use HBM and CoWoS, and NVL72 copper, whose reach limit forces the 130 kW density. The deciding quantity is all-to-all time as a share of decode-step time, which must stay below 20%.",
+  "value": "Frontier MoE models can be served in existing halls without liquid retrofits, for about 1.2× lower TCO (estimate)."
+ },
+ {
+  "id": "g2_rival_a#3",
+  "label": "g2_rival_a",
+  "arm": "E2",
+  "gen": 2,
+  "name": "Peer-mirrored state for goodput",
+  "mech": "Each chip mirrors its FSDP shard and optimizer delta into a neighbour's LPDDR every step over spare link bandwidth, and hot spares join the job in seconds. On-die checks of GEMM checksums flag silent data corruption before a bad state is mirrored. The closest earlier attempt is periodic checkpointing to storage, which loses minutes per failure and misses silent corruption. The deciding quantity is the mirroring traffic per step relative to spare link bandwidth.",
+  "value": "Training goodput rises from about 90% to about 98% at 100K-chip scale, which is about 9% off per-run hardware cost."
+ },
+ {
+  "id": "g2_rival_b#1",
+  "label": "g2_rival_b",
+  "arm": "E2",
+  "gen": 2,
+  "name": "Indexer-gathered tiered KV decode",
+  "mech": "For DeepSeek-V3.2-style sparse-attention models, each layer's 128-B FP8 indexer keys live in HBM and are scanned in full every step. The 656-B MLA KV entries live in on-package LPDDR6, and a hardware gather engine fetches only the top 2,048 entries the indexer selects. At 128K context and 100 tok/s that is about 8 GB/s per user from LPDDR and about 100 GB/s from HBM, against about 510 GB/s for dense MLA. KV bandwidth falls about 4.6× and HBM capacity per user about 5×. The closest earlier attempt, host-DRAM and flash KV offload, gained only 1.7–2.1× because it prefetched speculatively over a slow link. Here the selection is the model's own, so outputs are exact, and LPDDR serves capacity rather than bandwidth, which avoids the cost-per-TB/s problem that killed LPDDR decode. Deciding quantity: sustained LPDDR6 efficiency on random 656-B gathers. It needs to be at least 50% of peak.",
+  "value": "An air-coolable decode chip holds about 5× more 128K users per HBM stack. That cuts the HBM-streaming term, which is about 50% of decode energy, by roughly 3×, but only on sparse-attention models."
+ },
+ {
+  "id": "g2_rival_b#2",
+  "label": "g2_rival_b",
+  "arm": "E2",
+  "gen": 2,
+  "name": "SLC-flash-resident MoE weights",
+  "mech": "Read-only expert weights sit in on-package SLC high-bandwidth-flash stacks, which sample in 2026 at a claimed near-HBM bandwidth and 8–16× the capacity. HBM is then reserved entirely for KV and activations. A background scrubber rewrites each block before it reaches its read-disturb limit. At 100 steps/s and an assumed limit of about 1M reads, each block is rewritten every 2.8 h, which consumes 100K-P/E SLC endurance in about 30 years. With TLC (about 100K reads, 3K P/E) the part would wear out in about a month, so TLC fails. The closest earlier attempt, flash offload, stalled behind PCIe. This design puts flash at the package edge with HBM-class TSV bandwidth. Deciding quantity: the read-disturb count of SLC HBF under continuous reads.",
+  "value": "Fewer, cheaper HBM stacks per rack serve trillion-parameter MoE models. This attacks the HBM share (about 45% of BOM) and the HBM supply limit, if the read-disturb and HBF bandwidth claims hold."
+ },
+ {
+  "id": "g2_rival_b#3",
+  "label": "g2_rival_b",
+  "arm": "E2",
+  "gen": 2,
+  "name": "Line-rate lossless exponent coding",
+  "mech": "The memory controllers and fabric SerDes entropy-code the exponent fields of BF16/FP8 tensors in hardware at line rate. This covers weights, KV, activations, checkpoints and gradients. DFloat11 shows BF16 weights compress losslessly to about 70% of their size. The coder adapts its tables per tensor during prefetch. The closest earlier attempt was DFloat11's GPU software decoding, which was limited to small batches by kernel overhead. Nvidia's compute-data compression mostly targets zeros. Doing the coding in fixed hardware next to the PHY removes that overhead and keeps results bit-exact. Deciding quantity: the compression ratio on real FP8 tensors, which have fewer redundant exponent bits than BF16. It needs to be 0.85 or below to justify the roughly 3% die area.",
+  "value": "About 1.2–1.4× effective bandwidth and capacity for both training and inference, with bit-identical outputs and no change to models or frameworks."
  }
 ]

@@ -1,0 +1,4 @@
+{"step": "gen:g2_rival_a", "time": "2026-10-24 22:18:48", "model": "opus", "tools": "", "tokens": 22845, "output_tokens": 7714, "cache_read": 1496, "fresh_input": 13635, "cost_usd": 0.2636512, "turns": 1, "seconds": 94.0}
+{"step": "gen:g2_rival_b", "time": "2026-10-24 22:20:05", "model": "opus", "tools": "", "tokens": 21305, "output_tokens": 6053, "cache_read": 1496, "fresh_input": 13756, "cost_usd": 0.2313992, "turns": 1, "seconds": 77.3}
+{"step": "gen:triage2", "time": "2026-10-24 22:20:54", "model": "opus", "tools": "", "tokens": 15011, "output_tokens": 3996, "cache_read": 1496, "fresh_input": 9519, "cost_usd": 0.15636319999999998, "turns": 1, "seconds": 48.4}
+{"step": "review:gate2", "time": "2026-10-24 22:25:05", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 118364, "output_tokens": 16342, "cache_read": 72780, "fresh_input": 29242, "cost_usd": 0.6344861999999999, "turns": 9, "seconds": 251.1}

@@ -54,5 +54,32 @@
   "margin": 0.81,
   "ratio": 0.78,
   "verdict": "DEAD"
+ },
+ "g2_rival_a#1": {
+  "killer": "LPDDR price per GB needed for the \"1.5–2× cheaper per training FLOP\" claim. The claim assumes removing HBM removes its cost, but 256 GB of LPDDR replaces 192 GB of HBM.",
+  "why": "In 2026 LPDDR costs about the same per GB as HBM (B200 HBM is about $2,900 / 192 GB ≈ $15/GB), so taking out HBM and CoWoS removes none of the memory cost, and the die is worse per FLOP and per watt than B200, let alone Rubin.",
+  "margin": 0.39,
+  "ratio": 0.6,
+  "verdict": "DEAD"
+ },
+ "g2_rival_b#3": {
+  "killer": "Lossless compressed size of FP8 E4M3 tensors with 128×128 block scales",
+  "why": "The coding works on FP8 weights with almost no headroom, but at system level the gain is only about 9%. It disappears on the FP4 formats that current hardware is moving to, so the 3% of die area does not reach the 1.1 bar.",
+  "margin": 1.1,
+  "ratio": 1.09,
+  "verdict": "DEAD"
+ },
+ "g2_rival_b#1": {
+  "killer": "Sustained LPDDR6 efficiency on random 656-B gathers",
+  "why": "The mechanism works and is exact. But against today's sparse-attention kernels, HBM bytes per token fall only 1.08×, not 4.6×, because the full indexer scan dominates. So the claimed \"3× cut of the HBM energy term\" is wrong. What remains is a capacity gain that software offload on Grace/CPU memory already captures for the most part, and it only applies to DSA-style models.",
+  "margin": 1.5,
+  "ratio": 1.25,
+  "verdict": "WOUNDED"
+ },
+ "g2_rival_a#3": {
+  "killer": "Mirroring traffic per step compared with spare link bandwidth",
+  "why": "The traffic fits easily. But even the idea's own 90→98% goodput claim moves whole-run cost by only about 5%, and software checkpointing already captures part of that.",
+  "ratio": 1.05,
+  "verdict": "DEAD"
  }
 }

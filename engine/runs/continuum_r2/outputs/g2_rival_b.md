@@ -1,0 +1,17 @@
+Target: long-context (128K) MoE decode at 50 tok/s/user or more. The metrics are J/token and $/token per rack, compared with GB200 NVL72 at the same tok/s/user. Every number below is my estimate unless a source is named.
+
+=== IDEAS ===
+IDEA 1
+NAME: Indexer-gathered tiered KV decode
+MECHANISM: For DeepSeek-V3.2-style sparse-attention models, each layer's 128-B FP8 indexer keys live in HBM and are scanned in full every step. The 656-B MLA KV entries live in on-package LPDDR6, and a hardware gather engine fetches only the top 2,048 entries the indexer selects. At 128K context and 100 tok/s that is about 8 GB/s per user from LPDDR and about 100 GB/s from HBM, against about 510 GB/s for dense MLA. KV bandwidth falls about 4.6× and HBM capacity per user about 5×. The closest earlier attempt, host-DRAM and flash KV offload, gained only 1.7–2.1× because it prefetched speculatively over a slow link. Here the selection is the model's own, so outputs are exact, and LPDDR serves capacity rather than bandwidth, which avoids the cost-per-TB/s problem that killed LPDDR decode. Deciding quantity: sustained LPDDR6 efficiency on random 656-B gathers. It needs to be at least 50% of peak.
+VALUE: An air-coolable decode chip holds about 5× more 128K users per HBM stack. That cuts the HBM-streaming term, which is about 50% of decode energy, by roughly 3×, but only on sparse-attention models.
+
+IDEA 2
+NAME: SLC-flash-resident MoE weights
+MECHANISM: Read-only expert weights sit in on-package SLC high-bandwidth-flash stacks, which sample in 2026 at a claimed near-HBM bandwidth and 8–16× the capacity. HBM is then reserved entirely for KV and activations. A background scrubber rewrites each block before it reaches its read-disturb limit. At 100 steps/s and an assumed limit of about 1M reads, each block is rewritten every 2.8 h, which consumes 100K-P/E SLC endurance in about 30 years. With TLC (about 100K reads, 3K P/E) the part would wear out in about a month, so TLC fails. The closest earlier attempt, flash offload, stalled behind PCIe. This design puts flash at the package edge with HBM-class TSV bandwidth. Deciding quantity: the read-disturb count of SLC HBF under continuous reads.
+VALUE: Fewer, cheaper HBM stacks per rack serve trillion-parameter MoE models. This attacks the HBM share (about 45% of BOM) and the HBM supply limit, if the read-disturb and HBF bandwidth claims hold.
+
+IDEA 3
+NAME: Line-rate lossless exponent coding
+MECHANISM: The memory controllers and fabric SerDes entropy-code the exponent fields of BF16/FP8 tensors in hardware at line rate. This covers weights, KV, activations, checkpoints and gradients. DFloat11 shows BF16 weights compress losslessly to about 70% of their size. The coder adapts its tables per tensor during prefetch. The closest earlier attempt was DFloat11's GPU software decoding, which was limited to small batches by kernel overhead. Nvidia's compute-data compression mostly targets zeros. Doing the coding in fixed hardware next to the PHY removes that overhead and keeps results bit-exact. Deciding quantity: the compression ratio on real FP8 tensors, which have fewer redundant exponent bits than BF16. It needs to be 0.85 or below to justify the roughly 3% die area.
+VALUE: About 1.2–1.4× effective bandwidth and capacity for both training and inference, with bit-identical outputs and no change to models or frameworks.

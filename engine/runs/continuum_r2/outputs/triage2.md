@@ -1,0 +1,15 @@
+=== TRIAGE ===
+
+IDEA 1 | I 4 | P 6 | DECIDES: sustained LPDDR6 efficiency on random 656-B gathers (≥50% of peak) | The arithmetic holds: about 1 GB/step of indexer reads plus 82 MB of gathers, against 5.1 GB for dense MLA. But V3.2 on GPUs already reads only the top-2,048 entries, so the bandwidth win over dense is mostly already realized. The real gain is about 5× HBM capacity per user, giving bigger batches that amortize weight streaming. It sits in Archetype C (tight; the HBM term is about 50% of the cost) and only helps sparse-attention models.
+
+IDEA 2 | I 3 | P 6 | DECIDES: per-step mirror bytes (Adam moments change every step, so close to the full shard state) ÷ spare link bandwidth | In-memory checkpointing is already proven (Gemini, ByteDance), and GEMM checksums for silent data corruption are a real addition. The ceiling is about 8–9% of training cost. It probably needs to mirror every N steps rather than every step.
+
+IDEA 3 | I 6 | P 3 | DECIDES: off-chip bytes/FLOP over a full step ≤1/2000 (2 PFLOPS on 1 TB/s), including attention backward, optimizer and FSDP traffic | It targets Archetype B/D, which have room, and removes the HBM/CoWoS supply limit. But 1 TB/s from LPDDR6 is about 24 channels, which strains the beachfront on an organic substrate. 512 MB of SRAM takes about 200 mm² of N3, leaving tight room for 2 PFLOPS. "Unmodified PyTorch" contradicts "rejects schedules", the same software trap that caught Graphcore. A realistic saving is about 1.25× per FLOP, not 2×.
+
+IDEA 4 | I 2 | P 3 | DECIDES: SLC HBF read-disturb limit under continuous reads (≥~1M) and delivered TB/s per stack | The wear arithmetic checks out (2.8 h scrub interval, about 30 years of P/E life). But Archetype A gives silicon, HBM and packaging no room (1.08×). SLC also cuts the claimed 8–16× capacity, which likely assumes TLC, to about 3–5×. The near-HBM bandwidth figure is a vendor claim. The supply-limit benefit is real but strategic, not a cost saving.
+
+IDEA 5 | I 2 | P 5 | DECIDES: all-to-all time ÷ decode-step time (<20%) at about 1.4 kW per chip with air cooling | Co-packaged optics power is fine: about 70 W per chip at 1.8 TB/s and 5 pJ/bit. The claimed 1.2× TCO equals removing the whole facility term (ceiling 1.22×), while the design adds floor space and optics. Its value is deployability in existing halls, not cost.
+
+IDEA 6 | I 3 | P 6 | DECIDES: lossless ratio on real FP8 (E4M3) weights, KV and gradients (≤0.85) | Bit-exact operation with no software change is the strongest feature. Compressing the HBM term by 15–30% gives about 1.1× overall. Value shrinks as models move to FP4, and activations and gradients compress worse than weights. The hard part is entropy decoding at TB/s line rate, but blocked parallel decode makes it feasible.
+
+Order for expensive checks: 3 (highest upside, decisive bytes/FLOP simulation), 1, 6, 2, 5, 4.
