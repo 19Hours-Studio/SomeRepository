@@ -38,3 +38,35 @@ comp1: 3 ideas (540 words)
 comp2: 5956 tokens, $0.052, 37.2 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/comp2.md
 comp2: 3 ideas (596 words)
 set s01: 18 items -> /home/user/SomeRepository/engine/runs/meta_ab/sets/s01/blind.txt (+ prompt_judge/family/lit.txt)
+J1: 17815 tokens, $0.114, 33.1 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/J1.md
+judge J1 on s01: 18/18 parsed
+J2: 18234 tokens, $0.062, 37.3 s -> /home/user/SomeRepository/engine/runs/meta_ab/outputs/J2.md
+judge J2 on s01: 0/18 parsed
+WARNING: missing lines — check sets/s01/judge_J2.md
+# Отчёт прогона `meta_ab`
+
+Вопрос: Propose a new architecture for an AI accelerator chip, named "Continuum", that could credibly be called the best in the world. The asker has not said which workloads count: training, inference, or both. They have not said what "best" is measured by, or which kind of target (data center, edge, or other) the chip is for. A good answer therefore has to state its own target workloads and metrics, then defend the architecture against the current leading designs. Those designs include GPUs such as the Nvidia Rubin class, Google TPUs such as Ironwood, and SRAM-centric dataflow chips such as Cerebras WSE-3 and Groq LPU. The architecture should cover compute, memory hierarchy, interconnect, numerics, programming model, packaging and power. It should cite known physical, economic and manufacturing limits, and say what would need to be true for it to work. Reported 2026 reference points are listed in CONTEXT. Many are vendor or blog figures, and the sources disagree on some numbers.
+
+| arm | n | O | C | V | O×V | top3 O×V | NEW-доля | R=Y (все судьи) |
+|---|---|---|---|---|---|---|---|---|
+| C | 6 | 3.17 | 5.00 | 5.33 | 16.8 | 22.0 | 1.00 | 3/6 |
+| COMP | 6 | 5.17 | 5.83 | 6.33 | 32.3 | 36.0 | 1.00 | 0/6 |
+| INS | 6 | 3.50 | 4.83 | 5.83 | 20.5 | 27.0 | 1.00 | 2/6 |
+
+## Лучшие идеи
+
+| id | arm | O | V | O×V | бассейны | литература | name |
+|---|---|---|---|---|---|---|---|
+| comp1#2 | COMP | 6.0 | 6.0 | 36.0 | NEW | — | Checksum-governed adaptive precision |
+| comp1#3 | COMP | 6.0 | 6.0 | 36.0 | NEW | — | Softmax-merging optical switches |
+| comp2#2 | COMP | 6.0 | 6.0 | 36.0 | NEW | — | Circulating optical weight broadcast |
+| c2#3 | C | 6.0 | 5.0 | 30.0 | NEW | — | Compiler-Scheduled Power Envelope |
+| comp2#3 | COMP | 5.0 | 6.0 | 30.0 | NEW | — | Error-budgeted escalating numerics |
+| ins1#1 | INS | 4.0 | 7.0 | 28.0 | NEW | — | Near-Bank Associative Attention |
+| ins2#2 | INS | 4.0 | 7.0 | 28.0 | NEW | — | Associative in-DRAM attention retrieval |
+| comp1#1 | COMP | 4.0 | 7.0 | 28.0 | NEW | — | Retrieval-native HBM base die |
+| comp2#1 | COMP | 4.0 | 7.0 | 28.0 | NEW | — | Compressed-domain attention in HBM |
+| ins2#3 | INS | 5.0 | 5.0 | 25.0 | NEW | — | Wavelength-addressed expert routing fabric |
+
+TOTAL 9 steps: 80,978 tokens (new 38,602), $0.58
+META_AB_DONE

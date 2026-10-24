@@ -36,3 +36,12 @@ g1_rf2: 3 ideas (578 words)
   triage: 17,021 tokens, 48.5 s
 /home/user/SomeRepository/engine/runs/continuum/gate/c2/TASK.md
 /home/user/SomeRepository/engine/runs/continuum/gate/c1/TASK.md
+  gate.1: 132,908 tokens, 227.8 s
+  gate.2: 203,242 tokens, 250.7 s
+/home/user/SomeRepository/engine/runs/continuum/gate/TASK.md
+  skip gate (done)
+gate: 8/8 parsed {'DEAD': 5, 'WOUNDED': 2, 'ALIVE': 1}
+  gate: 15 new facts -> evidence.md
+/home/user/SomeRepository/engine/runs/continuum/repair/TASK.md
+/home/user/SomeRepository/engine/runs/continuum/repair/c1/TASK.md
+/home/user/SomeRepository/engine/runs/continuum/repair/c2/TASK.md

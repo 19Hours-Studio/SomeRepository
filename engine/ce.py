@@ -226,7 +226,7 @@ def cmd_judge(a):
     open(path(a.run, "sets", a.set, f"judge_{a.judge}.md"), "w").write(text)
     sc = load(a.run, "scores.json", {}); n = 0
     xf = path(a.run, "sets", a.set, "extra_cols.json"); cols = json.load(open(xf)) if os.path.exists(xf) else ["G"]
-    for sid, o, c, v, e1, e2, e3, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| (?:(\d+) \| )?(?:(\d+) \| )?(?:(\d+) \| )?([YN]) \| ([A-Z0-9_]+) \| (?:([YN]) \| )?(.+)$", text, re.M):
+    for sid, o, c, v, e1, e2, e3, r, b, x, cl in re.findall(r"^([A-Z]+\d\d) \| (\d+) \| (\d+) \| (\d+) \| (?:(\d+) \| )?(?:(\d+) \| )?(?:(\d+) \| )?([YN]) \| ([A-Z0-9_]+)(?: \([^|]*\))? \| (?:([YN]) \| )?(.+)$", text, re.M):  # "NEW (note)" accepted
         if sid not in key: continue
         extra = {k: int(e) for k, e in zip(cols, [e for e in (e1, e2, e3) if e])}
         sc.setdefault(key[sid], {})[f"{a.set}:{a.judge}"] = {"O": int(o), "C": int(c), "V": int(v), "R": r, "B": b, "closest": cl.strip(),

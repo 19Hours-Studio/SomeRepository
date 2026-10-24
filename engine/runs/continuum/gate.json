@@ -1,0 +1,58 @@
+{
+ "g1_ledger#2": {
+  "killer": "Arithmetic intensity on expert weights during an 8K-token prefill chunk of a DeepSeek-class MoE (256 experts, top-8), measured against the die's roofline ridge. Each expert sees about 256 tokens per chunk, not 8K. The idea's figure of 16K FLOP/B holds only for dense models.",
+  "why": "On MoE models the 8K chunk sits 10× below the ridge, so 50% MFU needs about 51K-token prefill batches. The cheap memory now costs more than the whole claimed BOM, and Rubin CPX already ships the same no-CoWoS idea with 3× the compute.",
+  "margin": 0.1,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#3": {
+  "killer": "Tokens-to-target-loss for NVFP4 against FP8 at 70B or more",
+  "why": "Its throughput gain is already in shipping Blackwell silicon and recipes. The only new piece is automatic promotion, which adds about nothing to cost, and no evidence exists at 70B or more. Even against FP8 alone the ceiling is about 1.19×.",
+  "margin": 0.42,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#2": {
+  "killer": "Rack SRAM capacity against the resident size of all expert weights. Assumes 64 chips × 4 layers × 800 mm² at AMD V-Cache density of 64 MB/36 mm² ≈ 1.78 MB/mm².",
+  "why": "Capacity fits DeepSeek-V3 only with no headroom and misses trillion-parameter models by 1.6×. Even if every weight read is removed, the ceiling is about 1.27–1.34× system-wide, below the 1.5× bar. Thermal effects of 4-high stacking on a hot compute die and SoIC supply still need a simulator or silicon.",
+  "margin": 0.96,
+  "ratio": 1.27,
+  "verdict": "WOUNDED"
+ },
+ "g1_neg#2": {
+  "killer": "Memory cost per unit of bandwidth. Decode is bandwidth-bound, and 512 GB of LPDDR per chip forces you to pay for capacity in order to get bandwidth. Benchmark is Vera at 1.2 TB/s per 512 GB-class configuration.",
+  "why": "Commodity DRAM is cheap per GB but about 12× dearer per TB/s, which is what decode buys. Energy per bit is the same as HBM. The idea's own deciding quantity, all-to-all time, is fine (about 0.16 ms against a 10 ms step) and does not rescue it.",
+  "margin": 0.085,
+  "ratio": 0.7,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#1": {
+  "killer": "KV-read energy saved per bit by skipping the PHY and interposer (the TSV, row-activation and in-die movement energy is still paid)",
+  "why": "Most of the cost of reading a bit is spent inside the DRAM stack, so skipping the interface saves ~15%, not the claimed 2×. The idea also adds 16 W of logic under a 12–16-high stack, and no source gives a thermal budget for that.",
+  "margin": 0.21,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "g1_rf2#1": {
+  "killer": "All-in hardware cost of 340 dies of 800 mm² at N3 with resident SRAM and 1 TB/s LPDDR each",
+  "why": "The numbers close with room to spare. 1 GiB of SRAM takes 258 mm² at N3E (31.8 Mib/mm²), and each die needs ~510 TFLOPS FP8 (MLA attention runs at ~484 FLOP/B), which fits in the remaining area. The open risks need a simulator or a real build: 1 TB/s of LPDDR shoreline per die (2× Grace), whole-instance failure when one die dies, the 2026 LPDDR shortage, and throughput falling ~4× at 32K context (~207k tok/s).",
+  "margin": 1.9,
+  "ratio": 1.9,
+  "verdict": "ALIVE"
+ },
+ "g1_neg#3": {
+  "killer": "Prefill arithmetic intensity against the die's ridge point. The idea's 300 FLOP/B threshold is ~100× too low: a 30 PF FP4 die on 1 TB/s of LPDDR has a ridge of 30,000 FLOP/B",
+  "why": "It works physically if prefill runs in huge batches, but Rubin CPX already takes most of the gain, and the threshold the idea itself names is wrong by 100×.",
+  "margin": 2.2,
+  "ratio": 1.2,
+  "verdict": "WOUNDED"
+ },
+ "g1_rf2#2": {
+  "killer": "Training throughput retained when HBM bandwidth per FLOP is halved",
+  "why": "Big GEMMs clear the ridge easily (8192³ at FP8 reaches 5,461 FLOP/B), but the memory-bound non-GEMM time sets the cost. Even at the target MFU, saving HBM cannot pay for lost throughput when HBM is ~8% of what the chip sells for.",
+  "margin": 0.81,
+  "ratio": 0.78,
+  "verdict": "DEAD"
+ }
+}
