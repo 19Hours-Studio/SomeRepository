@@ -160,5 +160,113 @@
   "name": "Error-budgeted escalating numerics",
   "mech": "Matmul tiles run at 3-bit, and each tile carries a cheap hardware running bound on its rounding error. A tile whose bound exceeds the compiler-assigned budget for its layer is recomputed at FP8 by deterministic residual correction. The budget per layer is tuned from observed escalation rates and output-sensitivity statistics.",
   "value": "It gives near-3-bit throughput and energy with a provable bound on accuracy loss, instead of relying on empirical quantization guesses."
+ },
+ {
+  "id": "clear1#1",
+  "label": "clear1",
+  "arm": "CLEAR",
+  "gen": 0,
+  "name": "BEOL Non-Volatile Weight Fabric",
+  "mech": "Several layers of ReRAM/FeFET crossbar are built monolithically in the back-end metal stack directly above the MAC arrays. They store model weights permanently, so a weight travels only micrometres from where it is stored to where it is computed. Weights are rewritten only when the model is updated, and idle tiles are power-gated with no reload cost.",
+  "value": "Frontier-model weights stay resident on the compute at near-SRAM energy, using about 5 reticles instead of roughly 2,200 SRAM chips."
+ },
+ {
+  "id": "clear1#2",
+  "label": "clear1",
+  "arm": "CLEAR",
+  "gen": 0,
+  "name": "In-Memory Attention Key Search",
+  "mech": "Attention keys are stored as 4-bit values in a ferroelectric content-addressable array. The array computes every query–key similarity in analog form in place and returns only the indices of the top-k matches. Only the matching values are then fetched from HBM and rescored exactly in digital logic, and k adapts per head to how sharp its attention scores are.",
+  "value": "Attention traffic for each decoded token becomes nearly independent of context length, so million-token decode stops being limited by memory bandwidth."
+ },
+ {
+  "id": "clear1#3",
+  "label": "clear1",
+  "arm": "CLEAR",
+  "gen": 0,
+  "name": "Early-Terminating MSB-First Arithmetic",
+  "mech": "Matrix multiplies process bit-planes starting from the most significant bit and keep a running interval bound on each output. Each output stops computing once its downstream result is mathematically settled, such as the argmax, the router's expert choice, or a saturated activation. The compiler sets a per-layer error budget that controls how early outputs may stop.",
+  "value": "Average compute and operand traffic fall in proportion to how certain the model is, with a certified error bound instead of blanket quantization."
+ },
+ {
+  "id": "clear2#1",
+  "label": "clear2",
+  "arm": "CLEAR",
+  "gen": 0,
+  "name": "Attention inside HBM base die",
+  "mech": "Each HBM4 stack's logic base die holds that stack's KV-cache slices and computes the attention scores, softmax partials and value sums locally. Only query vectors and partial outputs (a few KB per head) cross the PHY, not gigabytes of KV. A host-side merge combines the partial softmaxes from all stacks exactly, and the cache is re-sharded as sequences grow.",
+  "value": "Long-context decode energy no longer scales with interface bandwidth, cutting the roughly 0.29 J per token of KV traffic by an order of magnitude."
+ },
+ {
+  "id": "clear2#2",
+  "label": "clear2",
+  "arm": "CLEAR",
+  "gen": 0,
+  "name": "Codebook-gather arithmetic",
+  "mech": "Weights are stored as 4-bit indices into 16-entry codebooks fitted per channel group. For each activation, the chip computes 16 products once and keeps them in SRAM. Every multiply-accumulate then becomes a table lookup plus an add. Codebooks are refit offline per layer, and the hardware can switch between 8- and 16-entry tables.",
+  "value": "Removes multiplier area and energy from expert GEMMs while keeping FP4-level storage at near-FP8 accuracy."
+ },
+ {
+  "id": "clear2#3",
+  "label": "clear2",
+  "arm": "CLEAR",
+  "gen": 0,
+  "name": "Optical weight broadcast fabric",
+  "mech": "Each package holds 1/16 of the expert weights. Weights are read from HBM once and sent through passive 1:16 optical splitters to 16 packages at the same time. Each package keeps different users' KV caches and activations. The compiler schedules one weight stream per layer and lets each receiving package consume it in batch.",
+  "value": "Divides HBM weight-read energy per token by about 16 without SRAM-scale chip counts, making frontier MoE serving cheaper than either HBM-bound GPUs or SRAM-bound wafers."
+ },
+ {
+  "id": "rival1#1",
+  "label": "rival1",
+  "arm": "RIVAL",
+  "gen": 0,
+  "name": "Attention Inside the Memory Stack",
+  "mech": "Logic on the base die of each HBM stack keeps a learned locality-sensitive hash index over the KV cache stored in that stack. For every query, it scores keys locally and returns only the top-k keys and values, or a partial softmax result, to the compute die. The index is updated as tokens are appended and is retuned per model from attention statistics.",
+  "value": "Long-context decode no longer depends on HBM-to-compute bandwidth, which could cut attention data movement by more than 10×."
+ },
+ {
+  "id": "rival1#2",
+  "label": "rival1",
+  "arm": "RIVAL",
+  "gen": 0,
+  "name": "Photonic Multicast Weight Streaming",
+  "mech": "Each weight shard is read from memory once and broadcast optically on separate wavelengths to every chip in a replica group at the same time. Each chip consumes the weights in lockstep against its own batch of users. A scheduler adjusts group size to match live MoE expert popularity.",
+  "value": "Weight-read energy is shared across many chips, so large batches no longer require each chip to hold its own copy of the weights."
+ },
+ {
+  "id": "rival1#3",
+  "label": "rival1",
+  "arm": "RIVAL",
+  "gen": 0,
+  "name": "Speculative Precision with Lazy Correction",
+  "mech": "Every matrix multiply runs first in FP4, and hardware computes a cheap error bound for each output row from the operands' exponent statistics. Only rows whose bound exceeds a per-layer budget are recomputed in FP8 using a stored residual. The budgets are calibrated online from the drift in downstream logits.",
+  "value": "Most operations run at FP4 throughput and energy while accuracy stays close to FP8."
+ },
+ {
+  "id": "rival2#1",
+  "label": "rival2",
+  "arm": "RIVAL",
+  "gen": 0,
+  "name": "Attention Inside HBM Base-Die",
+  "mech": "Each HBM4 stack's logic base die stores its share of the KV cache and runs two steps locally: approximate top-k block retrieval, then exact flash-decoding partial attention. Only small partial results (softmax numerators, denominators and max values) leave the stack, not the KV data itself. A retrieval index in the base die is updated as tokens are appended. The die adjusts how many blocks it selects based on the entropy of the attention scores.",
+  "value": "Million-token decode no longer needs to pull KV bandwidth off the stack, which cuts long-context attention energy by roughly an order of magnitude."
+ },
+ {
+  "id": "rival2#2",
+  "label": "rival2",
+  "arm": "RIVAL",
+  "gen": 0,
+  "name": "Codec-Native Tensor Datapath",
+  "mech": "Weights are stored only in a learned trellis/codebook compressed form at about 2–3 bits per weight. A decoder sits directly beside each MAC array and expands the weights in-line, so uncompressed weights are never written to memory. Codebooks are trained per layer and can be swapped at runtime by a small resident manager. The manager switches to finer codes for layers whose activation outliers grow.",
+  "value": "Each HBM byte delivers about 3× more weights at near-FP8 accuracy, so both capacity and bandwidth effectively triple."
+ },
+ {
+  "id": "rival2#3",
+  "label": "rival2",
+  "arm": "RIVAL",
+  "gen": 0,
+  "name": "Optical Weight-Broadcast Fabric",
+  "mech": "A layer's weights are read from memory once and sent through passive photonic splitters to as many as 16 chips at the same time. Each chip holds activations and KV cache for a different set of users, so the chips are token-stationary while the weights stream past. A scheduler aligns layer timing across the group and changes the fan-out to match load.",
+  "value": "The cost of the HBM weight read is shared across many chips, which breaks the per-chip decode bandwidth limit without needing wafer-scale SRAM."
  }
 ]

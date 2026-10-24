@@ -189,3 +189,88 @@ rd_W = 2.0e12 * 8 * 0.1e-12 * 1   # 2 TB/s average expert read at 0.1 pJ/b throu
 p(f"SRAM read power at 2 TB/s avg: {rd_W:.1f} W ; heat must cross compute die (top) -> path dT small")
 # Power density through SRAM stack: compute die ~ 1800W/2 dies/750mm2
 p(f"Compute power density ~{1800/2/750:.2f} W/mm2 (Rubin-class) -> power delivered through 4 SRAM layers of TSVs")
+
+# =====================================================================================
+# ROUND 2 refinements
+# =====================================================================================
+p("\n" + "=" * 30, "ROUND 2", "=" * 30)
+GM_MULT = 3.0   # [E] price = BOM x3 (~67% GM, merchant-vendor-like) so Rubin's $7.8M price is compared like-for-like
+price1 = capex1 * GM_MULT
+p(f"Continuum-D price at 67% GM: ${price1/1e6:.2f}M (BOM {capex1/1e6:.2f}M); LPDDR total {N1*LP_GB_DIE/1e3:.1f} TB; HBM stacks 0; CoWoS 0")
+
+# Latency ceiling: layer-group topology (61 groups of ~5.5 dies): 2 hops per layer instead of N1 serial hops
+HOP = 0.7e-6
+for topo, hops in (("serial pipeline", N1), ("layer-groups (bcast+reduce)", 2 * LAYERS)):
+    p(f"  {topo}: {hops} hops -> {hops*HOP*1e6:.0f} us/token hop floor -> ceiling {1/(hops*HOP):.0f} tok/s/user")
+
+def usd_mtok(price, kw, th):
+    if th <= 0: return float('inf')
+    opex = kw * HOURS * 0.10 * 1.3
+    return (price + opex) / (th * HOURS * 3600) * 1e6
+
+# Cerebras CS-3: 44 GB SRAM/wafer [S], ~23 kW [S], price ~$2.5M [E, press ~2-3M]; KV in SRAM
+def cerebras(ctx, kvbits, tps, n_w):
+    free = n_w * 44e9 - W_BYTES
+    users = max(free, 0) / kv_bytes(ctx, kvbits)
+    return users * tps, n_w * 2.5e6, n_w * 23
+
+# Rubin + LPX AFD: experts on LPUs (0.5 GB each [S]), attention/KV on Rubin. LPX rack 256 LPU [S]; price [E] $4M/rack
+def afd(ctx, kvbits, tps, a2a_us, n_rubin_racks=1):
+    n_lpx = math.ceil(W_BYTES * 1.1 / (256 * 0.5e9))
+    th = stack_rack(ctx, kvbits, tps, a2a_us, True, hop_us=1.0) * n_rubin_racks
+    return th, n_lpx * 4e6 + n_rubin_racks * RUBIN['rack_price'], n_lpx * 60 + n_rubin_racks * RUBIN['rack_kw'], n_lpx
+
+p("\n$/Mtok (4-yr, 70% util, $0.10/kWh, PUE1.3)   ctx=32K, KV NVFP4")
+p("tps/user | Continuum-D        | Rubin NVL72 wideEP(a2a5us) | Rubin+LPX AFD       | Cerebras x12 wafers")
+for tps in (50, 200, 500, 1000, 2000):
+    thr, *_ = system1(32768, 4.5, tps)
+    if 2 * LAYERS * HOP > 1 / tps: thr = 0
+    c = usd_mtok(price1, N1 * P_DIE_W / 1e3, thr)
+    r = rubin(32768, 4.5, tps, 5)[0]
+    cr = usd_mtok(RUBIN['rack_price'], RUBIN['rack_kw'], r)
+    ta, pa, ka, nl = afd(32768, 4.5, tps, 5)
+    ca = usd_mtok(pa, ka, ta)
+    tc, pc, kc = cerebras(32768, 4.5, tps, 12)
+    cc = usd_mtok(pc, kc, tc)
+    p(f"{tps:7d} | {thr/1e3:5.0f}k  ${c:6.3f}    | {r/1e3:5.0f}k  ${cr:6.3f}           | {ta/1e3:5.0f}k ${ca:6.3f} ({nl} LPX) | {tc/1e3:5.0f}k ${cc:6.3f}")
+
+# Energy with micro-batching: at low interactivity each stage batches m tokens; dense (attn+shared) weights amortised over m
+DENSE_ACT = 14e9 * 0  # placeholder
+for tps in (50, 1000):
+    stage_t = 1 / tps / (2 * LAYERS) * 0.5   # half of per-layer budget for compute
+    thr, *_ = system1(32768, 4.5, tps)
+    m = max(1, thr * stage_t / 1)            # tokens per layer-group micro-batch
+    # shared (non-routed) active params ~ 37B - 8 routed experts*58 layers*44M = ~16.6B [S-derived]
+    shared = 37e9 - 8 * 58 * 3 * 7168 * 2048
+    e_w = (shared / m + (P_ACT - shared)) * BITS_W * SRAM_PJ_B * 1e-12
+    e_kv = kv_bytes(32768, 4.5) * 8 * LPDDR_PJ_B * 1e-12
+    e_c = (attn_flops_tok(32768) + FL_DENSE) * FP8_PJ_FLOP * 1e-12
+    _, B = rubin(32768, 4.5, min(tps, 300), 5)
+    e_r = W_BYTES / 72 * 8 * HBM_PJ_B * 1e-12 / max(B, 1) + kv_bytes(32768, 4.5) * 8 * HBM_PJ_B * 1e-12 + e_c
+    p(f"tps {tps}: micro-batch m={m:.1f}; C-D J/tok {e_w+e_kv+e_c:.3f} (weights {e_w*1e3:.1f} mJ)  Rubin J/tok {e_r:.3f} -> ratio {e_r/(e_w+e_kv+e_c):.2f}")
+
+# LPDDR shoreline check: LPDDR6 x24 @14.4 Gb/s = 38.4 GB/s measured [S SK hynix ISSCC26]
+ch = 1e12 / 38.4e9
+p(f"\nLPDDR6 channels/die for 1 TB/s: {ch:.0f} x24 ({ch*24:.0f} DQ); LPDDR5X-9600 equivalent bus {1e12*8/9.6e9:.0f} bits (Vera: 1024-bit, 1.2 TB/s [S])")
+perim = 4 * math.sqrt(A_DIE)
+p(f"Die perimeter {perim:.0f} mm; LPDDR PHY at ~0.25 mm/x24ch [E] -> {ch*1.6:.0f} mm if 1.6 mm/ch; SerDes 64x112G @ ~0.6 mm/lane [E] -> {64*0.6:.0f} mm")
+
+# Idea 2 round 2: comm not overlapped with compute either (conservative for all)
+p("\nIdea 2 sweep with compute budget = step - comm, a2a in {2,5,8} us")
+def stack2(ctx, kvb, tps, a2a, w_sram, hop=0.0, hbm_bw=RUBIN['hbm_bw']):
+    w_share = W_BYTES / 72
+    t = 1 / tps; tc = 2 * MOE_LAYERS * a2a * 1e-6 + 2 * LAYERS * hop * 1e-6
+    tw = 0 if w_sram else w_share / hbm_bw
+    if t - tc - tw <= 0: return 0
+    B = min((t - tc - tw) * hbm_bw / kv_bytes(ctx, kvb), (RUBIN['fp8'] * 0.6 * (t - tc)) / (attn_flops_tok(ctx) + FL_DENSE),
+            (RUBIN['hbm_cap'] - (0 if w_sram else w_share)) / kv_bytes(ctx, kvb))
+    return B * tps * 72
+p("ctx  tps a2a | Rubin   AFD   Stacked | xRubin xAFD")
+for ctx in (8192, 32768):
+    for tps in (300, 600, 1000, 1500):
+        for a2a in (2, 5):
+            r, a, s = stack2(ctx, 4.5, tps, a2a, False), stack2(ctx, 4.5, tps, a2a, True, 1.0), stack2(ctx, 4.5, tps, a2a, True)
+            f = lambda x, y: f"{x/y:5.2f}" if y > 0 else ("  inf" if x > 0 else "  n/a")
+            p(f"{ctx:5d} {tps:5d} {a2a:2d} | {r/1e3:5.0f}k {a/1e3:5.0f}k {s/1e3:5.0f}k | {f(s,r)} {f(s,a)}")
+# Idea 2 $ : +$308k on $7.8M rack (+4%). Break-even gain 1.04x.
+p(f"Idea 2 cost ratio: rack price +{add_pkg*72*GM_MULT/RUBIN['rack_price']*100:.0f}% at 3x markup -> needs >{1+add_pkg*72*GM_MULT/RUBIN['rack_price']:.2f}x throughput to pay")
