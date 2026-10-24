@@ -1,0 +1,2 @@
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE B: Frontier pretraining on a rented or owned GPU cluster (H100/B200 class), with FP8/BF16 mix | untouchable 0.0% -> ceiling infx | 10x cut of one term: cluster networking 13 (epoch adds 10.00x | 3x needs: cluster networking 13 (epoch adds | ROOM (shares summed to 23%)

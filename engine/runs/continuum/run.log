@@ -1,0 +1,31 @@
+  brief: 20,896 tokens
+initialized /home/user/SomeRepository/engine/runs/continuum
+UNCLEAR (kept as assumptions):
+
+1. Is the target data-center training, data-center inference, both, or edge?
+2. Which metric matters most: absolute speed, cost per token, energy, or something else? Is there a power, die-size or process budget?
+3. How deep should the answer go: a conceptual pitch, or a detailed microarchitecture with numbers?
+TYPE invent; MODE standard
+Sources:
+- [Nvidia Rubin at GTC 2026](https://blog.barrack.ai/nvidia-rubin-specs-architecture-2026/)
+- [Google Ironwood](https://blog.google/products/google-cloud/ironwood-tpu-age-of-inference/)
+- [Cerebras CS-3 vs Groq LPU](https://www.cerebras.ai/blog/cerebras-cs-3-vs-groq-lpu)
+- [Spheron: Groq LPU vs Cerebras WSE](https://www.spheron.network/blog/groq-lpu-vs-cerebras-wse-cheapest-inference-2026/)
+- [Spheron: AI memory wall](https://www.spheron.network/blog/ai-memory-wall-inference-latency-guide-2026/)
+- [Data Center Knowledge: Scaling the Memory Wall](https://www.datacenterknowledge.com/data-center-hardware/scaling-the-memory-wall-hbm-cxl-and-the-new-gpu-playbook)
+- [Wing VC: The AI Memory Stack](https://www.wing.vc/content/the-ai-memory-stack)
+/home/user/SomeRepository/engine/runs/continuum/ledger/TASK.md
+  ledger: 46,112 tokens, 65.0 s
+ledger: 842 words
+/home/user/SomeRepository/engine/runs/continuum/attempts/TASK.md
+  attempts: 62,562 tokens, 60.6 s
+attempts: 1214 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE B: Frontier pretraining on a rented or owned GPU cluster (H100/B200 class), with FP8/BF16 mix | untouchable 0.0% -> ceiling infx | 10x cut of one term: cluster networking 13 (epoch adds 10.00x | 3x needs: cluster networking 13 (epoch adds | ROOM (shares summed to 23%)
+  reframe: 15,582 tokens, 39.0 s
+  g1_ledger: 16,419 tokens, 48.8 s
+g1_ledger: 3 ideas (563 words)
+  g1_neg: 16,163 tokens, 44.2 s
+g1_neg: 3 ideas (733 words)
+  g1_mech: 16,010 tokens, 42.3 s
+g1_mech: 3 ideas (638 words)
