@@ -1,0 +1,290 @@
+<title>Шарнир с натянутым стеклом</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column with an engineering-drawing title block up top; figures break out to a wider measure. */
+:root {
+  --bg: #eef1f3; --paper: #fbfcfc; --fg: #15212b; --muted: #586773; --line: #c4ced5;
+  --accent: #0b6a88; --accent-tint: #d3e9f1; --gel: #efe6cc; --panel: #dde3e8; --base: #c2ccd4;
+  --ok: #2d7a4c; --ok-tint: #dcefe3; --bad: #b0412c; --bad-tint: #f6ddd6;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1318; --paper: #131b21; --fg: #dbe4ea; --muted: #93a3ae; --line: #2d3b45;
+  --accent: #55b6d6; --accent-tint: #12374a; --gel: #3b3423; --panel: #25313a; --base: #34434e;
+  --ok: #62c08a; --ok-tint: #163325; --bad: #e7806a; --bad-tint: #3d1d16; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0d1318; --paper: #131b21; --fg: #dbe4ea; --muted: #93a3ae; --line: #2d3b45;
+  --accent: #55b6d6; --accent-tint: #12374a; --gel: #3b3423; --panel: #25313a; --base: #34434e;
+  --ok: #62c08a; --ok-tint: #163325; --bad: #e7806a; --bad-tint: #3d1d16; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; }
+main { max-width: 860px; margin: 0 auto; display: grid; gap: 44px; grid-template-columns: minmax(0, 1fr); }
+main > *, figure, .scroll { min-width: 0; max-width: 100%; }
+section { display: grid; gap: 14px; }
+p, li { max-width: 66ch; margin: 0; }
+h1, h2 { font-family: var(--display); font-weight: 600; line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.01em; }
+h2 { font-size: 1.45rem; }
+.eyebrow, .cap, th, .k { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lead { font-size: 1.12rem; }
+header { display: grid; gap: 18px; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* title block: the drawing's stamp */
+.stamp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1.5px solid var(--fg); background: var(--paper); }
+.stamp > div { padding: 10px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 2px; align-content: start; }
+.stamp .v { font-family: var(--mono); font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+.stamp .verdict { grid-column: span 2; border-left: 4px solid var(--muted); }
+.stamp .verdict.ok { border-left-color: var(--accent); }
+.stamp .verdict.bad { border-left-color: var(--bad); }
+@media (max-width: 640px) { .stamp { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+figure { margin: 0; display: grid; gap: 10px; background: var(--paper); border: 1px solid var(--line); padding: 18px 18px 14px; }
+figcaption { font-size: 0.88rem; color: var(--muted); max-width: 70ch; }
+.scroll { overflow-x: auto; }
+svg { display: block; width: 100%; height: auto; min-width: 560px; color: var(--fg); font-family: var(--body); }
+svg text { fill: currentColor; }
+svg .lt { font-size: 12px; } svg .st { font-size: 11px; fill: var(--muted); } svg .hd { font: 600 11px var(--mono); letter-spacing: 0.08em; fill: var(--muted); }
+svg .glass { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 1.2; }
+svg .gel { fill: var(--gel); stroke: var(--line); } svg .panel { fill: var(--panel); stroke: var(--line); } svg .base { fill: var(--base); stroke: var(--line); }
+svg .rail { fill: var(--muted); } svg .frame { fill: var(--line); stroke: var(--muted); }
+svg .spring { fill: none; stroke: var(--fg); stroke-width: 1.4; stroke-linejoin: round; }
+svg .tension { stroke: var(--accent); stroke-width: 2; } svg .ahead { fill: var(--accent); }
+svg .bad { stroke: var(--bad); stroke-width: 1.2; } svg .bad-t { fill: var(--bad); } svg .acc-t { fill: var(--accent); font-weight: 600; }
+svg .dim, svg .axis { stroke: var(--muted); stroke-width: 1; }
+svg .sharp { fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 5 4; }
+svg .clo { fill: none; stroke: var(--accent); stroke-width: 2.4; } svg .clo-f { fill: var(--accent); } svg .bad-f { fill: var(--bad); }
+svg .okzone { fill: var(--ok-tint); } svg .ok-t { fill: var(--ok); }
+svg .m1 { fill: var(--accent); } svg .m2 { fill: var(--muted); } svg .m3 { fill: var(--bad); }
+
+.bars { display: grid; gap: 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 640px) { .bars { grid-template-columns: minmax(0, 1fr); } }
+.metric { display: grid; gap: 8px; }
+.metric .mlabel { font-size: 0.9rem; font-weight: 500; }
+.row { display: grid; grid-template-columns: 8.5em minmax(0, 1fr) 4.6em; gap: 10px; align-items: center; font-size: 0.85rem; }
+.track { height: 12px; background: var(--bg); border: 1px solid var(--line); }
+.bar { height: 100%; } .bar.old { background: var(--muted); } .bar.new { background: var(--accent); }
+.rv { white-space: nowrap; font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+
+ul, ol { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+ol li::marker { font-family: var(--mono); color: var(--muted); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; background: var(--paper); font-size: 0.92rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.p { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.callout { border-left: 4px solid var(--bad); background: var(--bad-tint); padding: 12px 16px; }
+footer { font-size: 0.85rem; color: var(--muted); display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 18px; }
+footer ul { gap: 4px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<main>
+<header>
+  <p class="eyebrow">Движок идей · прогон foldcrease · 24 октября 2026</p>
+  <h1>Шарнир с натянутым стеклом</h1>
+  <p class="lead">Лучшая из четырёх архитектур, дошедших до финала. В раскрытом телефоне стекло растягивают за края, и оно вытягивает складку в плоскость. Слепой аудит не нашёл в ней смертельного дефекта, но нашёл три серьёзных, а сам механизм уже есть в патентах Apple и Huawei.</p>
+  <div class="stamp" aria-label="Основные параметры">
+    <div><span class="k">Натяжение</span><span class="v">T ≈ 2000 Н/м</span></div>
+    <div><span class="k">Сила всего</span><span class="v">300 Н</span></div>
+    <div><span class="k">В стекле</span><span class="v">44 МПа · 0.063%</span></div>
+    <div><span class="k">Стекло</span><span class="v">UTG 45 мкм</span></div>
+    <div><span class="k">Под стеклом</span><span class="v">гель G ≈ 2 кПа</span></div>
+    <div><span class="k">Сгиб</span><span class="v">R = 3 мм + 2×2 мм</span></div>
+    <div><span class="k">Цель</span><span class="v">≤ 5 мкм · ≤ 1 мрад</span></div>
+    <div><span class="k">Цена</span><span class="v">+$13–50</span></div>
+    <div class="verdict ok"><span class="k">Вероятность лучшего ответа</span><span class="v">34% · 0 FATAL · 3 MAJOR</span></div>
+    <div class="verdict bad"><span class="k">Ни один финалист не годится</span><span class="v">49%</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>Что происходит при раскрытии</h2>
+  <p>После каждого сгиба полимерные слои панели немного остаются изогнутыми. Эта остаточная деформация и есть складка. Идея её не устраняет, а вытягивает силой. В последние градусы открытия кулачок взводит пружину, титановые рейки тянут стекло за два края в стороны, и стекло становится ровным. Мягкий гель под ним держит панель прижатой к стеклу: чтобы гель оторвался, нужно около 5 кПа, а панели для этого хватает 0.25 кПа.</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 760 392" role="img" aria-label="Сечение по сгибу: без натяжения складка проступает на поверхности стекла; когда кулачок взводит пружину, рейки растягивают стекло с силой около 2000 Н/м, и поверхность становится ровной">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ahead" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<text x="14" y="22" class="hd">БЕЗ НАТЯЖЕНИЯ</text>
+<path class="glass" d="M96,60 L320,60 C360,60 370,74 400,74 C430,74 440,60 480,60 L704,60 L704,78 L480,78 C440,78 430,92 400,92 C370,92 360,78 320,78 L96,78 Z"/>
+<path class="gel" d="M110,78 L320,78 C360,78 370,92 400,92 C430,92 440,78 480,78 L690,78 L690,94 L480,94 C440,94 430,108 400,108 C370,108 360,94 320,94 L110,94 Z"/>
+<path class="panel" d="M110,94 L320,94 C360,94 370,108 400,108 C430,108 440,94 480,94 L690,94 L690,116 L480,116 C440,116 430,130 400,130 C370,130 360,116 320,116 L110,116 Z"/>
+<path class="base" d="M110,116 L320,116 C360,116 370,130 400,130 C430,130 440,116 480,116 L690,116 L690,134 L480,134 C440,134 430,148 400,148 C370,148 360,134 320,134 L110,134 Z"/>
+<text x="124" y="73" class="lt">UTG 45 мкм</text>
+<text x="124" y="90" class="lt">гель, G ≈ 2 кПа</text>
+<text x="124" y="109" class="lt">панель OLED на полиимиде</text>
+<text x="124" y="129" class="lt">подложка и опорная пластина</text>
+<rect class="frame" x="14" y="40" width="16" height="60"/>
+<polyline class="spring" points="30,69 36,69 41,61 47,77 53,61 59,77 65,61 71,77 76,69 84,69"/>
+<rect class="rail" x="84" y="52" width="26" height="34"/>
+<rect class="rail" x="690" y="52" width="26" height="34"/>
+<rect class="frame" x="716" y="40" width="16" height="60"/>
+<line class="bad" x1="400" y1="46" x2="400" y2="72"/><text x="400" y="40" class="lt bad-t" text-anchor="middle">складка до ~180 мкм видна на поверхности</text>
+<text x="14" y="118" class="st">пружина</text><text x="14" y="132" class="st">отпущена</text>
+<text x="14" y="212" class="hd">РАСКРЫТ ДО КОНЦА: КУЛАЧОК ВЗВЁЛ ПРУЖИНУ</text>
+<line class="tension" x1="340" y1="236" x2="170" y2="236" marker-end="url(#ah)"/><line class="tension" x1="460" y1="236" x2="630" y2="236" marker-end="url(#ah)"/>
+<text x="400" y="240" class="lt acc-t" text-anchor="middle">T ≈ 2000 Н/м</text>
+<path class="glass" d="M96,250 L320,250 C360,250 370,250 400,250 C430,250 440,250 480,250 L704,250 L704,268 L480,268 C440,268 430,268 400,268 C370,268 360,268 320,268 L96,268 Z"/>
+<path class="gel" d="M110,268 L320,268 C360,268 370,268 400,268 C430,268 440,268 480,268 L690,268 L690,284 L480,284 C440,284 430,284 400,284 C370,284 360,284 320,284 L110,284 Z"/>
+<path class="panel" d="M110,284 L320,284 C360,284 370,284 400,284 C430,284 440,284 480,284 L690,284 L690,306 L480,306 C440,306 430,306 400,306 C370,306 360,306 320,306 L110,306 Z"/>
+<path class="base" d="M110,306 L320,306 C360,306 370,306 400,306 C430,306 440,306 480,306 L690,306 L690,324 L480,324 C440,324 430,324 400,324 C370,324 360,324 320,324 L110,324 Z"/>
+<text x="124" y="263" class="lt">UTG 45 мкм: 44 МПа, ε = 0.063%</text>
+<text x="124" y="280" class="lt">гель, G ≈ 2 кПа</text>
+<text x="124" y="299" class="lt">панель OLED на полиимиде</text>
+<text x="124" y="319" class="lt">подложка и опорная пластина</text>
+<rect class="frame" x="14" y="230" width="16" height="60"/>
+<polyline class="spring" points="30,259 36,259 41,251 47,267 53,251 59,267 65,251 71,267 76,259 84,259"/>
+<rect class="rail" x="84" y="242" width="26" height="34"/>
+<rect class="rail" x="690" y="242" width="26" height="34"/>
+<rect class="frame" x="716" y="230" width="16" height="60"/>
+<text x="14" y="308" class="st">пружина</text><text x="14" y="322" class="st">взведена</text>
+<line class="dim" x1="320" y1="342" x2="480" y2="342"/><line class="dim" x1="320" y1="336" x2="320" y2="348"/><line class="dim" x1="480" y1="336" x2="480" y2="348"/>
+<text x="400" y="362" class="st" text-anchor="middle">зона сгиба 13.4 мм: дуга 9.4 мм и два перехода по 2 мм</text>
+<text x="400" y="384" class="lt acc-t" text-anchor="middle">на поверхности ≤ 2.1 мкм, наклон ≤ 0.82 мрад (модель автора)</text>
+</svg></div>
+    <figcaption>Сечение по сгибу в раскрытом телефоне. Сверху стек без натяжения, снизу с натяжением. Толщины слоёв и глубина складки сильно увеличены.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Почему гель, а не клей</h2>
+  <p>В обычном стеке слои склеены акриловым оптическим клеем (OCA). Если тянуть через него, до сгиба доходит лишь 30% силы, а клей постоянно держит сдвиг около 48 кПа и под таким грузом ползёт. На этом умерли все пять отброшенных вариантов «барабана»: сдвиг в клее нужен был в 7–40 раз больше допустимого. Здесь силу несёт само стекло, а гель под ним почти не сопротивляется сдвигу.</p>
+  <figure>
+    <div class="bars">
+      <div class="metric">
+        <p class="mlabel">Доля натяжения, которая доходит до сгиба</p>
+        <div class="row"><span>акриловый OCA</span><div class="track"><div class="bar old" style="width:30%"></div></div><span class="rv">30%</span></div>
+        <div class="row"><span>силиконовый гель</span><div class="track"><div class="bar new" style="width:97%"></div></div><span class="rv">97%</span></div>
+      </div>
+      <div class="metric">
+        <p class="mlabel">Постоянный сдвиг в слое под стеклом, шкала 0–50 кПа</p>
+        <div class="row"><span>акриловый OCA</span><div class="track"><div class="bar old" style="width:96%"></div></div><span class="rv">48 кПа</span></div>
+        <div class="row"><span>силиконовый гель</span><div class="track"><div class="bar new" style="width:3.8%"></div></div><span class="rv">1.9 кПа</span></div>
+      </div>
+    </div>
+    <figcaption>Цифры из расчёта автора идеи. Аудит их не оспорил.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Сгиб без резкого входа</h2>
+  <p>Натяжение разглаживает только широкие неровности. Деталь уже √(D/T) ≈ 0.57 мм, где D это изгибная жёсткость, а T натяжение, стекло не вытянет. Поэтому шарнир меняет путь экрана: кривизна нарастает плавно, по клотоиде, на участке не короче 2 мм с каждой стороны дуги. Остаточный изгиб тогда тоже растянут на миллиметры, и натяжению есть за что тянуть.</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 760 292" role="img" aria-label="Кривизна вдоль сгиба: при резком входе она прыгает от нуля до 1/R; с клотоидными переходами нарастает линейно на 2 мм, что шире предела 0.57 мм, который натяжение уже не вытягивает">
+<line class="axis" x1="80" y1="200" x2="720" y2="200"/><line class="axis" x1="80" y1="200" x2="80" y2="60"/>
+<text x="72" y="84" class="st" text-anchor="end">1/R</text><text x="72" y="204" class="st" text-anchor="end">0</text>
+<text x="80" y="50" class="st">кривизна</text>
+<path class="sharp" d="M80,200 L211.5,200 L211.5,80 L588.5,80 L588.5,200 L720,200"/>
+<path class="clo" d="M80,200 L131.5,200 L211.5,80 L588.5,80 L668.5,200 L720,200"/>
+<text x="400" y="70" class="lt" text-anchor="middle">дуга R = 3 мм, длина πR = 9.4 мм</text>
+<text x="222" y="146" class="st">пунктир: резкий вход в дугу</text>
+<text x="634" y="134" class="lt acc-t">клотоида</text>
+<line class="axis" x1="131.5" y1="200" x2="131.5" y2="205"/><text x="131.5" y="219" class="st" text-anchor="middle">−6.7</text><line class="axis" x1="211.5" y1="200" x2="211.5" y2="205"/><text x="211.5" y="219" class="st" text-anchor="middle">−4.7</text><line class="axis" x1="400.0" y1="200" x2="400.0" y2="205"/><text x="400.0" y="219" class="st" text-anchor="middle">0</text><line class="axis" x1="588.5" y1="200" x2="588.5" y2="205"/><text x="588.5" y="219" class="st" text-anchor="middle">4.7</text><line class="axis" x1="668.5" y1="200" x2="668.5" y2="205"/><text x="668.5" y="219" class="st" text-anchor="middle">6.7</text>
+<text x="720" y="238" class="st" text-anchor="end">расстояние от середины сгиба, мм</text>
+<text x="80" y="266" class="st">в масштабе графика:</text>
+<rect class="clo-f" x="200" y="259" width="80" height="6"/><text x="240" y="284" class="st" text-anchor="middle">переход 2 мм</text>
+<rect class="bad-f" x="340" y="259" width="22.8" height="6"/><text x="372" y="266" class="st">√(D/T) ≈ 0.57 мм: деталь уже этой натяжение не вытянет</text>
+</svg></div>
+    <figcaption>Кривизна вдоль сгиба в сложенном телефоне, упрощённо, без обратных участков капли. Обе кривые и отрезки внизу нарисованы в одном горизонтальном масштабе.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Где идея может сломаться</h2>
+  <p>Главное слабое место нашёл аудит. Автор взял жёсткость почти как у одного стекла: 6.5·10⁻⁴ Н·м против 5.6·10⁻⁴ у UTG 45 мкм. Но изгиб запоминают панель, подложка и опорная пластина, и через гель их жёсткость складывается со стеклом. Если она втрое больше, цель не выполнена.</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 760 236" role="img" aria-label="Остаток после натяжения: модель автора 2.1 мкм и 0.82 мрад, аудит 3.2 мкм и 0.74 мрад, при втрое большей жёсткости 9.1 мкм и 2.1 мрад; цель 5 мкм и 1 мрад">
+<circle class="m1" cx="216" cy="18" r="5"/><text x="228" y="22" class="st">модель автора</text>
+<path class="m2" d="M345,12 L351,18 L345,24 L339,18 Z"/><text x="358" y="22" class="st">аудит, D = 6.5·10⁻⁴ Н·м</text>
+<rect class="m3" x="530" y="13" width="10" height="10"/><text x="547" y="22" class="st">аудит, D втрое больше</text>
+<text x="0" y="96" class="lt">глубина, мкм</text>
+<rect class="okzone" x="210" y="72" width="260.0" height="28"/>
+<line class="axis" x1="210" y1="100" x2="730" y2="100"/>
+<line class="axis" x1="210.0" y1="100" x2="210.0" y2="105"/><text x="210.0" y="119" class="st" text-anchor="middle">0</text>
+<line class="axis" x1="314.0" y1="100" x2="314.0" y2="105"/><text x="314.0" y="119" class="st" text-anchor="middle">2</text>
+<line class="axis" x1="418.0" y1="100" x2="418.0" y2="105"/><text x="418.0" y="119" class="st" text-anchor="middle">4</text>
+<line class="axis" x1="522.0" y1="100" x2="522.0" y2="105"/><text x="522.0" y="119" class="st" text-anchor="middle">6</text>
+<line class="axis" x1="626.0" y1="100" x2="626.0" y2="105"/><text x="626.0" y="119" class="st" text-anchor="middle">8</text>
+<line class="axis" x1="730.0" y1="100" x2="730.0" y2="105"/><text x="730.0" y="119" class="st" text-anchor="middle">10</text>
+<text x="216" y="94" class="st ok-t">цель ≤ 5 мкм</text>
+<circle class="m1" cx="319.2" cy="86" r="6"/>
+<text x="319.2" y="64" class="lt" text-anchor="middle">2.1</text>
+<path class="m2" d="M376.4,79 L383.4,86 L376.4,93 L369.4,86 Z"/>
+<text x="376.4" y="64" class="lt" text-anchor="middle">3.2</text>
+<rect class="m3" x="677.2" y="80" width="12" height="12"/>
+<text x="683.2" y="64" class="lt" text-anchor="middle">9.1</text>
+<text x="0" y="196" class="lt">наклон, мрад</text>
+<rect class="okzone" x="210" y="172" width="208.0" height="28"/>
+<line class="axis" x1="210" y1="200" x2="730" y2="200"/>
+<line class="axis" x1="210.0" y1="200" x2="210.0" y2="205"/><text x="210.0" y="219" class="st" text-anchor="middle">0</text>
+<line class="axis" x1="314.0" y1="200" x2="314.0" y2="205"/><text x="314.0" y="219" class="st" text-anchor="middle">0.5</text>
+<line class="axis" x1="418.0" y1="200" x2="418.0" y2="205"/><text x="418.0" y="219" class="st" text-anchor="middle">1</text>
+<line class="axis" x1="522.0" y1="200" x2="522.0" y2="205"/><text x="522.0" y="219" class="st" text-anchor="middle">1.5</text>
+<line class="axis" x1="626.0" y1="200" x2="626.0" y2="205"/><text x="626.0" y="219" class="st" text-anchor="middle">2</text>
+<line class="axis" x1="730.0" y1="200" x2="730.0" y2="205"/><text x="730.0" y="219" class="st" text-anchor="middle">2.5</text>
+<text x="216" y="194" class="st ok-t">цель ≤ 1 мрад</text>
+<circle class="m1" cx="380.6" cy="186" r="6"/>
+<text x="384.6" y="164" class="lt" text-anchor="start">0.82</text>
+<path class="m2" d="M363.9,179 L370.9,186 L363.9,193 L356.9,186 Z"/>
+<text x="359.9" y="164" class="lt" text-anchor="end">0.74</text>
+<rect class="m3" x="640.8" y="180" width="12" height="12"/>
+<text x="646.8" y="164" class="lt" text-anchor="middle">2.1</text>
+</svg></div>
+    <figcaption>Остаток на поверхности после натяжения для исходной складки до 180 мкм. Зелёная зона это цель.</figcaption>
+  </figure>
+  <ul>
+    <li>Модель откалибрована на складках 60–150 мкм, а предсказывает 2 мкм. Это экстраполяция в 70 раз.</li>
+    <li>Натяжение есть только в полностью раскрытом телефоне. В полураскрытом положении и в режиме ноутбука видна исходная складка.</li>
+    <li>300 Н постоянно тянут за резаные края стекла. Усталость захвата не проверял никто.</li>
+    <li>Механизм уже известен: Apple <a href="https://www.goveda.com/patent/EP-4738056-A1">EP 4738056 A1</a> натягивает экран в плоском состоянии, есть также <a href="https://patents.justia.com/patent/20240069604">US 20240069604</a> и <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12541230">US 12541230</a>. Новое здесь только сочетание: натяжение через одно стекло на геле и клотоидный шарнир.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Один стендовый опыт решит вопрос</h2>
+  <p>Шарнир для проверки строить не нужно.</p>
+  <ol>
+    <li>Взять настоящий стек панели и посадить на гель стекло UTG 45 мкм.</li>
+    <li>Согнуть 2000 раз на радиусе 3 мм, с выдержками по 12 часов при 60 °C и 90% влажности.</li>
+    <li>Зажать на титановых рейках с натяжением 2000 Н/м.</li>
+    <li>Снять профиль сгиба интерферометрией и дефлектометрией (метод из IEC 62715-6-22) и отдельно измерить складку без натяжения.</li>
+  </ol>
+  <p class="callout">Если остаток больше 5 мкм или 1 мрад, или складка без натяжения глубже ~180 мкм, вероятность идеи падает ниже 10%, и впереди оказывается «ни один не годится».</p>
+</section>
+
+<section>
+  <h2>Остальные финалисты</h2>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Идея</th><th>Смертельный дефект по аудиту</th><th>p</th></tr></thead>
+      <tbody>
+        <tr><td>«Барабан», подобранный под спектр складки</td><td>Нужно, чтобы доля остаточной деформации упала с ~8% до 2–4% только от роста радиуса. Данных нет, а в линейной вязкоупругости эта доля от деформации не зависит. Остаток выходит в 5 раз выше цели.</td><td class="p">8%</td></tr>
+        <tr><td>Деформации каждого слоя ниже порога ползучести</td><td>Ограничение деформации не обнуляет остаточный изгиб: оценка 37–62 мкм. После ночи в сложенном виде он к моменту открытия ещё не отходит.</td><td class="p">6%</td></tr>
+        <tr><td>Стекло, плавающее на жидкости</td><td>Когда телефон стоит вертикально, жидкость стекает вниз, стекло ложится на панель, и складка проступает.</td><td class="p">3%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Что сделала Apple</h2>
+  <p>iPhone Duo представлен 9 сентября 2026 и стоит $1,999. Apple говорит, что матовое нано-текстурное покрытие делает складку менее заметной, а верхний слой можно заменить за $19 по AppleCare. Что складки нет, Apple не утверждает, и в обзорах её видно под углом. Вопрос прямо исключал такую маскировку. Шарнир с натянутым стеклом пытается убрать саму неровность, но пока только в расчёте.</p>
+  <p>Oppo заявляет для Find N6 «нет видимой складки» после 600 тыс. сгибов и глубину на 82% меньше, чем у N5. Это заявление производителя, независимо его никто не проверял.</p>
+</section>
+
+<footer>
+  <p>Прогон <span class="num">engine/runs/foldcrease</span>, стоимость $9.23. Все цифры расчётные, на железе ничего не проверено.</p>
+  <ul>
+    <li><a href="https://www.macrumors.com/roundup/iphone-duo/">MacRumors: iPhone Duo</a></li>
+    <li><a href="https://www.digitaltrends.com/phones/apple-explains-how-it-made-the-iphone-duo-crease-nearly-disappear/">Digital Trends: как Apple объясняет складку</a></li>
+    <li><a href="https://9to5mac.com/2026/10/01/apple-says-iphone-duo-has-replaceable-folding-display-layer-to-minimize-crease/">9to5Mac: заменяемый верхний слой</a></li>
+    <li><a href="https://www.notebookcheck.net/iPhone-Duo-does-have-a-visible-crease-despite-Apple-s-clever-nano-texture-surface.1395055.0.html">Notebookcheck: складка видна</a></li>
+    <li><a href="https://www.androidauthority.com/oppo-find-n6-zero-feel-crease-durability-3648272">Android Authority: Oppo Find N6</a></li>
+    <li><a href="https://sid.org/Portals/sid/Files/SID-Digest/docs/77-5.pdf">SID Digest: дефлектометрия складки</a></li>
+    <li><a href="https://koreascience.or.kr/article/JAKO202102455512209.pdf">Choi и др., 2021: остаточная деформация CPI</a></li>
+  </ul>
+</footer>
+</main>
