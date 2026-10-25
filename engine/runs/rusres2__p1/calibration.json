@@ -1,0 +1,10 @@
+{
+ "p": {
+  "repair#2": 0.48,
+  "repair#1": 0.07,
+  "none": 0.45
+ },
+ "weakest_link": "The overlap window. Line 1 is due end-2028 and the floating units 2028–31, so the bridge may earn only 0–2 years. Meanwhile about 80 MW of gensets plus about 200k m³ of corrected Arctic tankage (unpriced, roughly $150–250m+) are paid up front. It also depends on the all-season road being ready. On a winter road alone it needs 118–140 loads/day, which is not credible.",
+ "flip_test": "The confirmed date of firm floating-unit power at Nagleynyn compared with line 1 mechanical completion, and whether the Pevek road is all-season by then. | If floating-unit power arrives less than about 9–12 months after line 1, the corrected margin (about $0.3–0.4bn/y at the base price, under $0.2bn at Cu $8k) no longer covers genset mobilisation and tank-farm capex, and \"none\" leads. The same happens if the road is winter-only in 2028–29.",
+ "unknown": "Even if idea 1 is right, three things are unmeasured:\n- Real Cu recovery at a coarse grind on an underloaded SAG mill (35 Mt/y design running at 15 Mt/y), and the source of the 0.51% head grade.\n- Whether 80 MW of unrestricted gensets (domestic or Chinese) can be leased at $0.30/kWh delivered.\n- How tailings dams and foundations perform in warm permafrost over the bridge years."
+}

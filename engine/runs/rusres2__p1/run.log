@@ -33,3 +33,12 @@ repair: 2 ideas (1412 words)
 /home/user/SomeRepository/engine/runs/rusres2__p1/audit_final/TASK.md
   audit_final: 255,954 tokens, 277.1 s
   audit_final: 4 new facts -> evidence.md
+  calibrate: 9,226 tokens, 24.3 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#2       F0/M4/m3 fit 0.00 ratio 0.8 known partly p 48%  Diesel-sized first line, nuclear expansion
+  2. repair#1       F1/M3/m3 fit 0.00 ratio 0.85 known partly p 7%  Kupol winter-road toll hub
+  none of these: p 45%
+  weakest link: The overlap window. Line 1 is due end-2028 and the floating units 2028–31, so the bridge may earn only 0–2 years. Meanwhile about 80 MW of gensets plus about 200k m³ of corrected Arctic tankage (unpriced, roughly $150–250m+) are paid up front. It also depends on the all-season road being ready. On a winter road alone it needs 118–140 loads/day, which is not credible.
+  flip test: The confirmed date of firm floating-unit power at Nagleynyn compared with line 1 mechanical completion, and whether the Pevek road is all-season by then. | If floating-unit power arrives less than about 9–12 months after line 1, the corrected margin (about $0.3–0.4bn/y at the base price, under $0.2bn at Cu $8k) no longer covers genset mobilisation and tank-farm capex, and "none" leads. The same happens if the road is winter-only in 2028–29.
+spent 1,953,049 tokens, $5.68
