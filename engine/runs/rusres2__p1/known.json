@@ -1,0 +1,30 @@
+{
+ "g1_neg#2": {
+  "known": "partly",
+  "closest": "SRK Tomtor resource/reserve estimation page (Tomtor/Polymetal logistics plan: ice road, barge, ship, rail to a hydrometallurgical plant at Krasnokamensk; Roskill 2018 says Chita)",
+  "url": "https://www.srk.com/en/projects/tomtor-resource-reserve-estimation",
+  "same": "Ship high-grade Tomtor ore thousands of km by winter road, barge, ship and rail to an existing off-site hydrometallurgical plant. It rests on the grade being high enough to cover freight. A VNIIKhT paper also proposes sorting the ore to cut the tonnage carried.",
+  "new": "Winter-only mining with a whole-year stockpile at the Anabar landing for one open-water shipment. Leaching of the 50–60% slimes on the grid instead of beneficiating them. A freight-to-oxide-price test. The sources don't mention the Anabar, stockpiles or slimes."
+ },
+ "g1_mech#1": {
+  "known": "no",
+  "closest": "DeGrussa copper, Sandfire, diesel-solar hybrid, about 2016 (also Red Dog diesel plant, Teck)",
+  "url": "https://im-mining.com/?p=36053",
+  "same": "Remote mine runs on off-grid diesel gensets, and a diesel set serves as \"the mine's power station\".",
+  "new": "A deliberately small 6 Mt/y starter on leased domestic diesel, picked by grade, with the full 70 Mt/y plant added only after nuclear power arrives. The gensets are then moved to other sites. The searches found no Baimskaya staging on diesel, and no mine moving diesel sets out once grid or nuclear power arrived. Mining the high-grade zone first is a generic practice."
+ },
+ "g1_neg#1": {
+  "known": "partly",
+  "closest": "Dvoinoye Gold Mine, Kinross, 2013 (ore trucked about 100 km to Kupol, mill expanded to 4,500 t/d)",
+  "url": "https://en.wikipedia.org/wiki/Dvoinoye_Gold_Mine",
+  "same": "A satellite mine with only mine and road, its ore hauled over an all-season road to the existing Kupol mill. Hub-and-spoke toll milling is common elsewhere: Empire Resources trucked ore to the Black Swan toll mill in Western Australia.",
+  "new": "Open third-party pooling at Kupol, with a winter-road haul. Satellites chosen by a grade threshold against haul cost per ounce. An explicit reliance on Kupol's own diesel plant instead of the Chaun–Bilibino spare. No toll-milling at Kupol was found."
+ },
+ "g1_ledger#1": {
+  "known": "yes",
+  "closest": "Skouries, Eldorado Gold, 2025–26 (also Kamoa-Kakula, Copper Mountain)",
+  "url": "https://finviz.com/news/370160/eldorado-gold-announces-key-milestone-first-ore-crushed-at-skouries",
+  "same": "Pre-production mining builds a run-of-mine stockpile (about 3.4 Mt at Skouries, 3.0 Mt at Kamoa-Kakula). Interim gensets cover the power gap while final energization is finished. The mill then ramps up on stockpiled feed.",
+  "new": "Only the Arctic setting. The pre-stripping and stockpile fuel is capped at the 24 kt/y Pevek season, with no fixed plant on the Chaun–Bilibino spare. The one-year cut in time to full rate is unsourced."
+ }
+}

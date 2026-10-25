@@ -8,3 +8,4 @@
 {"step": "gen:families", "time": "2026-10-25 11:01:21", "model": "opus", "tools": "", "tokens": 9730, "output_tokens": 864, "cache_read": 1496, "fresh_input": 7370, "cost_usd": 0.07653120000000001, "turns": 1, "seconds": 14.3}
 {"step": "gen:triage", "time": "2026-10-25 11:02:08", "model": "opus", "tools": "", "tokens": 18210, "output_tokens": 4009, "cache_read": 1496, "fresh_input": 12705, "cost_usd": 0.1821112, "turns": 1, "seconds": 46.9}
 {"step": "review:gate", "time": "2026-10-25 11:05:47", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 660262, "output_tokens": 17630, "cache_read": 573455, "fresh_input": 69177, "cost_usd": 1.1378203000000002, "turns": 17, "seconds": 219.5}
+{"step": "research:known", "time": "2026-10-25 11:06:30", "model": "sonnet", "tools": "WebSearch", "tokens": 43781, "output_tokens": 2481, "cache_read": 23636, "fresh_input": 17664, "cost_usd": 0.1926466, "turns": 9, "seconds": 42.7}
