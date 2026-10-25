@@ -1,0 +1,17 @@
+Capital is about 37% of cost. Even a 10× cut of it gives at most 1.5× on archetypes A and C, so none of these ideas claims 3×. Each one targets capital avoided or deferred, plus recovery, on a single ore path. Thaw is treated as a slow driver: 1 cm/yr comes to about 25 cm over a 25-year life. Ambarnaya and the 2021 collapse are treated as maintenance and design faults.
+
+=== IDEAS ===
+IDEA 1
+NAME: Barren-rock rejection before milling
+MECHANISM: Crushed Norilsk-1 disseminated ore and Maslovskoye ore pass a Russian-made X-ray density sorter (RADOS, already used at Alrosa) at the mine portal. The sorter rejects low-sulphide pieces as waste, and the reject threshold is reset monthly from assays of the rejected rock. The closest earlier attempt is the Selebi XRT figure of 15.2% rejection and about 98% recovery, which is unaudited. This idea avoids that weakness because it requires a Norilsk drill-core sorting test before any purchase. Using domestic sorters also avoids the loss of foreign suppliers.
+VALUE: If 15% of 8 Mtpa of feed is rejected, about 1.2 Mtpa of concentrator capacity is freed, worth about 2.2bn RUB at 1.8bn RUB per Mtpa (2017 Talnakh rate). It also removes roughly 13% of the processing term, about 3% of full cost per Ni-eq tonne. The deciding quantity is the Ni and Pd lost to the reject stream, which must stay at or below 2%.
+
+IDEA 2
+NAME: Refill old concentrator with low-grade
+MECHANISM: Expanding Talnakh to 18 Mtpa pulls Talnakh ore away from the Norilsk concentrator, which treated 7.6 Mt in 2020. The freed Norilsk capacity is then re-tuned for disseminated and Maslovskoye feed: finer grinding and a palladium-selective reagent scheme, all on existing domestic-serviceable equipment. The closest earlier attempts are the greenfield builds at Udokan and Baimskaya, which overran capex by 38–45% and ran years late. This idea avoids that because no new buildings or imported trains are needed.
+VALUE: Maslovskoye could reach production in about 2–3 years after the decision, with no new concentrator capex. The deciding quantity is the Ni and Pd recovery achievable in the re-tuned flowsheet on 0.25–0.3% Ni feed, to be proven by pilot. The foundation margins of the old plant must also be audited first.
+
+IDEA 3
+NAME: Bearing-margin ranked repair deadlines
+MECHANISM: Each critical structure (tanks, concentrator bays, smelter) gets two measurements: pile strain and ground temperature at pile depth. These give a remaining bearing margin, defined as current capacity minus load. Structures are ranked by that margin, and every found defect gets a binding repair deadline sized to the rate at which its margin is falling. The closest earlier attempt is the post-2020 monitoring, which used five boreholes and InSAR. It detects movement but fixes nothing, and in 2021 a known defect sat unrepaired for 2.5 years. Here detection is tied directly to a repair deadline.
+VALUE: The direct gain is capped at 1–2% of cost. The real value is avoiding collapse and spill losses, measured against the 146bn RUB Ambarnaya claim, and adding design life to structures by finding faults before they fail. The deciding quantity is the time from detecting a defect to repairing it, compared with how fast that structure's margin is falling.

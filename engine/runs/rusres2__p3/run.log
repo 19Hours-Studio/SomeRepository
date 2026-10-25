@@ -7,3 +7,12 @@ ARCHETYPE ? | untouchable 17.0% -> ceiling 5.9x | 10x cut of one term: capital 1
 ARCHETYPE ? | untouchable 8.0% -> ceiling 12.5x | 10x cut of one term: capital 1.50x; processing 1.25x; labour 1.17x; energy 1.10x; outbound logistics 1.04x; inbound logistics 1.03x | 3x needs: capital, processing, labour | TIGHT
 ARCHETYPE ? | untouchable 9.0% -> ceiling 11.1x | 10x cut of one term: capital 1.50x; processing 1.19x; energy 1.14x; labour 1.14x; inbound logistics 1.06x; outbound logistics 1.02x | 3x needs: capital, processing, energy, labour | NO ROOM
 ARCHETYPE D: structures on Norilsk ground | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: capital 1.82x; labour 1.22x; inbound logistics 1.13x; energy 1.02x; processing 1.00x | 3x needs: capital, labour, inbound logistics | TIGHT
+  reframe: 16,940 tokens, 32.3 s
+  g1_ledger: 16,660 tokens, 31.6 s
+g1_ledger: 3 ideas (611 words)
+  g1_neg: 16,776 tokens, 35.9 s
+g1_neg: 3 ideas (600 words)
+  g1_mech: 16,892 tokens, 35.3 s
+g1_mech: 3 ideas (538 words)
+  g1_rf1: 17,808 tokens, 41.8 s
+g1_rf1: 3 ideas (582 words)

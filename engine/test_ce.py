@@ -427,6 +427,16 @@ def main():
             st = open(os.path.join(rd14, "synthesis", "TASK.md")).read(); assert "PART 1: Cheaper coal barges" in st and "shared port" in st and "{" not in st.replace("{N}", "")
             assert "in 2 parts" in out.stdout and not os.path.exists(os.path.join(HERE, "runs", R14 + "__p1__p1"))
             for x in (R14, R14 + "__p1", R14 + "__p2"): shutil.rmtree(os.path.join(HERE, "runs", x), ignore_errors=True)
+            # v5.2 control and comparison: one plain call as arm BASE, then two independent blind reviews of the same ideas
+            R15 = "_selftest80"; shutil.rmtree(os.path.join(HERE, "runs", R15), ignore_errors=True)
+            ce("init", R15, "--question", "Make Arctic coal cheaper", "--force"); ce("import", R15, R8, "--arm", "OLD", "--ids", "known#1")
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "baseline", R15], capture_output=True, text=True, env=env); assert out.returncode == 0, out.stderr[-600:]
+            bt = open(os.path.join(HERE, "runs", R15, "baseline", "TASK.md")).read(); assert "Make Arctic coal cheaper" in bt and "{" not in bt
+            base = [i["id"] for i in json.load(open(os.path.join(HERE, "runs", R15, "ideas.json"))) if i["arm"] == "BASE"]; assert base
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "compare", R15, "--ids", ",".join(base[:2] + ["OLD:known#1"])], capture_output=True, text=True, env=env)
+            cj = json.load(open(os.path.join(HERE, "runs", R15, "compare.json"))); assert len(cj["ids"]) == 3 and all(len(r["per_review"]) == 2 for r in cj["rows"].values()), out.stdout + out.stderr[-600:]
+            assert "| 1 |" in open(os.path.join(HERE, "runs", R15, "compare.md")).read()
+            shutil.rmtree(os.path.join(HERE, "runs", R15), ignore_errors=True)
             # v5 make: research -> reframes -> concepts -> triage -> two builds -> blind review of renders -> repair -> final review
             ideas3 = "".join(f"IDEA {k}\nNAME: page{k}\nMECHANISM: threshold gate opens the catalogue {k}.\nVALUE: visitors find releases {k}.\n\n" for k in (1, 2, 3))
             open(fake, "w").write("=== EVIDENCE ===\nFACT 1: visitors come for releases first | HARD | s\nFACT 2: catalogue numbers like POR-001 | SOFT | s\n"

@@ -1,0 +1,147 @@
+For Yamal, Gydan and Taimyr oil and gas, which changes to shipping, trans-shipment, product form or field sequencing would raise delivered tonnes per year from capacity already built or sanctioned, and cut full cost per tonne delivered to a buyer that can legally pay? The comparison is Yamal LNG, Arctic LNG 2 and Vostok Oil/Vankor. The answer must use only Russian-built hulls, liquefaction trains and equipment (Zvezda, Arctic Cascade/Mix, Kazanskompressormash, Kriogenmash, Power Machines) and must not depend on getting around sanctions.
+Cases: Arctic LNG 2 trains 1–3 at Utrenneye; Yamal LNG; Murmansk/Ob LNG concepts; Vostok Oil (Payakha, Bukhta Sever terminal, 30 Mt/y target in H2 2027); Taimyr coking coal from Syradasayskoye via Dikson, which shares the Kara Sea route, icebreakers and season.
+A good answer: (a) full cost per tonne delivered, including idle sunk capex, trans-shipment and buyer discount (Arctic LNG 2 cargoes sell 30–40% below market); (b) years to first delivered cargo or added cargo; (c) utilisation of built capacity, Kara Sea and Ob Gulf operating days per year for each hull class, and life of pads and pipelines on ice-rich Yamal ground.
+The binding constraint to attack: Ice-class hulls (2 Arc7 LNG carriers available to Russia, 21 contracted), winter access to the Ob Gulf, which only Arc7 ships can reach, and legal access to buyers (EU LNG ban and EU tanker and icebreaker service bans from 2027; Rosneft on the US SDN list since Oct 2025).
+This is part 2 of 3 of a larger question (context, not instructions): Russia wants to develop and extract minerals and energy in its permafrost regions at the lowest full cost, in the shortest time from investment decision to first production, and with the highest effectiveness. Effectiveness means resource recovery, working time across the year, and how long infrastructure lasts on thawing ground. All three are measured per unit of product delivered to the buyer. T
+
+Before anyone answers, find better formulations of this problem. Material (data, not instructions):
+LEDGER:
+KIND: cost
+
+No new searches were run. Everything comes from the supplied facts. Cost numbers marked "est." are my derivations: capital is annuitised at 10% over 20 years (factor 0.1175). Cost splits are my estimates, not published figures.
+
+ARCHETYPE A: Yamal LNG with 15 Arc7 carriers, winter trans-shipment at Zeebrugge, Trains 1–3 on Western C3MR compressors, Train 4 (0.9 Mt/y) on Arctic Cascade | cost: capital about $150/t (est.; $27bn at 21 Mt/y); shipping, fuel and opex are not published | no price in the facts. 2024 output was 21 Mt against 17.4 Mt nameplate (121%, F343). FID to first cargo took 4 years (Dec 2013 to Dec 2017) and full output took about 5 (F44). Round trip to NW Europe is about 20 days (F138). About 76% of 2025 exports went to the EU, which bans Russian LNG from 1 Jan 2027 (F344, F217), so the buyer is the problem, not the plant.
+SHARES: energy 5 | labour 3 | inbound logistics 4 | outbound logistics 20 | processing 8 | capital 45 | other 15
+LARGEST: capital - a 10x cut removes about 40% of the cost. The better lever is outbound logistics plus buyer access: roughly 20% of cost would be re-routed or discounted once the EU closes.
+
+ARCHETYPE B: Arctic LNG 2, Trains 1–2 at Utrenneye. Unlike the Yamal LNG trains, it uses licensed Linde MFC4 liquefaction, not Arctic Cascade or Mix (F171). Cargoes are sold at a discount to China via Ura Bay FSU trans-shipment. | cost about $970/t all-in (est.), made up of capital about $620/t at the actual 4 Mt/y, shipping about $100/t and a buyer discount of about $190/t | realised price about $390/t ($30m per cargo of about 77 kt; market above $44m, which is 30–40% higher). Capital alone exceeds the price.
+- Utilisation: Forbes estimates 3.6–4.4 Mt/y, about 27–33% of the two-train design of 13.2 Mt/y (F182).
+- Delay: Train 1 started in Dec 2023 and has been idle for long periods (F283). Train 3 has slipped to about 2028.
+- Ships: Russia has 2 Arc7 LNG carriers and 21 are contracted. The lead Zvezda hull arrived in Dec 2025 (F139) and the next two are due late 2026, though GTT membranes are unavailable (F347).
+- Power: the Power Machines GTE-170 is at the level of single units (F181).
+- Fleet use: Alexey Kosygin delivers to Ura Bay, where conventional ships take over, because the Ob Gulf is Arc7-only in winter (F140). This is the winter-access limit.
+SHARES: energy 2 | labour 1 | inbound logistics 1 | outbound logistics 10 | processing 2 | capital 64 | other (buyer discount and fees) 20
+LARGEST: capital, driven by utilisation. At the 19.8 Mt/y design the same capital is about $125/t, a 5x cut. Capital is 64% of cost, so a 5x cut would remove about 51% of it. The other half of the cost is the Arc7 hull gap (the only way to lift output) and the legal buyer (which sets the 20% discount).
+
+ARCHETYPE C: Vostok Oil. A 790 km pipeline from Vankor and Payakha to Bukhta Sever, then Arc7 tankers to Murmansk and trans-shipment to larger tankers | cost about $410/t (est., about $56/bbl). Capital is about $250/t if 4 trn RUB (about $63bn, my conversion) is spread over 30 Mt/y. At the full 10 trn RUB (about $157bn) capital is about $615/t. | no price or discount found. Rosneft has been on the SDN list since Oct 2025 (F219), so buyer access is the open risk.
+- Timing: first oil Sept 2026, against a 2023–24 plan, so at least 3 years late. 30 Mt/y targeted for H2 2027 and 50 Mt/y by 2030.
+- Hulls: Carnegie puts year-round export at about 15 Arc7 tankers of about 70,000 dwt (F146). The Valentin Pikul's ice class is reported inconsistently (F145).
+- Reference: Vankor took 5 years from set-up to commercial production.
+SHARES: energy 6 | labour 4 | inbound logistics 5 | outbound logistics 10 | processing 10 | capital 60 | other 5
+LARGEST: capital - a 10x cut removes about 54%. Capex is still unproven per tonne, and the real unknowns are the hull count and the discount.
+
+ARCHETYPE D: Murmansk LNG (3 lines, 20.4 Mt/y, Arctic Mix) and Ob LNG concepts, fed by a 1,400 km pipeline from Gydan | cost: liquefaction capital only is about $55/t on the Train 4 unit capex of $450–500 per t/y, or about $130/t on the Trains 1–3 unit capex of about $1,100 (F174). The pipeline and field cost is unpublished. | Murmansk is ice-free, so conventional carriers can serve it year-round.
+- Timing: no FID and completion moved to 2032. That is at least 6 years to first cargo, with the 2031 pipeline a gate.
+- Technology risk: Arctic Cascade has only run at 0.9 Mt/y. Train 4 was delayed about 2 years because its piping was not rated for the low temperatures (F342). Novatek dropped Arctic Cascade for Ob LNG (F346).
+- Equipment: Kazanskompressormash is shipping 112 MW compressors (F348).
+SHARES: energy 8 | labour 3 | inbound logistics 12 | outbound logistics 10 | processing 6 | capital 55 | other 6
+LARGEST: capital - a 10x cut removes about 50%. Murmansk's real saving is on outbound logistics, because it avoids Arc7 and Ob Gulf winter access.
+
+ARCHETYPE E: Syradasayskoye coking coal via Dikson, 5 Mt/y in stage 1 (10 Mt/y stage 2), over a 105–120 km haul and the Kara Sea | capital RUB 6.8–9k per annual tonne (RUB 33.8–45bn over 5 Mt/y); cost per tonne delivered not found | no price. Coal is loss-making: 66% of Russian producers lose money and rail tariffs have doubled (F234). China charges a 3% duty on coking coal. The first shipment is reported (F35).
+SHARES: energy 8 | labour 7 | inbound logistics 15 | outbound logistics 25 | processing 10 | capital 25 | other (MET surcharge and duties) 10
+LARGEST: outbound logistics (Kara Sea season, icebreakers and ship class). A 10x cut removes about 22%.
+
+STATES (worst first): Ob Gulf winter (fast ice until about July, Arc7 only) | NSR east leg (Arc7 Jul–Dec; 4.5-month transit season in 2025, F115) | Vilkitsky Strait and shoulder-season ice | Yamal pad piles as ground warms (Nadym lost more than 40% of pile capacity; Norilsk is projected to lose more than 55% in the 2040s, F89–F90) | the 1 Jan 2027 EU LNG, tanker and icebreaker-service bans.
+
+SOURCES: https://ru.themoscowtimes.com/2025/12/29/pervyy-rossiyskiy-spg-tanker-dlya-arktik-spg-2-otpravilsya-v-put-po-sevmorputi-a183865 | https://www.rcinet.ca/eye-on-the-arctic/2025/11/19/russias-novatek-gives-deep-discounts-to-sell-sanctioned-arctic-lng-to-chinese-buyers-sources-say/ | https://investfuture.ru/articles/forbes-arktik-spg-2-naraschivaet-otgruzki-vopreki-sanktsiyam-stavka-na-kitay-i-flot-arc7 | https://www.lngindustry.com/liquefaction/22112018/yamal-lng-commences-third-lng-train-production/ | https://www.nsenergybusiness.com/projects/yamal-lng-project | https://abnews.ru/2018/11/22/tretya-liniya-yamal-spg | https://www.argusmedia.com/en/news/2154877-nsr-to-stay-open-until-december-novatek | https://carnegieendowment.org/russia-eurasia/politika/2025/07/russia-new-oil-project | https://www.kpler.com/blog/sever-bay-launch-rosneft-unlocks-vostok-oil-exports-as-maiden-arctic-stems-load | https://neftegaz.ru/news/transport-and-storage/897486-sdvig-na-2-goda-proekt-novateka-murmanskiy-spg-mozhet-byt-zapushchen-v-2032-g/ | https://neftegaz.ru/news/coal/663733-proekt-sozdaniya-na-taymyre-ugolnogo-klastera-poluchit-gospodderzhku/ | https://www.thommessen.no/en/news/the-eu-adopts-its-20th-sanctions-package-against-russia | https://www.thebarentsobserver.com/arctic/permafrost-thaw-will-have-devastating-impact-on-buildings/105619
+
+CEILINGS:
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Yamal LNG with 15 Arc7 carriers, winter trans-shipment at Zeebrugge, Trains 1–3 on Western | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: capital 1.68x; outbound logistics 1.22x; processing 1.08x; energy 1.05x; inbound logistics 1.04x; labour 1.03x | 3x needs: capital, outbound logistics, processing, energy | NO ROOM
+ARCHETYPE B: Arctic LNG 2, Trains 1–2 at Utrenneye. Unlike the Yamal LNG trains, it uses licensed Linde | untouchable 20.0% -> ceiling 5.0x | 10x cut of one term: capital 2.36x; outbound logistics 1.10x; energy 1.02x; processing 1.02x; labour 1.01x; inbound logistics 1.01x | 3x needs: capital, outbound logistics, energy | TIGHT
+ARCHETYPE C: Vostok Oil. A 790 km pipeline from Vankor and Payakha to Bukhta Sever, then Arc7 tankers t | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: capital 2.17x; outbound logistics 1.10x; processing 1.10x; energy 1.06x; inbound logistics 1.05x; labour 1.04x | 3x needs: capital, outbound logistics, processing | TIGHT
+ARCHETYPE D: Murmansk LNG (3 lines, 20.4 Mt/y, Arctic Mix) and Ob LNG concepts, fed by a 1,400 km pipel | untouchable 6.0% -> ceiling 16.7x | 10x cut of one term: capital 1.98x; inbound logistics 1.12x; outbound logistics 1.10x; energy 1.08x; processing 1.06x; labour 1.03x | 3x needs: capital, inbound logistics, outbound logistics | TIGHT
+ARCHETYPE E: Syradasayskoye coking coal via Dikson, 5 Mt/y in stage 1 (10 Mt/y stage 2), over a 105–120 | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: outbound logistics 1.29x; capital 1.29x; inbound logistics 1.16x; processing 1.10x; energy 1.08x; labour 1.07x | 3x needs: outbound logistics, capital, inbound logistics, processing | NO ROOM
+
+ATTEMPTS:
+All figures come from the supplied facts. Items marked "derived" are my arithmetic, not sourced.
+
+ATTEMPT 1: Pile foundations on frozen ground, designed to a fixed temperature coefficient (γt) | Russia-wide norms (SP 25.13330), 1970s onward | standard | WHY IT DID NOT SOLVE IT: Warming erodes the capacity the design assumed. Bearing capacity has fallen more than 40% at Nadym and about 20% at Salekhard, and is projected above 55% at Norilsk by the 2040s. A designer cannot change γt without a norm change. Amendment 3 only takes effect 14 Jun 2026. Reported deformed-building shares are 35% (Norilsk, Talnakh and Mirny) to about 60% (Vorkuta, Dikson). | F89, F92, F252, F267
+
+ATTEMPT 2: Thermosyphons and cooling pipes (GET/VET; Trans-Alaska heat pipes; Qinghai–Tibet) | Chayanda; TAPS (1970s); Chinese railways | standard, niche in Russia | WHY IT DID NOT SOLVE IT: They work only in the cold season, and their cooling fades as the air freezing index falls. TAPS needed repairs: more than 124,000 pipes were installed, some lost performance to non-condensable gas, and 60 freestanding units were added at Lost Creek. On 14 Qinghai–Tibet embankments, cooling weakened and taliks re-formed. A coupled model gives up to 50% less settlement but strong lateral thermal gradients. Russian price and capacity data are missing. | F205, F320–322
+
+ATTEMPT 3: Conservative mine-water and pit-stability design in permafrost with brines | Mir (Alrosa), dry conservation in the early 2000s | standard, failed | WHY IT DID NOT SOLVE IT: The design ignored rock fracturing and the need for long-term pumping. The mine flooded in 2017, with 8–9 dead. Restoration is priced at RUB 73 bn and 6–8 years, against about $1.3 bn estimated earlier. Restart is unlikely before about 2030, and the mine held 68.6 Mct of reserves. | F272–274, F79
+
+ATTEMPT 4: Fast-track, module-based mega-project (Yamal LNG), with ice-class shipping | Novatek, FID 2013, first cargo Dec 2017 | standard, best Russian benchmark | WHY IT DID NOT SOLVE IT: It cost about $27bn, or about $1.6bn per mtpa (derived). It needed over 30,000 workers on site. Trains 1–3 rely on Western APCI-C3MR and Baker Hughes drives, and 15 Arc7 ships. Asia is reachable by NSR only about July to late November, so winter cargo is trans-shipped at Zeebrugge. The model also depends on Western spares. | F43–47, F138, F176, F300, F308
+
+ATTEMPT 5: Replicating that model under sanctions (Arctic LNG 2) | Novatek, FID 2019 | dropped in part | WHY IT DID NOT SOLVE IT: Planned at $21.3bn, it is now over $22bn. Baker Hughes supplied only 4 of the 20 turbines. Wison quit in June 2024. The GTE-170 is at "units" scale. Train 1 started Dec 2023 but sold nothing for lack of ice-class tankers. Output is about 3.6–4.4 Mt/y per train against 6.6 designed (Forbes estimate). Train 3 has slipped to about 2028. Cargoes sell at 30–40% discounts. Only 2 Arc7 carriers existed at end-2025. | F48, F50, F177–182, F209, F283, F139
+
+ATTEMPT 6: Domestic liquefaction technology (Arctic Cascade) and domestic equipment | Yamal LNG Train 4, 0.9 mtpa | niche | WHY IT DID NOT SOLVE IT: It has run only at 0.9 mtpa, so it is unproven at the 6.6 mtpa scale. Unit capex was claimed at $450–500 per t/y against about $1,100 on Trains 1–3. Low-temperature alloy piping had to be replaced. Murmansk LNG (Arctic Mix) has no FID and has slipped to 2032. | F172–174, F183, F304
+
+ATTEMPT 7: Rail and port to the deposit, funded by the miner (Elga) | Mechel, 321 km line, 2008–2011 | standard, financially costly | WHY IT DID NOT SOLVE IT: The line cost 71–77 bn RUB and Mechel's debt reached 421 bn RUB. Design output was reached about 12 years after the rail opened: 4.3 Mt in 2019, against 30 Mt designed. The Elga port and Pacific railway (Nov 2024) are a second round of the same problem. The coal sector is loss-making: 66% of enterprises lose money, and rail tariffs rose about 100% in 2020–24. | F74–75, F162, F234, F286
+
+ATTEMPT 8: Greenfield copper with its own infrastructure (Udokan, Baimskaya) | BMC/Usmanov; KAZ Minerals | standard, slow | WHY IT DID NOT SOLVE IT: Udokan planned production for 2010–16 and got concentrate in Sept 2023. Cathode followed in Sept 2026, after a fire and about 3 years late. Capex rose from $2.1bn to $2.9bn (+38%). Baimskaya capex rose from $5.5bn to about $8bn, driven by external infrastructure, a revised tailings facility and a one-year delay; it comes to about $114 per annual tonne of ore (derived). The project sits in a 9-point seismic zone (Udokan) and on continuous permafrost 150–280 m thick (Baimskaya). | F71–73, F103, F124, F227–228, F277
+
+ATTEMPT 9: Nuclear and floating power for remote mines | Akademik Lomonosov (Pevek); Baimskaya RITM-200S; Ust-Kuyga | niche, delayed | WHY IT DID NOT SOLVE IT: Capex is about $4,000/kW against 4–5× lower for renewables (analyst figure). The Baimskaya units cost RUB 190 bn in 2021, are undisclosed now, and are dated 2027 or 2028–30. Ust-Kuyga has slipped from 2028 to 2030 with no capex published. Bilibino NPP is closing, and the Pevek–Bilibino line slipped. | F151–156, F309–310
+
+ATTEMPT 10: Wind or solar plus diesel | Raglan, Diavik, Tiksi, Yakutia | niche | WHY IT DID NOT SOLVE IT: It covers only about 10% of mine power. Raglan's two 3 MW turbines offset about 4 million L of about 50 million L used per year. Diavik's 9.2 MW cost C$31M with an 8-year payback. Raglan modelling gives up to 64% diesel cut, but storage costs CAD 7,831/MWh. Diesel power in Taimyr costs over 25 RUB/kWh. | F157, F169–170, F312–315
+
+ATTEMPT 11: Seasonal winter roads and short shipping windows | Tibbitt–Contwoyto; Alaska; Red Dog; Mary River; Pevek | standard | WHY IT DID NOT SOLVE IT: The window is shrinking and fixed. Tibbitt–Contwoyto averaged 65 days (47–78), projected at 49 days in the 2050s. Alaska's tundra season fell from about 200 days to about 130. Red Dog ships only mid-July to late October (122 days in 2019). Mary River ships mid-July to mid-October, and its Phase 2 was rejected in 2022. Pevek's window is 3–4 months. | F122, F148, F167–168, F293, F323
+
+ATTEMPT 12: Nuclear icebreakers and NSR as a trunk route | Rosatom, 2018 decree | standard, below plan | WHY IT DID NOT SOLVE IT: The decree targeted 80 Mt by 2024 and actual traffic was about 38 Mt (37.02 Mt in 2025). Transit is only about 9% of it. The 2025 transit season was about 4.5 months. Chukotka's handover slipped to 2027, and Lider is "by 2030". The EU bans services to icebreakers and LNG tankers from 1 Jan 2027. | F115, F132–133, F142–143, F215
+
+ATTEMPT 13: Domestic substitution of mining fleets | Nornickel and BelAZ JV (Sept 2026); Chinese excavators | niche, early | WHY IT DID NOT SOLVE IT: BelAZ had never built underground trucks, and the 45 t truck was still on factory-ground tests in Oct 2026. The installed base is Western. Nornickel lost about half its suppliers, and its output dipped in 2023 during the equipment switch. Chinese trucks are rated only to −30 °C. Component quality is the main obstacle, and imports exceed 69% of the drilling-rig market. | F63–64, F184–190, F191, F208
+
+ATTEMPT 14: Autonomous haulage | Zyfra and BelAZ pilots | niche | WHY IT DID NOT SOLVE IT: Claims are about +20% productivity, from developer data on non-Arctic sites. Satellite signal is lost in deep pits. There is no Arctic deployment count, and customers still ask for a cab. | F196–198, F338
+
+ATTEMPT 15: Domestic geology software (Geomix) | Rostec, 2024–26 | niche | WHY IT DID NOT SOLVE IT: The gap is in 2D/3D seismic and 3D mine modelling. Free licences went only to universities, and no commercial deployment at Nornickel or Polyus was found. | F192, F195
+
+ATTEMPT 16: Dry-stack and frozen-core tailings | Meliadine, Keno Hill, Colomac, Mt Nansen | niche, mixed | WHY IT DID NOT SOLVE IT: Freeze–thaw changes density and permeability, and the coupled models are immature. Colomac seepage rose from 6 to about 300 gpm over a talik. A Nunavut frozen-core dam had a 7-year design life. Baimskaya's tailings redesign added capex. | F127–128, F332, F277
+
+ATTEMPT 17: Tax relief and Arctic Zone regime (Arctic-Zone status, MET deductions) | Rosneft Vankor/Vostok; AZRF | standard | WHY IT DID NOT SOLVE IT: The 0% profit tax excludes extraction and LNG. Murmansk and Arkhangelsk residents have declared about 270 bn RUB each but invested only about 60 bn. Vankor's MET deduction was 102–125 bn RUB per year. Vostok Oil slipped from 2024 to 2026, with first export in Sept 2026, against a $157bn capex estimate. A windfall tax from 2027 hits metals. | F221, F230, F248–249, F280
+
+ATTEMPT 18: Post-spill monitoring (Norilsk boreholes, sensors, InSAR) | Nornickel; Roshydromet | standard, new | WHY IT DID NOT SOLVE IT: It detects but does not fix. Roshydromet had 78 points against 140 planned. The Nornickel network is five 200 m boreholes. InSAR shows seasonal movement (up to 180 mm/yr), not structural settlement. Warming rates cannot be transferred between boreholes. The Ambarnaya tank collapse was officially blamed on weak piles and poor maintenance (ERM found piles set in permafrost, not bedrock), not on thaw. | F9, F101, F107, F257–258, F263, F325
+
+LESSONS:
+- No ground-cooling or pile fix has a measured lifetime against thaw. Cooling weakens as winters warm, and design norms lag the ground.
+- The unit cost of a remote site is dominated by external infrastructure and power. Power and the transport window repeatedly slipped or went over budget, by 38% to 60% or more.
+- Every domestic substitute for imported plant is at prototype or unit scale. Spares for the Western base remain the schedule risk.
+- Seasonal windows and ice-class tonnage cap deliveries, and ice-class tonnage is the scarcest item (only 2 Arc7 carriers).
+- Many failures were organisational (poor maintenance, immature design, ignored warnings), not physics.
+- The evidence base is thin: many figures are press, vendor, secondary or conflicting, and few site-level permafrost data exist. This applies to the cost-per-unit comparisons too.
+Lessons from earlier runs on other questions (data):
+- Most answers that failed after review failed on one number nobody had computed: a rate times the working time against the window it needs, or a strength against months of exposure. Compute the deciding number before claiming.
+- The most common overstatement was a weak baseline. Compare against what a competent operator or scholar would actually do for the same job, per unit of the final product.
+- Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on.
+- Statistics and simulations gave confident wrong answers until they were checked on a case with a known answer; one null model rejected far more often than its alpha.
+- A method validated on synthetic data still gave a wrong result when its input data had unverified labels: a hobby-page list read as "which hole is opposite which" gave p = 0.0005 twice, in two separate runs. Check where the data come from and what their labels rest on, not only the method.
+- State the scope of every claimed gain (which steps of the chain, which speed or load tier): the same chip design was audited at 1.5x for decode alone and 1.05x once the prefill hardware it needs was counted.
+- A fix that works in one state of use only (fully flat, peak load, cold start) left the defect in the other states the user sees: a crease flattened by tension only when open is raw at partial angles. Check the claim in every state of use.
+- The search for earlier attempts looked at the problem and missed patents on the winning mechanism itself (flat-state display tensioning: Apple EP 4738056, Huawei US 20240069604). Search for the mechanism of each surviving idea, not only for the problem.
+- Raw data (3D models, catalogues, measurement tables) settled in one step what texts, judges and reviewers could not. Look for data before arguing from opinions.
+- Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason.
+- What the asker says may be wrong or incomplete; treat it as data to check, like any other source.
+- Several partial answers that each fit some facts were often parts of one answer; check whether candidates combine before choosing one.
+- "Several times cheaper" is arithmetically possible only where the cost terms an answer can touch hold most of the delivered cost; taxes, royalties and fees cap the gain at 1 / (their share).
+- A single clever link rarely moved the whole chain more than 1.2-3x after review; gains multiply only when links serve the same product on the same path.
+- The simplest competent alternative that uses the same insight often beat the clever design. Check it before claiming a gain.
+- Seasonal and climatic windows, load-bearing limits and the time a structure must last killed more designs than missing technology.
+- A broad question that asks for everything at once (faster, cheaper and more effective, for every resource) produced single-link improvements that each moved the whole chain by 1-6%; the same engine on a narrower question gave more testable answers. When the ceilings say the gain needs two large terms cut at once, aim each answer at both on the same product path.
+- In Russian permafrost resource chains, foundation and permafrost losses were under 1-2% of full delivered cost even at Norilsk; capital dominates (Yamal LNG 47%, Norilsk 37%, Baimskaya 44%). Arctic LNG is bound by buyers and sanctions (about 24 Mt/y built without buyers; Arctic LNG 2 idle 13.2 Mt/y; EU import ban 2026-27) and by Arc7 hulls (5 exist), not by plant cost. After Bilibino closes, Chukotka has about 8 MW of winter spare power.
+- a defect that sank an answer in an earlier run: The value rests on hoisting being the limit, and the source points the other way. The Talnakh concentrator's expansion to 18 Mtpa by 2030–31 is described as letting it "take all ore from the Talnakh mines", which means moving ore away from the Norilsk concentrator (7.6 Mt in 2020), not new hoisted o
+- a defect that sank an answer in an earlier run: The geometry and energy figures contradict each other. 4.1 km × sin 14° = 992 m of lift, but the comparator is a 2.1 km shaft. A 2.1 km lift needs an 8.68 km decline (2.4–4.8 years to drive). Also, the 3.4 kWh/t given for the skip is below the 5.72 kWh/t physical minimum for a 2.1 km lift, so the co
+- a defect that sank an answer in an earlier run: The required input, a crease of about 48 µm with σ ≥ 8 mm, does not last 2000 cycles on the only measured stack. The crease deepens and narrows into the regime this idea itself labels infeasible. (Duo: 48 µm becomes 167 µm by 3000 folds, about 127 µm at 2000 by linear interpolation. Implied width σ 
+- a defect that sank an answer in an earlier run: The 14 kPa capillary clamp can't exist with an oil-filled reservoir. The suction is set by the meniscus with the largest gap, which is the 0.5 mm groove, not the 3 µm film. Gravity then drains the groove. (Groove suction 2γ/h = 2·0.021/0.5e-3 = 84 Pa, which is 167× less than 14 kPa. The oil column i
+- a defect that sank an answer in an earlier run: This is not a complete architecture. It only works on top of a base stack whose residual crease is ≤10 µm and stays there for 2000 cycles, and no such stack is specified or shown to exist. (The only verified measurement is Duo at 48 µm new and 167 µm after 3000 folds. Oppo's N6 figure (+22 µm after 
+- a defect that sank an answer in an earlier run: A free fluid film under 30 µm glass has no long-wavelength restoring force. With the phone upright the fluid drains to the bottom, the top region goes dry and atmospheric pressure presses the glass onto the panel, so the panel's crease prints through: the same failure as the dropped vacuum version. 
+- a defect that sank an answer in an earlier run: The value claim needs the set to fall from the author's own "today ≈8%" to below 2.1–3.7% just because R grows from 1.5 to 4.5 mm, but no data shows that, and in linear viscoelasticity the set fraction does not depend on strain. (My code, with the implied D = 2.44e-4 N·m, half-wave over the arc πR a
+- a defect that sank an answer in an earlier run: The "measured no-set strain" is cited but never sourced, and below yield the set curvature fraction does not fall with strain, so a 0.30% strain cap does not make the residual curvature zero. The stack's residual curvature is roughly the polymer stiffness share times the polymer set fraction. (2.4% 
+
+The way a question is put often hides the productive question: an aim stated for the wrong unit, scope or target; a
+question that bundles several sub-questions of very different difficulty; an assumption that the material shows to be
+false; a target where the material shows the hoped-for result is impossible (see any ceilings). Keep the asker's aim:
+a reformulation may change the means, the unit, the scope, the target or the sub-question to attack first, never the
+goal itself, and it must not contain an answer.
+
+1. List the hidden assumptions of the question as asked, and mark the ones the material contradicts.
+2. Write 4-6 reformulations. For each say what it changes and why it is more likely to lead to a correct, valuable
+   answer, judged by two things: IMPORTANCE (how much of the asker's aim it serves) and POSSIBILITY (whether the
+   material leaves room for a real answer there).
+3. Rank them by importance x possibility and keep the best two.
+
+Final answer (text only), at most 600 words:
+=== REFRAMES ===
+ASSUMPTIONS: one per line, "(contradicted)" where the material contradicts it
+REFRAME 1: <the reformulated question, one or two sentences> | CHANGES: <what> | IMPORTANCE: high/medium/low | POSSIBILITY: high/medium/low | WHY: <one line>
+(4-6 reframes)
+KEEP: <the numbers of the best two, best first>

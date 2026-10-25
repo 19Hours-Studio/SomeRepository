@@ -1,0 +1,16 @@
+{QUESTION}
+
+Notes (data; the asker may be wrong):
+{NOTES}
+
+You have tools: WebSearch (WebFetch does not reach hosts here; use search excerpts) and Bash with python3. Work only
+in `{WORKDIR}`: write files only there, do not commit. Give your best answers to this question: at most 4, the
+strongest first, each with its deciding numbers and their sources.
+
+Final answer (text only): first the answers in exactly this format, then a short NOTES section with sources.
+=== IDEAS ===
+IDEA 1
+NAME: (max 6 words)
+MECHANISM: (3-7 sentences)
+VALUE: (1-2 sentences, with the effect per unit of product against the best current practice)
+(same for the other answers)

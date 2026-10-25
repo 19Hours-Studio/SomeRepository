@@ -1,1 +1,13 @@
 /home/user/SomeRepository/engine/runs/rusres2__p2/ledger/TASK.md
+  ledger: 79,994 tokens, 58.9 s
+ledger: 1103 words
+  skip attempts (attempts.md present)
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Yamal LNG with 15 Arc7 carriers, winter trans-shipment at Zeebrugge, Trains 1–3 on Western | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: capital 1.68x; outbound logistics 1.22x; processing 1.08x; energy 1.05x; inbound logistics 1.04x; labour 1.03x | 3x needs: capital, outbound logistics, processing, energy | NO ROOM
+ARCHETYPE B: Arctic LNG 2, Trains 1–2 at Utrenneye. Unlike the Yamal LNG trains, it uses licensed Linde | untouchable 20.0% -> ceiling 5.0x | 10x cut of one term: capital 2.36x; outbound logistics 1.10x; energy 1.02x; processing 1.02x; labour 1.01x; inbound logistics 1.01x | 3x needs: capital, outbound logistics, energy | TIGHT
+ARCHETYPE C: Vostok Oil. A 790 km pipeline from Vankor and Payakha to Bukhta Sever, then Arc7 tankers t | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: capital 2.17x; outbound logistics 1.10x; processing 1.10x; energy 1.06x; inbound logistics 1.05x; labour 1.04x | 3x needs: capital, outbound logistics, processing | TIGHT
+ARCHETYPE D: Murmansk LNG (3 lines, 20.4 Mt/y, Arctic Mix) and Ob LNG concepts, fed by a 1,400 km pipel | untouchable 6.0% -> ceiling 16.7x | 10x cut of one term: capital 1.98x; inbound logistics 1.12x; outbound logistics 1.10x; energy 1.08x; processing 1.06x; labour 1.03x | 3x needs: capital, inbound logistics, outbound logistics | TIGHT
+ARCHETYPE E: Syradasayskoye coking coal via Dikson, 5 Mt/y in stage 1 (10 Mt/y stage 2), over a 105–120 | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: outbound logistics 1.29x; capital 1.29x; inbound logistics 1.16x; processing 1.10x; energy 1.08x; labour 1.07x | 3x needs: outbound logistics, capital, inbound logistics, processing | NO ROOM
+  reframe: 18,276 tokens, 38.4 s
+  g1_ledger: 20,732 tokens, 67.0 s
+g1_ledger: 3 ideas (613 words)

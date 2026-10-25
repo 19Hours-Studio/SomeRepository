@@ -1532,6 +1532,51 @@ def cmd_run(a):
     _, tok, cost = runner.summary(D); print(f"spent {tok:,} tokens, ${cost:.2f}")
     if bench: cmd_bench(argparse.Namespace(run=R, dir=fd))
 
+def cmd_baseline(a):
+    """v5.2 control: the same model on the same question and notes, with the same tools, in ONE call and without the
+    pipeline (no dossier, generators, kill test, repair or memory). Its answers enter the run as arm BASE."""
+    import runner
+    R = a.run; dd = path(R, "baseline"); os.makedirs(dd, exist_ok=True); out = path(R, "outputs", "baseline.md")
+    if os.path.exists(out) and not a.force: print("  skip baseline (done)")
+    else:
+        cfg = load(R, "config.json", {}); s = tpl("baseline_task").replace("{QUESTION}", cfg["question"]).replace("{NOTES}", cfg.get("notes") or "(none)")
+        s = s.replace("{WORKDIR}", os.path.abspath(dd) + "/"); open(os.path.join(dd, "TASK.md"), "w").write(s)
+        text, u = runner.call(s, model=a.model, tools=a.tools, cwd=dd, budget_usd=a.budget_usd)
+        open(out, "w").write(text); runner.log(rdir(R), "baseline:baseline", u); print(f"  baseline: {u['tokens']:,} tokens, ${u['cost_usd']:.2f}")
+    cmd_ingest(argparse.Namespace(run=R, label="baseline", arm="BASE", gen=1, parents=None, transcript=None, file=out))
+
+def cmd_compare(a):
+    """v5.2: several independent blind reviews (each its own random order) of the same ideas; mean FATAL and MAJOR per
+    idea decide the ranking. One review pass is noisy (verdicts on the same ideas changed 4 of 8 times in foldcrease_b)."""
+    import runner
+    from concurrent.futures import ThreadPoolExecutor
+    R = a.run; ids = a.ids.split(","); names = {i["id"]: (i["name"], i["arm"]) for i in load(R, "ideas.json", [])}
+    def one(k):
+        dd = path(R, "compare", f"r{k}"); os.makedirs(dd, exist_ok=True); f = os.path.join(dd, "ids.json")
+        order = json.load(open(f)) if os.path.exists(f) and sorted(json.load(open(f))) == sorted(ids) else secrets.SystemRandom().sample(ids, len(ids))
+        if not os.path.exists(os.path.join(dd, "REVIEW.md")):
+            cmd_redteamtask(argparse.Namespace(run=R, ids=",".join(order), dir=dd, blind=True, tpl=a.tpl))
+            t, u = runner.call(open(os.path.join(dd, "TASK.md")).read(), model=a.model, tools="research", cwd=dd); runner.log(rdir(R), f"review:compare.r{k}", u)
+            open(os.path.join(dd, "REVIEW.md"), "w").write(t[t.find("=== REVIEW ==="):] if "=== REVIEW ===" in t else t)
+            print(f"  compare r{k}: {u['tokens']:,} tokens, ${u['cost_usd']:.2f}")
+        return parse_review(dd)
+    with ThreadPoolExecutor(a.reviewers) as ex: revs = list(ex.map(one, range(1, a.reviewers + 1)))
+    agg_ = {}
+    for i in ids:
+        rs = [r[i] for r in revs if i in r]
+        if not rs: continue
+        m = lambda k: sum(r[k] for r in rs) / len(rs)
+        rat = [r["ratio"] for r in rs if r.get("ratio") is not None]
+        agg_[i] = {"FATAL": m("FATAL"), "MAJOR": m("MAJOR"), "MINOR": m("MINOR"), "ratio": sum(rat) / len(rat) if rat else None,
+                   "known": "/".join(str(r.get("known")) for r in rs), "per_review": [f"{r['FATAL']}/{r['MAJOR']}/{r['MINOR']}" for r in rs]}
+    rank = sorted(agg_, key=lambda i: (agg_[i]["FATAL"], agg_[i]["MAJOR"], -(agg_[i]["ratio"] or 0)))
+    save(R, "compare.json", {"ids": rank, "rows": agg_, "reviewers": a.reviewers})
+    out = [f"| rank | idea | arm | mean F/M/m | per review | ratio | known |", "|---|---|---|---|---|---|---|"]
+    for k, i in enumerate(rank, 1):
+        r = agg_[i]; out.append(f"| {k} | {names.get(i, (i,))[0]} | {names.get(i, ('', '?'))[1]} | {r['FATAL']:.1f}/{r['MAJOR']:.1f}/{r['MINOR']:.1f} | "
+                                f"{', '.join(r['per_review'])} | {r['ratio'] if r['ratio'] is None else round(r['ratio'], 2)} | {r['known']} |")
+    open(path(R, "compare.md"), "w").write("\n".join(out) + "\n"); print("\n".join(out))
+
 BRIEF_KEYS = ("TYPE", "QUESTION", "SUCCESS", "CONSTRAINTS", "CONTEXT", "DATA", "ASSUMPTIONS", "CORRECTED", "UNCLEAR", "MODE")
 
 def parse_brief(text):
@@ -1639,6 +1684,10 @@ def main():
     x.add_argument("--cwd"); x.add_argument("--effort"); x.add_argument("--budget-usd", type=float)
     x.add_argument("--ingest-arm"); x.add_argument("--gen", type=int, default=0); x.add_argument("--parents")
     x = sp.add_parser("usage"); x.add_argument("run")
+    x = sp.add_parser("baseline"); x.add_argument("run"); x.add_argument("--model", default="opus"); x.add_argument("--tools", default="research")
+    x.add_argument("--budget-usd", type=float, help="cap for the single call"); x.add_argument("--force", action="store_true")
+    x = sp.add_parser("compare"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--reviewers", type=int, default=2)
+    x.add_argument("--model", default="opus"); x.add_argument("--tpl", default="redteam_task")
     x = sp.add_parser("ask"); x.add_argument("run"); x.add_argument("question"); x.add_argument("--max-tokens", type=int)
     x.add_argument("--mode", choices=["lite", "standard"], help="default: the brief's MODE")
     x.add_argument("--model", default="opus"); x.add_argument("--lit-model", default="sonnet"); x.add_argument("--brief-model", default="sonnet")

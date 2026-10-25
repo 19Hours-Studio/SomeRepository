@@ -1,1 +1,56 @@
-[]
+[
+ {
+  "id": "g1_ledger#1",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Mine-first, mill-on-nuclear sequencing",
+  "mech": "From 2026–30, diesel goes only to mobile fleets for pre-stripping, ore stockpiling and road and port earthworks, at about 24 kt of fuel a year. No fixed plant draws on the 8 MW Chaun-Bilibino spare. When the first floating unit is energised, the mill starts on a stockpile of several Mt (target, unsourced) instead of on a pit that is still being opened. The closest earlier attempt is Natalka: it opened at 50% of design rate and took about two years to reach full rate, because mill feed was not yet secured. Here the gap years are spent building that feed. The deciding quantity is litres of diesel per tonne moved, compared with the fuel Pevek can land in one season.",
+  "value": "It turns the uncovered power gap into ramp-up already done, cutting time from investment decision to full rate by about one year without any new power source."
+ },
+ {
+  "id": "g1_ledger#2",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Concentrator modules sized per reactor",
+  "mech": "Build the concentrator as up to four lines, each sized so that its kWh/t times its throughput fits within one floating unit, about 25 Mt/y on about 80 MW. Use domestic Uralmash-scale mills, which are smaller than imported mega-SAG mills. Lines 2–4 are committed only when each later unit is confirmed. The closest earlier attempt is Udokan and Baimskaya-2020: both built a single full-scale start that slipped and grew 38–45% over budget. Here no capital waits idle on power or imported plant that has not arrived. Deferring about $4bn by two years at 14% saves about $1bn in present value (derived). The deciding quantity is measured kWh/t of the ore compared with the output of one unit.",
+  "value": "It cuts the capital term per tonne of copper by roughly 10–15% and makes each module's start independent of the slip of the next unit."
+ },
+ {
+  "id": "g1_ledger#3",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Ship Tomtor ore, process on-grid",
+  "mech": "Build no hydrometallurgical plant at Tomtor. Instead, ship the high-grade, slime-rich ore down the Anabar each season to a grid-powered river or sea port plant. That ore is 10–12.5% rare-earth oxide but its grade is disputed between sources. Shipping crude ore means about 8–10 t of ore per t of oxide. The closest earlier attempt is Elga, where the miner paid for its own rail and site, and debt and a 12-year ramp to design rate followed. Here the only fixed assets at site are the pit and a dock. The deciding quantity is the tonnes of ore the shallow-draft Anabar fleet can carry in its open-water window. That window is not sourced: 100 kt needs about 100 barge loads of 1,000 t in about 60 days. It also depends on verifying the conflicting grade data.",
+  "value": "It removes most of the remote capital and energy term for the 2027 pilot and lets processing iterate on the difficult slimes where power, staff and domestic equipment already exist."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Kupol hub toll-milling",
+  "mech": "New high-grade Chukotka lodes are developed as mine-only satellites. Ore is trucked over winter roads and stockpiled at the existing Kupol mill, which has its own diesel plant and spare capacity as Kupol depletes. Satellites are scheduled by grade, so that haul cost per ounce stays below the avoided mill capex and power cost per ounce. The closest earlier attempt is Dvoinoye ore hauled to Kupol, which worked but stayed a single-owner exception. Pooling stops it short no longer, because the mill sits on its own diesel plant and needs nothing from the Chaun–Bilibino node's 8 MW.",
+  "value": "First gold in about 2 seasons (mine plus road only), not Natalka's 4–5 years, with no new mill, dam or power plant. The deciding quantity is grade × recovery against haul cost: at an assumed $45/t for 300 km, ore needs ≥6 g/t to keep haulage under about $250/oz."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Tomtor raw-ore shipment",
+  "mech": "The pilot mines only the highest-grade ore (10–12.5% REO per one source, conflicting) in winter and stockpiles it at the Anabar landing. It ships the whole year's ore during the open-water season to an existing grid-powered hydrometallurgical plant. The 50–60% slimes that defeat beneficiation are then handled by acid leaching on the grid, not in permafrost. The closest earlier attempt is the off-site processing plan of the 2010s, which stopped on financing and offtake, not on physics.",
+  "value": "The on-site plant, power and tailings dam leave Tomtor's 40% capital share. The deciding quantity is delivered freight per tonne of REO, roughly 8–10 t of ore per tonne, which must stay well below the oxide price."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Stockpile-first Baimskaya sequencing",
+  "mech": "Diesel mining fleets, which need no grid, pre-strip the pit and stockpile graded ore through 2026–30. The concentrator, dams and port load-out are built in step with each floating unit. The mill then starts at once on graded stockpile and loads up as each unit commissions, instead of ramping up on fresh ore. This deliberately does not chase first metal before the units arrive, which avoids Natalka's two-year ramp to full rate. The closest earlier attempt is Red Dog's 950 kt concentrate stockpile, which buffers shipping but not power.",
+  "value": "Design rate is reached about 1–2 years sooner after power arrives, and no stranded bridging power is built for a 251 MW load. The deciding quantity is stockpile tonnage at mill start against the revenue a ramp-up would lose."
+ }
+]
