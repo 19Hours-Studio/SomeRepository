@@ -43,5 +43,32 @@
   "name": "Plant-chilled foundations",
   "mech": "Run a glycol loop through the pile caps of an LNG plant, cooled by its own refrigeration and kept running in summer. Thermosyphons from Fundamentstroyarkos would still cover the winter. A summer heat flux of about 5 W/m² over 1 km² is about 5 MW of heat, or about 2.5 MW of electricity at a COP of 2. That is under 1% of the plant's drive power. The closest earlier attempts are TAPS and the Qinghai–Tibet thermosyphons, which fade as winters warm. An active loop does not depend on how cold the winter is. The deciding quantity is the summer heat flux, measured in boreholes.",
   "value": "Holds pile capacity at the design γt for the life of the plant, whatever the warming."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Numbered-up mid-scale LNG trains",
+  "mech": "Replicate the Arctic Cascade train built at 0.9 Mtpa about seven times instead of scaling up to 6.6 Mtpa. Each train is driven by 16–25 MW gas turbines already in serial production for Russian pipelines, and Arctic air does the precooling. The closest earlier attempt, Arctic LNG 2, stalled on scarce large turbines; this design avoids that by using drives already built in volume. The deciding quantity is installed capex per tonne-year together with train availability at −45 °C.",
+  "value": "It phases LNG capital and starts revenue sooner using only domestic drives."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Underground X-ray ore pre-concentration",
+  "mech": "Domestic X-ray transmission sorters at the shaft bottom reject waste lumps from disseminated Ni-Cu ore, and the rejected rock becomes stope backfill. The concentrator's fixed capacity then processes more metal per hour. The closest earlier practice, Alrosa's diamond sorting, has never been applied to sulphide ore here. The deciding quantity is the waste-rejection fraction achieved while losing less than 3% of the metal.",
+  "value": "It raises metal output per unit of existing concentrator capital."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Re-levelling thaw-tolerant foundations",
+  "mech": "Surface structures sit on spread footings or space frames with 300 mm hydraulic jacks and are re-levelled from survey data as the active layer moves. The ground is allowed to thaw instead of being kept frozen. The closest earlier attempts, fixed piles and thermosyphons, failed as winters warmed; this design carries no assumed ground-temperature margin. The deciding quantity is the differential settlement rate compared with jack stroke and re-levelling interval.",
+  "value": "It decouples infrastructure life from the rate of permafrost warming."
  }
 ]
