@@ -133,5 +133,41 @@
   "name": "Test-data-compiled spare-die packages",
   "mech": "Each package of 32 dies carries 4 spare dies. After assembly, each die's measured Fmax, minimum Vdd and defects are fed to the scheduler. The scheduler compiles a per-package timing-exact schedule that maps around bad dies and runs every die at its own voltage with no guard band. Closest earlier attempt is Cerebras' fixed row redundancy, which needs a whole wafer and does not adapt per die. The deciding quantity is the post-assembly die and bond failure rate, which must stay below 4 per 36.",
   "value": "Large organic multi-die packages reach near-100% package yield and save about 15 to 25% power without CoWoS."
+ },
+ {
+  "id": "baseline_1#1",
+  "label": "baseline_1",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Hybrid-bonded DRAM-on-logic decode package",
+  "mech": "Continuum targets one workload: decode for frontier sparse-MoE LLMs (1T total / 32B active parameters) at 8K–128K context. The main metric is tokens/s per kW at a per-user speed target (100, 400 or 1000 tok/s/user), with tokens per joule second. Peak FLOPS is not a metric. Serving revenue comes from throughput at an interactivity target, and running cost comes from joules. The package has four ~400 mm² N2-class logic chiplets. Each sits on top of a 4-high custom DRAM stack, bonded die to die at ≤9 µm pitch (hybrid bonding). That gives 160 GB at 64 TB/s per package, at about 0.8 pJ/bit. HBM is around 3 pJ/bit (my estimate), and a published 3D-DRAM estimate gives 0.66–0.88. Compute is 40 PF dense FP4 and 20 PF FP8, in a ~2.0 kW package. Stacked-DRAM power is 64 TB/s × 8 × 0.8 pJ = 410 W. FP8 at full rate would be about 1.6 kW, so the 2 kW budget is shared and the memory and FP8 cannot both run flat out. The package has no HBM. My model found that adding an HBM tier lowered tokens/s per kW, because each decode step reads all resident bytes and the slow tier sets the step time. On the same 4.5-bit weight and KV format, the roofline/energy model compares it with Rubin (288 GB, 22 TB/s, ~1.8 kW). For GQA models, Continuum gets 2.2–2.7× the tokens/s per kW and 2.3–2.5× the tokens/J, at both 8K and 128K. For dense-MLA models it gets only 1.08–1.29×, because MLA decode at 128K costs about 1.1 TFLOP per token in attention and is compute-bound.",
+  "value": "In my model, Continuum gives about 2.2–2.7× more decode tokens per kW than Rubin on GQA models (2.8–3.8× vs Ironwood, 4–18× vs Groq LP30 and WSE-3). That is a modeled result, not a measured one, and it hinges on the stacked DRAM really reaching ≤1 pJ/bit and 64 TB/s."
+ },
+ {
+  "id": "baseline_1#2",
+  "label": "baseline_1",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Attention-balanced compute with sparse-KV gather",
+  "mech": "Bandwidth alone does not win on MLA models. Their decode needs about 430 FLOP per byte, while Continuum's compute-to-bandwidth balance point is 20 PF / 64 TB/s = 312 FLOP/byte. Attention therefore needs FP4/FP8 matrix math with per-block scales. The chip also needs a hardware engine for DeepSeek-V3.2-style sparse attention (DSA): a top-k indexer plus a gather unit. This cuts the 128K attention cost from about 1.1 TFLOP to about 150 GFLOP per token (an FP8 indexer plus top-2048 attention). The KV rows it fetches are random ~324 B reads. Stacked DRAM with many banks suits those far better than HBM's long bursts, but this needs a cycle-level simulator to confirm. With DSA, the model shows 1.8–2.7× Rubin's tokens/s per kW at 128K and 1.8× its tokens/J, against 1.1–1.3× for dense MLA.",
+  "value": "This keeps the lead at 1.8–2.7× on new sparse-attention models instead of the 1.1× it falls to on dense MLA. Without it, Continuum is only marginally better than Rubin on DeepSeek/Kimi-class models."
+ },
+ {
+  "id": "baseline_1#3",
+  "label": "baseline_1",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Decode-only part, disaggregated prefill/training",
+  "mech": "I reject the premise that one chip should be best at training and inference. Prefill and training are compute-bound and need capacity: optimizer states, and prompts that use GDDR or HBM well, as Rubin CPX shows with 30 PF NVFP4 and 128 GB GDDR7. Continuum has 160 GB per package against Rubin's 288 GB, so it needs about 1.6–2× more packages for pools with very large KV caches. It also does not beat Rubin on training. The system therefore pairs Continuum decode racks with HBM or GDDR prefill/training parts, linked by KV transfer. Each package has 3.6 TB/s of NVLink-6-class scale-up, in 72-package copper racks. On maximum single-user speed it loses. Expert-parallel all-to-alls (120 per token × ~3 µs) cap it at about 2.8k tok/s/user, the same as Rubin. SRAM chips model at about 8k (Groq) and measure about 2.2k (Cerebras on gpt-oss-120B). Matching them would need about 1.5 µs collectives, which is unproven.",
+  "value": "Continuum is aimed at the bulk serving market, about 2× tokens per kW against Rubin + CPX-style disaggregation. It concedes ultra-low-latency single-user speed to Groq LPX and Cerebras, and training to Rubin and TPU."
+ },
+ {
+  "id": "baseline_1#4",
+  "label": "baseline_1",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "4.5-bit numerics, compiler-placed memory, kill gates",
+  "mech": "Weights and KV are stored as NVFP4/MXFP4 at about 4.5 bits, activations are FP8, and accumulation is FP32. Existing checkpoints run after post-training quantization; they do not need retraining. The software stack is PyTorch/JAX → torch.export/StableHLO → MLIR, with Triton-style tile kernels and vLLM/SGLang backends. The compiler places experts statically in stacked DRAM and pages the KV cache. CUDA-only kernels need porting, which is the adoption cost. Five tests could kill the design: 1. Recalibrate the model against MLPerf and Artificial Analysis. Drop the design if the GQA-128K lead is below 1.5×. 2. Run 3D thermal and power simulation (3D-ICE/HotSpot plus a power-integrity tool). It fails if DRAM runs above 95 °C, or if IR drop exceeds 5% while delivering about 2,700 A at 0.75 V through the DRAM stack. 3. Model the DRAM in CACTI-3DD/Accelergy. It fails above 1.5 pJ/bit or below 40 TB/s per package. 4. Simulate in LLMCompass with real expert-routing traces. 5. Run RULER at 128K with NVFP4 KV. The numerics plan fails if it loses more than 1 point against BF16.",
+  "value": "Models and frameworks carry over with quantization only, and every headline ratio has a test that can prove it wrong before tape-out."
  }
 ]

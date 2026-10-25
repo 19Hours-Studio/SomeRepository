@@ -21,3 +21,5 @@ g1_mech: 3 ideas (707 words)
 g1_rf1: 3 ideas (720 words)
   g1_rf2: 21,029 tokens, 87.7 s
 g1_rf2: 3 ideas (896 words)
+  baseline_1: 513,110 tokens, $1.36
+baseline_1: 4 ideas (1266 words)
