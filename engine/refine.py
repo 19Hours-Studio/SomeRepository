@@ -27,6 +27,40 @@ CURRENT ANSWER:
 {ANSWER}
 """
 
+HONEST = """QUESTION:
+{QUESTION}
+
+Notes from the asker (data; they may be wrong):
+{NOTES}
+
+Below is the current answer to this question. Make it substantially better on two things at once:
+1. Honest: every comparison is fair (competitors at their own best settings and current versions), every decisive
+   number is measured or sourced, and the limits are stated.
+2. More effective: raise the real gain the answer gives the asker over the best current practice. Where honest
+   accounting shows a small gain, do not stop at saying so: change the design, use the lever that is still unused, or
+   move to the regime where the gain is large, until the honest number goes up, and show the calculation.
+A gain that holds only under an unfair comparison does not count. You may keep, change or replace anything. You have
+WebSearch (WebFetch does not reach hosts here; use search excerpts) and Bash with python3; work only in `{WORKDIR}`.
+
+Reply with the complete improved answer only; it replaces the current one.
+
+CURRENT ANSWER:
+{ANSWER}
+"""
+
+GAIN = """QUESTION:
+{QUESTION}
+
+Read the answer below and check it. What real gain over the best current practice does it support, after you
+correct anything unfair or unsupported in its own comparison? Give the gain in the answer's own measure.
+
+End your reply with exactly this line:
+HONEST GAIN: <the gain, e.g. "1.3x lower cost per token at 300 tok/s/user", or "none">
+
+ANSWER:
+{A}
+"""
+
 JUDGE = """QUESTION:
 {QUESTION}
 
@@ -51,19 +85,23 @@ def main():
     p = argparse.ArgumentParser(); p.add_argument("run"); p.add_argument("--question-from", required=True)
     p.add_argument("--start", required=True); p.add_argument("--rounds", type=int, default=4)
     p.add_argument("--model", default="opus"); p.add_argument("--judge-model", default="opus")
+    p.add_argument("--prompt", choices=["improve", "honest"], default="improve", help="honest: honesty and a higher real gain at once")
     a = p.parse_args()
     D = os.path.join(HERE, "runs", a.run); os.makedirs(D, exist_ok=True)
     cfg = json.load(open(os.path.join(HERE, "runs", a.question_from, "config.json")))
     q, notes = cfg["question"], cfg.get("notes") or "(none)"
     v = lambda k: os.path.join(D, f"v{k}.md")
     if not os.path.exists(v(0)): open(v(0), "w").write(open(a.start).read())
-    for k in range(1, a.rounds + 1):  # the improvement chain
+    meta = json.load(open(os.path.join(D, "meta.json"))) if os.path.exists(os.path.join(D, "meta.json")) else {}
+    for k in range(1, a.rounds + 1):  # the improvement chain (continues from the last existing version)
         if os.path.exists(v(k)): print(f"  skip v{k} (done)"); continue
+        meta[f"v{k}"] = a.prompt; json.dump(meta, open(os.path.join(D, "meta.json"), "w"))
         wd = os.path.join(D, f"round{k}"); os.makedirs(wd, exist_ok=True)
-        s = IMPROVE.replace("{QUESTION}", q).replace("{NOTES}", notes).replace("{WORKDIR}", wd + "/").replace("{ANSWER}", open(v(k - 1)).read())
+        s = (HONEST if a.prompt == "honest" else IMPROVE).replace("{QUESTION}", q).replace("{NOTES}", notes).replace("{WORKDIR}", wd + "/").replace("{ANSWER}", open(v(k - 1)).read())
         text, u = runner.call(s, model=a.model, tools="research", cwd=wd); runner.log(D, f"improve:v{k}", u)
         open(v(k), "w").write(text); print(f"  v{k}: {len(text.split())} words, ${u['cost_usd']:.2f}")
     pairs = [(0, k) for k in range(1, a.rounds + 1)] + [(k - 1, k) for k in range(2, a.rounds + 1)]
+    pairs += [(4, k) for k in range(6, a.rounds + 1) if a.rounds > 5]  # the honest-gain rounds against where they started
     jd = os.path.join(D, "judge"); os.makedirs(jd, exist_ok=True)
     def judge(job):  # job = (old, new, swap): the newer version is B unless swapped
         o, n, sw = job; f = os.path.join(jd, f"v{o}_v{n}{'_swap' if sw else ''}.md")
@@ -76,13 +114,21 @@ def main():
         newer_won = None if not w else (w.group(1).upper() == ("A" if sw else "B"))
         return o, n, sw, newer_won, (m.group(1).lower() if m else "?"), (why.group(1).strip()[:400] if why else "")
     with ThreadPoolExecutor(runner.slots()) as ex: res = list(ex.map(judge, [(o, n, sw) for o, n in pairs for sw in (False, True)]))
+    def gain(k):  # the honest gain each version supports, read by the judge model after its own check
+        f = os.path.join(jd, f"gain_v{k}.md")
+        if not os.path.exists(f):
+            text, u = runner.call(GAIN.replace("{QUESTION}", q).replace("{A}", open(v(k)).read()), model=a.judge_model, tools="none")
+            runner.log(D, f"gain:v{k}", u); open(f, "w").write(text)
+        m = re.search(r"^\**HONEST GAIN\**\s*:\s*(.+)$", open(f).read(), re.M | re.I); return k, (m.group(1).strip() if m else "?")
+    with ThreadPoolExecutor(runner.slots()) as ex: gains = dict(ex.map(gain, range(a.rounds + 1)))
     out = [f"# {a.run}: stepwise improvement of a plain answer, judged afterwards", "",
-           "| version | words | cost |", "|---|---|---|"]
+           "| version | round prompt | words | cost | honest gain (judge, after its own check) |", "|---|---|---|---|---|"]
     use = {}
     for l in open(os.path.join(D, "usage.jsonl")):
         r = json.loads(l); use[r["step"]] = r.get("cost_usd", 0)
     for k in range(a.rounds + 1):
-        out.append(f"| v{k} | {len(open(v(k)).read().split())} | {'plain answer' if k == 0 else '$%.2f' % use.get(f'improve:v{k}', 0)} |")
+        out.append(f"| v{k} | {meta.get(f'v{k}', 'improve') if k else '-'} | {len(open(v(k)).read().split())} | "
+                   f"{'plain answer' if k == 0 else '$%.2f' % use.get(f'improve:v{k}', 0)} | {gains.get(k, '?')} |")
     out += ["", "| comparison | newer version won (both orders) | margins | score (+ newer, - older) |", "|---|---|---|---|"]
     for o, n in pairs:
         rs = [r for r in res if r[0] == o and r[1] == n]
