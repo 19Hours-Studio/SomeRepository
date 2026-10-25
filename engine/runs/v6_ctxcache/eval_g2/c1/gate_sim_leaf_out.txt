@@ -1,0 +1,9 @@
+1.05 10 always 0.926 hit 0.12 | leaf-ping 0.926 hit 0.12 ping/req 0
+1.05 100 always 1.012 hit 0.23 | leaf-ping 1.012 hit 0.23 ping/req 0
+1.05 1000 always 1.095 hit 0.33 | leaf-ping 1.095 hit 0.33 ping/req 0
+1.2 10 always 1.016 hit 0.24 | leaf-ping 1.016 hit 0.24 ping/req 0
+1.2 100 always 1.137 hit 0.37 | leaf-ping 1.137 hit 0.37 ping/req 0
+1.2 1000 always 1.251 hit 0.47 | leaf-ping 1.249 hit 0.47 ping/req 12
+1.5 10 always 1.193 hit 0.42 | leaf-ping 1.193 hit 0.42 ping/req 0
+1.5 100 always 1.387 hit 0.57 | leaf-ping 1.353 hit 0.58 ping/req 139
+1.5 1000 always 1.577 hit 0.68 | leaf-ping 1.484 hit 0.70 ping/req 327
