@@ -1,0 +1,24 @@
+
+>=200: C8 55.2 tok/s/W, 128,824 tok/s/pkg, 1.71 stacks/pkg | Rubin 49.0 (0.55V, 1562 W) 76,472 tok/s/GPU
+  per 1M out tok/s: packages C8 8 vs Rubin 13
+  HBM stacks       C8 13 (16-high, 48 GB) vs Rubin 105 (12-high, 36 GB): tokens/stack 7.9x, tokens/GB 5.9x
+  logic cm2        C8 N2 233 + N4 SRAM tiers 466 = 699 vs Rubin N3P 216: leading-edge 1.08x, all silicon 3.24x
+  SoIC passes      1 wafers per 1M tok/s
+  BOM/pkg C8 $9.1-11.4k (mid 10.3k) vs Rubin $7.6-13.0k (mid 10.3k): tok/s per BOM$ ratio centre 1.69, crossed range 1.12-2.40
+  power per 1M tok/s: C8 18.1 kW vs Rubin 20.4 kW
+
+>=1000: C8 55.2 tok/s/W, 128,824 tok/s/pkg, 1.71 stacks/pkg | Rubin 36.6 (0.55V, 1562 W) 57,126 tok/s/GPU
+  per 1M out tok/s: packages C8 8 vs Rubin 18
+  HBM stacks       C8 13 (16-high, 48 GB) vs Rubin 140 (12-high, 36 GB): tokens/stack 10.6x, tokens/GB 7.9x
+  logic cm2        C8 N2 233 + N4 SRAM tiers 466 = 699 vs Rubin N3P 289: leading-edge 0.81x, all silicon 2.42x
+  SoIC passes      1 wafers per 1M tok/s
+  BOM/pkg C8 $9.1-11.4k (mid 10.3k) vs Rubin $7.6-13.0k (mid 10.3k): tok/s per BOM$ ratio centre 2.26, crossed range 1.50-3.21
+  power per 1M tok/s: C8 18.1 kW vs Rubin 27.3 kW
+
+>=2000: C8 48.2 tok/s/W, 109,474 tok/s/pkg, 1.07 stacks/pkg | Rubin 19.2 (0.55V, 1562 W) 29,981 tok/s/GPU
+  per 1M out tok/s: packages C8 9 vs Rubin 33
+  HBM stacks       C8 10 (16-high, 48 GB) vs Rubin 267 (12-high, 36 GB): tokens/stack 27.4x, tokens/GB 20.5x
+  logic cm2        C8 N2 274 + N4 SRAM tiers 548 = 822 vs Rubin N3P 550: leading-edge 0.50x, all silicon 1.49x
+  SoIC passes      2 wafers per 1M tok/s
+  BOM/pkg C8 $8.6-10.2k (mid 9.4k) vs Rubin $7.6-13.0k (mid 10.3k): tok/s per BOM$ ratio centre 4.01, crossed range 2.73-5.54
+  power per 1M tok/s: C8 20.8 kW vs Rubin 52.1 kW

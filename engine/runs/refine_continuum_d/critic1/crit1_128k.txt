@@ -1,0 +1,13 @@
+Rubin >=200: 49.0 tok/s/W prof 0.55V k=1 spd=367 B=17636 (t,m)=(1, 2) {'mem': 2366.9, 'comp': 2450.4, 'link': 1073.5, 'c': 39.5}
+Rubin >=1000: 36.6 tok/s/W prof 0.55V k=4 spd=1110 B=4360 (t,m)=(2, 2) {'mem': 1459.5, 'comp': 1514.5, 'link': 663.5, 'c': 24.4}
+Rubin >=2000: 19.2 tok/s/W prof 0.55V k=6 spd=2038 B=1246 (t,m)=(4, 1) {'mem': 1192.0, 'comp': 1211.8, 'link': 530.9, 'c': 19.5}
+
+128K  C8 / Rubin trimmed 150 W                       200    500   1000   1500   2000
+base                                                  1.13   1.25   1.51   1.71   2.51   C8   55.2   55.2   55.2   52.4   48.2 | >=1000: npk 371 C=(7, 3, True, False) H=(5, 0, False, True) k1 b354
+pair W-tier 0.30 + eta 0.5                            0.84   0.93   1.13   1.24   1.74   C8   41.4   41.4   41.4   38.1   33.4 | >=1000: npk 431 C=(8, 3, True, False) H=(6, 0, False, True) k1 b407
+pair W-tier 0.30 + same node                          0.87   0.96   1.16   1.31   1.91   C8   42.4   42.4   42.4   40.2   36.8 | >=1000: npk 371 C=(7, 3, True, False) H=(5, 0, False, True) k1 b354
+pair W-tier 0.30 + leakage x2                         0.82   0.91   1.10   1.24   1.82   C8   40.3   40.3   40.3   38.2   34.9 | >=1000: npk 371 C=(7, 3, True, False) H=(5, 0, False, True) k1 b354
+triple same node + eta 0.5 + W-tier 0.30              0.77   0.86   1.03   1.13   1.59   C8   37.8   37.8   37.8   34.8   30.5 | >=1000: npk 431 C=(8, 3, True, False) H=(6, 0, False, True) k1 b407
+W-tier 14.7 GB (20 Mb/mm2)                            1.06   1.17   1.42   1.69   2.51   C8   52.0   52.0   52.0   52.0   48.2 | >=1000: npk 217 C=(4, 4, False, False) H=(3, 0, False, True) k2 b233
+W-tier 11.8 GB (16 Mb/mm2, V-Cache-class)             1.06   1.17   1.42   1.67   2.48   C8   51.9   51.9   51.9   51.3   47.6 | >=1000: npk 278 C=(5, 4, False, False) H=(4, 0, False, True) k2 b268
+imbalance 1.00 (intermediate split; undersell test)   1.16   1.29   1.56   1.82   2.67   C8   57.0   57.0   57.0   55.8   51.3 | >=1000: npk 371 C=(7, 3, True, False) H=(5, 0, False, True) k1 b354

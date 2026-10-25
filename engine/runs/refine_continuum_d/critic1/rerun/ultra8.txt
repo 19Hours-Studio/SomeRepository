@@ -1,0 +1,3 @@
+PF/kW  Rubin Max-P 16.4, Rubin best 18.6 | Ultra 600 kW @100 PF 24.0 (1.47x Rubin Max-P, same N3P) | Ultra 600 kW + law at 0.55 V 28.9 (1.55x Rubin best) | C8 (4-HBM pkg, N2) 0.55 V wt 22.9
+128K C8 / Ultra vendor 600 kW trimmed 150 W, 100 PF, full clock:   0.92   1.02   1.12   1.17   1.22
+1024K C8 / Ultra vendor 600 kW trimmed 150 W, 100 PF, full clock:   0.95   0.95   1.11   1.38   1.84

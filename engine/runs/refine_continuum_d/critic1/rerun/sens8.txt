@@ -1,0 +1,43 @@
+
+== 128K p=0.8: Continuum-8 / Rubin host-trimmed 150 W
+                                                     200    500   1000   1500   2000
+C8 tok/s/W                                          55.2   55.2   55.2   52.4   48.2
+base ratio                                          1.13   1.25   1.51   1.71   2.51
+  same node (C-die compute energy x1.25)            1.02   1.12   1.36   1.54   2.25
+  eta 0.5 (Continuum only)                          1.01   1.11   1.35   1.48   2.13
+  W-tier 0.30 pJ/bit                                0.95   1.05   1.27   1.43   2.10
+  leakage x2                                        0.96   1.06   1.28   1.44   2.12
+  no hot-expert replicas (imb 1.12)                 1.11   1.23   1.49   1.66   2.43
+  tile imbalance 1.25                               1.03   1.14   1.38   1.52   2.18
+  collectives 12 us (Continuum only)                1.06   1.17   1.42   1.56   2.24
+  usable SRAM 80% (not 90%)                         1.07   1.18   1.43   1.71   2.51
+  Vmin floor 0.60 V for both                        1.04   1.15   1.39   1.71   2.42
+  two-phase (no weight/attention overlap), both     1.06   1.18   1.42   1.88   2.31   C8   52.1   52.1   52.1   50.0   43.4 | Rubin   49.0   44.2   36.6   26.7   18.8
+  pair: same node + eta 0.5                         0.91   1.00   1.21   1.33   1.93
+  pair: two-phase + no replicas                     1.05   1.16   1.40   1.85   2.19
+  vs Rubin as shipped (no trim)                     1.23   1.36   1.65   1.87   2.75
+  vs Rubin trimmed 250 W                            1.06   1.17   1.41   1.60   2.35
+
+-- 128K all systems (C8 / X)
+                                                     200    500   1000   1500   2000
+Ultra 4-die bottom-up, trimmed 150 W                1.03   1.03   1.14   1.19   1.26   (  53.6   53.6   48.5   44.0   38.2; max 5557)
+Ultra 4-die at Nvidia 600 kW, 100 PF, no undervolt  0.96   1.06   1.17   1.21   1.26   (  57.8   52.2   47.4   43.2   38.1; max 5557)
+Ultra 2-die (reported), trimmed 150 W               1.20   1.33   1.61   1.81   2.67   (  46.0   41.6   34.4   28.9   18.0; max 4949)
+MI455X                                              2.02   2.24   2.53   3.08   4.42   (  27.3   24.7   21.8   17.0   10.9; max 4795)
+TPU8i                                               2.23   2.69   3.55   4.59  12.73   (  24.8   20.5   15.5   11.4    3.8; max 3748)
+Rubin+LPX (LP30 FP8)                                8.17   8.17   8.48  10.45  12.47   (   6.8    6.8    6.5    5.0    3.9; max 2700)
+CS-4                                               28.38  28.38  28.38  26.92  24.96   (   1.9    1.9    1.9    1.9    1.9; max 5737)
+C8 max tok/s/user 5642; Rubin 4949
+
+== 1024K p=0.8: Continuum-8 / Rubin host-trimmed 150 W
+                                                     200    500   1000   1500   2000
+C8 tok/s/W                                          15.7   15.7   15.7   15.7   15.7
+base ratio                                          1.17   1.17   1.40   1.97   3.80
+  same node (C-die compute energy x1.25)            1.06   1.06   1.26   1.78   3.42
+  eta 0.5 (Continuum only)                          1.07   1.07   1.27   1.80   3.46
+  W-tier 0.30 pJ/bit                                0.98   0.98   1.17   1.66   3.19
+  leakage x2                                        0.99   0.99   1.19   1.67   3.22
+  no hot-expert replicas (imb 1.12)                 1.13   1.13   1.35   1.90   3.67
+  tile imbalance 1.25                               1.08   1.08   1.29   1.81   3.49
+  collectives 12 us (Continuum only)                1.05   1.05   1.25   1.77   3.40
+  usable SRAM 80% (not 90%)                         1.14   1.14   1.36   1.92   3.69

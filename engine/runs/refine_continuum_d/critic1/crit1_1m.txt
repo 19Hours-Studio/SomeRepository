@@ -1,0 +1,13 @@
+Rubin >=200: 13.3 tok/s/W prof 0.55V k=3 spd=615 B=2866 (t,m)=(1, 2) {'mem': 2399.1, 'comp': 2260.6, 'link': 348.9, 'c': 38.7}
+Rubin >=1000: 11.2 tok/s/W prof 0.55V k=5 spd=1036 B=1426 (t,m)=(2, 2) {'mem': 1779.7, 'comp': 1687.2, 'link': 260.4, 'c': 28.7}
+Rubin >=2000: 4.1 tok/s/W prof 0.55V k=7 spd=2032 B=268 (t,m)=(4, 1) {'mem': 1321.4, 'comp': 845.5, 'link': 130.5, 'c': 21.3}
+
+1024K  C8 / Rubin trimmed 150 W                       200    500   1000   1500   2000
+base                                                  1.17   1.17   1.40   1.97   3.80   C8   15.7   15.7   15.7   15.7   15.7 | >=1000: npk 651 C=(11, 3, True, False) H=(10, 0, False, True) k4 b50
+pair W-tier 0.30 + eta 0.5                            0.90   0.90   1.07   1.51   2.90   C8   11.9   11.9   11.9   11.9   11.9 | >=1000: npk 651 C=(11, 3, True, False) H=(10, 0, False, True) k3 b50
+pair W-tier 0.30 + same node                          0.90   0.90   1.07   1.51   2.92   C8   12.0   12.0   12.0   12.0   12.0 | >=1000: npk 651 C=(11, 3, True, False) H=(10, 0, False, True) k4 b50
+pair W-tier 0.30 + leakage x2                         0.85   0.85   1.02   1.44   2.77   C8   11.4   11.4   11.4   11.4   11.4 | >=1000: npk 651 C=(11, 3, True, False) H=(10, 0, False, True) k4 b50
+triple same node + eta 0.5 + W-tier 0.30              0.82   0.82   0.98   1.38   2.65   C8   10.9   10.9   10.9   10.9   10.9 | >=1000: npk 651 C=(11, 3, True, False) H=(10, 0, False, True) k3 b50
+W-tier 14.7 GB (20 Mb/mm2)                            1.07   1.07   1.28   1.80   3.47   C8   14.3   14.3   14.3   14.3   14.3 | >=1000: npk 712 C=(12, 3, True, False) H=(11, 0, False, True) k5 b44
+W-tier 11.8 GB (16 Mb/mm2, V-Cache-class)             1.01   1.01   1.21   1.70   3.28   C8   13.5   13.5   13.5   13.5   13.5 | >=1000: npk 675 C=(12, 4, False, False) H=(10, 0, False, True) k5 b88
+imbalance 1.00 (intermediate split; undersell test)   1.23   1.23   1.46   2.06   3.97   C8   16.3   16.3   16.3   16.3   16.3 | >=1000: npk 834 C=(14, 4, True, False) H=(13, 0, False, True) k4 b66

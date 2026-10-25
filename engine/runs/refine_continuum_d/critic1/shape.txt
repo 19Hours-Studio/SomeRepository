@@ -1,0 +1,8 @@
+DSv4-Pro ctx 8704
+  no MTP   @93: model    58,819 meas  2,209 meas/model 0.038 (rel 1.00)  @133: model    57,649 meas    750 meas/model 0.013 (rel 0.35)
+  MTP k<=3 @93: model    58,819 meas  2,209 meas/model 0.038 (rel 1.00)  @133: model    57,649 meas    750 meas/model 0.013 (rel 0.35)
+  model max tok/s/user on GB300: 3,394
+DSR1 ctx 1536
+  no MTP   @88: model    55,903 meas 10,008 meas/model 0.179 (rel 1.00)  @162: model    49,897 meas  1,967 meas/model 0.039 (rel 0.22)  @235: model    38,416 meas    232 meas/model 0.006 (rel 0.03)
+  MTP k<=3 @88: model    55,903 meas 10,008 meas/model 0.179 (rel 1.00)  @162: model    49,930 meas  1,967 meas/model 0.039 (rel 0.22)  @235: model    49,930 meas    232 meas/model 0.005 (rel 0.03)
+  model max tok/s/user on GB300: 4,137
