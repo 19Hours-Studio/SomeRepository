@@ -1,0 +1,5 @@
+[anthropic_5m] delta=False ski-rental +19.0% vs raw | fixed thresholds: 2k:+3.2% 5k:+14.6% 10k:+16.0% 20k:+13.9% 40k:+7.9% | best fixed 10k; ski vs best fixed: 0.964x
+[anthropic_5m] delta=True  ski-rental +30.4% vs raw | fixed thresholds: 2k:+25.7% 5k:+29.5% 10k:+28.9% 20k:+26.3% 40k:+24.4% | best fixed 5k; ski vs best fixed: 0.988x
+[openai_auto] delta=False ski-rental +22.0% vs raw | fixed thresholds: 2k:+9.8% 5k:+18.9% 10k:+19.2% 20k:+16.2% 40k:+9.1% | best fixed 10k; ski vs best fixed: 0.966x
+[openai_auto] delta=True  ski-rental +32.2% vs raw | fixed thresholds: 2k:+29.2% 5k:+31.9% 10k:+30.6% 20k:+27.3% 40k:+24.8% | best fixed 5k; ski vs best fixed: 0.995x
+cross-task shared system+demo (7,090 tok): saves 0.50M units; batch+delta+shared = 6.14M = +35.7% vs raw (+5.3% for raw+shared alone)

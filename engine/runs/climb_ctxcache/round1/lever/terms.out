@@ -1,0 +1,4 @@
+raw append     total= 9.54M | prefix reads 1.72M (18.0%) | history reads 4.37M (45.8%) | first writes 3.45M (36.2%) | re-writes  0.00M ( 0.0%)
+raw + delta    total= 7.68M | prefix reads 1.72M (22.3%) | history reads 3.25M (42.4%) | first writes 2.71M (35.3%) | re-writes  0.00M ( 0.0%)
+batch + delta  total= 6.64M | prefix reads 1.72M (25.8%) | history reads 1.85M (27.9%) | first writes 2.71M (40.8%) | re-writes  0.36M ( 5.4%)
+static prefix per task: mean 8,559 tok, of which system+demo (identical across tasks) 7,090 tok; calls/task mean 32.8

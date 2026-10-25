@@ -10,6 +10,7 @@ T = json.load(open(os.path.join(HERE, "traces.json")))
 PH = 12          # tokens of a placeholder such as "Old output omitted (57 lines)." / "(lines 40-139 unchanged, see view #7)"
 KEEP = 5         # SWE-agent's LastNObservations window
 MINRUN = 3       # shortest run of known lines replaced by a back-reference
+THRESH = 10_000  # "thresh" policy: fixed clear_at_least-style trigger (tokens freed), as in Anthropic context editing
 
 def prep(tr):
     m = tr["msgs"]
@@ -67,7 +68,7 @@ def run(tr, policy, delta=False, W=1.25, R=0.10, mask_at=None):
     for ci, i in enumerate(calls):
         if policy == "raw": S = frozenset()
         elif policy in ("roll", "splice"): S = close(roll(i), i)
-        elif policy in ("batch", "sched"):
+        elif policy in ("batch", "sched", "thresh"):
             E = close(roll(i), i) - S
             if E:
                 cand = S | E
@@ -78,6 +79,7 @@ def run(tr, policy, delta=False, W=1.25, R=0.10, mask_at=None):
                 if policy == "batch":
                     rent += R * sum(size(j) - PH for j in E)
                     go = rent >= buy
+                elif policy == "thresh": go = sum(size(j) - PH for j in E) >= THRESH
                 else: go = ci in mask_at
                 if go: S = cand; rent = 0.0; nmask += 1
         ids = [(j, j in S) for j in range(i)]

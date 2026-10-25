@@ -10,14 +10,15 @@ Imports model9 / model8 (copied unchanged from round2).
     pair package carries HBM (CSA KV) -> h in (1..4). 30 pairs + 1 unpaired HCA stage + MTP + head.
     Pair layout pipeline: L/2 stages (30 pairs, the unpaired HCA layer, MTP+head), each holding m microbatches;
     c_pair = c_CSA + c_HCA (two layers back to back on the same packages); cycle Tp = max(m c, c + 2 tau) since a
-    pair stage contains two per-layer fixed latencies; throughput m b tok / Tp; speed tok / ((L/2) Tp);
-    users in flight m b L/2.
+    pair stage contains two per-layer fixed latencies; throughput m b tok / Tp; speed tok / (S Tp);
+    users in flight m b S, S = L - 30 stages.
   * fixed host 110 W/slot (no KV-mirror DRAM; critic2 point 2).
 """
 import model9 as e9
 q, e8, m = e9.q, e9.e8, e9.m
 M = e9.M
 HO = 8.0
+TWO_PHASE = False   # no overlap of weight and attention phases (bracket applied to GPUs too)
 
 
 def _cap(s, typ, g, users, idx_sram, kv_sram):
@@ -47,6 +48,7 @@ def _terms(s, typ, g, h, b, pos, imb, idx_sram, kv_sram, L):
     sk = kv_s / s["srambw"]
     hk = kv_h / (h * e8.STACK_BW) if h else 0.0
     lnk = imb * b * pos / g * M["hid"] * 3 * e9.D(g) * (g - 1) / g / s["link"] if g > 1 else 0.0
+    if TWO_PHASE: return max(sw, cL) + max(sk + hk, cA), 0.0, 0.0, lnk
     return sw + sk, hk, cL + cA, lnk
 
 
@@ -102,7 +104,8 @@ def env(ctx, p=0.8, labels=("0.55V wt", "0.60V wt"), omega=0.7, lanes=64, gmax=1
                 for b in m.BGRID:
                   for lay in (("single", "pair") if use_pair else ("single",)):
                     lpS = 1 if lay == "single" else 2
-                    users = mm * b * L // lpS
+                    nst = L if lay == "single" else L - csa["n"]      # pipeline stages: 30 pairs collapse 30 stages
+                    users = mm * b * nst
                     # option A (Continuum-9 layout): 30 CSA stages + 31 HCA stages ; option B: 30 pairs + 1 HCA stage
                     def opts_single(typ, hs, ol, n):
                         o = []
@@ -142,7 +145,7 @@ def env(ctx, p=0.8, labels=("0.55V wt", "0.60V wt"), omega=0.7, lanes=64, gmax=1
                                     W = (oa[1] + ob[1] + om[1] + head_w) * sp
                                     npk = oa[3] + ob[3] + om[3] + 1
                                     eff = m.DERATE * mm * b * tok / T / W
-                                    spd = tok / (L / lpS * T)
+                                    spd = tok / (nst * T)
                                     mx = max(mx, spd)
                                     for t in tiers:
                                         if spd >= t and (t not in res or eff > res[t][0]):

@@ -1,0 +1,4 @@
+new tokens/call=1,076  output tokens/call=156  KV bytes/token=328 kB
+prefill attention over a cached token = 0.020x of recompute
+decode KV streaming of a cached token  = 0.048x of recompute (shared across B sessions with cascade attention)
+re-billing prior assistant output as read instead of write saves 0.37M units
