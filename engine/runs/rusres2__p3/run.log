@@ -31,3 +31,5 @@ gate: 4/4 parsed {'DEAD': 4}
   repair: 876,955 tokens, 359.3 s
 repair: 2 ideas (1213 words)
 /home/user/SomeRepository/engine/runs/rusres2__p3/audit_final/TASK.md
+  audit_final: 376,629 tokens, 275.9 s
+  audit_final: 4 new facts -> evidence.md
