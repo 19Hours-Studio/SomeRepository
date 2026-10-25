@@ -25,5 +25,86 @@
   "name": "Stockpile coal, ship open-season",
   "mech": "Syradasayskoye mines year-round into a Dikson stockpile of about 3.6 Mt. The coal ships only in the July–November open season, on lower-ice-class Russian bulkers escorted in convoys timed between LNG peaks, and goes to China, a lawful buyer paying 3% duty. The closest earlier attempts are Red Dog and Mary River (F167–168). Their limit was a fixed 90–120-day window; this idea fits within it by sizing loading at 1,550 t/h or more instead of stretching the season. The deciding quantity is loader rate × open-season days ≥ annual output.",
   "value": "Winter ice-class hull demand for coal falls to zero, so Arc7 hulls and icebreakers stay free for LNG while coal still reaches its design 5 Mt/y."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Swing trains to hull-days",
+  "mech": "Put the four Zvezda Arc7 carriers (two in service, two due late 2026) on a fixed Utrenneye–Ura Bay ice-leg shuttle only. Sell the cargoes FOB at the Saam FSU, and run Trains 1–2 at the shuttle-limited rate from Jan to Jul. Run both trains at design rate in the ice-free Ob Gulf months, when buyer-chartered open-water hulls can load at the berth. Defer Train 3, and use its domestic modules and Kazanskompressormash and Power Machines units as spares to lift availability on Trains 1–2. The closest earlier attempts are Kosygin's ad-hoc Ura Bay runs and Yamal LNG's Zeebrugge trans-shipment, which used Arc7 hulls on long open-water legs. Here the hulls never leave the ice leg. The deciding quantity is the winter shuttle cycle: about 14 days, implied by 2 hulls × 26 trips × 77 kt ≈ 4 Mt/y.",
+  "value": "Output roughly doubles to 8–9 Mt/y within 0–1 year. Capital falls from about $620/t to about $300/t, which makes marginal cargoes cash-positive at the $390/t realised price. All-in cost stays above price because the $190/t discount remains."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Southbound winter Vostok crude",
+  "mech": "In ice months, pump Payakha crude south through the 790 km line to Vankor, then into Vankor–Purpe and Transneft. The Rosneft-owned Achinsk and Angarsk refineries buy it domestically and can legally pay. Use the Bukhta Sever northbound flow only in summer, on a shortened Arc7 shuttle to Murmansk. This needs Russian-built bidirectional pump stations. The closest earlier attempt is the year-round plan for about 15 Arc7 tankers (Carnegie), which is stalled because those hulls do not exist. The deciding quantity is the spare winter capacity of Vankor–Purpe above declining Vankor output. That figure is not in the supplied facts and must be verified before commitment.",
+  "value": "Tonnes start flowing to a sanctions-proof buyer in 2027 with no new hulls, deferring the Arc7 tanker gap and reducing exposure to the SDN discount."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Stockpile-and-sprint Dikson coal",
+  "mech": "Mine Syradasayskoye year-round into a frozen stockpile at Dikson. Ship only in the Jul–Nov open-water window, on Russian-built lower-ice-class bulkers using icebreaker escort slots that oil and LNG traffic leave free in summer. Sell CFR China under contracts timed to the window. The closest earlier attempt is Red Dog (122 shipping days), which works only because its loading rate fits the window. The deciding quantity is Dikson's berth loading rate, which must reach at least 42 kt/day to move 5 Mt in 120 days; Arc-class winter sailing is not needed.",
+  "value": "Outbound logistics, about 25% of cost, falls by roughly half, so delivered cost drops about 1.15x without competing with LNG for Arc7 hulls."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Arc7 never leaves Barents",
+  "mech": "Every Zvezda Arc7 carrier runs only the Utrenneye–Ura Bay leg, all year, and the Ura Bay floating storage unit hands cargo to lawfully chartered conventional carriers. Liquefaction trains are brought online one per about 2.5 Mt/y of shuttle capacity. Long-haul summer NSR sailings by Arc7 hulls are dropped because each one costs about 2 Mt/y of winter shuttling. The closest earlier attempt is the Alexey Kosygin's Ura Bay runs, which stopped short because hulls were still split between short shuttles and long-haul voyages; this rule removes the split. The deciding quantity is the winter round-trip time, which must stay at or below 11 days.",
+  "value": "Lifts output toward about 12.5 Mt/y from built trains by 2027 and roughly halves full cost per delivered tonne, to about $490/t."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Winter coal stockpile, summer escort",
+  "mech": "Syradasayskoye mines and hauls all year and banks about 2.9 Mt at Dikson. It ships only from July to November, using the lowest ice class that is lawfully available, at about 33 kt/day of loading. This frees nuclear icebreaker escort hours in winter and spring for the Ob Gulf and Bukhta Sever. The closest earlier attempt is the Red Dog and Mary River summer-only shipping model, which stopped at a capped mine rate; here the mine is uncapped and only shipping is seasonal. The deciding quantity is coking-strength (CSR) loss in a 7-month Arctic stockpile, which must be below the buyer's grade threshold.",
+  "value": "Cuts outbound logistics, about 25% of the coal cost, by using cheaper hulls and removes coal from the winter competition for icebreakers."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Size Sever to tankers",
+  "mech": "Payakha and Vankor volumes are allocated each month. Bukhta Sever receives only what the Arc7 tanker fleet can lift, about 2.1 Mt/y per 70 kt hull on a roughly 12-day Murmansk cycle. The surplus goes south through the existing Vankor–Purpe pipeline to domestic refineries, which are legal payers with no discount. The closest earlier attempt is the 30 Mt/y H2 2027 target, which assumes about 14–15 hulls that do not yet exist and sanctions-exposed buyers. The deciding quantity is spare southbound Transneft capacity in Mt/y.",
+  "value": "Turns stranded Arctic barrels into domestically sold tonnes now and brings the Arctic route to full output only as hulls arrive."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Arc7 never leaves shuttle",
+  "mech": "Each Russian-built Zvezda Arc7 hull runs only Utrenneye to Ura Bay/Murmansk, all year. Conventional tonnage serving non-sanctioning buyers carries the long leg, and Arc7 hulls never sail the NSR east leg to Asia. A rolling schedule recomputes each hull's cycle time from ice state each week and holds the gravity-based storage tanks near empty in summer, when turns are fastest. The closest earlier attempt is the Yamal LNG Zeebrugge model, which sent Arc7 hulls 20-day legs to Europe because hulls were plentiful there. With only 2 hulls, that long-leg habit costs about 8x tonnage per hull, so the shuttle rule reverses it. The deciding quantity is the winter round-trip time; it must stay at or below 14 days for the 2.6 Mt/y per hull to hold.",
+  "value": "With 5 hulls by 2028, Arctic LNG 2 reaches about 13 Mt/y, essentially the 13.2 Mt/y two-train design. Capital per tonne falls from about $620 to about $190, and delivered cost drops from about $970/t to roughly $540/t without any sanctions workaround."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Coal summer-only, oil gets winter",
+  "mech": "Syradasayskoye coal is stockpiled at Dikson through winter, about 3.2 Mt of the 5 Mt/y. All of it ships Jul–Nov on lower ice-class bulkers, some directly east to China, which charges a 3% duty. Every winter nuclear icebreaker hour in the shared Yenisei Gulf then goes to the Bukhta Sever Arc7 tanker convoy. The closest earlier attempts are Red Dog and Mary River, whose fixed 3–4 month windows capped output. Coal here does not need a year-round window, because the stockpile, unlike LNG with its boil-off, does not decay. The deciding quantity is summer loading and hull rate. About 38 kt/day over about 130 days needs roughly 6 hulls of about 70 kt.",
+  "value": "Coal gets a delivered route that uses no Arc7 hulls and no icebreaker hours, and Vostok Oil gets the winter escort capacity its 30 Mt/y target in H2 2027 needs."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Freeze Train 3 until hulls",
+  "mech": "Arctic LNG 2 Train 3 spending is gated on a hull ledger. Spending resumes only when (Arc7 hulls delivered × 2.6 Mt/y) exceeds the 13.2 Mt/y of Trains 1–2. With Zvezda delivering about 2 hulls/yr, that is about 2029–30. The GTE-170 units and the train module meanwhile go to hull-limited Trains 1–2 as spares. The closest earlier attempt is Arctic LNG 2 itself, which built trains ahead of ships and left Train 1 idle. This gate makes ship deliveries the trigger for train capex. The deciding quantity is the Zvezda delivery rate, which depends on finding a substitute for the unavailable GTT membranes.",
+  "value": "Avoids several years of idle-capital annuity, about $0.8bn per year on a Train 3 cost of about $7bn (est.), without losing any delivered tonne."
  }
 ]

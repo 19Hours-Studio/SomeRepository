@@ -1,0 +1,17 @@
+Baimskaya is the only case here where the ledger leaves room. Capital is about 45% of cost, and the ceiling is 10x. Phasing cannot cut the $8bn outright. What it can do is make each tranche of capital start earning revenue sooner, and stop first metal from waiting on the floating nuclear units. All numbers below come from the supplied facts or my own arithmetic (CRF 0.145, 25 RUB/kWh ≈ $0.26/kWh). Nothing here has been checked against site data.
+
+=== IDEAS ===
+IDEA 1
+NAME: Diesel-fed starter concentrator
+MECHANISM: Build one Natalka-size line first, at about 10 Mt/y, on the higher-grade starter pit (assumed 0.6% Cu and 88% recovery, giving about 53 kt Cu a year). Run it on about 50 MW of domestic diesel gensets (Kolomna or Zvezda). The fuel is about 90 ML a year, shipped in Pevek's 4–5-month window and held in site tanks. The closest earlier attempt is Baimskaya's 2020 plan, which tied first metal to 318 MW of nuclear due in 2028–30, a date that has slipped. Here the plant draws nothing from the node's 8 MW of winter spare. The gensets later become the N−1 standby the nuclear units need anyway, so they are not stranded. The deciding quantity is starter-pit grade. Energy comes to about 6.8 MWh/t Cu × $0.26 ≈ $1,800/t Cu, which only works if the grade stays at or above about 0.5% Cu.
+VALUE: First concentrate arrives about 4 years after decision, as at Natalka, independent of the nuclear dates. Annualised phase-1 capital is about $4,100/t Cu (assuming $1.5bn), close to the full plan's $3,900/t, but it earns 2–3 years earlier.
+
+IDEA 2
+NAME: Winter-road haul, port stockpile
+MECHANISM: Defer the $0.6bn all-season road. In the starter phase, haul about 210 kt a year of concentrate (25% Cu) over a 100-day winter road. That is about 2,100 t a day, or about 53 loads of 40 t, needing about 130 domestic KAMAZ or Ural trucks on a 2.5-day round trip. The concentrate goes into a covered stockpile at Pevek sized to a full year's output, Red Dog style, to bridge the gap between the winter-road and shipping windows. The closest earlier attempt is Tibbitt–Contwoyto, where the window is shrinking (65 to 49 days). That failure mode only binds at full rate: at about 300 kt Cu a year, 1.2 Mt of concentrate would need about 600 trucks, so the permanent road is built only for phase 2. The deciding quantity is the number of reliable winter-road days. Below about 60 days, the fleet more than doubles.
+VALUE: About $87m a year of annualised road capex is deferred 3–5 years, worth about $200–300m in present value at 14%. The road is then built on cash flow rather than on project debt.
+
+IDEA 3
+NAME: Nuclear units matched to modules
+MECHANISM: Order and moor the floating units one at a time. Each unit (about 80 MW, about $320m) goes in only when the next 15–20 Mt/y concentrator module is ready to absorb its output. Diesel covers any gap until then. The closest earlier attempt is Elga, where rail was built ahead of mine output, design output arrived 12 years late and debt reached 421 bn RUB. The cause there was capacity installed before demand existed, and staging each power block to a matched demand block removes that cause. The deciding quantity is idle-capacity years. Each unit deferred 3 years saves 320 × (1 − 1.14⁻³) ≈ $104m in present value.
+VALUE: About $300m of present value is saved across three deferred units. Annualised capital per tonne during ramp-up stays near the full-plan $3,900/t Cu instead of spiking while built capacity sits idle.

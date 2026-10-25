@@ -1,0 +1,92 @@
+For the producing Norilsk/Taimyr nickel-copper-PGM complex, which changes to mining or development order, processing of lower-grade and disseminated ore, equipment substitution, or foundation design and monitoring would cut full cost per tonne of nickel-equivalent delivered and raise recovery and structure life? The comparison is the current Norilsk practice (Talnakh concentrator expansion, Sulphur Programme), Raglan and Kiruna/Aitik. It must not overstate thaw where engineering faults (Ambarnaya, the 2021 concentrator collapse) were the cause.
+Cases: Talnakh/Oktyabrskoye rich and cuprous ore; Norilsk-1 disseminated ore; Maslovskoye (low grade, rich in PGM); Nadezhda and Talnakh processing; Dudinka-Murmansk delivery; ageing industrial and residential structures on Norilsk ground.
+A good answer: (a) full cost per tonne of nickel-equivalent delivered, where capital is about 37% of the total and foundation losses about 1–2%; (b) years from investment decision to added output or capacity, against Talnakh modernisation (47bn RUB for +34%) and the Sulphur Programme's slip of at least 2 years; (c) recovery for each ore type, plant availability, and design life of foundations against the 1 cm/yr deepening of thaw and Nornickel's thermometric borehole forecasts to 2050.
+The binding constraint to attack: Sustaining and processing capital with foreign contractors and equipment gone (Sulphur Programme cost +40–70%), falling grade as Maslovskoye and disseminated ore come in, and the life of structures where maintenance and design faults count as much as thaw.
+This is part 3 of 3 of a larger question (context, not instructions): Russia wants to develop and extract minerals and energy in its permafrost regions at the lowest full cost, in the shortest time from investment decision to first production, and with the highest effectiveness. Effectiveness means resource recovery, working time across the year, and how long infrastructure lasts on thawing ground. All three are measured per unit of product delivered to the buyer. T
+
+Candidate answers (data):
+IDEA 1
+NAME: Replicated domestic concentrator line
+MECHANISM: Build the Talnakh expansion from 10 to 18 Mtpa as identical copies of one line built and qualified on Russian equipment, rather than as a bespoke design. The first copy is the qualification article. Its availability data and failure log set the spares pool and the design changes for later copies. The closest earlier attempt is the Sulphur Programme, which ran 40–70% over budget and at least 2 years late when its foreign contractors left. That overrun came from a bespoke design losing its contractor, which a single repeated domestic design avoids. The deciding quantity is whether the line costs no more per added Mtpa than the 2017 benchmark of 1.8bn RUB, after inflation, while reaching about 90% or more of the availability of the Western cells.
+VALUE: If availability holds, a 30% cut in processing capital lowers full cost per tonne of Ni-eq by about 11% and shortens the time from decision to capacity for each later line.
+
+IDEA 2
+NAME: Sorting disseminated ore before concentrator
+MECHANISM: Use XRT or sensor-based sorting to reject barren mass from Norilsk-1 disseminated ore (0.25% Ni) and later Maslovskoye ore before it reaches a concentrator. A pilot first measures how unevenly the grade is spread at the scale of single rocks. The sort threshold is then tuned on the trade-off between Ni and Pd lost and mass rejected. The closest earlier attempts are Selebi (15% of mass rejected, unaudited) and Renison (about 10% lower unit cost). A 15% rejection only lifts grade by 1.09–1.16x, so this pays only if rejection is much higher. The deciding quantity is the share of mass rejected at no more than 2% loss of Ni-eq, and it must reach at least 30% to defer a block of concentrator capacity.
+VALUE: Lower-grade ore can then use existing concentrator capacity, which defers part of the expansion capital and caps the rise in processing cost per tonne of Ni-eq as grade falls.
+
+IDEA 3
+NAME: Defect-to-repair closure regime
+MECHANISM: Rank the critical structures (tanks, concentrators, the smelter, pile fields) and give each a strain-gauge and level survey plus a thermometric borehole. Every logged defect gets a repair deadline that the engineering function owns. At the next replacement of each foundation, fit an adjustable foundation to rock or a pile designed to SP 25.13330 Amendment 3. The closest earlier attempt is the post-2020 monitoring network, which detects problems but does not force repairs: the defects behind the 2021 concentrator collapse sat unrepaired for 2.5 years. The deciding quantity is the median time from finding a defect to repairing it, measured alongside how much of the deformation comes from thaw rather than design or maintenance.
+VALUE: It protects plant availability and cuts the risk of claims like the 146bn RUB Ambarnaya claim, without assuming thaw is the cause, and the direct saving stays within the 1–2% foundation share.
+
+IDEA 4
+NAME: Sort disseminated ore before concentrating
+MECHANISM: Russian-built XRT sorters (for example Rados, which needs no Western supply) are placed at the Norilsk-1 and Maslovskoye ore passes. They reject barren dilution before haulage, so Talnakh treats ore with a higher head grade instead of needing extra Mtpa. Reject grade is logged per sorter batch and the cut-off is re-tuned monthly against the concentrator's tailings assays. The closest earlier attempt is Selebi XRT (15.2% mass rejected, about 98% recovery claimed), but that figure is unaudited and from a different mineralogy. This idea does not rest on it: a pilot on Norilsk disseminated sulphide must pass before any concentrator capacity is deferred. The deciding quantity is the Ni-eq and PGM loss to reject, which must stay at or below 3%.
+VALUE: Defers part of the 10→18 Mtpa build (about 1.8bn RUB per Mtpa at the 2017 benchmark) and cuts processing cost per Ni-eq tonne by roughly 10–15%, in line with Renison's measured 10%.
+
+IDEA 5
+NAME: Availability as capacity
+MECHANISM: A fleet-wide parts registry pools spares across the Western installed base, ranks failure modes by lost Ni-eq tonnes, and sends the worst parts first to domestic reverse-engineering and casting. Spares stock is re-optimised quarterly from measured mean time between failures. The closest earlier attempt is wholesale fleet replacement with BelAZ, whose 45 t truck is still on factory-ground tests and which caused the 2023 output dip. This idea instead keeps the proven fleet running while substitution matures. The deciding quantity is the gain in concentrator and mine availability in percentage points; each point at 10 Mtpa is about 0.1 Mtpa of capacity with no new build.
+VALUE: Delivers added output within months rather than the 3–4 years of a new concentrator stage, and cuts the schedule risk from lost suppliers.
+
+IDEA 6
+NAME: Defect-first foundation triage
+MECHANISM: Open maintenance defects (corrosion, pile set in permafrost instead of bedrock, unrepaired cracks) are combined with the five borehole temperature forecasts into one register per structure, ranked by consequence: spill, collapse or lost throughput. The 100bn RUB safety budget is spent in rank order under a binding repair deadline. New builds use adjustable, jackable foundations rather than relying on thermosyphons, whose cold-season window is shrinking. The closest earlier attempt is the post-2020 monitoring network, which detects but does not fix. Ambarnaya and the 2021 concentrator collapse were failures of maintenance and design, not thaw. The deciding quantity is the share of deformations with a maintenance or design cause rather than thaw, which must be measured per structure.
+VALUE: Cuts the avoided-loss tail (the Ambarnaya claim was 146bn RUB) and extends structure life ahead of the projected loss of more than 55% of pile capacity by the 2040s, while the direct gain stays capped at the 1–2% foundation share.
+
+IDEA 7
+NAME: Barren-rock rejection before milling
+MECHANISM: Crushed Norilsk-1 disseminated ore and Maslovskoye ore pass a Russian-made X-ray density sorter (RADOS, already used at Alrosa) at the mine portal. The sorter rejects low-sulphide pieces as waste, and the reject threshold is reset monthly from assays of the rejected rock. The closest earlier attempt is the Selebi XRT figure of 15.2% rejection and about 98% recovery, which is unaudited. This idea avoids that weakness because it requires a Norilsk drill-core sorting test before any purchase. Using domestic sorters also avoids the loss of foreign suppliers.
+VALUE: If 15% of 8 Mtpa of feed is rejected, about 1.2 Mtpa of concentrator capacity is freed, worth about 2.2bn RUB at 1.8bn RUB per Mtpa (2017 Talnakh rate). It also removes roughly 13% of the processing term, about 3% of full cost per Ni-eq tonne. The deciding quantity is the Ni and Pd lost to the reject stream, which must stay at or below 2%.
+
+IDEA 8
+NAME: Refill old concentrator with low-grade
+MECHANISM: Expanding Talnakh to 18 Mtpa pulls Talnakh ore away from the Norilsk concentrator, which treated 7.6 Mt in 2020. The freed Norilsk capacity is then re-tuned for disseminated and Maslovskoye feed: finer grinding and a palladium-selective reagent scheme, all on existing domestic-serviceable equipment. The closest earlier attempts are the greenfield builds at Udokan and Baimskaya, which overran capex by 38–45% and ran years late. This idea avoids that because no new buildings or imported trains are needed.
+VALUE: Maslovskoye could reach production in about 2–3 years after the decision, with no new concentrator capex. The deciding quantity is the Ni and Pd recovery achievable in the re-tuned flowsheet on 0.25–0.3% Ni feed, to be proven by pilot. The foundation margins of the old plant must also be audited first.
+
+IDEA 9
+NAME: Bearing-margin ranked repair deadlines
+MECHANISM: Each critical structure (tanks, concentrator bays, smelter) gets two measurements: pile strain and ground temperature at pile depth. These give a remaining bearing margin, defined as current capacity minus load. Structures are ranked by that margin, and every found defect gets a binding repair deadline sized to the rate at which its margin is falling. The closest earlier attempt is the post-2020 monitoring, which used five boreholes and InSAR. It detects movement but fixes nothing, and in 2021 a known defect sat unrepaired for 2.5 years. Here detection is tied directly to a repair deadline.
+VALUE: The direct gain is capped at 1–2% of cost. The real value is avoiding collapse and spill losses, measured against the 146bn RUB Ambarnaya claim, and adding design life to structures by finding faults before they fail. The deciding quantity is the time from detecting a defect to repairing it, compared with how fast that structure's margin is falling.
+
+IDEA 10
+NAME: Freed Norilsk concentrator, disseminated feed
+MECHANISM: Talnakh's expansion to 18 Mtpa takes all Talnakh ore (F59), which frees capacity at the Norilsk concentrator (7.6 Mt in 2020). That capacity is refilled with Norilsk-1 and Maslovskoye ore instead of building a new plant. A blend is chosen each quarter to keep flotation feed in the range the existing circuits have recovered. The closest attempt is the 2017 Talnakh upgrade at 18bn RUB/Mtpa. It needed new capacity, and this idea needs none. The deciding quantity is the incremental cash margin per tonne of feed, which is ore value × recovery minus mining and processing cost, while concentrator capital stays sunk.
+VALUE: Lower-grade ore enters production with almost no concentrator capital, removing much of the 37% capital share of Ni-eq cost on this path, and the lead time is set by mine development, not plant build.
+
+IDEA 11
+NAME: Domestic XRT dilution rejection
+MECHANISM: Russian-made XRT sorters (Ekaterinburg producers such as RADOS, unverified at Ni scale) are installed at the bulk-mining face or shaft to reject barren dilution in the +20 mm fraction. They do not try to upgrade the ore itself. The cutoff is tuned on a site sample, checked by assay, until no more than 3% of metal goes to rejects. The closest attempt is Selebi's 15.2% rejection, an unaudited release. This idea claims only that tier and needs no Western sorter. The deciding quantity is mass rejected at 97% metal kept, measured on Norilsk-1 core.
+VALUE: Rejecting 15% of mass cuts concentrator processing and tailings cost per Ni-eq by about 1.15×, and the freed capacity is worth about 18bn RUB per Mtpa.
+
+IDEA 12
+NAME: Defect-to-repair deadline register
+MECHANISM: Every defect found at the reused Norilsk concentrator and its tailings line is logged with a mandatory repair deadline set by structural risk. The register is fed by pile strain gauges and the thermometric boreholes, and any lapse is escalated to Rostekhnadzor. Thaw readings change foundation design only where the boreholes show warming. The closest attempt is post-spill monitoring (F263), which detected faults but did not fix them, as with the 2.5-year unrepaired defects behind the 2021 collapse. The deciding quantity is the median time from defect detection to repair, which should fall from about 30 months to under 6.
+VALUE: The plant whose reuse saves the capital in disseminated-ore production lasts its design life. The register targets the collapse and spill losses that actually occurred (Ambarnaya claim 146bn RUB) rather than overstating thaw.
+
+IDEA 13
+NAME: Pair Talnakh expansion with backfill
+MECHANISM: The Talnakh third complex is approved only together with a plan to refill the Norilsk concentrator capacity it frees. That plan is XRT-sorted Norilsk-1 disseminated ore, and later Maslovskoye ore. Capex is then computed per added tonne of contained Ni for the pair, not per tonne of ore. The closest earlier attempt is the 2017 Talnakh upgrade, which added capacity at one plant without counting the other plant's ore loss. The same booking error sank an earlier answer, and this pairing avoids it. The deciding quantity is Ni recovery from sorted disseminated ore at the old plant: XRT raises feed grade only about 1.09–1.16× (F350, F356, unaudited).
+VALUE: It turns a 14–24bn RUB step that adds almost nothing into real added Ni-eq, ranked honestly against Maslovskoye's roughly 600k RUB per annual t Ni.
+
+IDEA 14
+NAME: Qualify spares, delay fleets
+MECHANISM: Nornickel reverse-engineers and certifies domestic wear parts and drives for the installed Western underground fleet and the concentrator. Each part is rated by a mean-time-between-failures (MTBF) test, and failure records are logged per component. Fleet replacement is deferred until a domestic prototype matches that MTBF. The closest earlier attempt is the BelAZ joint venture (F184–186). It stalled because BelAZ had never built an underground truck and the 45 t truck is still on factory tests. Qualifying parts needs no new vehicle. The deciding quantity is plant and fleet availability with qualified spares, against the 2023 dip during the equipment switch (F63, F64).
+VALUE: It defers fleet capex inside the capital share of about 37% and protects concentrator availability while sanctions persist.
+
+IDEA 15
+NAME: Defect-first foundation triage
+MECHANISM: Every industrial structure is ranked by three checks: whether its piles reach bedrock, how long known defects have gone unrepaired, and corrosion. Thermosyphons or adjustable foundations are funded only where the borehole temperature trend shows ground warming under that structure. The closest earlier attempt is the post-2020 monitoring network (five boreholes, 100bn RUB, F263). It detects but does not fix, and the 2021 collapse came from defects left unrepaired for 2.5 years. The deciding quantity is the share of deformed structures caused by design or maintenance rather than thaw; published figures conflict at 35% versus about 60% deformed (F267, F268).
+VALUE: The direct cost gain is capped at the 1–2% foundation share, but the method targets the avoided-loss tail (one claim of 146bn RUB, F262) and extends structure life under the 2026 SP 25.13330 amendment (F92, F252).
+
+
+Group these candidates into families. Two candidates share a family when the same mechanism delivers their value:
+variants that differ only in size, number of units, place, wording or detail are one family. A candidate that
+combines the mechanisms of two families is its own family only if the combination is what delivers the value. Do not
+judge whether they work.
+
+Final answer (text only), one line per candidate in the order given; members of one family get exactly the same label:
+=== FAMILIES ===
+IDEA 1 | FAMILY <short label of the mechanism, 2-6 words>
+(same for the others)

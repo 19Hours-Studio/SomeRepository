@@ -1,0 +1,150 @@
+For greenfield metal deposits in north-east Russia that have no grid or road, which changes to power supply, construction method, access logistics or development order would cut full cost per unit delivered and the years from investment decision to first metal? The comparison is Kupol/Dvoinoye, Natalka, Baimskaya's 2020 plan, Red Dog and Meliadine. The answer must use only domestic or unrestricted equipment, and it must work through the period when Bilibino has closed and the floating units are not yet running (2026–2030).
+Cases: Baimskaya copper-gold (Pevek/Nagleynyn route, Rosatom floating power units 2028–30); Chukotka and Magadan hard-rock and placer gold (Kupol, Natalka, Kolyma placers); Tomtor rare earths (Rosneft, pilot 2027, Anabar/Lena river access).
+A good answer: (a) full cost per oz Au or per t Cu or rare-earth oxide delivered, including annualised external-infrastructure capex; (b) years from investment decision to first production, against Natalka (about 4–5 years, then 2 to full rate) and Baimskaya (end-2027 target, already slipped); (c) recovery, operating days per year, and life of tailings, dams and foundations in discontinuous or warm permafrost.
+The binding constraint to attack: Firm power in the 2026–2030 gap (about 8 MW of winter spare in Chukotka), the capex of external road and port (Baimskaya rose from $5.5bn to $8bn, about $600m of it road and port), and short seasonal supply windows (winter roads, Pevek's 4–5-month navigation).
+This is part 1 of 3 of a larger question (context, not instructions): Russia wants to develop and extract minerals and energy in its permafrost regions at the lowest full cost, in the shortest time from investment decision to first production, and with the highest effectiveness. Effectiveness means resource recovery, working time across the year, and how long infrastructure lasts on thawing ground. All three are measured per unit of product delivered to the buyer. T
+
+Candidate answers (data):
+IDEA 1
+NAME: Capped grid tap, diesel winter-firming
+MECHANISM: Connect the mine to the Lomonosov-fed Chaun-Bilibino node with a load cap at the roughly 8 MW of winter spare. Draw more in summer, when spare capacity is larger, and run domestic gensets only for the winter peak. Store just the winter top-up fuel. The closest earlier attempt is the slipped Pevek–Bilibino line and the Baimskaya RITM units. This plan needs only a short spur line and no new generation. The deciding quantity is the line distance against the MW of winter spare that is actually available.
+VALUE: Diesel volume falls by an estimated 60–80% for one high-grade mine (cutting the 20 ML tank farm and road fleet). The grid tap works only if the mine is within spur-line reach, and only one mine fits.
+
+IDEA 2
+NAME: Mine-first, mill-on-nuclear sequencing
+MECHANISM: From 2026–30, diesel goes only to mobile fleets for pre-stripping, ore stockpiling and road and port earthworks, at about 24 kt of fuel a year. No fixed plant draws on the 8 MW Chaun-Bilibino spare. When the first floating unit is energised, the mill starts on a stockpile of several Mt (target, unsourced) instead of on a pit that is still being opened. The closest earlier attempt is Natalka: it opened at 50% of design rate and took about two years to reach full rate, because mill feed was not yet secured. Here the gap years are spent building that feed. The deciding quantity is litres of diesel per tonne moved, compared with the fuel Pevek can land in one season.
+VALUE: It turns the uncovered power gap into ramp-up already done, cutting time from investment decision to full rate by about one year without any new power source.
+
+IDEA 3
+NAME: Tomtor raw-ore shipment
+MECHANISM: The pilot mines only the highest-grade ore (10–12.5% REO per one source, conflicting) in winter and stockpiles it at the Anabar landing. It ships the whole year's ore during the open-water season to an existing grid-powered hydrometallurgical plant. The 50–60% slimes that defeat beneficiation are then handled by acid leaching on the grid, not in permafrost. The closest earlier attempt is the off-site processing plan of the 2010s, which stopped on financing and offtake, not on physics.
+VALUE: The on-site plant, power and tailings dam leave Tomtor's 40% capital share. The deciding quantity is delivered freight per tonne of REO, roughly 8–10 t of ore per tonne, which must stay well below the oxide price.
+
+IDEA 4
+NAME: Pre-built concentrator modules on jackable pads
+MECHANISM: Domestic yards assemble the concentrator from Uralmash mills and Mekhanobr flotation cells in modules of no more than 300 t *(assumed)*. The modules arrive in one navigation season and sit on ventilated gravel pads with screw jacks, not on adfreeze piles. Site crews then only connect modules, and settlement is corrected by re-levelling rather than designed away. The closest earlier attempts are Yamal LNG modules, which used Western drives and 30,000 workers, and SP 25 piles, which lose about 20–40% of capacity as the ground warms. This plan uses domestic mineral-plant equipment and does not depend on the γt norm. The deciding quantity is differential settlement per year against jack stroke, plus module mass against the Pevek crane and road-bridge ratings.
+VALUE: Site construction shrinks from 3–4 seasons to 1–2, which brings decision-to-first-metal below Natalka's 4–5 years, and foundation life becomes a maintenance interval rather than a design gamble.
+
+IDEA 5
+NAME: Diesel-fed starter concentrator
+MECHANISM: Build one Natalka-size line first, at about 10 Mt/y, on the higher-grade starter pit (assumed 0.6% Cu and 88% recovery, giving about 53 kt Cu a year). Run it on about 50 MW of domestic diesel gensets (Kolomna or Zvezda). The fuel is about 90 ML a year, shipped in Pevek's 4–5-month window and held in site tanks. The closest earlier attempt is Baimskaya's 2020 plan, which tied first metal to 318 MW of nuclear due in 2028–30, a date that has slipped. Here the plant draws nothing from the node's 8 MW of winter spare. The gensets later become the N−1 standby the nuclear units need anyway, so they are not stranded. The deciding quantity is starter-pit grade. Energy comes to about 6.8 MWh/t Cu × $0.26 ≈ $1,800/t Cu, which only works if the grade stays at or above about 0.5% Cu.
+VALUE: First concentrate arrives about 4 years after decision, as at Natalka, independent of the nuclear dates. Annualised phase-1 capital is about $4,100/t Cu (assuming $1.5bn), close to the full plan's $3,900/t, but it earns 2–3 years earlier.
+
+IDEA 6
+NAME: Ship raw Tomtor ore south
+MECHANISM: Tomtor ore at 10–12% REO is already concentrate-grade, and its 50–60% slimes defeat flotation on site. The ore is therefore frozen-stockpiled at the pit all year and moved by shallow-draft barges in the Anabar/Lena season to a grid-connected hydrometallurgical plant in Yakutia or Krasnoyarsk. The site keeps only mining, drying and loading, so no off-grid acid plant is built in permafrost. The closest earlier attempt is the conventional plan for on-site beneficiation, which fails on the slimes, and Red Dog's seasonal shipping model shows stockpile-and-window export works. The deciding quantity is barge-days per season times payload against annual ore tonnage, about 50 kt/y for the pilot, which is about 50 barge loads of 1,000 t in about 70 days.
+VALUE: The 2027 pilot runs without remote power or a hydromet plant on thawing ground, which cuts site capex roughly by the ledger's 40% capital share.
+
+IDEA 7
+NAME: Ship Tomtor ore, process on-grid
+MECHANISM: Build no hydrometallurgical plant at Tomtor. Instead, ship the high-grade, slime-rich ore down the Anabar each season to a grid-powered river or sea port plant. That ore is 10–12.5% rare-earth oxide but its grade is disputed between sources. Shipping crude ore means about 8–10 t of ore per t of oxide. The closest earlier attempt is Elga, where the miner paid for its own rail and site, and debt and a 12-year ramp to design rate followed. Here the only fixed assets at site are the pit and a dock. The deciding quantity is the tonnes of ore the shallow-draft Anabar fleet can carry in its open-water window. That window is not sourced: 100 kt needs about 100 barge loads of 1,000 t in about 60 days. It also depends on verifying the conflicting grade data.
+VALUE: It removes most of the remote capital and energy term for the 2027 pilot and lets processing iterate on the difficult slimes where power, staff and domestic equipment already exist.
+
+IDEA 8
+NAME: Diesel-sized starter, nuclear-sized expansion
+MECHANISM: Build first a 6 Mt/y concentrator of about 27 MW. It runs on leased domestic Kolomna or Ural diesel sets of about $0.7 k/kW, fed by one Pevek season of about 48 kt of fuel, and mines the highest-grade zone first. The full 70 Mt/y plant, its tailings and its 318 MW load follow only after the floating units deliver, and the gensets then move to other Chukotka sites. The closest earlier attempt is Baimskaya's single-step $8 bn plan, which is gated on 2028–30 nuclear power and the full road. This plan is not stopped by that gate because the starter needs neither the full road capacity nor grid power. The deciding quantity is the starter grade: it must keep diesel energy plus haul cost below about 30% of the copper price, which means at least 0.5% Cu.
+VALUE: Concentrate and gold revenue arrive 2–3 years before nuclear power, cash pays for the expansion, and about $3–4 bn of capex is deferred 3 years, worth about 1.2× on annualised capital.
+
+IDEA 9
+NAME: Nuclear units matched to modules
+MECHANISM: Order and moor the floating units one at a time. Each unit (about 80 MW, about $320m) goes in only when the next 15–20 Mt/y concentrator module is ready to absorb its output. Diesel covers any gap until then. The closest earlier attempt is Elga, where rail was built ahead of mine output, design output arrived 12 years late and debt reached 421 bn RUB. The cause there was capacity installed before demand existed, and staging each power block to a matched demand block removes that cause. The deciding quantity is idle-capacity years. Each unit deferred 3 years saves 320 × (1 − 1.14⁻³) ≈ $104m in present value.
+VALUE: About $300m of present value is saved across three deferred units. Annualised capital per tonne during ramp-up stays near the full-plan $3,900/t Cu instead of spiking while built capacity sits idle.
+
+IDEA 10
+NAME: Stockpile-first Baimskaya sequencing
+MECHANISM: Diesel mining fleets, which need no grid, pre-strip the pit and stockpile graded ore through 2026–30. The concentrator, dams and port load-out are built in step with each floating unit. The mill then starts at once on graded stockpile and loads up as each unit commissions, instead of ramping up on fresh ore. This deliberately does not chase first metal before the units arrive, which avoids Natalka's two-year ramp to full rate. The closest earlier attempt is Red Dog's 950 kt concentrate stockpile, which buffers shipping but not power.
+VALUE: Design rate is reached about 1–2 years sooner after power arrives, and no stranded bridging power is built for a 251 MW load. The deciding quantity is stockpile tonnage at mill start against the revenue a ramp-up would lose.
+
+IDEA 11
+NAME: High-grade-first diesel sequencing
+MECHANISM: Mine and mill only the high-grade cores (≥4 g/t recovered) during 2026–30 on domestic gensets. This keeps power at about 280 kWh/oz instead of about 780. Stockpile the low-grade ore and process it once firm power arrives in 2028–30. The closest earlier attempt is Natalka's 50%-rate ramp at lower grade (AISC $1,143/oz) and Baimskaya waiting on nuclear units. This plan does not wait for external power, and it limits fuel to about 19 ML a year. The deciding quantity is recovered g/t in the first five years.
+VALUE: Power cost is held near $80/oz, and first metal is no longer tied to the slipping floating units, so time to first metal is set by mill construction rather than by the 2028–30 power date.
+
+IDEA 12
+NAME: Kupol hub toll-milling
+MECHANISM: New high-grade Chukotka lodes are developed as mine-only satellites. Ore is trucked over winter roads and stockpiled at the existing Kupol mill, which has its own diesel plant and spare capacity as Kupol depletes. Satellites are scheduled by grade, so that haul cost per ounce stays below the avoided mill capex and power cost per ounce. The closest earlier attempt is Dvoinoye ore hauled to Kupol, which worked but stayed a single-owner exception. Pooling stops it short no longer, because the mill sits on its own diesel plant and needs nothing from the Chaun–Bilibino node's 8 MW.
+VALUE: First gold in about 2 seasons (mine plus road only), not Natalka's 4–5 years, with no new mill, dam or power plant. The deciding quantity is grade × recovery against haul cost: at an assumed $45/t for 300 km, ore needs ≥6 g/t to keep haulage under about $250/oz.
+
+IDEA 13
+NAME: Concentrator modules sized per reactor
+MECHANISM: Build the concentrator as up to four lines, each sized so that its kWh/t times its throughput fits within one floating unit, about 25 Mt/y on about 80 MW. Use domestic Uralmash-scale mills, which are smaller than imported mega-SAG mills. Lines 2–4 are committed only when each later unit is confirmed. The closest earlier attempt is Udokan and Baimskaya-2020: both built a single full-scale start that slipped and grew 38–45% over budget. Here no capital waits idle on power or imported plant that has not arrived. Deferring about $4bn by two years at 14% saves about $1bn in present value (derived). The deciding quantity is measured kWh/t of the ore compared with the output of one unit.
+VALUE: It cuts the capital term per tonne of copper by roughly 10–15% and makes each module's start independent of the slip of the next unit.
+
+IDEA 14
+NAME: Genset heat-recovery cogeneration
+MECHANISM: Fit domestic diesel gensets with jacket-water and exhaust heat recovery to heat the mill, the camp and the thawing of ore bins and the CIL circuit. This replaces separate boiler fuel. Size the tank farm for 14 months so that one summer delivery via Pevek covers a failed winter road. The closest earlier attempt is wind-diesel at Raglan and Diavik, about 10% of power with an 8-year payback and CAD 7,831/MWh storage. Heat recovery needs no storage and no wind resource. The deciding quantity is the usable thermal kWh per ounce.
+VALUE: Total fuel per ounce falls by an estimated 20–30% (A, unverified). Operating days per year are protected against a short winter-road season.
+
+IDEA 15
+NAME: Winter-road haul, port stockpile
+MECHANISM: Defer the $0.6bn all-season road. In the starter phase, haul about 210 kt a year of concentrate (25% Cu) over a 100-day winter road. That is about 2,100 t a day, or about 53 loads of 40 t, needing about 130 domestic KAMAZ or Ural trucks on a 2.5-day round trip. The concentrate goes into a covered stockpile at Pevek sized to a full year's output, Red Dog style, to bridge the gap between the winter-road and shipping windows. The closest earlier attempt is Tibbitt–Contwoyto, where the window is shrinking (65 to 49 days). That failure mode only binds at full rate: at about 300 kt Cu a year, 1.2 Mt of concentrate would need about 600 trucks, so the permanent road is built only for phase 2. The deciding quantity is the number of reliable winter-road days. Below about 60 days, the fleet more than doubles.
+VALUE: About $87m a year of annualised road capex is deferred 3–5 years, worth about $200–300m in present value at 14%. The road is then built on cash flow rather than on project debt.
+
+
+Where the gain the question asks for is arithmetically possible (ceilings computed in code from the ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Baimskaya copper-gold. Concentrate goes by an 800 km road and the Nagleynyn/Pevek port, wi | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: capital 1.68x; processing 1.12x; labour 1.10x; outbound logistics 1.08x; energy 1.08x; inbound logistics 1.07x | 3x needs: capital, processing, labour, outbound logistics | NO ROOM
+ARCHETYPE B: Natalka (Magadan), a large open-pit gold mine on the Kolyma hydro grid with a road. This i | untouchable 17.0% -> ceiling 5.9x | 10x cut of one term: processing 1.25x; labour 1.22x; capital 1.19x; inbound logistics 1.12x; energy 1.10x; outbound logistics 1.01x | 3x needs: processing, labour, capital, inbound logistics, energy | NO ROOM
+ARCHETYPE C: Firm power for an off-grid Chukotka mine in 2026–30. Diesel, plus wind or hybrid where pos | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: energy 1.82x; inbound logistics 1.22x; capital 1.12x; labour 1.05x; processing 1.03x; outbound logistics 1.00x | 3x needs: energy, inbound logistics, capital | TIGHT
+ARCHETYPE D: Tomtor rare earths (Rosneft), a pilot in 2027 with river access over about 400 km. | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: capital 1.56x; energy 1.16x; labour 1.10x; inbound logistics 1.10x; outbound logistics 1.10x; processing 1.10x | 3x needs: capital, energy, labour, inbound logistics | NO ROOM
+
+What was tried before and why it did not solve the problem (data):
+All figures come from the supplied facts. Items marked "derived" are my arithmetic, not sourced.
+
+ATTEMPT 1: Pile foundations on frozen ground, designed to a fixed temperature coefficient (γt) | Russia-wide norms (SP 25.13330), 1970s onward | standard | WHY IT DID NOT SOLVE IT: Warming erodes the capacity the design assumed. Bearing capacity has fallen more than 40% at Nadym and about 20% at Salekhard, and is projected above 55% at Norilsk by the 2040s. A designer cannot change γt without a norm change. Amendment 3 only takes effect 14 Jun 2026. Reported deformed-building shares are 35% (Norilsk, Talnakh and Mirny) to about 60% (Vorkuta, Dikson). | F89, F92, F252, F267
+
+ATTEMPT 2: Thermosyphons and cooling pipes (GET/VET; Trans-Alaska heat pipes; Qinghai–Tibet) | Chayanda; TAPS (1970s); Chinese railways | standard, niche in Russia | WHY IT DID NOT SOLVE IT: They work only in the cold season, and their cooling fades as the air freezing index falls. TAPS needed repairs: more than 124,000 pipes were installed, some lost performance to non-condensable gas, and 60 freestanding units were added at Lost Creek. On 14 Qinghai–Tibet embankments, cooling weakened and taliks re-formed. A coupled model gives up to 50% less settlement but strong lateral thermal gradients. Russian price and capacity data are missing. | F205, F320–322
+
+ATTEMPT 3: Conservative mine-water and pit-stability design in permafrost with brines | Mir (Alrosa), dry conservation in the early 2000s | standard, failed | WHY IT DID NOT SOLVE IT: The design ignored rock fracturing and the need for long-term pumping. The mine flooded in 2017, with 8–9 dead. Restoration is priced at RUB 73 bn and 6–8 years, against about $1.3 bn estimated earlier. Restart is unlikely before about 2030, and the mine held 68.6 Mct of reserves. | F272–274, F79
+
+ATTEMPT 4: Fast-track, module-based mega-project (Yamal LNG), with ice-class shipping | Novatek, FID 2013, first cargo Dec 2017 | standard, best Russian benchmark | WHY IT DID NOT SOLVE IT: It cost about $27bn, or about $1.6bn per mtpa (derived). It needed over 30,000 workers on site. Trains 1–3 rely on Western APCI-C3MR and Baker Hughes drives, and 15 Arc7 ships. Asia is reachable by NSR only about July to late November, so winter cargo is trans-shipped at Zeebrugge. The model also depends on Western spares. | F43–47, F138, F176, F300, F308
+
+ATTEMPT 5: Replicating that model under sanctions (Arctic LNG 2) | Novatek, FID 2019 | dropped in part | WHY IT DID NOT SOLVE IT: Planned at $21.3bn, it is now over $22bn. Baker Hughes supplied only 4 of the 20 turbines. Wison quit in June 2024. The GTE-170 is at "units" scale. Train 1 started Dec 2023 but sold nothing for lack of ice-class tankers. Output is about 3.6–4.4 Mt/y per train against 6.6 designed (Forbes estimate). Train 3 has slipped to about 2028. Cargoes sell at 30–40% discounts. Only 2 Arc7 carriers existed at end-2025. | F48, F50, F177–182, F209, F283, F139
+
+ATTEMPT 6: Domestic liquefaction technology (Arctic Cascade) and domestic equipment | Yamal LNG Train 4, 0.9 mtpa | niche | WHY IT DID NOT SOLVE IT: It has run only at 0.9 mtpa, so it is unproven at the 6.6 mtpa scale. Unit capex was claimed at $450–500 per t/y against about $1,100 on Trains 1–3. Low-temperature alloy piping had to be replaced. Murmansk LNG (Arctic Mix) has no FID and has slipped to 2032. | F172–174, F183, F304
+
+ATTEMPT 7: Rail and port to the deposit, funded by the miner (Elga) | Mechel, 321 km line, 2008–2011 | standard, financially costly | WHY IT DID NOT SOLVE IT: The line cost 71–77 bn RUB and Mechel's debt reached 421 bn RUB. Design output was reached about 12 years after the rail opened: 4.3 Mt in 2019, against 30 Mt designed. The Elga port and Pacific railway (Nov 2024) are a second round of the same problem. The coal sector is loss-making: 66% of enterprises lose money, and rail tariffs rose about 100% in 2020–24. | F74–75, F162, F234, F286
+
+ATTEMPT 8: Greenfield copper with its own infrastructure (Udokan, Baimskaya) | BMC/Usmanov; KAZ Minerals | standard, slow | WHY IT DID NOT SOLVE IT: Udokan planned production for 2010–16 and got concentrate in Sept 2023. Cathode followed in Sept 2026, after a fire and about 3 years late. Capex rose from $2.1bn to $2.9bn (+38%). Baimskaya capex rose from $5.5bn to about $8bn, driven by external infrastructure, a revised tailings facility and a one-year delay; it comes to about $114 per annual tonne of ore (derived). The project sits in a 9-point seismic zone (Udokan) and on continuous permafrost 150–280 m thick (Baimskaya). | F71–73, F103, F124, F227–228, F277
+
+ATTEMPT 9: Nuclear and floating power for remote mines | Akademik Lomonosov (Pevek); Baimskaya RITM-200S; Ust-Kuyga | niche, delayed | WHY IT DID NOT SOLVE IT: Capex is about $4,000/kW against 4–5× lower for renewables (analyst figure). The Baimskaya units cost RUB 190 bn in 2021, are undisclosed now, and are dated 2027 or 2028–30. Ust-Kuyga has slipped from 2028 to 2030 with no capex published. Bilibino NPP is closing, and the Pevek–Bilibino line slipped. | F151–156, F309–310
+
+ATTEMPT 10: Wind or solar plus diesel | Raglan, Diavik, Tiksi, Yakutia | niche | WHY IT DID NOT SOLVE IT: It covers only about 10% of mine power. Raglan's two 3 MW turbines offset about 4 million L of about 50 million L used per year. Diavik's 9.2 MW cost C$31M with an 8-year payback. Raglan modelling gives up to 64% diesel cut, but storage costs CAD 7,831/MWh. Diesel power in Taimyr costs over 25 RUB/kWh. | F157, F169–170, F312–315
+
+ATTEMPT 11: Seasonal winter roads and short shipping windows | Tibbitt–Contwoyto; Alaska; Red Dog; Mary River; Pevek | standard | WHY IT DID NOT SOLVE IT: The window is shrinking and fixed. Tibbitt–Contwoyto averaged 65 days (47–78), projected at 49 days in the 2050s. Alaska's tundra season fell from about 200 days to about 130. Red Dog ships only mid-July to late October (122 days in 2019). Mary River ships mid-July to mid-October, and its Phase 2 was rejected in 2022. Pevek's window is 3–4 months. | F122, F148, F167–168, F293, F323
+
+ATTEMPT 12: Nuclear icebreakers and NSR as a trunk route | Rosatom, 2018 decree | standard, below plan | WHY IT DID NOT SOLVE IT: The decree targeted 80 Mt by 2024 and actual traffic was about 38 Mt (37.02 Mt in 2025). Transit is only about 9% of it. The 2025 transit season was about 4.5 months. Chukotka's handover slipped to 2027, and Lider is "by 2030". The EU bans services to icebreakers and LNG tankers from 1 Jan 2027. | F115, F132–133, F142–143, F215
+
+ATTEMPT 13: Domestic substitution of mining fleets | Nornickel and BelAZ JV (Sept 2026); Chinese excavators | niche, early | WHY IT DID NOT SOLVE IT: BelAZ had never built underground trucks, and the 45 t truck was still on factory-ground tests in Oct 2026. The installed base is Western. Nornickel lost about half its suppliers, and its output dipped in 2023 during the equipment switch. Chinese trucks are rated only to −30 °C. Component quality is the main obstacle, and imports exceed 69% of the drilling-rig market. | F63–64, F184–190, F191, F208
+
+ATTEMPT 14: Autonomous haulage | Zyfra and BelAZ pilots | niche | WHY IT DID NOT SOLVE IT: Claims are about +20% productivity, from developer data on non-Arctic sites. Satellite signal is lost in deep pits. There is no Arctic deployment count, and customers still ask for a cab. | F196–198, F338
+
+ATTEMPT 15: Domestic geology software (Geomix) | Rostec, 2024–26 | niche | WHY IT DID NOT SOLVE IT: The gap is in 2D/3D seismic and 3D mine modelling. Free licences went only to universities, and no commercial deployment at Nornickel or Polyus was found. | F192, F195
+
+ATTEMPT 16: Dry-stack and frozen-core tailings | Meliadine, Keno Hill, Colomac, Mt Nansen | niche, mixed | WHY IT DID NOT SOLVE IT: Freeze–thaw changes density and permeability, and the coupled models are immature. Colomac seepage rose from 6 to about 300 gpm over a talik. A Nunavut frozen-core dam had a 7-year design life. Baimskaya's tailings redesign added capex. | F127–128, F332, F277
+
+ATTEMPT 17: Tax relief and Arctic Zone regime (Arctic-Zone status, MET deductions) | Rosneft Vankor/Vostok; AZRF | standard | WHY IT DID NOT SOLVE IT: The 0% profit tax excludes extraction and LNG. Murmansk and Arkhangelsk residents have declared about 270 bn RUB each but invested only about 60 bn. Vankor's MET deduction was 102–125 bn RUB per year. Vostok Oil slipped from 2024 to 2026, with first export in Sept 2026, against a $157bn capex estimate. A windfall tax from 2027 hits metals. | F221, F230, F248–249, F280
+
+ATTEMPT 18: Post-spill monitoring (Norilsk boreholes, sensors, InSAR) | Nornickel; Roshydromet | standard, new | WHY IT DID NOT SOLVE IT: It detects but does not fix. Roshydromet had 78 points against 140 planned. The Nornickel network is five 200 m boreholes. InSAR shows seasonal movement (up to 180 mm/yr), not structural settlement. Warming rates cannot be transferred between boreholes. The Ambarnaya tank collapse was officially blamed on weak piles and poor maintenance (ERM found piles set in permafrost, not bedrock), not on thaw. | F9, F101, F107, F257–258, F263, F325
+
+LESSONS:
+- No ground-cooling or pile fix has a measured lifetime against thaw. Cooling weakens as winters warm, and design norms lag the ground.
+- The unit cost of a remote site is dominated by external infrastructure and power. Power and the transport window repeatedly slipped or went over budget, by 38% to 60% or more.
+- Every domestic substitute for imported plant is at prototype or unit scale. Spares for the Western base remain the schedule risk.
+- Seasonal windows and ice-class tonnage cap deliveries, and ice-class tonnage is the scarcest item (only 2 Arc7 carriers).
+- Many failures were organisational (poor maintenance, immature design, ignored warnings), not physics.
+- The evidence base is thin: many figures are press, vendor, secondary or conflicting, and few site-level permafrost data exist. This applies to the cost-per-unit comparisons too.
+
+Sort these candidates before the expensive checks. Without tools, for each candidate estimate:
+- I = importance 0-10: how much of the asker's aim it serves if it works - for a cost question, the share of the
+  delivered cost it removes; for a defect question, the share of the defect it removes in every state of use listed;
+  never more than the ceiling of its archetype allows;
+- P = possibility 0-10: how likely it is to work at the scale it claims with known physics, given the earlier
+  attempts that stopped short (a candidate that repeats one without beating its reason gets P <= 2);
+- the one number that decides whether it works.
+Being unusual earns nothing here; aiming at a term whose ceiling leaves no room earns a low I.
+
+Final answer (text only), one line per candidate in the order given, at most 400 words:
+=== TRIAGE ===
+IDEA 1 | I <0-10> | P <0-10> | DECIDES: <quantity> | <one line why>
+(same for the others)

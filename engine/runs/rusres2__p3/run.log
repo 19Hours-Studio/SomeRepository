@@ -16,3 +16,9 @@ g1_neg: 3 ideas (600 words)
 g1_mech: 3 ideas (538 words)
   g1_rf1: 17,808 tokens, 41.8 s
 g1_rf1: 3 ideas (582 words)
+  g1_rf2: 17,579 tokens, 41.3 s
+g1_rf2: 3 ideas (639 words)
+  families: 9,680 tokens, 12.0 s
+  families: 5 among 15 candidates (15 parsed)
+  triage: 16,213 tokens, 27.7 s
+/home/user/SomeRepository/engine/runs/rusres2__p3/gate/TASK.md

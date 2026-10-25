@@ -1,0 +1,17 @@
+{
+ "g1_ledger#1": "pre power ore stockpiling sequencing",
+ "g1_ledger#2": "power matched staged concentrator modules",
+ "g1_ledger#3": "ship raw ore offsite",
+ "g1_neg#1": "satellite ore hub toll milling",
+ "g1_neg#2": "ship raw ore offsite",
+ "g1_neg#3": "pre power ore stockpiling sequencing",
+ "g1_mech#1": "diesel powered starter before nuclear",
+ "g1_mech#2": "prefabricated modules on jackable pads",
+ "g1_mech#3": "ship raw ore offsite",
+ "g1_rf1#1": "diesel powered starter before nuclear",
+ "g1_rf1#2": "winter road haul deferred road",
+ "g1_rf1#3": "power matched staged concentrator modules",
+ "g1_rf2#1": "diesel powered starter before nuclear",
+ "g1_rf2#2": "capped grid tap diesel firming",
+ "g1_rf2#3": "genset waste heat cogeneration"
+}

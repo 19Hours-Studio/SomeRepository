@@ -52,5 +52,86 @@
   "name": "Stockpile-first Baimskaya sequencing",
   "mech": "Diesel mining fleets, which need no grid, pre-strip the pit and stockpile graded ore through 2026–30. The concentrator, dams and port load-out are built in step with each floating unit. The mill then starts at once on graded stockpile and loads up as each unit commissions, instead of ramping up on fresh ore. This deliberately does not chase first metal before the units arrive, which avoids Natalka's two-year ramp to full rate. The closest earlier attempt is Red Dog's 950 kt concentrate stockpile, which buffers shipping but not power.",
   "value": "Design rate is reached about 1–2 years sooner after power arrives, and no stranded bridging power is built for a 251 MW load. The deciding quantity is stockpile tonnage at mill start against the revenue a ramp-up would lose."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Diesel-sized starter, nuclear-sized expansion",
+  "mech": "Build first a 6 Mt/y concentrator of about 27 MW. It runs on leased domestic Kolomna or Ural diesel sets of about $0.7 k/kW, fed by one Pevek season of about 48 kt of fuel, and mines the highest-grade zone first. The full 70 Mt/y plant, its tailings and its 318 MW load follow only after the floating units deliver, and the gensets then move to other Chukotka sites. The closest earlier attempt is Baimskaya's single-step $8 bn plan, which is gated on 2028–30 nuclear power and the full road. This plan is not stopped by that gate because the starter needs neither the full road capacity nor grid power. The deciding quantity is the starter grade: it must keep diesel energy plus haul cost below about 30% of the copper price, which means at least 0.5% Cu.",
+  "value": "Concentrate and gold revenue arrive 2–3 years before nuclear power, cash pays for the expansion, and about $3–4 bn of capex is deferred 3 years, worth about 1.2× on annualised capital."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Pre-built concentrator modules on jackable pads",
+  "mech": "Domestic yards assemble the concentrator from Uralmash mills and Mekhanobr flotation cells in modules of no more than 300 t *(assumed)*. The modules arrive in one navigation season and sit on ventilated gravel pads with screw jacks, not on adfreeze piles. Site crews then only connect modules, and settlement is corrected by re-levelling rather than designed away. The closest earlier attempts are Yamal LNG modules, which used Western drives and 30,000 workers, and SP 25 piles, which lose about 20–40% of capacity as the ground warms. This plan uses domestic mineral-plant equipment and does not depend on the γt norm. The deciding quantity is differential settlement per year against jack stroke, plus module mass against the Pevek crane and road-bridge ratings.",
+  "value": "Site construction shrinks from 3–4 seasons to 1–2, which brings decision-to-first-metal below Natalka's 4–5 years, and foundation life becomes a maintenance interval rather than a design gamble."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Ship raw Tomtor ore south",
+  "mech": "Tomtor ore at 10–12% REO is already concentrate-grade, and its 50–60% slimes defeat flotation on site. The ore is therefore frozen-stockpiled at the pit all year and moved by shallow-draft barges in the Anabar/Lena season to a grid-connected hydrometallurgical plant in Yakutia or Krasnoyarsk. The site keeps only mining, drying and loading, so no off-grid acid plant is built in permafrost. The closest earlier attempt is the conventional plan for on-site beneficiation, which fails on the slimes, and Red Dog's seasonal shipping model shows stockpile-and-window export works. The deciding quantity is barge-days per season times payload against annual ore tonnage, about 50 kt/y for the pilot, which is about 50 barge loads of 1,000 t in about 70 days.",
+  "value": "The 2027 pilot runs without remote power or a hydromet plant on thawing ground, which cuts site capex roughly by the ledger's 40% capital share."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Diesel-fed starter concentrator",
+  "mech": "Build one Natalka-size line first, at about 10 Mt/y, on the higher-grade starter pit (assumed 0.6% Cu and 88% recovery, giving about 53 kt Cu a year). Run it on about 50 MW of domestic diesel gensets (Kolomna or Zvezda). The fuel is about 90 ML a year, shipped in Pevek's 4–5-month window and held in site tanks. The closest earlier attempt is Baimskaya's 2020 plan, which tied first metal to 318 MW of nuclear due in 2028–30, a date that has slipped. Here the plant draws nothing from the node's 8 MW of winter spare. The gensets later become the N−1 standby the nuclear units need anyway, so they are not stranded. The deciding quantity is starter-pit grade. Energy comes to about 6.8 MWh/t Cu × $0.26 ≈ $1,800/t Cu, which only works if the grade stays at or above about 0.5% Cu.",
+  "value": "First concentrate arrives about 4 years after decision, as at Natalka, independent of the nuclear dates. Annualised phase-1 capital is about $4,100/t Cu (assuming $1.5bn), close to the full plan's $3,900/t, but it earns 2–3 years earlier."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Winter-road haul, port stockpile",
+  "mech": "Defer the $0.6bn all-season road. In the starter phase, haul about 210 kt a year of concentrate (25% Cu) over a 100-day winter road. That is about 2,100 t a day, or about 53 loads of 40 t, needing about 130 domestic KAMAZ or Ural trucks on a 2.5-day round trip. The concentrate goes into a covered stockpile at Pevek sized to a full year's output, Red Dog style, to bridge the gap between the winter-road and shipping windows. The closest earlier attempt is Tibbitt–Contwoyto, where the window is shrinking (65 to 49 days). That failure mode only binds at full rate: at about 300 kt Cu a year, 1.2 Mt of concentrate would need about 600 trucks, so the permanent road is built only for phase 2. The deciding quantity is the number of reliable winter-road days. Below about 60 days, the fleet more than doubles.",
+  "value": "About $87m a year of annualised road capex is deferred 3–5 years, worth about $200–300m in present value at 14%. The road is then built on cash flow rather than on project debt."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Nuclear units matched to modules",
+  "mech": "Order and moor the floating units one at a time. Each unit (about 80 MW, about $320m) goes in only when the next 15–20 Mt/y concentrator module is ready to absorb its output. Diesel covers any gap until then. The closest earlier attempt is Elga, where rail was built ahead of mine output, design output arrived 12 years late and debt reached 421 bn RUB. The cause there was capacity installed before demand existed, and staging each power block to a matched demand block removes that cause. The deciding quantity is idle-capacity years. Each unit deferred 3 years saves 320 × (1 − 1.14⁻³) ≈ $104m in present value.",
+  "value": "About $300m of present value is saved across three deferred units. Annualised capital per tonne during ramp-up stays near the full-plan $3,900/t Cu instead of spiking while built capacity sits idle."
+ },
+ {
+  "id": "g1_rf2#1",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "High-grade-first diesel sequencing",
+  "mech": "Mine and mill only the high-grade cores (≥4 g/t recovered) during 2026–30 on domestic gensets. This keeps power at about 280 kWh/oz instead of about 780. Stockpile the low-grade ore and process it once firm power arrives in 2028–30. The closest earlier attempt is Natalka's 50%-rate ramp at lower grade (AISC $1,143/oz) and Baimskaya waiting on nuclear units. This plan does not wait for external power, and it limits fuel to about 19 ML a year. The deciding quantity is recovered g/t in the first five years.",
+  "value": "Power cost is held near $80/oz, and first metal is no longer tied to the slipping floating units, so time to first metal is set by mill construction rather than by the 2028–30 power date."
+ },
+ {
+  "id": "g1_rf2#2",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Capped grid tap, diesel winter-firming",
+  "mech": "Connect the mine to the Lomonosov-fed Chaun-Bilibino node with a load cap at the roughly 8 MW of winter spare. Draw more in summer, when spare capacity is larger, and run domestic gensets only for the winter peak. Store just the winter top-up fuel. The closest earlier attempt is the slipped Pevek–Bilibino line and the Baimskaya RITM units. This plan needs only a short spur line and no new generation. The deciding quantity is the line distance against the MW of winter spare that is actually available.",
+  "value": "Diesel volume falls by an estimated 60–80% for one high-grade mine (cutting the 20 ML tank farm and road fleet). The grid tap works only if the mine is within spur-line reach, and only one mine fits."
+ },
+ {
+  "id": "g1_rf2#3",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Genset heat-recovery cogeneration",
+  "mech": "Fit domestic diesel gensets with jacket-water and exhaust heat recovery to heat the mill, the camp and the thawing of ore bins and the CIL circuit. This replaces separate boiler fuel. Size the tank farm for 14 months so that one summer delivery via Pevek covers a failed winter road. The closest earlier attempt is wind-diesel at Raglan and Diavik, about 10% of power with an 8-year payback and CAD 7,831/MWh storage. Heat recovery needs no storage and no wind resource. The deciding quantity is the usable thermal kWh per ounce.",
+  "value": "Total fuel per ounce falls by an estimated 20–30% (A, unverified). Operating days per year are protected against a short winter-road season."
  }
 ]

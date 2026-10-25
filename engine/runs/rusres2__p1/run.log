@@ -12,3 +12,13 @@ ARCHETYPE D: Tomtor rare earths (Rosneft), a pilot in 2027 with river access ove
 g1_ledger: 3 ideas (681 words)
   g1_neg: 18,152 tokens, 58.5 s
 g1_neg: 3 ideas (604 words)
+  g1_mech: 18,199 tokens, 60.1 s
+g1_mech: 3 ideas (656 words)
+  g1_rf1: 17,252 tokens, 47.5 s
+g1_rf1: 3 ideas (610 words)
+  g1_rf2: 16,817 tokens, 40.6 s
+g1_rf2: 3 ideas (625 words)
+  families: 9,730 tokens, 14.3 s
+  families: 9 among 15 candidates (15 parsed)
+  triage: 18,210 tokens, 46.9 s
+/home/user/SomeRepository/engine/runs/rusres2__p1/gate/TASK.md
