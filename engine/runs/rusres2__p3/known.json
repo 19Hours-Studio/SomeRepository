@@ -1,0 +1,30 @@
+{
+ "g1_rf2#1": {
+  "known": "partly",
+  "closest": "Nornickel Talnakh Phase 3 (TOF-3) plan, which sends all Talnakh ore to Talnakh and releases Norilsk concentrator capacity for South Cluster (Norilsk-1 disseminated) ore, Nornickel, 2019",
+  "url": "https://www.engineeringnews.co.za/article/nornickel-to-spend-14bn-on-two-expansion-projects-2019-03-28",
+  "same": "It already pairs the Talnakh expansion with refilling the freed Norilsk capacity using disseminated ore. XRT pre-concentration of nickel sulphide is also published (NexMetals Selebi, 2025: about 15% mass rejected, 98% metal recovery).",
+  "new": "Approval conditional on the pairing, with capex per added tonne of contained Ni for the pair, and XRT-sorted feed (Norilsk-1, later Maslovskoye) at the old plant. I found no published case of XRT freeing concentrator capacity."
+ },
+ "g1_rf1#1": {
+  "known": "yes",
+  "closest": "Nornickel Talnakh Phase 3 / South Cluster plan, Nornickel, 2019",
+  "url": "https://www.engineeringnews.co.za/article/nornickel-to-spend-14bn-on-two-expansion-projects-2019-03-28",
+  "same": "Talnakh takes all its ore, which releases Norilsk concentrator capacity. That capacity is then used for Norilsk-1 disseminated ore with no new plant.",
+  "new": "Only the quarterly blend rule and the incremental-margin test, which are routine blending and cash-margin practice. Maslovskoye is not mentioned in the results."
+ },
+ "g1_neg#2": {
+  "known": "partly",
+  "closest": "Nornickel–BelAZ agreement on underground trucks and LHDs, with repair and spare-parts supply and a stockpile of about 3 months of spares, Nornickel, 2022 and 2025",
+  "url": "https://www.kitco.com/news/off-the-wire/2025-01-24/nornickel-and-belarus-belaz-sign-agreement-replace-western-machinery",
+  "same": "Criticality-ranked spares and spares stock set from measured intervention times are published practice (EX5500 shovel MTBI study, https://www.redalyc.org/journal/496/49666177011/html/). Nornickel is already hunting for analogues of Western parts.",
+  "new": "Pooling spares across the Western installed base, ranking by lost Ni-eq tonnes, and sending the worst parts to domestic reverse-engineering and casting. I found no source for spares pooling or Nornickel reverse-engineering."
+ },
+ "g1_rf1#3": {
+  "known": "partly",
+  "closest": "Rostekhnadzor inspection of Nornickel's copper plant, which found buildings with structural defects not repaired on time; Rostekhnadzor, undated",
+  "url": "https://www.akm.ru/news/rostekhnadzor_vyyavil_narusheniya_na_mednom_zavode_nornikelya/",
+  "same": "Regulator-enforced repair of structural defects. Pile and thermistor monitoring over permafrost is established (US Army Corps of Engineers ERDC SR-94-3).",
+  "new": "A defect register fed by pile strain gauges and boreholes, risk-set repair deadlines, escalation on lapse, and median detection-to-repair time as the metric. I found no patent or paper combining these."
+ }
+}
