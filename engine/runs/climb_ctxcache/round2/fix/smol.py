@@ -53,7 +53,7 @@ class Smol:
         for a in range(0, n, chunk):
             o = self._fwd(ids[a:a + chunk], pos[a:a + chunk], cache, want_logits and a + chunk > lf)
             if want_logits and a + chunk > lf: outs.append(o[max(0, lf - a):])
-        return torch.cat(outs) if want_logits else None
+        return torch.cat(outs) if want_logits and outs else None
 
     def _fwd(self, ids, pos, cache, want_logits):
         W = self.W; T = len(ids); m = len(cache["pos"])

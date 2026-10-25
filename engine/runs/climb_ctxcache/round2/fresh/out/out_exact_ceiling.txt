@@ -1,0 +1,15 @@
+qwen_traceA_blksz_16.jsonl
+  5-min TTL (default)              token hit 46.2%  billed input  +0.0%  whole bill  +0.0%
+  + output carry-over              token hit 52.3%  billed input  -9.8%  whole bill  -4.3%
+  provider keeps 1 h, no premium   token hit 57.8%  billed input -18.4%  whole bill  -8.1%
+  both                             token hit 66.4%  billed input -32.2%  whole bill -14.1%
+qwen_coder_blksz_16.jsonl
+  5-min TTL (default)              token hit 57.3%  billed input  +0.0%  whole bill  +0.0%
+  + output carry-over              token hit 60.5%  billed input  -6.3%  whole bill  -2.9%
+  provider keeps 1 h, no premium   token hit 66.1%  billed input -17.2%  whole bill  -7.8%
+  both                             token hit 71.2%  billed input -27.1%  whole bill -12.4%
+qwen_thinking_blksz_16.jsonl
+  5-min TTL (default)              token hit 43.1%  billed input  +0.0%  whole bill  +0.0%
+  + output carry-over              token hit 45.2%  billed input  -3.2%  whole bill  -0.5%
+  provider keeps 1 h, no premium   token hit 46.0%  billed input  -4.5%  whole bill  -0.7%
+  both                             token hit 48.5%  billed input  -8.3%  whole bill  -1.4%

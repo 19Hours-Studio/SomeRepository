@@ -80,17 +80,23 @@ def bp_bill(seq, blocks, two, maxlb=20):
 NP, NL, DM, DKV = 70.6e9, 80, 8192, 1024
 KVB = 2 * NL * DKV * 2          # bytes of K+V per token, BF16
 PEAK, MFU, HBM, HBMU = 989e12, 0.45, 3.35e12, 0.7   # H100 dense BF16, assumed utilisation; HBM bandwidth
-def flops(seq, splice=False, outs=None, acc=None, key=None):
+def flops(seq, splice=False, outs=None, acc=None, key=None, refresh=0):
     """Own-stack compute: every token not served from KV is prefilled; a splice also re-rotates the K of
     downstream cached tokens (about 6 flops per K element per layer, counted, though it is memory-bound)."""
-    tot = 0.0; prevkeys = []; prev = []
+    tot = 0.0; prev = []; nspl = 0
     for s in seq:
         L = sum(t for _, t in s)
         if splice:
             pk = set(k for k, _ in prev); miss = sum(t for k, t in s if k not in pk)
             # downstream cached tokens after the first changed position get re-rotated
             first = next((i for i, (x, y) in enumerate(zip(prev, s)) if x != y), min(len(prev), len(s)))
-            rot = sum(t for k, t in s[first:] if k in pk); tot += rot * NL * DKV * 6
+            rot = sum(t for k, t in s[first:] if k in pk)
+            if refresh and first < len(prev):          # this request spliced
+                nspl += 1
+                if nspl % refresh == 0:   # bounded staleness: re-prefill everything after the first placeholder
+                    ph = next((i for i, (k, _) in enumerate(s) if isinstance(k, tuple) and k[0] == "ph"), len(s))
+                    miss = L - sum(t for _, t in s[:ph]); rot = 0
+            tot += rot * NL * DKV * 6
         else:
             miss = L - T.lcp(prev, s)
         ctx0 = L - miss
@@ -124,6 +130,8 @@ def main(path):
             add(k + ":fl", flops(fam[k], outs=list(outs), acc=acc, key=k))
         add("sliding+splice:fl", flops(fam["sliding"], splice=True, outs=list(outs), acc=acc, key="sliding+splice"))
         add("polling10/keep5+splice:fl", flops(fam["polling10/keep5"], splice=True, outs=list(outs), acc=acc, key="polling10/keep5+splice"))
+        for K in (4, 8):
+            add(f"sliding+splice/refresh{K}:fl", flops(fam["sliding"], splice=True, outs=list(outs), acc=acc, key=f"sliding+splice/refresh{K}", refresh=K))
     ap, sl, n = acc["append:c"], acc["sliding:c"], acc["req"]
     print(f"traces={len(Tr)} requests={n}")
     print("\n(a) Anthropic breakpoint model (20-block lookback). Cost vs exact-LCP billing of the same policy:")
@@ -144,7 +152,7 @@ def main(path):
     print("    context KV read per output token (weight reads are the same for every policy and left out).")
     print(f"  {'policy':24s} {'prefill EFLOP':>13s} {'vs app':>7s} {'decode KV PB':>12s} {'vs app':>7s} {'GPU-h':>7s} {'vs app':>7s} {'KV-resident':>11s}")
     def gh(k): return (acc[k+':fl'] / (PEAK * MFU) + acc[k+':kvread'] / (HBM * HBMU)) / 3600
-    for k in ("append", "sliding", "sliding+splice", "polling10/keep5", "polling10/keep5+splice", "batch5k/keep5", "horizon/keep5"):
+    for k in ("append", "sliding", "sliding+splice", "sliding+splice/refresh4", "sliding+splice/refresh8", "polling10/keep5", "polling10/keep5+splice", "batch5k/keep5", "horizon/keep5"):
         f, kv = acc[k+':fl'], acc[k+':kvread']
         print(f"  {k:24s} {f/1e18:13.2f} {f/acc['append:fl']-1:+7.1%} {kv/1e15:12.2f} {kv/acc['append:kvread']-1:+7.1%} {gh(k):7.2f} {gh(k)/gh('append')-1:+7.1%} {acc[k+':ctxtok']/acc['append:ctxtok']:10.2f}x")
 main(sys.argv[1])

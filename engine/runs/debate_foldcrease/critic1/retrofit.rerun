@@ -1,2 +1,8 @@
 G=1e+04 phi=0.05 T=   0: depth   3.89 um slope  0.48 mrad | OCA shear 2.9 | panel extra axial strain 0.46%
 G=1e+04 phi=0.05 T=1000: depth   0.48 um slope  0.06 mrad | OCA shear 2.9 | panel extra axial strain 0.46%
+G=1e+05 phi=0.05 T=   0: depth   8.51 um slope  1.10 mrad | OCA shear 1.4 | panel extra axial strain 0.93%
+G=1e+05 phi=0.05 T=1000: depth   1.12 um slope  0.18 mrad | OCA shear 1.4 | panel extra axial strain 0.93%
+G=1e+04 phi=0.10 T=   0: depth   7.78 um slope  0.97 mrad | OCA shear 2.9 | panel extra axial strain 0.46%
+G=1e+04 phi=0.10 T=1000: depth   0.95 um slope  0.13 mrad | OCA shear 2.9 | panel extra axial strain 0.46%
+G=1e+06 phi=0.00 T=   0: depth   0.00 um slope  0.00 mrad | OCA shear 0.5 | panel extra axial strain 1.21%
+G=1e+06 phi=0.00 T=1000: depth   0.00 um slope  0.00 mrad | OCA shear 0.5 | panel extra axial strain 1.21%
