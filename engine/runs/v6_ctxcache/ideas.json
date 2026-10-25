@@ -285,5 +285,32 @@
   "mech": "The client measures, per session, s (the share of turns that come back after a 5–60 minute gap) and n/P (tokens written per turn divided by the cached prefix). It uses the 1-hour TTL when s > s* = 0.75n/(1.15P). Otherwise it uses the 5-minute TTL with a 1-token keep-alive read sent only while the return probability exceeds 0.08 per window. Prior art is Claude Code's static `promptCacheTtl`/`subagentPromptCacheTtl` (5m or 1h per request type, about v2.1.243). What this adds is choosing the TTL per session from measured s and n/P. Input-bill ratios: - Long agent session (100k prefix, 2k tokens per turn, s* = 0.013): 1.15x at s = 0.02 and 1.71x at s = 0.10 against plain 5-minute TTL. It matches a blanket 1-hour TTL there. - Short-prefix sessions with large writes (s* = 0.33): 1.40–1.52x cheaper than a blanket 1-hour TTL. On the Mooncake traces the measured rewrite share is f = 0.09–0.11, so the ceiling there is only 1.07–1.10x. It covers no edit cases, only expiry. Output is byte-identical, so there is no quality risk. It runs client-only with zero added latency.",
   "value": "1.0–1.5x on input against the best static TTL choice. The gain is large only for sessions with real 5–60 minute pauses, and nothing on short-gap traffic. This is the smallest honest version: it cannot make edited or reordered context cheaper.",
   "parent": "g1_mech#1"
+ },
+ {
+  "id": "cross_g2#1",
+  "label": "cross_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "Reuse-gated single-breakpoint document ordering",
+  "mech": "The client orders retrieved documents by an online retrieval-frequency counter, with ties broken by ID. From each document's counter rate λ, it estimates P(reuse within TTL) = 1−e^(−5λ). It places one cache breakpoint after the last document with P > 0.217 (the break-even), and sends the rest after the breakpoint uncached at 1.0x instead of a 1.25x write. Exact prefix KV means output equals full recompute for that order; the reorder effect is tested by F1/EM across order permutations on a real model.",
+  "value": "Estimated 1.33x, 1.50x and about 1.9x per request at Zipf 1.05, 1.2 and 1.5, client-only through third-party APIs, with one breakpoint and no money-losing writes at low traffic; tail documents still miss, so about 100% hit is out of reach."
+ },
+ {
+  "id": "cross_g2#2",
+  "label": "cross_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "Popularity-ordered probe-routed KV reuse",
+  "mech": "On a self-hosted or provider stack, documents are ordered by global retrieval frequency before lookup. CacheBlend's layer-1 recompute measures cross-chunk key deviation; single-source requests are blended from position-independent chunk KV, and requests above the threshold take the exact prefix path. That exact path now hits the popularity-ordered prefix, cutting its cost from about 84.7 to 62–74 units against an 83-unit prefix-caching baseline.",
+  "value": "At m = 0.25 routed away, the whole bill falls 1.46–1.55x, and 1.5x holds up to m = 0.18–0.38 instead of 0.12; probe recall still needs testing on 2WikiMQA and MuSiQue against full recompute."
+ },
+ {
+  "id": "cross_g2#3",
+  "label": "cross_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "Shared-prefix hazard keep-alive",
+  "mech": "An org-wide counter gives each popularity-ordered document-prefix path an arrival rate, which serves as the hazard. Before each 5-minute expiry, the client sends a 1-token read of every leaf path whose P(hit before next expiry) × 1.25 > 0.1; one ping serves every user sharing that path. Output is unchanged because only exact prefixes are kept warm.",
+  "value": "Low-traffic organisations could approach the reuse that only ≥1k requests per window give today (from 0.05–0.42 toward 0.40–0.77), with each ping positive in expected value; the net gain needs a trace replay, and per-session gaps remain capped at about 1.1x."
  }
 ]

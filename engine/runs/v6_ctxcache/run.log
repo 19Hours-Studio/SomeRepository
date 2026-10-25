@@ -97,3 +97,7 @@ gate: 6/6 parsed {'DEAD': 2, 'WOUNDED': 4}
   improve_g2: 354,823 tokens, 221.0 s
 WARNING: improve_g2#2 is a fragment (refers to another idea) - excluded from selection
 improve_g2: 3 ideas (1147 words)
+  cross_g2: 21,526 tokens, 109.4 s
+cross_g2: 3 ideas (634 words)
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g2/c2/TASK.md
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g2/c1/TASK.md

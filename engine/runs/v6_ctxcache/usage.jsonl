@@ -47,3 +47,4 @@
 {"step": "gen:tour_g1.r3.j2", "time": "2026-10-25 13:37:44", "model": "opus", "tools": "", "tokens": 12251, "output_tokens": 1047, "cache_read": 1496, "fresh_input": 9708, "cost_usd": 0.09889519999999999, "turns": 1, "seconds": 15.5}
 {"step": "gen:tour_g1.r3.j1", "time": "2026-10-25 13:37:46", "model": "opus", "tools": "", "tokens": 12365, "output_tokens": 1161, "cache_read": 1496, "fresh_input": 9708, "cost_usd": 0.10117519999999999, "turns": 1, "seconds": 17.0}
 {"step": "repair:improve_g2", "time": "2026-10-25 13:41:27", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 354823, "output_tokens": 17517, "cache_read": 301091, "fresh_input": 36215, "cost_usd": 0.7120639000000001, "turns": 13, "seconds": 221.0}
+{"step": "gen:cross_g2", "time": "2026-10-25 13:43:16", "model": "opus", "tools": "", "tokens": 21526, "output_tokens": 10266, "cache_read": 1496, "fresh_input": 9764, "cost_usd": 0.2837232, "turns": 1, "seconds": 109.4}
