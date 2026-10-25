@@ -1,0 +1,92 @@
+Russia wants to develop and extract minerals and energy in its permafrost regions at the lowest full cost, in the shortest time from investment decision to first production, and with the highest effectiveness. Effectiveness means resource recovery, working time across the year, and how long infrastructure lasts on thawing ground. All three are measured per unit of product delivered to the buyer. The scope covers:
+- Hard-rock and placer metals: Norilsk and Taimyr nickel, copper and platinum-group metals; gold in Yakutia, Magadan and Chukotka; Udokan and Baimskaya copper; Tomtor rare earths.
+- Diamonds in Yakutia, plus the Arkhangelsk deposits (see CORRECTED).
+- Coal in Taimyr, Elga and the rest of Yakutia.
+- Oil and gas in Yamal, Gydan and Taimyr.
+The whole chain counts: choosing and exploring deposits, building and powering sites, mining or drilling, processing, staffing, and delivering the product. The conditions are:
+- Permafrost that is thawing under a warming climate.
+- Extreme cold, with short building and shipping seasons.
+- Long distances with no roads or railways.
+- Ice seasons on the Northern Sea Route (NSR) and the rivers.
+- A shortage of workers.
+- Expensive energy at remote sites.
+- Restricted access to imported mining, drilling and LNG equipment and software since 2022.
+What changes to any stage, or to the order in which deposits are developed, would beat the best current practice in Russia and in comparable cold regions (northern Canada, Alaska, Greenland, northern Scandinavia)?
+A good answer: 
+- Each proposal states its effect, with an estimate and its basis, on three measures: (a) full cost per unit delivered (annualised capital plus operating plus logistics); (b) years from investment decision to first production; (c) effectiveness (recovery, days worked per year, infrastructure life on thawing ground).
+- Each proposal is compared with a named benchmark, either Russian (e.g. Yamal LNG, Norilsk, Vankor/Vostok Oil, Kupol/Pavlovskoye, Nord/Elga) or foreign (e.g. Canadian Arctic mines such as Raglan and Diavik, Red Dog in Alaska, Kiruna/Aitik, Greenland).
+- It names which deposits or stages it applies to and which it does not.
+- It states what physical law or measured data it relies on.
+- It lists the equipment or technology by its domestic maker or unrestricted supplier.
+- It includes the main risks and how to test the idea within 3–7 years.
+Constraints: 
+- It must obey known physics.
+- It must be deployable within 3–7 years.
+- It may use only equipment and technology Russian operators can get from domestic makers or from suppliers not restricted for them.
+- It must not depend on ways around sanctions.
+
+The final candidates with their blind reviews (data):
+IDEA 1
+NAME: Shaft-bottom XRT sorting, hoist-bound mines
+MECHANISM: Anchor: domestic X-ray transmission (XRT) sorters at the shaft bottom reject waste lumps before hoisting, and the rejects go straight into stope backfill. The repair moves it from "freeing concentrator capacity" to deep mines where the 2.1 km shafts set the limit, such as Skalisty and the Talnakh/Oktyabrskoye deep levels. There every tonne of waste rejected below ground is replaced by ore in the fixed skip capacity. With the fines (about 35% of ore) bypassing the sorter, metal hoisted per year rises ×1.095 at Selebi-type results (15% rejected, 2% metal lost) and ×1.36 at stringer-type results (44%, 4%). After counting the metal lost for good in the backfill, metal NPV is still ×1.085–1.31 over a 30-year reserve at 14%. Two or three 150 t/h units cover 2 Mt/yr hoisted. Rejects of at most 0.41 t per t of ore fit in the backfill needed (0.44–0.67 t per t), so no tailings go to the surface. The design is restricted to cuprous/stringer and massive ores at contacts. Disseminated Norilsk-1 and Maslovskoye ore is left out (16% metal loss at 23% rejection on disseminated test ore), as are mines where hoisting is not the limit.
+VALUE: Each extra tonne of Ni-eq from a hoist-bound deep mine costs $5.0–8.3k by sorting against $6.7–12.6k from a new deep shaft, 1.2–1.8× cheaper. It comes in about 2–3 years instead of about 10 years of shaft sinking.
+BLIND REVIEW:
+- MAJOR: The "Selebi-type" basis is one bulk test reported by the company in a press release, with no grades for the rejected waste. The 44%/4% "stringer" result has no source at all. One sample cannot put bounds on rejection or loss ([NexMetals, Jul 2025](https://www.newsfilecorp.com/release/260258): 15.2% rejected, 98% retained. If stringer rejection is 30% instead of 44%, the gain falls from ×1.364 to ×1.21.)
+- MAJOR: The hoist-bound premise is assumed, not shown. The mine would have to mine, develop, ventilate and cool ×1.11–1.40 more ore at about 2 km depth. If ventilation, cooling or development is also a limit, the gain goes to zero (I found no Skalisty data showing that the skip, not ventilation, sets the limit.)
+- MAJOR: "2–3 years" is optimistic. A sorting cavern with screen, wash, sorters and reject conveyors would sit at about 2 km in rockburst-prone ground. The only underground XRT precedent is a pilot in salt ([K+S Zielitz/TOMRA](https://www.globalminingreview.com/mining/11092025/tomra-mining-breaks-new-ground-in-underground-rock-salt-sorting-pilot-project-at-k-s-zielitz-mine/): a pilot since 2022, built to relieve a shaft bottleneck, and still "exploring ways to … increase throughput".)
+- SURVIVES: ×1.094 and ×1.364 hoisted metal reproduce, as do NPV ×1.083 and ×1.307 and 0.40 t of rejects per t hoisted. Backfill need is 0.43–0.50 t/t at 4.4 t/m³ ore, so the rejects fit. Sorter count comes out at 1.5–2.4 units at 150 t/h (5,000–6,500 h/yr).
+- RATIO: 1.04 | At Selebi-type results; the stringer case is unproven.
+- KNOWN: partly | K+S Zielitz underground XRT pilot (TOMRA, 2022–). Surface XRT rejects used as underground rockfill at Sotkamo ([Mining Magazine](https://www.miningmagazine.com/plant/news/1388148/sotkamo-starts-ore-sorting-trial)).
+
+IDEA 2
+NAME: Cold-margin triaged thermosyphon retrofit
+MECHANISM: Anchor: borehole temperatures plus InSAR rank existing foundations by remaining pile capacity, and retrofit thermosyphons only on the worst ones, only where the winter is cold enough. The cutoff is now a computed number: the cooling margin M, which is winter heat a unit can pull out of the ground divided by the yearly heat flowing in per pile. In 2050 climate (+2.5 K in winter), M is 1.53 at Norilsk, 2.10 at Udachny/Mirny and 1.57 at Pevek, which pass the M ≥ 1.5 cutoff. It is 1.05 at Salekhard, 0.88 at Nadym, 0.90 at Fairbanks and 0.41 at Beiluhe on the Qinghai–Tibet line, which fail. That ranking matches where cooling was actually seen to fade on the Trans-Alaska pipeline (TAPS) and the Qinghai–Tibet line (F320–321). Triage step 0 is the cheapest fix: reopen crawlspace vents and repair utility leaks. Only structures that keep warming after that get vertical units drilled with low-headroom rigs from the ventilated crawlspace, or inclined units from the outside edge for buildings under about 20 m wide. That is about 50 of the 165 monitored Norilsk/Talnakh structures and about 8,500 units. Each unit finishes cooling the ground to the target in about one winter.
+VALUE: It keeps structures on thawing ground in service past 2050 for about $64M, against $198M for retrofitting all 165 structures and $196–392M for new piles to bedrock. That is about 3× cheaper than either. It adds only about $3–19 per t Ni-eq (0.04–0.20% of full cost) and avoids an expected $26–86M/yr of thaw-related losses.
+BLIND REVIEW:
+- MAJOR: The TAPS check does not validate M. The cooling loss on TAPS heat pipes came from non-condensable hydrogen blocking them (a hardware defect seen in infrared surveys in the early 1980s), not from a climate margin ([Sorensen et al. 2002](https://inl.elsevierpure.com/en/publications/thermal-performance-of-taps-heat-pipes-with-non-condensable-gas-b/), [ASCE 2021](https://ascelibrary.com/doi/10.1061/9780784483589.031))
+- MAJOR: Norilsk, the only deployment site, passes by 2% (1.53 against 1.5). In my degree-day model, M = 1.48 at +3 K of winter warming and 1.37 at +4 K, so Norilsk fails if 2050 winters warm by more than about 2.9 K. Norilsk has warmed about 0.34 °C per decade since the mid-1970s, with winters warming fastest ([Al Jazeera](https://www.aljazeera.com/news/2013/12/19/where-has-siberias-winter-gone), [Rough & Polished](https://rough-polished.expert/en/safety-and-ecology/136156.html))
+- MAJOR: "3× cheaper" is measured against a straw man. Nornickel has run an automated geotechnical monitoring system since 2021 (phase 1 cost 1.4bn rub), so triage is already current practice. The triage itself has no cost edge: $1.28M per structure triaged against $1.20M per structure for all 165. The saving is only the count, 50 against 165 ([ComNews](https://www.comnews.ru/digital-economy/content/219214/2022-03-11/2022-w10/nornikel-konsolidiruet-dannye-o-vechnoy-merzlote-norilske))
+- SURVIVES: $64M/8,500 = $7.5k per unit. 198/64 = 3.1. 196–392/64 = 3.1–6.1. $3–19 per t Ni-eq is consistent.
+- RATIO: 1.00 | Against existing practice of monitoring and triage, and 0.04–0.2% of full cost.
+- KNOWN: yes | Nornickel's Norilsk geotechnical monitoring plus thermostabiliser retrofits.
+
+IDEA 3
+NAME: Hull-paced domestic Arctic Cascade trains
+MECHANISM: The anchor is unchanged: copy the domestic 0.9 Mtpa Arctic Cascade Train 4 many times instead of building 6.6 Mtpa trains that need imported or first-of-kind drives. In the repaired design, trains are added only at Sabetta and only as fast as Arc7 hulls arrive. Each train needs about 0.55 hull: a hull carries about 1.63 Mt/y when it runs 150 days a year east on the NSR and spends the winter shuttling 12-day round trips to the Saam/Ura FSU near Murmansk. In winter this shuttle replaces the 20-day Zeebrugge run, which the EU bans from 2027. With this matching, all added output can be shipped year-round, which fixes the kill metric. The trains have two roles. First, they are a domestic-drive hedge for the Nuovo Pignone strings on Trains 1–3: each 1% of availability lost there is 0.165 Mt/y. Second, they are the growth path once Arctic LNG 2's idle 13.2 Mtpa is full. That needs about 8 hulls, so it happens around 2030–33 at 1–2 hulls a year from Zvezda. No new trains go to Utrenneye before then.
+VALUE: Full delivered cost is about $236/t, against $295/t for a Yamal T1–3-type train (1.25x) and $257/t for a large domestic-drive train (1.09x). First LNG is about 3 years after the decision for a series copy, against 4–4.5. But it is 1.5x worse than simply filling Arctic LNG 2's idle trains, which is why it is held back until those are full.
+BLIND REVIEW:
+- MAJOR: The EU facts are wrong, and the delivered cost leaves out the last leg. Zeebrugge transshipment has been banned since about March 2025. EU imports are banned from 25 Apr 2026 (short-term contracts) and 1 Jan 2027 (long-term). So all winter LNG out of Murmansk must reach Asian buyers on conventional carriers, a trip of about 11,000 nm via Suez ([Belga](https://www.belganewsagency.eu/eu-adopts-14th-sanctions-package-against-russia-targeting-lng) (9-month transition), [S&P](https://www.spglobal.com/energy/en/news-research/latest-news/lng/012626-eu-finalizes-ban-on-russian-gas-lng-by-2027))
+- MAJOR: Supply of Arc7 hulls is unproven. Only 5 Samsung-built hulls exist. The first was delivered on 24 Dec 2025, and the last two are "likely years away". Zvezda has not yet built a hull of its own, so "1–2 a year from Zvezda" is an assumption. Arctic LNG 2 also needs about 8.1 hulls first ([High North News](https://www.highnorthnews.com/en/russia-delivers-first-domestically-assembled-arc7-lng-carrier-after-years-sanctions-delays))
+- MAJOR: Building cost falls with plant size (cost exponent 0.6–0.7), so a 0.9 Mtpa train should cost 1.8–2.2x more per tonne of capacity than a 6.6 Mtpa train. The $236 < $257 claim gives no series savings to offset this. Train 4's track record also argues against copying it (Mikhelson said Train 4 "works poorly" and had claims against "almost all suppliers", and Ob LNG dropped Arctic Cascade ([Barents Observer](https://thebarentsobserver.com/en/arctic-lng/2021/09/novatek-ceo-blames-bad-russian-quality-troubled-start-fourth-train)).)
+- MAJOR: Buyers and sanctions are the real limit, not hulls. Arctic LNG 2's idle 13.2 Mtpa shows this, so added trains add capacity that may not sell (The idea itself says it is 1.5x worse than filling Arctic LNG 2.)
+- SURVIVES: 1.63 Mt/y reproduces with a 75 kt cargo, 12-day winter trips and 35–55-day east trips (1.56–1.67). 0.55 hull per train, 8.1 hulls and 0.165 Mt per 1% availability also reproduce.
+- RATIO: 0.67 | Against the best current alternative, filling Arctic LNG 2 (by the idea's own 1.5x).
+- KNOWN: yes | Yamal Train 4 itself. The Arc7 shuttle to the Saam FSU at Ura Bay has run since Feb 2026 ([Marine Insight](https://www.marineinsight.com/shipping-news/russias-arc7-lng-carrier-alexey-kosygin-completes-first-arctic-lng-delivery/)).
+
+IDEA 4
+NAME: Level-crusher conveyor decline for Talnakh
+MECHANISM: The anchor is unchanged: crush ore at the level and carry it on a fixed belt, replacing truck haulage. The belt no longer stops at an existing shaft. It runs up a 14° decline all the way to surface, and serves as the hoisting route for the Talnakh concentrator expansion from 10 to 18 Mtpa in place of a new 2.1 km skip shaft. Nornickel's shafts advanced only 150–322 m in 2017, so sinking takes 6.5–14 years, plus about 1.5 years to equip. A 4.1 km decline (1,000 m lift) driven by drill-and-blast from 2–3 headings at 150 m/month takes about 1–2.3 years, plus about 1 year to install the belt. It is lifted by three flights of ST3150 belt (or two of ST5000) at 1,600 t/h, drawing 5.1 MW, or 3.2 kWh/t against 3.4 for a skip.
+VALUE: Cost per tonne of ore is $2.9–4.0, against $3.6–5.3 for a new shaft. That is only about 1–2% of full cost per tonne of nickel-equivalent, so the gain is not cost. The gain is ore 4–11 years sooner for 8 Mt/y, worth about $1.5–3.5bn PV. That holds only if hoisting is what limits the expansion.
+BLIND REVIEW:
+- FATAL: The geometry and energy figures contradict each other. 4.1 km × sin 14° = 992 m of lift, but the comparator is a 2.1 km shaft. A 2.1 km lift needs an 8.68 km decline (2.4–4.8 years to drive). Also, the 3.4 kWh/t given for the skip is below the 5.72 kWh/t physical minimum for a 2.1 km lift, so the comparator really lifts about 1 km (Against a 1 km shaft (4.6–8.2 years including equipping), the decline takes 2.1–3.3 years, a gain of 1.3–6.1 years, not 4–11.)
+- FATAL: The value rests on hoisting being the limit, and the source points the other way. The Talnakh concentrator's expansion to 18 Mtpa by 2030–31 is described as letting it "take all ore from the Talnakh mines", which means moving ore away from the Norilsk concentrator (7.6 Mt in 2020), not new hoisted ore. The $1.5–3.5bn PV is unsupported ([www1.ru, 6 Mar 2026](https://www1.ru/news/2026/03/06/tretii-puskovoi-kompleks-talnaxskoi-obogatitelnoi-fabriki-v-norilske-postroiat-polnostiu-na-otecestvennom-oborudovanii.html), [AR2020](https://ar2020.nornickel.ru/pdf/ar/ru/business-overview_operational-performance_norilsk.pdf))
+- SURVIVES: Belt tension holds: 3 × ST3150 at 1,400–1,600 mm runs 314–446 kN against 658–752 kN allowable (safety factor 6.7). Decline time of 1.1–2.3 years and shaft time of 6.5–14 years reproduce.
+- RATIO: 1.01 | Haulage is 1.2–1.3x cheaper, but that is 1–2% of full cost per t Ni-eq.
+- KNOWN: yes | Chuquicamata Underground: a 7 km tunnel conveyor rising about 1 km to surface.
+
+
+Say how sure one should be, and where the answer is most likely wrong.
+1. Give each candidate a probability of being the best available answer, plus "none of these" so that the total is
+   100%. Base it on the reviews, not on how attractive a candidate sounds; a candidate with an unanswered FATAL
+   defect gets at most 10%.
+2. For the leader: its weakest link, the single observation that would most change the ranking, and what result of
+   that observation would flip it.
+3. One line on what remains unknown even if the leader is right.
+
+Final answer (text only), at most 350 words:
+=== CALIBRATION ===
+P | <candidate number> | <probability %> | <one-line reason>
+P | none | <probability %> | <reason>
+WEAKEST LINK: <...>
+FLIP TEST: <observation> | <result that would flip the ranking>
+UNKNOWN: <...>

@@ -148,3 +148,5 @@ gate: 4/4 parsed {'DEAD': 4}
   skip repair (done)
 repair: 4 ideas (2815 words)
 /home/user/SomeRepository/engine/runs/rusres/audit_final/TASK.md
+  audit_final: 700,090 tokens, 540.6 s
+  audit_final: 3 new facts -> evidence.md
