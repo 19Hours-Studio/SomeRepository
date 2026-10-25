@@ -1,0 +1,9 @@
+# LOG (repair c1)
+Targets used throughout (open state): depth <=2 um p-v, max slope <=0.3 mrad (0.017 deg), max curvature <=0.5 /m (500 mdpt; architectural spec ~100 mdpt scaled for ~10x shorter reflected-object distance; SPECULATIVE), haptic < Louw 2000 threshold (A=a*w^1.3; 27 um @3 mm, 128 um @10 mm).
+- R1 idea1 | as given, raised-cosine 48 um crease, T 300-3900 N/m | curvature barely drops (corner high-k content); OCA gamma at 3.9 kN/m, lam 6.5 mm = 670% | FAIL at kill-test tension
+- R2 idea1 | smooth Gaussian sets, regime map; graded bond lam=15 mm, sustained gamma<=50% -> T_max 675 N/m (102 N) | T_req: 20 um/sigma4.7 mm = 286; 48 um/sigma8 mm = 196; 48 um/sigma4.7 = 762; 167 um = 2875 N/m | WORKS only for wide (sigma>=~5-8 mm), shallow (<=20-48 um) sets -> pair with large-arc hinge
+- R3 idea1 | stretch for T=675 is 7 um over 30 mm span, thermal mismatch 12 um/40 K | open-loop cam (Apple EP4738056) gets >100% tension error; series spring 1 kN/mm + load-cell-scheduled preload needed | anchor (closed loop) carries value -> NICHE/finisher
+- R1 idea2 | as given (gel in fold band, bonded ends) | FACT 11 mismatch 1.4%; cover/back polymer films at ~3x creep-safe strain | FAIL
+- R2 idea2 | fluid (not gel) across whole stack, pinned at fold centreline, free sliding sealed far edges -> mismatch 0; remove PET cover + back film; R=2.5 mm | only creeping layer = 20 um panel at 0.40%; UTG 420 MPa < CS | continue
+- R3 idea2 | add N fluid-decoupled 30 um UTG leaves behind panel (D adds, strain doesn't) | f_set<=0.05: 3 leaves invisible (0.56 um, 0.23 mrad); f_set=0.10: 5 leaves (0.68 um, 0.27 mrad); f_set=0.2: fails (0.54 mrad) | WORKS iff free-panel set fraction <=0.1 (unknown)
+- R4 idea2 | consistency: squeeze-flow times 69 d (finger) to 1.4e3 yr (gravity); viscous drag 13 Pa; slip 63 um/interface, 377 um stack; reflectance 1e-5 | all inside windows; seal shear & bubble ingress are the open hazards

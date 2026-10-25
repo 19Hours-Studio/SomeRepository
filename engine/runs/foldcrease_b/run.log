@@ -33,3 +33,8 @@ gate: 8/8 parsed {'DEAD': 6, 'WOUNDED': 2}
 /home/user/SomeRepository/engine/runs/foldcrease_b/repair/TASK.md
 /home/user/SomeRepository/engine/runs/foldcrease_b/repair/c1/TASK.md
 /home/user/SomeRepository/engine/runs/foldcrease_b/repair/c2/TASK.md
+  repair.1: 579,070 tokens, 572.5 s
+  repair.2: 513,550 tokens, 579.3 s
+  skip repair (done)
+repair: 4 ideas (2898 words)
+/home/user/SomeRepository/engine/runs/foldcrease_b/audit_final/TASK.md

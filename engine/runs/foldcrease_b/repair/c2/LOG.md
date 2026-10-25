@@ -1,0 +1,11 @@
+# LOG (one line per round)
+- I1 R1 | as written (bonded at both zone ends) | mismatch pi*d/L = 0.85% vs clamped Euler 0.0009% | FAIL (killer confirmed)
+- I1 R2 | every layer pinned only on the fold axis (tabs in short-edge bezel); long edges free in 0.5 mm reservoir groove; open capillary meniscus replaces the hermetic seal | edge slip 64-112 um < 500 um; thermal slip 61 um free; zero mismatch strain | PASS
+- I1 R3 | R=3.5 mm waterdrop, 50 um UTG / 3 um DC550 / 25 um OLED / 3 um / 30 um back UTG | OLED strain 0.36% < ~0.5% CPI residual threshold; UTG 514 MPa < 700 MPa CS | PASS (threshold transfer to OLED-PI unverified)
+- I1 R4 | capillary clamp 14 kPa vs OLED set lift | lift 52 nm at f=5%, 209 nm at 10%, 834 nm at 20% | PASS if f<=10%
+- I1 R5 | bend zone floats over plates recessed 20 um (no contact at rest) so the Oppo-class 50 um plate tolerance does not print; remaining crease = wing coplanarity | need dihedral <=0.02 deg, offset <=3.5 um, stop faces <=1.75 um; gravity sag 0.3 um; stop wear 1 nm/2000 cyc | PASS with factory-trimmed stops (deciding unknown)
+- I1 R6 | drag during folding 1.2 N/m (6 N/m at -20C) vs free Euler 0.004 N/m | relies on the 3 um two-sided sandwich; opening a buckle takes 4 s vs 0.3 s fold | PASS (marginal at cold; test)
+- I2 R1 | as written (tension through OCA from wing plates) | OCA shear 6x creep limit (gate) | FAIL
+- I2 R2 | tension enters only the cover UTG via edge clamps (no OCA tension path) | 48 um Duo-class dent, 8 mm FWHM, bonded D: T=11,900 N/m (239 MPa, 1.8 kN) | FAIL for current stacks
+- I2 R3 | used as a finisher on a <=10 um residual dent | 25C: 90-2100 N/m; -20C bonded: 3,500-12,400 N/m | PASS warm; cold needs more tension
+- I2 R4 | passive CTE schedule: Al link in a Ti frame, 2:1 lever, 56 mm long, 1.63 um/K | -20C 135 um stretch (3,482 N/m, 70 MPa, 522 N); 60C 5 um; 25C 1,600 N/m | NICHE (522 N peak load; reaction must sit within 0.3 mm of the glass plane, otherwise wing bow is 17 um)
