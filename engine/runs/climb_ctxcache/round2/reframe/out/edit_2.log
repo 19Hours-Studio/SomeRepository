@@ -5,3 +5,6 @@ django__django-16899 {'clear': 0.0405, 'replace': 0.0031, 'insert': 0.0032, 'reo
 django__django-12741 {'clear': 0.0437, 'replace': 0.0024, 'insert': 0.0025, 'reorder': 0.0043}
 django__django-11163 {'clear': 0.0245, 'replace': 0.0095, 'insert': 0.0104, 'reorder': 0.0042}
 sphinx-doc__sphinx-10614 {'clear': 0.032, 'replace': 0.0038, 'insert': 0.0049, 'reorder': 0.0065}
+sympy__sympy-18211 {'clear': 0.0469, 'replace': 0.0072, 'insert': 0.0069, 'reorder': 0.0099}
+matplotlib__matplotlib-24149 {'clear': 0.0068, 'replace': 0.003, 'insert': 0.0041, 'reorder': 0.0048}
+sphinx-doc__sphinx-10435 {'clear': 0.0236, 'replace': 0.0069, 'insert': 0.0066, 'reorder': 0.0052}

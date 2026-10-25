@@ -1,0 +1,29 @@
+1) Radius dependence at phi=0.05 (model says depth ~ R):
+   R=1.5mm current-like   24.9 um | proposed  0.31 um
+   R=2.0mm current-like   33.2 um | proposed  0.42 um
+   R=3.0mm current-like   49.8 um | proposed  0.63 um
+   R=4.0mm current-like   66.4 um | proposed  0.83 um
+   R=5.5mm current-like   91.3 um | proposed  1.15 um
+2) What phi does the current-like stack need to match HTX iPhone Duo?
+   48 um -> phi=0.07
+   167 um -> phi=0.25
+3) Proposed stack if panel polymer set reaches the HTX-implied level (phi from 2):
+   phi=0.07: 1.17 um, slope 0.25 mrad
+   phi=0.25: 4.17 um, slope 0.89 mrad
+   phi=0.5: 8.34 um, slope 1.77 mrad
+   phi=1.0: 16.69 um, slope 3.54 mrad
+4) Sensitivity to small set in 'non-creeping' layers (glass relaxation / Ti microplasticity):
+   glass 0.1%, Ti 0.0% set: 9.6 um, 2.04 mrad
+   glass 0.0%, Ti 0.5% set: 12.2 um, 2.59 mrad
+   glass 0.0%, Ti 2.0% set: 46.4 um, 9.85 mrad
+   glass 0.1%, Ti 1.0% set: 32.4 um, 6.88 mrad
+5) Missing layers: add a 25um OCA (G~1e5 Pa -> E~3e5) and a 2nd OCA panel/Ti; also a top
+   hard-coat 5um acrylic (E 4GPa) -- bending-stiffness share only (decoupled):
+   depth 0.84 um  (OCA bending share negligible; its shear set is NOT in the model)
+6) Coupled (bonded) limit: panel set as a membrane strain offset at its distance from neutral axis
+   NA at 93um, panel 15um from NA, strain 0.37%  depth 0.45 um
+7) Is 0.4 mrad / ~100 mD invisible on bare glossy glass?
+   slope 0.4 mrad, reflected object at 0.5 m: image shift 0.4 mm
+   slope 0.4 mrad, reflected object at 2.0 m: image shift 1.6 mm
+   HTX new Duo slope <0.1 deg = 1.75 mrad; after 3000 folds 1.24 deg = 21.6 mrad
+8) UTG stress incl. plate factor 1/(1-nu^2), nu=0.22, R=4mm, t=70um: 662 MPa; at 10um depth (DOL, CS~0): 473 MPa net tension below the CS layer

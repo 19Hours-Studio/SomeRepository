@@ -6,3 +6,23 @@
   v3: 3376 words, $3.66
   critic of v3: $1.88; worst visible feature ≈ 0.047–0.058 mrad at nominal tolerances (≈10× below the author's own v2-hardware 0.51 mrad, not 26×), which is still 1.9–2.4× over the 0.
   v4: 3633 words, $3.96
+# debate_foldcrease: stepwise improvement of a plain answer, judged afterwards
+
+| version | round prompt | words | cost | honest gain (judge, after its own check) |
+|---|---|---|---|---|
+| v0 | - | 1895 | plain answer | none |
+| v1 | debate | 2354 | $2.05 | none demonstrated. The only figure the evidence supports is a modelled, unvalidated 3–13 µm residual depth without tension, against 48 µm measured on a new iPhone Duo (about 4–16× shallower), and that still fails the answer's own 0.2 mrad invisibility limit. The sub-µm "invisible" result rests on an untested tension spring and assumed set values. |
+| v2 | debate | 2483 | $2.16 | none |
+| v3 | debate | 3376 | $3.66 | none |
+| v4 | debate | 3633 | $3.96 | none |
+
+| comparison | newer version won (both orders) | margins | score (+ newer, - older) |
+|---|---|---|---|
+| v1 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v1 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v2 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v3 | 2 of 2 | clearly, clearly | +4 |
+spent $26.65

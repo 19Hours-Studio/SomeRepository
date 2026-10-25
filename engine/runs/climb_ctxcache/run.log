@@ -4,3 +4,7 @@
   round 1 reframe: won both (+4); gain The same −33.6% from errata, plus about −48% to −58% input with batched tool calls at k=1.5–2 (k from one example run). 
   round 1 fresh: won both (+4); gain about 19–39% lower billed input than append-only caching on 50–100-step agent sessions (resampled from real steps), 0% o
   round 1: v1 = fix
+  playoff: {'fix': 1, 'fresh': 1}
+  round 2 fix: won both (+4); gain Client side, about 3.6% relative over `polling=10` (−26.0% vs −23.2% against append-only), conditional on the four-break
+  round 2 fresh: won both (+4); gain Own stack: about 21–34% fewer GPU-hours on agent sessions with GQA models from lossless copy-speculation (prior-art tech
+  round 2: v2 = fix

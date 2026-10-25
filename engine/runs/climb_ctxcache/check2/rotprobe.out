@@ -1,0 +1,5 @@
+sliding    rotate tail :     34.2 M token-rotations  memory-bound  0.00 GPU-h  (flop-count used in billing2: 0.000 GPU-h)
+sliding    rotate short:     30.5 M token-rotations  memory-bound  0.00 GPU-h  (flop-count used in billing2: 0.000 GPU-h)
+polling10  rotate tail :      5.2 M token-rotations  memory-bound  0.00 GPU-h  (flop-count used in billing2: 0.000 GPU-h)
+polling10  rotate short:      4.5 M token-rotations  memory-bound  0.00 GPU-h  (flop-count used in billing2: 0.000 GPU-h)
+splice events per trace, sliding keep5: mean 55.1 median 51.5 max 128; polling10 total 1016

@@ -1,0 +1,17 @@
+D 2.372e-03; glass 0.9922 panel 0.0057 adh 0.0021
+effective polymer set fraction phi_eff = 1.35e-03
+analytic slope estimate ~ 0.0121 mrad (code 0.0066 smooth profile)
+  phi_g 0e+00: slope 0.0066 mrad depth 0.18 um
+  phi_g 1e-03: slope 0.0114 mrad depth 0.31 um
+  phi_g 1e-02: slope 0.0552 mrad depth 1.48 um
+  phi_g 3e-02: slope 0.1524 mrad depth 4.08 um
+  phi_g 1e-01: slope 0.4926 mrad depth 13.18 um
+T~0, phi_g 1e-3: slope 3.69 mrad, depth 134 um
+  folded R5.5 bending stress at z=38 um (outer face bottom UTG): 497 MPa
+  folded R5.5 bending stress at z=35 um (DOL bottom of outer face): 458 MPa
+  folded R5.5 bending stress at z=28 um (core of bottom UTG): 367 MPa
+  folded R5.5 bending stress at z=21 um (inner DOL edge): 275 MPa
+  core tension in tensile-side UTG while folded ~ 517 MPa (bending + CT 150)
+  critical flaw at 244 MPa: 2.40 um
+  critical flaw at 517 MPa: 0.53 um
+  tension gain factor at phi_g 0.001: 322x
