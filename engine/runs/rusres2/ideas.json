@@ -43,5 +43,24 @@
   "name": "Availability as capacity",
   "mech": "Anchor: one parts registry pools spares across the Western-built underground fleet, ranks failure modes by Ni-eq tonnes lost, and sends the worst part families to domestic reverse-engineering and casting first. The stock is re-optimised every quarter from measured mean time between failures (MTBF). With 6 mines and a 9-month grey-import lead time, a pooled stock is 46–62% the size of separate site stocks for the same service. With the same budget, the chance a part is on hand when needed rises from 80% to 99.5% (Poisson model). Ranking by Ni-eq sends the first effort to the rich-ore fleets: one lost LHD-hour there costs about 6.3 t Ni-eq, against 1.2 t on Norilsk-1 ore (5.2×). That makes the programme 1.7× more effective than ranking by machine-hours. Base case: availability rises about 7 percentage points, output by about 29 kt Ni-eq/yr (3.6% of the group), at about $2,700 per added tonne. Gains count only while the mines, not the concentrators, are the limit (taken as 60%). It breaks even if domestic parts last at least 0.30× as long as the original parts.",
   "value": "Each added tonne costs about $2,700, roughly 0.35× the $7,300–8,100 of a brownfield capacity stage. Group full cost falls about 2.6% within 6–18 months, which is real but not a 1.5× cut."
+ },
+ {
+  "id": "synthesis#1",
+  "label": "synthesis",
+  "arm": "F",
+  "gen": 3,
+  "name": "Gated diesel bridge plus pooled spares",
+  "mech": "(1) Norilsk, starting now: build one spares registry for the Western-built underground fleet. Spares are pooled across 6 mines and ranked by Ni-eq lost per machine-hour (6.3 t on rich ore, 1.2 t on Norilsk-1). Domestic reverse-engineering and casting start with the worst part families. The programme winds down as the BelAZ/MoAZ JV fleet (Sosnovoborsk, about 150 machines/yr) replaces those machines. The corrected effect is +8 to +29 kt Ni-eq/yr (central +15 kt) at about $5.4k per added tonne. (2) Baimskaya, decided at a gate in Q4 2027: if the first two RITM-200S floating units are not at mooring trials by then, they cannot power line 1 when it is ready in Q1 2029 (RAEX, Apr 2026). In that case Baimskaya leases about 80 MW of domestic gensets (Kolomna or UDMZ 1.5–2.5 MW units) and runs line 1 at about 65 MW average. That gives 12.2 Mt/y of ore (not 15), 48 kt Cu and 77 koz Au a year. It burns 146 kt/y of diesel at 0.225 kg/kWh, which costs about $0.31/kWh. Diesel comes from Far East refineries through the Bering Strait in 7–8 tanker calls into Pevek. That route keeps clear of the Kara Sea icebreakers Part 2 needs. The fuel is held in about 173k m³ of tankage (about $173m), built on cooled piles to bedrock with full secondary containment, which is the Ambarnaya lesson. Concentrate (222 kt wet a year, 5–6 ships of 40 kt) is stockpiled at Nagleynyn for the 3–4 month shipping season. The gensets leave when the floating units arrive. (3) Oil and gas: no change. Both Part 2 ideas only reproduce current practice: Vankor oil goes south on Vankor–Purpe, Payakha oil goes north as far as the hulls allow, and Yamal LNG uses Kildin ship-to-ship transfer plus summer cargoes east.",
+  "value": "Copper: expected value is +$185m (+$66m at $8k Cu / $2.8k Au), and the bridge breaks even if the floating units slip 0.44 years. Life-of-mine full cost is 0.98× the no-bridge case for a 1-year slip and 0.955× for a 2-year slip. First metal comes 1.05 years earlier on expectation, with a 35% chance of no gain. Nickel-equivalent: group full cost goes from about $10.05k to $9.97k/t Ni-eq (−0.85%, range −0.1% to −2.5%) within 6–18 months, and the gain fades over 3–5 years. LNG and oil: 1.00× current practice."
+ },
+ {
+  "id": "synthesis#2",
+  "label": "synthesis",
+  "arm": "F",
+  "gen": 3,
+  "name": "Half bridge on the winter road",
+  "mech": "Same Q4 2027 gate, but at 40 MW average: 7.5 Mt/y of ore, 30 kt Cu, 48 koz Au, 90 kt/y of diesel and about 106k m³ of tankage (about $106m). That needs about 6,600 road loads a year, or about 51 a day on a 130-day winter road. That is about a third of the record daily rate on Canada's Tibbitt–Contwoyto winter road (about 158 a day). So it does not depend on the 800 km Baimskaya–Nagleynyn all-season road, of which only 250 km was built at last report. Line 1 is commissioned and run in on diesel. Norilsk and oil and gas are handled as in IDEA 1.",
+  "value": "Expected value is +$102m (+$29m at low prices), with break-even at 0.50 years of slip. Net cash cost is $2.0k/t Cu at base prices and $3.0k/t at low prices. The life-of-mine cost gain is about half of IDEA 1's, but this version still works if the road slips along with the floating units.",
+  "fragment": true
  }
 ]

@@ -1,0 +1,13 @@
+{
+ "p": {
+  "synthesis#1": 0.2,
+  "synthesis#2": 0.07,
+  "P1:repair#2": 0.04,
+  "P2:repair#2": 0.04,
+  "P3:repair#2": 0.03,
+  "none": 0.62
+ },
+ "weakest_link": "The copper bridge in IDEA 5 needs 173k m³ of fuel tankage on thermosyphon piles. That tankage would have to be built, frozen in and filled before the last Pevek ship of 2028. Piles set in summer 2028 do not freeze until the following winter, which pushes the bridge to 2030, when the floating units are due anyway.",
+ "flip_test": "Two observations matter by Q4 2027: how many km of the 800 km Baimskaya–Nagleynyn road are open, and the mooring-trial status of FNPP units 1–2.\n- If the road is at 600 km or less, or units 1–2 are on schedule, IDEA 5 drops below 8% and \"none\" rises above 75%.\n- If the road is complete and the units have slipped at least a year, IDEA 5 rises to about 40%.",
+ "unknown": "Even if IDEA 5 is right, the size of the gain is unknown. It depends on the real slip in the floating units, on whether domestic Kolomna or UDMZ gensets can be delivered at 80 MW scale, and on Pevek's real spare tankage. No public data pins down any of these."
+}

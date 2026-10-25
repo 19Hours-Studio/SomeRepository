@@ -1,0 +1,106 @@
+Russia wants to develop and extract minerals and energy in its permafrost regions at the lowest full cost, in the shortest time from investment decision to first production, and with the highest effectiveness. Effectiveness means resource recovery, working time across the year, and how long infrastructure lasts on thawing ground. All three are measured per unit of product delivered to the buyer. The scope covers:
+- Hard-rock and placer metals: Norilsk and Taimyr nickel, copper and platinum-group metals; gold in Yakutia, Magadan and Chukotka; Udokan and Baimskaya copper; Tomtor rare earths.
+- Diamonds in Yakutia, plus the Arkhangelsk deposits (see CORRECTED).
+- Coal in Taimyr, Elga and the rest of Yakutia.
+- Oil and gas in Yamal, Gydan and Taimyr.
+The whole chain counts: choosing and exploring deposits, building and powering sites, mining or drilling, processing, staffing, and delivering the product. The conditions are:
+- Permafrost that is thawing under a warming climate.
+- Extreme cold, with short building and shipping seasons.
+- Long distances with no roads or railways.
+- Ice seasons on the Northern Sea Route (NSR) and the rivers.
+- A shortage of workers.
+- Expensive energy at remote sites.
+- Restricted access to imported mining, drilling and LNG equipment and software since 2022.
+What changes to any stage, or to the order in which deposits are developed, would beat the best current practice in Russia and in comparable cold regions (northern Canada, Alaska, Greenland, northern Scandinavia)?
+A good answer: 
+- Each proposal states its effect, with an estimate and its basis, on three measures: (a) full cost per unit delivered (annualised capital plus operating plus logistics); (b) years from investment decision to first production; (c) effectiveness (recovery, days worked per year, infrastructure life on thawing ground).
+- Each proposal is compared with a named benchmark, either Russian (e.g. Yamal LNG, Norilsk, Vankor/Vostok Oil, Kupol/Pavlovskoye, Nord/Elga) or foreign (e.g. Canadian Arctic mines such as Raglan and Diavik, Red Dog in Alaska, Kiruna/Aitik, Greenland).
+- It names which deposits or stages it applies to and which it does not.
+- It states what physical law or measured data it relies on.
+- It lists the equipment or technology by its domestic maker or unrestricted supplier.
+- It includes the main risks and how to test the idea within 3–7 years.
+Constraints: 
+- It must obey known physics.
+- It must be deployable within 3–7 years.
+- It may use only equipment and technology Russian operators can get from domestic makers or from suppliers not restricted for them.
+- It must not depend on ways around sanctions.
+
+The final candidates with their blind reviews (data):
+IDEA 1
+NAME: Size Sever to hulls
+MECHANISM: The anchor is unchanged: each month Bukhta Sever receives only what the Russian-built Arc hulls can lift, about 1.54 Mt/y per 69 kt hull on the 15.5-day Murmansk cycle (1.2 Mt/y if winter stretches the cycle to 20 days). The allocation is reversed. Vankor-cluster oil (about 11.6–12.3 Mt in 2026–27) stays on the existing Vankor–Purpe line. That line is rated 25 Mt/y and has 12.7–13.4 Mt/y spare. The oil goes to the export outlet it already sells to, not to domestic refineries, which are already crude-long. South is the cheaper margin: about $57/t to an Asian buyer via Transneft and Kozmino, against about $86/t north via Sever, Murmansk and Suez. The north carries only Payakha oil, and Payakha drilling is scheduled to Zvezda Arc hull deliveries, so no well is drilled whose oil cannot be lifted. Because of that, no surplus ever has to go south and the Payakha–Vankor segment never needs reverse flow.
+VALUE: Delivered cost per tonne falls by about $29/t on every Vankor tonne kept south, and holding back 15–25 Mt/y of Payakha capacity by 2–3 years saves $2.4–5.8bn in present value. That is about $80–190 per tonne of the capacity deferred, against the published plan of 30 Mt/y in H2 2027, which needs about 19 hulls that do not exist.
+BLIND REVIEW:
+- MAJOR: The baseline is wrong. Vostok Oil's first cargo in September 2026 was a blend of Vankor and Payakha crude, so current practice already lifts what hulls allow. The $29/t and $2.4–5.8bn are measured against a plan nobody can execute, not against what is done today. (Kpler via [energynews.pro](https://energynews.pro/en/rosneft-ships-first-oil-cargo-from-arctic-bukhta-sever-terminal))
+- MAJOR: Running only Payakha oil through a 790 km trunk sized for 100 Mt/y means 1.5–3 Mt/y, or 1.5–3% of design. Line fill is 0.53–0.76 Mt (for 1.0–1.2 m pipe), and oil would sit 64–180 days in Arctic pipe. That is a wax and minimum-throughput risk, and it is the likely reason Vankor oil is blended north. (Python. 100 Mt/y design ([S&P](https://www.spglobal.com/energy/en/news-research/latest-news/crude-oil/090626-russia-launches-major-vostok-oil-project-with-first-arctic-loading)).)
+- SURVIVES: The 69 kt hull is right (Valentin Pikul, 69k dwt, Arc6). 1.54 Mt/y per hull and about 19 hulls for 30 Mt/y reproduce. A south cost of $57/t is plausible: the ESPO tariff is 3,896.51 rub/t, about $43–49 ([Interfax](https://www.interfax.ru/business/1061300)), plus port and freight.
+- RATIO: 1.00 | Measured against actual practice.
+- KNOWN: yes | The [Carnegie analysis (July 2025)](https://carnegieendowment.org/ru/russia-eurasia/politika/2025/07/russia-new-oil-project) notes that existing pipelines already export Vankor-cluster oil.
+
+IDEA 2
+NAME: Diesel-sized first line, nuclear expansion
+MECHANISM: Anchor: a diesel-sized starter on leased domestic or unrestricted gensets comes first. The nuclear-sized expansion follows when the floating units deliver, and the gensets then move to other sites. Repaired design: the starter is no longer a separate 6 Mt/y plant. That version still fails: $8.3k/t Cu net against $2.0k/t for the full plan, and a $45m a year margin on $1.08bn of capex. Instead, line 1 of the Baimskaya plant now under construction (start planned for end-2028) runs at a throughput sized to 80 MW of leased gensets. It uses the SAG mill and one of two ball mills at a coarser grind, on the highest-grade benches. That gives 15 Mt/y of ore at about 0.51% Cu (the first-decade head implied by the feasibility study), 67 kt Cu and 98 koz Au a year. It burns 117 kt of diesel a year at $0.30/kWh, which takes 6 tanker calls into Pevek and needs 174k m³ of tankage. With fuel coming in and concentrate going out on the same trucks, that is about 7,000 loads a year: 20 a day on the all-season road, or 78 a day on a winter road alone. Net cash cost is $1.95k/t Cu after gold credit. Line 1 is also commissioned on diesel, so the ramp-up is done before the reactors arrive.
+VALUE: Each year the floating units slip, the bridge earns about $0.52bn of cash margin ($0.29bn at Cu $8k / Au $2.8k) from a plant whose $8bn would otherwise cost about $1.2bn a year to carry idle. Waiting idle earns nothing in those years.
+BLIND REVIEW:
+- MAJOR: IDEA 1 already corrected this: the same 80 MW fleet gives 12.2 Mt/y, not 15. Here 117 kt of diesel for 15 Mt is 34.7 kWh/t, against 53 kWh/t in IDEA 1 and about 40 kWh/t for the full design. Output is overstated by about 23%, and 15 Mt is 43% of line 1's 35 Mt/y. (Python.)
+- MAJOR: The trucking does not work. Fuel tankers cannot back-haul bulk concentrate. 310 kt of concentrate is about 8,850 loads at 35 t, against the stated 7,000, which implies 44 t per load. (Python.)
+- MAJOR: It shares the gate-to-tank-farm timing defect and the doubled tankage problem in the winter-road case. 78 a day implies a 90-day season, which conflicts with IDEA 4's 130 days. (Python: 7,000/78 = 90.)
+- SURVIVES: The $0.539bn margin is correct arithmetic at the stated cost. 174k m³ is about 1.25× of 117 kt, which gives a reserve margin.
+- RATIO: 1.01 | Rescaled to 12.2 Mt with the timing correction.
+- KNOWN: partly | Same precedent as IDEA 1: diesel-powered Chukotka mines (Kupol) and diesel during construction at Peschanka.
+
+IDEA 3
+NAME: Half bridge on the winter road
+MECHANISM: Same Q4 2027 gate, but at 40 MW average: 7.5 Mt/y of ore, 30 kt Cu, 48 koz Au, 90 kt/y of diesel and about 106k m³ of tankage (about $106m). That needs about 6,600 road loads a year, or about 51 a day on a 130-day winter road. That is about a third of the record daily rate on Canada's Tibbitt–Contwoyto winter road (about 158 a day). So it does not depend on the 800 km Baimskaya–Nagleynyn all-season road, of which only 250 km was built at last report. Line 1 is commissioned and run in on diesel. Norilsk and oil and gas are handled as in IDEA 1.
+VALUE: Expected value is +$102m (+$29m at low prices), with break-even at 0.50 years of slip. Net cash cost is $2.0k/t Cu at base prices and $3.0k/t at low prices. The life-of-mine cost gain is about half of IDEA 1's, but this version still works if the road slips along with the floating units.
+BLIND REVIEW:
+- MAJOR: It needs about twice the tankage. Tankers reach Pevek in July–October and the winter road runs from late January to April. Pevek must therefore hold the whole year's fuel (107k m³), and the mine must hold May to January (about 85k m³). That is about 192k m³ against 106k, roughly +$86m, which turns the +$102m EV into about +$16m and the low-price case into about −$57m. (Kupol's road runs late January to end April ([Canadian Mining Journal](https://canadianminingjournal.com/featured-article/beating-tough-odds-on-top-of-the-world)). Python.)
+- MAJOR: 130 days is longer than the real Chukotka window of about 95 days, and the right benchmark is Kupol, not Tibbitt–Contwoyto. Kupol's road averaged about 19 trips a day in 2008. At 95 days the plan needs about 69 loads a day, 3.6× Kupol, over an 800 km route, which takes about 160 trucks. (Kupol 2008: 1,944 trips. 6,600/95 = 69.)
+- MAJOR: It shares IDEA 1's gate-to-tank-farm timing defect and the same 14% shortfall in the energy balance (90 kt implies a 45.7 MW average, not 40 MW). (Python.)
+- SURVIVES: 6,600 loads works out to 34.7 t per load for 90 kt of fuel plus 139 kt of concentrate, which is feasible. 51 a day over 130 days is correct arithmetic.
+- RATIO: 1.00 | The extra tankage cancels the expected value.
+- KNOWN: partly | A 450 km ice road from Bilibino to Peschanka is already planned for GDK Baimskaya ([EastRussia](https://www.eastrussia.ru/news/ledovye-dorogi-dlya-gdk-baimskaya-postroyat-na-chukotke/)). Kupol's winter road from Pevek is the precedent.
+
+IDEA 4
+NAME: Availability as capacity
+MECHANISM: Anchor: one parts registry pools spares across the Western-built underground fleet, ranks failure modes by Ni-eq tonnes lost, and sends the worst part families to domestic reverse-engineering and casting first. The stock is re-optimised every quarter from measured mean time between failures (MTBF). With 6 mines and a 9-month grey-import lead time, a pooled stock is 46–62% the size of separate site stocks for the same service. With the same budget, the chance a part is on hand when needed rises from 80% to 99.5% (Poisson model). Ranking by Ni-eq sends the first effort to the rich-ore fleets: one lost LHD-hour there costs about 6.3 t Ni-eq, against 1.2 t on Norilsk-1 ore (5.2×). That makes the programme 1.7× more effective than ranking by machine-hours. Base case: availability rises about 7 percentage points, output by about 29 kt Ni-eq/yr (3.6% of the group), at about $2,700 per added tonne. Gains count only while the mines, not the concentrators, are the limit (taken as 60%). It breaks even if domestic parts last at least 0.30× as long as the original parts.
+VALUE: Each added tonne costs about $2,700, roughly 0.35× the $7,300–8,100 of a brownfield capacity stage. Group full cost falls about 2.6% within 6–18 months, which is real but not a 1.5× cut.
+BLIND REVIEW:
+- MAJOR: The Poisson claims do not reproduce. At an 80–83% fill rate per site, pooling the same stock across 6 sites gives at most 97.3%, not 99.5%. The pooled stock needed for equal service is at least 88% of separate stocks, not 46–62%. (Python scan of λ from 0.05 to 10 over 274 cases: pooled fill 0.27–0.973, stock ratio at least 0.88.)
+- MAJOR: It contradicts IDEA 6. If the rich-ore deep mines are hoist-limited, a lost LHD-hour there costs about 0 t, not 6.3 t. The 5.2× ratio and the claim of being 1.7× more effective then collapse. (Skalisty hoisting is fixed at 1.5 Mt/y (SCS-1) plus 0.24 Mt/y (VS-10) ([Rudmet](https://rudmet.ru/journal/1297/article/22101/)).)
+- MAJOR: It depends on grey imports, which the task forbids. (Stated 9-month grey-import lead time.)
+- MAJOR: It is the uncorrected version of IDEA 1(1). The same programme there was re-estimated to +15 kt at $5.4k a tonne, against +29 kt at $2.7k here. The +7 percentage points of availability is unsourced. (IDEA 1 text.)
+- SURVIVES: The group arithmetic holds: (806×10.05 + 29×2.7)/835 gives −2.5%, and 6.3 t per hour implies about 105 t/h at about 6% Ni-eq, which is plausible for an LHD.
+- RATIO: 1.005 | Using IDEA 1's corrected +15 kt at $5.4k, then cut further for hoist-limited mines.
+- KNOWN: partly | Nornickel's import substitution and the BelAZ repair JV ([Interfax](https://interfax.com/newsroom/top-stories/119023/)).
+
+IDEA 5
+NAME: Gated diesel bridge plus pooled spares
+MECHANISM: (1) Norilsk, starting now: build one spares registry for the Western-built underground fleet. Spares are pooled across 6 mines and ranked by Ni-eq lost per machine-hour (6.3 t on rich ore, 1.2 t on Norilsk-1). Domestic reverse-engineering and casting start with the worst part families. The programme winds down as the BelAZ/MoAZ JV fleet (Sosnovoborsk, about 150 machines/yr) replaces those machines. The corrected effect is +8 to +29 kt Ni-eq/yr (central +15 kt) at about $5.4k per added tonne. (2) Baimskaya, decided at a gate in Q4 2027: if the first two RITM-200S floating units are not at mooring trials by then, they cannot power line 1 when it is ready in Q1 2029 (RAEX, Apr 2026). In that case Baimskaya leases about 80 MW of domestic gensets (Kolomna or UDMZ 1.5–2.5 MW units) and runs line 1 at about 65 MW average. That gives 12.2 Mt/y of ore (not 15), 48 kt Cu and 77 koz Au a year. It burns 146 kt/y of diesel at 0.225 kg/kWh, which costs about $0.31/kWh. Diesel comes from Far East refineries through the Bering Strait in 7–8 tanker calls into Pevek. That route keeps clear of the Kara Sea icebreakers Part 2 needs. The fuel is held in about 173k m³ of tankage (about $173m), built on cooled piles to bedrock with full secondary containment, which is the Ambarnaya lesson. Concentrate (222 kt wet a year, 5–6 ships of 40 kt) is stockpiled at Nagleynyn for the 3–4 month shipping season. The gensets leave when the floating units arrive. (3) Oil and gas: no change. Both Part 2 ideas only reproduce current practice: Vankor oil goes south on Vankor–Purpe, Payakha oil goes north as far as the hulls allow, and Yamal LNG uses Kildin ship-to-ship transfer plus summer cargoes east.
+VALUE: Copper: expected value is +$185m (+$66m at $8k Cu / $2.8k Au), and the bridge breaks even if the floating units slip 0.44 years. Life-of-mine full cost is 0.98× the no-bridge case for a 1-year slip and 0.955× for a 2-year slip. First metal comes 1.05 years earlier on expectation, with a 35% chance of no gain. Nickel-equivalent: group full cost goes from about $10.05k to $9.97k/t Ni-eq (−0.85%, range −0.1% to −2.5%) within 6–18 months, and the gain fades over 3–5 years. LNG and oil: 1.00× current practice.
+BLIND REVIEW:
+- MAJOR: A Q4 2027 gate leaves about 10 months to build 173k m³ of tankage on cooled piles and fill it before the last Pevek ship of 2028. Thermosyphon piles set in summer 2028 do not freeze in until the following winter, so full tanks cannot stand on them in autumn 2028. The bridge most likely starts in 2030, which is when the floating units are now due. (Pevek is open about 3 months a year ([Canadian Mining Journal](https://canadianminingjournal.com/featured-article/beating-tough-odds-on-top-of-the-world)). The first unit is due in 2028 and the fourth in 2030 ([Kommersant](https://www.kommersant.ru/doc/8878824)). The first Chinese-built hull reached Baltic Shipyard in spring 2026 ([Bellona](https://bellona.org/news/nuclear-issues/2026-08-floating-nuclear-power-was-a-russian-curiosity-now-others-want-to-give-it-a-shot)).)
+- MAJOR: The plan ignores the road. 146 kt of diesel in and 222 kt of concentrate out must cross the roughly 430 km between Nagleynyn and the deposit. That is about 10,500 loads of 35 t, so this version depends on the unbuilt all-season road that IDEA 4 calls the binding constraint. ((146+222)/0.035 = 10.5k loads. Nagleynyn is about 430 km from Baimskaya ([NEI](https://www.neimagazine.com/news/first-ritm-for-baim-fnpp-manufactured/)).)
+- MAJOR: The energy balance does not close. 146 kt at 0.225 kg/kWh is 649 GWh, a 74 MW average on 80 MW installed. That is a 93% load factor with no reserve on an island grid carrying a SAG mill. At the stated 65 MW average, the burn would be 128 kt. (Python: 146e6/0.225/8760 = 74.1 MW.)
+- MAJOR: Pooled spares rely on a 9-month grey-import lead time, which is a way around sanctions. The task forbids that. (Stated in the mechanism.)
+- MAJOR: Nickel side: the Poisson pooling claims behind the +15 kt do not reproduce (see IDEA 2). Lost LHD-hours on rich ore are also counted at 6.3 t Ni-eq, while IDEA 6 says those same mines are limited by their hoists. In a hoist-limited mine a marginal LHD-hour is worth about 0 t. (See IDEA 2.)
+- SURVIVES: 12.2 Mt/y giving 48 kt Cu and 77 koz Au is consistent with a head of about 0.44% and 88% recovery. The Ni-eq arithmetic ($10.05k to $9.965k/t) reproduces. Line 1 ready in 2029 matches GDK's own date ([EastRussia](https://www.eastrussia.ru/news/zapusk-baimskogo-goka-otlozhili-do-2029-goda/)).
+- RATIO: 1.005 | Copper gives about 1.02 only if the units slip and the 2028 timing works, which is unlikely. Nickel gives about 1.005 after the pooling and hoist corrections.
+- KNOWN: partly | Nornickel and BelAZ signed a JV in September 2026 that includes a full repair base, and a Sosnovoborsk plant for 150 units a year is planned ([Interfax](https://interfax.com/newsroom/top-stories/117294/)). Diesel-powered Chukotka mines supplied through Pevek, such as Kupol, are standard practice.
+
+
+Say how sure one should be, and where the answer is most likely wrong.
+1. Give each candidate a probability of being the best available answer, plus "none of these" so that the total is
+   100%. Base it on the reviews, not on how attractive a candidate sounds; a candidate with an unanswered FATAL
+   defect gets at most 10%.
+2. For the leader: its weakest link, the single observation that would most change the ranking, and what result of
+   that observation would flip it.
+3. One line on what remains unknown even if the leader is right.
+
+Final answer (text only), at most 350 words:
+=== CALIBRATION ===
+P | <candidate number> | <probability %> | <one-line reason>
+P | none | <probability %> | <reason>
+WEAKEST LINK: <...>
+FLIP TEST: <observation> | <result that would flip the ranking>
+UNKNOWN: <...>
