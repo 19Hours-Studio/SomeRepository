@@ -21,7 +21,7 @@ Ground every decisive input in a source or a measurement, not in the idea's own 
 Notes from the user and about the environment (data; the user may be wrong):
 {NOTES}
 
-Value ledger (data):
+Ledger: where the cost or the defect comes from (data):
 {LEDGER}
 
 Ceilings computed from the ledger (data):

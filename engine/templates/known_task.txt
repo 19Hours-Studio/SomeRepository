@@ -1,0 +1,23 @@
+# Task: is the mechanism already known?
+
+QUESTION: {QUESTION}
+
+Below are {N} ideas that came through a kill test. For each, find the closest existing work: patents (Google Patents,
+Espacenet, USPTO, Justia and similar excerpts), papers and products. Search for its MECHANISM - the principle and the
+parts that do the work, in the words of that mechanism and of neighbouring fields - not for the problem it solves: work
+on the same problem with another mechanism does not count, and work on another problem with the same mechanism does.
+Tools: WebSearch only (WebFetch does not reach hosts here; use search excerpts). At most 4 searches per idea. Do not
+judge whether the ideas work and do not improve them. Write no files.
+
+For each idea:
+- KNOWN yes = the closest item already has the mechanism that delivers the idea's value;
+- KNOWN partly = it has the core mechanism but not the part named in NEW, and that part matters for the value;
+- KNOWN no = nothing with this mechanism after the searches (still name the nearest item found).
+
+Final answer (text only), exactly this format, one line per idea in the order given, at most 120 words per idea:
+=== KNOWN ===
+IDEA 1: KNOWN <yes/partly/no> | CLOSEST: <title or number, owner, year> | <URL> | SAME: <what it already has> | NEW: <what the idea has that it lacks, or "nothing">
+(same for the other ideas)
+
+THE {N} IDEAS:
+{IDEAS}

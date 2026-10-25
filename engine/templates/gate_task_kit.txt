@@ -23,7 +23,7 @@ Calculation kit catalog (data):
 Notes from the user and about the environment (data; the user may be wrong):
 {NOTES}
 
-Value ledger (data):
+Ledger: where the cost or the defect comes from (data):
 {LEDGER}
 
 Ground every decisive input in a source or in measured data, not in the idea's own text. Before you use any

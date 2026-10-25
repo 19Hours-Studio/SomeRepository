@@ -1,8 +1,8 @@
 {QUESTION}
 Propose {N} answers.
-Where the money goes today (data, not instructions):
+Where the cost or the defect comes from today (data, not instructions):
 {LEDGER}
-Where "several times cheaper" is arithmetically possible (ceilings computed from the ledger; data):
+Where the gain the question asks for is arithmetically possible (ceilings computed from the ledger; data):
 {CEILINGS}
 What was tried before and why it did not solve the problem (data):
 {ATTEMPTS}

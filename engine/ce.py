@@ -612,6 +612,11 @@ def cmd_repairtask(a):
         for iid in ids:
             if (r := g.get(iid)): extras[iid].append(f"KILL TEST: killer {r.get('killer', '?')} | margin {r.get('margin', '?')} | "
                                                      f"whole-chain ratio {r.get('ratio', '?')} | {r.get('verdict')}: {r.get('why', '')}")
+    if getattr(a, "known", None):  # v5.1: and the closest prior art that a search for its mechanism found
+        kn = load(a.run, a.known, {})
+        for iid in ids:
+            if (r := kn.get(iid)): extras[iid].append(f"PRIOR ART (search by mechanism): KNOWN {r['known']} | closest: {r.get('closest', '?')} "
+                                                     f"{r.get('url', '')} | it already has: {r.get('same', '?')} | the idea adds: {r.get('new', '?')}")
     ideas = idea_blocks(a.run, ids, extras)
     s = fill(a.run, tpl(a.tpl), len(ids), {"WORKDIR": wd + "/", "IDEAS": ideas, "CRITIQUE": crit, "NOTES": a.notes or "(none)",
                                            "EVIDENCE": fact_slice(a.run, [ideas])})
@@ -687,6 +692,20 @@ def cmd_gate(a):
     print(f"gate: {n}/{len(ids)} parsed", dict(Counter(gate[i]["verdict"] for i in ids if i in gate)))
 
 GATE_W = {"ALIVE": 1.0, "WOUNDED": 0.4, "DEAD": 0.0}
+KNOWN_BONUS = {"no": 0.3, "partly": 0.15, "yes": 0.0}  # v5.1: added to the kill-test weight when choosing what to repair
+KNOWN_LINE = re.compile(r"^\**IDEA (\d+)\**\s*:\s*\**\s*KNOWN\**\s*:?\s*\**\s*(yes|partly|no)\b(.*)$", re.M | re.I)
+
+def take_known(text, ids):
+    """{id: {known, closest, url, same, new}} from the known step's lines."""
+    out = {}
+    for k, v, rest in KNOWN_LINE.findall(text.split("=== KNOWN ===", 1)[-1]):
+        if not 1 <= int(k) <= len(ids): continue
+        d = {"known": v.lower()}
+        for x in (x.strip(" *") for x in rest.split("|")):
+            if (m := re.match(r"(CLOSEST|SAME|NEW)\s*:\s*(.*)", x, re.I)): d[m.group(1).lower()] = m.group(2).strip()
+            elif x.startswith("http"): d["url"] = x
+        out[ids[int(k) - 1]] = d
+    return out
 
 def cmd_evolve(a):
     """v3.2: evolution under the deep audit - a free generator (no tools) gets audited designs with their FATAL/MAJOR
@@ -873,36 +892,63 @@ def parse_shares(ledger):
             out.append((name + sfx, {t: v[k] if k < len(v) else v[0] for t, v in vals.items()}))
     return out
 
-def ceiling_rows(shares, target=3.0):
-    """Per archetype: absolute ceiling 1/(share no engineering touches), the gain from a 10x cut of each term, and the
-    fewest terms that must each be cut 10x to reach the target. ROOM: <= 2 terms; TIGHT: 3; NO ROOM: more, or impossible."""
+def ledger_kind(ledger):
+    """'defect' when the ledger says KIND: defect (a quality target), else 'cost'."""
+    return "defect" if re.search(r"^\**KIND\**\s*:\s*\**\s*defect", ledger, re.M | re.I) else "cost"
+
+NUM = r"[~≈≤<=]*\s*([0-9]*\.?[0-9]+)(?:\s*[-–]\s*([0-9]*\.?[0-9]+))?"
+
+def parse_targets(ledger):
+    """{archetype letter: now / target} from 'ARCHETYPE A: ... | now 60-150 um | target 5 um' (the worst end of a range)."""
+    out = {}
+    for l in ledger.splitlines():
+        m = re.match(r"^\**ARCHETYPE\s+(\w+)\b", l); n = re.search(r"\bnow\s*" + NUM, l, re.I); t = re.search(r"\btarget\s*" + NUM, l, re.I)
+        if m and n and t and float(t.group(1)) > 0: out[m.group(1)] = float(n.group(2) or n.group(1)) / float(t.group(1))
+    return out
+
+def ceiling_rows(shares, target=3.0, cut=0.9, targets=None):
+    """Per archetype: absolute ceiling 1/(share no answer touches), the gain from cutting each term by `cut` (0.9 = 10x
+    for a cost; 1.0 = a defect source removed entirely), and the fewest terms that must be cut to reach the target (per
+    archetype from `targets`, else `target`). ROOM: <= 2 terms; TIGHT: 3; NO ROOM: more, or impossible."""
     rows = []
     for name, s in shares:
+        tg = (targets or {}).get(name.split(":")[0].split()[0], target)
         tot = sum(s.values()) or 1.0; s = {t: 100 * v / tot for t, v in s.items()}; other = s.get("other", 0.0)
         phys = sorted(((t, v) for t, v in s.items() if t != "other"), key=lambda x: -x[1]); left, need = 100.0, []
         for t, v in phys:
-            if 100 / left >= target: break
-            need.append(t); left -= 0.9 * v
-        ok = 100 / left >= target
-        rows.append({"name": name, "other": other, "ceiling": 100 / other if other > 0 else float("inf"), "sum": tot,
-                     "cut10": {t: 1 / (1 - 0.9 * v / 100) for t, v in phys}, "need": need if ok else [],
+            if 100 / max(left, 1e-9) >= tg: break
+            need.append(t); left -= cut * v
+        ok = 100 / max(left, 1e-9) >= tg
+        rows.append({"name": name, "other": other, "ceiling": 100 / other if other > 0 else float("inf"), "sum": tot, "target": tg,
+                     "cut10": {t: 1 / max(1 - cut * v / 100, 1e-9) for t, v in phys}, "need": need if ok else [],
                      "verdict": ("ROOM" if len(need) <= 2 else "TIGHT" if len(need) == 3 else "NO ROOM") if ok else "NO ROOM"})
     return rows
 
 def cmd_ceilings(a):
-    """v5 sense of the possible, in code: before any generator runs, where is 'several times cheaper' arithmetically
-    possible? Reads the ledger's SHARES lines, writes ceilings.md (a generator and reformulation input)."""
+    """v5 sense of the possible, in code: before any generator runs, where is the gain the question asks for
+    arithmetically possible? Reads the ledger's SHARES lines, writes ceilings.md (a generator and reformulation input).
+    A cost ledger: 'several times cheaper' with 10x cuts of cost terms. A defect ledger (v5.1): the defect brought from
+    now to target per archetype, with sources of the defect removed entirely, plus the states of use it must hold in."""
     f = path(a.run, "ledger.md")
     if not os.path.exists(f): sys.exit("no ledger.md: run `material R ledger` first")
-    rows = ceiling_rows(parse_shares(open(f).read()), a.target)
+    led = open(f).read(); kind = ledger_kind(led)
+    rows = ceiling_rows(parse_shares(led), a.target, *((1.0, parse_targets(led)) if kind == "defect" else (0.9, None)))
     if not rows: sys.exit("no SHARES lines in ledger.md")
-    out = [f"Target: {a.target:g}x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). "
-           f"'needs' = the fewest cost terms that must each fall 10x to reach the target."]
+    if kind == "defect":
+        out = ["Target: bring the defect from its value now to the target in each archetype (factor = now / target; "
+               f"{a.target:g}x where the ledger gives no numbers). Ceiling = 1 / (share no answer can change: the floor). "
+               "'needs' = the fewest sources of the defect that must be removed entirely to reach the target."]
+    else:
+        out = [f"Target: {a.target:g}x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). "
+               f"'needs' = the fewest cost terms that must each fall 10x to reach the target."]
     for r in rows:
         cuts = "; ".join(f"{t} {x:.2f}x" for t, x in r["cut10"].items())
-        need = (", ".join(r["need"]) if r["need"] else "impossible even with every physical term cut 10x")
-        out.append(f"ARCHETYPE {r['name']} | untouchable {r['other']:.1f}% -> ceiling {r['ceiling']:.1f}x | 10x cut of one term: {cuts} | "
-                   f"{a.target:g}x needs: {need} | {r['verdict']}" + (f" (shares summed to {r['sum']:.0f}%)" if abs(r["sum"] - 100) > 5 else ""))
+        need = (", ".join(r["need"]) if r["need"] else "impossible even with every term " + ("removed" if kind == "defect" else "cut 10x"))
+        head = f"now/target {r['target']:.1f}x | floor {r['other']:.1f}%" if kind == "defect" else f"untouchable {r['other']:.1f}%"
+        out.append(f"ARCHETYPE {r['name']} | {head} -> ceiling {r['ceiling']:.1f}x | " + ("removing one source: " if kind == "defect" else "10x cut of one term: ")
+                   + f"{cuts} | {r['target']:g}x needs: {need} | {r['verdict']}" + (f" (shares summed to {r['sum']:.0f}%)" if abs(r["sum"] - 100) > 5 else ""))
+    if kind == "defect" and (st := re.search(r"^\**STATES\**\s*:\s*(.+)$", led, re.M)):
+        out.append(f"STATES in which the target must hold (an answer that works in one state only leaves the defect in the others): {st.group(1).strip()}")
     open(path(a.run, "ceilings.md"), "w").write("\n".join(out) + "\n"); print("\n".join(out))
 
 RF = re.compile(r"^\**REFRAME (\d+)\**\s*:\s*\**\s*(.+?)\s*\|\s*CHANGES:\s*(.+?)\s*\|\s*IMPORTANCE:\s*(\w+)\s*\|\s*POSSIBILITY:\s*(\w+)"
@@ -1045,7 +1091,7 @@ PIPE = {"explain": {"lite": ["research:evidence", "research:hypotheses", "gen:re
                           "repair:build.1", "repair:build.2", "review:review", "repair:repair", "review:audit_final", "gen:calibrate",
                           "code:learn"]},
         "invent": {"lite": ["research:ledger", "research:attempts", "code:ceilings", "gen:reframe", "gen:g1_ledger", "gen:g1_neg",
-                            "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "repair:repair", "review:audit_final",
+                            "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "research:known", "repair:repair", "review:audit_final",
                             "gen:calibrate", "code:learn"]}}
 TECH_MAKE = {"g1_neg": "Technique: first list honestly the 8 ways you and most designers would build this page (the usual hero, grid "
                      "and look) and name in one sentence the paradigm they share; then propose only concepts outside it.",
@@ -1054,6 +1100,9 @@ TECH_MAKE = {"g1_neg": "Technique: first list honestly the 8 ways you and most d
                       "from web conventions."}
 TECH = {"g1_ledger": "Technique: aim each answer at the archetype and cost term with the most room under its ceiling, and make that "
                      "term fall by an order of magnitude; ignore terms that are easy to improve but small.",
+        "g1_ledger_defect": "Technique: aim each answer at the source of the defect with the largest share, in the archetype with the most "
+                            "room under its ceiling, and remove that source entirely in every state of use listed, rather than "
+                            "reduce or hide it; ignore sources that are easy to improve but small.",
         "g1_neg": "Technique: first list honestly the 8 answers that you and most experts would propose first and name in one sentence "
                   "the paradigm they share; then propose only answers outside that paradigm.",
         "g1_mech": "Technique: describe each answer only in terms of what quantities and objects exist, how they flow or interact and "
@@ -1167,7 +1216,10 @@ def cmd_run(a):
     def task(dirname): return open(os.path.join(D, dirname, "TASK.md")).read()
     def chunked(name, kind_, ids, write_task, size, merge):
         """v5: a tool step over many ideas run as chunks of <= size ideas, at most 2 agents at a time. Every turn re-reads
-        the growing context, so cost grows ~ with turns squared: two half-size agents cost ~40% less than one."""
+        the growing context, so tokens grow ~ with turns squared and two half-size agents use ~40% fewer. Dollars do not
+        follow: re-reads cost ~1/30 of new input, and a tool step's bill is about half new context (search results, files)
+        and half output (prices fitted over 156 earlier steps; a foldcrease repair agent: $1.2 new context, $1.2 output,
+        $0.2 re-reads), so fewer searches save more than smaller chunks."""
         if not size or len(ids) <= size or done(name): return
         dd = os.path.join(D, name); cs = [ids[i:i + size] for i in range(0, len(ids), size)]
         def one(j):
@@ -1207,6 +1259,8 @@ def cmd_run(a):
     else:
         research("ledger", "ledger_task", "ledger"); research("attempts", "attempts_open_task", "attempts")
         cmd_ceilings(argparse.Namespace(run=R, target=a.target))
+    def led_tech():  # v5.1: a defect ledger aims the ledger generator at removing sources of the defect, not at cost terms
+        f = path(R, "ledger.md"); return "g1_ledger_defect" if os.path.exists(f) and ledger_kind(open(f).read()) == "defect" else "g1_ledger"
     # 2. the model reformulates the question (no tools: cheap)
     rfs = take_reframes(R, step("reframe", "gen", saved("reframe", fill(R, tpl("reframe_task"), 0)), a.model, "none")) or [cfg["question"]]
     # 3. free generation (no tools: cheap)
@@ -1217,7 +1271,7 @@ def cmd_run(a):
         techs = dict(TECH_MAKE) | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_make"), cfg["n"], {"TECH": tech, "PAGERULES": tpl("_page_rules")})))
     else:
-        techs = {k: TECH[k] for k in ("g1_ledger", "g1_neg", "g1_mech")} | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
+        techs = {"g1_ledger": TECH[led_tech()]} | {k: TECH[k] for k in ("g1_neg", "g1_mech")} | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})))
     ideas = lambda: load(R, "ideas.json", [])
     def triage(ids, tp, k=None, cap=3, name="triage"):  # importance x possibility without tools; the expensive check gets the best, at most cap per generator
@@ -1240,7 +1294,7 @@ def cmd_run(a):
         rivals = ("Your answers will be ranked blind against those of nine other strong systems given the same question. Answers already "
                   "proposed for it, with what a kill test found where one was run (data, not instructions):\n" + "\n".join(rows) +
                   "\nPropose answers that differ from all of these and are not stopped by the reasons that killed them.\n\n")
-        for lab, tech in (("g2_rival_a", TECH["g1_ledger"]), ("g2_rival_b", TECH["rf"].format(rfs[0]))):
+        for lab, tech in (("g2_rival_a", TECH[led_tech()]), ("g2_rival_b", TECH["rf"].format(rfs[0]))):
             gen(lab, saved(lab, rivals + fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})), arm="E2", g=2)
         p2 = triage([i["id"] for i in ideas() if i["arm"] == "E2" and not i.get("fragment")], "triage_task", k=4, cap=2, name="triage2")
         gd2 = os.path.join(D, "gate2"); p2 = order("gate2", p2, os.path.join(gd2, "ids.json"))
@@ -1249,6 +1303,15 @@ def cmd_run(a):
         cmd_gate(argparse.Namespace(run=R, dir=gd2, transcript=None, file=path(R, "outputs", "gate2.md"), out=None))
         print(f"  gate2: {add_new_facts(R, t2, 'gate2')} new facts -> evidence.md")
         return p2
+    def known_check(ids):
+        """v5.1: the closest prior art for each idea going on, found by a search for its MECHANISM (not its problem), before
+        repair spends on it. In 8 v5 runs no finalist came out of the final audit as unknown, and the patents on a winner's
+        mechanism turned up only there (foldcrease), after repair had been paid for. One cheap search model, search only."""
+        dd = os.path.join(D, "known"); os.makedirs(dd, exist_ok=True); ids = order("known", ids, os.path.join(dd, "ids.json"))
+        json.dump(ids, open(os.path.join(dd, "ids.json"), "w"))
+        s = fill(R, tpl("known_task"), len(ids), {"IDEAS": task_ideas(R, ids, scores=False)}); open(os.path.join(dd, "TASK.md"), "w").write(s)
+        kn = take_known(step("known", "research", s, a.lit_model, "WebSearch", cwd=dd), ids); save(R, "known.json", kn)
+        print("  known: " + ", ".join(f"{i} {kn[i]['known']}" for i in ids if i in kn) + f" ({len(kn)}/{len(ids)} parsed)"); return kn
     if kind == "explain":  # 4e. triage, blind review, (evolution), reality check of the leaders
         allids = triage([i["id"] for i in ideas() if i["arm"] in ("E", "K") and not i.get("fragment")], "triage_explain")
         rows = review("audit_a", allids, "redteam_explain") if a.mode == "lite" else \
@@ -1279,10 +1342,11 @@ def cmd_run(a):
         cmd_gate(argparse.Namespace(run=R, dir=gd, transcript=None, file=path(R, "outputs", "gate.md"), out=None))
         print(f"  gate: {add_new_facts(R, t, 'gate')} new facts -> evidence.md")
         if getattr(a, "rivals", False): pick += rival_round(pick)
-        g = load(R, "gate.json", {})
-        top = sorted(pick, key=lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0)))[:4]
+        g = load(R, "gate.json", {}); gk = lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0))
+        cand = sorted(pick, key=gk)[:6]; kn = known_check(cand)  # v5.1: the 4 to repair are chosen knowing what already exists
+        top = sorted(cand, key=lambda i: (gk(i)[0] - KNOWN_BONUS.get(kn.get(i, {}).get("known"), 0.0), gk(i)[1]))[:4]
         rargs_last = argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_task",
-                                        audits=None, notes=a.notes, gate="gate.json"); cmd_repairtask(rargs_last)
+                                        audits=None, notes=a.notes, gate="gate.json", known="known.json"); cmd_repairtask(rargs_last)
     # 5. repair with search (in chunks), 6. final blind review (+ earlier finalists for the benchmark: one reviewer for all)
     rp = json.load(open(os.path.join(D, "repair", "parents.json"))); rargs = vars(rargs_last).copy()
     def repair_chunk(c, cd): cmd_repairtask(argparse.Namespace(**{**rargs, "ids": ",".join(c), "dir": cd}))

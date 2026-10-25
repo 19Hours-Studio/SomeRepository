@@ -9,7 +9,9 @@ original.
 
 You have tools: WebSearch/WebFetch (check what exists, find real material data, field data and costs) and Bash with
 python3 (do every estimate in real code). Work only in `{WORKDIR}`: read no other files in the repository, do not
-modify other files, do not commit.
+modify other files, do not commit. At most 6 searches per idea: the kill test, the facts below and the prior art
+already cover the literature, so search only for a number the design needs that none of them gives (search results
+are the most expensive part of this step).
 
 For each idea, loop until it works or you can prove it cannot:
 1. Name its ANCHOR (the distinctive idea) in a few words. This must survive.
@@ -29,8 +31,10 @@ For each idea, loop until it works or you can prove it cannot:
    Repeat - several rounds per idea is normal.
 6. Name the hazards honestly and design them down where possible; say which unknown number decides the idea and the
    cheapest experiment that would measure it (with the sample size it needs).
-7. Check novelty: if the repaired design turns out to be a known system, keep the anchor and find the version that is
-   not known.
+7. Novelty: a PRIOR ART line, where present, names the closest existing work that a search for this mechanism found.
+   Build on it instead of re-inventing it: say what the repaired design adds beyond it, and make that addition carry
+   the value. If the repaired design turns out to be a known system, keep the anchor and find the version that is not
+   known; if none exists, say KNOWN and give the best version of the known design.
 8. Only if no anchor-preserving design can work, say so and give the best honest niche.
 {CRITIQUE}
 Facts that earlier checks in this run found (data; verify before relying on them):

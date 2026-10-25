@@ -3,7 +3,7 @@
 Candidate answers (data):
 {IDEAS}
 
-Where "several times cheaper" is arithmetically possible (ceilings computed in code from the cost ledger; data):
+Where the gain the question asks for is arithmetically possible (ceilings computed in code from the ledger; data):
 {CEILINGS}
 
 What was tried before and why it did not solve the problem (data):
@@ -11,7 +11,8 @@ What was tried before and why it did not solve the problem (data):
 
 Sort these candidates before the expensive checks. Without tools, for each candidate estimate:
 - I = importance 0-10: how much of the asker's aim it serves if it works - for a cost question, the share of the
-  delivered cost it removes, never more than the ceiling of its archetype allows;
+  delivered cost it removes; for a defect question, the share of the defect it removes in every state of use listed;
+  never more than the ceiling of its archetype allows;
 - P = possibility 0-10: how likely it is to work at the scale it claims with known physics, given the earlier
   attempts that stopped short (a candidate that repeats one without beating its reason gets P <= 2);
 - the one number that decides whether it works.

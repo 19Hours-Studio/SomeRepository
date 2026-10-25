@@ -341,7 +341,8 @@ def main():
                                   "processing 5% | capital 13% | other 55%\n=== ATTEMPTS ===\nATTEMPT 1: winter road | Yakutia | standard | WHY IT DID NOT SOLVE IT: 54 days | s\n"
                                   "=== GATE ===\n" + "".join(f"IDEA {k}: n{k}\nKILLER | ice | required 2 m | available 1 m (s) | MARGIN {k}\n"
                                                               f"CHAIN | road | now 100 | with idea 50 | RATIO {k}\nVERDICT | ALIVE | ok\n" for k in (1, 2, 3)) +
-                                  "NEW FACT | ice road open 45 days in 2026 | skillings\n=== TRIAGE ===\nIDEA 1 | I 2 | P 2 | DECIDES: x | y\nIDEA 2 | I 9 | P 8 | DECIDES: x | y\n"
+                                  "NEW FACT | ice road open 45 days in 2026 | skillings\n=== KNOWN ===\n**IDEA 1:** KNOWN yes | CLOSEST: barge patent, Acme, 2019 | https://p.example/1 | "
+                                  "SAME: barges | NEW: nothing\nIDEA 2: KNOWN: no | CLOSEST: rail study | https://p.example/2 | SAME: route | NEW: ice keel\n=== TRIAGE ===\nIDEA 1 | I 2 | P 2 | DECIDES: x | y\nIDEA 2 | I 9 | P 8 | DECIDES: x | y\n"
                                   "=== REVIEW ===\n" + "".join(f"IDEA {k}: x\nDEFECT | MAJOR | weak {k} | src\nRATIO | {k}.5 | b\nKNOWN | partly | p\n" for k in range(1, 9)) +
                                   "=== IDEAS ===\n" + ideas + v5)
             R11 = "_selftest50"; rd11 = os.path.join(HERE, "runs", R11); shutil.rmtree(rd11, ignore_errors=True)
@@ -354,7 +355,14 @@ def main():
             ceil = open(os.path.join(rd11, "ceilings.md")).read()
             assert "(settlement) | untouchable 1.5% -> ceiling 66.7x" in ceil and "3x needs: outbound logistics | ROOM" in ceil
             assert "ARCHETYPE B: oil" in ceil and "NO ROOM" in ceil and "(export)" in ceil
-            sh = __import__("importlib").import_module("ce").parse_shares(
+            cem5 = __import__("importlib").import_module("ce")  # v5.1: a defect ledger - sources removed entirely, target per archetype
+            led = ("=== LEDGER ===\nKIND: defect\nMETRIC: depth, um | THRESHOLD: 5 um (s)\nARCHETYPE A: book fold | now 60-150 um | target 5 um\n"
+                   "SHARES: polymer set 55% | plate step 25% | creep 15% | other 5%\nARCHETYPE B: titanium | now 20 um | target ≤5 um\n"
+                   "SHARES: polymer set 60 | plate step 20 | other 20\nSTATES: half open | cold\n")
+            assert cem5.ledger_kind(led) == "defect" and cem5.parse_targets(led) == {"A": 30.0, "B": 4.0}
+            cr = cem5.ceiling_rows(cem5.parse_shares(led), 3.0, 1.0, cem5.parse_targets(led))
+            assert [(r["verdict"], r["need"]) for r in cr] == [("NO ROOM", []), ("ROOM", ["polymer set", "plate step"])], cr
+            sh = cem5.parse_shares(
                 "**ARCHETYPE A:** chips | x\nSHARES (est.): HBM3E stacks 45 (about $2,900) | packaging 17 | logic 33 (Epoch adds 23% overhead) | other (fees) 5\n")
             assert sh == [("A: chips", {"hbm3e stacks": 45.0, "packaging": 17.0, "logic": 33.0, "other": 5.0})], sh  # shares without %, notes in brackets
             g = open(os.path.join(rd11, "prompts", "g1_ledger.txt")).read()
@@ -364,7 +372,12 @@ def main():
             rp = open(os.path.join(rd11, "repair", "TASK.md")).read()
             assert "KILL TEST: killer ice" in rp and "ice road open 45 days in 2026 | NEW from gate" in rp and "{" not in rp
             assert "OLD:known#1" in json.load(open(os.path.join(rd11, "audit_final", "ids.json")))
-            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 19  # gate and repair in 2 chunks, rival round 4 steps, one bench reviewer
+            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 20  # gate and repair in 2 chunks, rival round 4 steps, known, one bench reviewer
+            kn = json.load(open(os.path.join(rd11, "known.json"))); kid = json.load(open(os.path.join(rd11, "known", "ids.json")))
+            assert len(kid) == 6 and kn[kid[0]]["known"] == "yes" and kn[kid[1]] == {"known": "no", "closest": "rail study", "url": "https://p.example/2",
+                                                                                   "same": "route", "new": "ice keel"}, kn
+            assert "PRIOR ART (search by mechanism): KNOWN no | closest: rail study" in rp and "At most 6 searches per idea" in rp
+            assert kid[1] in json.load(open(os.path.join(rd11, "repair", "parents.json")))  # an unknown idea goes on to repair
             rv = open(os.path.join(rd11, "prompts", "g2_rival_a.txt")).read()
             assert "ranked blind against" in rv and "[kill test: ALIVE - ok]" in rv and "most room under its ceiling" in rv
             assert len(json.load(open(os.path.join(rd11, "gate2", "ids.json")))) == 4 and any(i.startswith("g2_rival") for i in json.load(open(os.path.join(rd11, "gate.json"))))
