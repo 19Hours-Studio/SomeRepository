@@ -342,7 +342,8 @@ def main():
                                   "=== GATE ===\n" + "".join(f"IDEA {k}: n{k}\nKILLER | ice | required 2 m | available 1 m (s) | MARGIN {k}\n"
                                                               f"CHAIN | road | now 100 | with idea 50 | RATIO {k}\nVERDICT | ALIVE | ok\n" for k in (1, 2, 3)) +
                                   "NEW FACT | ice road open 45 days in 2026 | skillings\n=== FAMILIES ===\n" + "".join(f"IDEA {k} | FAMILY Barge loop\n" for k in range(1, 7)) +
-                                  "IDEA 7 | FAMILY: rail spur\n=== SLICES ===\nSLICE 1: Deposits | COVER: where | ANGLES: a; b | LANGUAGES: en, ru\n"
+                                  "IDEA 7 | FAMILY: rail spur\n=== DIRECTIONS ===\n" + "".join(f"DIRECTION {k}: region {k} | AIMS AT: logistics | NOT: others\n" for k in range(1, 6)) +
+                                  "=== RECHECK ===\nIDEA 1: ice | required 2 m (s) | available 1 m (s) | MARGIN 0.5\nIDEA 2: ice | required 1 m | available 4 m | MARGIN 4\n=== SLICES ===\nSLICE 1: Deposits | COVER: where | ANGLES: a; b | LANGUAGES: en, ru\n"
                                   "SLICE 2: Logistics | COVER: routes | ANGLES: c | LANGUAGES: en\n=== EVIDENCE ===\n**FACT 1:** barge freight 40 USD/t on the Lena | HARD | https://a.example/1\n"
                                   "FACT 2: winter road open 90 days | SOFT (company claim) | https://b.example/2, https://c.example/3\nGAPS: no tariff data\n=== KNOWN ===\n**IDEA 1:** KNOWN yes | CLOSEST: barge patent, Acme, 2019 | https://p.example/1 | "
                                   "SAME: barges | NEW: nothing\nIDEA 2: KNOWN: no | CLOSEST: rail study | https://p.example/2 | SAME: route | NEW: ice keel\n=== TRIAGE ===\nIDEA 1 | I 2 | P 2 | DECIDES: x | y\nIDEA 2 | I 9 | P 8 | DECIDES: x | y\n"
@@ -353,7 +354,7 @@ def main():
             ce("import", R11, R8, "--arm", "OLD", "--ids", "known#1")
             assert "ESTIMATE invent/lite" in ce("plan", R11)
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R11, "--tag", "coal", "--lessons-exclude", "coal",
-                                  "--bench", "OLD:known#1", "--rivals", "--dossier", "2", "--fill-families", "2", "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
+                                  "--bench", "OLD:known#1", "--rivals", "--dossier", "2", "--fill-families", "2", "--recheck", "2", "--directions", "--vs", "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
             assert "FINAL (blind review" in out.stdout and "| OLD | 1 |" in out.stdout, out.stdout[-900:] + out.stderr[-900:]
             ceil = open(os.path.join(rd11, "ceilings.md")).read()
             assert "(settlement) | untouchable 1.5% -> ceiling 66.7x" in ceil and "3x needs: outbound logistics | ROOM" in ceil
@@ -376,7 +377,7 @@ def main():
             rp = open(os.path.join(rd11, "repair", "TASK.md")).read()
             assert "KILL TEST: killer ice" in rp and "ice road open 45 days in 2026 | NEW from gate" in rp and "{" not in rp
             assert "OLD:known#1" in json.load(open(os.path.join(rd11, "audit_final", "ids.json")))
-            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 25  # dossier plan + 2 slices, families, gate_fill, gate and repair in 2 chunks, rival round 4 steps, known, one bench reviewer
+            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 28  # dossier plan + 2 slices, families, gate_fill, directions, 2 rechecks, gate and repair in 2 chunks, rival round 4 steps, known, one bench reviewer
             ev11 = open(os.path.join(rd11, "evidence.md")).read()  # v5.2 dossier: slices merged, duplicates dropped, sources counted
             assert ev11.startswith("FACT 1: barge freight 40 USD/t on the Lena | HARD | https://a.example/1 | dossier: Deposits") and ev11.count("winter road open 90 days") == 1, ev11[:400]
             assert open(os.path.join(rd11, "dossier.md")).read().startswith("2 facts, 3 distinct sources, 2 slices") and "Deposits: no tariff data" in open(os.path.join(rd11, "dossier.md")).read()
@@ -386,6 +387,10 @@ def main():
             assert sum(fam11.get(i) == "barge loop" for i in gate_ids) <= 2 and len(gate_ids) == 8  # at most 2 per family go to the kill test
             gf = json.load(open(os.path.join(rd11, "gate_fill", "ids.json"))); gj = json.load(open(os.path.join(rd11, "gate.json")))
             assert len(gf) == 2 and all(i in gj for i in gf) and not {fam11.get(i, i) for i in gf} & {fam11.get(i, i) for i in gate_ids}  # untested families only
+            gr = [v for v in gj.values() if len(v.get("margins", [])) == 3]; assert len(gr) == 2, gj  # v5.3 recheck: the fake rechecks ideas 1 and 2
+            assert any(v["verdict_gate"] == "ALIVE" and v["verdict"] == "WOUNDED" and v["margin"] == 0.5 for v in gr), gr  # median margin, verdict in code
+            assert any(v["unstable"] for v in gr) and all("verdict_gate" in v for v in gr)
+            g1 = open(os.path.join(rd11, "prompts", "g1_neg.txt")).read(); assert "Your direction (work only in it" in g1 and "region 2" in g1 and "CANDIDATE k" in g1
             kn = json.load(open(os.path.join(rd11, "known.json"))); kid = json.load(open(os.path.join(rd11, "known", "ids.json")))
             assert len(kid) == 6 and kn[kid[0]]["known"] == "yes" and kn[kid[1]] == {"known": "no", "closest": "rail study", "url": "https://p.example/2",
                                                                                    "same": "route", "new": "ice keel"}, kn

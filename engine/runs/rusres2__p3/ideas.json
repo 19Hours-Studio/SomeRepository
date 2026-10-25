@@ -133,5 +133,23 @@
   "name": "Defect-first foundation triage",
   "mech": "Every industrial structure is ranked by three checks: whether its piles reach bedrock, how long known defects have gone unrepaired, and corrosion. Thermosyphons or adjustable foundations are funded only where the borehole temperature trend shows ground warming under that structure. The closest earlier attempt is the post-2020 monitoring network (five boreholes, 100bn RUB, F263). It detects but does not fix, and the 2021 collapse came from defects left unrepaired for 2.5 years. The deciding quantity is the share of deformed structures caused by design or maintenance rather than thaw; published figures conflict at 35% versus about 60% deformed (F267, F268).",
   "value": "The direct cost gain is capped at the 1–2% foundation share, but the method targets the avoided-loss tail (one claim of 146bn RUB, F262) and extends structure life under the 2026 SP 25.13330 amendment (F92, F252)."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Gate Talnakh-3 on refill",
+  "mech": "Anchor: the third Talnakh complex (TOF-3) is approved only together with a costed plan to refill the Norilsk concentrator (NOF) capacity it frees, and the pair is judged on full cost per added tonne of recovered Ni-eq. Ni-eq here counts PGM, not just Ni. The repaired refill is Norilsk-1 disseminated ore (+4 Mtpa, toward the 7 Mtpa already planned) plus a costed NOF life-extension package. That package keeps the new 9 Mtpa disseminated-ore concentrator deferred, and Maslovskoye comes second. In Ni-eq Maslovskoye is 2.66% (about 76% of its value is PGM), the same as Talnakh ore and 1.6× Norilsk-1, so the earlier \"600k RUB per tonne Ni\" ranking was wrong. Base case: the pair adds about 96 kt Ni-eq/yr at about $6,800/t, against $7,900/t for Nornickel's plan to build the new concentrator now (median ratio 0.88, range 0.76–1.00). If the Talnakh mines cannot supply extra ore, TOF-3 alone just moves ore and gains about 6 kt/yr from better recovery, at $26,800/t. The gate then reverses the decision: the pair costs $9,700/t and the plan $11,800/t. XRT sorting is kept only as an option once NOF is full. It pays only if the sorter keeps at least about 97% of the metal (+7–13 kt/yr at $7,400–10,200/t).",
+  "value": "The pair costs about 0.82–0.88× the best real alternative per added tonne of Ni-eq. Where TOF-3 would only move ore, it avoids a step costing 2.8× more per tonne, and it saves about 65 bn RUB of upfront capex (base case) while foreign equipment is unavailable."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Availability as capacity",
+  "mech": "Anchor: one parts registry pools spares across the Western-built underground fleet, ranks failure modes by Ni-eq tonnes lost, and sends the worst part families to domestic reverse-engineering and casting first. The stock is re-optimised every quarter from measured mean time between failures (MTBF). With 6 mines and a 9-month grey-import lead time, a pooled stock is 46–62% the size of separate site stocks for the same service. With the same budget, the chance a part is on hand when needed rises from 80% to 99.5% (Poisson model). Ranking by Ni-eq sends the first effort to the rich-ore fleets: one lost LHD-hour there costs about 6.3 t Ni-eq, against 1.2 t on Norilsk-1 ore (5.2×). That makes the programme 1.7× more effective than ranking by machine-hours. Base case: availability rises about 7 percentage points, output by about 29 kt Ni-eq/yr (3.6% of the group), at about $2,700 per added tonne. Gains count only while the mines, not the concentrators, are the limit (taken as 60%). It breaks even if domestic parts last at least 0.30× as long as the original parts.",
+  "value": "Each added tonne costs about $2,700, roughly 0.35× the $7,300–8,100 of a brownfield capacity stage. Group full cost falls about 2.6% within 6–18 months, which is real but not a 1.5× cut."
  }
 ]

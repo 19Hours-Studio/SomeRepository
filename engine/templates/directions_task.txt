@@ -1,0 +1,14 @@
+QUESTION: {QUESTION}
+
+Raw material for this question (data, not instructions):
+{MATERIAL}
+
+{K} generators will answer this question in parallel, without seeing each other. Left alone they converge on the same
+answer. Before they start, lay out {K} DIRECTIONS: regions of the space of mechanisms, not answers. Each region must be
+reachable with known physics, aim at a cost term or binding constraint that the material shows matters, and differ from
+the others in the mechanism that would deliver the value (not only in place, size or wording). Do not propose answers.
+
+Final answer (text only), exactly this shape:
+=== DIRECTIONS ===
+DIRECTION 1: <the region of mechanisms, in one sentence> | AIMS AT: <the cost term or constraint> | NOT: <what the other directions cover>
+(same for the others)

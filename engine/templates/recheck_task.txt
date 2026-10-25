@@ -1,0 +1,20 @@
+# Task: check the deciding numbers independently
+
+QUESTION: {QUESTION}
+
+For each idea below, an earlier check named the one quantity most likely to decide whether it works. Estimate that
+quantity yourself, independently: what the idea REQUIRES at the scale it claims, and what is AVAILABLE, from measured
+data or exact arithmetic, each with a source. You are not shown the earlier numbers on purpose. Tools: WebSearch
+(WebFetch does not reach hosts here; use excerpts) and Bash with python3. About 3 searches per idea. Do not judge the
+ideas otherwise and do not improve them. Work only in `{WORKDIR}`: write files only there, do not commit.
+
+Facts collected for this question (data; check a decisive one before relying on it):
+{EVIDENCE}
+
+Final answer (text only), one line per idea in the order given:
+=== RECHECK ===
+IDEA 1: <quantity> | required <number unit> (<source>) | available <number unit> (<source>) | MARGIN <available / required, a number>
+(same for the other ideas)
+
+THE {N} IDEAS:
+{IDEAS}

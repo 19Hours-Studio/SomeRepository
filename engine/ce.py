@@ -610,7 +610,8 @@ def cmd_repairtask(a):
     if getattr(a, "gate", None):  # v5: and its kill-test result
         g = load(a.run, a.gate, {})
         for iid in ids:
-            if (r := g.get(iid)): extras[iid].append(f"KILL TEST: killer {r.get('killer', '?')} | margin {r.get('margin', '?')} | "
+            if (r := g.get(iid)): extras[iid].append(f"KILL TEST: killer {r.get('killer', '?')} | margin {r.get('margin', '?')}"
+                                                     + (f" (independent estimates {', '.join(f'{x:g}' for x in r['margins'])}{'; UNSTABLE' if r.get('unstable') else ''})" if r.get("margins") else "") + " | "
                                                      f"whole-chain ratio {r.get('ratio', '?')} | {r.get('verdict')}: {r.get('why', '')}")
     if getattr(a, "known", None):  # v5.1: and the closest prior art that a search for its mechanism found
         kn = load(a.run, a.known, {})
@@ -694,6 +695,17 @@ def cmd_gate(a):
 
 GATE_W = {"ALIVE": 1.0, "WOUNDED": 0.4, "DEAD": 0.0}
 KNOWN_BONUS = {"no": 0.3, "partly": 0.15, "yes": 0.0}  # v5.1: added to the kill-test weight when choosing what to repair
+VS = ("\nBefore the answers, list 8 candidate answers you could give, each with your estimate of the probability that a "
+      "typical strong answerer would give it (CANDIDATE k: <one line> | P <0-1>). Then develop as the answers only candidates whose "
+      "probability is below 0.10, keeping the ones most likely to work.")  # v5.3 verbalized sampling (arXiv:2510.01171)
+DIRLINE = re.compile(r"^\**DIRECTION (\d+)\**\s*:\s*\**\s*(.+)$", re.M)
+RECHECK = re.compile(r"^\**IDEA (\d+)\**\s*:.*?MARGIN\s*[:=]?\s*[~≈]?\s*([0-9]*\.?[0-9]+(?:e-?[0-9]+)?)", re.M | re.I)
+
+def gate_verdict(margin, ratio):
+    """The kill-test rule, in code: ALIVE if MARGIN >= 1 and RATIO >= 1.5; DEAD if MARGIN < 0.3 or RATIO < 1.1; else WOUNDED."""
+    if margin is None or ratio is None: return None
+    return "ALIVE" if margin >= 1 and ratio >= 1.5 else "DEAD" if margin < 0.3 or ratio < 1.1 else "WOUNDED"
+
 PART = {"triage_k": 4, "repair_top": 2}  # v5.2: lean settings for the parts of a split question
 PARTLINE = re.compile(r"^\**PART (\d+)\**\s*:\s*\**\s*(.+)$", re.M)
 FAMLINE = re.compile(r"^\**IDEA (\d+)\**\s*\|\s*\**FAMILY\**\s*:?\s*(.+?)\s*$", re.M | re.I)
@@ -1237,6 +1249,8 @@ def cmd_run(a):
     if getattr(a, "dossier", None): cfg["dossier"] = a.dossier
     if getattr(a, "fill_families", None): cfg["fill_families"] = a.fill_families
     if getattr(a, "decompose", None) is not None: cfg["decompose"] = a.decompose
+    for k_ in ("recheck", "directions", "vs"):
+        if getattr(a, k_, None): cfg[k_] = getattr(a, k_)
     if a.notes: cfg["notes"] = a.notes
     save(R, "config.json", cfg); budget = a.max_tokens; bench = [x for x in (getattr(a, "bench", None) or "").split(",") if x]
     def spent(): return runner.summary(D)[1]
@@ -1336,7 +1350,7 @@ def cmd_run(a):
                 cmd_init(argparse.Namespace(run=C, question=q, format="value", n=cfg.get("n", 3), force=True))
                 cc = load(C, "config.json", {}); cc.update({"parent": R, "part": k, "repair_top": PART["repair_top"], "kit": bool(getattr(a, "kit", False) or cfg.get("kit")),
                                                             "notes": "\n".join(x for x in (cfg.get("notes"), f"What the parts share or compete for: {inter}") if x)}
-                                                           | {x: cfg[x] for x in ("tag", "lessons_exclude", "slice_facts") if x in cfg}); save(C, "config.json", cc)
+                                                           | {x: cfg[x] for x in ("tag", "lessons_exclude", "slice_facts", "recheck", "directions", "vs") if x in cfg}); save(C, "config.json", cc)
                 for fn in ("evidence.md", "dossier.md", "attempts.md"):  # shared raw material; each part builds its own ledger
                     if os.path.exists(path(R, fn)): shutil.copy(path(R, fn), path(C, fn))
             kids.append(C); print(f"   part {k}: {f[0][:150]}")
@@ -1408,6 +1422,13 @@ def cmd_run(a):
     else:
         techs = {"g1_ledger": TECH[led_tech()]} | {k: TECH[k] for k in ("g1_neg", "g1_mech")} | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
         if cfg.get("gens"): techs = {k: v for k, v in techs.items() if k in cfg["gens"]}
+        if cfg.get("directions"):  # v5.3: one call lays out distinct mechanism regions, one per generator (arXiv:2605.30150)
+            dt = step("directions", "gen", saved("directions", fill(R, tpl("directions_task"), 0, {"K": str(len(techs))})), a.model, "none")
+            dirs = [x.strip() for _, x in DIRLINE.findall(dt.split("=== DIRECTIONS ===", 1)[-1])]
+            if len(dirs) >= len(techs):
+                techs = {lab: t + f"\nYour direction (work only in it; other generators cover the others): {d}" for (lab, t), d in zip(techs.items(), dirs)}
+            else: print(f"  directions: only {len(dirs)} parsed for {len(techs)} generators - not used")
+        if cfg.get("vs"): techs = {lab: t + VS for lab, t in techs.items()}
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})))
     ideas = lambda: load(R, "ideas.json", [])
     def families(ids):
@@ -1459,6 +1480,30 @@ def cmd_run(a):
         t2 = step("gate_fill", "review", task("gate_fill"), a.model, "research", cwd=gd2)
         cmd_gate(argparse.Namespace(run=R, dir=gd2, transcript=None, file=path(R, "outputs", "gate_fill.md"), out=None))
         print(f"  gate_fill: {len(left)} more families tested, {add_new_facts(R, t2, 'gate_fill')} new facts -> evidence.md"); return left
+    def recheck(ids, n):
+        """v5.3: n independent cheap checkers estimate each idea's deciding quantity without seeing the kill test's numbers;
+        the margin becomes the median of all estimates, the verdict is recomputed in code, and an idea whose estimates
+        spread more than 3x (or straddle 1) is marked unstable. One kill test changed 4 of 8 verdicts between runs."""
+        X = {i["id"]: i for i in load(R, "ideas.json", [])}; g = load(R, "gate.json", {})
+        blocks = idea_blocks(R, ids, {i: [f"DECIDING QUANTITY: {g.get(i, {}).get('killer', '?').split('|')[0].split(' required')[0][:200]}"] for i in ids}, scores=False)
+        def one(k):
+            dd = os.path.join(D, "recheck", f"r{k}"); os.makedirs(dd, exist_ok=True); stale(os.path.join(dd, "ids.json"), ids, [f"recheck.{k}"])
+            json.dump(ids, open(os.path.join(dd, "ids.json"), "w"))
+            s_ = fill(R, tpl("recheck_task"), len(ids), {"WORKDIR": os.path.abspath(dd) + "/", "IDEAS": blocks, "EVIDENCE": fact_slice(R, [blocks])})
+            open(os.path.join(dd, "TASK.md"), "w").write(s_)
+            t_ = step(f"recheck.{k}", "research", s_, a.lit_model, "research", cwd=dd)
+            return {ids[int(j) - 1]: float(m) for j, m in RECHECK.findall(t_.split("=== RECHECK ===", 1)[-1]) if 1 <= int(j) <= len(ids)}
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(runner.slots()) as ex: res = list(ex.map(one, range(1, n + 1)))
+        for i in ids:
+            r = g.get(i, {}); ms = [x for x in [r.get("margin")] + [rr.get(i) for rr in res] if x is not None]
+            if not ms: continue
+            med = sorted(ms)[len(ms) // 2] if len(ms) % 2 else sum(sorted(ms)[len(ms) // 2 - 1:len(ms) // 2 + 1]) / 2
+            spread = max(ms) / max(min(ms), 1e-6); old = r.get("verdict")
+            r.update({"margins": ms, "margin_gate": r.get("margin"), "margin": round(med, 3), "unstable": spread > 3 or (min(ms) < 1 <= max(ms)),
+                      "verdict": gate_verdict(med, r.get("ratio")) or old, "verdict_gate": old}); g[i] = r
+            print(f"  recheck {i}: margins {', '.join(f'{x:g}' for x in ms)} -> {med:.2f}{' UNSTABLE' if r['unstable'] else ''}; {old} -> {r['verdict']}")
+        save(R, "gate.json", g)
     def known_check(ids):
         """v5.1: the closest prior art for each idea going on, found by a search for its MECHANISM (not its problem), before
         repair spends on it. In 8 v5 runs no finalist came out of the final audit as unknown, and the patents on a winner's
@@ -1504,6 +1549,8 @@ def cmd_run(a):
         if (nf := int(getattr(a, "fill_families", 0) or cfg.get("fill_families") or 0)): pick += fill_families(pick, nf, kit)
         g = load(R, "gate.json", {}); gk = lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0))
         fam = load(R, "families.json", {})
+        if (nr := int(getattr(a, "recheck", 0) or cfg.get("recheck") or 0)):
+            recheck(sorted(pick, key=gk)[:int(cfg.get("repair_top", 4)) + 2], nr); g = load(R, "gate.json", {})
         ntop = int(cfg.get("repair_top", 4)); cand = diverse(sorted(pick, key=gk), fam, 1)[:ntop + 2]; kn = known_check(cand)  # v5.1: the 4 to repair are chosen knowing what already exists
         top = diverse(sorted(cand, key=lambda i: (gk(i)[0] - KNOWN_BONUS.get(kn.get(i, {}).get("known"), 0.0), gk(i)[1])), fam, 1)[:ntop]
         stale(os.path.join(D, "repair", "parents.json"), top, ["repair"] + [f"repair.{j}" for j in range(1, 5)])
@@ -1718,6 +1765,9 @@ def main():
             x.add_argument("--fill-families", type=int, help="v5.2 invent: a second kill test for up to this many families the first one left out")
             x.add_argument("--decompose", type=int, help="v5.2 invent: let one call split the question into at most this many parts run in parallel and merged (0 = off)")
             x.add_argument("--slots", type=int, help="v5.2: model calls at once across all engine processes (default 8)")
+            x.add_argument("--recheck", type=int, help="v5.3 invent: independent re-estimates of each finalist's deciding number (median margin, verdict in code)")
+            x.add_argument("--directions", action="store_true", help="v5.3 invent: one call lays out a distinct mechanism region per generator")
+            x.add_argument("--vs", action="store_true", help="v5.3: verbalized sampling inside the generators (develop only low-probability candidates)")
             x.add_argument("--rivals", action="store_true", help="v5 invent: add the rival round (round-2 generators see round 1 and its kill tests as rivals); "
                            "+~$1.3, no survival gain shown yet (20-continuum.md)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")
