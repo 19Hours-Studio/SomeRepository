@@ -237,5 +237,47 @@
   "margin_gate": 0.36,
   "unstable": false,
   "verdict_gate": "DEAD"
+ },
+ "improve_g2#2": {
+  "killer": "DRAM bandwidth per Gb at 64 Mb/mm², 4 layers (48.9 GB of capacity must deliver 44 TB/s)",
+  "why": "The numbers hold by my roofline, but the margin is only 1.2. It rests on one trade-press bandwidth figure paired with a density from a different chip, and the 4-layer stack at 64 Mb/mm² has not been built, so this is fragile.",
+  "margin": 1.2,
+  "ratio": 1.8,
+  "verdict": "ALIVE"
+ },
+ "cross_g2#3": {
+  "killer": "The package cost needed for a 1.5× cut in cost per token over the whole TCO, using ledger A shares (package 45%, everything else unchanged)",
+  "why": "It works only by avoiding a vendor's margin. Against TPU-style in-house silicon the gain falls to about 1.15×, and the claimed 2.7× is an accounting error.",
+  "margin": 1.48,
+  "ratio": 1.55,
+  "verdict": "WOUNDED"
+ },
+ "improve_g2#1": {
+  "killer": "All-reduce latency across 32 dies on an organic package, with about 9.4 all-reduces per stage",
+  "why": "The cost win holds even if per-user speed falls to Groq levels. It is still 2–4× more expensive per token than GB300 at 50 tok/s and slower than Cerebras, as the idea itself says.",
+  "margin": 1.0,
+  "ratio": 2.9,
+  "verdict": "ALIVE"
+ },
+ "cross_g2#1": {
+  "killer": "Per-user decode rate when each layer is pipelined die by die: one token must read 39.7 GB of NVFP4 weights in sequence at 0.864 TB/s per die",
+  "why": "Higher storage density does not fix sequential bandwidth. Die-by-die pipelining gives about 22 tok/s/user, slower than a single GPU, and costs about 4× more per token.",
+  "margin": 0.07,
+  "ratio": 0.23,
+  "verdict": "DEAD"
+ },
+ "improve_g2#3": {
+  "killer": "Cut in package price that a 192 GB, 5 PF, 1.2 TB/s part gets against a $55k Rubin. The 22 TB/s stays, so decode tok/s per package is unchanged and every gain must come from cost.",
+  "why": "The physics holds (2.4× capacity headroom, and the bandwidth is unchanged), but the gain is capped below 1.5× by its own numbers. Whether it even reaches 1.2× depends on Nvidia or an ASIC vendor passing the BOM savings into the price, which no engineering choice controls.",
+  "margin": 0.25,
+  "ratio": 1.1,
+  "verdict": "WOUNDED"
+ },
+ "cross_g2#2": {
+  "killer": "Hybrid-bonded logic-to-DRAM bandwidth per mm²",
+  "why": "Its own claim to depend \"only on measured\" data fails. The one measured hybrid-bond chip delivers about 7.5× less bandwidth per mm² than the design assumes. Even at the assumed bandwidth, 25.6 GB per package is too small to batch enough users to spread the cost of reading the weights, so it loses about 5× on tokens per kW to Rubin.",
+  "margin": 0.13,
+  "ratio": 0.19,
+  "verdict": "DEAD"
  }
 }

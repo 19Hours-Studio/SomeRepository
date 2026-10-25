@@ -92,3 +92,8 @@ improve_g2: 3 ideas (1125 words)
 cross_g2: 3 ideas (462 words)
 /home/user/SomeRepository/engine/runs/v6_continuum/eval_g2/c2/TASK.md
 /home/user/SomeRepository/engine/runs/v6_continuum/eval_g2/c1/TASK.md
+  eval_g2.2: 75,937 tokens, 117.4 s
+  eval_g2.1: 183,582 tokens, 242.2 s
+/home/user/SomeRepository/engine/runs/v6_continuum/eval_g2/TASK.md
+  skip eval_g2 (done)
+gate: 6/6 parsed {'ALIVE': 2, 'WOUNDED': 2, 'DEAD': 2}

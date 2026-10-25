@@ -1,0 +1,20 @@
+=== GATE ===
+IDEA 1: Bandwidth-sized HBM4 decode part (smallest honest)
+KILLER | Cut in package price that a 192 GB, 5 PF, 1.2 TB/s part gets against a $55k Rubin. The 22 TB/s stays, so decode tok/s per package is unchanged and every gain must come from cost. | required 24% package-price cut to reach the claimed 1.2× (ledger A shares: package 45%; the rack, facility and energy savings from 1.64→1.34 kW cover only the rest of the 16.7% TCO cut) | available 6% if the vendor price falls only by the BOM saved (96 GB × ~$16/GB HBM4 ≈ $1.5k, plus about $2k of compute and CoWoS silicon). It is 35% only if the price scales with the BOM at constant margin (HBM4 ~$2/Gb ≈ $16/GB, DigiTimes via siliconanalysts.com/market-data/hbm-pricing; the BOM split is my estimate). The capacity check passes: 22 TB/s ÷ 300 tok/s = 73 GB + 7.6 GB = 81 GB against 192 GB, a 2.4× margin, using exact arithmetic. | MARGIN 0.25–1.45 (≈0.6 central; it depends on vendor margin, not physics)
+CHAIN | Rubin NVL72 disaggregated decode at ≥300 tok/s/user, full TCO (ledger A) | now 1.00 (normalised $/Mtok) | with idea 0.91–0.78 | RATIO 1.10–1.28 (the idea itself claims 1.19–1.24; ≈1.00 at 100 tok/s/user because of capacity)
+VERDICT | WOUNDED | The physics holds (2.4× capacity headroom, and the bandwidth is unchanged), but the gain is capped below 1.5× by its own numbers. Whether it even reaches 1.2× depends on Nvidia or an ASIC vendor passing the BOM savings into the price, which no engineering choice controls.
+NEW FACT | HBM4 is ~$2.00/Gb (≈$16/GB) for H2 2026 per DigiTimes. Per-stack estimates are ~$10/GB, and revenue-implied figures are ~$14–15.5/GB. Sources differ by about 1.7×. | https://siliconanalysts.com/market-data/hbm-pricing ; https://siliconanalysts.com/data/hbm-pricing/methodology
+
+IDEA 2: Thin-stack DRAM-on-N6 decode pipeline
+KILLER | Hybrid-bonded logic-to-DRAM bandwidth per mm² | required 17.2 GB/s/mm² (27.6 TB/s ÷ 4 chiplets ÷ 400 mm²) | available 2.29 GB/s/mm² measured (Alibaba ISSCC 2022 64 Mb/mm² hybrid-bond chip: 1.38 TB/s system bandwidth on 602.22 mm², from secondary reports at monolithic3d.com/blog/archives/03-2022 and theregister.com/2021/12/08/alibaba_teases_a_breakthrough_chip). I checked that 64 Mb/mm² × 400 mm² × 2 layers = 6.4 GB, which matches the idea. | MARGIN 0.13
+CHAIN | Rubin NVL72 decode of a 1T/32B MoE (384 experts, top-8, 61 layers) at 8K context, measured in tok/s per kW | now ≈28,400 tok/s/kW (72 × 22 TB/s, 288 GB, 2.3 kW each; batch limited by capacity → 0.34 GB read per token) | with idea ≈5,300 tok/s/kW (800 GB in total leaves 300 GB of KV ≈ 915 users. In 32 microbatches of ~29 users, each microbatch touches 45% of the experts, so each token reads ~8.7 GB. That is 26× more bytes per token, against only ~3.8× better bandwidth per kW. KV is 656 B/token/layer, from the FP8 MLA layout in ledger fact 6.) | RATIO 0.19
+VERDICT | DEAD | Its own claim to depend "only on measured" data fails. The one measured hybrid-bond chip delivers about 7.5× less bandwidth per mm² than the design assumes. Even at the assumed bandwidth, 25.6 GB per package is too small to batch enough users to spread the cost of reading the weights, so it loses about 5× on tokens per kW to Rubin.
+NEW FACT | The Alibaba ISSCC 2022 hybrid-bonded logic-to-DRAM chip is 602.22 mm² with 1.38 TB/s system bandwidth. Both figures come from secondary sources, and I did not find the paper's pJ/bit, so the 0.66 pJ/bit the idea uses is unverified. | https://www.monolithic3d.com/blog/archives/03-2022
+
+I put the arithmetic in `gate.py` in the working directory and did not commit it. The cost and BOM splits in Idea 1 and the model shape in Idea 2 (FP4 weights of ~500 GB, 95% of them in experts) are my own assumptions, not sourced figures.
+
+Sources:
+- [siliconanalysts – HBM pricing](https://siliconanalysts.com/market-data/hbm-pricing)
+- [siliconanalysts – method notes](https://siliconanalysts.com/data/hbm-pricing/methodology)
+- [MonolithIC 3D blog, Mar 2022](https://www.monolithic3d.com/blog/archives/03-2022)
+- [The Register – Alibaba hybrid-bond chip](https://www.theregister.com/2021/12/08/alibaba_teases_a_breakthrough_chip/)
