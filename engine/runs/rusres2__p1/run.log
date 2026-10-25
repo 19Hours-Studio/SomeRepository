@@ -1,0 +1,9 @@
+/home/user/SomeRepository/engine/runs/rusres2__p1/ledger/TASK.md
+  ledger: 77,478 tokens, 37.1 s
+ledger: 773 words
+  skip attempts (attempts.md present)
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Baimskaya copper-gold. Concentrate goes by an 800 km road and the Nagleynyn/Pevek port, wi | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: capital 1.68x; processing 1.12x; labour 1.10x; outbound logistics 1.08x; energy 1.08x; inbound logistics 1.07x | 3x needs: capital, processing, labour, outbound logistics | NO ROOM
+ARCHETYPE B: Natalka (Magadan), a large open-pit gold mine on the Kolyma hydro grid with a road. This i | untouchable 17.0% -> ceiling 5.9x | 10x cut of one term: processing 1.25x; labour 1.22x; capital 1.19x; inbound logistics 1.12x; energy 1.10x; outbound logistics 1.01x | 3x needs: processing, labour, capital, inbound logistics, energy | NO ROOM
+ARCHETYPE C: Firm power for an off-grid Chukotka mine in 2026–30. Diesel, plus wind or hybrid where pos | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: energy 1.82x; inbound logistics 1.22x; capital 1.12x; labour 1.05x; processing 1.03x; outbound logistics 1.00x | 3x needs: energy, inbound logistics, capital | TIGHT
+ARCHETYPE D: Tomtor rare earths (Rosneft), a pilot in 2027 with river access over about 400 km. | untouchable 5.0% -> ceiling 20.0x | 10x cut of one term: capital 1.56x; energy 1.16x; labour 1.10x; inbound logistics 1.10x; outbound logistics 1.10x; processing 1.10x | 3x needs: capital, energy, labour, inbound logistics | NO ROOM
