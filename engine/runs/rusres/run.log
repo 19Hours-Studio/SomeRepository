@@ -150,3 +150,28 @@ repair: 4 ideas (2815 words)
 /home/user/SomeRepository/engine/runs/rusres/audit_final/TASK.md
   audit_final: 700,090 tokens, 540.6 s
   audit_final: 3 new facts -> evidence.md
+  calibrate: 11,031 tokens, 19.4 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#4       F0/M3/m1 fit 0.00 ratio 1.04 known partly p 30%  Shaft-bottom XRT sorting, hoist-bound mines
+  2. repair#3       F0/M3/m1 fit 0.00 ratio 1.0 known yes p 12%  Cold-margin triaged thermosyphon retrofit
+  3. repair#1       F0/M4/m1 fit 0.00 ratio 0.67 known yes p 4%  Hull-paced domestic Arctic Cascade trains
+  4. repair#2       F2/M0/m2 fit 0.00 ratio 1.01 known yes p 4%  Level-crusher conveyor decline for Talnakh
+  none of these: p 50%
+  weakest link: Idea 1 assumes the skip hoist is the binding limit at Skalisty and the Talnakh/Oktyabrskoye deep levels. If ventilation, refrigeration or development rate limits output first, the 1.09–1.36× uplift falls to about zero.
+  flip test: A bottleneck audit of Skalisty and the deep levels, covering skip utilisation, ventilation and cooling headroom, and development metres against plan. If skips run below about 90% of rated capacity, or ventilation or cooling is already at its limit, Idea 1 drops below "none" and Idea 2 becomes the nominal leader. Second test: a bulk XRT trial on Norilsk cuprous/stringer ore with assayed rejects. If it rejects under about 20% or loses over 4% of metal, the gain falls to about 1.0.
+spent 6,146,551 tokens, $17.60
+| arm | n | FATAL/idea | MAJOR/idea | no FATAL | median RATIO | mean FIT | known yes/partly |
+|---|---|---|---|---|---|---|---|
+| F | 4 | 0.50 | 2.50 | 3/4 | 1.01 | 0.00 | 3/1 of 4 |
+| OLD | 2 | 0.00 | 2.00 | 2/2 | 1.03 | 0.00 | 0/2 of 2 |
+
+| rank | id | arm | F/M/m | ratio | known | name |
+|---|---|---|---|---|---|---|
+| 1 | OLD:repair#3 | OLD | 0/2/2 | 1.03 | partly | Pre-staged flood-crest barges |
+| 2 | OLD:repair#2 | OLD | 0/2/2 | 1.02 | partly | Fuel on empty coal-barge legs |
+| 3 | repair#4 | F | 0/3/1 | 1.04 | partly | Shaft-bottom XRT sorting, hoist-bound mines |
+| 4 | repair#3 | F | 0/3/1 | 1.0 | yes | Cold-margin triaged thermosyphon retrofit |
+| 5 | repair#1 | F | 0/4/1 | 0.67 | yes | Hull-paced domestic Arctic Cascade trains |
+| 6 | repair#2 | F | 2/0/2 | 1.01 | yes | Level-crusher conveyor decline for Talnakh |
+
