@@ -46,14 +46,14 @@ IDEA 1: KNOWN <yes/partly/no> | CLOSEST: <title or number, owner, year> | <URL> 
 
 THE 6 IDEAS:
 IDEA 1
-NAME: Rock-socketed piles with slip sleeves
-MECHANISM: Carry new and rebuilt plant loads on bored steel piles set into rock below the frozen ground, and coat the shaft inside the frozen layer with a bitumen slip layer, so thaw adds only small drag load instead of removing the pile's support. Use TMK pipe and Chinese piling rigs. The closest earlier attempts are pile design to SP 25.13330, which has lost 20–55% of capacity (F89), and the Ambarnaya piles set in ice-rich ground (F325). Ground cooling is not involved, so a warming climate does not erode the support. The design applies at Norilsk, Udokan and Baimskaya, but not on deep Yamal sediments. The deciding quantity is depth to competent rock, which must be 30 m or less; test it with load-cell piles monitored for 3–5 thaw seasons.
-VALUE: Structure life of 50+ years, for about 1–3% more capex.
+NAME: Crusher-conveyor underground ore haulage
+MECHANISM: Crush ore underground at the level and carry it by fixed belt to the shaft, using Russian-made belts and Ruselprom drives, in place of long truck hauls. A belt uses an estimated 3–5 times less energy per tonne-km and needs far fewer crew and imported spares. The closest earlier attempt is the BelAZ underground truck, still at prototype stage (F184–186); this plan removes most of that fleet instead of replacing it. The deciding quantity is belt availability against a maximum lump size; pilot it on one Talnakh level within 3 years.
+VALUE: Full cost at Norilsk down 3–6%, with less reliance on spares for the Western fleet.
 
 IDEA 2
-NAME: Parallel mid-scale domestic LNG trains
-MECHANISM: Build Gydan/Yamal LNG as 3–4 parallel trains of 1.5–2.5 Mtpa each, on the Arctic Cascade process. Each train uses domestic electric or UEC-Kuznetsov drives, Arctic air cooling and gravity-base modules, and each comes online as soon as it is built. The closest earlier attempt is Train 4, which stalled at proving the process at 0.9 Mtpa; Arctic LNG 2 failed because its 6.6 Mtpa trains needed imported turbines. This idea stops short of 6.6 Mtpa, so neither the scale-up nor the import limit applies. Colder heat rejection lowers the compressor work per tonne, by the Carnot relation. The deciding quantity is the uptime of a train at 2 Mtpa against the 1,100 $/t/y benchmark of Yamal LNG Trains 1–3.
-VALUE: Cuts delivered LNG cost by about 30% (est.) and brings each train into production about a year sooner.
+NAME: Underground X-ray ore pre-concentration
+MECHANISM: Domestic X-ray transmission sorters at the shaft bottom reject waste lumps from disseminated Ni-Cu ore, and the rejected rock becomes stope backfill. The concentrator's fixed capacity then processes more metal per hour. The closest earlier practice, Alrosa's diamond sorting, has never been applied to sulphide ore here. The deciding quantity is the waste-rejection fraction achieved while losing less than 3% of the metal.
+VALUE: It raises metal output per unit of existing concentrator capital.
 
 IDEA 3
 NAME: Murmansk winter shuttle loop
@@ -61,17 +61,17 @@ MECHANISM: In winter, Arc7 ships run only Sabetta/Utrenneye–Murmansk and back,
 VALUE: The cargo each Arc7 ship delivers per year rises about 1.5–2x (est.), which removes the shipping bottleneck that left Arctic LNG 2 Train 1 unsold. Outbound logistics, the second-largest cost share, falls roughly 25–35%.
 
 IDEA 4
+NAME: Re-levelling thaw-tolerant foundations
+MECHANISM: Surface structures sit on spread footings or space frames with 300 mm hydraulic jacks and are re-levelled from survey data as the active layer moves. The ground is allowed to thaw instead of being kept frozen. The closest earlier attempts, fixed piles and thermosyphons, failed as winters warmed; this design carries no assumed ground-temperature margin. The deciding quantity is the differential settlement rate compared with jack stroke and re-levelling interval.
+VALUE: It decouples infrastructure life from the rate of permafrost warming.
+
+IDEA 5
 NAME: Numbers-up Arctic Cascade trains
 MECHANISM: Train 4's 0.9 Mtpa Arctic Cascade design, which is domestic and already running, is copied in series at Utrenneye and Sabetta. Each copy shares the existing gravity base, port, gas gathering and Arc7 berths, instead of scaling to 6.6 Mtpa trains on imported turbines. The closest earlier attempt is Arctic LNG 2, which stalled because only 4 of its 20 Baker Hughes turbines were delivered and the GTE-170 exists only at unit scale. Small trains avoid both by using domestic drives. The deciding quantity is whether series-built trains hold unit capex below $600/t/y once the alloy piping is replaced. Risks are low-temperature metallurgy and efficiency losses at small scale. The test, over 3–5 years, is to build 3 trains, then measure their capex and how many days a year they run.
 VALUE: Annualised capital falls about 60% and delivered cost falls about 20–30%, against the Yamal LNG Trains 1–3 benchmark. First LNG comes about 2–3 years after the decision, against 4 for Yamal LNG, with no imported drives.
 
-IDEA 5
+IDEA 6
 NAME: Triaged thermosyphon pile retrofit
 MECHANISM: Borehole temperatures plus InSAR rank plant foundations by remaining pile capacity. Retrofit GET/VET thermosyphons from Fundamentproekt then go only on the Norilsk and Talnakh structures headed toward a loss of more than 40% (F89). One quantity decides it: the air freezing index compared with the heat flowing into the pile. Norilsk's long, deep winter still gives a strong cooling margin. TAPS and Qinghai–Tibet lost cooling where winters were weak (F320–322), so the scheme is limited to the coldest sites and leaves out Salekhard and Nadym. The closest earlier attempt, post-spill monitoring (F18), detected thaw but fixed nothing. Benchmark: Ambarnaya and the 35% deformed-building share (F252). Main risk: non-condensable gas fade, so inspect every 3 years. Test: an instrumented pilot on 20 piles with 3 seasons of monitoring.
 VALUE: Avoids unplanned plant outages and prolongs infrastructure life on thawing ground, at a small share of Norilsk's ~$3bn/yr capex.
-
-IDEA 6
-NAME: Plant-chilled foundations
-MECHANISM: Run a glycol loop through the pile caps of an LNG plant, cooled by its own refrigeration and kept running in summer. Thermosyphons from Fundamentstroyarkos would still cover the winter. A summer heat flux of about 5 W/m² over 1 km² is about 5 MW of heat, or about 2.5 MW of electricity at a COP of 2. That is under 1% of the plant's drive power. The closest earlier attempts are TAPS and the Qinghai–Tibet thermosyphons, which fade as winters warm. An active loop does not depend on how cold the winter is. The deciding quantity is the summer heat flux, measured in boreholes.
-VALUE: Holds pile capacity at the design γt for the life of the plant, whatever the warming.
 

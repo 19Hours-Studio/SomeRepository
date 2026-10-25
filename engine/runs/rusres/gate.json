@@ -62,5 +62,37 @@
   "margin": 0.0,
   "ratio": 1.22,
   "verdict": "DEAD"
+ },
+ "g1_neg#2": {
+  "killer": "waste-rejection fraction needed to break even at a 2% metal loss, on Norilsk-1 disseminated ore worth about $235/t (F2, est. prices)",
+  "why": "The measured XRT rejection on Ni sulphide is about a third of what pays for the lost metal, and the concentrator it would free up is already being expanded, so the chain gain cannot exceed about 2%.",
+  "screen": "Recovery losses (class 10): 0.37; Missing best-practice baseline (class 9, ceiling ratio): 1.017 against 1.5 needed; Market/fixed cost (class 8, concentrator capacity value): about 0, because Talnakh concentrator is already being expanded from 10 to 18 Mtpa; Pilot provability (class 13): 59 zero-failure trials to show <5% loss, feasible",
+  "margin": 0.37,
+  "ratio": 1.02,
+  "verdict": "DEAD"
+ },
+ "g1_neg#3": {
+  "killer": "settlement against jack stroke over the structure's life, with the ground allowed to thaw in ice-rich Yamal/Norilsk ground (tabular ice 10–20 m, F97; kit thaw strain 0.2–0.4)",
+  "why": "The stroke covers seasonal movement (180 mm, F101) but not thaw settlement once ice-rich ground is allowed to thaw; it does not apply to heavy plant; it already exists as northern practice; and foundations are too small a cost share to move the chain.",
+  "screen": "Frozen-ground strength / thaw settlement (classes 4 and 12, life settlement against stroke): 0.25–0.5; Season window (class 1, seasonal movement against stroke): 1.67; Missing best-practice baseline (class 9): adjustable jack and space-frame foundations are already standard guidance in Alaska and Nunavut, ceiling ratio 1.02",
+  "margin": 0.5,
+  "ratio": 1.02,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#2": {
+  "killer": "spare firm MW at Akademik Lomonosov in winter after Bilibino NPP shut down (Dec 2025)",
+  "why": "After Bilibino closed there is about 8 MW of winter spare capacity against the 30 MW needed, the phase still needs the Bilibino–Peschanka line and the road, and the small plant costs 2.5 times more per tonne of copper.",
+  "screen": "Market/fixed cost (class 8, six-tenths scale penalty): ratio 0.40; Season window (class 1, Pevek NSR window 3–4 months, F148; 1.842 Mt/yr terminal, F147): about 0.1 Mt/yr of concentrate fits easily, margin >10; Spare power after Bilibino (no kit class, own calculation): 0.26 in winter, 1.33 in summer",
+  "margin": 0.26,
+  "ratio": 0.4,
+  "verdict": "DEAD"
+ },
+ "g1_mech#3": {
+  "killer": "cost share that underground haulage must remove to reach 1.5x",
+  "why": "Even taken at its own claim, the idea cuts full cost by at most 6%, so the ratio of 1.06 is below the 1.1 kill line; LHDs from stope to crusher are still needed.",
+  "screen": "Missing best-practice baseline (class 9, ceiling ratio): 1.06; Pilot provability (class 13): 59 zero-failure shifts to show <5% belt downtime, feasible in 3 years; Belt availability against maximum lump size: no measured Talnakh data, not computed, treated as about 1",
+  "margin": 0.17,
+  "ratio": 1.06,
+  "verdict": "DEAD"
  }
 }

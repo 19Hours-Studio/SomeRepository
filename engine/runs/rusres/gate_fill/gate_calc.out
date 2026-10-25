@@ -1,0 +1,38 @@
+idea1 req rejection 0.41 margin 0.37
+idea4 share needed for 1.5x 0.333 margin 0.17
+idea2 share needed for 1.5x margin 0.06
+check ceiling 0.05 -> 1.053 | breakeven(74.6,2500) -> 0.029
+
+=== IDEA 1: XRT pre-concentration, Norilsk disseminated ore ===
+in-situ value $/t disseminated ore ~ 235
+net processing saving $/t ore 0.78 metal lost $/t 4.69
+margin (saving / lost value) = 0.17
+disseminated share of reserves 0.027
+chain ratio upper bound (all ore, 15% of processing share removed) = 1.017
+gate DEAD
+
+=== IDEA 2: re-levelling jack foundations ===
+thaw 1.0 m strain 0.2: settlement 0.20 m, stroke margin 1.50
+thaw 3.0 m strain 0.2: settlement 0.60 m, stroke margin 0.50
+thaw 3.0 m strain 0.4: settlement 1.20 m, stroke margin 0.25
+seasonal stroke margin 1.67
+road upkeep loss per year $bn 0.23
+chain ratio ceiling (remove 2% share fully) 1.02
+gate DEAD
+
+=== IDEA 3: powered-first Baimskaya 5-8 Mtpa on Lomonosov ===
+node avg MW 43.0 on FNPP MW 36.2
+spare summer 39.8 spare winter (heat mode) 7.8
+kWh/t implied by Baimskaya power plan 35.8 req idea MW 22.8 req at implied 32.7
+MARGIN winter vs idea 30 MW 0.26 | summer 1.33 | winter vs implied 0.24
+phase-1 capex $bn (six-tenths) 2.11
+Cu t/yr 24596 capital $/t 10629 total $/t 16244
+RATIO 0.4
+RATIO no opex penalty 0.46
+gate DEAD
+
+=== IDEA 4: crusher-conveyor underground haulage, Talnakh ===
+ratio at claimed 3-6%: 1.031 1.064
+haulage share est. 0.056 ceiling 1.059
+trials for zero failure at 5% 59
+gate DEAD

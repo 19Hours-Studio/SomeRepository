@@ -134,3 +134,7 @@ g1_rf2: 3 ideas (579 words)
 gate: 8/8 parsed {'DEAD': 7, 'WOUNDED': 1}
   gate: 0 new facts -> evidence.md
 /home/user/SomeRepository/engine/runs/rusres/gate_fill/TASK.md
+  gate_fill: 436,604 tokens, 180.0 s
+gate: 4/4 parsed {'DEAD': 4}
+  gate_fill: 4 more families tested, 7 new facts -> evidence.md
+  known: ideas changed, will run again
