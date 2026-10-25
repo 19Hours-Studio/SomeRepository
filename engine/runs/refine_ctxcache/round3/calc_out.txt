@@ -1,0 +1,75 @@
+
+======== A. 50-turn agent bill at 100% hit (sys 10k, +2k tool, +300 out per turn)
+reads 59%  writes 28%  output 13%
+keep only last 10 tool results (splice): input bill x0.63, total x0.68
+
+======== B. errata vs in-place rewrite break-even (ski rental)
+S= 50000 e=  500: T* =   1137.5 turns
+S= 10000 e= 2000: T* =     45.0 turns
+S=  2000 e= 2000: T* =     -1.0 turns
+
+======== C. block ordering: odds/size rule vs Smith p/size, brute force
+odds/size rule optimal in 3000/3000 random 6-block cases; p/size (Smith) suboptimal in 1762, median excess 1.0%, max 17.4%
+authoring order                  hit 47.1%
+optimal order, conversation last hit 67.4%  ('sys', 'tools', 'docs', 'memory', 'todo')
+volatile tail after conversation  hit 93.7%
++ doc changes as errata           hit 95.3%
++ tail sent only on change (diff)  hit 98.0%
+
+======== D. SWE-agent trajectories: observation elision policies (real sizes, chars/4)
+pooled: 21 actions (median 88), 20 observations (median 64.5, max 2268)
+-- 30-step sessions (bootstrap of real step sizes, 200 reps)
+append                 hit  94.4%  input cost x1.00 vs append-only
+elide n=5 polling=1    hit  69.8%  input cost x1.79 vs append-only
+elide n=5 polling=5    hit  87.0%  input cost x1.11 vs append-only
+elide n=5 polling=15   hit  90.5%  input cost x1.05 vs append-only
+splice n=5             hit  91.8%  input cost x0.82 vs append-only
+-- 80-step sessions (bootstrap of real step sizes, 200 reps)
+append                 hit  97.8%  input cost x1.00 vs append-only
+elide n=5 polling=1    hit  80.1%  input cost x1.30 vs append-only
+elide n=5 polling=5    hit  91.9%  input cost x0.82 vs append-only
+elide n=5 polling=15   hit  94.4%  input cost x0.77 vs append-only
+splice n=5             hit  95.5%  input cost x0.62 vs append-only
+
+======== E. RAG: 2,000 docs x 500 tok, k=5 per query, sys 2k, query 50 tok, Zipf popularity
+s=0.8: relevance 55.2%  hash 57.4%  popularity 62.9%  greedy 63.2%  segment ceiling 97.8%  doc occurrences seen before 98.0%
+s=1.0: relevance 57.9%  hash 61.5%  popularity 69.7%  greedy 69.9%  segment ceiling 97.8%  doc occurrences seen before 98.0%
+s=1.2: relevance 62.5%  hash 68.0%  popularity 77.4%  greedy 77.4%  segment ceiling 97.8%  doc occurrences seen before 98.0%
+(doc-only hit rate, excluding the 2k system prompt:)
+s=0.8: relevance 20.0%  hash 24.0%  popularity 33.9%  greedy 34.3%  segment ceiling 96.1%  doc occurrences seen before 98.0%
+s=1.2: relevance 33.1%  hash 42.8%  popularity 59.6%  greedy 59.7%  segment ceiling 96.1%  doc occurrences seen before 98.0%
+
+======== F. retention break-even and bandwidth (Llama-3-70B, assumptions marked)
+KV/token BF16 320 KiB, FP8 160 KiB
+ctx   8000: recompute  23.7k tok/s, $0.188/M tok
+ctx  32000: recompute  19.6k tok/s, $0.227/M tok
+ctx 128000: recompute  11.6k tok/s, $0.384/M tok
+HBM  : keep only if reused within     1.4 min (BF16)
+DRAM : keep only if reused within     6.9 min (BF16)
+NVMe : keep only if reused within   156.3 min (BF16)
+1 NVMe 7 GB/s : load   21.4k tok/s BF16,   42.7k FP8
+4 NVMe        : load   85.4k tok/s BF16,  170.9k FP8
+400 Gb/s RDMA : load  152.6k tok/s BF16,  305.2k FP8
+=> provider cost of recomputing a token at 8k ctx ($0.188/M) vs a $3/M list model's cache-read price ($0.30/M): price, not cost, sets the hit discount
+
+======== G. 5-min vs 1-h TTL, context reused every 6-60 min, N reuses
+N= 1: 5-min  2.50x  1-h  2.10x  per cached token
+N= 2: 5-min  3.75x  1-h  2.20x  per cached token
+N= 5: 5-min  7.50x  1-h  2.50x  per cached token
+N=20: 5-min 26.25x  1-h  4.00x  per cached token
+
+======== H. template strips earlier reasoning at each new user message (Qwen3/gpt-oss style)
+k= 5 tool steps/query: keep reasoning hit 97.7%   strip reasoning hit 94.7%   per-token input cost x1.27 (before the shorter context is counted)
+k=20 tool steps/query: keep reasoning hit 99.3%   strip reasoning hit 98.4%   per-token input cost x1.10 (before the shorter context is counted)
+k=50 tool steps/query: keep reasoning hit 99.7%   strip reasoning hit 99.3%   per-token input cost x1.04 (before the shorter context is counted)
+
+======== I. segment cache with gate: saving vs gate fallback rate f
+s=0.8: prefix 0.695/doc tok, segment 0.279; saving f=0%: x2.40  f=10%: x2.10  f=30%: x1.68  f=50%: x1.40
+s=1.2: prefix 0.464/doc tok, segment 0.279; saving f=0%: x1.60  f=10%: x1.51  f=30%: x1.35  f=50%: x1.22
+
+======== J. Anthropic breakpoints: volatile tail after last breakpoint; 20-block lookback
+tail 2500 tok/turn billed as plain input (1.0x) not write (1.25x): saves 31,250 base-token units over 50 turns (= 20% of tail cost)
+edit at block 150/200: one end breakpoint reuses 0 tok; + breakpoint after tools reuses 13,000 tok
+edit at block 185/200: one end breakpoint reuses 87,000 tok; + breakpoint after tools reuses 87,000 tok
+edit at block 195/200: one end breakpoint reuses 91,000 tok; + breakpoint after tools reuses 91,000 tok
+done

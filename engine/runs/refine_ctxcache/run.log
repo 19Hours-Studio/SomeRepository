@@ -1,0 +1,24 @@
+  v1: 2156 words, $0.85
+  v2: 2539 words, $1.16
+  v3: 3250 words, $1.21
+  v4: 3754 words, $0.84
+# refine_ctxcache: stepwise improvement of a plain answer, judged afterwards
+
+| version | words | cost |
+|---|---|---|
+| v0 | 1317 | plain answer |
+| v1 | 2156 | $0.85 |
+| v2 | 2539 | $1.16 |
+| v3 | 3250 | $1.21 |
+| v4 | 3754 | $0.84 |
+
+| comparison | newer version won (both orders) | margins | score (+ newer, - older) |
+|---|---|---|---|
+| v1 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v1 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v2 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v3 | 2 of 2 | clearly, clearly | +4 |
+spent $6.09

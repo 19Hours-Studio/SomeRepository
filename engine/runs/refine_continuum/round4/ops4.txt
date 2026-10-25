@@ -1,0 +1,8 @@
+>=200 Continuum k=1 b=539 users/microbatch, 33,418 users/pod, 470 tok/s/user, 71,343 tok/s/pkg | stage us: sram 19.1, kv 30.0, comp 51.8, link 13.5, stage 61.8 | positions/expert-slice ~16.8
+>=200 Rubin35 k=1 B=23,455 t=1, 274 tok/s/user, 75,916 tok/s/GPU | step ms: mem 3.32, comp 5.33, link 2.86, step 6.57 (incl. 1.24 ms tau)
+>=200 Rubin50 k=1 B=23,455 t=1, 321 tok/s/user, 88,836 tok/s/GPU | step ms: mem 3.32, comp 4.37, link 2.86, step 5.61 (incl. 1.24 ms tau)
+>=1000 Continuum k=2 b=203 users/microbatch, 12,586 users/pod, 1,002 tok/s/user, 57,331 tok/s/pkg | stage us: sram 19.1, kv 11.3, comp 29.3, link 7.6, stage 39.3 | positions/expert-slice ~9.5
+>=1000 Rubin35 k=4 B=3,315 t=2, 1,077 tok/s/user, 42,143 tok/s/GPU | step ms: mem 1.61, comp 1.88, link 1.01, step 3.12 (incl. 1.24 ms tau)
+>=1000 Rubin50 k=4 B=4,384 t=2, 1,024 tok/s/user, 53,007 tok/s/GPU | step ms: mem 1.75, comp 2.04, link 1.33, step 3.28 (incl. 1.24 ms tau)
+FLOP inflation (k+1)/E[acc]: k=1 1.11, k=2 1.23, k=3 1.36, k=4 1.49
+KV/user @128K 0.652 GB, KV read/step 103 MB, attn 34.5 GF, lin 103 GF

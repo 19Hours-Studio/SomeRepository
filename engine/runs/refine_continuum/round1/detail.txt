@@ -1,0 +1,18 @@
+--- tier >= 50 tok/s/user, ctx 131072
+ Continuum tau3: 525 tok/s/user, b=256, users=15616, N=123, 66,681 tok/s/pkg, 31.8M tok/s/MW
+  energy:   20.6 mJ/tok ->  48.5 tok/J  [sram 4.1, hbm 2.9, flops 6.8, link 0.1, static 6.7]
+ Rubin tau15: 267 tok/s/user, B=16384, TP-attn=1, 60,725 tok/s/GPU, 19.9M tok/s/MW
+  energy:   31.3 mJ/tok ->  32.0 tok/J  [hbm 7.7, flops 6.8, link 0.3, static 16.5]
+--- tier >= 200 tok/s/user, ctx 131072
+ Continuum tau3: 525 tok/s/user, b=256, users=15616, N=123, 66,681 tok/s/pkg, 31.8M tok/s/MW
+  energy:   20.6 mJ/tok ->  48.5 tok/J  [sram 4.1, hbm 2.9, flops 6.8, link 0.1, static 6.7]
+ Rubin tau15: 267 tok/s/user, B=16384, TP-attn=1, 60,725 tok/s/GPU, 19.9M tok/s/MW
+  energy:   31.3 mJ/tok ->  32.0 tok/J  [hbm 7.7, flops 6.8, link 0.3, static 16.5]
+--- tier >= 400 tok/s/user, ctx 131072
+ Continuum tau3: 525 tok/s/user, b=256, users=15616, N=123, 66,681 tok/s/pkg, 31.8M tok/s/MW
+  energy:   20.6 mJ/tok ->  48.5 tok/J  [sram 4.1, hbm 2.9, flops 6.8, link 0.1, static 6.7]
+ Rubin tau15: 434 tok/s/user, B=2048, TP-attn=4, 12,353 tok/s/GPU, 4.0M tok/s/MW
+  energy:  118.1 mJ/tok ->   8.5 tok/J  [hbm 30.0, flops 6.8, link 0.3, static 80.9]
+--- tier >= 1000 tok/s/user, ctx 131072
+ Continuum tau3: 1102 tok/s/user, b=32, users=1952, N=123, 17,495 tok/s/pkg, 8.3M tok/s/MW
+  energy:   49.4 mJ/tok ->  20.3 tok/J  [sram 13.9, hbm 2.9, flops 6.8, link 0.1, static 25.7]

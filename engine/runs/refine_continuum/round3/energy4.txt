@@ -1,0 +1,6 @@
+tier>=200 C    k=1 b=539 485 tok/s/user 30.1M/MW 73,729 tok/s/pkg 18.4k tok/s/stack | mJ/tok: weights 1.1 KV 1.6 FLOPs 7.6 links 0.1 static 6.1 = 16.5 (60 tok/J)
+tier>=200 R35  k=1 b=23455 309 tok/s/user 28.0M/MW 85,618 tok/s/pkg 10.7k tok/s/stack | mJ/tok: weights 1.9 KV 1.6 FLOPs 7.6 links 0.1 static 11.7 = 22.9 (44 tok/J)
+tier>=200 R50  k=1 b=23455 370 tok/s/user 33.5M/MW 102,418 tok/s/pkg 12.8k tok/s/stack | mJ/tok: weights 1.9 KV 1.6 FLOPs 7.6 links 0.1 static 9.8 = 21.0 (48 tok/J)
+tier>=1000 C    k=2 b=203 1,056 tok/s/user 24.7M/MW 60,407 tok/s/pkg 15.1k tok/s/stack | mJ/tok: weights 2.2 KV 1.2 FLOPs 8.4 links 0.1 static 7.4 = 19.4 (52 tok/J)
+tier>=1000 R35  k=3 b=5042 1,060 tok/s/user 20.6M/MW 63,080 tok/s/pkg 7.9k tok/s/stack | mJ/tok: weights 5.3 KV 1.0 FLOPs 9.3 links 0.1 static 15.9 = 31.6 (32 tok/J)
+tier>=1000 R50  k=3 b=5798 1,111 tok/s/user 24.9M/MW 76,055 tok/s/pkg 9.5k tok/s/stack | mJ/tok: weights 3.0 KV 1.0 FLOPs 9.3 links 0.1 static 13.1 = 26.6 (38 tok/J)

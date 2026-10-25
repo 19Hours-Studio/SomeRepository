@@ -1,0 +1,35 @@
+ctx 1,048,576 MTP=0: weights 897 GB, KV/user 5.184 GB, KV read/step 672 MB, attn 205.5 GF, linear 101 GF
+decode output tok/s per provisioned MW (millions) at >= tok/s/user tier
+system                                50     100     200     400    1000    2000     max
+GB300 NVL72 (40us)                   1.7     1.4     0.1      --      --      --     346
+GB300 NVL72 (15us)                   2.0     2.0     0.5     0.1      --      --     733
+GB300 NVL72 (8us)                    2.1     2.1     0.7     0.2     0.0      --   1,066
+GB300 NVL72 (3us)                    2.2     2.2     0.8     0.2     0.1      --   1,580
+Rubin NVL72 (40us)                   2.1     2.1     1.3      --      --      --     384
+Rubin NVL72 (15us)                   2.9     2.9     2.9     0.7      --      --     927
+Rubin NVL72 (8us)                    3.2     3.2     3.2     1.5     0.1      --   1,535
+Rubin NVL72 (3us)                    3.5     3.5     3.5     2.0     0.3     0.1   2,885
+Rubin (50PF dense) (40us)            2.1     2.1     1.3      --      --      --     384
+Rubin (50PF dense) (15us)            2.9     2.9     2.9     0.7      --      --     927
+Rubin (50PF dense) (8us)             3.2     3.2     3.2     1.5     0.1      --   1,535
+Rubin (50PF dense) (3us)             3.5     3.5     3.5     2.0     0.3     0.1   2,885
+MI455X x72 (40us)                    2.5     2.5     0.9      --      --      --     381
+MI455X x72 (15us)                    3.3     3.3     3.3     0.5      --      --     910
+MI455X x72 (8us)                     3.6     3.6     3.6     1.1     0.1      --   1,489
+MI455X x72 (3us)                     3.8     3.8     3.8     1.5     0.2     0.1   2,727
+TPU 8i x128 (40us)                   2.7     2.7     0.4      --      --      --     351
+TPU 8i x128 (15us)                   3.3     3.3     1.3     0.2      --      --     757
+TPU 8i x128 (8us)                    3.5     3.5     1.7     0.4     0.0      --   1,120
+TPU 8i x128 (3us)                    3.6     3.6     2.0     0.6     0.1      --   1,700
+Ironwood x128 (40us)                 2.0     2.0     0.3      --      --      --     343
+Ironwood x128 (15us)                 2.3     2.3     1.0     0.2      --      --     721
+Ironwood x128 (8us)                  2.5     2.5     1.4     0.3     0.0      --   1,041
+Ironwood x128 (3us)                  2.6     2.6     1.6     0.4     0.1      --   1,525
+Rubin+LPX AFD (8us)                  0.6     0.6     0.6     0.4      --      --     585
+Rubin+LPX AFD (4us)                  0.6     0.6     0.6     0.5      --      --     683
+CS-4 wafers (6us)                    0.3     0.3     0.3     0.3     0.3     0.3   2,459
+CS-4 wafers (3us)                    0.4     0.4     0.4     0.4     0.4     0.4   4,470
+Continuum (12us)                     4.2     4.2     4.2     4.2     1.5      --   1,235
+Continuum (8us)                      4.6     4.6     4.6     4.6     2.9      --   1,768
+Continuum (5us)                      5.1     5.1     5.1     5.1     4.0     2.1   2,613
+Continuum (3us)                      5.4     5.4     5.4     5.4     4.8     3.7   3,836

@@ -1,0 +1,2 @@
+Rubin tau15 prefill-only 25.4M out-tok/s/MW; 50:11.1M 100:11.1M 200:11.1M 400:3.5M 1000:-- 2000:--
+Continuum tau3 prefill-only 25.3M out-tok/s/MW; 50:14.1M 100:14.1M 200:14.1M 400:14.1M 1000:6.3M 2000:3.7M
