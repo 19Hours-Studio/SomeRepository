@@ -896,13 +896,14 @@ def ledger_kind(ledger):
     """'defect' when the ledger says KIND: defect (a quality target), else 'cost'."""
     return "defect" if re.search(r"^\**KIND\**\s*:\s*\**\s*defect", ledger, re.M | re.I) else "cost"
 
-NUM = r"[~≈≤<=]*\s*([0-9]*\.?[0-9]+)(?:\s*[-–]\s*([0-9]*\.?[0-9]+))?"
+NUM = (r"\s*:?\s*(?:about|approx\.?|approximately|around|roughly|reported)?\s*[~≈≤<=]*\s*([0-9]*\.?[0-9]+)(?:\s*[-–]\s*([0-9]*\.?[0-9]+))?"
+       r"(?![\d.]|\s*[-–%])")  # "now: about 700 um", "target: <20 um"; not "now: 80-82% less" (a change, not a value)
 
 def parse_targets(ledger):
     """{archetype letter: now / target} from 'ARCHETYPE A: ... | now 60-150 um | target 5 um' (the worst end of a range)."""
     out = {}
     for l in ledger.splitlines():
-        m = re.match(r"^\**ARCHETYPE\s+(\w+)\b", l); n = re.search(r"\bnow\s*" + NUM, l, re.I); t = re.search(r"\btarget\s*" + NUM, l, re.I)
+        m = re.match(r"^\**ARCHETYPE\s+(\w+)\b", l); n = re.search(r"\bnow\b" + NUM, l, re.I); t = re.search(r"\btarget\b" + NUM, l, re.I)
         if m and n and t and float(t.group(1)) > 0: out[m.group(1)] = float(n.group(2) or n.group(1)) / float(t.group(1))
     return out
 

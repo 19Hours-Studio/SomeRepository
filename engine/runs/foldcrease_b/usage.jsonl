@@ -7,3 +7,4 @@
 {"step": "gen:g1_rf1", "time": "2026-10-24 22:52:20", "model": "opus", "tools": "", "tokens": 16102, "output_tokens": 3385, "cache_read": 1496, "fresh_input": 11221, "cost_usd": 0.1577592, "turns": 1, "seconds": 47.1}
 {"step": "gen:g1_rf2", "time": "2026-10-24 22:53:11", "model": "opus", "tools": "", "tokens": 16679, "output_tokens": 3951, "cache_read": 1496, "fresh_input": 11232, "cost_usd": 0.1691672, "turns": 1, "seconds": 50.9}
 {"step": "gen:triage", "time": "2026-10-24 22:54:04", "model": "opus", "tools": "", "tokens": 17168, "output_tokens": 4423, "cache_read": 1496, "fresh_input": 11249, "cost_usd": 0.1787432, "turns": 1, "seconds": 53.4}
+{"step": "research:ledger", "time": "2026-10-25 00:15:41", "model": "sonnet", "tools": "WebSearch,Bash,Read,Write", "tokens": 43750, "output_tokens": 3051, "cache_read": 24149, "fresh_input": 16550, "cost_usd": 0.1585149, "turns": 6, "seconds": 46.2}

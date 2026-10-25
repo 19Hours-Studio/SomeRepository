@@ -360,6 +360,7 @@ def main():
                    "SHARES: polymer set 55% | plate step 25% | creep 15% | other 5%\nARCHETYPE B: titanium | now 20 um | target ≤5 um\n"
                    "SHARES: polymer set 60 | plate step 20 | other 20\nSTATES: half open | cold\n")
             assert cem5.ledger_kind(led) == "defect" and cem5.parse_targets(led) == {"A": 30.0, "B": 4.0}
+            assert cem5.parse_targets("ARCHETYPE A: x | now: about 700 um reported | target: <20 um\nARCHETYPE B: y | now: 80-82% less than N5 | target: <20 um\n") == {"A": 35.0}
             cr = cem5.ceiling_rows(cem5.parse_shares(led), 3.0, 1.0, cem5.parse_targets(led))
             assert [(r["verdict"], r["need"]) for r in cr] == [("NO ROOM", []), ("ROOM", ["polymer set", "plate step"])], cr
             sh = cem5.parse_shares(
