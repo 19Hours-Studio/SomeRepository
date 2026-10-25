@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B's margin is 1.0 and its gain is 2.0 on a modeled roofline, while A's 20x gain rests on an unstable 0.95–3.2 margin that a vendor markup would break; B is also honest that its numbers are modeled, not measured.
+PAIR 2 | WINNER B | A is WOUNDED with margin 0.64 and gain 1.9, but B's margin of 1.14 (unstable, 0.64–1.52) and gain of 1.12 make it closer to holding, and B states its trade-offs and what it concedes honestly; A's density is shown at only 64% of need.
+PAIR 3 | WINNER A | A has margin 0.75 and gain 1.2, a real if modest gain over Rubin, while B's 0.61 margin halves its claimed per-user speed and its $0.068/Mtok claim rests on full pipeline utilisation.
+PAIR 4 | WINNER A | A is WOUNDED but physically fine, with margin 0.89 and gain 1.14 on KV compression, while B's margin of 0.32 needs a density about 3x the measured one and its current claim is off by 2x.
+PAIR 5 | WINNER A | A has margin 0.85 and gain 2.9, with a cost win that holds even at Groq-level speed and honest concessions, while B's margin is 0.33 (estimates 1.2, 0.33, 0.32) on an unbuilt 4-layer stack and loses 2x to Rubin at bulk tiers.

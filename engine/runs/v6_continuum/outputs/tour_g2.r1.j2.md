@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both are ALIVE, but B's deciding margin is 2.0 against A's 1.0. B's checked whole-chain gain is 20× against A's 2.0×, so it wins on both counts despite its density risk.
+PAIR 2 | WINNER A | A's margin of 1.14 holds, though it is unstable, for a small gain of 1.12×. B's 1.9× rests on a DRAM density stably measured at only 0.64 of what it needs, so it does not hold as described.
+PAIR 3 | WINNER A | Both fall short (0.61 vs 0.75). A still delivers a 4.6× checked gain even at about half the per-user speed, while B's density shortfall caps its net gain at about 1.2×.
+PAIR 4 | WINNER B | A needs about 3× the measured hybrid-bonded density (stable margin 0.32) and its current math is off by 2×. B's margin of 0.89 is near 1, with one estimate at 1.09, for a modest 1.14× gain.
+PAIR 5 | WINNER B | B's all-reduce margin of 0.85 is unstable, but it is far closer to holding than A's 0.33 bandwidth-per-Gb margin. B also carries the larger checked gain, 2.9× against 1.8×.

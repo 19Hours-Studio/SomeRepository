@@ -106,3 +106,6 @@ gate: 6/6 parsed {'ALIVE': 2, 'WOUNDED': 2, 'DEAD': 2}
   recheck improve_g2#3: margins 0.25, 0.27, 0.2 -> 0.25; WOUNDED -> DEAD
   recheck cross_g2#2: margins 0.13, 0.13, 0.13 -> 0.13; DEAD -> DEAD
   tour_g2.r1.j4: 12,142 tokens, 9.0 s
+  tour_g2.r1.j3: 12,081 tokens, 10.1 s
+  tour_g2.r1.j2: 12,489 tokens, 14.0 s
+  tour_g2.r1.j1: 12,723 tokens, 16.7 s
