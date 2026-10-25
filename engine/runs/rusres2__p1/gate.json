@@ -1,0 +1,34 @@
+{
+ "g1_neg#2": {
+  "killer": "existing hydrometallurgical plant able to take Tomtor ore",
+  "why": "The \"existing grid plant\" does not exist (the earlier plan also needed one built), so this repeats the 2010s plan, saves no capital, and the season still depends on a shallow Anabar with no published day count.",
+  "screen": "missing baseline (cl.9): the 2010s ThreeArc plan already shipped raw ore over several thousand km by ice road, barge, ship and rail, so the chain ratio is 1.0; season window (cl.1): not computed, because no source gives the number of Anabar navigation days (the Anabar is shallow with a short ice-free period); market/plant capacity (cl.8): an existing grid-powered plant able to leach Tomtor ore is 0 → margin 0; freight vs price: freight is about $449/t ore (winter road 300 km at 20 RUB/t·km + barge 1,000 km + NSR 16,000 RUB/t + rail 3,000 km), which is about $4.2–5.3k per t REO recovered. That is far below the NdPr price (about $96–108k/t) but above La/Ce oxide prices ($0.55–1.6k/t)",
+  "margin": 0.0,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "g1_mech#1": {
+  "killer": "winter-road tonnage Pevek→Baimka for the 6 Mt/y starter",
+  "why": "A 6 Mt/y diesel plant costs about twice as much per tonne of Cu as the full plan, there is no source for a ≥0.5% Cu zone (the resource average is 0.39%), and it needs twice the tonnage any Chukotka winter road has shown.",
+  "screen": "season window (cl.1): the starter needs about 170 kt a year over the winter road (45.6 kt genset diesel + 7.6 kt mine diesel + 106 kt concentrate + 10 kt supplies). The Kupol winter road carried 85 kt in its 2008 season → 0.50; energy + haul budget against 30% of Cu ($4,332/t at $14,441/t LME): $3,731 diesel power (33.5 kWh/t at $0.49/kWh) + $762 concentrate haul at 0.5% Cu → 0.96, and at the resource-average 0.39% Cu → 0.78; missing baseline (cl.9): ratio 0.52; starter fuel against Chukotka sea supply: 46 kt against 159 kt landed in 2025 (29% of that total)",
+  "margin": 0.5,
+  "ratio": 0.52,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#1": {
+  "killer": "winter-road diesel to Baimka per season",
+  "why": "The fuel fits, but a competent operator already pre-strips. Natalka's ramp was a mill commissioning problem, not a feed problem (first dore at 50% of design throughput), so at most about 7% comes off the per-tonne cost, below the 1.1 cut-off.",
+  "screen": "season window (cl.1): 24 kt diesel a year by winter road against 25 kt shown at Kupol → 1.04; fuel against tonnes moved: 28.6 ML gives 57–260 Mt a year at 0.5–0.11 L/t, well above a stockpile of several Mt → >10; missing baseline (cl.9): pre-stripping and stockpiling before the mill starts is already standard practice, so the ramp-year gain caps the ratio at 1.07; carry-forward (cl.9): 50 Mt at $2/t paid 2 years early adds about $30M (+30%), against about $2.5bn a year of chain cost",
+  "margin": 1.04,
+  "ratio": 1.07,
+  "verdict": "DEAD"
+ },
+ "g1_neg#1": {
+  "killer": "winter-road haul cost per oz at 6 g/t",
+  "why": "Pooling works at Dvoinoye-like grades, but at real winter-road rates it needs about 9.5 g/t rather than 6 g/t, and a Jan–Apr road may not move a full year's satellite feed.",
+  "screen": "haul cost per oz against the $250/oz target: 300 km × 20 RUB/t·km = $71/t (the idea assumes $45/t, i.e. $0.15/t·km against the kit's $0.238/t·km). At 6 g/t and 93% recovery (assumed; no Kupol recovery source found) that is $398/oz → 0.63, and it takes 9.5 g/t to reach 0.99; season window (cl.1): the Kupol winter road runs Jan–Apr only, so an assumed 365 kt/yr of feed (my figure; the idea states no rate) at the 2008 haul rate of 850 t/day → 0.23. That rate was set by demand, not road capacity, so this is a scale warning rather than the killer; missing baseline (cl.9): a standalone small mill at about $200M is avoided → ratio 1.14",
+  "margin": 0.63,
+  "ratio": 1.14,
+  "verdict": "WOUNDED"
+ }
+}

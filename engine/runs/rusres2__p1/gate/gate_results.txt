@@ -1,0 +1,32 @@
+crf 0.145 winter road $/tkm 0.238
+
+== IDEA 1 Tomtor raw ore ==
+ grade 0.1: freight $449/t ore -> $5,280/t REO recovered (85% assumed)
+ grade 0.125: freight $449/t ore -> $4,224/t REO recovered (85% assumed)
+ existing plant able to leach Tomtor ore: 0 (Krasnokamensk "still to be built") -> margin 0
+ ratio vs ThreeArc 2010s raw-ore plan (same chain): 1.0
+
+== IDEA 2 diesel starter ==
+ fuel kt/yr 45.6  kWh/t ore 33.5
+ grade 0.5%: energy $3,731/t Cu + conc haul $762 = $4,493; allowed 30%*Cu $4,332; margin 0.96
+ grade 0.39%: energy $4,784/t Cu + conc haul $762 = $5,546; allowed 30%*Cu $4,332; margin 0.78
+ winter-road tonnage needed 170 kt vs demonstrated 85 kt -> margin 0.50
+ starter plant capex $bn 1.4
+ starter $/t Cu: capital 7,699 energy 3,731 haul 762 other 4,310 = 16,502; base 8500.0; ratio 0.52
+
+== IDEA 3 mine-first ==
+ 0.11 L/t -> 260 Mt moved/yr
+ 0.5 L/t -> 57 Mt moved/yr
+ fuel by winter road: demonstrated 25 kt diesel/season at Kupol -> margin 1.04
+ ramp-year gain ratio 1.068; carry-forward penalty $30M vs ~$2.5bn/yr cost
+
+== IDEA 4 Kupol hub ==
+ 6 g/t: haul $71/t -> $398/oz; margin vs $250 target 0.63
+ 9.5 g/t: haul $71/t -> $251/oz; margin vs $250 target 0.99
+ idea assumed $45/t = 0.15 $/tkm vs kit 0.238
+ window margin (feed 365 kt/yr in ~100 d at Kupol 2008 850 t/d): 0.23
+ Kupol CoS $596/oz; standalone 1137 vs hub 994; ratio 1.14
+DEAD
+DEAD
+DEAD
+WOUNDED
