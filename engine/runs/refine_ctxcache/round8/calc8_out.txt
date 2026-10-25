@@ -1,40 +1,104 @@
 
-======== T. Speculation baseline at its best: vLLM suffix decoding and ngram, swept; round-7 drafter re-scored
-pl        : 2.26 tokens/pass, mean draft 6.74
-pg        : 2.46 tokens/pass, mean draft 7.67
-sd_a1_p10 : 2.01 tokens/pass, mean draft 2.60
-sd_a2_p10 : 2.16 tokens/pass, mean draft 4.33
-sd_a4_p10 : 2.23 tokens/pass, mean draft 6.94
-sd_a1_p30 : 2.00 tokens/pass, mean draft 2.47
-sd_a2_p30 : 2.14 tokens/pass, mean draft 4.01
-B=  8: best ngram  vLLM ngram (n<=4), num_spec=8          x0.543
-       best suffix vLLM suffix a4_p10, num_spec=8         x0.571   (vLLM default a1_p10, num_spec=24: x0.598)
-       round-7 auto-capped drafter              x0.519  -> vs best suffix x0.909
-B= 32: best ngram  vLLM ngram (n<=4), num_spec=4          x0.646
-       best suffix vLLM suffix a4_p10, num_spec=4         x0.664   (vLLM default a1_p10, num_spec=24: x0.683)
-       round-7 auto-capped drafter              x0.626  -> vs best suffix x0.942
-B=128: best ngram  vLLM ngram (n<=4), num_spec=4          x0.710
-       best suffix vLLM suffix a2_p10, num_spec=4         x0.722   (vLLM default a1_p10, num_spec=24: x0.737)
-       round-7 auto-capped drafter              x0.676  -> vs best suffix x0.936
+======== T. Speculation baseline at its best: vLLM suffix decoding (official code) and ngram, swept; round-7 drafter re-scored
+pl            : 2.26 tokens/pass, mean draft 6.74
+pg            : 2.46 tokens/pass, mean draft 7.67
+sd_a1_p10     : 2.01 tokens/pass, mean draft 2.60
+sd_a4_p10     : 2.23 tokens/pass, mean draft 6.94
+sx_a1_p10_k24 : 2.82 tokens/pass, mean draft 4.03
+sx_a1_p10_k4  : 2.45 tokens/pass, mean draft 2.78
+sx_a1_p10_k8  : 2.73 tokens/pass, mean draft 3.66
+sx_a1_p30_k24 : 2.79 tokens/pass, mean draft 3.71
+sx_a2_p10_k24 : 3.09 tokens/pass, mean draft 6.47
+sx_a2_p10_k4  : 2.53 tokens/pass, mean draft 3.44
+sx_a2_p10_k8  : 2.90 tokens/pass, mean draft 5.10
+sx_a4_p10_k24 : 3.22 tokens/pass, mean draft 9.84
+sx_a4_p10_k4  : 2.52 tokens/pass, mean draft 3.78
+sx_a4_p10_k8  : 2.95 tokens/pass, mean draft 6.52
+sx_a4_p30_k8  : 2.90 tokens/pass, mean draft 5.52
+(pl = vLLM ngram n<=4 k<=8; pg = round-7 drafter: ngram + earlier outputs; sd_* = my own suffix emulation; sx_* = official Arctic Inference SuffixDecodingCache, a=max_spec_factor, p=min_token_prob x100, k=num_speculative_tokens)
+B=  8: best ngram ('pl', 8) x0.543; best suffix ('sx_a4_p10_k8', 8) x0.467; suffix default (sx_a1_p10_k24) x0.481
+       round-7 drafter auto-capped x0.519 -> vs best practice x1.111; official suffix + auto cap ('sx_a4_p10_k24', 'auto') x0.460 -> vs best practice x0.985
+B= 32: best ngram ('pl', 4) x0.646; best suffix ('sx_a4_p10_k24', 4) x0.585; suffix default (sx_a1_p10_k24) x0.598
+       round-7 drafter auto-capped x0.626 -> vs best practice x1.071; official suffix + auto cap ('sx_a4_p10_k24', 'auto') x0.575 -> vs best practice x0.983
+B=128: best ngram ('pl', 4) x0.710; best suffix ('sx_a1_p10_k4', 4) x0.645; suffix default (sx_a1_p10_k24) x0.665
+       round-7 drafter auto-capped x0.676 -> vs best practice x1.049; official suffix + auto cap ('sx_a4_p10_k24', 'auto') x0.636 -> vs best practice x0.986
 
 ======== U. Sparse decode attention (Quest-style, training-free, approximate) on top of the best current practice
 decode-weighted mean context 30,274 tok -> FP8 KV 5.0 GB per sequence; HBM for KV on 8xH100 ~ 530 GB -> at most 106 resident sessions (refs: 130; 4-bit: 213)
-B=  8 vs best practice (suffix x0.571 of no-spec):  top-2048 shared x0.795  top-2048 indep x0.870  top-4096 shared x0.811  top-4096 indep x0.924
-       references x0.919; references + top-4096 (indep) x0.870; + 4-bit KV x0.792
-B= 32 vs best practice (suffix x0.664 of no-spec):  top-2048 shared x0.749  top-2048 indep x0.781  top-4096 shared x0.762  top-4096 indep x0.847
-       references x0.884; references + top-4096 (indep) x0.778; + 4-bit KV x0.743
-B=128 vs best practice (suffix x0.722 of no-spec):  top-2048 shared x0.765  top-2048 indep x0.792  top-4096 shared x0.777  top-4096 indep x0.828
-       references x0.878; references + top-4096 (indep) x0.757; + 4-bit KV x0.747
+B=  8 vs best practice sx_a4_p10_k8,8 (x0.467 of no-spec):  top-2048 shared x0.824  top-2048 indep x0.908  top-4096 shared x0.838  top-4096 indep x0.963
+       references x0.915; references + top-4096 (indep) x0.898; + 4-bit KV x0.818
+B= 32 vs best practice sx_a4_p10_k24,4 (x0.585 of no-spec):  top-2048 shared x0.793  top-2048 indep x0.826  top-4096 shared x0.802  top-4096 indep x0.891
+       references x0.884; references + top-4096 (indep) x0.815; + 4-bit KV x0.784
+B=128 vs best practice sx_a1_p10_k4,4 (x0.645 of no-spec):  top-2048 shared x0.800  top-2048 indep x0.824  top-4096 shared x0.808  top-4096 indep x0.858
+       references x0.878; references + top-4096 (indep) x0.780; + 4-bit KV x0.771
+decode time, top-4096 indep vs dense, B=32, by context: 0-16k: x0.996 (632 steps); 16-32k: x0.916 (969 steps); 32-64k: x0.634 (756 steps); 64-maxk: x0.423 (143 steps)
+  context 32k, B=8: decode pass x1.023 with top-4096 (indep)
+  context 32k, B=32: decode pass x0.795 with top-4096 (indep)
+  context 128k, B=8: decode pass x0.531 with top-4096 (indep)
+  context 128k, B=32: decode pass x0.314 with top-4096 (indep)
+  context 200k, B=8: decode pass x0.405 with top-4096 (indep)
+  context 200k, B=32: decode pass x0.237 with top-4096 (indep)
 capacity-bound (enough demand to fill HBM): GPU time per session vs best practice at its own B_max
-  best practice (FP8, suffix)        B_max=106  GPU time x1.000
-  + references (exact info)          B_max=130  GPU time x0.878
-  + references + top-4096 sparse     B_max=130  GPU time x0.783
-  + references + 4-bit KV            B_max=260  GPU time x0.825
-  + references + 4-bit + top-4096    B_max=260  GPU time x0.773
+  best practice (FP8, best drafter)  B_max=106  GPU time x1.000
+  + references (exact info)          B_max=130  GPU time x0.873
+  + references + top-4096 sparse     B_max=130  GPU time x0.776
+  + references + 4-bit KV            B_max=260  GPU time x0.806
+  + references + 4-bit + top-4096    B_max=260  GPU time x0.767
 
 ======== V. Fewer requests: batch runs of consecutive read-only tool calls into one turn (upper bound, API bill)
 batch up to 2 read-only calls per turn: 12.8% of requests removed -> bill x0.946
 batch up to 3 read-only calls per turn: 17.2% of requests removed -> bill x0.928
 batch up to any read-only calls per turn: 23.1% of requests removed -> bill x0.903
 read-only actions: 31.6% of steps
+references (MINRUN=4) alone x0.881; references + batch up to 3 read-only calls x0.816
+
+======== W. Long-context agents: the same sessions with X extra tokens of fixed context in front (repo map, docs, memory)
+X=  0k unique per session (mean ctx 30k, B=32, prefill 55% of GPU time; best practice x0.585 of no-spec at this B):
+    top-4096 sparse decode                         x0.891
+    references                                     x0.884
+    references + sparse                            x0.815
+    references + sparse + 4-bit                    x0.784
+    sparse decode + sparse prefill-vs-cache (8k)   x0.764
+    references + both sparse                       x0.730
+    references + both sparse + 4-bit               x0.699
+X= 50k unique per session (mean ctx 80k, B=32, prefill 61% of GPU time; best practice x0.622 of no-spec at this B):
+    top-4096 sparse decode                         x0.775
+    references                                     x0.946
+    references + sparse                            x0.739
+    references + sparse + 4-bit                    x0.713
+    sparse decode + sparse prefill-vs-cache (8k)   x0.606
+    references + both sparse                       x0.593
+    references + both sparse + 4-bit               x0.567
+X= 50k shared across sessions (mean ctx 80k, B=32, prefill 60% of GPU time; best practice x0.701 of no-spec at this B):
+    top-4096 sparse decode                         x0.957
+    references                                     x0.919
+    references + sparse                            x0.894
+    references + sparse + 4-bit                    x0.893
+    sparse decode + sparse prefill-vs-cache (8k)   x0.656
+    references + both sparse                       x0.635
+    references + both sparse + 4-bit               x0.633
+X=100k unique per session (mean ctx 130k, B=24, prefill 66% of GPU time; best practice x0.651 of no-spec at this B):
+    top-4096 sparse decode                         x0.768
+    references                                     x0.958
+    references + sparse                            x0.736
+    references + sparse + 4-bit                    x0.713
+    sparse decode + sparse prefill-vs-cache (8k)   x0.606
+    references + both sparse                       x0.591
+    references + both sparse + 4-bit               x0.569
+X=100k shared across sessions (mean ctx 130k, B=32, prefill 61% of GPU time; best practice x0.808 of no-spec at this B):
+    top-4096 sparse decode                         x0.977
+    references                                     x0.936
+    references + sparse                            x0.921
+    references + sparse + 4-bit                    x0.921
+    sparse decode + sparse prefill-vs-cache (8k)   x0.594
+    references + both sparse                       x0.578
+    references + both sparse + 4-bit               x0.577
+X=170k shared across sessions (mean ctx 200k, B=32, prefill 61% of GPU time; best practice x0.919 of no-spec at this B):
+    top-4096 sparse decode                         x0.986
+    references                                     x0.945
+    references + sparse                            x0.936
+    references + sparse + 4-bit                    x0.936
+    sparse decode + sparse prefill-vs-cache (8k)   x0.544
+    references + both sparse                       x0.532
+    references + both sparse + 4-bit               x0.532
 done

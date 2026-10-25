@@ -1,0 +1,11 @@
+sx_a1_p10_k4: tokens/pass 2.45, mean draft 2.78
+sx_a2_p10_k8: tokens/pass 2.90, mean draft 5.10
+sx_a4_p10_k24: tokens/pass 3.22, mean draft 9.84
+sx_a1_p10_k8: tokens/pass 2.73, mean draft 3.66
+sx_a2_p10_k24: tokens/pass 3.09, mean draft 6.47
+sx_a1_p30_k24: tokens/pass 2.79, mean draft 3.71
+sx_a1_p10_k24: tokens/pass 2.82, mean draft 4.03
+sx_a4_p10_k4: tokens/pass 2.52, mean draft 3.78
+sx_a4_p30_k8: tokens/pass 2.90, mean draft 5.52
+sx_a2_p10_k4: tokens/pass 2.53, mean draft 3.44
+sx_a4_p10_k8: tokens/pass 2.95, mean draft 6.52

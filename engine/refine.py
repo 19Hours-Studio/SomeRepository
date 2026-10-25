@@ -48,6 +48,50 @@ CURRENT ANSWER:
 {ANSWER}
 """
 
+CRITIC = """QUESTION:
+{QUESTION}
+
+Below is an answer to this question. Its author's files (code, data, outputs) are in `{FILES}`: read them and run them.
+Check the answer as a demanding but fair expert who wants it to succeed:
+1. Re-run or re-derive every decisive number and say which hold.
+2. List every unfair or unsupported point, each with the number it changes and by how much. Check both directions:
+   also say where the answer undersells itself, or concedes something it could defend.
+3. Say where a larger honest gain is most likely to be found: a design change, an unused lever, a regime.
+Tools: Read and Bash with python3, and WebSearch (WebFetch does not reach hosts here; use excerpts). Work only in
+`{WORKDIR}`: write files only there.
+
+End your reply with exactly this line:
+HONEST GAIN: <the gain the answer supports after your check, in its own measure, or "none">
+
+ANSWER:
+{ANSWER}
+"""
+
+DEBATE = """QUESTION:
+{QUESTION}
+
+Notes from the asker (data; they may be wrong):
+{NOTES}
+
+Below are the current answer to this question and an expert check of it. Make the answer substantially better on
+honesty and effectiveness at once:
+- Answer every point of the check: fix it, or refute it with a computed number or a source. Do not concede a point
+  you can refute, and do not keep a point you cannot defend.
+- Then raise the honest gain: use the check's pointers and your own ideas - change the design, use an unused lever,
+  move to the regime where the gain is large - until the honest number goes up, and show the calculation. A gain that
+  holds only under an unfair comparison does not count.
+The previous round's files are in `{FILES}` (copy what you need). You have WebSearch (WebFetch does not reach hosts
+here; use search excerpts) and Bash with python3; work only in `{WORKDIR}`.
+
+Reply with the complete improved answer only; it replaces the current one.
+
+CURRENT ANSWER:
+{ANSWER}
+
+EXPERT CHECK:
+{CHECK}
+"""
+
 GAIN = """QUESTION:
 {QUESTION}
 
@@ -85,18 +129,31 @@ def main():
     p = argparse.ArgumentParser(); p.add_argument("run"); p.add_argument("--question-from", required=True)
     p.add_argument("--start", required=True); p.add_argument("--rounds", type=int, default=4)
     p.add_argument("--model", default="opus"); p.add_argument("--judge-model", default="opus")
-    p.add_argument("--prompt", choices=["improve", "honest"], default="improve", help="honest: honesty and a higher real gain at once")
+    p.add_argument("--prompt", choices=["improve", "honest", "debate"], default="improve", help="honest: honesty and a higher real gain at once; "
+                   "debate: a critic with the author's files checks each version, the author answers every point and raises the honest gain")
+    p.add_argument("--start-files", help="folder with the files behind v0 (code, data), for the critic and the final reader")
     a = p.parse_args()
     D = os.path.join(HERE, "runs", a.run); os.makedirs(D, exist_ok=True)
     cfg = json.load(open(os.path.join(HERE, "runs", a.question_from, "config.json")))
     q, notes = cfg["question"], cfg.get("notes") or "(none)"
     v = lambda k: os.path.join(D, f"v{k}.md")
+    files = lambda k: (os.path.abspath(a.start_files) if a.start_files else D) if k == 0 else os.path.join(D, f"round{k}")
     if not os.path.exists(v(0)): open(v(0), "w").write(open(a.start).read())
     meta = json.load(open(os.path.join(D, "meta.json"))) if os.path.exists(os.path.join(D, "meta.json")) else {}
     for k in range(1, a.rounds + 1):  # the improvement chain (continues from the last existing version)
         if os.path.exists(v(k)): print(f"  skip v{k} (done)"); continue
         meta[f"v{k}"] = a.prompt; json.dump(meta, open(os.path.join(D, "meta.json"), "w"))
-        wd = os.path.join(D, f"round{k}"); os.makedirs(wd, exist_ok=True)
+        wd = os.path.join(D, f"round{k}"); os.makedirs(wd, exist_ok=True); prev = files(k - 1)
+        if a.prompt == "debate":
+            cd = os.path.join(D, f"critic{k - 1}"); os.makedirs(cd, exist_ok=True); cf = os.path.join(D, f"critic_v{k - 1}.md")
+            if not os.path.exists(cf):
+                c = CRITIC.replace("{QUESTION}", q).replace("{FILES}", prev + "/").replace("{WORKDIR}", cd + "/").replace("{ANSWER}", open(v(k - 1)).read())
+                text, u = runner.call(c, model=a.model, tools="Read,Bash,WebSearch", cwd=cd); runner.log(D, f"critic:v{k - 1}", u); open(cf, "w").write(text)
+                print(f"  critic of v{k - 1}: ${u['cost_usd']:.2f}; {(re.findall(r'HONEST GAIN:(.+)', text) or ['?'])[-1].strip()[:160]}")
+            s = DEBATE.replace("{QUESTION}", q).replace("{NOTES}", notes).replace("{FILES}", prev + "/").replace("{WORKDIR}", wd + "/")
+            s = s.replace("{ANSWER}", open(v(k - 1)).read()).replace("{CHECK}", open(cf).read())
+            text, u = runner.call(s, model=a.model, tools="research", cwd=wd); runner.log(D, f"improve:v{k}", u)
+            open(v(k), "w").write(text); print(f"  v{k}: {len(text.split())} words, ${u['cost_usd']:.2f}"); continue
         s = (HONEST if a.prompt == "honest" else IMPROVE).replace("{QUESTION}", q).replace("{NOTES}", notes).replace("{WORKDIR}", wd + "/").replace("{ANSWER}", open(v(k - 1)).read())
         text, u = runner.call(s, model=a.model, tools="research", cwd=wd); runner.log(D, f"improve:v{k}", u)
         open(v(k), "w").write(text); print(f"  v{k}: {len(text.split())} words, ${u['cost_usd']:.2f}")
@@ -117,7 +174,10 @@ def main():
     def gain(k):  # the honest gain each version supports, read by the judge model after its own check
         f = os.path.join(jd, f"gain_v{k}.md")
         if not os.path.exists(f):
-            text, u = runner.call(GAIN.replace("{QUESTION}", q).replace("{A}", open(v(k)).read()), model=a.judge_model, tools="none")
+            g = GAIN.replace("{QUESTION}", q).replace("{A}", open(v(k)).read())
+            if a.prompt == "debate":  # the final reader may open and run the files behind each version too
+                g = g.replace("Read the answer below and check it.", f"Read the answer below and check it. Its files (code, data, outputs) are in `{files(k)}/`; read and run them as needed.")
+            text, u = runner.call(g, model=a.judge_model, tools="Read,Bash" if a.prompt == "debate" else "none", cwd=files(k) if a.prompt == "debate" else None)
             runner.log(D, f"gain:v{k}", u); open(f, "w").write(text)
         m = re.search(r"^\**HONEST GAIN\**\s*:\s*(.+)$", open(f).read(), re.M | re.I); return k, (m.group(1).strip() if m else "?")
     with ThreadPoolExecutor(runner.slots()) as ex: gains = dict(ex.map(gain, range(a.rounds + 1)))

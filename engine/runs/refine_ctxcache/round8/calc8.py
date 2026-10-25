@@ -40,6 +40,7 @@ def replay2(S, hook=None, drop=()):
         prev = blocks
     return reads, writes, outs
 PF, BW, WB, ATT = 0.45 * 8 * 989e12, 0.70 * 8 * 3.35e12, 70e9, 4 * 80 * 8192
+XSHARED = 0
 KVB = 163_840                     # FP8 KV, Llama-3-70B geometry (80 layers x 8 KV heads x 128 x 2 x 1 B)
 def decoded_credit(S, orig):
     cr = [0]
@@ -49,32 +50,42 @@ def decoded_credit(S, orig):
             cr.append(sum(m[1] for m, o in zip(b[len(a):], orig[i]["m"][len(a):]) if m[3] in ("thought", "args") and m[1] == o[1]))
         else: cr.append(0)
     return cr
-def kv_read(C, k, sparse):
-    """tokens of KV read by one verify pass of k+1 queries at context C. sparse = None (dense) or (budget, union):
-    Quest-style top-k pages in 78 of 80 layers (first 2 dense, as in Quest), page metadata = min/max key per 16-token
-    page = 1/16 of the KV; union = 'shared' (the k+1 queries pick the same pages) or 'indep' (disjoint picks)."""
-    if not sparse: return C
+def kv_read(C, k, sparse, B=32):
+    """tokens of KV read per sequence by one verify pass of k+1 queries at context C. sparse = None (dense) or
+    (budget, union): Quest-style top-k pages in 78 of 80 layers (first 2 dense, as in Quest), page metadata = min/max
+    key per 16-token page = 1/16 of the KV; union = 'shared' (the k+1 queries pick the same pages) or 'indep'.
+    A prefix of XSHARED tokens common to all B sequences is read once per batch (cascade attention, vLLM V1 /
+    FlashInfer), i.e. XSHARED/B per sequence -- part of the baseline; sparse selection then applies to the rest."""
+    xs = min(XSHARED, C); own = C - xs
+    if not sparse: return own + xs / B
     bud, un = sparse
-    sel = min(C, bud * (1 if un == "shared" else k + 1))
-    return (2 * C + 78 * (sel + C / 16)) / 80
-def gpu(S, spec=None, cap=None, B=32, kvb=KVB, sparse=None, orig=None):
+    sel = min(own, bud * (1 if un == "shared" else k + 1))
+    return xs / B + (2 * own + 78 * (sel + own / 16)) / 80
+def pre_attn(n, h, psparse):
+    """attention FLOPs of n new tokens over h cached + themselves (causal). psparse = budget: each 64-query block
+    attends the union of its top pages, <= budget cached tokens, in 78 of 80 layers; page scoring adds
+    (n/64) x (h/16) x 2 key-vector dots (negligible); new tokens attend each other densely."""
+    if not psparse: return ATT * n * (h + n / 2)
+    return ATT * n * ((2 * h + 78 * min(h, psparse)) / 80 + n / 2) + ATT / 2 * (n / 64) * (h / 16) * 2
+def gpu(S, spec=None, cap=None, B=32, kvb=KVB, sparse=None, orig=None, psparse=None, onlydec=False):
     per = []; replay2(S, hook=lambda i, s, h, t: per.append((h, t, s)))
     cr = decoded_credit(S, orig or S)
     pre = dec = 0.0
-    for (h, t, s), c in zip(per, cr):
+    for j, ((h, t, s), c) in enumerate(zip(per, cr)):
+        if j == 0: h = XSHARED       # fixed context shared by all sessions: already prefix-cached
         n = max(0, t - h - c); h = t - n
-        pre += (2 * 70e9 * n + ATT * n * (h + n / 2)) / PF
+        pre += (2 * 70e9 * n + pre_attn(n, h, psparse)) / PF
         C = t
         for k, a in (s[spec] if spec else [(0, 0)] * s["out"]):
             if cap == "auto":       # round 7: largest draft that keeps the pass memory-bound
-                kv = kv_read(C, k, sparse); mem = (WB / B + kvb * kv) / BW; ftok = (2 * 70e9 + ATT * min(C, kv)) / PF
+                kv = kv_read(C, k, sparse, B); mem = (WB / B + kvb * kv) / BW; ftok = (2 * 70e9 + ATT * (C if not sparse else min(C, kv + XSHARED))) / PF
                 c_ = max(0, min(k, int(mem / ftok) - 1))
             else: c_ = min(k, cap) if cap is not None else k
             n_p = -(-(a + 1) // (c_ + 1)) if c_ < k else 1
-            kv = kv_read(C, c_, sparse)
-            mem = (WB / B + kvb * kv) / BW; ftok = (2 * 70e9 + ATT * min(C, kv)) / PF
+            kv = kv_read(C, c_, sparse, B)
+            mem = (WB / B + kvb * kv) / BW; ftok = (2 * 70e9 + ATT * (C if not sparse else min(C, kv + XSHARED))) / PF
             dec += n_p * max(mem, (c_ + 1) * ftok); C += a + 1
-    return pre + dec
+    return dec if onlydec else pre + dec
 def agg(D_=None, **kw):
     D_ = D_ or D2
     return sum(gpu(v["steps"], orig=D2[k]["steps"], **kw) for k, v in D_.items())
@@ -143,7 +154,7 @@ def dec_only(s, B, sparse, **kw2):
     C = TOOLS + sum(m[1] for m in s["m"]); d = 0.0
     for k_, a in s[kw2["spec"]]:
         c_ = min(k_, kw2["cap"]); n_p = -(-(a + 1) // (c_ + 1)) if c_ < k_ else 1
-        kv = kv_read(C, c_, sparse); mem = (WB / B + KVB * kv) / BW; ftok = (2 * 70e9 + ATT * min(C, kv)) / PF
+        kv = kv_read(C, c_, sparse, B); mem = (WB / B + KVB * kv) / BW; ftok = (2 * 70e9 + ATT * (C if not sparse else min(C, kv + XSHARED))) / PF
         d += n_p * max(mem, (c_ + 1) * ftok); C += a + 1
     return d
 for v in D2.values():
@@ -197,4 +208,27 @@ for k, v in DA.items():
     tot += sum(replay2(S, drop=drop))
 print(f"references (MINRUN=4) alone x{sum(sum(replay2(v['steps'])) for v in DA.values())/b0:.3f}; "
       f"references + batch up to 3 read-only calls x{tot/b0:.3f}")
+
+section("W. Long-context agents: the same sessions with X extra tokens of fixed context in front (repo map, docs, memory)")
+# concurrency is capped by resident KV: B = min(32, floor(530 GB / (mean context x KV bytes))); each variant gets its
+# own capacity (references shrink context ~18%, 4-bit halves bytes). Best-practice drafter: official suffix, a=4, k=4.
+kw = dict(spec="sx_a4_p10_k24", cap=4)
+T0 = TOOLS
+for X, shared in ((0, False), (50_000, False), (50_000, True), (100_000, False), (100_000, True), (170_000, True)):
+    TOOLS = T0 + X; XSHARED = X if shared else 0
+    mc = MEANC + X
+    def bmax(frac):   # resident KV: the shared prefix once, each session's own part per session
+        own = (mc - XSHARED) * KVB * frac; return max(1, min(32, int((530e9 - XSHARED * KVB * frac) / own)))
+    b0_ = bmax(1.0); base = agg(B=b0_, **kw); pre_only = agg(B=b0_, **kw) - agg(B=b0_, **kw, onlydec=True)
+    rows = [("top-4096 sparse decode", dict(B=b0_, sparse=(4096, "indep"))),
+            ("references", dict(D_=DA, B=bmax(0.82))),
+            ("references + sparse", dict(D_=DA, B=bmax(0.82), sparse=(4096, "indep"))),
+            ("references + sparse + 4-bit", dict(D_=DA, B=bmax(0.41), sparse=(4096, "indep"), kvb=KVB // 2)),
+            ("sparse decode + sparse prefill-vs-cache (8k)", dict(B=b0_, sparse=(4096, "indep"), psparse=8192)),
+            ("references + both sparse", dict(D_=DA, B=bmax(0.82), sparse=(4096, "indep"), psparse=8192)),
+            ("references + both sparse + 4-bit", dict(D_=DA, B=bmax(0.41), sparse=(4096, "indep"), psparse=8192, kvb=KVB // 2))]
+    print(f"X={X//1000:>3}k {'shared across sessions' if shared else 'unique per session'} (mean ctx {mc/1e3:.0f}k, B={b0_}, prefill {pre_only/base:.0%} of GPU time; "
+          f"best practice x{base/agg(B=b0_):.3f} of no-spec at this B):")
+    print("    " + "\n    ".join(f"{name:<46} x{agg(**kw, **k2)/base:.3f}" for name, k2 in rows))
+TOOLS = T0
 print("done")
