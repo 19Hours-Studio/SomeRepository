@@ -8,3 +8,4 @@
 {"step": "gen:g1_rf1", "time": "2026-10-25 13:12:13", "model": "opus", "tools": "", "tokens": 20067, "output_tokens": 7286, "cache_read": 1496, "fresh_input": 11285, "cost_usd": 0.23629119999999998, "turns": 1, "seconds": 86.1}
 {"step": "gen:g1_rf2", "time": "2026-10-25 13:13:03", "model": "opus", "tools": "", "tokens": 16595, "output_tokens": 3806, "cache_read": 1496, "fresh_input": 11293, "cost_usd": 0.1667552, "turns": 1, "seconds": 50.0}
 {"step": "baseline:baseline_1", "time": "2026-10-25 13:16:25", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 211512, "output_tokens": 15178, "cache_read": 160315, "fresh_input": 36019, "cost_usd": 0.8131250999999999, "turns": 18, "seconds": 202.8}
+{"step": "baseline:baseline_2", "time": "2026-10-25 13:20:41", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 342414, "output_tokens": 19959, "cache_read": 281712, "fresh_input": 40743, "cost_usd": 0.9362798000000002, "turns": 20, "seconds": 255.5}

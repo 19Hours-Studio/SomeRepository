@@ -23,3 +23,5 @@ WARNING: g1_rf2#3 is a fragment (refers to another idea) - excluded from selecti
 g1_rf2: 3 ideas (678 words)
   baseline_1: 211,512 tokens, $0.81
 baseline_1: 4 ideas (1329 words)
+  baseline_2: 342,414 tokens, $0.94
+baseline_2: 3 ideas (1140 words)

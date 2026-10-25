@@ -1,0 +1,29 @@
+== 1. Agent bill composition at a 100% achievable hit rate (append-only)
+  cached reads 345000 (60.5%), writes 150000 (26.3%), output 75000 (13.2%)
+  vs no caching 3525000: 6.18x cheaper
+  if only 90% of the old context hits each turn: +69.2% bill
+  if only 95% of the old context hits each turn: +34.6% bill
+== 2. Middle edit: rewrite in place vs append a correction (journal)
+  this turn: in-place 90500 vs journal 10500 -> 8.6x
+  journal stays cheaper for 2000 later turns (each re-reads j at 0.1x)
+  ski-rental rule: compact when sum of 0.1*journal tokens re-read >= 80500 (= 805000 journal-token-turns)
+== 3. Idle gap longer than the 5-min TTL: keep-alive vs rewrite vs 1h write
+  N=20000: one ping 2000; a miss rewrite 25000; pings worth it up to 12.5 pings (~62 min) if return certain; 1h write premium over 5m 15000 = 7.5 pings
+    P(return)=50%: ping while q*(1.25-0.1)N > 0.1N per ping -> break-even pings 5.8
+    P(return)=80%: ping while q*(1.25-0.1)N > 0.1N per ping -> break-even pings 9.2
+  N=100000: one ping 10000; a miss rewrite 125000; pings worth it up to 12.5 pings (~62 min) if return certain; 1h write premium over 5m 75000 = 7.5 pings
+    P(return)=50%: ping while q*(1.25-0.1)N > 0.1N per ping -> break-even pings 5.8
+    P(return)=80%: ping while q*(1.25-0.1)N > 0.1N per ping -> break-even pings 9.2
+== 4. Own stack: RAG/agent request with k reused chunks in a new order / new position
+  KV bytes/token (8B GQA BF16) = 131072 = 128 KiB
+  EPIC 32 sink tok/chunk  : compute 0.084 of full, 0.102 of prefix-cache; token hit 0.923 vs prefix 0.191
+  CacheBlend r=15%        : compute 0.156 of full, 0.189 of prefix-cache; token hit 0.854 vs prefix 0.191
+  sink+15%+boundary 16    : compute 0.232 of full, 0.283 of prefix-cache; token hit 0.781 vs prefix 0.191
+  r=30% (multi-hop)       : compute 0.279 of full, 0.339 of prefix-cache; token hit 0.737 vs prefix 0.191
+  KV to load for 4096 reused tokens: 0.537 GB -> 10.7 ms @PCIe5 50GB/s, 77 ms @NVMe 7GB/s; full prefill ~152 ms @600 TFLOP/s eff.
+  70B (80L, GQA8): 320 KiB/token; 1M cached tokens = 328 GB
+== 5. Sparse read of cached context (Quest-style top-K pages), decode/new-token attention
+  ctx 32000, budget 2048: KV bytes read per step 0.064 of dense (+ page metadata 2/16 of keys = 0.062 of KV)
+  ctx 32000, budget 4096: KV bytes read per step 0.128 of dense (+ page metadata 2/16 of keys = 0.062 of KV)
+  ctx 128000, budget 2048: KV bytes read per step 0.016 of dense (+ page metadata 2/16 of keys = 0.062 of KV)
+  ctx 128000, budget 4096: KV bytes read per step 0.032 of dense (+ page metadata 2/16 of keys = 0.062 of KV)
