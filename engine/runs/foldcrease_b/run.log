@@ -38,3 +38,5 @@ gate: 8/8 parsed {'DEAD': 6, 'WOUNDED': 2}
   skip repair (done)
 repair: 4 ideas (2898 words)
 /home/user/SomeRepository/engine/runs/foldcrease_b/audit_final/TASK.md
+  audit_final: 227,753 tokens, 412.8 s
+  audit_final: 4 new facts -> evidence.md
