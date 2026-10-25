@@ -1,0 +1,3 @@
+WINNER: B
+MARGIN: clearly
+WHY: The two answers are word-for-word identical except for the figures for the references idea (Idea A). A's figures contradict the rest of the analysis. A says references save 0.643× of the bill and that references plus keep-3 clearing reach 0.456×, which is below the 0.466× floor A itself says no context-reducing policy can go under. A also claims 43% of the context is redundant, yet the same change gives only a 0.884× runner gain, and A's figures put the saving at about 50× the stub's, not the 12× it states. B's figures (18% repeats, 0.881×) fit the runner number, the floor and the other combinations, so B's headline estimate is the one the asker can rely on.

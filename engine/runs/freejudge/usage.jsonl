@@ -1,0 +1,3 @@
+{"step": "planted:blind_swap", "time": "2026-10-25 19:13:49", "model": "opus", "tools": "", "tokens": 24001, "output_tokens": 1087, "cache_read": 1496, "fresh_input": 21418, "cost_usd": 0.19337520000000002, "turns": 1, "seconds": 22.0}
+{"step": "ctx_v2_v8:blind_swap", "time": "2026-10-25 19:13:50", "model": "opus", "tools": "", "tokens": 21106, "output_tokens": 1127, "cache_read": 1496, "fresh_input": 18483, "cost_usd": 0.1706952, "turns": 1, "seconds": 23.8}
+{"step": "planted:blind", "time": "2026-10-25 19:13:52", "model": "opus", "tools": "", "tokens": 24142, "output_tokens": 1228, "cache_read": 1496, "fresh_input": 21418, "cost_usd": 0.19619520000000001, "turns": 1, "seconds": 25.1}
