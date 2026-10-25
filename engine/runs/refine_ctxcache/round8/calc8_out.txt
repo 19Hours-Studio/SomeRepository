@@ -1,0 +1,40 @@
+
+======== T. Speculation baseline at its best: vLLM suffix decoding and ngram, swept; round-7 drafter re-scored
+pl        : 2.26 tokens/pass, mean draft 6.74
+pg        : 2.46 tokens/pass, mean draft 7.67
+sd_a1_p10 : 2.01 tokens/pass, mean draft 2.60
+sd_a2_p10 : 2.16 tokens/pass, mean draft 4.33
+sd_a4_p10 : 2.23 tokens/pass, mean draft 6.94
+sd_a1_p30 : 2.00 tokens/pass, mean draft 2.47
+sd_a2_p30 : 2.14 tokens/pass, mean draft 4.01
+B=  8: best ngram  vLLM ngram (n<=4), num_spec=8          x0.543
+       best suffix vLLM suffix a4_p10, num_spec=8         x0.571   (vLLM default a1_p10, num_spec=24: x0.598)
+       round-7 auto-capped drafter              x0.519  -> vs best suffix x0.909
+B= 32: best ngram  vLLM ngram (n<=4), num_spec=4          x0.646
+       best suffix vLLM suffix a4_p10, num_spec=4         x0.664   (vLLM default a1_p10, num_spec=24: x0.683)
+       round-7 auto-capped drafter              x0.626  -> vs best suffix x0.942
+B=128: best ngram  vLLM ngram (n<=4), num_spec=4          x0.710
+       best suffix vLLM suffix a2_p10, num_spec=4         x0.722   (vLLM default a1_p10, num_spec=24: x0.737)
+       round-7 auto-capped drafter              x0.676  -> vs best suffix x0.936
+
+======== U. Sparse decode attention (Quest-style, training-free, approximate) on top of the best current practice
+decode-weighted mean context 30,274 tok -> FP8 KV 5.0 GB per sequence; HBM for KV on 8xH100 ~ 530 GB -> at most 106 resident sessions (refs: 130; 4-bit: 213)
+B=  8 vs best practice (suffix x0.571 of no-spec):  top-2048 shared x0.795  top-2048 indep x0.870  top-4096 shared x0.811  top-4096 indep x0.924
+       references x0.919; references + top-4096 (indep) x0.870; + 4-bit KV x0.792
+B= 32 vs best practice (suffix x0.664 of no-spec):  top-2048 shared x0.749  top-2048 indep x0.781  top-4096 shared x0.762  top-4096 indep x0.847
+       references x0.884; references + top-4096 (indep) x0.778; + 4-bit KV x0.743
+B=128 vs best practice (suffix x0.722 of no-spec):  top-2048 shared x0.765  top-2048 indep x0.792  top-4096 shared x0.777  top-4096 indep x0.828
+       references x0.878; references + top-4096 (indep) x0.757; + 4-bit KV x0.747
+capacity-bound (enough demand to fill HBM): GPU time per session vs best practice at its own B_max
+  best practice (FP8, suffix)        B_max=106  GPU time x1.000
+  + references (exact info)          B_max=130  GPU time x0.878
+  + references + top-4096 sparse     B_max=130  GPU time x0.783
+  + references + 4-bit KV            B_max=260  GPU time x0.825
+  + references + 4-bit + top-4096    B_max=260  GPU time x0.773
+
+======== V. Fewer requests: batch runs of consecutive read-only tool calls into one turn (upper bound, API bill)
+batch up to 2 read-only calls per turn: 12.8% of requests removed -> bill x0.946
+batch up to 3 read-only calls per turn: 17.2% of requests removed -> bill x0.928
+batch up to any read-only calls per turn: 23.1% of requests removed -> bill x0.903
+read-only actions: 31.6% of steps
+done

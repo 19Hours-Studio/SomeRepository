@@ -30,3 +30,89 @@ spent $12.07
   v5: 5768 words, $4.44
   v6: 5181 words, $2.43
   v7: 4313 words, $3.34
+  v8: 4506 words, $2.82
+Traceback (most recent call last):
+  File "/home/user/SomeRepository/engine/runner.py", line 51, in call
+    d = json.loads(p.stdout)
+  File "/usr/lib/python3.13/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/SomeRepository/engine/refine.py", line 144, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/SomeRepository/engine/refine.py", line 123, in main
+    with ThreadPoolExecutor(runner.slots()) as ex: gains = dict(ex.map(gain, range(a.rounds + 1)))
+                                                           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 625, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 318, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/user/SomeRepository/engine/refine.py", line 120, in gain
+    text, u = runner.call(GAIN.replace("{QUESTION}", q).replace("{A}", open(v(k)).read()), model=a.judge_model, tools="none")
+              ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/SomeRepository/engine/runner.py", line 53, in call
+    raise RuntimeError(f"claude -p failed (exit {p.returncode}): {p.stderr[-500:] or p.stdout[-500:]}")
+RuntimeError: claude -p failed (exit 143): 
+=== rerun Sun Oct 25 17:33:06 UTC 2026
+  skip v1 (done)
+  skip v2 (done)
+  skip v3 (done)
+  skip v4 (done)
+  skip v5 (done)
+  skip v6 (done)
+  skip v7 (done)
+  skip v8 (done)
+# refine_continuum: stepwise improvement of a plain answer, judged afterwards
+
+| version | round prompt | words | cost | honest gain (judge, after its own check) |
+|---|---|---|---|---|
+| v0 | - | 1308 | plain answer | ~1.1x tokens per joule at ≥200 tok/s/user and 32K context (modeled only, within error; ≈1.0x at 128K) |
+| v1 | improve | 4011 | $2.61 | ~1.2x tok/s per provisioned MW at ≥200 tok/s/user (DeepSeek-V4-Pro decode, 128K), within the answer's own error bars and below its 1.3x kill threshold; ~1.0x with its prefill mix included |
+| v2 | improve | 4937 | $2.22 | ~1.9x higher output tok/s per provisioned MW than Cerebras CS-4 at ≥2,000 tok/s/user (modelled only; 1.3x at 180 TB/s W-Tier, gone at 128 TB/s); no supported gain over Rubin at ≤1,000 tok/s/user |
+| v3 | improve | 5104 | $1.61 | none in output tok/s per provisioned MW vs Rubin at 128K (≈0.8–1.0x after correcting slot power, spares and NoC); only a modeled ~1.4–1.8x more output tokens per HBM stack |
+| v4 | improve | 5625 | $2.28 | none in tok/s per provisioned MW (≈0.76–1.05x vs Rubin50 across 200–1,500 tok/s/user); only a modelled ~1.4–1.7x more tokens per HBM stack, offset by SoIC supply |
+| v5 | honest | 5768 | $4.44 | none in tokens per provisioned MW (≈0.85–1.0× Rubin after removing the N2 node credit); only a modelled ~2.9× more tokens per HBM stack (~2.2× per DRAM GB) at 128K and ≥1,000 tok/s/user, traded for SoIC capacity and unverified |
+| v6 | honest | 5181 | $2.43 | ~1.1x tokens per provisioned MW vs Rubin NVL72 at ≥1,000 tok/s/user after equalising process energy (modelled only, within error; none vs Rubin Ultra) |
+| v7 | honest | 4313 | $3.34 | ~1.2x tokens per MW at ≥1,000 tok/s/user vs Rubin (same-node, modelled only); none at bulk speeds and none vs Rubin Ultra |
+| v8 | honest | 4506 | $2.82 | none in bulk tokens per MW (≈1.06× same-node, a tie); only a modelled, unvalidated ~2.5–3× higher per-user speed (~500–1,150 vs ≤368 tok/s/user) on a 1.6T MoE at Rubin-class tok/s/W |
+
+| comparison | newer version won (both orders) | margins | score (+ newer, - older) |
+|---|---|---|---|
+| v1 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v5 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v6 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v7 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v8 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v1 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v2 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v3 | 2 of 2 | clearly, clearly | +4 |
+| v5 vs v4 | 2 of 2 | clearly, slightly | +3 |
+| v6 vs v5 | 2 of 2 | clearly, clearly | +4 |
+| v7 vs v6 | 1 of 2 | slightly, slightly | +0 |
+| v8 vs v7 | 2 of 2 | clearly, slightly | +3 |
+| v6 vs v4 | 2 of 2 | clearly, clearly | +4 |
+| v7 vs v4 | 1 of 2 | slightly, clearly | -1 |
+| v8 vs v4 | 0 of 2 | clearly, clearly | -4 |
+spent $38.40

@@ -702,6 +702,19 @@ for mr in (2, 4, 8):
     fin = sum(sum(m[1] for m in v["steps"][-1]["m"]) for v in Da.values()); fin0 = sum(sum(m[1] for m in v["steps"][-1]["m"]) for v in D2.values())
     ra, wa, oa, ha, ta = agg2(D_=Da)
     print(f"MINRUN={mr}: final context -{1-fin/fin0:.1%}; keep everything, references only: bill x{(ra+wa+oa)/b2:.3f} (hit {ha/ta:.1%})")
+# prior art at its best: Claude Code's Read dedup (since v2.1.86) answers an unchanged whole re-read with a short stub.
+# Emulated as: a tool result whose exact text already appeared in the request becomes a 15-token stub.
+Dx = {}
+for k, v in D2.items():
+    st = []
+    for s_ in v["steps"]:
+        seen, mm = set(), []
+        for m in s_["m"]:
+            mm.append([m[0], 15 if (m[3] == "tool" and m[2] in seen) else m[1], m[2], m[3]]); seen.add(m[2])
+        s2 = dict(s_); s2["m"] = mm; st.append(s2)
+    Dx[k] = {"steps": st, "cost": v["cost"]}
+rx = agg2(D_=Dx)
+print(f"prior art, whole-result duplicate stub (Claude Code Read dedup style): bill x{sum(rx[:3])/b2:.3f}")
 Da = with_sizes(DD[4], "all")
 for scope, kp, kd, name in [("k3", 3, ("tool", "args"), "clear results+inputs keep 3"),
                             ("k10", 10, ("tool", "args"), "clear results+inputs keep 10"),

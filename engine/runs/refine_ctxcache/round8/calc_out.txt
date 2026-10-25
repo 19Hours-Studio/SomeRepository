@@ -1,0 +1,198 @@
+
+======== A. 50-turn agent bill at 100% hit (sys 10k, +2k tool, +300 out per turn)
+reads 59%  writes 28%  output 13%
+keep only last 10 tool results (splice): input bill x0.63, total x0.68
+
+======== B. errata vs in-place rewrite break-even (ski rental)
+S= 50000 e=  500: T* =   1137.5 turns
+S= 10000 e= 2000: T* =     45.0 turns
+S=  2000 e= 2000: T* =     -1.0 turns
+
+======== C. block ordering: odds/size rule vs Smith p/size, brute force
+odds/size rule optimal in 3000/3000 random 6-block cases; p/size (Smith) suboptimal in 1762, median excess 1.0%, max 17.4%
+authoring order                  hit 47.1%
+optimal order, conversation last hit 67.4%  ('sys', 'tools', 'docs', 'memory', 'todo')
+volatile tail after conversation  hit 93.7%
++ doc changes as errata           hit 95.3%
++ tail sent only on change (diff)  hit 98.0%
+
+======== D. SWE-agent trajectories: observation elision policies (real sizes, chars/4)
+pooled: 21 actions (median 88), 20 observations (median 64.5, max 2268)
+-- 30-step sessions (bootstrap of real step sizes, 200 reps)
+append                 hit  94.4%  input cost x1.00 vs append-only
+elide n=5 polling=1    hit  69.8%  input cost x1.79 vs append-only
+elide n=5 polling=5    hit  87.0%  input cost x1.11 vs append-only
+elide n=5 polling=15   hit  90.5%  input cost x1.05 vs append-only
+splice n=5             hit  91.8%  input cost x0.82 vs append-only
+-- 80-step sessions (bootstrap of real step sizes, 200 reps)
+append                 hit  97.8%  input cost x1.00 vs append-only
+elide n=5 polling=1    hit  80.1%  input cost x1.30 vs append-only
+elide n=5 polling=5    hit  91.9%  input cost x0.82 vs append-only
+elide n=5 polling=15   hit  94.4%  input cost x0.77 vs append-only
+splice n=5             hit  95.5%  input cost x0.62 vs append-only
+
+======== E. RAG: 2,000 docs x 500 tok, k=5 per query, sys 2k, query 50 tok, Zipf popularity
+s=0.8: relevance 55.2%  hash 57.4%  popularity 62.9%  greedy 63.2%  segment ceiling 97.8%  doc occurrences seen before 98.0%
+s=1.0: relevance 57.9%  hash 61.5%  popularity 69.7%  greedy 69.9%  segment ceiling 97.8%  doc occurrences seen before 98.0%
+s=1.2: relevance 62.5%  hash 68.0%  popularity 77.4%  greedy 77.4%  segment ceiling 97.8%  doc occurrences seen before 98.0%
+(doc-only hit rate, excluding the 2k system prompt:)
+s=0.8: relevance 20.0%  hash 24.0%  popularity 33.9%  greedy 34.3%  segment ceiling 96.1%  doc occurrences seen before 98.0%
+s=1.2: relevance 33.1%  hash 42.8%  popularity 59.6%  greedy 59.7%  segment ceiling 96.1%  doc occurrences seen before 98.0%
+
+======== F. retention break-even and bandwidth (Llama-3-70B, assumptions marked)
+KV/token BF16 320 KiB, FP8 160 KiB
+ctx   8000: recompute  23.7k tok/s, $0.188/M tok
+ctx  32000: recompute  19.6k tok/s, $0.227/M tok
+ctx 128000: recompute  11.6k tok/s, $0.384/M tok
+HBM  : keep only if reused within     1.4 min (BF16)
+DRAM : keep only if reused within     6.9 min (BF16)
+NVMe : keep only if reused within   156.3 min (BF16)
+1 NVMe 7 GB/s : load   21.4k tok/s BF16,   42.7k FP8
+4 NVMe        : load   85.4k tok/s BF16,  170.9k FP8
+400 Gb/s RDMA : load  152.6k tok/s BF16,  305.2k FP8
+=> provider cost of recomputing a token at 8k ctx ($0.188/M) vs a $3/M list model's cache-read price ($0.30/M): price, not cost, sets the hit discount
+
+======== G. 5-min vs 1-h TTL, context reused every 6-60 min, N reuses
+N= 1: 5-min  2.50x  1-h  2.10x  per cached token
+N= 2: 5-min  3.75x  1-h  2.20x  per cached token
+N= 5: 5-min  7.50x  1-h  2.50x  per cached token
+N=20: 5-min 26.25x  1-h  4.00x  per cached token
+
+======== H. template strips earlier reasoning at each new user message (Qwen3/gpt-oss style)
+k= 5 tool steps/query: keep reasoning hit 97.7%   strip reasoning hit 94.7%   per-token input cost x1.27 (before the shorter context is counted)
+k=20 tool steps/query: keep reasoning hit 99.3%   strip reasoning hit 98.4%   per-token input cost x1.10 (before the shorter context is counted)
+k=50 tool steps/query: keep reasoning hit 99.7%   strip reasoning hit 99.3%   per-token input cost x1.04 (before the shorter context is counted)
+
+======== I. segment cache with gate: saving vs gate fallback rate f
+s=0.8: prefix 0.695/doc tok, segment 0.279; saving f=0%: x2.40  f=10%: x2.10  f=30%: x1.68  f=50%: x1.40
+s=1.2: prefix 0.464/doc tok, segment 0.279; saving f=0%: x1.60  f=10%: x1.51  f=30%: x1.35  f=50%: x1.22
+
+======== J. Anthropic breakpoints: volatile tail after last breakpoint; 20-block lookback
+tail 2500 tok/turn billed as plain input (1.0x) not write (1.25x): saves 31,250 base-token units over 50 turns (= 20% of tail cost)
+edit at block 150/200: one end breakpoint reuses 0 tok; + breakpoint after tools reuses 13,000 tok
+edit at block 185/200: one end breakpoint reuses 87,000 tok; + breakpoint after tools reuses 87,000 tok
+edit at block 195/200: one end breakpoint reuses 91,000 tok; + breakpoint after tools reuses 91,000 tok
+
+======== K. parallel fan-out on a shared prefix P: all-at-once vs one warm-up request first
+N= 2: concurrent x2.50P  warm-up first x1.35P  -> 1.9x cheaper on P, +1 TTFT of latency
+N= 5: concurrent x6.25P  warm-up first x1.65P  -> 3.8x cheaper on P, +1 TTFT of latency
+N=10: concurrent x12.50P  warm-up first x2.15P  -> 5.8x cheaper on P, +1 TTFT of latency
+N=50: concurrent x62.50P  warm-up first x6.15P  -> 10.2x cheaper on P, +1 TTFT of latency
+
+======== L. batch discount (0.5x) stacked on caching, best-effort hits h inside the batch
+h=30%: batch cost x2.30 of interactive at 100% hits
+h=70%: batch cost x1.28 of interactive at 100% hits
+h=98%: batch cost x0.56 of interactive at 100% hits
+(batch at 100% hits: x0.51; cached read becomes 0.05x base)
+
+======== M. API-side clearing of old tool results: choose the clear period T (prefix kept exactly)
+never clear: x1.00 (200 turns)
+clear every   1 turns: x0.56
+clear every   5 turns: x0.43
+clear every  10 turns: x0.43
+clear every   8 turns: x0.43  <- best
+clear every  40 turns: x0.51
+clear every 100 turns: x0.69
+same, no cache anchor at the clear point, T=8: x0.56; best T then 20: x0.49
+square-root estimate T* ~ sqrt(2*1.25*K/(0.1*g)) with K = rewritten tokens per clear (~keep window + sys if unanchored): anchored 9, unanchored 15
+
+======== N. REAL traces: 42 SWE-agent runs, Claude Sonnet 4 (SWE-bench Verified, every 12th instance), exact per-step queries
+steps/session median 55.5 max 121; final context median 41,626 max 111,411 tok; observation median 159 p90 929 tok
+append-only step transitions: 2441/2458 (the rest are re-queries that replace the last turn)
+as sent: token hit rate 97.0%; bill reads 56% writes 21% output 23%
+clear every  1 steps (keep 3): x1.033
+clear every  3 steps (keep 3): x0.837
+clear every  5 steps (keep 3): x0.817
+clear every  9 steps (keep 3): x0.791  <- best
+clear every 20 steps (keep 3): x0.832
+clear every 40 steps (keep 3): x0.900
+   hit rate at best T: 91.6%
+Anthropic context editing, default trigger 100k, keep 3: x1.000; trigger 30k: x0.999
+server splice keep 3 (runner only): x0.680, hit 93.1%
+square-root rule with real g=531, K~1833: T* ~ 9 (replay best 9)
+-- sweep: keep window and 'clear only results larger than X tokens' (best T for each)
+keep  1, clear only >   0 tok: periodic best T= 1 x0.659   server splice x0.659
+keep  1, clear only > 500 tok: periodic best T= 1 x0.725   server splice x0.724
+keep  3, clear only >   0 tok: periodic best T= 9 x0.791   server splice x0.680
+keep  3, clear only > 500 tok: periodic best T= 3 x0.816   server splice x0.741
+keep  5, clear only >   0 tok: periodic best T=12 x0.831   server splice x0.700
+keep  5, clear only > 500 tok: periodic best T=12 x0.867   server splice x0.758
+keep 10, clear only >   0 tok: periodic best T=18 x0.900   server splice x0.744
+keep 10, clear only > 500 tok: periodic best T=17 x0.934   server splice x0.792
+
+======== O. Runner's GPU time on the same 42 real sessions (roofline model; assumptions marked)
+no prefix cache: x11.36 of the prefix-cached baseline
+prefix-cached baseline: prefill 36%, decode 64%; work attributable to cached context (attention over cached keys + decode KV reads) 55%; node-seconds/session 8.0, $0.035 at $2/GPU-h
+periodic clear keep 3, T=9 (exact)     GPU time x0.841  (prefill x1.16, decode x0.67)
+clear keep 1 every step (exact)        GPU time x0.678  (prefill x0.82, decode x0.60)
+server splice keep 3 (approximate)     GPU time x0.697  (prefill x0.82, decode x0.63)
+4-bit KV, no clearing (approximate)    GPU time x0.781  (prefill x1.00, decode x0.66)
+periodic clear T=9 + 4-bit KV          GPU time x0.729  (prefill x1.16, decode x0.49)
+splice keep 3 + 4-bit KV               GPU time x0.598  (prefill x0.82, decode x0.47)
+
+======== N2. rolling masking (Complexity-Trap style, window 10, every step) vs the same masking batched; long sessions
+keep 10, clear every step: x2.010; best batched (T=18): x0.900
+7 sessions with >= 80 steps: periodic keep 3 best T=9 x0.739; splice keep 3 x0.637
+
+======== P. Round 6: same 42 sessions re-extracted from full text (legacy Claude tokenizer, tool inputs split out)
+final-context composition: tool 73.5%, args 21.0%, thought 4.0%, user 1.4%, system 0.0%; mean final context 49,979 tok (round 5 chars/4: 43,780 + tools)
+as sent: hit 97.0%; bill reads 56% writes 22% output 22%
+bill-model check: modelled $38.01 vs logged instance_cost $50.63 for 42 sessions (ratio 0.75; tokenizer proxy, 1.5k tool schema assumed, output counted from the next request)
+-- API-side, exact KV; content dropped on purpose. Bill relative to 'as sent'.
+results, keep 3                            rolling (T=1) x1.009   batched best T= 9 x0.763   server splice x0.654
+results, keep 10 (Complexity-Trap window)  rolling (T=1) x1.981   batched best T=18 x0.880   server splice x0.722
+results + tool inputs, keep 3              rolling (T=1) x0.916   batched best T= 9 x0.647   server splice x0.561
+results + tool inputs, keep 10             rolling (T=1) x1.909   batched best T=17 x0.801   server splice x0.650
+results + tool inputs >200 tok, keep 3     rolling (T=1) x0.813   batched best T= 9 x0.671   server splice x0.577
+results + inputs, keep 1                   rolling (T=1) x0.533   batched best T= 1 x0.533   server splice x0.532
+Anthropic-style context editing (stateless, keep 3): trigger 20k x0.972; trigger 20k +inputs x0.874; trigger 30k x0.989; trigger 30k +inputs x0.899; trigger 50k x0.996; trigger 50k +inputs x0.952; trigger 100k x0.998; trigger 100k +inputs x0.996
+floor (keep nothing but system+task+newest turn, all hits): x0.466; output alone x0.220
+7 sessions >= 80 steps, results, keep 3           : batched best T=9 x0.719
+7 sessions >= 80 steps, results + inputs, keep 3  : batched best T=9 x0.568
+7 sessions >= 80 steps, results + inputs, keep 10 : batched best T=15 x0.701
+
+======== Q. Runner: decode passes with model-free drafts (prompt lookup / + cross-session corpus), replayed on real outputs
+prompt lookup (n<=4, k<=8)    : 558,115 output tokens in 246,526 passes -> 2.26 tokens/pass; mean draft 6.7, draft acceptance 19%
++ earlier sessions' outputs   : 558,115 output tokens in 226,699 passes -> 2.46 tokens/pass; mean draft 7.7, draft acceptance 19%
+pg, old results cleared       : 558,115 output tokens in 226,059 passes -> 2.47 tokens/pass; mean draft 7.6, draft acceptance 19%
+pg, old results+inputs cleared: 558,115 output tokens in 284,126 passes -> 1.96 tokens/pass; mean draft 7.4, draft acceptance 13%
+round-6 accounting (re-prefill own output): prefill 39%; capped speculation x0.663, 4-bit KV x0.786
+round-7 accounting (runner reuses KV of its own decoded tokens; below):
+baseline (prefix cache, FP8 KV, no speculation): prefill 32%, decode 68%, cached-context work 58%
+prompt-lookup speculation (exact)                    GPU time x0.720 (prefill x1.00, decode x0.59)
++ cross-session corpus (exact)                       GPU time x0.708 (prefill x1.00, decode x0.57)
++ draft capped to stay memory-bound (exact)          GPU time x0.626 (prefill x1.00, decode x0.45)
+4-bit KV (approx)                                    GPU time x0.762 (prefill x1.00, decode x0.65)
+speculation + 4-bit KV (approx KV)                   GPU time x0.547 (prefill x1.00, decode x0.34)
+batched clear results keep 3 (content dropped)       GPU time x0.820 (prefill x1.21, decode x0.64)
+speculation + batched clear results keep 3           GPU time x0.595 (prefill x1.21, decode x0.31)
+speculation + batched clear results+inputs keep 3    GPU time x0.522 (prefill x0.98, decode x0.31)
+speculation + splice results+inputs keep 3 + 4-bit   GPU time x0.406 (prefill x0.77, decode x0.23)
+B=  8 concurrent sequences: speculation GPU time x0.519, capped x0.519
+B= 32 concurrent sequences: speculation GPU time x0.708, capped x0.626
+B=128 concurrent sequences: speculation GPU time x0.834, capped x0.676
+
+======== R. Round 7: client rewrites repeated line runs (>= MINRUN lines, verbatim incl. line numbers) as references
+MINRUN=2: final context -19.1%; keep everything, references only: bill x0.873 (hit 97.1%)
+MINRUN=4: final context -18.1%; keep everything, references only: bill x0.881 (hit 97.1%)
+MINRUN=8: final context -15.9%; keep everything, references only: bill x0.897 (hit 97.1%)
+prior art, whole-result duplicate stub (Claude Code Read dedup style): bill x0.993
+references + batched clear results+inputs keep 3   : best T= 9 x0.625   (without references x0.647)
+references + batched clear results+inputs keep 10  : best T=18 x0.720   (without references x0.801)
+references + batched clear results keep 10         : best T=18 x0.781   (without references x0.880)
+references only (exact information)                  GPU time x0.887 (prefill x0.87, decode x0.89)
+speculation, capped (exact)                          GPU time x0.626 (prefill x1.00, decode x0.45)
+speculation + references (exact information)         GPU time x0.556 (prefill x0.87, decode x0.41)
+speculation + references + 4-bit KV (approx KV)      GPU time x0.489 (prefill x0.87, decode x0.31)
+
+======== S. Competitors at their best settings: provider context editing (full sweep) and an MTP-equipped runner
+keep  1 results       : provider best x0.633 (trigger 5k, clear_at_least 0k)   client batched x0.633 (T=1)   ratio 0.999
+keep  1 results+inputs: provider best x0.533 (trigger 5k, clear_at_least 0k)   client batched x0.533 (T=1)   ratio 1.000
+keep  3 results       : provider best x0.955 (trigger 5k, clear_at_least 20k)   client batched x0.763 (T=9)   ratio 0.799
+keep  3 results+inputs: provider best x0.868 (trigger 5k, clear_at_least 20k)   client batched x0.647 (T=9)   ratio 0.745
+keep 10 results       : provider best x1.007 (trigger 100k, clear_at_least 0k)   client batched x0.880 (T=18)   ratio 0.874
+keep 10 results+inputs: provider best x1.006 (trigger 100k, clear_at_least 0k)   client batched x0.801 (T=17)   ratio 0.796
+MTP p=0.75: MTP alone x0.708 of no-spec baseline; hybrid suffix+MTP x0.622 (x0.879 of MTP alone); hybrid + references x0.553 (x0.781 of MTP alone)
+MTP p=0.85: MTP alone x0.687 of no-spec baseline; hybrid suffix+MTP x0.622 (x0.906 of MTP alone); hybrid + references x0.552 (x0.804 of MTP alone)
+MTP p=0.90: MTP alone x0.677 of no-spec baseline; hybrid suffix+MTP x0.622 (x0.919 of MTP alone); hybrid + references x0.552 (x0.816 of MTP alone)
+done

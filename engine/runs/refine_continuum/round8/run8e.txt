@@ -1,0 +1,7 @@
+(1) GB300 tau 10 us: model 63,379 total tok/s/GPU at >=50 tok/s/user -> measured 12k = 0.19 of model
+(1) GB300 tau 140 us: model 63,379 total tok/s/GPU at >=50 tok/s/user -> measured 12k = 0.19 of model
+(2) 128K C7 / Ultra(600 kW @100 PF + undervolt), GPU tau  10:   0.75   0.75   0.83   0.83   0.87   Ultra max 5557
+(2) 128K C7 / Ultra(600 kW @100 PF + undervolt), GPU tau  40:   0.75   0.83   1.10 254.17    cap   Ultra max 1595
+(2) 128K C7 / Ultra(600 kW @100 PF + undervolt), GPU tau 140:   0.86    cap    cap    cap    cap   Ultra max 472
+(3) 128K C7 / Rubin+LPX (LP30 625 W, FP8 weights, AFD tau 8 us):   7.75   7.75   8.05   9.49  11.19   LPX-combo max 2700
+(3) 128K C7 / Rubin+LPX (LP30 400 W, FP8 weights, AFD tau 8 us):   5.20   5.20   5.41   6.38   7.51   LPX-combo max 2700

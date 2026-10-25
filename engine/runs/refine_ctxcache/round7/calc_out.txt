@@ -176,6 +176,7 @@ B=128 concurrent sequences: speculation GPU time x0.834, capped x0.676
 MINRUN=2: final context -19.1%; keep everything, references only: bill x0.873 (hit 97.1%)
 MINRUN=4: final context -18.1%; keep everything, references only: bill x0.881 (hit 97.1%)
 MINRUN=8: final context -15.9%; keep everything, references only: bill x0.897 (hit 97.1%)
+prior art, whole-result duplicate stub (Claude Code Read dedup style): bill x0.993
 references + batched clear results+inputs keep 3   : best T= 9 x0.625   (without references x0.647)
 references + batched clear results+inputs keep 10  : best T=18 x0.720   (without references x0.801)
 references + batched clear results keep 10         : best T=18 x0.781   (without references x0.880)

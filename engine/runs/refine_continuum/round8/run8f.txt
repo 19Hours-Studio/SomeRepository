@@ -1,0 +1,44 @@
+
+== 128K, GPU tau 40 us
+                                           200    500   1000   1500   2000
+base                                      1.17   1.43   1.95 1021.32    cap
+same node (C-die energy x1.25)            1.06   1.29   1.77 935.02    cap
+eta 0.5 on Continuum only                 0.97   1.19   1.63 856.19    cap
+W-tier 0.30 pJ/bit                        0.99   1.21   1.66 864.26    cap
+leakage x2                                1.00   1.22   1.68 888.01    cap
+tile imbalance 1.25                       1.05   1.28   1.75 920.58    cap
+Continuum tau 20 us (Cerebras-like)       1.17   1.43   1.78 892.04    cap
+  Rubin >=200 point: 44.9 tok/s/W, 323 tok/s/user, k=1, 0.60V, per-stack 11,106 tok/s
+
+== 128K, GPU tau 140 us
+                                           200    500   1000   1500   2000
+base                                      1.43    cap    cap    cap    cap
+same node (C-die energy x1.25)            1.30    cap    cap    cap    cap
+eta 0.5 on Continuum only                 1.19    cap    cap    cap    cap
+W-tier 0.30 pJ/bit                        1.22    cap    cap    cap    cap
+leakage x2                                1.23    cap    cap    cap    cap
+tile imbalance 1.25                       1.28    cap    cap    cap    cap
+Continuum tau 20 us (Cerebras-like)       1.43    cap    cap    cap    cap
+  Rubin >=200 point: 36.6 tok/s/W, 229 tok/s/user, k=3, 0.55V, per-stack 7,838 tok/s
+
+== 1024K, GPU tau 40 us
+                                           200    500   1000   1500   2000
+base                                      1.25   1.25   2.27 315.05    cap
+same node (C-die energy x1.25)            1.13   1.13   2.06 285.99    cap
+eta 0.5 on Continuum only                 1.07   1.07   1.95 271.27    cap
+W-tier 0.30 pJ/bit                        1.06   1.06   1.93 267.95    cap
+leakage x2                                1.07   1.07   1.95 270.36    cap
+tile imbalance 1.25                       1.15   1.15   2.10 291.67    cap
+Continuum tau 20 us (Cerebras-like)       1.25   1.25   2.27 315.05    cap
+  Rubin >=200 point: 11.8 tok/s/W, 595 tok/s/user, k=4, 0.55V, per-stack 2,516 tok/s
+
+== 1024K, GPU tau 140 us
+                                           200    500   1000   1500   2000
+base                                      1.98    cap    cap    cap    cap
+same node (C-die energy x1.25)            1.79    cap    cap    cap    cap
+eta 0.5 on Continuum only                 1.70    cap    cap    cap    cap
+W-tier 0.30 pJ/bit                        1.68    cap    cap    cap    cap
+leakage x2                                1.70    cap    cap    cap    cap
+tile imbalance 1.25                       1.83    cap    cap    cap    cap
+Continuum tau 20 us (Cerebras-like)       1.98    cap    cap    cap    cap
+  Rubin >=200 point: 7.4 tok/s/W, 377 tok/s/user, k=7, 0.55V, per-stack 1,587 tok/s

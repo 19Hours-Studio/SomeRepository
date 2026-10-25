@@ -1,0 +1,18 @@
+
+== 128K p=0.8
+                                               200    500   1000   1500   2000
+base (FP8 attention, FP8 KV) | GPU tau 10     1.17   1.29   1.57   1.70   2.47   C7 52.4 Rubin 44.9 tok/s/W at >=200
+base (FP8 attention, FP8 KV) | GPU tau 140    1.43    cap    cap    cap    cap   C7 52.4 Rubin 36.6 tok/s/W at >=200
+FP4 attention | GPU tau 10                    1.11   1.22   1.50   1.75   2.48   C7 58.1 Rubin 52.4 tok/s/W at >=200
+FP4 attention | GPU tau 140                   1.42    cap    cap    cap    cap   C7 58.1 Rubin 40.9 tok/s/W at >=200
+FP4 attention + NVFP4 KV | GPU tau 10         1.17   1.29   1.57   1.68   2.45   C7 61.4 Rubin 52.6 tok/s/W at >=200
+FP4 attention + NVFP4 KV | GPU tau 140        1.37    cap    cap    cap    cap   C7 61.4 Rubin 44.8 tok/s/W at >=200
+
+== 1024K p=0.8
+                                               200    500   1000   1500   2000
+base (FP8 attention, FP8 KV) | GPU tau 10     1.21   1.21   1.44   2.00   3.68   C7 14.7 Rubin 12.2 tok/s/W at >=200
+base (FP8 attention, FP8 KV) | GPU tau 140    1.98    cap    cap    cap    cap   C7 14.7 Rubin 7.4 tok/s/W at >=200
+FP4 attention | GPU tau 10                    1.21   1.21   1.43   1.92   4.44   C7 16.7 Rubin 13.8 tok/s/W at >=200
+FP4 attention | GPU tau 140                   2.22    cap    cap    cap    cap   C7 16.7 Rubin 7.5 tok/s/W at >=200
+FP4 attention + NVFP4 KV | GPU tau 10         1.07   1.07   1.43   2.00   4.13   C7 17.6 Rubin 16.5 tok/s/W at >=200
+FP4 attention + NVFP4 KV | GPU tau 140        1.62    cap    cap    cap    cap   C7 17.6 Rubin 10.9 tok/s/W at >=200

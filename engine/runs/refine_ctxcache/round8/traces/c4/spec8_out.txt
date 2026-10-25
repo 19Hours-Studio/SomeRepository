@@ -1,0 +1,5 @@
+sd_a1_p10: tokens/pass 2.01, mean draft 2.60
+sd_a2_p10: tokens/pass 2.16, mean draft 4.33
+sd_a4_p10: tokens/pass 2.23, mean draft 6.94
+sd_a1_p30: tokens/pass 2.00, mean draft 2.47
+sd_a2_p30: tokens/pass 2.14, mean draft 4.01
