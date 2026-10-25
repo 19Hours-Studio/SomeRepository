@@ -227,5 +227,32 @@
   "mech": "Client-only and the same rule as before: send a 1-output-token read of the prefix just before the 5-minute expiry only if P(return in the next window) × 1.25 > 0.1, which is a break-even hazard of 0.08. It is fitted per account from the `ephemeral_5m_input_tokens` and `ephemeral_1h_input_tokens` usage fields. What changed is the deciding number: it is now measured rather than assumed. I replayed Mooncake's public 1-hour conversation and tool-agent traces at the request level; one ping refreshes the whole prefix. f is **0.114 and 0.089**, not 0.4. Even if every rewrite became a free read, the ceiling is 1.096x and 1.069x. The chance that a session comes back after 5 minutes of idling is about 0.002 per window, far below 0.08. So the rule correctly sends no pings and lands at 1.00x. The alternatives lose money: one fixed keep-alive ping gives 0.97x and 0.93x, three pings give 0.83x and 0.75x, and a blanket 1-hour TTL gives 0.736x and 0.732x. Against the blanket 1-hour TTL, the rule is 1.36–1.37x cheaper. It has no effect on output.",
   "value": "The weak link cannot be fixed: f is 0.09–0.11, nowhere near the 0.8 needed. Against plain 5-minute caching the rule gains 1.07–1.10x at most. Its honest value is as a guard: it avoids the 1.36x overpay of a blanket 1-hour TTL and the 1.03–1.34x overpay of fixed keep-alive scripts, at zero quality cost. Claude Code already ships manual TTL settings, which reduces what is new. Human-in-the-loop coding sessions may return more often than these traces show; per-account usage logs would show that.",
   "parent": "g1_mech#1"
+ },
+ {
+  "id": "cross_g1#1",
+  "label": "cross_g1",
+  "arm": "E",
+  "gen": 2,
+  "name": "Canonical-prefix fallback for blended KV",
+  "mech": "Runs on your own stack or provider-side. Spans are stored by content hash in a rolling-hash, position-independent KV store and repaired with EPIC/CacheBlend. Retrieved documents are sorted canonically first, so 15–50% of tokens become lossless exact-prefix hits. When the shadow-KL gate rejects a blended request, it is recomputed only after the last canonically matched document, not from the start.",
+  "value": "The quality loss from blending is confined to the non-canonical remainder, raising the recovered multi-source gap to about 0.6–0.77, and exact fallback costs 50–85% of full prefill instead of 100%."
+ },
+ {
+  "id": "cross_g1#2",
+  "label": "cross_g1",
+  "arm": "E",
+  "gen": 2,
+  "name": "SLO-gated canonical chunk blending",
+  "mech": "Retrieved documents are sorted by stable ID so most reorders hit exactly. The remainder is assembled from per-chunk KV with a shared-system-prompt prefix (APE), plus EPIC and selective recompute. On 1% of traffic, a full recompute runs in shadow and the KL of the first 32 output tokens is compared. This learns the recompute ratio r per query type and document type, and routes the classes that fail, such as multi-hop, to exact recompute.",
+  "value": "The disputed multi-hop quality loss becomes a measured, bounded SLO, at about 0.42 of full compute even if 30% of traffic falls back, against 0.83 for prefix caching."
+ },
+ {
+  "id": "cross_g1#3",
+  "label": "cross_g1",
+  "arm": "E",
+  "gen": 2,
+  "name": "Priced prefix-preserving client",
+  "mech": "Runs client-only, against any API. The client fits a survival curve over the idle gaps of each session. It sends a 1-token keep-alive read only when P(return) × 1.25 × prefix exceeds 0.1 × prefix. Instead of editing earlier content in place, it appends errata that reference the original span, so the cached prefix never changes. It compacts and rewrites the prompt only when the accumulated errata cost more than one rewrite.",
+  "value": "Edited turns cost about 1.02× instead of 6.11× a cached turn, which together with keep-alive gives about a 2.4× lower bill with no server changes."
  }
 ]

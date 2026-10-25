@@ -64,3 +64,7 @@ gate: 10/10 parsed {'WOUNDED': 6, 'DEAD': 4}
   tour_g0: 36 judgments over 7 answers
   improve_g1: 781,913 tokens, 318.3 s
 improve_g1: 3 ideas (1309 words)
+  cross_g1: 14,450 tokens, 45.3 s
+cross_g1: 3 ideas (599 words)
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g1/c1/TASK.md
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g1/c2/TASK.md

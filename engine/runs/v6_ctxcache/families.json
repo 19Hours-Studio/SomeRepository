@@ -19,5 +19,11 @@
  "baseline_1#4": "ttl keepalive pricing",
  "baseline_2#1": "append only errata with deferred compaction",
  "baseline_2#2": "position independent chunk kv with repair",
- "baseline_2#3": "sparse page selective cached reads"
+ "baseline_2#3": "sparse page selective cached reads",
+ "improve_g1#1": "position independent chunk kv with repair",
+ "improve_g1#2": "canonical ordering plus blended chunks",
+ "improve_g1#3": "ttl keepalive pricing",
+ "cross_g1#1": "position independent chunk kv with repair",
+ "cross_g1#2": "canonical ordering plus blended chunks",
+ "cross_g1#3": "ttl keepalive pricing"
 }
