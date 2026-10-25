@@ -1,0 +1,10 @@
+model prefill: 63,456 prompt tok/s per GB300 GPU
+p 0.6 tau  10 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
+p 0.6 tau  30 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
+p 0.6 tau  60 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
+p 0.7 tau  10 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
+p 0.7 tau  30 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
+p 0.7 tau  60 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
+p 0.8 tau  10 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
+p 0.8 tau  30 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
+p 0.8 tau  60 us: decode-only  62,772 out tok/s/GPU; with prefill  7,042 out,  63,379 total | measured 12k = 0.19 of model if total, 1.70 if output-only (k=0)
