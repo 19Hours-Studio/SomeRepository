@@ -23,3 +23,6 @@ g1_rf2: 3 ideas (555 words)
   families: 4 among 15 candidates (15 parsed)
   triage: 18,536 tokens, 43.2 s
 /home/user/SomeRepository/engine/runs/rusres2__p2/gate/TASK.md
+  gate: 370,819 tokens, 216.7 s
+gate: 4/4 parsed {'DEAD': 4}
+  gate: 6 new facts -> evidence.md

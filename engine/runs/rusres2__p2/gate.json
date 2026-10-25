@@ -1,0 +1,34 @@
+{
+ "g1_neg#1": {
+  "killer": "lawful onward hull capacity for FOB sales at Saam FSU and for buyer-chartered hulls at Utrenneye",
+  "why": "The idea is the operation Novatek already runs, its extra tonnes depend on hulls that have not arrived and an unproven Train 2, and its winter FOB sale works only through sanctioned FSU and shadow carriers.",
+  "screen": "1 Season window, winter shuttle cycle: 0.86 (16.4 d measured vs 14 d needed); hull count for winter 2027: 0.75 (3 vs 4); legal onward hull at Saam and Utrenneye: 0 (every ship seen loading there is sanctioned or shadow fleet); 9 Baseline: the shuttle and summer open-water loading are already current practice; 8 Train 2 at design rate: no evidence (Train 2 had startup faults, Sep 2026)",
+  "margin": 0.0,
+  "ratio": 1.03,
+  "verdict": "DEAD"
+ },
+ "g1_mech#3": {
+  "killer": "extra crude that domestic refineries can absorb",
+  "why": "The southern outlet is both too small (25 Mt/y line with ~14.8 Mt/y already in it) and has no buyer at the end, because Russian refineries are already crude-long.",
+  "screen": "9 Baseline, extra crude demand at domestic refineries: ~0 (runs down 13.5% y/y, surplus crude already pushed into export); 8 southbound spare capacity on Vankor–Purpe: 0.43 (10.2 vs 23.7 Mt/y); 9 \"no discount\" at home: ~1 (domestic crude is priced on export netback, so the Urals discount carries through); Payakha oil going south would need the Payakha–Vankor leg to run in reverse (not checked)",
+  "margin": 0.0,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#3": {
+  "killer": "Zvezda Arc7 delivery rate that sets the gate",
+  "why": "The gate is already Novatek's practice, so it saves nothing, and its hull trigger would only be reached years after 2029–30 at the delivery rate actually achieved.",
+  "screen": "9 Baseline: Novatek already postponed Train 3 (Reuters, Jun 2026), so the gain over current practice is 0; 1 Zvezda delivery rate: 0.5 (~1 vs 2 hulls/yr); 8 idle-capital annuity: $0.82bn/yr ≈ $144/t at 5.7 Mt (an upper bound, and only if Train 3 were being built now)",
+  "margin": 0.5,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#1": {
+  "killer": "lawful non-ice onward hull from the Ura Bay/Saam FSU (the idea's own condition)",
+  "why": "It describes what is already running, it falls short of its own 14-day cycle, and its stated condition of a lawful onward hull has zero capacity.",
+  "screen": "1 winter round-trip time: 0.86 (16.4 d measured vs ≤14 d needed); output per hull: 0.86 (1.72 vs 2 Mt/y); legal onward non-ice hull: 0; 9 Baseline: the shuttle plus a summer NSR run east is already the 2026 pattern (Kosygin: 4 Saam cargoes in June, then a voyage to China in July), so the gain is 0",
+  "margin": 0.0,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ }
+}
