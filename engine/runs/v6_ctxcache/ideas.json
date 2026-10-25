@@ -1,1 +1,174 @@
-[]
+[
+ {
+  "id": "g1_ledger#1",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Cost-sized corpus shard prefixes",
+  "mech": "Cluster the corpus offline into shards of S tokens, each in a fixed, canonical order. Each shard is a cached prefix on the hosted API. Each request is routed to one shard and appends only \"relevant: §17, §203\" plus the question, so varying or reordered chunk sets never change the prefix. The closest prior art is cache-augmented generation (CAG) and CacheWeaver. CAG preloads the whole corpus and pays 0.1x on every corpus token each request. CacheWeaver only shares partial prefixes. Choosing S explicitly against the 0.1x read price avoids both limits. The deciding quantity is S relative to the retrieved size R (4k): reading the shard costs 0.3·S against 3·R, so S = 16k gives $0.0048 against $0.012 for the document term. That is $0.0102 per request, or 1.7x, plus a shard write of $0.06 per cache lifetime, amortized over requests. Quality, the share of answers recovered when a needed chunk falls outside the shard, and pointer-versus-inline reading should be tested on MuSiQue and HotpotQA against inline RAG.",
+  "value": "Order-independent, near-100% hits on the document part of RAG through any exact-prefix API, giving about 1.5–2x per request within the 3.8x ceiling."
+ },
+ {
+  "id": "g1_ledger#2",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Errata ledger, expiry-aligned rebase",
+  "mech": "Middle edits, insertions and changed tool outputs are never applied in place. They are appended as compact errata (\"tool result #12 superseded: …\"), so the cached prefix survives. The closest prior art is Manus append-only discipline and Anthropic context editing; each edit or clear there forces a rewrite of everything after the change. Here the client instead tracks dead tokens D and rebases (compacts) the context only when D·T > 12.5·C, where T is the number of remaining turns and C the context length. It also rebases during idle gaps longer than the cache lifetime, when a rewrite is due anyway, so compaction costs nothing extra. Example: an edit at the midpoint of a 100k context costs about $0.19 in place, against about $0.002 as a 500-token erratum. The deciding quantity is the share of current cache writes that are re-writes of invalidated suffixes rather than first-time tokens. It can be measured from logs as cache_creation_input_tokens minus the new tokens in each turn. Quality should be tested as SWE-bench pass rate and stale-fact override accuracy with errata versus in-place edits.",
+  "value": "Cuts the agent cache-write term in proportion to how much of it is invalidation-driven, and covers edits, insertions and tool-output changes."
+ },
+ {
+  "id": "g1_ledger#3",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Diff-encoded repeated tool outputs",
+  "mech": "The client hashes every tool output it has already placed in context. When a file or command result is requested again, it appends only \"unchanged since turn 12\" or a unified diff, never a second full copy. This shrinks the genuinely new tokens that pay the 1.25x write charge. The closest prior art is the file-unchanged notices in some agents. Those cover only identical re-reads; this also handles changed outputs as deltas, so a changed tool output costs the size of its diff, not its full size. The deciding quantity is the share of written tokens that duplicate content already in context, measurable from agent traces. Quality should be tested by SWE-bench and Terminal-Bench pass rate and by error rates when applying diffs.",
+  "value": "Directly shrinks Archetype A's largest term, cache write at 47% of the agent bill, when re-reads dominate the written tokens."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Composable pairwise low-rank KV deltas",
+  "mech": "Offline, for chunk pairs (A,B) that co-occur often in retrieval logs (the distribution is Zipf-skewed), run B after A once. SVD the difference between the contextual and isolated KV of B per layer, and store rank-8 factors. At splice time, add the summed pairwise deltas of all preceding chunks, as a first-order additive approximation. Fall back to sparse recompute for uncovered pairs. The closest prior art is Kamera's fitted rank-16 patch and Cache-Craft's per-context variants, which are respectively learned/global and non-composable. These deltas are forward-pass-derived, per pair, and compose across any order. The deciding quantity is the fraction of true KV deviation variance that the summed pairwise deltas capture on three or more chunks.",
+  "value": "It replaces CacheBlend's 15% recompute with a GEMM costing under 1%, for any order of covered chunks."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Entity-overlap recompute selection",
+  "mech": "Cross-chunk attention is lost mostly on tokens that refer to content elsewhere, such as shared entities, coreferents and numbers. Selection uses a cheap index of entity/n-gram overlap between spliced chunks, computed without any model pass, and recomputes only those tokens plus the chunk-start sink tokens, at 2–4%. CacheBlend's layer-1 deviation selection needs a partial forward pass and keeps about 15% because its proxy is noisy. Lexical bridges target multi-hop links directly. The deciding quantity is the recall of the top-deviation tokens at a 3% budget against a full-recompute oracle.",
+  "value": "It cuts recompute roughly 4x while aiming at the multi-hop failures that hurt training-free reuse most."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Corpus-centroid conditioned chunk encoding",
+  "mech": "Encode every chunk after a fixed, realistic prefix rather than an empty context. The prefix is the system prompt plus a short, medoid-selected corpus passage. Store the chunk's KV with that prefix trimmed and positions remapped by RoPE rotation. This removes the spurious attention-sink and out-of-distribution \"document start\" state that EPIC suppresses only by recompute. It also shrinks residual deviation, so any recompute budget goes further. The deciding quantity is the KV L2 deviation versus true context, relative to empty-prefix encoding, measured per layer.",
+  "value": "It gives a free, offline reduction of splice error that lowers the recompute share needed for parity across all chunk orders."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Return-hazard priced keep-alive",
+  "mech": "The client logs the gaps between turns per user and per tool, including long test runs. From this it fits a survival curve, S(t) = the probability the user has not yet returned after t minutes. Just before a 5-minute expiry, it sends a 1-output-token read of the whole prefix only if the expected cost of rewriting (P(return soon) × 1.25 × prefix) exceeds 0.1 × prefix. It uses the 1-hour TTL only on the stable header when parallel sub-agents will read it. The closest prior art is fixed keep-alive scripts and the blanket 1-hour TTL. Those either ping dead sessions forever or pay +0.75× on every write, whereas this rule prices each gap. Deciding quantity: the share f of write tokens that are rewrites after expiry. If f = 0.4, the saving is about 15% of the bill (about 1.18×). It runs client-only and adds roughly zero latency; time-to-first-token after an idle gap also improves.",
+  "value": "It removes rewrites after expiry and during tool waits for about 0.1× per window, without changing output."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Write-anchor audit and skip",
+  "mech": "The client scans usage logs for write spikes larger than half the context. These are full rewrites caused by a turn adding more than about 20 blocks (for example, parallel tool results) past the provider's lookback limit. It fixes them by always keeping a second breakpoint at the end of the previous request and by merging tool-result blocks. It also places tokens that will never be read again after the last breakpoint, so they are billed at 1.0× instead of 1.25×. Examples are a sub-agent's final call and outputs that are about to be cleared. The closest prior art is Anthropic's breakpoint guidance, which states the lookback rule but does not detect or price the misses. Deciding quantity: the miss rate per turn. At 5k new tokens per turn, one 100k-token miss every 50 turns adds 40% to the write term.",
+  "value": "It removes hidden full-prefix rewrites, which can be a large share of the 47% write term."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Per-hash public prefix pool",
+  "mech": "The provider keeps one KV entry for byte-identical content that has been registered as public: widely used agent system prompts, tool schemas and public documentation. The entry is keyed by a hash of the content plus the model version. The first write is amortised across tenants, so every tenant pays only the 0.1× read rate plus a small per-hash fee. Entries are admitted only once at least k tenants use them, and latency is padded, which blocks the cross-tenant timing leak found in prompt-cache audits. The closest prior art is per-organisation isolation by Anthropic and OpenAI. That isolation exists for privacy, and the privacy reason does not apply to content that is public by declaration. Deciding quantity: the share of written tokens that are public across tenants. An assumed 20k-token header in a 250k-token-write session gives about 3% of the bill. The share is larger for short sub-agent calls. It runs provider-side only, and the extra storage is one copy per hash.",
+  "value": "It removes cold-start and post-expiry writes of the shared header for every tenant."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Attention at the KV store",
+  "mech": "On each agent turn, only the new suffix is prefilled. The suffix's queries go to the node that already holds the session's prefix KV, and that node returns partial attention outputs with log-sum-exp values. These merge exactly with local attention over the suffix, so the KV never moves and the output matches full recomputation bit-for-bit up to floating-point order. Closest earlier work: Lamina (2024) offloads decode attention only; this applies the same split to suffix prefill. The deciding quantity is traffic, n·Hq/(L·Hkv) = 8n/L. It wins whenever the n new tokens are fewer than L/8, for example 2k new tokens over a 100k context gives about 6× less traffic than a BF16 fetch. Costs: 80 per-layer round trips per turn, and compute on the store node. It runs on your own stack or provider-side.",
+  "value": "Hits on 100k+ contexts become cheap from any replica without moving the KV. This lowers the provider's cost of cache reads (42% of the bill), but it does nothing for middle edits."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Erasure-coded pooled KV memory",
+  "mech": "Each content-addressed KV chunk, keyed by its prefix hash, is striped in FP8 across the CPU DRAM of a replica group using a k-of-n erasure code (for example 8+2). This replaces full replication, so the pooled memory holds about 2.4× more sessions than 3× replication at the same capacity. Any replica can rebuild a chunk from any k stripes. Closest earlier work: Mooncake Store replicates chunks, and its capacity limit causes the evictions that lead to rewrites. The deciding quantity is the share of rewrites caused by eviction or placement rather than by expiry. Losing a stripe costs one decode, not a recompute. Output quality is unchanged because the stored values are exact FP8.",
+  "value": "It cuts the roughly 23%-of-bill rewrite term wherever capacity misses drive it, on your own stack or provider-side."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Signed public-prefix KV pool",
+  "mech": "Agent harnesses publish signed, version-pinned system prompts and tool schemas, assumed to be about 15–20k tokens. Their KV is precomputed once and pinned on every replica. Requests whose prefix hash matches a signed entry get a hit without a per-organisation write. Closest earlier work: per-organisation prompt caching, which isolates organisations because shared caches leak through timing side channels. Sharing only public signed content removes that leak. The deciding quantity is the harness-prefix share of all writes, including writes repeated after expiry. The estimate is a 5–9% bill cut, with no change in quality. It runs provider-side only.",
+  "value": "Session starts and cross-replica first turns stop paying the write premium for content that is identical across all users."
+ },
+ {
+  "id": "g1_rf2#1",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Quote-anchor output expansion",
+  "mech": "The model writes `⟦c3: \"first six words … last six words\"⟧` instead of re-typing text it is quoting from a retrieved chunk. The client fuzzy-matches the anchors against the chunk and splices in the exact text, re-asking on a miss. This runs client-side on any hosted API with no stored state. It differs from OpenAI Predicted Outputs, the closest prior art, which bills rejected tokens and so cuts latency, not cost; quote anchors instead remove output tokens before they are generated. The deciding quantity is the quoted share of answer tokens multiplied by the anchor-resolution accuracy, which should be tested against full answers on multi-hop QA with an LLM judge plus exact-match on the quoted spans.",
+  "value": "If at least 35% of answer tokens are quotes, B's output cost falls at least 17%, which is the output share needed, alongside a 10x input cut, to bring RAG Q&A to the 3x target."
+ },
+ {
+  "id": "g1_rf2#2",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Chunk-keyed speculative draft trees",
+  "mech": "On your own vLLM or SGLang stack, store past generations in suffix trees indexed by the hashes of the retrieved chunks they were conditioned on. Draft from the trees whose chunk sets overlap the current request, and let the target model verify the drafts exactly. SuffixDecoding and REST, the closest prior art, use global or per-request stores, so their acceptance falls when unrelated traffic dilutes the store. Keying by document narrows the candidates to text actually written about these sources, and storage is only text, a few KB per answer. The deciding quantity is mean accepted tokens per verification step at production batch size.",
+  "value": "Repeat-document RAG could get roughly 2–3x fewer decode GPU-seconds at moderate batch with output unchanged, which is the decode cut that has to accompany a 10x prefill cut to reach 3x."
+ },
+ {
+  "id": "g1_rf2#3",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Previous-answer replay drafting",
+  "mech": "When an agent turn is regenerated because a tool output, document or instruction in the middle of the context changed, use the previous answer to that turn as the draft. Exact verification keeps the unchanged runs, and when a token is rejected, drafting re-aligns by searching the old answer for the newly generated suffix. Draft length k is chosen per step from the current batch size and the recent acceptance rate, and drafting turns off when decode is compute-bound. Closest prior art is Predicted Outputs, which is billed per token on hosted APIs; on your own stack only the verification pass costs anything. The deciding quantity is the fraction of tokens kept between the old and new answers.",
+  "value": "Re-answers after a mid-context edit, the case prefix caching serves worst, would cost decode time roughly in proportion to how much the answer actually changed, with token-identical output.",
+  "fragment": true
+ },
+ {
+  "id": "baseline_1#1",
+  "label": "baseline_1",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Edit-local contiguous KV repair with fallback",
+  "mech": "Runs on your own serving stack or provider-side; plain API users can't do it. It covers middle edits, insertions, deletions and changed tool outputs. Tokens before the first changed token are an ordinary exact prefix hit. Only the edited span is prefilled fresh. The old suffix after it is reused with an exact RoPE position shift (the rotation is exact; V is untouched). Then one contiguous window, from the edit to the end of its block, is recomputed, not scattered \"important\" tokens. At matched budget, contiguous windows beat signal-based token picking by a wide margin and run 13–21× faster than a re-prefill (2609.17983). Recomputing 2–5% of the suffix gets close to full-recompute exact match on four multi-hop QA datasets (2610.17338). Scattered selection fails on real fact edits: CacheBlend at 15% recompute scores 0.13 against 1.00 for full re-prefill (2606.17107). My addition is a stored dependency index written at prefill time: for 4 layers, each token's top-8 source blocks with their attention mass, about 96 B/token, or 0.03% of Llama-70B's 320 KiB/token. It sizes the repair window, and the request falls back to a full suffix prefill when long dependency chains point at the edited span. Arithmetic for a uniformly placed edit: prefix caching alone recomputes 50% of the context; this recomputes 1–2.5%, or 7.5% at CacheBlend's 15% rate. That is 20–50× less prefill than prefix caching, plus the cost of loading the reused KV. Test it on paired fact-edit and deletion tasks: the answer must match full recompute, and how often the fallback fires is the honest hit-rate figure.",
+  "value": "About 97–99% of post-edit tokens are reused instead of about 50%, so a middle edit costs about 20–50× less prefill than prefix caching. The quality claims rest on 2026 preprints and still need a run on a real model."
+ },
+ {
+  "id": "baseline_1#2",
+  "label": "baseline_1",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Canonical ordering plus position-independent chunks",
+  "mech": "Runs on your own stack or provider-side and covers reordered documents and RAG sets. First, sort retrieved documents and tool schemas by stable ID and popularity, so most reorders become exact prefix hits. Berkeley's relational-query reordering already shows this works, with up to 3.4× faster jobs and 32% lower cost under OpenAI and Anthropic pricing. For the rest, use a store of KV per chunk, computed once with the shared system prompt in front of it. APE showed this shared prefix removes the per-chunk attention-sink error with no training, keeping 93–98% of sequential-encoding quality. At assembly time, re-rotate positions exactly, recompute the first few tokens of each chunk (EPIC: up to 8× TTFT and 7× throughput, with negligible accuracy loss) and selectively recompute 10–15% of tokens (CacheBlend: 1–3% quality loss, 2.2–3.3× TTFT). Token hit rate is then about 85–90% for permuted sets and 100% for the canonical ones. Storage is one KV copy per chunk instead of one per prefix: 30.5 GiB per 100k tokens in BF16, about 6× less with roughly 3-bit compression. To test, compare answers under canonical, random and adversarial document orders against full recompute, which measures both the order effect and the blending error. Chunks must be isolated per tenant: HijackKV shows shared position-independent KV can be poisoned across users.",
+  "value": "Adding canonical ordering in front of CacheBlend/EPIC turns most reorders into lossless exact hits, so blending's 1–3% loss applies only to the remainder. Expect about 5–10× less prefill than prefix caching on RAG traffic where the document set varies."
+ },
+ {
+  "id": "baseline_1#3",
+  "label": "baseline_1",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Erratum-append discipline with rebase-on-cold",
+  "mech": "Client-only, so it works on any API (Anthropic: reads 0.1×, 5-minute writes 1.25×; OpenAI GPT-5: $0.125 cached vs $1.25 input). The context is append-only and serialized deterministically (sorted JSON keys, no timestamps up front, as in the Manus write-up). A middle edit or changed tool output becomes an appended erratum (\"field X is now Y\"), never an in-place change. Exact arithmetic for a 100k-token context: an in-place edit at a uniform position costs 6.78× a fully cached turn; an erratum costs 1.03×, a 6.6× saving per edit. Over 200 simulated turns with edits on 20% of them, total cost was 1.85× lower than in-place edits and within 4% of a context that never changes. The rule I add is to fold errata back into the context only when the cache is being rewritten anyway (TTL expiry, compaction), which costs nothing extra. A ski-rental rule never triggered in the simulation for 200-token errata. Quality caveat: the model uses the erratum reliably mainly with chain-of-thought (2606.17107). Without it, test erratum vs in-place on your own tasks and compare to a fresh prompt. That paper reports a 98.5% hit rate in an online vLLM benchmark.",
+  "value": "Hit rate near 100% and about 1.85× lower input cost for edit-heavy agents on any API. The floor is the provider's read price (0.1×); nothing client-side can go below it."
+ },
+ {
+  "id": "baseline_1#4",
+  "label": "baseline_1",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "TTL-aware keepalive and write-tier choice",
+  "mech": "Client-only, and covers misses caused by expiry, not by changed content. Reads refresh Anthropic's 5-minute TTL for free. On a 100k-token context, a ping every 4 minutes costs 0.1N each; the 1-hour tier costs an extra 0.75N once; letting the cache expire costs 1.15N to rewrite. Keepalive is cheapest for idle gaps under about 30 minutes (70k vs 75k units at 30 minutes), the 1-hour tier for gaps of about 30–60 minutes, and expiry beyond that. Quality is unaffected because reuse stays exact. Latency is unchanged; the extra traffic is tiny pings. Gemini's explicit caching instead charges storage ($4.50 per million tokens per hour on Pro), so the same rule has to compare that hourly fee against the rewrite cost. Check your provider's terms before running keepalive pings.",
+  "value": "For bursty agent or chat sessions this removes the TTL miss term, up to 1.15N per idle gap, without touching the prompt."
+ }
+]

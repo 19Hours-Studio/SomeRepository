@@ -22,5 +22,9 @@
  ],
  "engine": "v6",
  "directions": true,
- "vs": true
+ "vs": true,
+ "reframes": [
+  "In high-interactivity decode (above 300 tok/s/user, 70B-class to MoE-class models), where silicon is about 60% of cost and the ceiling is 16.7x, how can the cost per GB of weight and KV capacity that sustains PB/s-class bandwidth per model replica fall 3–10x? The test is batch-1 roofline arithmetic: model bytes divided by aggregate bandwidth.",
+  "For LLM serving (dense and MoE, with stated context lengths), what system-level architecture moves the delivered $/Mtok-versus-tok/s/user Pareto frontier furthest beyond GB300 NVL72 ($0.06/Mtok at about 50 tok/s) and Cerebras/Groq (300–2,500 tok/s), and at which speed band?"
+ ]
 }

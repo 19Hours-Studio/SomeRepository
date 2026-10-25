@@ -1,1 +1,25 @@
 /home/user/SomeRepository/engine/runs/v6_ctxcache/ledger/TASK.md
+  ledger: 44,237 tokens, 50.7 s
+ledger: 692 words
+/home/user/SomeRepository/engine/runs/v6_ctxcache/attempts/TASK.md
+  attempts: 61,772 tokens, 60.6 s
+attempts: 1164 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Long-running tool-using agent (Manus or Claude Code style). Best practice is an append-onl | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: cache write 1.73x; cache read 1.61x; fresh uncached input 1.01x | 3x needs: cache write, cache read | ROOM
+ARCHETYPE B: RAG or document Q&A through a third-party API. Best practice is system prompt and instruct | untouchable 26.0% -> ceiling 3.8x | 10x cut of one term: retrieved-document input 2.64x; question input 1.03x; system prompt 1.02x | 3x needs: impossible even with every term cut 10x | NO ROOM
+ARCHETYPE C: Self-hosted RAG or multi-turn serving on vLLM or SGLang. Best practice is automatic prefix | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: prefill compute 1.98x; decode compute 1.29x; kv storage and transfer 1.05x; scheduling and idle 1.05x | 3x needs: prefill compute, decode compute | ROOM
+  reframe: 15,355 tokens, 34.7 s
+  directions: 11,931 tokens, 33.3 s
+  g1_ledger: 17,418 tokens, 58.5 s
+g1_ledger: 3 ideas (743 words)
+  g1_neg: 17,168 tokens, 55.4 s
+g1_neg: 3 ideas (759 words)
+  g1_mech: 19,873 tokens, 84.8 s
+g1_mech: 3 ideas (783 words)
+  g1_rf1: 20,067 tokens, 86.1 s
+g1_rf1: 3 ideas (736 words)
+  g1_rf2: 16,595 tokens, 50.0 s
+WARNING: g1_rf2#3 is a fragment (refers to another idea) - excluded from selection
+g1_rf2: 3 ideas (678 words)
+  baseline_1: 211,512 tokens, $0.81
+baseline_1: 4 ideas (1329 words)

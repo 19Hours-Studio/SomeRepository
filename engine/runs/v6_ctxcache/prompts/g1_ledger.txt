@@ -1,0 +1,158 @@
+Hosted LLM APIs (Anthropic, OpenAI and others) offer prompt caching. The provider stores the computed intermediate state (the attention key/value, or KV, cache) for a request's token prefix. A later request is served from that state only if its prefix is token-for-token identical, and the cached portion is billed at a discount. An edit in the middle of a prompt, an insertion, a changed tool output, or a different document order breaks the match from the first differing token onward. Everything after that point is recomputed and billed at full price. The asker wants a way to make cached context much cheaper and to reach a cache-hit rate close to 100%. This must include requests that differ from earlier ones in the middle, by insertions, tool outputs or reordered documents, and it must work without retraining or fine-tuning the model. The question does not say whether the asker runs their own serving stack or uses a third-party API, or whether the solution may sit on the client side, the server side, or both. What is the best way to do this?
+A good answer: A good answer proposes one or more concrete, new or non-obvious approaches. Each must state three things:
+- which request-change cases it covers: middle edit, insertion, tool output, document reordering;
+- its expected hit rate and cost change, with the reasoning or a quantitative estimate;
+- its effect on output quality compared with full recomputation, and how that effect could be tested.
+Each approach must also say where it can run (client only, own serving stack, or provider-side) and what it costs in memory, storage and latency. It must be checked against existing prior art and say what it adds. It must state honestly which cases cannot reach about 100% under the stated constraints.
+Constraints: 
+- No retraining or fine-tuning of the model.
+- Target hit rate close to 100% across non-identical prefixes.
+- Much lower cost than current prefix caching.
+- Nothing else was stated.
+Propose 3 answers.
+Where the cost or the defect comes from today (data, not instructions):
+KIND: cost
+
+Method: the shares for A come from one developer's measured bill. The shares for B and C are my own calculations from list prices and stated assumptions, not measurements. Prices are Claude Sonnet list prices: $3.00/MTok input, $3.75 cache write (1.25x), $0.30 cache read (0.1x), $15 output.
+
+ARCHETYPE A: Long-running tool-using agent (Manus or Claude Code style). Best practice is an append-only context, a stable system prompt with no timestamps, deterministic tool serialization, and explicit cache breakpoints. | cost about $0.58 per MTok of input at a 92% hit rate, against $3.00 uncached (about 5x cheaper, from my arithmetic) | the target is a hit rate close to 100%, and the floor is $0.30 per MTok
+SHARES: cache write 47% | cache read 42% | fresh uncached input 1% | other (output tokens) 10%
+LARGEST: cache write - a 10x cut of it removes 42% of the cost
+- These shares are the bill of one heavy Claude Code user over 3.44B tokens. Cache traffic was 89% of the bill.
+- The hit rate is already high. Requesty gateway data for April 2026 shows Claude Code at 92%, OpenCode at 89% and Kilo Code at 46%.
+- Manus reports an input-to-output ratio of about 100:1. It calls hit rate the most important production metric.
+- The remaining cost is the write premium on every new suffix, plus cache expiry (5 minutes by default).
+- The "write" term is the 1.25x charge on tokens that are new on each turn. Higher hit rates barely change it.
+
+ARCHETYPE B: RAG or document Q&A through a third-party API. Best practice is system prompt and instructions first, retrieved chunks sorted into a canonical order, and the question last. | cost about $0.0174 per request (my calculation) | the target is below $0.007 per request
+Assumptions: 1k system tokens cached, 4k retrieved-document tokens uncached, 0.2k question tokens, 0.3k output tokens.
+SHARES: retrieved-document input 69% | question input 3% | system prompt (cache read) 2% | other (output) 26%
+LARGEST: retrieved-document input - a 10x cut of it removes 62% of the cost
+- Exact-prefix caching cannot serve this term when chunk sets or orders vary.
+- With n chunks there are n! possible orders.
+- One paper projects the hit rate "asymptotes to 0%" as fragment length grows.
+- Reordering chunks to share prefixes (CacheWeaver) cuts TTFT by only 20–33%.
+- The documented API discounts are OpenAI at 50% (up to 90% in its cookbook) and Anthropic at 90%. All of them need an identical prefix of at least 1,024 tokens.
+
+ARCHETYPE C: Self-hosted RAG or multi-turn serving on vLLM or SGLang. Best practice is automatic prefix caching plus prefix-aware routing, with LMCache offload for the KV cache. | cost is GPU-seconds per request. I have no sourced dollar figure. | the target is a 2–3x cut in prefill GPU time
+SHARES (assumed, not sourced): prefill compute 55% | decode compute 25% | KV storage and transfer 5% | scheduling and idle 5% | other 10%
+LARGEST: prefill compute - a 10x cut of it removes 50% of the cost
+- Routing alone raised the KV hit rate from about 25% to 82% in one SageMaker test. That test used a long shared prefix, not production RAG.
+- Position-independent reuse is the only route to a high hit rate when the middle of the prompt changes.
+  - CacheBlend cuts TTFT 2.2–3.3x and raises throughput 2.8–5x by recomputing about 15% of tokens. Its authors report no quality loss.
+  - Naive full reuse of independently cached chunks drops F1 by up to 55% on Musique, because cross-chunk attention is missing.
+  - I found no independent replication of CacheBlend's quality claim.
+
+STATES (the cases where the saving must hold, worst first):
+- Reordered or varying document sets.
+- Middle insertion or edit.
+- A changed tool output early in the context.
+- Cache expiry between calls (5 minutes by default).
+- Traffic spread over many replicas.
+- Contexts of 100k+ tokens, where KV storage costs the most.
+
+SOURCES:
+- https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching
+- https://openai.com/index/api-prompt-caching
+- https://developers.openai.com/cookbook/examples/prompt_caching_201
+- https://manus.im/en/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
+- https://levelup.gitconnected.com/89-of-my-coding-agent-bill-was-cache-traffic-and-most-token-saving-tools-cannot-reach-it-a5c6eb314c9e
+- https://www.requesty.ai/data/coding-agent-cache-hit-rate-apr-2026
+- https://arxiv.org/pdf/2511.02749
+- https://arxiv.org/pdf/2601.12904
+- https://blog.lmcache.ai/2025-03-31-eurosys
+- https://arxiv.org/html/2404.12457v1
+Where the gain the question asks for is arithmetically possible (ceilings computed from the ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Long-running tool-using agent (Manus or Claude Code style). Best practice is an append-onl | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: cache write 1.73x; cache read 1.61x; fresh uncached input 1.01x | 3x needs: cache write, cache read | ROOM
+ARCHETYPE B: RAG or document Q&A through a third-party API. Best practice is system prompt and instruct | untouchable 26.0% -> ceiling 3.8x | 10x cut of one term: retrieved-document input 2.64x; question input 1.03x; system prompt 1.02x | 3x needs: impossible even with every term cut 10x | NO ROOM
+ARCHETYPE C: Self-hosted RAG or multi-turn serving on vLLM or SGLang. Best practice is automatic prefix | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: prefill compute 1.98x; decode compute 1.29x; kv storage and transfer 1.05x; scheduling and idle 1.05x | 3x needs: prefill compute, decode compute | ROOM
+What was tried before and why it did not solve the problem (data):
+Figures below are the authors' own results unless I say otherwise. Many come from vendor blogs, and I did not verify them independently.
+
+ATTEMPT 1: Exact-prefix caching on hosted APIs (Anthropic breakpoints, OpenAI automatic) | providers, 2024–26 | standard | WHY IT DID NOT SOLVE IT: byte-exact prefix match, so the first changed token ends reuse. Anthropic also checks only about 20 blocks back from a breakpoint. Third-party sources put OpenAI's discount at 50% with a 1,024-token minimum, and I could not confirm that from official pages. Reads cost about 0.1× and writes about 1.25× on Anthropic, per third-party sources, so the discount caps at ~90% and only on the unchanged prefix. | [Anthropic docs](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching), [pricing blog](https://www.tkmxai.it.com/prompt-caching-pricing)
+
+ATTEMPT 2: Prompt discipline, meaning append-only context, stable tool order and no timestamps | Manus, 2025 | standard | WHY: it works only if nothing in the middle ever changes. A second-precision timestamp at the top voids the cache. The cached rate was $0.30 vs $3.00 per million tokens (10×), with ~50 tool calls and a 100:1 input:output ratio per task. It cannot handle reordering, insertion or edits. | [Manus](https://manus.im/en/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)
+
+ATTEMPT 3: Self-hosted prefix reuse (vLLM block-hash, SGLang radix tree) | open source, 2023–26 | standard | WHY: vLLM chains 16-token block hashes, so a hit needs every earlier token to match. Radix matching only moves the boundary to any token. SGLang's 6.4× gain on RAG is reported to vanish when prefix order varies. Production hit rates are reported at 50–99%, depending on prompt discipline. | [Momento](https://www.gomomento.com/blog/vllms-hash-chain-and-why-prefix-caching-is-still-prefix-caching/), [Spheron](https://www.spheron.network/blog/vllm-vs-sglang-2026/)
+
+ATTEMPT 4: KV offload to CPU, disk or network (LMCache, Dynamo, Ray) | open source and vendors | standard | WHY: it raises capacity but not matching. A hit still requires the same prefix, and each load costs bandwidth. One vendor benchmark: Qwen3-32B at ~131K tokens drops from 11 s to 1.5 s TTFT. Quantised offload raised the hit rate from 75.2% to 86.8% at a fixed memory budget, not to ~100%. | [Ray](https://docs.ray.io/en/latest/serve/llm/user-guides/kv-cache-offloading.html), [AMD](https://rocm.blogs.amd.com/software-tools-optimization/4bit-KV-LMcache/README.html)
+
+ATTEMPT 5: KV compression and eviction (H2O, SnapKV, StreamingLLM) | academia, 2023–24 | niche | WHY: it shrinks the decode-time cache, not prefill, because the full KV must be built first. At 200k tokens, full prefill took 82.4 s and Ada-SnapKV took 88.4 s (+7.2%). Methods that do cut prefill lose accuracy at useful budgets. | [FastKV](https://arxiv.org/html/2502.01068v3)
+
+ATTEMPT 6: Prompt Cache (modular schema, own position IDs per module) | Yale and Google, MLSys 2024 | niche | WHY: needs a prompt markup language to define modules up front. Modules are encoded without seeing each other, so cross-module attention is lost. It reports 8× (GPU) and 60× (CPU) TTFT gains. I did not see its accuracy tables. | [arXiv](https://arxiv.org/abs/2311.04934)
+
+ATTEMPT 7: CacheBlend (reuse chunk KV at any position, recompute ~15% of tokens) | Chicago and LMCache, EuroSys '25 | niche (in LMCache) | WHY: it needs own-stack access to KV tensors, so it cannot run on a hosted API. Gains are 2.2–3.3× TTFT and 2.8–5× throughput, not ~10×. Recomputation is still ~15%. The "100% hit rate" in the LMCache blog is marketing, not a measured result. | [arXiv](https://arxiv.org/html/2405.16444v3), [LMCache](https://blog.lmcache.ai/2025-03-31-eurosys)
+
+ATTEMPT 8: EPIC / LegoLink (position-independent caching that suppresses the attention-sink artefact at each chunk start) | ICML 2025 | niche | WHY: it still recomputes a few tokens per chunk and needs own-stack access. It claims up to 8× TTFT with negligible accuracy loss. The evidence is the authors' experiments only, with no independent replication that I found. | [PMLR](https://proceedings.mlr.press/v267/hu25j.html)
+
+ATTEMPT 9: Cache-Craft (chunk caches with selective recompute and cache management) | 2025 | niche | WHY: it recomputes ~30% of tokens and keeps only ~90% of base ROUGE F1. It saved 51% of GPU compute vs prefix caching, not ~100%. | [arXiv](https://arxiv.org/pdf/2502.15734)
+
+ATTEMPT 10: Block-Attention (independent blocks, re-encoded positions) | ICLR 2025 | niche | WHY: it needs fine-tuning, which the constraints exclude. At 32K tokens it cut TTFT by 98.7% and FLOPs by 99.8%. | [arXiv](https://arxiv.org/abs/2409.15355v5)
+
+ATTEMPT 11: TurboRAG (precomputed chunk KV, independent attention, reordered RoPE) | EMNLP 2025 | niche | WHY: the arXiv abstract says it fine-tunes the model, but the EMNLP abstract does not say so. It reports TTFT down 8.6× on average and up to 9.4×. It is limited to RAG chunk stores on own infrastructure. | [arXiv](https://arxiv.org/abs/2410.07590)
+
+ATTEMPT 12: Training-free reuse tested on reasoning tasks (KVShareArena 2026, Kamera 2026) | preprints | rejected as a general fix | WHY: quality depends on the model. Position alignment alone scores 0.41 on multi-hop with Llama-3.1-8B but 0.03 with Qwen3-8B. CacheBlend helps on Qwen3 but not Llama. Blind reuse took Kamera's multimodal reasoning from 0.59 to 0.41. A rank-16 patch recovered it to 0.64, which suggests a missing cross-chunk signal. These are non-peer-reviewed preprints. | [KVShareArena](https://arxiv.org/pdf/2609.10266), [Kamera](https://arxiv.org/pdf/2606.23581)
+
+ATTEMPT 13: Trained encoder for position-independent caching (COMB) | 2026 preprint | rejected under these constraints | WHY: it argues existing training-free position-independent caching "often causes substantial accuracy loss" and so trains a component, which the no-training rule forbids. | [arXiv](https://www.arxiv.org/abs/2602.01519)
+
+ATTEMPT 14: Semantic response caching (GPTCache, MeanCache, InstCache) | open source and academia, 2023–25 | niche, Thoughtworks "assess" | WHY: it caches the answer, not the KV, so it is wrong whenever context matters. In MeanCache's test, GPTCache gave 54 false hits on 250 queries that should have missed. InstCache measured 29.9% and 33.6% mismatch (LLM-judged) at thresholds 0.9 and 0.95. | [MeanCache](https://arxiv.org/pdf/2403.02694), [InstCache](https://arxiv.org/pdf/2411.13820)
+
+ATTEMPT 15: Prompt compression (LLMLingua) | Microsoft, 2023 | niche | WHY: it makes the prompt shorter but changes its tokens, so the exact-prefix match breaks unless the compressed text is itself stable. It reached 20× with a 1.5-point drop on its own benchmarks (GSM8K, BBH, ShareGPT, Arxiv-March23). | [arXiv](https://arxiv.org/pdf/2310.05736)
+
+ATTEMPT 16: Context editing, clearing old tool results (Anthropic) | 2025 | standard | WHY: each clear invalidates the cached prefix from that point and forces a new write. The docs' own mitigation is a `clear_at_least` threshold, which means it only pays off when a lot is cleared at once. | [Anthropic](https://platform.claude.com/docs/en/build-with-claude/context-editing)
+
+LESSONS:
+- Hosted APIs expose only exact-prefix matching and no KV handles, so the position-independent methods (attempts 6–11) cannot run client-side. They need your own serving stack, or the provider itself would have to adopt them.
+- Every training-free position-independent method either recomputes a share of tokens (15–30%) or loses accuracy. The loss is worst on multi-hop reasoning and varies by model (attempt 12). Anything claiming ~100% hits needs a quality test per model.
+- Methods that skip recomputation fully need fine-tuning or a trained component (attempts 10, 13). That is excluded here.
+- Whatever hit rate is counted, the speedups reported are 2–9×, and the effective cost depends on the recompute share and the load bandwidth.
+- Client-only options (attempts 2, 16) just reduce the damage from changes. Edits, insertions and reordering in the middle stay uncached, so about 100% is unreachable on a hosted API.
+- Gaps: I did not verify official OpenAI or Anthropic pricing pages, per-token KV storage cost, or RAGCache's hit rates.
+Lessons from earlier runs on other questions (data):
+- Most answers that failed after review failed on one number nobody had computed: a rate times the working time against the window it needs, or a strength against months of exposure. Compute the deciding number before claiming.
+- The most common overstatement was a weak baseline. Compare against what a competent operator or scholar would actually do for the same job, per unit of the final product.
+- Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on.
+- Statistics and simulations gave confident wrong answers until they were checked on a case with a known answer; one null model rejected far more often than its alpha.
+- A method validated on synthetic data still gave a wrong result when its input data had unverified labels: a hobby-page list read as "which hole is opposite which" gave p = 0.0005 twice, in two separate runs. Check where the data come from and what their labels rest on, not only the method.
+- State the scope of every claimed gain (which steps of the chain, which speed or load tier): the same chip design was audited at 1.5x for decode alone and 1.05x once the prefill hardware it needs was counted.
+- A fix that works in one state of use only (fully flat, peak load, cold start) left the defect in the other states the user sees: a crease flattened by tension only when open is raw at partial angles. Check the claim in every state of use.
+- The search for earlier attempts looked at the problem and missed patents on the winning mechanism itself (flat-state display tensioning: Apple EP 4738056, Huawei US 20240069604). Search for the mechanism of each surviving idea, not only for the problem.
+- Raw data (3D models, catalogues, measurement tables) settled in one step what texts, judges and reviewers could not. Look for data before arguing from opinions.
+- Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason.
+- What the asker says may be wrong or incomplete; treat it as data to check, like any other source.
+- Several partial answers that each fit some facts were often parts of one answer; check whether candidates combine before choosing one.
+- "Several times cheaper" is arithmetically possible only where the cost terms an answer can touch hold most of the delivered cost; taxes, royalties and fees cap the gain at 1 / (their share).
+- A single clever link rarely moved the whole chain more than 1.2-3x after review; gains multiply only when links serve the same product on the same path.
+- The simplest competent alternative that uses the same insight often beat the clever design. Check it before claiming a gain.
+- Seasonal and climatic windows, load-bearing limits and the time a structure must last killed more designs than missing technology.
+- Exact prefix reuse is the only bit-identical KV reuse. Current practice is vLLM or SGLang prefix caching plus a CPU or SSD tier (LMCache, SGLang HiCache, Mooncake Store); on real chat traces (Mooncake) it adds only ~1.2x over GPU-only prefix caching. Measure any new design against this stack and FP8 KV, not against BF16 or no caching.
+- Methods that drop tokens permanently failed in multi-turn chat, multi-query reuse and long outputs, and method rankings changed with whether the query is visible at compression time. Test on multi-query, multi-turn, long reasoning and RULER, not perplexity or LongBench alone.
+- Most training-free KV methods were tested on only 3-8 models, mostly Llama, Mistral and Qwen; their claims do not transfer to MLA, sliding-window or hybrid architectures without a check.
+- Without retraining, KV compression bottomed out at about 2.6-3 bits per value (about 6x vs BF16, 1.5-1.7x vs NVFP4) before long chain-of-thought broke; below about 3-bit keys, AIME fell to 0 for uniform K3V2 and by 2.5 points for the best band-wise scheme. Lossless entropy coding added only 25-30% on BF16.
+- Reusing KV for text that is not an exact prefix is always approximate without retraining (chunk KV depends on all earlier tokens): CacheBlend recomputes ~15% of tokens, APE keeps 93-98% of accuracy, and the 90%+ savings (Block-Attention, KVLink, TurboRAG) need fine-tuning. On hosted APIs only client-side layout is possible: append-only context, edits as appended patches, mutable state at the tail, programmatic tool calling.
+- A broad question that asks for everything at once (faster, cheaper and more effective, for every resource) produced single-link improvements that each moved the whole chain by 1-6%; the same engine on a narrower question gave more testable answers. When the ceilings say the gain needs two large terms cut at once, aim each answer at both on the same product path.
+- a defect that sank an answer in an earlier run: The first target is wrong. Kekura is not a greenfield site waiting on a mill or on Bilibino power: Highland Gold started its own 0.8 Mt/y mill there in March 2023 (about 85% design recovery), and a branch of the 235 km Bilibino–Peschanka line now powers it, replacing its diesel. So the $322/oz savin
+- a defect that sank an answer in an earlier run: The comparison case is wrong: Nornickel already ties TOF-3 commissioning to its ore-mining forecast and already plans to refill NOF with South Cluster ore. The "gate" is therefore current practice, and the $7,900/t "build the new concentrator now" case is a 2021 plan that the NOF reconstruction rout
+- a defect that sank an answer in an earlier run: The value rests on hoisting being the limit, and the source points the other way. The Talnakh concentrator's expansion to 18 Mtpa by 2030–31 is described as letting it "take all ore from the Talnakh mines", which means moving ore away from the Norilsk concentrator (7.6 Mt in 2020), not new hoisted o
+- a defect that sank an answer in an earlier run: The geometry and energy figures contradict each other. 4.1 km × sin 14° = 992 m of lift, but the comparator is a 2.1 km shaft. A 2.1 km lift needs an 8.68 km decline (2.4–4.8 years to drive). Also, the 3.4 kWh/t given for the skip is below the 5.72 kWh/t physical minimum for a 2.1 km lift, so the co
+- a defect that sank an answer in an earlier run: The required input, a crease of about 48 µm with σ ≥ 8 mm, does not last 2000 cycles on the only measured stack. The crease deepens and narrows into the regime this idea itself labels infeasible. (Duo: 48 µm becomes 167 µm by 3000 folds, about 127 µm at 2000 by linear interpolation. Implied width σ 
+- a defect that sank an answer in an earlier run: The 14 kPa capillary clamp can't exist with an oil-filled reservoir. The suction is set by the meniscus with the largest gap, which is the 0.5 mm groove, not the 3 µm film. Gravity then drains the groove. (Groove suction 2γ/h = 2·0.021/0.5e-3 = 84 Pa, which is 167× less than 14 kPa. The oil column i
+- a defect that sank an answer in an earlier run: This is not a complete architecture. It only works on top of a base stack whose residual crease is ≤10 µm and stays there for 2000 cycles, and no such stack is specified or shown to exist. (The only verified measurement is Duo at 48 µm new and 167 µm after 3000 folds. Oppo's N6 figure (+22 µm after 
+- a defect that sank an answer in an earlier run: A free fluid film under 30 µm glass has no long-wavelength restoring force. With the phone upright the fluid drains to the bottom, the top region goes dry and atmospheric pressure presses the glass onto the panel, so the panel's crease prints through: the same failure as the dropped vacuum version. 
+Technique: aim each answer at the archetype and cost term with the most room under its ceiling, and make that term fall by an order of magnitude; ignore terms that are easy to improve but small.
+Your direction (work only in it; other generators cover the others): Client-side rewriting that keeps the prompt prefix stable on a hosted API. Edits, insertions, changed tool outputs and reorderings are expressed as appended deltas, errata or references to a fixed, canonically ordered document "library" prefix, so the provider's exact-prefix matcher never sees a change in the middle. | AIMS AT: Archetype B's retrieved-document input (69%) and Archetype A's cache-write premium, under the binding constraint that hosted APIs expose only byte-exact matching and no KV handles. | NOT: any change to KV tensors or the server (D2), cache lifetime or pricing (D3), placement across replicas (D4), or decode/output cost (D5).
+Before the answers, list 8 candidate answers you could give, each with your estimate of the probability that a typical strong answerer would give it (CANDIDATE k: <one line> | P <0-1>). Then develop as the answers only candidates whose probability is below 0.10, keeping the ones most likely to work.
+Rules: aim only at targets whose ceiling leaves room for the gain you claim; name inside each MECHANISM the closest
+earlier attempt and why your answer is not stopped by its reason; name the one quantity that decides whether it works.
+Being unusual is not the goal; working is.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

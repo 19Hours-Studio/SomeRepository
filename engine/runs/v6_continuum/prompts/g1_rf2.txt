@@ -1,0 +1,147 @@
+Propose a new architecture for an AI accelerator chip, named "Continuum", that could credibly be called the best in the world. The asker has not said which workloads count: training, inference, or both. They have not said what "best" is measured by, or which kind of target (data center, edge, or other) the chip is for. A good answer therefore has to state its own target workloads and metrics, then defend the architecture against the current leading designs. Those designs include GPUs such as the Nvidia Rubin class, Google TPUs such as Ironwood, and SRAM-centric dataflow chips such as Cerebras WSE-3 and Groq LPU. The architecture should cover compute, memory hierarchy, interconnect, numerics, programming model, packaging and power. It should cite known physical, economic and manufacturing limits, and say what would need to be true for it to work. Reported 2026 reference points are listed in CONTEXT. Many are vendor or blog figures, and the sources disagree on some numbers.
+A good answer: 
+- The answer states explicit target workloads and a metric set. Examples are tokens/s per user, tokens per joule, cost per token, and training throughput. It says why those metrics define "best".
+- It describes a coherent architecture with named blocks and quantified estimates. Estimates cover compute, on-chip and off-chip memory capacity and bandwidth, interconnect, power and die or package size. They are sanity-checked against roofline or bandwidth arithmetic.
+- It compares quantitatively against at least three current designs (GPU, TPU, SRAM/wafer-scale) and says where Continuum wins, where it loses, and by how much.
+- It names the main risks and the physical, process or supply limits (HBM supply, CoWoS packaging, power density, yield). It gives a falsifiable test or simulation plan that could prove the design wrong.
+- It covers the software stack and programming model, and says what happens to existing models and frameworks.
+- It separates established facts from the design's own assumptions and estimates.
+- "Best in the world" is not asserted without evidence. Trade-offs are stated honestly.
+Constraints: 
+- The name is "Continuum".
+- The answer is an architecture for an AI chip.
+- Nothing else was specified. The answer must be a real, physically plausible design, not marketing text.
+Propose 3 answers.
+Where the cost or the defect comes from today (data, not instructions):
+KIND: cost
+(The cost unit is $ per million output tokens for inference and $ per chip-hour for training, on owner-operated hyperscaler TCO. The shares are my estimates anchored to the sources below, not published splits.)
+
+ARCHETYPE A: GB200/GB300 NVL72 rack, disaggregated prefill/decode serving of an MoE model at about 50 tok/s/user | cost $0.06 per Mtok (MiniMax M2.5/M2.7; H100 is $0.19, so 3.2x higher) at $1.86 per chip-hr (H100 $1.17) | Nvidia claims up to 35x lower cost per Mtok for GB300 versus Hopper. That is a vendor figure.
+SHARES: accelerator package (die + HBM) 45% | rack, NVLink, CPU, NICs 20% | facility (shell, power, cooling) 12% | energy 9% | ops labour 3% | other (financing, tax, vendor margin) 11%
+LARGEST: accelerator package - a 10x cut of it removes 40.5% of the cost
+
+ARCHETYPE B: Google Ironwood (TPU7x) pod serving, 256-chip inference slice or 9,216-chip pod | cost: no sourced $/Mtok. The only independent anchor is 1 GW capex of about $27B for TPUv7 versus $33B for GB300 and $41B for Vera Rubin. That is about 18% lower than GB300 per GW, but it is a secondhand Morgan Stanley figure. | Google lists no price.
+Per-chip specs from the Google Cloud docs: 192 GiB HBM, 7.38 TB/s, 4.6 PFLOPS FP8, 1.2 TB/s ICI.
+SHARES: accelerator package 38% | ICI/optical interconnect and rack 18% | facility 15% | energy 11% | ops labour 3% | other 15%
+LARGEST: accelerator package - a 10x cut of it removes 34.2% of the cost
+
+ARCHETYPE C: SRAM-resident dataflow serving (Cerebras WSE-3, Groq LPU) of a 70B-class dense model at 300 to 2,500 tok/s/user | cost: no sourced $/Mtok. Sources disagree on which vendor is cheaper, and Cerebras claims up to 6x price-performance. | Priced as an API.
+- Cerebras WSE-3 has 44 GB SRAM and 21 PB/s.
+- The first-generation Groq LPU has 230 MB SRAM per chip. The Groq 3 LPU is reported at 500 MB and 150 TB/s.
+- Groq earlier said it needed 576 LPUs to exceed 300 tok/s on 70B.
+- Throughput on Llama 3.3 70B is reported at about 294 to 750 tok/s for Groq and 2,100 to 2,500 tok/s for Cerebras.
+- Nvidia–Groq deal: one source says Nvidia acquired Groq technology for $20B in December 2025, while others call it a licence. I did not resolve this.
+SHARES: silicon (wafer or many LPUs, because capacity is bought in SRAM bytes) 60% | host, network, rack 15% | facility 8% | energy 8% | ops labour 3% | other 6%
+LARGEST: silicon - a 10x cut of it removes 54% of the cost
+
+ARCHETYPE D: frontier training on a GB200 NVL72 cluster, with 1 GW treated as the unit | cost $8.5M per MW-year (Epoch, GB200 NVL72; the earlier DGX H100 model gave $10.8M/MW-yr). That is about $1.0k per MW-hr, or about $1.8 per chip-hr at about 1.8 kW IT per GPU, which matches SemiAnalysis' $1.86. | Reference cloud rental is about $2 to 8 per GPU-hr.
+SHARES: accelerator package 42% | scale-up and scale-out network 23% | facility 12% | energy 9% | ops labour 3% | other 11%
+LARGEST: accelerator package - a 10x cut of it removes 37.8% of the cost
+
+Cross-archetype findings (the energy share is my arithmetic):
+- Energy is only about 9 to 11% of TCO. A pure tokens-per-joule gain therefore moves cost per token less than a gain in capex per token. With about 1.8 kW IT per chip, PUE 1.3 and $0.07/kWh, I get about $0.16/hr against $1.86/hr.
+- Capex dominates (about 85%). The 1 GW build is about $23B for H100, $24B for B200, $33B for GB300 and $41B for Vera Rubin, so cost per GW rises each generation. Cost per token falls only because throughput per GW rises faster.
+- Racks and servers are about 58 to 63% of 1 GW capex, so the facility plus power is about 40%.
+- The Rubin figures are secondary sources: 288 GB HBM4, 50 PFLOPS FP4, two reticle dies, 8 HBM stacks, NVLink 6 at 260 TB/s per rack, NVL144 at 3.6 EFLOPS FP4. I found no reliable per-GPU HBM4 TB/s figure, so it is open.
+- Nvidia's "$5M yields $75M token revenue" claim is revenue framing, not cost.
+- Pricing vintages differ between SemiAnalysis surveys: $2.21 per GB200 GPU-hr in August 2025 against $1.86 in July 2026.
+- I did not find Ironwood power or TDP in any source.
+
+SOURCES:
+https://inferencex.semianalysis.com/compare-per-dollar/minimax-m27-gb200-vs-h100/8k-1k
+https://inferencex.semianalysis.com/compare-per-dollar/minimax-m27-gb200-vs-gb300/8k-1k
+https://blogs.nvidia.com/blog/blackwell-inferencemax-benchmark-results
+https://epoch.ai/data-insights/ai-datacenter-cost-breakdown
+https://substack.com/@hypertechinvest/note/c-261423177 (Morgan Stanley capex per GW, secondhand)
+https://docs.cloud.google.com/tpu/docs/tpu7x
+https://www.theregister.com/2025/04/10/googles_7thgen_ironwood_tpus_debut/
+https://www.networkworld.com/article/3848394/nvidia-details-its-gpu-cpu-and-system-roadmap-for-the-next-three-years.html
+https://newsletter.semianalysis.com/p/cerebras-faster-tokens-please
+https://www.spheron.network/blog/groq-lpu-vs-cerebras-wse-cheapest-inference-2026/
+https://www.spheron.network/blog/nvidia-groq-3-lpu-explained/
+https://www.theregister.com/2024/08/27/cerebras_ai_inference/
+Where the gain the question asks for is arithmetically possible (ceilings computed from the ledger; data):
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: GB200/GB300 NVL72 rack, disaggregated prefill/decode serving of an MoE model at about 50 t | untouchable 11.0% -> ceiling 9.1x | 10x cut of one term: accelerator package 1.68x; rack, nvlink, cpu, nics 1.22x; facility 1.12x; energy 1.09x; ops labour 1.03x | 3x needs: accelerator package, rack, nvlink, cpu, nics, facility | TIGHT
+ARCHETYPE B: Google Ironwood (TPU7x) pod serving, 256-chip inference slice or 9,216-chip pod | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: accelerator package 1.52x; ici/optical interconnect and rack 1.19x; facility 1.16x; energy 1.11x; ops labour 1.03x | 3x needs: accelerator package, ici/optical interconnect and rack, facility, energy | NO ROOM
+ARCHETYPE C: SRAM-resident dataflow serving (Cerebras WSE-3, Groq LPU) of a 70B-class dense model at 30 | untouchable 6.0% -> ceiling 16.7x | 10x cut of one term: silicon 2.17x; host, network, rack 1.16x; facility 1.08x; energy 1.08x; ops labour 1.03x | 3x needs: silicon, host, network, rack | ROOM
+ARCHETYPE D: frontier training on a GB200 NVL72 cluster, with 1 GW treated as the unit | untouchable 11.0% -> ceiling 9.1x | 10x cut of one term: accelerator package 1.61x; scale-up and scale-out network 1.26x; facility 1.12x; energy 1.09x; ops labour 1.03x | 3x needs: accelerator package, scale-up and scale-out network, facility | TIGHT
+What was tried before and why it did not solve the problem (data):
+Sourcing: items marked [bg] come from my background knowledge. My searches didn't confirm them, so verify before relying on them.
+
+ATTEMPT 1: HBM-fed GPU/TPU with CoWoS packaging, the standard approach | Nvidia, Google, AMD; 2016 to 2026 | standard | WHY IT DID NOT SOLVE IT: Memory capacity and bandwidth per package are capped by how many HBM stacks fit and by supply. Rubin is reported at 288 GB and about 22 TB/s with 8 HBM4 stacks, at roughly 2,300 W (one vendor figure). Batch-1 decode is bandwidth-bound: reading a 70 GB FP8 model at 22 TB/s allows at most about 300 tokens/s per user. The reported 2026 HBM supply is sold out. CoWoS is reported at 80k to 140k wafers per month, depending on the source, with Nvidia holding about 60%. Lead times are reported above 50 weeks. | [Klockwood](https://glennklockwood.com/garden/processors/r200), [TrendForce](https://www.trendforce.com/news/2025/08/13/news-hbm-battle-heats-up-micron-reportedly-hints-2026-sell-out-sk-hynix-yet-to-confirm), [siliconanalysts](https://siliconanalysts.com/tools/allocation)
+
+ATTEMPT 2: Wafer-scale SRAM, Cerebras WSE-3 | Cerebras; 2024 to 2026 | niche (commercial, but a small share) | WHY IT DID NOT SOLVE IT: It has 44 GB of SRAM across a 46,225 mm² wafer, with 21 PB/s of bandwidth. A 70B model at FP16 is about 140 GB, so weights must be streamed from external MemoryX (reportedly up to 1.5 PB), or the model split across wafers. It needs custom system power and cooling. The defect-tolerance claim (about 0.05 mm² lost per defect) is vendor marketing. | [Introl](https://introl.com/blog/cerebras-wafer-scale-engine-cs3-alternative-ai-architecture-guide-2025), [Cerebras](https://cerebras.ai/blog/100x-defect-tolerance-how-cerebras-solved-the-yield-problem), [arXiv 2503.11698](https://arxiv.org/pdf/2503.11698)
+
+ATTEMPT 3: Deterministic SRAM-only streaming, Groq LPU | Groq; 2020 to 2025 | niche, then licensed | WHY IT DID NOT SOLVE IT: Each chip holds only 230 MB of SRAM. The Llama-2-70B demo needed 576 chips in nine racks, using mixed FP8/FP16. Capacity, not speed, set the chip count, and so the cost. Nvidia paid about $20B for a non-exclusive license in Dec 2025. That shows the value of low latency, but Groq itself did not win as a standalone chip company. | [Next Platform](https://www.nextplatform.com/ai/2023/11/27/groq-says-it-can-deploy-1-million-ai-inference-chips-in-two-years/1661216), [tinyML](https://tinyml.substack.com/p/real-time-ai-with-groqs-lpu), [The Register](https://www.theregister.com/2025/12/31/groq_nvidia_analysis/)
+
+ATTEMPT 4: Wafer-scale tiles for training, Tesla Dojo (D1) | Tesla; 2021 to 2025 | dropped | WHY IT DID NOT SOLVE IT: Tesla shut it down in Aug 2025. The stated reason was that two chip lines were not worth scaling, so it moved to AI5/AI6. About 20 staff left, and the team lead left. Technical causes are unconfirmed; the "D1 production obstacles" claim is unsourced. | [TechCrunch](https://techcrunch.com/2025/08/07/tesla-shuts-down-dojo-the-ai-training-supercomputer-that-musk-said-would-be-key-to-full-self-driving), [electrive](https://www.electrive.com/2025/08/11/tesla-ends-supercomputer-project/)
+
+ATTEMPT 5: SRAM-heavy MIMD processor, Graphcore IPU | Graphcore; 2018 to 2024 | dropped (distressed sale) | WHY IT DID NOT SOLVE IT: The Bow IPU has 47.5 MB of SRAM, too small for large models. 2022 revenue was $2.7M against a $205M loss. SoftBank bought it in 2024 for an estimated $520M to $600M. | [DCD](https://www.datacenterdynamics.com/en/news/softbank-acquires-british-ai-chip-designer-graphcore/), [SCMP](https://www.scmp.com/tech/big-tech/article/3270178/softbank-buys-struggling-uk-chip-start-graphcore-ai-race), [JPR](https://www.jonpeddie.com/news/softbank-buys-graphcore/)
+
+ATTEMPT 6: Non-GPU accelerator with a rival software stack, Intel Gaudi / Falcon Shores | Intel/Habana; 2019 to 2025 | dropped | WHY IT DID NOT SOLVE IT: Intel missed its $500M Gaudi 3 sales goal in 2024, citing software issues. Falcon Shores was cancelled as a product in Jan 2025 and kept as an internal test chip. | [TechCrunch](https://techcrunch.com/2025/01/30/intel-wont-bring-its-falcon-shores-ai-chip-to-market), [HPCwire](https://www.hpcwire.com/2025/02/04/intel-falcon-shores-another-swing-and-a-miss/)
+
+ATTEMPT 7: Analog flash compute-in-memory, Mythic | Mythic; 2012 to 2022, relaunched 2025 | niche | WHY IT DID NOT SOLVE IT: It ran out of cash in late 2022 after raising roughly $140M to $178M (sources disagree). A $13M rescue followed. The Dec 2025 $125M round rests on a "100x efficiency" vendor claim that is unverified. Analog noise limits precision [bg]. | [eeNews](https://www.eenewseurope.com/en/analog-ai-startup-mythic-has-run-out-of-cash/), [BusinessWire](https://www.businesswire.com/news/home/20251217546249/en/Mythic-to-Challenge-AIs-GPU-Pantheon-with-100x-Energy-Advantage-and-Oversubscribed-$125M-Raise)
+
+ATTEMPT 8: Digital processing-in-memory (UPMEM, Samsung HBM-PIM, SK hynix AiM) | 2019 to 2024 | niche | WHY IT DID NOT SOLVE IT: UPMEM's DRAM-process cores are compute-bound. Even integer addition saturates at 0.25 ops/byte, so only memory-bound kernels fit. Samsung's HBM-PIM has limited programmability. SK hynix AiM units are fixed-function GEMV only. | [arXiv 2105.03814](https://arxiv.org/pdf/2105.03814)
+
+ATTEMPT 9: Lower-precision numerics (FP8, FP4, block-scaled formats) | Nvidia, OCP MX; 2022 to 2026 | standard | WHY IT DID NOT SOLVE IT: Each halving of precision doubles throughput and halves weight traffic. But it gives only 2x per step and risks accuracy loss and outliers, and it does not remove the HBM capacity wall. KV cache grows with context [bg]. | no search; [bg]
+
+ATTEMPT 10: Chiplets plus large reticle-limited packages, with NVLink scale-up racks | Nvidia, AMD; 2022 to 2026 | standard | WHY IT DID NOT SOLVE IT: Rack-scale systems pay for it in power and cooling. Rubin's power is about 2,300 W per GPU, with liquid cooling required, on a vendor-reported figure. The NVL144 count is ambiguous between dies and packages. Power delivery and facility build-out, not silicon, then set the deployment pace. | [CUDO via search](https://www.cudocompute.com/products/nvidia-vera-rubin)
+
+ATTEMPT 11: Fixed-function transformer ASICs (Etched Sohu and similar) | Etched and others; 2023 to 2026 | niche | WHY IT DID NOT SOLVE IT: Betting on one architecture risks obsolescence if models change (state-space, MoE variants). Such chips still depend on HBM and CoWoS [bg]. | no search; [bg]
+
+ATTEMPT 12: Silicon photonics interconnect and optical I/O (Lightmatter, Ayar Labs, co-packaged optics) | 2018 to 2026 | niche, pilots | WHY IT DID NOT SOLVE IT: Laser reliability, packaging yield, and the cost per Gb/s versus copper have kept it from volume. Copper NVLink remains the norm [bg]. | no search; [bg]
+
+ATTEMPT 13: Custom ASIC with a vertically integrated stack (TPU, Trainium, MTIA) | Google, AWS, Meta; 2015 to 2026 | standard (captive) | WHY IT DID NOT SOLVE IT: It works for in-house workloads but still uses HBM and the same CoWoS pool. Software porting limits outside adoption [bg]. | no search; [bg]
+
+LESSONS:
+- Capacity versus bandwidth is a trade-off no one has beaten. SRAM chips give high bandwidth but only MB to tens of GB (230 MB, 47.5 MB, 44 GB). HBM chips give hundreds of GB at about 22 TB/s, and that supply is sold out.
+- The binding limits are HBM supply, CoWoS packaging, and power per package (about 2.3 kW). These are not removed by a better core design.
+- Software has killed otherwise sound hardware (Gaudi missed its $500M target). A new chip must run existing PyTorch/XLA models at no extra porting cost.
+- Niche approaches (analog, PIM) fail on precision or programmability. They only help the kernels they were built for.
+- Startups ran out of runway (Graphcore, Mythic) or were absorbed (Groq). A credible design must be buildable on existing foundry, HBM and CoWoS capacity.
+
+Caveat: several 2026 figures come from aggregator or vendor sources and conflict. I could not find the CS-3 power draw or Dojo's technical failure causes. Nothing was written to disk.
+Lessons from earlier runs on other questions (data):
+- Most answers that failed after review failed on one number nobody had computed: a rate times the working time against the window it needs, or a strength against months of exposure. Compute the deciding number before claiming.
+- The most common overstatement was a weak baseline. Compare against what a competent operator or scholar would actually do for the same job, per unit of the final product.
+- Decisive inputs that were assumed rather than sourced (efficiencies, rates, losses, costs, dates) moved 3-10x when checked. Give a source for every number the answer depends on.
+- Statistics and simulations gave confident wrong answers until they were checked on a case with a known answer; one null model rejected far more often than its alpha.
+- A method validated on synthetic data still gave a wrong result when its input data had unverified labels: a hobby-page list read as "which hole is opposite which" gave p = 0.0005 twice, in two separate runs. Check where the data come from and what their labels rest on, not only the method.
+- A fix that works in one state of use only (fully flat, peak load, cold start) left the defect in the other states the user sees: a crease flattened by tension only when open is raw at partial angles. Check the claim in every state of use.
+- The search for earlier attempts looked at the problem and missed patents on the winning mechanism itself (flat-state display tensioning: Apple EP 4738056, Huawei US 20240069604). Search for the mechanism of each surviving idea, not only for the problem.
+- Raw data (3D models, catalogues, measurement tables) settled in one step what texts, judges and reviewers could not. Look for data before arguing from opinions.
+- Claims of "never tried" were usually wrong. Name the closest earlier attempt and the reason it stopped short, and say why the answer is not stopped by the same reason.
+- What the asker says may be wrong or incomplete; treat it as data to check, like any other source.
+- Several partial answers that each fit some facts were often parts of one answer; check whether candidates combine before choosing one.
+- "Several times cheaper" is arithmetically possible only where the cost terms an answer can touch hold most of the delivered cost; taxes, royalties and fees cap the gain at 1 / (their share).
+- A single clever link rarely moved the whole chain more than 1.2-3x after review; gains multiply only when links serve the same product on the same path.
+- The simplest competent alternative that uses the same insight often beat the clever design. Check it before claiming a gain.
+- Seasonal and climatic windows, load-bearing limits and the time a structure must last killed more designs than missing technology.
+- A broad question that asks for everything at once (faster, cheaper and more effective, for every resource) produced single-link improvements that each moved the whole chain by 1-6%; the same engine on a narrower question gave more testable answers. When the ceilings say the gain needs two large terms cut at once, aim each answer at both on the same product path.
+- a defect that sank an answer in an earlier run: The first target is wrong. Kekura is not a greenfield site waiting on a mill or on Bilibino power: Highland Gold started its own 0.8 Mt/y mill there in March 2023 (about 85% design recovery), and a branch of the 235 km Bilibino–Peschanka line now powers it, replacing its diesel. So the $322/oz savin
+- a defect that sank an answer in an earlier run: The comparison case is wrong: Nornickel already ties TOF-3 commissioning to its ore-mining forecast and already plans to refill NOF with South Cluster ore. The "gate" is therefore current practice, and the $7,900/t "build the new concentrator now" case is a 2021 plan that the NOF reconstruction rout
+- a defect that sank an answer in an earlier run: The value rests on hoisting being the limit, and the source points the other way. The Talnakh concentrator's expansion to 18 Mtpa by 2030–31 is described as letting it "take all ore from the Talnakh mines", which means moving ore away from the Norilsk concentrator (7.6 Mt in 2020), not new hoisted o
+- a defect that sank an answer in an earlier run: The geometry and energy figures contradict each other. 4.1 km × sin 14° = 992 m of lift, but the comparator is a 2.1 km shaft. A 2.1 km lift needs an 8.68 km decline (2.4–4.8 years to drive). Also, the 3.4 kWh/t given for the skip is below the 5.72 kWh/t physical minimum for a 2.1 km lift, so the co
+- a defect that sank an answer in an earlier run: The required input, a crease of about 48 µm with σ ≥ 8 mm, does not last 2000 cycles on the only measured stack. The crease deepens and narrows into the regime this idea itself labels infeasible. (Duo: 48 µm becomes 167 µm by 3000 folds, about 127 µm at 2000 by linear interpolation. Implied width σ 
+- a defect that sank an answer in an earlier run: The 14 kPa capillary clamp can't exist with an oil-filled reservoir. The suction is set by the meniscus with the largest gap, which is the 0.5 mm groove, not the 3 µm film. Gravity then drains the groove. (Groove suction 2γ/h = 2·0.021/0.5e-3 = 84 Pa, which is 167× less than 14 kPa. The oil column i
+- a defect that sank an answer in an earlier run: This is not a complete architecture. It only works on top of a base stack whose residual crease is ≤10 µm and stays there for 2000 cycles, and no such stack is specified or shown to exist. (The only verified measurement is Duo at 48 µm new and 167 µm after 3000 folds. Oppo's N6 figure (+22 µm after 
+- a defect that sank an answer in an earlier run: A free fluid film under 30 µm glass has no long-wavelength restoring force. With the phone upright the fluid drains to the bottom, the top region goes dry and atmospheric pressure presses the glass onto the panel, so the panel's crease prints through: the same failure as the dropped vacuum version. 
+Technique: work on this reformulation of the question, chosen as the most productive one by importance and possibility: For LLM serving (dense and MoE, with stated context lengths), what system-level architecture moves the delivered $/Mtok-versus-tok/s/user Pareto frontier furthest beyond GB300 NVL72 ($0.06/Mtok at about 50 tok/s) and Cerebras/Groq (300–2,500 tok/s), and at which speed band?
+Say in the VALUE what the answer gives for the question as originally asked.
+Your direction (work only in it; other generators cover the others): Trade silicon area for power and package cost. Use many small, high-yield chiplets, possibly on N3/N4 or older nodes, running at low voltage and moderate clocks. Mount them on organic or panel-level substrates rather than CoWoS, and rely on compiler-scheduled deterministic dataflow so that small dies keep high utilization without large cache or scheduler overhead. Packages would stay well under about 2.3 kW and would not need exotic cooling. | AIMS AT: capex per token, through cost per good mm², yield, and use of foundry capacity outside the CoWoS pool; power density per package; and facility build-out pace (facility share about 12–15%) | NOT: new memory technology or memory tiers (Directions 1 and 2), compression of data (Direction 3), or a new optical fabric (Direction 4)
+Before the answers, list 8 candidate answers you could give, each with your estimate of the probability that a typical strong answerer would give it (CANDIDATE k: <one line> | P <0-1>). Then develop as the answers only candidates whose probability is below 0.10, keeping the ones most likely to work.
+Rules: aim only at targets whose ceiling leaves room for the gain you claim; name inside each MECHANISM the closest
+earlier attempt and why your answer is not stopped by its reason; name the one quantity that decides whether it works.
+Being unusual is not the goal; working is.
+
+Finish your reply with a section that starts with the exact line `=== IDEAS ===` and contains exactly 3 ideas in this format:
+IDEA 1
+NAME: (max 5 words)
+MECHANISM: (2-4 sentences: how it works - what is done or computed, what is stored, how it adapts)
+VALUE: (1 sentence: what it makes possible)
+(same for each further idea)
+Each idea must stand alone: never refer to other ideas or earlier parts of your reply (no "Idea 1", "as above").
+Keep everything under 500 words.
+

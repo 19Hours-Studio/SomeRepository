@@ -1,0 +1,67 @@
+model: total 1.03T params, weights 577 GB @4.5b, KV/user@128K 2.59 GB
+
+--- context 8192, batch 1 ---
+chip             chips  tok/s/user     tok/s   tok/J  tok/s/kW bound
+Rubin (GPU)          3        1574      1574    0.77     291.5 mem
+Ironwood (TPU)       4         912       912    0.65     228.1 mem
+WSE-3 (wafer)       15        1041      1041    0.01       3.0 cmp
+Groq LP30         1270        8325      8325    0.05      13.1 cmp
+Continuum            3        2263      2263    1.20     377.2 mem
+
+--- context 8192, batch 16 ---
+chip             chips  tok/s/user     tok/s   tok/J  tok/s/kW bound
+Rubin (GPU)          3         337      5396    1.92     999.3 mem
+Ironwood (TPU)       4         158      2535    1.51     633.7 mem
+WSE-3 (wafer)       15        1024     16389    0.19      47.5 cmp
+Groq LP30         1275        8197    131152    0.80     205.7 cmp
+Continuum            3         881     14104    4.71    2350.6 mem
+
+--- context 8192, batch 64 ---
+chip             chips  tok/s/user     tok/s   tok/J  tok/s/kW bound
+Rubin (GPU)          3         143      9130    3.09    1690.8 mem
+Ironwood (TPU)       4          65      4165    2.40    1041.2 mem
+WSE-3 (wafer)       15         975     62430    0.71     181.0 cmp
+Groq LP30         1292        7820    500477    2.87     774.7 cmp
+Continuum            3         130      8294    3.37    1382.3 mem
+
+--- context 8192, batch 256 ---
+chip             chips  tok/s/user     tok/s   tok/J  tok/s/kW bound
+Rubin (GPU)          3         103     26422    8.31    4892.9 mem
+Ironwood (TPU)       4          47     11982    6.55    2995.4 mem
+WSE-3 (wafer)       16         830    212575    2.23     577.6 cmp
+Groq LP30         1361        6670   1707639    8.63    2509.4 cmp
+Continuum            3          73     18808    7.46    3134.7 mem
+
+--- context 131072, batch 1 ---
+chip             chips  tok/s/user     tok/s   tok/J  tok/s/kW bound
+Rubin (GPU)          3        1488      1488    0.65     275.6 mem
+Ironwood (TPU)       4         849       849    0.56     212.1 mem
+WSE-3 (wafer)       15        1032      1032    0.01       3.0 cmp
+Groq LP30         1275        8258      8258    0.05      13.0 cmp
+Continuum            3        2209      2209    1.01     368.1 mem
+
+--- context 131072, batch 16 ---
+chip             chips  tok/s/user     tok/s   tok/J  tok/s/kW bound
+Rubin (GPU)          3         281      4502    1.35     833.8 mem
+Ironwood (TPU)       4         131      2097    1.09     524.2 mem
+WSE-3 (wafer)       16         914     14618    0.16      39.7 cmp
+Groq LP30         1361        7327    117234    0.62     172.3 cmp
+Continuum            3         764     12218    2.74    2036.4 mem
+
+--- context 131072, batch 64 ---
+chip             chips  tok/s/user     tok/s   tok/J  tok/s/kW bound
+Rubin (GPU)          3         107      6834    1.83    1265.6 mem
+Ironwood (TPU)       5          60      3854    1.48     770.7 mem
+WSE-3 (wafer)       19         708     45285    0.39     103.6 cmp
+Groq LP30         1634        5717    365916    1.42     447.9 cmp
+Continuum            4         126      8055    1.93    1006.9 mem
+
+--- context 131072, batch 256 ---
+chip             chips  tok/s/user     tok/s   tok/J  tok/s/kW bound
+Rubin (GPU)          5          86     22051    2.90    2450.1 mem
+Ironwood (TPU)       8          47     11925    2.44    1490.6 mem
+WSE-3 (wafer)       32         491    125703    0.63     170.8 cmp
+Groq LP30         2729        3976   1017916    2.12     746.0 cmp
+Continuum            6          73     18671    2.68    1555.9 mem
+
+Continuum pkg power @peak: stack DRAM 409.6 W; HBM 240.0 W; FP8 compute 16PF*0.11pJ 1760.0 W

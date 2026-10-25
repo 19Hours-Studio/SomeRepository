@@ -1,1 +1,23 @@
 /home/user/SomeRepository/engine/runs/v6_continuum/ledger/TASK.md
+  ledger: 30,529 tokens, 50.4 s
+ledger: 761 words
+/home/user/SomeRepository/engine/runs/v6_continuum/attempts/TASK.md
+  attempts: 53,027 tokens, 56.8 s
+attempts: 1104 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: GB200/GB300 NVL72 rack, disaggregated prefill/decode serving of an MoE model at about 50 t | untouchable 11.0% -> ceiling 9.1x | 10x cut of one term: accelerator package 1.68x; rack, nvlink, cpu, nics 1.22x; facility 1.12x; energy 1.09x; ops labour 1.03x | 3x needs: accelerator package, rack, nvlink, cpu, nics, facility | TIGHT
+ARCHETYPE B: Google Ironwood (TPU7x) pod serving, 256-chip inference slice or 9,216-chip pod | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: accelerator package 1.52x; ici/optical interconnect and rack 1.19x; facility 1.16x; energy 1.11x; ops labour 1.03x | 3x needs: accelerator package, ici/optical interconnect and rack, facility, energy | NO ROOM
+ARCHETYPE C: SRAM-resident dataflow serving (Cerebras WSE-3, Groq LPU) of a 70B-class dense model at 30 | untouchable 6.0% -> ceiling 16.7x | 10x cut of one term: silicon 2.17x; host, network, rack 1.16x; facility 1.08x; energy 1.08x; ops labour 1.03x | 3x needs: silicon, host, network, rack | ROOM
+ARCHETYPE D: frontier training on a GB200 NVL72 cluster, with 1 GW treated as the unit | untouchable 11.0% -> ceiling 9.1x | 10x cut of one term: accelerator package 1.61x; scale-up and scale-out network 1.26x; facility 1.12x; energy 1.09x; ops labour 1.03x | 3x needs: accelerator package, scale-up and scale-out network, facility | TIGHT
+  reframe: 15,895 tokens, 39.3 s
+  directions: 13,117 tokens, 32.4 s
+  g1_ledger: 19,115 tokens, 67.2 s
+g1_ledger: 3 ideas (820 words)
+  g1_neg: 18,582 tokens, 62.0 s
+g1_neg: 3 ideas (805 words)
+  g1_mech: 16,415 tokens, 41.4 s
+g1_mech: 3 ideas (707 words)
+  g1_rf1: 17,195 tokens, 47.7 s
+g1_rf1: 3 ideas (720 words)
+  g1_rf2: 21,029 tokens, 87.7 s
+g1_rf2: 3 ideas (896 words)

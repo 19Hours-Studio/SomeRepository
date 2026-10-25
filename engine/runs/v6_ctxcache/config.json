@@ -19,5 +19,9 @@
  },
  "engine": "v6",
  "directions": true,
- "vs": true
+ "vs": true,
+ "reframes": [
+  "For a long-running tool-using agent on a hosted API, how can the cost per completed task be minimised across cache writes, re-read volume and expiry rewrites, measured against a disciplined append-only baseline?",
+  "On your own serving stack, for reordered or varying chunk sets and mid-prompt insertions, what fraction of prefill GPU-seconds can be avoided while staying within a stated accuracy margin of full recompute, per model and on multi-hop, multi-turn and RULER tests? The baseline is prefix caching plus a CPU/SSD tier with FP8 KV."
+ ]
 }

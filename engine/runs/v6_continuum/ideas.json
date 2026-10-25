@@ -1,1 +1,137 @@
-[]
+[
+ {
+  "id": "g1_ledger#1",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Router-lookahead expert prefetch",
+  "mech": "A small on-die predictor reads each layer's hidden state and predicts the next layer's top-k experts one to two layers ahead. It then issues DMA from LPDDR5X into SRAM, while frequency counters keep hot experts pinned in SRAM. The closest earlier attempts are Pre-gated MoE and MoE-Infinity, which were stalled by PCIe offload at about 64 GB/s; on-package LPDDR at about 2 TB/s removes that link. The deciding quantity is the prediction hit rate multiplied by lead time, set against the per-expert fetch time; it needs at least 85% hits.",
+  "value": "Frontier MoE models can be served from about $5/GB DRAM instead of HBM, with no CoWoS allocation needed."
+ },
+ {
+  "id": "g1_ledger#2",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Bandwidth-by-count LPDDR decode",
+  "mech": "Nine dies, each with 24 LPDDR5X packages (about 2 TB/s and 768 GB each), hold one tensor-parallel shard of a 70B FP8 model plus its KV slice. Each die streams 7.8 GB per token through double-buffered SRAM, for about 256 tok/s/user. The closest earlier attempt is Groq, whose chip count (576) was set by SRAM capacity; here capacity is DRAM, so the count is set by bandwidth alone. The deciding quantity is the SRAM reuse ratio, which must be at least about 6 to beat HBM on dollars per GB/s.",
+  "value": "It delivers SRAM-dataflow-class latency with about 60× fewer chips and no HBM or CoWoS dependency."
+ },
+ {
+  "id": "g1_ledger#3",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "HBM-free SRAM-tiled training chip",
+  "mech": "A 256 MB SRAM tile buffer feeds about 4 PFLOPS FP8 GEMMs at about 5,000 FLOP/byte. Weights, activation checkpoints and optimizer state (16 B/param) sit in LPDDR or CXL DRAM at about 2 TB/s, with hardware-sequenced prefetch. The closest earlier attempts are Dojo and Graphcore, which had SRAM only and no capacity tier, and ZeRO-Infinity, which was PCIe-bound. The deciding quantity is the achieved FLOP/byte on attention and collectives, which must stay above 2,000.",
+  "value": "It cuts the HBM share of accelerator-package cost in training clusters while staying above 40% MFU."
+ },
+ {
+  "id": "g1_neg#1",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Read-refreshed stacked weight DRAM",
+  "mech": "Commodity-density DRAM layers are hybrid-bonded over an N3 compute die and hold only the model weights. Every decode token streams all weights in about 1 ms, and each read restores the cell. That makes refresh unnecessary even at about 105 °C, where cells lose charge too fast for normal refresh. The closest earlier attempts are HBM-PIM and AiM, which were stopped by DRAM-process logic. Here the logic stays on a logic wafer. The deciding quantity is worst-cell retention at junction temperature versus the weight sweep period. Idle chips fall back to normal refresh.",
+  "value": "About 120 GB at about 100 TB/s on one die, so a 70B model decodes at more than 1,000 tok/s/user without a 576-chip SRAM farm."
+ },
+ {
+  "id": "g1_neg#2",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "DRAM-wafer on wafer-scale engine",
+  "mech": "A full DRAM wafer is bonded wafer-on-wafer onto a wafer-scale dataflow compute wafer. Each layer adds about 1.7 TB, against 44 GB of SRAM on Cerebras WSE-3. Defects are repaired through DRAM row and column redundancy plus spare compute tiles. The closest earlier attempt is Cerebras, which was stopped by capacity and needed external MemoryX streaming. The estimated power density of about 0.5 W/mm² is gentle enough for DRAM. The deciding quantity is the yield of the bonded stack after repair.",
+  "value": "A trillion-parameter FP8 model resident on one wafer at PB/s-class bandwidth, cutting the dominant 60% silicon cost."
+ },
+ {
+  "id": "g1_neg#3",
+  "label": "g1_neg",
+  "arm": "E",
+  "gen": 1,
+  "name": "Inverted stack, power through DRAM",
+  "mech": "The compute die is flipped so it faces the cold plate. Four DRAM layers sit beneath it, and power is fed up through roughly 100 Cu TSVs/mm², which take less than 1% of the DRAM area. The DRAM then stays near 60 °C even with the logic at 1.5 W/mm². The closest earlier attempt is AMD 3D V-Cache, which was stopped by heat trapped under the cache and by SRAM-only capacity. The deciding quantity is the thermal resistance from DRAM to coolant through the logic die.",
+  "value": "Data-center-power compute with 100 GB-class bonded DRAM and no HBM, CoWoS interposer or PHY."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Hash-Regenerated Trellis Weight Decoder",
+  "mech": "Weights are stored as about 2-bit trellis codes with per-block scales. A small hash circuit at each SRAM or HBM read port regenerates the codebook values, so no table is stored. The circuit emits FP8 operands straight into the MACs. The closest earlier attempt is QTIP-style decoding in software on GPUs, which steals ALU cycles at large batch; fixed logic at the port removes that cost. The deciding quantity is decode energy per weight, which must be ≤0.1 pJ.",
+  "value": "A 70B model needs 4× fewer SRAM bytes, so it fits on one wafer or about 35 LPUs, and batch-1 HBM decode is 4× faster."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Latent KV With Outlier Sidecar",
+  "mech": "Keys and values are cached as per-head low-rank latents at 3–4 bits, with per-block scales. The few outlier channels go to a small FP16 sidebuffer. Expansion happens inside the attention unit, so full-width KV never crosses memory. The closest earlier attempt is FP8 KV, which saves only 2× and still grows linearly with full width. The deciding quantity is accuracy retained at 128k context.",
+  "value": "KV bytes per token fall about 6–8×, so long-context serving no longer sets the chip count."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Shared-Base Expert Delta Store",
+  "mech": "Each MoE layer stores one dense base expert at 4 bits. Each expert is stored as a 1–2-bit sparse residual against that base. The router's top-k decision is sent ahead so that only the selected residuals are fetched and added at the MAC input. The closest earlier attempt is plain per-expert quantization, which still stores and streams every expert at full code width. The deciding quantity is the residual bits per weight needed to hold accuracy, which must be ≤1.5.",
+  "value": "The MoE capacity footprint and the bytes fetched per token fall about 2–3×, which cuts the package count per model."
+ },
+ {
+  "id": "g1_rf1#1",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "GDDR7 bricks, optical activation pipeline",
+  "mech": "Weights are sharded layer-wise across many small non-CoWoS packages, each a modest compute die with GDDR7 at roughly 0.04 TB/s per GB, joined by co-packaged optics. Only activations of about 8 KB per layer per token cross the fabric. This design avoids the limit that stopped NVLink racks, which tied bandwidth to scarce HBM and CoWoS, because the fabric carries latency-bound traffic rather than bandwidth-bound traffic. The deciding quantity is the p99 per-hop latency against a 12.5 µs per-layer budget at 1,000 tok/s.",
+  "value": "It could deliver 70 TB/s per 70B replica at an estimated 3–5x lower memory cost than HBM, free of the CoWoS queue."
+ },
+ {
+  "id": "g1_rf1#2",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Attention at the KV pool",
+  "mech": "KV caches live in pooled DRAM nodes that hold small attention engines. Decode dies send queries of a few KB and receive outputs, so the roughly 20 GB per user of 128k-context KV never crosses the fabric. The closest earlier work, Lamina-style attention offload, ran over copper and PCIe, while this uses memory-semantic optics and bandwidth-matched DRAM. The deciding quantity is attention-node bandwidth per dollar against the HBM it replaces.",
+  "value": "Long-context, high-interactivity decode stops consuming HBM capacity, which removes stranded per-package memory."
+ },
+ {
+  "id": "g1_rf1#3",
+  "label": "g1_rf1",
+  "arm": "E",
+  "gen": 1,
+  "name": "Per-batch optical expert placement",
+  "mech": "MoE experts are stationary on memory nodes. An optical circuit switch is retuned every few hundred milliseconds to the observed routing histogram, so hot expert pairs get direct circuits and cold experts share links. Ironwood's OCS reconfigures only at the slice level, while this tracks token routing. The deciding quantity is the all-to-all latency per MoE layer after reconfiguration.",
+  "value": "MoE decode would need fewer switch tiers and less replication of hot experts, which cuts both the network share and memory over-provisioning."
+ },
+ {
+  "id": "g1_rf2#1",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "N6 SRAM-chiplet pipeline packages",
+  "mech": "Weights and KV cache live in about 112 GB of SRAM spread over many dies of about 100 mm² on N6. That node is chosen because SRAM stopped shrinking, so SRAM bytes cost about half as much there as on N3. Thirty-two dies sit on each organic package, and 16 packages hold one 70B model. A compiler pipelines the layers so that only about 8 KB of activations per token crosses the organic links. Closest earlier attempt is the Groq LPU, where 576 chips on 14 nm cards made capacity cost too high. Here SRAM is bought at roughly $0.1/MB on dense, cheap packages instead. The deciding quantity is delivered system cost per GB of SRAM, which must stay at or below about $1.5k/GB.",
+  "value": "It serves a 70B model at about 1,000 tok/s/user for about $0.07/Mtok, which is GB300's cost at 20x the speed, using no HBM and no CoWoS."
+ },
+ {
+  "id": "g1_rf2#2",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "SRAM-resident MoE expert farm",
+  "mech": "All experts of a model with about 230B total and 10B active parameters stay resident in about 300 GB of N6 SRAM chiplets, roughly 2.5 to 3 wafers. A deterministic all-to-all over organic links moves only a few tens of KB per token per layer. The compiler replicates hot experts based on measured routing statistics. Closest earlier attempt is Cerebras streaming weights from MemoryX, which was bandwidth-bound off-wafer. Here nothing streams. The deciding quantity is the capacity needed to replicate hot experts, which must stay under 30%.",
+  "value": "It runs frontier MoE models at more than 500 tok/s/user near GB300's $/Mtok."
+ },
+ {
+  "id": "g1_rf2#3",
+  "label": "g1_rf2",
+  "arm": "E",
+  "gen": 1,
+  "name": "Test-data-compiled spare-die packages",
+  "mech": "Each package of 32 dies carries 4 spare dies. After assembly, each die's measured Fmax, minimum Vdd and defects are fed to the scheduler. The scheduler compiles a per-package timing-exact schedule that maps around bad dies and runs every die at its own voltage with no guard band. Closest earlier attempt is Cerebras' fixed row redundancy, which needs a whole wafer and does not adapt per die. The deciding quantity is the post-assembly die and bond failure rate, which must stay below 4 per 36.",
+  "value": "Large organic multi-die packages reach near-100% package yield and save about 15 to 25% power without CoWoS."
+ }
+]

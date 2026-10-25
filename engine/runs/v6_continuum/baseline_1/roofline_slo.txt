@@ -1,0 +1,30 @@
+
+=== best tok/s per kW(TDP) meeting tok/s/user SLO, context 8192 (n,B free) ===
+chip                        50           100           200           400           800          1600
+Rubin (GPU)       39122(5,4096)  38881(6,4096)  36628(16,4096)  33521(32,4096)  28657(64,4096)  15321(256,4096)
+Ironwood (TPU)    23441(10,4096)  22814(20,4096)  21225(48,4096)  18962(96,4096)  13988(256,4096)   4515(1536,4096)
+WSE-3 (wafer)      1910(32,4096)   1910(32,4096)   1910(32,4096)   1640(24,2048)    578(16,256)             -
+Groq LP30          8031(3072,4096)   8031(3072,4096)   8031(3072,4096)   8031(3072,4096)   8031(3072,4096)   8031(3072,4096)
+Continuum         44892(12,4096)  44892(12,4096)  44892(12,4096)  41977(10,2048)  34203(24,2048)  17519(96,2048)
+
+=== max tok/s/user (B=1, any n) and its tok/s/kW, context 8192 ===
+Rubin (GPU)         2776 tok/s/user on 4096 chips (mem)
+Ironwood (TPU)      2081 tok/s/user on 4096 chips (mem)
+WSE-3 (wafer)       1042 tok/s/user on 4096 chips (cmp)
+Groq LP30           8331 tok/s/user on 4096 chips (cmp)
+Continuum           2777 tok/s/user on 4096 chips (mem)
+
+=== best tok/s per kW(TDP) meeting tok/s/user SLO, context 131072 (n,B free) ===
+chip                        50           100           200           400           800          1600
+Rubin (GPU)        4328(48,4096)   4281(64,4096)   4103(128,4096)   3788(256,4096)   2899(768,4096)   1827(2048,4096)
+Ironwood (TPU)     2619(96,4096)   2544(192,4096)   2406(384,4096)   2171(768,4096)   1638(2048,4096)    535(3072,1024)
+WSE-3 (wafer)       194(48,512)    194(48,512)    194(48,512)    194(48,512)     71(32,64)             -
+Groq LP30           704(3072,256)    704(3072,256)    704(3072,256)    704(3072,256)    704(3072,256)    704(3072,256)
+Continuum          4091(96,4096)   4091(96,4096)   4091(96,4096)   3643(16,256)   3086(16,128)   1610(64,128)
+
+=== max tok/s/user (B=1, any n) and its tok/s/kW, context 131072 ===
+Rubin (GPU)         2776 tok/s/user on 4096 chips (mem)
+Ironwood (TPU)      2080 tok/s/user on 4096 chips (mem)
+WSE-3 (wafer)       1042 tok/s/user on 4096 chips (cmp)
+Groq LP30           8310 tok/s/user on 4096 chips (cmp)
+Continuum           2777 tok/s/user on 4096 chips (mem)
