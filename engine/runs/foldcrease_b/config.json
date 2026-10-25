@@ -20,5 +20,8 @@
  "reframes": [
   "What residual profile is below what a person can see or feel, and can a stack be designed to stay below it? The profile would be set by maximum slope in mrad, depth in µm, specular-reflection contrast at grazing light, and finger detectability.",
   "For each layer (PI substrate, OCAs, polarizer or its replacement, support plate, cover), what strain does it carry at the chosen radius? Can every layer be kept inside its fully recoverable regime under worst-case dwell, and which layer sets the limit?"
+ ],
+ "lessons_exclude": [
+  "foldcrease"
  ]
 }
