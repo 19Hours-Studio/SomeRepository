@@ -143,3 +143,8 @@ gate: 4/4 parsed {'DEAD': 4}
 /home/user/SomeRepository/engine/runs/rusres/repair/TASK.md
 /home/user/SomeRepository/engine/runs/rusres/repair/c1/TASK.md
 /home/user/SomeRepository/engine/runs/rusres/repair/c2/TASK.md
+  repair.2: 883,723 tokens, 408.4 s
+  repair.1: 669,179 tokens, 412.2 s
+  skip repair (done)
+repair: 4 ideas (2815 words)
+/home/user/SomeRepository/engine/runs/rusres/audit_final/TASK.md

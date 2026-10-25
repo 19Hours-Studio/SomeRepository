@@ -151,5 +151,41 @@
   "name": "Triaged thermosyphon pile retrofit",
   "mech": "Borehole temperatures plus InSAR rank plant foundations by remaining pile capacity. Retrofit GET/VET thermosyphons from Fundamentproekt then go only on the Norilsk and Talnakh structures headed toward a loss of more than 40% (F89). One quantity decides it: the air freezing index compared with the heat flowing into the pile. Norilsk's long, deep winter still gives a strong cooling margin. TAPS and Qinghai–Tibet lost cooling where winters were weak (F320–322), so the scheme is limited to the coldest sites and leaves out Salekhard and Nadym. The closest earlier attempt, post-spill monitoring (F18), detected thaw but fixed nothing. Benchmark: Ambarnaya and the 35% deformed-building share (F252). Main risk: non-condensable gas fade, so inspect every 3 years. Test: an instrumented pilot on 20 piles with 3 seasons of monitoring.",
   "value": "Avoids unplanned plant outages and prolongs infrastructure life on thawing ground, at a small share of Norilsk's ~$3bn/yr capex."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Hull-paced domestic Arctic Cascade trains",
+  "mech": "The anchor is unchanged: copy the domestic 0.9 Mtpa Arctic Cascade Train 4 many times instead of building 6.6 Mtpa trains that need imported or first-of-kind drives. In the repaired design, trains are added only at Sabetta and only as fast as Arc7 hulls arrive. Each train needs about 0.55 hull: a hull carries about 1.63 Mt/y when it runs 150 days a year east on the NSR and spends the winter shuttling 12-day round trips to the Saam/Ura FSU near Murmansk. In winter this shuttle replaces the 20-day Zeebrugge run, which the EU bans from 2027. With this matching, all added output can be shipped year-round, which fixes the kill metric. The trains have two roles. First, they are a domestic-drive hedge for the Nuovo Pignone strings on Trains 1–3: each 1% of availability lost there is 0.165 Mt/y. Second, they are the growth path once Arctic LNG 2's idle 13.2 Mtpa is full. That needs about 8 hulls, so it happens around 2030–33 at 1–2 hulls a year from Zvezda. No new trains go to Utrenneye before then.",
+  "value": "Full delivered cost is about $236/t, against $295/t for a Yamal T1–3-type train (1.25x) and $257/t for a large domestic-drive train (1.09x). First LNG is about 3 years after the decision for a series copy, against 4–4.5. But it is 1.5x worse than simply filling Arctic LNG 2's idle trains, which is why it is held back until those are full."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Level-crusher conveyor decline for Talnakh",
+  "mech": "The anchor is unchanged: crush ore at the level and carry it on a fixed belt, replacing truck haulage. The belt no longer stops at an existing shaft. It runs up a 14° decline all the way to surface, and serves as the hoisting route for the Talnakh concentrator expansion from 10 to 18 Mtpa in place of a new 2.1 km skip shaft. Nornickel's shafts advanced only 150–322 m in 2017, so sinking takes 6.5–14 years, plus about 1.5 years to equip. A 4.1 km decline (1,000 m lift) driven by drill-and-blast from 2–3 headings at 150 m/month takes about 1–2.3 years, plus about 1 year to install the belt. It is lifted by three flights of ST3150 belt (or two of ST5000) at 1,600 t/h, drawing 5.1 MW, or 3.2 kWh/t against 3.4 for a skip.",
+  "value": "Cost per tonne of ore is $2.9–4.0, against $3.6–5.3 for a new shaft. That is only about 1–2% of full cost per tonne of nickel-equivalent, so the gain is not cost. The gain is ore 4–11 years sooner for 8 Mt/y, worth about $1.5–3.5bn PV. That holds only if hoisting is what limits the expansion."
+ },
+ {
+  "id": "repair#3",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Cold-margin triaged thermosyphon retrofit",
+  "mech": "Anchor: borehole temperatures plus InSAR rank existing foundations by remaining pile capacity, and retrofit thermosyphons only on the worst ones, only where the winter is cold enough. The cutoff is now a computed number: the cooling margin M, which is winter heat a unit can pull out of the ground divided by the yearly heat flowing in per pile. In 2050 climate (+2.5 K in winter), M is 1.53 at Norilsk, 2.10 at Udachny/Mirny and 1.57 at Pevek, which pass the M ≥ 1.5 cutoff. It is 1.05 at Salekhard, 0.88 at Nadym, 0.90 at Fairbanks and 0.41 at Beiluhe on the Qinghai–Tibet line, which fail. That ranking matches where cooling was actually seen to fade on the Trans-Alaska pipeline (TAPS) and the Qinghai–Tibet line (F320–321). Triage step 0 is the cheapest fix: reopen crawlspace vents and repair utility leaks. Only structures that keep warming after that get vertical units drilled with low-headroom rigs from the ventilated crawlspace, or inclined units from the outside edge for buildings under about 20 m wide. That is about 50 of the 165 monitored Norilsk/Talnakh structures and about 8,500 units. Each unit finishes cooling the ground to the target in about one winter.",
+  "value": "It keeps structures on thawing ground in service past 2050 for about $64M, against $198M for retrofitting all 165 structures and $196–392M for new piles to bedrock. That is about 3× cheaper than either. It adds only about $3–19 per t Ni-eq (0.04–0.20% of full cost) and avoids an expected $26–86M/yr of thaw-related losses."
+ },
+ {
+  "id": "repair#4",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Shaft-bottom XRT sorting, hoist-bound mines",
+  "mech": "Anchor: domestic X-ray transmission (XRT) sorters at the shaft bottom reject waste lumps before hoisting, and the rejects go straight into stope backfill. The repair moves it from \"freeing concentrator capacity\" to deep mines where the 2.1 km shafts set the limit, such as Skalisty and the Talnakh/Oktyabrskoye deep levels. There every tonne of waste rejected below ground is replaced by ore in the fixed skip capacity. With the fines (about 35% of ore) bypassing the sorter, metal hoisted per year rises ×1.095 at Selebi-type results (15% rejected, 2% metal lost) and ×1.36 at stringer-type results (44%, 4%). After counting the metal lost for good in the backfill, metal NPV is still ×1.085–1.31 over a 30-year reserve at 14%. Two or three 150 t/h units cover 2 Mt/yr hoisted. Rejects of at most 0.41 t per t of ore fit in the backfill needed (0.44–0.67 t per t), so no tailings go to the surface. The design is restricted to cuprous/stringer and massive ores at contacts. Disseminated Norilsk-1 and Maslovskoye ore is left out (16% metal loss at 23% rejection on disseminated test ore), as are mines where hoisting is not the limit.",
+  "value": "Each extra tonne of Ni-eq from a hoist-bound deep mine costs $5.0–8.3k by sorting against $6.7–12.6k from a new deep shaft, 1.2–1.8× cheaper. It comes in about 2–3 years instead of about 10 years of shaft sinking."
  }
 ]
