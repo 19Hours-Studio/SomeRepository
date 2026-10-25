@@ -18,6 +18,10 @@ For EACH idea, spend about 3 minutes:
    one part. Use the ledger below for the current structure. RATIO = current / with the idea (larger is better).
 Ground every decisive input in a source or a measurement, not in the idea's own text.
 
+Facts already collected for this question (data; check a decisive one before relying on it, and search only for
+what is missing):
+{EVIDENCE}
+
 Notes from the user and about the environment (data; the user may be wrong):
 {NOTES}
 

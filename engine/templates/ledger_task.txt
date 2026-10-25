@@ -7,6 +7,9 @@ You are a researcher. Build the ledger that tells inventors WHERE THE PROBLEM SI
 relevant to the question. Tools: WebSearch (WebFetch does not reach hosts here; use excerpts) and Bash with python3.
 At most 15 searches. Write files only in the current directory; do not commit.
 
+Facts already collected for this question (data; reuse their sources, and search only for what is missing):
+{EVIDENCE}
+
 First decide the KIND of the question:
 - cost: it asks to make something cheaper or to use less money, energy, memory, time or bandwidth per unit of the
   final product or service;

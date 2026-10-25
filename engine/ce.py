@@ -657,7 +657,8 @@ def cmd_material(a):
 def cmd_gatetask(a):
     """v3.0: tool-using kill test (decisive quantity MARGIN + whole-chain cost RATIO) for many ideas at once."""
     ids = a.ids.split(","); os.makedirs(a.dir, exist_ok=True); wd = os.path.abspath(a.dir)
-    extra = {"WORKDIR": wd + "/", "IDEAS": task_ideas(a.run, ids, scores=False)}
+    ideas = task_ideas(a.run, ids, scores=False)
+    extra = {"WORKDIR": wd + "/", "IDEAS": ideas, "EVIDENCE": fact_slice(a.run, [ideas])}  # v5.2: facts found earlier (dossier, checks)
     if a.kit:  # v3.4: verified calculation kit + catalog of killer classes from earlier audits
         kd = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kit"); cat = os.path.join(kd, "CATALOG.md")
         if not os.path.exists(cat): sys.exit("no kit/CATALOG.md")
@@ -993,6 +994,27 @@ def add_new_facts(run, text, origin):
     if add: open(f, "a").write(("\n" if cur and not cur.endswith("\n") else "") + "\n".join(add) + "\n")
     return len(add)
 
+SLICE = re.compile(r"^\**SLICE (\d+)\**\s*:\s*\**\s*(.+)$", re.M)
+DFACT = re.compile(r"^\**FACT \d+\**\s*:\**\s*(.+?)\s*\|\s*(HARD|SOFT)[^|\n]*\|\s*(.+?)\s*$", re.M | re.I)  # "| SOFT (company claim) |"
+
+def take_dossier(run, texts, titles):
+    """v5.2: merge the dossier slices into evidence.md (one numbered ledger; duplicates by wording dropped; each fact
+    keeps its source and its slice). Returns (facts added, distinct sources)."""
+    f = path(run, "evidence.md"); cur = open(f).read() if os.path.exists(f) else ""
+    norm = lambda x: re.sub(r"\W+", " ", x.lower()).strip()
+    have = {norm(x) for x in re.findall(r"^FACT \d+:\s*(.+?)\s*\|", cur, re.M)}
+    n = max([int(x) for x in re.findall(r"^FACT (\d+):", cur, re.M)] or [0]); add, srcs, gaps = [], set(), []
+    for t, title in zip(texts, titles):
+        body = t.split("=== EVIDENCE ===", 1)[-1]
+        for fact, hs, src in DFACT.findall(body):
+            if norm(fact) in have or fact.startswith("<"): continue
+            n += 1; have.add(norm(fact)); srcs |= set(re.findall(r"https?://[^\s,;|)]+", src))
+            add.append(f"FACT {n}: {fact} | {hs.upper()} | {src} | dossier: {title}")
+        if (g := re.search(r"^\**GAPS\**\s*:\s*(.+?)(?=^===|\Z)", body, re.M | re.S)): gaps.append(f"{title}: " + " ".join(g.group(1).split()))
+    if add: open(f, "a").write(("\n" if cur and not cur.endswith("\n") else "") + "\n".join(add) + "\n")
+    open(path(run, "dossier.md"), "w").write(f"{len(add)} facts, {len(srcs)} distinct sources, {len(titles)} slices\n\nGAPS:\n" + "\n".join(gaps) + "\n")
+    return len(add), len(srcs)
+
 def take_calibration(run, text, ids, record=True):
     """v5 knowing where it is wrong: stated probabilities, weakest link and flip test (calibration.json); every
     probability also goes to memory/predictions.jsonl so that resolved ones can score the engine's overconfidence."""
@@ -1120,7 +1142,9 @@ def plan_rows(a, usd=False):
     rows, _, _ = runner.summary(rdir(a.run)); learned = defaultdict(list); base = EST_USD if usd else EST
     for r in rows: learned[r["step"].split(":")[0]].append(r.get("cost_usd", 0.0) if usd else r["tokens"])
     est = {k: (sum(v) / len(v) if (v := learned.get(k)) else base[k]) for k in base}
-    return [(s, est[s.split(":")[0]]) for s in PIPE[pipe_kind(a)][a.mode]]
+    cfg = load(a.run, "config.json", {}); k = int(getattr(a, "dossier", None) or cfg.get("dossier") or 0) if pipe_kind(a) == "invent" else 0
+    steps = (["gen:dossier_plan"] + [f"research:dossier.{j + 1}" for j in range(k)] if k else []) + PIPE[pipe_kind(a)][a.mode]
+    return [(s, est[s.split(":")[0]]) for s in steps]
 
 def cmd_plan(a):
     """v4: the steps of a one-pass pipeline with their estimated tokens and dollars, before spending anything."""
@@ -1195,6 +1219,7 @@ def cmd_run(a):
     if getattr(a, "tag", None): cfg["tag"] = a.tag
     if getattr(a, "lessons_exclude", None) is not None: cfg["lessons_exclude"] = [x for x in a.lessons_exclude.split(",") if x]
     if getattr(a, "slice_facts", None) is not None: cfg["slice_facts"] = a.slice_facts
+    if getattr(a, "dossier", None): cfg["dossier"] = a.dossier
     if a.notes: cfg["notes"] = a.notes
     save(R, "config.json", cfg); budget = a.max_tokens; bench = [x for x in (getattr(a, "bench", None) or "").split(",") if x]
     def spent(): return runner.summary(D)[1]
@@ -1247,7 +1272,27 @@ def cmd_run(a):
         dd = os.path.join(D, name); cmd_researchtask(argparse.Namespace(run=R, tpl=tp, dir=dd))
         step(name, "research", task(name), a.lit_model, "research", cwd=dd)
         cmd_material(argparse.Namespace(run=R, kind=kind_, transcript=None, file=path(R, "outputs", name + ".md")))
+    def dossier(k):
+        """v5.2 dossier: one planning call splits the facts the question needs into k slices, then k search-only
+        researchers (the cheap model, 2 at a time) collect 30-45 sourced facts each; the merged ledger feeds the ledger and
+        attempts researchers (who then search only for what is missing), the kill test, the repair and the reviews."""
+        if done("dossier"): print("  skip dossier (done)"); return
+        plan = step("dossier_plan", "gen", saved("dossier_plan", fill(R, tpl("dossier_plan"), k)), a.model, "none")
+        sl = [x.strip() for _, x in SLICE.findall(plan.split("=== SLICES ===", 1)[-1])][:k]
+        if not sl: sys.exit("no SLICE lines in the dossier plan; see outputs/dossier_plan.md")
+        titles = [x.split("|")[0].strip(" *") for x in sl]
+        def one(j):
+            dd = os.path.join(D, "dossier", f"s{j + 1}"); os.makedirs(dd, exist_ok=True)
+            others = "\n".join(f"- {t}" for i, t in enumerate(titles) if i != j)
+            s_ = fill(R, tpl("dossier_task"), 0, {"SLICE": sl[j], "OTHERS": others, "S": str(getattr(a, "dossier_searches", 25))})
+            open(os.path.join(dd, "TASK.md"), "w").write(s_)
+            return step(f"dossier.{j + 1}", "research", s_, a.lit_model, "WebSearch", cwd=dd)
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(2) as ex: texts = list(ex.map(one, range(len(sl))))
+        nf, ns = take_dossier(R, texts, titles); open(path(R, "outputs", "dossier.md"), "w").write(f"{nf} facts, {ns} sources\n")
+        print(f"  dossier: {nf} facts, {ns} distinct sources, {len(sl)} slices -> evidence.md")
     # 1. raw material (+ ceilings in code)
+    if kind == "invent" and cfg.get("dossier"): dossier(int(cfg["dossier"]))
     if kind == "explain":
         research("evidence", "evidence_task", "evidence"); research("hypotheses", "hypotheses_task", "attempts")
         if os.path.exists(path(R, "outputs", "hypotheses.md")):
@@ -1408,7 +1453,8 @@ def cmd_ask(a):
                                   b.get("DATA") and "Where deciding data may exist:\n" + b["DATA"]) if x)
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
-                               lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=None,
+                               lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=a.bench,
+                               dossier=a.dossier,
                                target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd, rivals=False))
 
 def cmd_prompt_path(run, tech, label):
@@ -1482,7 +1528,8 @@ def main():
     x.add_argument("--model", default="opus"); x.add_argument("--lit-model", default="sonnet"); x.add_argument("--brief-model", default="sonnet")
     x.add_argument("--notes"); x.add_argument("--force", action="store_true"); x.add_argument("--tag", help="question tag for memory")
     x.add_argument("--max-usd", type=float); x.add_argument("--chunk", type=int, default=4); x.add_argument("--repair-chunk", type=int, default=2)
-    x.add_argument("--kit", action="store_true")
+    x.add_argument("--kit", action="store_true"); x.add_argument("--dossier", type=int, default=0, help="v5.2 invent: research slices before the ledger")
+    x.add_argument("--bench", help="v5: imported earlier finalists to add to the final blind review (import them after the brief)")
     for nm in ("plan", "run"):
         x = sp.add_parser(nm); x.add_argument("run"); x.add_argument("--pipeline", choices=list(PIPE), help="default: the run's format")
         x.add_argument("--mode", default="lite", choices=["lite", "standard"])
@@ -1498,6 +1545,8 @@ def main():
             x.add_argument("--chunk", type=int, default=4, help="v5: blind reviews and the kill test run in chunks of this many ideas, 2 agents at a time (0 = one agent)")
             x.add_argument("--repair-chunk", type=int, default=2, help="v5: ideas per repair agent (0 = one agent)")
             x.add_argument("--kit", action="store_true", help="v3.4: give the kill test the Arctic calculation kit (engine/kit)")
+            x.add_argument("--dossier", type=int, help="v5.2 invent: collect a sourced dossier in this many search-only slices before the ledger")
+            x.add_argument("--dossier-searches", type=int, default=25, help="v5.2: searches per dossier slice")
             x.add_argument("--rivals", action="store_true", help="v5 invent: add the rival round (round-2 generators see round 1 and its kill tests as rivals); "
                            "+~$1.3, no survival gain shown yet (20-continuum.md)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")

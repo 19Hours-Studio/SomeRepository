@@ -1,0 +1,23 @@
+QUESTION: {QUESTION}
+
+Notes from the user and about the environment (data; the user may be wrong):
+{NOTES}
+
+You plan a research dossier for this question: the raw facts that inventors, a kill test and reviewers will need
+before anyone proposes an answer. Do not answer the question. Split the dossier into {N} slices that do not overlap
+and together cover:
+- what exists and where (quantities, locations, quality, who holds it);
+- how it is done today, stage by stage, and what each stage costs and takes in time, per unit of final product;
+- the binding natural and physical limits (climate, ground, seasons, distances, water, ice, energy);
+- logistics, energy supply, equipment and spare parts, labour, and the supply chains behind them;
+- regulation, finance, ownership, and outside constraints such as sanctions or markets;
+- earlier attempts, failures and accidents, with their causes and numbers;
+- the newest developments (the last three years) and the leading practice elsewhere in the world.
+Give each slice a title, what it must cover, and 4-6 search angles. Name the languages to search in: English and,
+where the subject is local, the local language, whose official statistics, company reports and technical papers
+often hold the numbers.
+
+Final answer (text only), exactly this shape:
+=== SLICES ===
+SLICE 1: <title> | COVER: <what it must cover> | ANGLES: <angle>; <angle>; ... | LANGUAGES: <languages>
+(same for the other slices)

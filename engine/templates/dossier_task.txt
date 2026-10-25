@@ -1,0 +1,27 @@
+# Task: one slice of a research dossier
+
+QUESTION the dossier serves: {QUESTION}
+
+YOUR SLICE: {SLICE}
+
+The other slices, which other researchers cover (do not duplicate them):
+{OTHERS}
+
+Collect the facts of your slice with sources. Do not answer the question and do not propose solutions. Tools:
+WebSearch only (WebFetch does not reach hosts here; use search excerpts). About {S} searches. Prefer primary and
+quantitative sources: official statistics, company annual reports and presentations, government programmes and
+registers, peer-reviewed papers, standards, patents, and engineering reports; use press only where nothing better
+exists, and say so. Search in the languages your slice names.
+
+Rules:
+- one fact per line, with numbers, units, year and place where they exist;
+- every fact has its own source URL;
+- HARD = an official figure, a measurement, or a figure documented in several independent sources; SOFT = a single
+  source, an estimate, a company claim, or a disputed figure;
+- prefer facts that constrain answers: costs per unit, rates, limits, failure numbers, times, capacities.
+
+Final answer (text only), exactly this shape, at most 1,800 words:
+=== EVIDENCE ===
+FACT 1: <the fact> | HARD/SOFT | <URL>
+(30-45 facts, the most constraining first)
+GAPS: 2-4 lines - what your slice could not find, and where it would be.

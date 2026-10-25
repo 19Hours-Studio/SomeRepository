@@ -6,6 +6,9 @@ An unsolved problem means every earlier attempt stopped short for a reason that 
 the ledger of earlier attempts with sourced facts. Tools: WebSearch (WebFetch does not reach hosts here; use excerpts)
 and Bash with python3. At most 15 searches. Write files only in the current directory; do not commit.
 
+Facts already collected for this question (data; reuse their sources, and search only for what is missing):
+{EVIDENCE}
+
 Cover methods in standard use (and what they still leave expensive), methods that stayed niche, pilots that were
 dropped, and ideas that were costed and rejected, in any country, industry or period. For each: the binding reason it
 did not solve the problem, with the number that shows it.
