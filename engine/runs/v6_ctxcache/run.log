@@ -69,3 +69,7 @@ cross_g1: 3 ideas (599 words)
 /home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g1/c1/TASK.md
 /home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g1/c2/TASK.md
   eval_g1.2: 80,732 tokens, 86.5 s
+  eval_g1.1: 178,425 tokens, 157.4 s
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g1/TASK.md
+  skip eval_g1 (done)
+gate: 6/6 parsed {'DEAD': 2, 'WOUNDED': 4}
