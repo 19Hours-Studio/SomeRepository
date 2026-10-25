@@ -17,3 +17,7 @@ g1_neg: 3 ideas (603 words)
 g1_mech: 3 ideas (598 words)
   g1_rf1: 21,991 tokens, 78.5 s
 g1_rf1: 3 ideas (627 words)
+  g1_rf2: 18,852 tokens, 46.3 s
+g1_rf2: 3 ideas (555 words)
+  families: 9,979 tokens, 12.1 s
+  families: 4 among 15 candidates (15 parsed)

@@ -1,0 +1,34 @@
+{
+ "g1_rf1#1": {
+  "killer": "Concentrator capacity for the refill the idea needs",
+  "why": "The capacity \"freed\" by Talnakh is already booked for Norilsk-1 at 7 Mtpa, so there is no new saving and only about 0.6 Mtpa is left for Maslovskoye's roughly 8 Mtpa.",
+  "screen": "8 market/capacity: concentrator room for Norilsk-1 plus Maslovskoye 0.50 (room for Maslovskoye alone, after the planned Norilsk-1 feed, 0.07–0.28); 9 baseline: Nornickel's own plan is already this idea, ratio about 1.0; ceiling if all concentrator capital (about half of the 37%) is removed 1.23; 10 recovery: no ore-type recovery found for the Norilsk concentrator (silicate-bound Ni floats poorly), not scored",
+  "margin": 0.5,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "g1_rf2#1": {
+  "killer": "Metal loss XRT can afford on Norilsk-1 disseminated ore",
+  "why": "Pairing the two steps is only a booking change, and a 1.09–1.16× grade gain on 40% of the cost gives at most 1.05×, while the loss XRT can afford is below the best claim.",
+  "screen": "10 recovery: metal loss XRT can afford vs claimed loss 0.35–0.65; 9 baseline: ratio 1.03–1.05 for a feed-grade gain of 1.094–1.156× at 98% recovery, applied to processing plus concentrator capital (40.5% of cost); 8 capacity: same Norilsk concentrator room as Idea 1, 0.50; 13 pilot proof: only an unaudited release from another ore (Selebi), not scored",
+  "margin": 0.35,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "g1_neg#2": {
+  "killer": "Availability gain needed for a 1.5× cost cut",
+  "why": "Each availability point adds about 1% of output, so the few points available give at most 1.04× and cannot stand in for a capacity stage.",
+  "screen": "9 baseline: ratio 1.02 for +2 points and 1.04 for +5 points (80% of cost fixed); 8 scale: availability gain needed to stand in for the +8 Mtpa stage 0.06; 13 pilot proof: measuring a 2–5 point gain needs many months per arm, not scored",
+  "margin": 0.075,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#3": {
+  "killer": "Serious failures to show the register halves the collapse rate (Poisson, 80% power, 2:1 split)",
+  "why": "Cutting the median repair time from 30 to 6 months is right on safety and compliance grounds, but the losses it targets are about 3–4% of full cost, so the ratio stays under 1.1 and the benefit cannot be shown statistically.",
+  "screen": "9 baseline: ceiling ratio 1.03–1.04 even if all foundation losses (2%) plus one Ambarnaya-scale claim ($1.74bn) every 10–20 years were removed, against about $8.1bn a year of cash opex plus capex; 13 pilot proof: events seen vs events needed to show the collapse rate halved 0.035; 4 frozen-ground strength: not decisive, since the register changes no design",
+  "margin": 0.035,
+  "ratio": 1.04,
+  "verdict": "DEAD"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "g1_ledger#1": "arc7 ice leg only lng shuttle",
+ "g1_ledger#2": "vostok oil south via pipelines",
+ "g1_ledger#3": "coal stockpile summer only shipping",
+ "g1_neg#1": "arc7 ice leg only lng shuttle",
+ "g1_neg#2": "vostok oil south via pipelines",
+ "g1_neg#3": "coal stockpile summer only shipping",
+ "g1_mech#1": "arc7 ice leg only lng shuttle",
+ "g1_mech#2": "coal stockpile summer only shipping",
+ "g1_mech#3": "vostok oil south via pipelines",
+ "g1_rf1#1": "arc7 ice leg only lng shuttle",
+ "g1_rf1#2": "coal stockpile summer only shipping",
+ "g1_rf1#3": "gate train 3 on hull deliveries",
+ "g1_rf2#1": "arc7 ice leg only lng shuttle",
+ "g1_rf2#2": "vostok oil south via pipelines",
+ "g1_rf2#3": "coal stockpile summer only shipping"
+}
