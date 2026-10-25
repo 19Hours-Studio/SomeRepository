@@ -1,0 +1,10 @@
+base                                         C   62.0   62.0   60.0   59.1   55.6 | Rubin   49.0   44.2   36.6   30.7   19.2 | ratio   1.27   1.40   1.64   1.92   2.90  (272s)
+   >=1000 0.55V wt k1 m2 b1084 A=('P', 16, 2, True, False) B=('S', 8, 0, False, True) MTP=('S', 8, 0, False, True) pkgs 497 stacks 964 users 69,376 1,165 tok/s/user T 48.3 us c(us)=24.1/23.6/23.6 avg slot 2303 W
+Continuum zero-skip s=1 only                 C   52.4   52.4   48.8   48.5   45.5 | Rubin   49.0   44.2   36.6   30.7   19.2 | ratio   1.07   1.18   1.34   1.58   2.37  (269s)
+   >=1000 0.55V wt k1 m2 b539 A=('S', 11, 3, True, False) B=('S', 9, 0, False, True) MTP=('S', 8, 0, False, True) pkgs 618 stacks 994 users 66,836 1,208 tok/s/user T 24.0 us c(us)=12.0/11.9/11.8 avg slot 2273 W
+CSA KV union u=0.5, both                     C   62.0   62.0   60.0   59.1   53.5 | Rubin   49.0   44.2   35.6   28.3   16.7 | ratio   1.27   1.40   1.69   2.09   3.21  (280s)
+   >=1000 0.55V wt k1 m2 b1084 A=('P', 16, 2, True, False) B=('S', 8, 0, False, True) MTP=('S', 8, 0, False, True) pkgs 497 stacks 964 users 69,376 1,165 tok/s/user T 48.3 us c(us)=24.1/23.6/23.6 avg slot 2303 W
+CSA KV union u=1.0, both                     C   62.0   62.0   57.9   56.9   51.5 | Rubin   49.0   44.2   33.5   22.4   12.5 | ratio   1.27   1.40   1.73   2.54   4.13  (281s)
+   >=1000 0.55V wt k1 m3 b620 A=('P', 13, 3, True, False) B=('S', 6, 0, False, True) MTP=('S', 6, 0, False, True) pkgs 403 stacks 1174 users 59,520 1,104 tok/s/user T 51.0 us c(us)=17.0/16.6/16.6 avg slot 2393 W
+s=1 Continuum + same node + u=0.5            C   47.3   47.3   43.9   43.6   39.4 | Rubin   49.0   44.2   35.6   28.3   16.7 | ratio   0.97   1.07   1.23   1.54   2.36  (280s)
+   >=1000 0.55V wt k1 m2 b539 A=('S', 11, 3, True, False) B=('S', 9, 0, False, True) MTP=('S', 8, 0, False, True) pkgs 618 stacks 994 users 66,836 1,208 tok/s/user T 24.0 us c(us)=12.0/11.9/11.8 avg slot 2531 W

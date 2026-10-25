@@ -1,0 +1,20 @@
+KV memory 450 GB
+  append                   batch  45.9  decode-weights  0.98 GPU-h  total  5.80  vs append +0.0%
+  sliding                  batch 102.0  decode-weights  0.44 GPU-h  total  6.94  vs append +19.6%
+  sliding+splice           batch 102.0  decode-weights  0.44 GPU-h  total  3.14  vs append -45.9%
+  sliding+splice/refresh4  batch 102.0  decode-weights  0.44 GPU-h  total  5.94  vs append +2.4%
+  sliding+splice/refresh8  batch 102.0  decode-weights  0.44 GPU-h  total  4.51  vs append -22.3%
+  polling10/keep5          batch  86.6  decode-weights  0.52 GPU-h  total  4.09  vs append -29.5%
+  polling10/keep5+splice   batch  86.6  decode-weights  0.52 GPU-h  total  3.52  vs append -39.3%
+  batch5k/keep5            batch  90.0  decode-weights  0.50 GPU-h  total  3.92  vs append -32.4%
+  horizon/keep5            batch  97.7  decode-weights  0.46 GPU-h  total  3.99  vs append -31.2%
+KV memory 250 GB
+  append                   batch  25.5  decode-weights  1.77 GPU-h  total  6.59  vs append +0.0%
+  sliding                  batch  56.7  decode-weights  0.80 GPU-h  total  7.30  vs append +10.7%
+  sliding+splice           batch  56.7  decode-weights  0.80 GPU-h  total  3.50  vs append -46.9%
+  sliding+splice/refresh4  batch  56.7  decode-weights  0.80 GPU-h  total  6.30  vs append -4.5%
+  sliding+splice/refresh8  batch  56.7  decode-weights  0.80 GPU-h  total  4.87  vs append -26.2%
+  polling10/keep5          batch  48.1  decode-weights  0.94 GPU-h  total  4.51  vs append -31.6%
+  polling10/keep5+splice   batch  48.1  decode-weights  0.94 GPU-h  total  3.94  vs append -40.2%
+  batch5k/keep5            batch  50.0  decode-weights  0.90 GPU-h  total  4.32  vs append -34.4%
+  horizon/keep5            batch  54.3  decode-weights  0.83 GPU-h  total  4.36  vs append -33.8%

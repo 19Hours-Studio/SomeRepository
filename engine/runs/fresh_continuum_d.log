@@ -1,0 +1,13 @@
+  v0: $0.89
+  v1: $0.76
+  v2: $0.88
+  v3: $1.03
+# fresh_continuum_d: real gain read by fresh free readers
+
+| answer | real gain |
+|---|---|
+| v0 | none demonstrated at bulk speeds (1.06× tok/s/MW on the same node, a tie); at ≥1,000 tok/s/user a model-only, uncalibrated ~1.4× tok/s/MW over Rubin NVL72 on the same node, which shrinks to ~1.0× against Rubin Ultra; plus ~3–4× tokens per HBM stack |
+| v1 | ~1.3× decode tok/s/W vs Rubin at ≥1,000 tok/s/user (same node, model-only, unvalidated); ~1.0× (none) at bulk serving speeds |
+| v2 | ~1.25–1.45× modelled decode tok/s/W over Rubin, only at ≥1,000 tok/s/user (128K context, DeepSeek-V4-Pro); none (≈0.95–1.1×) at bulk speeds or against a same-date 4-die Rubin Ultra |
+| v3 | ~1.3–1.5× decode output tok/s per provisioned W vs. Rubin at ≥1,000 tok/s/user on DeepSeek-V4-Pro 128K (modelled only; 1.48 same-node, 1.34 without assumed zero-skip), ≈1.0 at bulk speed and vs. 2028-era peers |
+spent $3.56

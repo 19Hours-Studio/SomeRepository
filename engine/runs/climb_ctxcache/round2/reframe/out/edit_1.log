@@ -7,3 +7,4 @@ django__django-13343 {'clear': 0.0427, 'replace': 0.006, 'insert': 0.0081, 'reor
 psf__requests-2317 {'clear': 0.0286, 'replace': 0.0012, 'insert': 0.0037, 'reorder': 0.0032}
 django__django-14434 {'clear': 0.0115, 'replace': 0.0063, 'insert': 0.0036, 'reorder': 0.0023}
 sympy__sympy-12096 {'clear': 0.0174, 'replace': 0.0127, 'insert': 0.0097, 'reorder': 0.0111}
+sympy__sympy-15017 {'clear': 0.0357, 'replace': 0.0068, 'insert': 0.009, 'reorder': 0.0026}
