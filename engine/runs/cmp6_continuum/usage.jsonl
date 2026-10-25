@@ -1,0 +1,2 @@
+{"step": "review:compare.r2", "time": "2026-10-25 14:11:46", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 238377, "output_tokens": 38305, "cache_read": 149823, "fresh_input": 50249, "cost_usd": 1.2818, "turns": 10, "seconds": 423.4}
+{"step": "review:compare.r1", "time": "2026-10-25 14:12:00", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 334540, "output_tokens": 40986, "cache_read": 234504, "fresh_input": 59050, "cost_usd": 1.4704376000000001, "turns": 15, "seconds": 436.8}

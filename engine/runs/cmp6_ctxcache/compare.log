@@ -1,2 +1,21 @@
 /home/user/SomeRepository/engine/runs/cmp6_ctxcache/compare/r2/TASK.md
 /home/user/SomeRepository/engine/runs/cmp6_ctxcache/compare/r1/TASK.md
+  compare r2: 279,406 tokens, $0.90
+  compare r1: 177,385 tokens, $0.88
+| rank | idea | arm | mean F/M/m | per review | ratio | known |
+|---|---|---|---|---|---|---|
+| 1 | Segment cache with boundary recompute | PLAIN | 0.0/2.5/1.5 | 0/2/2, 0/3/1 | 1.6 | yes/yes |
+| 2 | Popularity order with second-sighting cache writes | V6 | 0.0/1.5/2.0 | 0/2/2, 0/1/2 | 1.18 | partly/partly |
+| 3 | Hole-punch deletes via block-table edits | PLAIN | 0.0/2.5/1.5 | 0/3/1, 0/2/2 | 1.25 | partly/partly |
+| 4 | Cost-optimal patch folding | V5 | 0.0/2.0/2.0 | 0/2/2, 0/2/2 | 1.08 | partly/yes |
+| 5 | Storage-priced retention, not token-priced hits | PLAIN | 0.0/3.0/2.0 | 0/4/2, 0/2/2 | 1.08 | yes/yes |
+| 6 | Append-only errata with ski-rental compaction | PLAIN | 0.0/3.5/1.5 | 0/3/2, 0/4/1 | 1.05 | yes/yes |
+| 7 | Popularity-first exact-prefix document ordering | V6 | 0.0/3.5/1.5 | 0/4/1, 0/3/2 | 1.1 | partly/partly |
+| 8 | Floating depth-1 override ledger | V5 | 0.0/1.5/1.5 | 0/1/2, 0/2/1 | 1.0 | yes/yes |
+| 9 | Context-length-gated turn collapsing | V5 | 0.5/3.0/1.0 | 1/3/0, 0/3/2 | 1.1 | yes/partly |
+
+| arm | n | best rank | mean FATAL | mean MAJOR | mean ratio | known yes share |
+|---|---|---|---|---|---|---|
+| PLAIN | 4 | 1 | 0.00 | 2.88 | 1.24 | 6/8 |
+| V6 | 2 | 2 | 0.00 | 2.50 | 1.14 | 0/4 |
+| V5 | 3 | 4 | 0.17 | 2.17 | 1.06 | 4/6 |
