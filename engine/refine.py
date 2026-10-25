@@ -125,6 +125,16 @@ ANSWER B:
 WEIGHT = {"slightly": 1, "clearly": 2, "far": 3}
 
 
+def full_answer(text, wd, prev_words):
+    """The final reply is sometimes a short note written after a background job, with the answer saved in a file
+    (refine_ctxcache v8: 42 words, answer in round8/answer.md). Then the largest .md written in the round folder is the answer."""
+    if len(text.split()) >= 0.3 * prev_words: return text
+    mds = sorted((os.path.getsize(os.path.join(wd, f)), f) for f in os.listdir(wd) if f.endswith(".md"))
+    if mds and len(open(os.path.join(wd, mds[-1][1])).read().split()) >= 0.3 * prev_words:
+        print(f"  short reply ({len(text.split())} words); using {mds[-1][1]} from the round folder"); return open(os.path.join(wd, mds[-1][1])).read()
+    sys.exit(f"round reply is {len(text.split())} words against {prev_words} before, and no saved answer was found in {wd}")
+
+
 def main():
     p = argparse.ArgumentParser(); p.add_argument("run"); p.add_argument("--question-from", required=True)
     p.add_argument("--start", required=True); p.add_argument("--rounds", type=int, default=4)
@@ -153,9 +163,11 @@ def main():
             s = DEBATE.replace("{QUESTION}", q).replace("{NOTES}", notes).replace("{FILES}", prev + "/").replace("{WORKDIR}", wd + "/")
             s = s.replace("{ANSWER}", open(v(k - 1)).read()).replace("{CHECK}", open(cf).read())
             text, u = runner.call(s, model=a.model, tools="research", cwd=wd); runner.log(D, f"improve:v{k}", u)
+            text = full_answer(text, wd, len(open(v(k - 1)).read().split()))
             open(v(k), "w").write(text); print(f"  v{k}: {len(text.split())} words, ${u['cost_usd']:.2f}"); continue
         s = (HONEST if a.prompt == "honest" else IMPROVE).replace("{QUESTION}", q).replace("{NOTES}", notes).replace("{WORKDIR}", wd + "/").replace("{ANSWER}", open(v(k - 1)).read())
         text, u = runner.call(s, model=a.model, tools="research", cwd=wd); runner.log(D, f"improve:v{k}", u)
+        text = full_answer(text, wd, len(open(v(k - 1)).read().split()))
         open(v(k), "w").write(text); print(f"  v{k}: {len(text.split())} words, ${u['cost_usd']:.2f}")
     pairs = [(0, k) for k in range(1, a.rounds + 1)] + [(k - 1, k) for k in range(2, a.rounds + 1)]
     pairs += [(4, k) for k in range(6, a.rounds + 1) if a.rounds > 5]  # the honest-gain rounds against where they started

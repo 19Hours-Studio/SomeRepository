@@ -1,0 +1,28 @@
+== 128K   Rubin best:   44.9   40.5   33.4   28.0   17.5   max  4949
+  C7 averaged-layer model (as answer)    52.4   52.4   52.4   47.6   43.2   max  5469   ratio   1.17   1.29   1.57   1.70   2.47
+  per-layer-type stages, uniform tool    46.8   46.8   46.8   46.8   42.3   ratio  1.04  1.15  1.40  1.67  2.42
+      >=200: 0.55V wt k2 m2 b308 gC8 gH6 gM4 pk431 1,580 tok/s/user
+      >=1000: 0.55V wt k2 m2 b308 gC8 gH6 gM4 pk431 1,580 tok/s/user
+      >=2000: 0.55V k2 m3 b153 gC8 gH6 gM6 pk433 2,120 tok/s/user
+    + HCA KV in idle W-tier SRAM         46.8   46.8   46.8   46.8   42.3   ratio  1.04  1.15  1.40  1.67  2.42
+      >=200: 0.55V wt k2 m2 b308 gC8 gH6 gM4 pk431 1,580 tok/s/user
+      >=1000: 0.55V wt k2 m2 b308 gC8 gH6 gM4 pk431 1,580 tok/s/user
+      >=2000: 0.55V k2 m3 b153 gC8 gH6 gM6 pk433 2,120 tok/s/user
+    + HCA packages built without HBM     49.9   49.9   49.9   49.9   44.8   ratio  1.11  1.23  1.49  1.78  2.56
+      >=200: 0.55V wt k2 m2 b308 gC8 gH6 gM4 pk431 1,580 tok/s/user
+      >=1000: 0.55V wt k2 m2 b308 gC8 gH6 gM4 pk431 1,580 tok/s/user
+      >=2000: 0.55V k2 m3 b153 gC8 gH6 gM6 pk433 2,120 tok/s/user
+== 1024K   Rubin best:   12.2   12.2   10.2    7.3    3.8   max  4933
+  C7 averaged-layer model (as answer)    14.7   14.7   14.7   14.7   13.8   max  5469   ratio   1.21   1.21   1.44   2.00   3.68
+  per-layer-type stages, uniform tool    12.2   12.2   12.2   12.2   12.2   ratio  1.01  1.01  1.20  1.67  3.26
+      >=200: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user
+      >=1000: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user
+      >=2000: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user
+    + HCA KV in idle W-tier SRAM         12.2   12.2   12.2   12.2   12.2   ratio  1.01  1.01  1.20  1.67  3.26
+      >=200: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user
+      >=1000: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user
+      >=2000: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user
+    + HCA packages built without HBM     13.1   13.1   13.1   13.1   13.1   ratio  1.08  1.08  1.29  1.79  3.50
+      >=200: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user
+      >=1000: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user
+      >=2000: 0.55V wt k5 m2 b66 gC8 gH7 gM4 pk462 2,068 tok/s/user

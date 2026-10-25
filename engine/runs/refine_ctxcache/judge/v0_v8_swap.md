@@ -1,20 +1,22 @@
-Answer A is a stray status message about a progress timer and shards. It refers to an "answer above" and a file (`round8/answer.md`) that the asker does not have. It contains no approach, no coverage analysis, no cost estimate and no quality discussion, so the asker gets nothing they can act on.
+Answer A is clearly better, mainly because it gives the asker more to act on.
 
-Answer B covers what the question asks for:
-- **Ideas:** four concrete ideas, each tied to where it can run.
-  - Client-only append-only errata with ski-rental compaction.
-  - Serving-stack hole-punch deletes.
-  - Segment caching with boundary recompute, in the CacheBlend/EPIC style.
-  - Storage-priced retention tiers.
-- **Coverage:** each idea states which change cases it handles.
-- **Cost:** each gives quantitative hit-rate and cost estimates, with worked break-even arithmetic.
-- **Quality:** each separates exact results from approximate ones and proposes tests.
-- **Prior art:** each cites prior art and says what it adds.
-- **Limits:** it states which cases cannot reach about 100% without quality loss.
-- **Caveats:** it is open that the replay is synthetic and that some figures are unverified or assumed.
+**Evidence base.** A replays 42 real SWE-agent sessions. On that traffic it finds plain prefix caching already hits about 97%, so the real lever is the cost of re-reading cached context, not the hit rate. That changes what the asker should do. B's only numbers come from a synthetic 50-turn replay plus back-of-envelope GPU and storage costs. B's main 40% saving rests on an assumed change pattern: an earlier tool output changing every 5 turns.
 
-Some claims need checking, such as the exact numbers and a few citations. Even so, it is a substantive, usable answer.
+**Coverage.** Both answers cover errata and append-only layout, delete/splice of the KV cache, segment caching with recompute repair, and storage-priced retention. A adds three further levers, each with a stated cost multiplier, a quality test and a deployment location:
+- line-run "references" that replace repeated content, exact and client-only (0.881×);
+- sparse attention over the cached KV, broken down by context length;
+- batching of read-only tool calls.
 
-WINNER: B
-MARGIN: far
-WHY: Answer A is an irrelevant status note with no content addressing the question. Answer B gives several concrete, costed approaches, each with where it runs, which cases it covers, quality trade-offs, prior art, and honest limits. Only B gives the asker anything to act on.
+A also compares itself with strong baselines. It uses the official suffix-decoding code at its best tuned setting, cascade attention, and a swept version of the provider's context-editing tool. It withdraws its own earlier claim when the fair baseline beats it.
+
+**Honesty about limits.** Both state limits. A's are more specific:
+- exact gains top out around 0.87–0.92× of the bill;
+- larger gains are approximate or drop content;
+- the large runner gains appear only at long context;
+- API bills below 0.466× are impossible without dropping the current turn or cutting output.
+
+**Where B does better.** B is much easier to read. A is dense and carries leftover "previous round" and corrections material that will confuse someone seeing it fresh. That costs A some usability but not its lead in substance.
+
+WINNER: A
+MARGIN: clearly
+WHY: A grounds its recommendations in replays of real agent traces against strong, tuned baselines. It shows that hit rate is already about 97%, so the savings come from cheaper cached reads, and it gives measured exact and approximate options with concrete quality tests. B covers similar ideas clearly but relies on a synthetic replay and rough estimates, and offers fewer levers. A's density and leftover revision notes hurt readability but not substance.

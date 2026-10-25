@@ -1,0 +1,5 @@
+128K C7 / Ultra(vendor 600 kW @100 PF + undervolt law):   0.75   0.75   0.83   0.83   0.87   Ultra picks ['0.55V', '0.55V', '0.55V', '0.55V', '0.55V']
+1024K C7 / Ultra(vendor 600 kW @100 PF + undervolt law):   0.66   0.66   0.80   0.91   0.98   Ultra picks ['0.55V', '0.55V', '0.55V', '0.55V', '0.55V']
+C6 (MaxQ, round 6): 409k packages/GW, 0.82M C-dies, 18k C-die wafers, 36k SoIC bonding passes (2 tiers per C-die) = 2.4-3.6 months of 10-15k wpm; 1.23M HBM stacks/GW; 6.1M cm2 leading-edge logic/GW
+C7T (0.55 V): 393k packages/GW, 1.57M C-dies, 34k C-die wafers, 68k SoIC bonding passes (2 tiers per C-die) = 4.6-6.8 months of 10-15k wpm; 1.57M HBM stacks/GW; 11.8M cm2 leading-edge logic/GW
+Rubin (0.60 V slot 1981 W): 505k GPUs/GW, 4.04M HBM stacks/GW, 8.3M cm2 N3P logic/GW

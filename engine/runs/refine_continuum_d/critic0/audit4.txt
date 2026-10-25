@@ -1,0 +1,10 @@
+== 128K central C7:  51.9  51.9  51.9  51.2  46.1
+   vs Ultra bottom-up        1.02  1.02  1.13  1.23  1.27
+   vs Rubin trimmed   0 W    1.16  1.28  1.55  1.83  2.63
+   vs Rubin trimmed 150 W    1.06  1.17  1.42  1.67  2.40
+   vs Rubin trimmed 250 W    0.99  1.10  1.33  1.56  2.25
+== 1024K central C7:  13.5  13.5  13.5  13.5  13.5
+   vs Ultra bottom-up        0.83  0.83  1.00  1.14  1.30
+   vs Rubin trimmed   0 W    1.11  1.11  1.32  1.84  3.59
+   vs Rubin trimmed 150 W    1.01  1.01  1.21  1.70  3.27
+   vs Rubin trimmed 250 W    0.95  0.95  1.13  1.61  3.06

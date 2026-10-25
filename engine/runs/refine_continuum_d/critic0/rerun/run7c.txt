@@ -1,0 +1,28 @@
+== 128K operating points
+ C7 >=200: 47.1 tok/s/W 0.55V wt g6 k=1 b=407 m=2 pkgs=373 1,158 tok/s/user users 50,468 | us/microbatch: sram 8.6 kv 11.3 comp 12.5 link 5.4 c 12.5 T 25.1
+ Rubin >=200: 44.9 0.60V k=1 B=23324 (t,m)=(1, 2) 323 tok/s/user | mem 41.2 comp 45.0 T 90.0
+ C7 >=500: 47.1 tok/s/W 0.55V wt g6 k=1 b=407 m=2 pkgs=373 1,158 tok/s/user users 50,468 | us/microbatch: sram 8.6 kv 11.3 comp 12.5 link 5.4 c 12.5 T 25.1
+ Rubin >=500: 40.5 0.60V k=2 B=13336 (t,m)=(1, 2) 510 tok/s/user | mem 35.9 comp 38.6 T 77.2
+ C7 >=1000: 47.1 tok/s/W 0.55V wt g6 k=1 b=407 m=2 pkgs=373 1,158 tok/s/user users 50,468 | us/microbatch: sram 8.6 kv 11.3 comp 12.5 link 5.4 c 12.5 T 25.1
+ Rubin >=1000: 33.4 0.60V k=4 B=5014 (t,m)=(2, 2) 1,119 tok/s/user | mem 24.2 comp 24.2 T 48.5
+ C7 >=1500: 43.2 tok/s/W 0.55V g6 k=1 b=203 m=3 pkgs=373 1,548 tok/s/user users 37,758 | us/microbatch: sram 5.5 kv 5.6 comp 6.2 link 2.7 c 6.2 T 18.7
+ Rubin >=1500: 28.0 0.55V k=6 B=2492 (t,m)=(4, 2) 1,630 tok/s/user | mem 19.2 comp 19.5 T 39.1
+ C7 >=2000: 39.8 tok/s/W 0.60V g6 k=2 b=153 m=3 pkgs=373 2,157 tok/s/user users 28,458 | us/microbatch: sram 5.5 kv 4.3 comp 6.1 link 3.0 c 6.1 T 18.2
+ Rubin >=2000: 17.5 0.55V k=6 B=1246 (t,m)=(4, 1) 2,038 tok/s/user | mem 19.2 comp 19.5 T 31.3
+ Vmin floor 0.60 V for all:  C7/Rubin   0.99   1.09   1.32   1.54   2.27
+ vendor Max-P/Max-Q only for all: C7/Rubin   1.01   1.05   1.24   1.62   2.41
+== 1024K operating points
+ C7 >=200: 13.2 tok/s/W 0.55V wt g6 k=3 b=66 m=2 pkgs=373 1,997 tok/s/user users 8,184 | us/microbatch: sram 8.5 kv 11.9 comp 11.5 link 1.8 c 11.9 T 23.8
+ Rubin >=200: 12.2 0.55V k=3 B=2866 (t,m)=(1, 2) 615 tok/s/user | mem 38.7 comp 36.5 T 77.4
+ C7 >=500: 13.2 tok/s/W 0.55V wt g6 k=3 b=66 m=2 pkgs=373 1,997 tok/s/user users 8,184 | us/microbatch: sram 8.5 kv 11.9 comp 11.5 link 1.8 c 11.9 T 23.8
+ Rubin >=500: 12.2 0.55V k=3 B=2866 (t,m)=(1, 2) 615 tok/s/user | mem 38.7 comp 36.5 T 77.4
+ C7 >=1000: 13.2 tok/s/W 0.55V wt g6 k=3 b=66 m=2 pkgs=373 1,997 tok/s/user users 8,184 | us/microbatch: sram 8.5 kv 11.9 comp 11.5 link 1.8 c 11.9 T 23.8
+ Rubin >=1000: 10.2 0.55V k=5 B=1426 (t,m)=(2, 2) 1,036 tok/s/user | mem 28.7 comp 27.2 T 57.4
+ C7 >=1500: 13.2 tok/s/W 0.55V wt g6 k=3 b=66 m=2 pkgs=373 1,997 tok/s/user users 8,184 | us/microbatch: sram 8.5 kv 11.9 comp 11.5 link 1.8 c 11.9 T 23.8
+ Rubin >=1500: 7.3 0.60V k=6 B=819 (t,m)=(2, 1) 1,501 tok/s/user | mem 30.2 comp 31.4 T 42.5
+ C7 >=2000: 12.4 tok/s/W 0.55V wt g6 k=3 b=58 m=2 pkgs=373 2,145 tok/s/user users 7,192 | us/microbatch: sram 8.4 kv 10.5 comp 10.1 link 1.5 c 10.5 T 22.2
+ Rubin >=2000: 3.8 0.55V k=7 B=268 (t,m)=(4, 1) 2,032 tok/s/user | mem 21.3 comp 13.6 T 33.0
+ Vmin floor 0.60 V for all:  C7/Rubin   1.04   1.04   1.30   1.67   3.32
+ vendor Max-P/Max-Q only for all: C7/Rubin   1.01   1.01   1.16   1.56   3.61
+C7 at 0.75 V: compute 2640, leakage 500, wtier 614, hbm 320, links 288 -> package 4362 W; +14.6% conv/cool 637; host/NIC/switch 230 -> slot 5229 W; dense FP4 64.0 PF
+C7 at 0.55 V: compute 902, leakage 367, wtier 390, hbm 320, links 288 -> package 2266 W; +14.6% conv/cool 331; host/NIC/switch 230 -> slot 2827 W; dense FP4 40.6 PF

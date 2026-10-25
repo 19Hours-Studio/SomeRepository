@@ -31,3 +31,82 @@ spent $6.09
   v6: 3304 words, $1.86
   v7: 3430 words, $1.89
   v8: 42 words, $3.44
+# refine_ctxcache: stepwise improvement of a plain answer, judged afterwards
+
+| version | round prompt | words | cost | honest gain (judge, after its own check) |
+|---|---|---|---|---|
+| v0 | - | 1317 | plain answer | none |
+| v1 | improve | 2156 | $0.85 | none |
+| v2 | improve | 2539 | $1.16 | ~1.25x lower input cost vs batched tool-result clearing on small resampled SWE-agent traces, only with an unvalidated approximate server-side KV splice billed as cached reads; ~none for exact client-only methods beyond existing append-only/volatile-tail practice |
+| v3 | improve | 3250 | $1.21 | ~1.2x lower input cost per token (95.3%→98.0% token hit rate, exact, client-side, synthetic agent model only); no supported gain for real middle edits |
+| v4 | improve | 3754 | $0.84 | ~1.15–1.2x lower total/input bill in simulation (tuned clearing vs. default trigger; diff-only tail; server splice), quality untested — none vs. prior art for the headline 0.43×, 5.8× and 98% figures |
+| v5 | honest | 3794 | $2.04 | ~1.1x lower total API bill (0.90× vs append-only, exact KV, quality untested, offline replay on 42 SWE-agent traces); no hit-rate gain, and ≈none over well-configured batched context editing |
+| v6 | honest | 3304 | $1.86 | none |
+| v7 | honest | 3430 | $1.89 | ~0.89× of the API bill (≈11% lower) vs Claude Code-style re-read dedup, information-exact, measured on 42 replayed SWE-agent traces; output quality untested |
+| v8 | honest | 42 | $3.44 | none |
+
+| comparison | newer version won (both orders) | margins | score (+ newer, - older) |
+|---|---|---|---|
+| v1 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v5 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v6 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v7 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v8 vs v0 | 0 of 2 | far, far | -6 |
+| v2 vs v1 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v2 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v3 | 2 of 2 | clearly, clearly | +4 |
+| v5 vs v4 | 2 of 2 | clearly, clearly | +4 |
+| v6 vs v5 | 2 of 2 | clearly, clearly | +4 |
+| v7 vs v6 | 2 of 2 | clearly, clearly | +4 |
+| v8 vs v7 | 0 of 2 | far, far | -6 |
+| v6 vs v4 | 2 of 2 | slightly, clearly | +3 |
+| v7 vs v4 | 2 of 2 | clearly, clearly | +4 |
+| v8 vs v4 | 0 of 2 | far, far | -6 |
+spent $21.28
+=== rejudge Sun Oct 25 18:28:25 UTC 2026
+  skip v1 (done)
+  skip v2 (done)
+  skip v3 (done)
+  skip v4 (done)
+  skip v5 (done)
+  skip v6 (done)
+  skip v7 (done)
+  skip v8 (done)
+# refine_ctxcache: stepwise improvement of a plain answer, judged afterwards
+
+| version | round prompt | words | cost | honest gain (judge, after its own check) |
+|---|---|---|---|---|
+| v0 | - | 1317 | plain answer | none |
+| v1 | improve | 2156 | $0.85 | none |
+| v2 | improve | 2539 | $1.16 | ~1.25x lower input cost vs batched tool-result clearing on small resampled SWE-agent traces, only with an unvalidated approximate server-side KV splice billed as cached reads; ~none for exact client-only methods beyond existing append-only/volatile-tail practice |
+| v3 | improve | 3250 | $1.21 | ~1.2x lower input cost per token (95.3%→98.0% token hit rate, exact, client-side, synthetic agent model only); no supported gain for real middle edits |
+| v4 | improve | 3754 | $0.84 | ~1.15–1.2x lower total/input bill in simulation (tuned clearing vs. default trigger; diff-only tail; server splice), quality untested — none vs. prior art for the headline 0.43×, 5.8× and 98% figures |
+| v5 | honest | 3794 | $2.04 | ~1.1x lower total API bill (0.90× vs append-only, exact KV, quality untested, offline replay on 42 SWE-agent traces); no hit-rate gain, and ≈none over well-configured batched context editing |
+| v6 | honest | 3304 | $1.86 | none |
+| v7 | honest | 3430 | $1.89 | ~0.89× of the API bill (≈11% lower) vs Claude Code-style re-read dedup, information-exact, measured on 42 replayed SWE-agent traces; output quality untested |
+| v8 | honest | 3562 | $3.44 | ~1.13x lower API bill (0.887x of the bill vs Claude Code-style whole-file dedup; 0.881x vs plain prefix caching) for agent traffic, from exact line-run references, cost-replay only with output quality untested |
+
+| comparison | newer version won (both orders) | margins | score (+ newer, - older) |
+|---|---|---|---|
+| v1 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v5 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v6 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v7 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v8 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v1 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v2 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v3 | 2 of 2 | clearly, clearly | +4 |
+| v5 vs v4 | 2 of 2 | clearly, clearly | +4 |
+| v6 vs v5 | 2 of 2 | clearly, clearly | +4 |
+| v7 vs v6 | 2 of 2 | clearly, clearly | +4 |
+| v8 vs v7 | 2 of 2 | clearly, clearly | +4 |
+| v6 vs v4 | 2 of 2 | slightly, clearly | +3 |
+| v7 vs v4 | 2 of 2 | clearly, clearly | +4 |
+| v8 vs v4 | 2 of 2 | slightly, slightly | +2 |
+spent $22.53
