@@ -34,3 +34,12 @@ repair: 2 ideas (1464 words)
 /home/user/SomeRepository/engine/runs/rusres2__p2/audit_final/TASK.md
   audit_final: 246,031 tokens, 466.4 s
   audit_final: 5 new facts -> evidence.md
+  calibrate: 10,600 tokens, 20.9 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#2       F0/M7/m2 fit 0.00 ratio 1.0 known yes p 20%  Size Sever to hulls
+  2. repair#1       F0/M7/m1 fit 0.00 ratio 1.0 known yes p 12%  Legality-split hull-day swing
+  none of these: p 68%
+  weakest link: Idea 1's $57/t south vs $86/t north delivered costs are both assumed. The review puts the gap at $0–35/t, so its sign is uncertain. Once the sunk line and terminal charge is loaded onto Payakha-only flow, any gain from the north–south split is likely swamped.
+  flip test: Compare sourced full delivered cost to a lawful Asian buyer for (a) Vankor–Purpe–Transneft–Kozmino and (b) Sever–Arc6–Murmansk–onward, both including sanctions-era freight and buyer discount. Also check the minimum stable flow of the Payakha–Vankor segment. | If (b) ≤ (a), or the segment cannot run below about 5 Mt/y without wax or cooling problems, the "Vankor oil north, Payakha deferred" allocation beats Idea 1. "None" then rises above 80% and Idea 1 falls below 10%.
+spent 1,708,343 tokens, $6.77

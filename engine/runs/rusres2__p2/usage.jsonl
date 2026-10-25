@@ -11,3 +11,4 @@
 {"step": "research:known", "time": "2026-10-25 11:08:32", "model": "sonnet", "tools": "WebSearch", "tokens": 42582, "output_tokens": 2569, "cache_read": 24537, "fresh_input": 15476, "cost_usd": 0.1617686, "turns": 7, "seconds": 36.9}
 {"step": "repair:repair", "time": "2026-10-25 11:17:48", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 803459, "output_tokens": 51862, "cache_read": 659427, "fresh_input": 92170, "cost_usd": 1.9666134999999996, "turns": 13, "seconds": 556.1}
 {"step": "review:audit_final", "time": "2026-10-25 11:25:34", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 246031, "output_tokens": 43749, "cache_read": 145324, "fresh_input": 56958, "cost_usd": 1.4909813, "turns": 14, "seconds": 466.4}
+{"step": "gen:calibrate", "time": "2026-10-25 11:25:55", "model": "opus", "tools": "", "tokens": 10600, "output_tokens": 1311, "cache_read": 1496, "fresh_input": 7793, "cost_usd": 0.0888552, "turns": 1, "seconds": 20.9}

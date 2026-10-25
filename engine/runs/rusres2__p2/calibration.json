@@ -1,0 +1,10 @@
+{
+ "p": {
+  "repair#2": 0.2,
+  "repair#1": 0.12,
+  "none": 0.68
+ },
+ "weakest_link": "Idea 1's $57/t south vs $86/t north delivered costs are both assumed. The review puts the gap at $0–35/t, so its sign is uncertain. Once the sunk line and terminal charge is loaded onto Payakha-only flow, any gain from the north–south split is likely swamped.",
+ "flip_test": "Compare sourced full delivered cost to a lawful Asian buyer for (a) Vankor–Purpe–Transneft–Kozmino and (b) Sever–Arc6–Murmansk–onward, both including sanctions-era freight and buyer discount. Also check the minimum stable flow of the Payakha–Vankor segment. | If (b) ≤ (a), or the segment cannot run below about 5 Mt/y without wax or cooling problems, the \"Vankor oil north, Payakha deferred\" allocation beats Idea 1. \"None\" then rises above 80% and Idea 1 falls below 10%.",
+ "unknown": "Even if Idea 1 is right, it is unknown whether Zvezda can deliver Arc6/Arc7 tankers fast enough, how many days a year an Arc6 can work the Yenisei Gulf in winter, and how long the Payakha pads and the 790-km pipeline last on thawing ice-rich ground. These set real throughput and per-tonne capital charge more than the routing choice does."
+}

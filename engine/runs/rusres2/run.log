@@ -9,3 +9,7 @@ initialized /home/user/SomeRepository/engine/runs/rusres2__p3
    part 3: For the producing Norilsk/Taimyr nickel-copper-PGM complex, which changes to mining or development order, processing of lower-grade and disseminated o
   part rusres2__p3: done (exit 0, $5.29)
   part rusres2__p1: done (exit 0, $5.68)
+  part rusres2__p2: done (exit 0, $6.77)
+imported 1 ideas from rusres2__p1 as arm P1
+imported 1 ideas from rusres2__p2 as arm P2
+imported 1 ideas from rusres2__p3 as arm P3
