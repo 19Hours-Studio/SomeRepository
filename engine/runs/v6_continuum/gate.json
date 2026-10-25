@@ -147,5 +147,47 @@
   "margin_gate": 0.64,
   "unstable": true,
   "verdict_gate": "WOUNDED"
+ },
+ "cross_g1#1": {
+  "killer": "Bandwidth per user while layers are pipelined. Each pipeline stage can only read its own bits, so the 42 TB/s total equals per-user bandwidth only if every chiplet works on every layer. \"Package links\" means at least 2 stages. At the measured 0.064 Gb/mm², 312 Gb needs 4,875 mm², or 1.5 packages of 3,200 mm².",
+  "why": "Stacked eDRAM is cheap, but the 1,000 tok/s/user claim treats total bandwidth as per-user bandwidth, which layer pipelining does not give, so it delivers about 500 tok/s/user unless all chiplets are tensor-parallel on every layer.",
+  "margin": 0.52,
+  "ratio": 5.0,
+  "verdict": "WOUNDED"
+ },
+ "cross_g1#2": {
+  "killer": "DRAM areal density for 80 GB on 2 chiplets × 4 layers. Chiplet area is not stated; I took about 400 mm² from the sibling design.",
+  "why": "It needs the same 0.20 Gb/mm² \"no room left\" density that idea 3 had to drop, which is ~3× the measured hybrid-bonded density. Its current claim is also internally off by 2×: 1 kW at 0.75 V across 2 stacks is ~667 A per stack, not 340 A.",
+  "margin": 0.32,
+  "ratio": 2.2,
+  "verdict": "WOUNDED"
+ },
+ "improve_g1#2": {
+  "killer": "Wide-I/O hybrid-bonded DRAM areal density per layer",
+  "why": "The physics adds up (DRAM power 450 W checks out, and bandwidth per bit is under the measured 135 GB/s/Gb), but the one deciding density has only been shown at 64% of what is needed. Heat from the logic die on DRAM is a second open risk, since imec's 3D layout reached 141.7 °C without mitigations.",
+  "margin": 0.64,
+  "ratio": 1.9,
+  "verdict": "WOUNDED"
+ },
+ "improve_g1#1": {
+  "killer": "Per-user speed when SRAM-resident weights are pipelined layer by layer. Only the dies that hold layer ℓ can compute it, so a token's time per step is L·F/P_total. My script reproduces the idea's own 62.8 GB and 5.0 PF as a known-answer check.",
+  "why": "The density, capacity and compute totals check out, but layer-serial pipelining limits it to about half of the claimed 1,000 tok/s/user. Its $0.068 claim also rests on full pipeline utilisation that 31 users across 80 stages cannot provide, and it leaves out facility and network costs.",
+  "margin": 0.53,
+  "ratio": 4.6,
+  "verdict": "WOUNDED"
+ },
+ "cross_g1#3": {
+  "killer": "how much of each Rubin package's HBM time per decode step goes to reading weights, at ≥300 tok/s/user, with the 545 GB of weights spread across all 72 NVL72 packages. Moving weights into SRAM can only free that share.",
+  "why": "Decode is bound by bandwidth, not capacity, so the extra HBM pool adds no users. Freeing the ~10% weight share is worth at most ~1.1×, and the base-die premium cancels that.",
+  "margin": 0.52,
+  "ratio": 1.03,
+  "verdict": "DEAD"
+ },
+ "improve_g1#3": {
+  "killer": "the same weight-read share of Rubin's HBM time per decode step at 300 tok/s/user. The claimed per-MW gain of 1.41× at 8K needs that share to be 1 − 1/1.41.",
+  "why": "The claimed gain needs about 3× more weight traffic per step than a fully sharded Rubin actually has, so the real net is about 1.0×. The 128K claim also runs the wrong way. The idea only survives if Rubin can't reach 300 tok/s/user at all because of latency overheads, which is a separate claim the idea does not make or test.",
+  "margin": 0.36,
+  "ratio": 1.02,
+  "verdict": "DEAD"
  }
 }

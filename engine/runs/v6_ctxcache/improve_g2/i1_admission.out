@@ -1,0 +1,9 @@
+zipf 1.05 W=1000/5min: old always-write 1.041x | admit 5m 1.163x | admit 1h 1.236x | best 1.236x
+zipf 1.05 W= 100/5min: old always-write 0.953x | admit 5m 1.075x | admit 1h 1.149x | best 1.149x
+zipf 1.05 W=  10/5min: old always-write 0.883x | admit 5m 1.008x | admit 1h 1.060x | best 1.060x
+zipf 1.20 W=1000/5min: old always-write 1.225x | admit 5m 1.340x | admit 1h 1.439x | best 1.439x
+zipf 1.20 W= 100/5min: old always-write 1.095x | admit 5m 1.207x | admit 1h 1.322x | best 1.322x
+zipf 1.20 W=  10/5min: old always-write 0.968x | admit 5m 1.077x | admit 1h 1.189x | best 1.189x
+zipf 1.50 W=1000/5min: old always-write 1.606x | admit 5m 1.688x | admit 1h 1.833x | best 1.833x
+zipf 1.50 W= 100/5min: old always-write 1.402x | admit 5m 1.490x | admit 1h 1.661x | best 1.661x
+zipf 1.50 W=  10/5min: old always-write 1.190x | admit 5m 1.278x | admit 1h 1.464x | best 1.464x

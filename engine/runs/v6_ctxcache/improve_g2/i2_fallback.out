@@ -1,0 +1,12 @@
+zipf 1.05 m=0.10: old 1.52x | new vs APC 1.55x | new vs APC+pop-order 1.33x
+zipf 1.05 m=0.25: old 1.39x | new vs APC 1.46x | new vs APC+pop-order 1.25x
+zipf 1.05 m=0.40: old 1.28x | new vs APC 1.38x | new vs APC+pop-order 1.18x
+   max m for 1.5x vs APC: old 0.12 -> new 0.19
+zipf 1.20 m=0.10: old 1.52x | new vs APC 1.57x | new vs APC+pop-order 1.25x
+zipf 1.20 m=0.25: old 1.39x | new vs APC 1.50x | new vs APC+pop-order 1.19x
+zipf 1.20 m=0.40: old 1.28x | new vs APC 1.43x | new vs APC+pop-order 1.14x
+   max m for 1.5x vs APC: old 0.12 -> new 0.24
+zipf 1.50 m=0.10: old 1.52x | new vs APC 1.59x | new vs APC+pop-order 1.11x
+zipf 1.50 m=0.25: old 1.39x | new vs APC 1.55x | new vs APC+pop-order 1.08x
+zipf 1.50 m=0.40: old 1.28x | new vs APC 1.51x | new vs APC+pop-order 1.06x
+   max m for 1.5x vs APC: old 0.12 -> new 0.46

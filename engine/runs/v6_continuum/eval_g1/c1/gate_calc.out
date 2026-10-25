@@ -1,0 +1,14 @@
+check (idea4 known answer 62.8 GB): 62.8 GB; weights 39.4 kv/user 0.755
+FLOP/token GF 161.47483648 -> 31k tok/s needs PF 5.01 (idea says 5.0)
+IDEA4 per-user upper bound tok/s 526 margin 0.53 aggregate tok/s 16318
+IDEA1 BW/bit need 125.0 avail 135 -> margin 1.08
+IDEA1 need TB/s 1 user 40.13
+IDEA1 single-layer area for 312Gb at 0.064: 4875.0 mm2 vs 3200/pkg -> pkgs 1.52
+IDEA1 per-user BW with 2 pipeline stages 21.0 TB/s margin 0.52
+IDEA2 density need 0.2 Gb/mm2 -> margin vs 0.064: 0.32
+IDEA2 current/stack @0.75V 666.6666666666666 A (idea says 340)
+IDEA3 density need 0.1 -> margin 0.64
+HBM3E 24Gb die <=121mm2 (11x11 pkg) -> >= 0.198 Gb/mm2
+IDEA3 DRAM W 450.56
+BW/kW TB/s: Rubin 9.6 I3 31.4 I2 32.0 raw ratio 3.28 3.35
+IDEA3 at measured density: Gb 409.6 BW TB/s 55.3 BW/kW ratio factor 0.89 -> tok/kW ~ 1.9
