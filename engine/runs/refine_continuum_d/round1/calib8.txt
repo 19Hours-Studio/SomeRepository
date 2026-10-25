@@ -1,0 +1,7 @@
+LMSYS II, EP72-class, NVFP4 MoE    tau  10 us: model   39,069 tok/s/GPU at    45 tok/s/user, B=62040 (t,m)=(1, 2) -> measured/model = 0.34
+LMSYS II, EP72-class, NVFP4 MoE    tau  30 us: model   39,069 tok/s/GPU at    45 tok/s/user, B=62040 (t,m)=(1, 2) -> measured/model = 0.34
+LMSYS II, EP48                     tau  10 us: model   39,069 tok/s/GPU at    70 tok/s/user, B=26822 (t,m)=(1, 2) -> measured/model = 0.34
+LMSYS II, EP48                     tau  30 us: model   39,069 tok/s/GPU at    70 tok/s/user, B=26822 (t,m)=(1, 2) -> measured/model = 0.34
+vLLM 2K/2K, 8 decode GPUs          tau  10 us: model   32,206 tok/s/GPU at    34 tok/s/user, B=7624 (t,m)=(1, 2) -> measured/model = 0.31
+vLLM 2K/2K, 8 decode GPUs          tau  30 us: model   32,206 tok/s/GPU at    34 tok/s/user, B=7624 (t,m)=(1, 2) -> measured/model = 0.31
+LMSYS I, FP8 MoE, EP72             tau  10 us: model   25,997 -> measured/model = 0.29

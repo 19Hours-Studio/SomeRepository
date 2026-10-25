@@ -19,6 +19,7 @@ import model7 as q, model5 as m
 M = m.V4
 STACK_GB, STACK_BW, STACK_W = 48.0, 2.5e12, 80.0
 REP = 0.125
+FILL = 0.9   # usable SRAM fraction
 
 
 def layer_types(ctx, M=M):
@@ -41,7 +42,7 @@ def stage(s, typ, g, h, b, pos, L, users, idx_sram, kv_sram, two_phase=False, im
     """returns (c seconds, ok) for one stage of this type"""
     exp_b = M["n_exp"] * m.b_exp(M) / g
     dense_b = m.b_dense(M)
-    sram_cap = 0.9 * s["sram"] * 1e9
+    sram_cap = FILL * s["sram"] * 1e9
     in_sram = exp_b + dense_b
     hbm_store = 0.0
     kv_rd_sram = kv_rd_hbm = 0.0

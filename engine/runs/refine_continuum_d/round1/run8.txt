@@ -1,0 +1,40 @@
+
+== 128K p=0.8
+                                                       200    500   1000   1500   2000
+Rubin as shipped                                      44.9   40.5   33.4   28.0   17.5
+Rubin host-trimmed 150 W (symmetric rule)             49.0   44.2   36.6   30.7   19.2
+1 per-layer stages, uniform 4-HBM pkgs, imb 1.12      46.9   46.9   46.9   46.9   42.4   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.05   1.16   1.40   1.67   2.42 |  0.96   1.06   1.28   1.53   2.21 |  0.90   0.99   1.20   1.43   2.07
+2 + hot-expert replicas (imb 1.07 if room)            48.8   48.8   48.8   48.4   43.2   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.09   1.20   1.46   1.73   2.46 |  1.00   1.10   1.33   1.58   2.25 |  0.93   1.03   1.25   1.48   2.10
+3 + HCA KV in W-tier, HCA pkgs without HBM            52.0   52.0   52.0   51.3   46.2   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.16   1.28   1.55   1.83   2.64 |  1.06   1.17   1.42   1.67   2.41 |  0.99   1.10   1.33   1.56   2.25
+4 + CSA indexer keys in W-tier                        54.0   54.0   54.0   51.3   46.2   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.20   1.33   1.62   1.83   2.64 |  1.10   1.22   1.48   1.67   2.41 |  1.03   1.14   1.38   1.56   2.25
+5 + CSA HBM stacks 2/3/4 (= Continuum-8)              55.2   55.2   55.2   52.4   48.2   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.23   1.36   1.65   1.87   2.75 |  1.13   1.25   1.51   1.71   2.51 |  1.06   1.17   1.41   1.60   2.35
+   >=200: 0.55V wt k1 m2 b354 CSA(g,h,idx,kv)=(7, 3, True, False) HCA=(5, 0, False, True) MTP=(5, 0, False, True) pkgs 371 stacks 634 users 43,896 1,281 tok/s/user T 22.7 us stage c(us)=10.2/10.9/10.1 avg slot 2332 W
+   >=500: 0.55V wt k1 m2 b354 CSA(g,h,idx,kv)=(7, 3, True, False) HCA=(5, 0, False, True) MTP=(5, 0, False, True) pkgs 371 stacks 634 users 43,896 1,281 tok/s/user T 22.7 us stage c(us)=10.2/10.9/10.1 avg slot 2332 W
+   >=1000: 0.55V wt k1 m2 b354 CSA(g,h,idx,kv)=(7, 3, True, False) HCA=(5, 0, False, True) MTP=(5, 0, False, True) pkgs 371 stacks 634 users 43,896 1,281 tok/s/user T 22.7 us stage c(us)=10.2/10.9/10.1 avg slot 2332 W
+   >=1500: 0.55V wt k2 m2 b203 CSA(g,h,idx,kv)=(5, 3, True, False) HCA=(4, 0, False, True) MTP=(4, 0, False, True) pkgs 279 stacks 454 users 25,172 1,588 tok/s/user T 24.8 us stage c(us)=12.3/12.4/12.3 avg slot 2325 W
+   >=2000: 0.55V wt k3 m2 b176 CSA(g,h,idx,kv)=(6, 2, True, False) HCA=(5, 0, False, True) MTP=(5, 0, False, True) pkgs 341 stacks 364 users 21,824 2,012 tok/s/user T 23.7 us stage c(us)=11.8/10.9/10.1 avg slot 2273 W
+
+== 1024K p=0.8
+                                                       200    500   1000   1500   2000
+Rubin as shipped                                      12.2   12.2   10.2    7.3    3.8
+Rubin host-trimmed 150 W (symmetric rule)             13.3   13.3   11.2    7.9    4.1
+1 per-layer stages, uniform 4-HBM pkgs, imb 1.12      12.3   12.3   12.3   12.3   12.3   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.01   1.01   1.20   1.67   3.27 |  0.92   0.92   1.10   1.55   2.98 |  0.86   0.86   1.03   1.46   2.79
+2 + hot-expert replicas (imb 1.07 if room)            12.6   12.6   12.6   12.6   12.6   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.03   1.03   1.23   1.72   3.35 |  0.94   0.94   1.13   1.59   3.06 |  0.88   0.88   1.05   1.50   2.86
+3 + HCA KV in W-tier, HCA pkgs without HBM            13.5   13.5   13.5   13.5   13.5   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.11   1.11   1.32   1.84   3.59 |  1.01   1.01   1.21   1.70   3.28 |  0.95   0.95   1.13   1.61   3.07
+4 + CSA indexer keys in W-tier                        15.5   15.5   15.5   15.5   15.5   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.27   1.27   1.52   2.11   4.11 |  1.16   1.16   1.38   1.95   3.75 |  1.08   1.08   1.29   1.84   3.51
+5 + CSA HBM stacks 2/3/4 (= Continuum-8)              15.7   15.7   15.7   15.7   15.7   max 5642
+   / Rubin shipped | / trimmed150 | / trimmed250      1.29   1.29   1.54   2.14   4.17 |  1.17   1.17   1.40   1.97   3.80 |  1.10   1.10   1.31   1.87   3.56
+   >=200: 0.55V wt k4 m3 b50 CSA(g,h,idx,kv)=(11, 3, True, False) HCA=(10, 0, False, True) MTP=(10, 0, False, True) pkgs 651 stacks 994 users 9,300 2,985 tok/s/user T 18.2 us stage c(us)=6.0/6.1/5.6 avg slot 2315 W
+   >=500: 0.55V wt k4 m3 b50 CSA(g,h,idx,kv)=(11, 3, True, False) HCA=(10, 0, False, True) MTP=(10, 0, False, True) pkgs 651 stacks 994 users 9,300 2,985 tok/s/user T 18.2 us stage c(us)=6.0/6.1/5.6 avg slot 2315 W
+   >=1000: 0.55V wt k4 m3 b50 CSA(g,h,idx,kv)=(11, 3, True, False) HCA=(10, 0, False, True) MTP=(10, 0, False, True) pkgs 651 stacks 994 users 9,300 2,985 tok/s/user T 18.2 us stage c(us)=6.0/6.1/5.6 avg slot 2315 W
+   >=1500: 0.55V wt k4 m3 b50 CSA(g,h,idx,kv)=(11, 3, True, False) HCA=(10, 0, False, True) MTP=(10, 0, False, True) pkgs 651 stacks 994 users 9,300 2,985 tok/s/user T 18.2 us stage c(us)=6.0/6.1/5.6 avg slot 2315 W
+   >=2000: 0.55V wt k4 m3 b50 CSA(g,h,idx,kv)=(11, 3, True, False) HCA=(10, 0, False, True) MTP=(10, 0, False, True) pkgs 651 stacks 994 users 9,300 2,985 tok/s/user T 18.2 us stage c(us)=6.0/6.1/5.6 avg slot 2315 W
