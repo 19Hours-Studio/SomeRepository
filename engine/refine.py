@@ -5,7 +5,7 @@ afterwards a judge compares versions pairwise, in both orders, and says which is
 Usage: python3 refine.py <run> --question-from <run with config.json> --start <file with v0> [--rounds 4]
 State: engine/runs/<run>/ (v0.md, v1.md, ..., judge/, usage.jsonl, report.md). Resumable: existing versions are kept.
 """
-import argparse, json, os, re, sys
+import argparse, json, os, re, shutil, sys
 from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
@@ -124,6 +124,32 @@ ANSWER B:
 """
 WEIGHT = {"slightly": 1, "clearly": 2, "far": 3}
 
+FREE = """QUESTION:
+{QUESTION}
+
+Two answers to this question are in the current folder: `A.md` and `B.md`. The files behind them (code, data,
+outputs) are in `{AF}` for A and in `{BF}` for B.
+
+Find out which one is really better for the person who asked, and by how much. How you check is up to you: read and run
+their code, write your own calculations, search for prior art and real figures. You may write files in the current
+folder.
+
+End your reply with these lines:
+WINNER: A or B
+MARGIN: slightly | clearly | far
+WHY: <2-4 sentences: what you checked and what decided it>
+"""
+FREE_GAIN = """QUESTION:
+{QUESTION}
+
+The answer to check is `answer.md` in the current folder; the files behind it (code, data, outputs) are in `{AF}`.
+What real gain over the best current practice does it support? How you check is up to you: read and run its code,
+write your own calculations, search for prior art and real figures. You may write files in the current folder.
+
+End your reply with exactly this line:
+HONEST GAIN: <the gain, in the answer's own measure, or "none">
+"""
+
 
 def full_answer(text, wd, prev_words):
     """The final reply is sometimes a short note written after a background job, with the answer saved in a file
@@ -142,6 +168,8 @@ def main():
     p.add_argument("--prompt", choices=["improve", "honest", "debate"], default="improve", help="honest: honesty and a higher real gain at once; "
                    "debate: a critic with the author's files checks each version, the author answers every point and raises the honest gain")
     p.add_argument("--start-files", help="folder with the files behind v0 (code, data), for the critic and the final reader")
+    p.add_argument("--judge", choices=["free", "blind"], default="free", help="free: judges get the files and tools and check as they "
+                   "see fit (freejudge run: same verdicts as blind on 3 pairs, but grounded gains from re-runs, $0.2-0.7 each); blind: two texts, no tools")
     a = p.parse_args()
     D = os.path.join(HERE, "runs", a.run); os.makedirs(D, exist_ok=True)
     cfg = json.load(open(os.path.join(HERE, "runs", a.question_from, "config.json")))
@@ -171,9 +199,15 @@ def main():
         open(v(k), "w").write(text); print(f"  v{k}: {len(text.split())} words, ${u['cost_usd']:.2f}")
     pairs = [(0, k) for k in range(1, a.rounds + 1)] + [(k - 1, k) for k in range(2, a.rounds + 1)]
     pairs += [(4, k) for k in range(6, a.rounds + 1) if a.rounds > 5]  # the honest-gain rounds against where they started
-    jd = os.path.join(D, "judge"); os.makedirs(jd, exist_ok=True)
+    jd = os.path.join(D, "judge" if a.judge == "blind" else "judge_free"); os.makedirs(jd, exist_ok=True)
     def judge(job):  # job = (old, new, swap): the newer version is B unless swapped
         o, n, sw = job; f = os.path.join(jd, f"v{o}_v{n}{'_swap' if sw else ''}.md")
+        if not os.path.exists(f) and a.judge == "free":
+            (A, af), (B, bf) = ((n, files(n)), (o, files(o))) if sw else ((o, files(o)), (n, files(n)))
+            wd = f[:-3]; os.makedirs(wd, exist_ok=True); shutil.copy(v(A), os.path.join(wd, "A.md")); shutil.copy(v(B), os.path.join(wd, "B.md"))
+            s = FREE.replace("{QUESTION}", q).replace("{AF}", os.path.abspath(af) + "/").replace("{BF}", os.path.abspath(bf) + "/")
+            text, u = runner.call(s, model=a.judge_model, tools="Read,Bash,WebSearch", cwd=wd)
+            runner.log(D, f"judge:v{o}_v{n}{'_swap' if sw else ''}", u); open(f, "w").write(text)
         if not os.path.exists(f):
             A, B = (open(v(n)).read(), open(v(o)).read()) if sw else (open(v(o)).read(), open(v(n)).read())
             text, u = runner.call(JUDGE.replace("{QUESTION}", q).replace("{A}", A).replace("{B}", B), model=a.judge_model, tools="none")
@@ -185,6 +219,10 @@ def main():
     with ThreadPoolExecutor(runner.slots()) as ex: res = list(ex.map(judge, [(o, n, sw) for o, n in pairs for sw in (False, True)]))
     def gain(k):  # the honest gain each version supports, read by the judge model after its own check
         f = os.path.join(jd, f"gain_v{k}.md")
+        if not os.path.exists(f) and a.judge == "free":
+            wd = f[:-3]; os.makedirs(wd, exist_ok=True); shutil.copy(v(k), os.path.join(wd, "answer.md"))
+            g = FREE_GAIN.replace("{QUESTION}", q).replace("{AF}", os.path.abspath(files(k)) + "/")
+            text, u = runner.call(g, model=a.judge_model, tools="Read,Bash,WebSearch", cwd=wd); runner.log(D, f"gain:v{k}", u); open(f, "w").write(text)
         if not os.path.exists(f):
             g = GAIN.replace("{QUESTION}", q).replace("{A}", open(v(k)).read())
             if a.prompt == "debate":  # the final reader may open and run the files behind each version too
