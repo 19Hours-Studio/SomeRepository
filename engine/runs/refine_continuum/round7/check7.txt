@@ -1,0 +1,31 @@
+round-6 reproduction C6/Rubin 128K:   1.04   1.08   1.27   1.51   1.90
+ Rubin   37.9   36.5   31.0   23.7   17.0   max  4949
+ C6      39.5   39.5   39.5   35.7   32.4   max  5253
+Rubin    0.75V     f 1.000 slot    3056 W  dense FP4  35.0 PF  11.45 PF/kW  tau 10.0 us
+Rubin    0.65V     f 0.832 slot    2294 W  dense FP4  29.1 PF  12.70 PF/kW  tau 10.6 us
+Rubin    0.60V     f 0.738 slot    1981 W  dense FP4  25.8 PF  13.04 PF/kW  tau 11.1 us
+Rubin    0.55V     f 0.635 slot    1712 W  dense FP4  22.2 PF  12.99 PF/kW  tau 11.7 us
+Rubin    MaxQ      f 0.920 slot    2639 W  dense FP4  32.2 PF  12.20 PF/kW  tau 10.3 us
+C6       0.75V     f 1.000 slot    2781 W  dense FP4  32.0 PF  11.51 PF/kW  tau 10.0 us
+C6       0.75V wt  f 1.000 slot    2781 W  dense FP4  32.0 PF  11.51 PF/kW  tau 10.0 us
+C6       0.65V     f 0.832 slot    2176 W  dense FP4  26.6 PF  12.24 PF/kW  tau 10.6 us
+C6       0.65V wt  f 0.832 slot    2117 W  dense FP4  26.6 PF  12.58 PF/kW  tau 10.6 us
+C6       0.60V     f 0.738 slot    1925 W  dense FP4  23.6 PF  12.26 PF/kW  tau 11.1 us
+C6       0.60V wt  f 0.738 slot    1833 W  dense FP4  23.6 PF  12.88 PF/kW  tau 11.1 us
+C6       0.55V     f 0.635 slot    1709 W  dense FP4  20.3 PF  11.89 PF/kW  tau 11.7 us
+C6       0.55V wt  f 0.635 slot    1580 W  dense FP4  20.3 PF  12.86 PF/kW  tau 11.7 us
+C6       MaxQ      f 0.920 slot    2443 W  dense FP4  29.4 PF  12.05 PF/kW  tau 10.3 us
+C7       0.75V     f 1.000 slot    5229 W  dense FP4  64.0 PF  12.24 PF/kW  tau 10.0 us
+C7       0.75V wt  f 1.000 slot    5229 W  dense FP4  64.0 PF  12.24 PF/kW  tau 10.0 us
+C7       0.65V     f 0.832 slot    4018 W  dense FP4  53.3 PF  13.26 PF/kW  tau 10.6 us
+C7       0.65V wt  f 0.832 slot    3900 W  dense FP4  53.3 PF  13.66 PF/kW  tau 10.6 us
+C7       0.60V     f 0.738 slot    3518 W  dense FP4  47.2 PF  13.43 PF/kW  tau 11.1 us
+C7       0.60V wt  f 0.738 slot    3333 W  dense FP4  47.2 PF  14.17 PF/kW  tau 11.1 us
+C7       0.55V     f 0.635 slot    3084 W  dense FP4  40.6 PF  13.18 PF/kW  tau 11.7 us
+C7       0.55V wt  f 0.635 slot    2827 W  dense FP4  40.6 PF  14.38 PF/kW  tau 11.7 us
+C7       MaxQ      f 0.920 slot    4552 W  dense FP4  58.9 PF  12.94 PF/kW  tau 10.3 us
+Ultra600 0.75V     f 1.000 slot    4167 W  dense FP4  70.0 PF  16.80 PF/kW  tau 10.0 us
+Ultra600 0.65V     f 0.832 slot    2643 W  dense FP4  58.3 PF  22.04 PF/kW  tau 10.6 us
+Ultra600 0.60V     f 0.738 slot    2017 W  dense FP4  51.7 PF  25.60 PF/kW  tau 11.1 us
+Ultra600 0.55V     f 0.635 slot    1479 W  dense FP4  44.5 PF  30.05 PF/kW  tau 11.7 us
+Ultra600 MaxQ      f 0.920 slot    4167 W  dense FP4  64.4 PF  15.46 PF/kW  tau 10.3 us

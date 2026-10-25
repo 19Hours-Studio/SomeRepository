@@ -1,0 +1,78 @@
+C6X slot Max-P 5229 W, Max-Q 4552 W; C6 Max-Q 2442 W
+
+== ctx 128K p=0.8 tau 10: tok/s/W ratio vs best Rubin; per-stack ratio uses each side's chosen slot power
+                                           200    500   1000   1500   2000
+C5 (g=3, no Max-Q)                        0.99   1.03   1.00   1.00   0.94   per-stack vs ref 200:2.8x 500:2.9x 1000:2.8x 1500:2.8x 2000:2.6x
+C6: 3 stacks, Max-Q, g 3/4/6              1.04   1.08   1.27   1.51   1.91   per-stack vs ref 200:2.6x 500:2.7x 1000:3.1x 1500:3.7x 2000:4.7x
+C6-2: 2 x 48 GB                           0.97   1.01   1.19   1.56   1.97   per-stack vs ref 200:3.5x 500:3.6x 1000:4.3x 1500:5.6x 2000:7.1x
+C6-1: 1 x 48 GB                           0.80   0.83   0.97   1.28   1.78   per-stack vs ref 200:5.5x 500:5.7x 1000:6.7x 1500:8.8x 2000:12.3x
+C6 eta 0.5 (tiles at 32 cols)             0.87   0.90   1.06   1.26   1.59   per-stack vs ref 200:2.1x 500:2.2x 1000:2.6x 1500:3.1x 2000:3.9x
+C6 eta 0.45                               0.78   0.81   0.96   1.13   1.43   per-stack vs ref 200:1.9x 500:2.0x 1000:2.4x 1500:2.8x 2000:3.5x
+C6 imbalance 1.25                         0.93   0.97   1.14   1.35   1.71   per-stack vs ref 200:2.3x 500:2.4x 1000:2.8x 1500:3.3x 2000:4.2x
+C6 g=6 tau 15 (6-way collectives)         1.04   1.08   1.19   1.37   1.47   per-stack vs ref 200:2.6x 500:2.7x 1000:2.9x 1500:3.4x 2000:3.6x
+C6 compute 0.050 pJ (=Rubin)              0.92   0.96   1.13   1.34   1.69   per-stack vs ref 200:2.6x 500:2.7x 1000:3.1x 1500:3.7x 2000:4.7x
+C6X: 4 C-dies, 4 stacks                   1.01   1.05   1.24   1.62   2.25   per-stack vs ref 200:3.5x 500:3.6x 1000:4.3x 1500:5.6x 2000:7.8x
+C6X on A16 (-18% compute power)           1.12   1.17   1.38   1.80   2.51   per-stack vs ref 200:3.5x 500:3.6x 1000:4.3x 1500:5.6x 2000:7.8x
+  C6 >=200: 39.5 tok/s/W k=1 b=407 m=2 g=6 pkgs=373 P=2442 839 tok/s/user users 50,468 | us sram 11.0 kv 15.1 comp 17.3 link 10.8 T 34.6
+  Rubin >=200: 37.9 k=2 B=20280 (t,m)=(1, 2) P=2639 418 tok/s/user T 94.1
+  C6 >=1000: 39.5 tok/s/W k=1 b=268 m=2 g=6 pkgs=373 P=2442 1,274 tok/s/user users 33,232 | us sram 11.0 kv 9.9 comp 11.4 link 7.1 T 22.8
+  Rubin >=1000: 31.0 k=4 B=6630 (t,m)=(2, 2) P=2639 1,045 tok/s/user T 51.9
+  C6 >=1500: 35.7 tok/s/W k=2 b=176 m=2 g=6 pkgs=373 P=2442 1,754 tok/s/user users 21,824 | us sram 11.0 kv 6.5 comp 11.2 link 7.0 T 22.4
+  Rubin >=1500: 23.7 k=7 B=3296 (t,m)=(4, 2) P=2639 1,604 tok/s/user T 41.8
+  C6 >=2000: 32.4 tok/s/W k=3 b=133 m=2 g=6 pkgs=373 P=2442 2,106 tok/s/user users 16,492 | us sram 11.0 kv 4.9 comp 11.3 link 7.1 T 22.6
+  Rubin >=2000: 17.0 k=7 B=1895 (t,m)=(2, 1) P=2639 2,006 tok/s/user T 33.5
+
+== ctx 1024K p=0.8 tau 10: tok/s/W ratio vs best Rubin; per-stack ratio uses each side's chosen slot power
+                                           200    500   1000   1500   2000
+C5 (g=3, no Max-Q)                        0.95   0.95   1.08   1.38   2.09   per-stack vs ref 200:2.7x 500:2.7x 1000:3.0x 1500:3.9x 2000:5.9x
+C6: 3 stacks, Max-Q, g 3/4/6              1.13   1.13   1.29   1.74   4.00   per-stack vs ref 200:2.8x 500:2.8x 1000:3.2x 1500:4.3x 2000:9.9x
+C6-2: 2 x 48 GB                           0.97   0.97   1.11   1.50   3.45   per-stack vs ref 200:3.5x 500:3.5x 1000:4.0x 1500:5.4x 2000:12.3x
+C6-1: 1 x 48 GB                           0.57   0.57   0.65   0.88   2.02   per-stack vs ref 200:3.9x 500:3.9x 1000:4.5x 1500:6.1x 2000:13.9x
+C6 eta 0.5 (tiles at 32 cols)             0.94   0.94   1.07   1.45   3.33   per-stack vs ref 200:2.3x 500:2.3x 1000:2.6x 1500:3.6x 2000:8.2x
+C6 eta 0.45                               0.93   0.93   1.06   1.44   3.12   per-stack vs ref 200:2.3x 500:2.3x 1000:2.6x 1500:3.5x 2000:7.7x
+C6 imbalance 1.25                         1.01   1.01   1.15   1.56   3.59   per-stack vs ref 200:2.5x 500:2.5x 1000:2.8x 1500:3.8x 2000:8.8x
+C6 g=6 tau 15 (6-way collectives)         1.13   1.13   1.29   1.68   3.19   per-stack vs ref 200:2.8x 500:2.8x 1000:3.2x 1500:4.1x 2000:7.9x
+C6 compute 0.050 pJ (=Rubin)              1.00   1.00   1.14   1.54   3.55   per-stack vs ref 200:2.8x 500:2.8x 1000:3.2x 1500:4.3x 2000:9.9x
+C6X: 4 C-dies, 4 stacks                   1.01   1.01   1.15   1.55   3.58   per-stack vs ref 200:3.5x 500:3.5x 1000:4.0x 1500:5.4x 2000:12.3x
+C6X on A16 (-18% compute power)           1.12   1.12   1.28   1.73   3.98   per-stack vs ref 200:3.5x 500:3.5x 1000:4.0x 1500:5.4x 2000:12.3x
+  C6 >=200: 11.4 tok/s/W k=3 b=44 m=2 g=6 pkgs=373 P=2442 2,242 tok/s/user users 5,456 | us sram 10.4 kv 10.6 comp 10.6 link 2.3 T 21.2
+  Rubin >=200: 10.1 k=3 B=2883 (t,m)=(1, 1) P=2639 785 tok/s/user T 60.6
+  C6 >=1000: 11.4 tok/s/W k=3 b=44 m=2 g=6 pkgs=373 P=2442 2,242 tok/s/user users 5,456 | us sram 10.4 kv 10.6 comp 10.6 link 2.3 T 21.2
+  Rubin >=1000: 8.9 k=4 B=1895 (t,m)=(1, 1) P=2639 1,046 tok/s/user T 51.9
+  C6 >=1500: 11.4 tok/s/W k=3 b=44 m=2 g=6 pkgs=373 P=2442 2,242 tok/s/user users 5,456 | us sram 10.4 kv 10.6 comp 10.6 link 2.3 T 21.2
+  Rubin >=1500: 6.6 k=7 B=942 (t,m)=(2, 1) P=2639 1,557 tok/s/user T 43.1
+  C6 >=2000: 11.4 tok/s/W k=3 b=44 m=2 g=6 pkgs=373 P=2442 2,242 tok/s/user users 5,456 | us sram 10.4 kv 10.6 comp 10.6 link 2.3 T 21.2
+  Rubin >=2000: 2.9 k=7 B=308 (t,m)=(4, 1) P=2639 2,071 tok/s/user T 32.4
+
+== p=0.6, 6.2T (C6 vs best Rubin)
+                                           200    500   1000   1500   2000
+1.6T 128K p0.8                            1.04   1.08   1.27   1.51   1.91   per-stack vs ref 200:2.6x 500:2.7x 1000:3.1x 1500:3.7x 2000:4.7x
+1.6T 128K p0.6                            1.07   1.34   2.29   6.51  15.01   per-stack vs ref 200:2.6x 500:3.3x 1000:5.6x 1500:16.1x 2000:37.0x
+1.6T 1024K p0.8                           1.13   1.13   1.29   1.74   4.00   per-stack vs ref 200:2.8x 500:2.8x 1000:3.2x 1500:4.3x 2000:9.9x
+1.6T 1024K p0.6                           1.13   1.13   2.58  14.19  18.81   per-stack vs ref 200:2.8x 500:2.8x 1000:6.4x 1500:35.0x 2000:46.4x
+6.2T 128K p0.8                            1.06   1.16   1.24  39.65  14.76   per-stack vs ref 200:2.6x 500:2.9x 1000:3.1x 1500:97.8x 2000:36.4x
+6.2T 128K p0.6                            1.06   1.59  14.70  14.65  16.77   per-stack vs ref 200:2.6x 500:3.9x 1000:36.3x 1500:36.1x 2000:41.4x
+6.2T 1024K p0.8                           1.06   1.06   2.66  19.37  15.79   per-stack vs ref 200:2.6x 500:2.6x 1000:6.6x 1500:47.8x 2000:39.0x
+6.2T 1024K p0.6                           1.23   1.50  17.51  17.12  17.67   per-stack vs ref 200:3.0x 500:3.7x 1000:43.2x 1500:42.2x 2000:43.6x
+
+== Rubin Ultra (provisional) vs C6 and C6X-A16
+-- 128K Ultra slot 4.17 kW (per-stack ratio: Ultra 16 stacks)
+                                           200    500   1000   1500   2000
+C6 / Ultra                                0.68   0.76   0.83   0.83   0.85   per-stack vs ref 200:2.1x 500:2.4x 1000:2.6x 1500:2.6x 2000:2.7x
+C6X / Ultra                               0.66   0.73   0.81   0.89   1.01   per-stack vs ref 200:2.9x 500:3.2x 1000:3.5x 1500:3.9x 2000:4.4x
+C6X-A16 / Ultra                           0.74   0.82   0.90   0.99   1.12   per-stack vs ref 200:2.9x 500:3.2x 1000:3.5x 1500:3.9x 2000:4.4x
+-- 128K Ultra slot 5.69 kW (per-stack ratio: Ultra 16 stacks)
+                                           200    500   1000   1500   2000
+C6 / Ultra                                0.93   1.03   1.14   1.13   1.16   per-stack vs ref 200:2.1x 500:2.4x 1000:2.6x 1500:2.6x 2000:2.7x
+C6X / Ultra                               0.91   1.00   1.10   1.21   1.37   per-stack vs ref 200:2.9x 500:3.2x 1000:3.5x 1500:3.9x 2000:4.4x
+C6X-A16 / Ultra                           1.01   1.12   1.23   1.35   1.53   per-stack vs ref 200:2.9x 500:3.2x 1000:3.5x 1500:3.9x 2000:4.4x
+-- 1024K Ultra slot 4.17 kW (per-stack ratio: Ultra 16 stacks)
+                                           200    500   1000   1500   2000
+C6 / Ultra                                0.72   0.72   0.84   1.04   1.40   per-stack vs ref 200:2.2x 500:2.2x 1000:2.6x 1500:3.3x 2000:4.4x
+C6X / Ultra                               0.64   0.64   0.75   0.93   1.25   per-stack vs ref 200:2.8x 500:2.8x 1000:3.3x 1500:4.1x 2000:5.4x
+C6X-A16 / Ultra                           0.72   0.72   0.83   1.04   1.39   per-stack vs ref 200:2.8x 500:2.8x 1000:3.3x 1500:4.1x 2000:5.4x
+-- 1024K Ultra slot 5.69 kW (per-stack ratio: Ultra 16 stacks)
+                                           200    500   1000   1500   2000
+C6 / Ultra                                0.98   0.98   1.14   1.42   1.91   per-stack vs ref 200:2.2x 500:2.2x 1000:2.6x 1500:3.3x 2000:4.4x
+C6X / Ultra                               0.88   0.88   1.02   1.27   1.70   per-stack vs ref 200:2.8x 500:2.8x 1000:3.3x 1500:4.1x 2000:5.4x
+C6X-A16 / Ultra                           0.98   0.98   1.14   1.42   1.90   per-stack vs ref 200:2.8x 500:2.8x 1000:3.3x 1500:4.1x 2000:5.4x

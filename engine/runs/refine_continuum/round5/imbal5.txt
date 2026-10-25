@@ -1,0 +1,15 @@
+GPU operating points: >=200 B=23.5k*2 pos; >=1000 B=4.4k*5 pos (round-4 op points)
+GPU EP72 sigma=0.0 >=200: no-redundancy 1.158  32 redundant 1.067
+GPU EP72 sigma=0.0 >=1000: no-redundancy 1.175  32 redundant 1.086
+GPU EP72 sigma=0.5 >=200: no-redundancy 1.066  32 redundant 1.057
+GPU EP72 sigma=0.5 >=1000: no-redundancy 1.095  32 redundant 1.071
+GPU EP72 sigma=1.0 >=200: no-redundancy 2.349  32 redundant 1.293
+GPU EP72 sigma=1.0 >=1000: no-redundancy 2.505  32 redundant 1.458
+
+Continuum per-package tiles (b*pos positions per microbatch)
+sigma=0.0 >=200 (539x2): r=4: 1.33  r=16: 1.11  r=64: 1.03  r=16 +25% replicas: 1.10
+sigma=0.0 >=1000 (203x3): r=4: 1.41  r=16: 1.13  r=64: 1.04  r=16 +25% replicas: 1.12
+sigma=0.5 >=200 (539x2): r=4: 1.27  r=16: 1.10  r=64: 1.04  r=16 +25% replicas: 1.08
+sigma=0.5 >=1000 (203x3): r=4: 1.38  r=16: 1.13  r=64: 1.05  r=16 +25% replicas: 1.12
+sigma=1.0 >=200 (539x2): r=4: 2.31  r=16: 1.10  r=64: 1.04  r=16 +25% replicas: 1.09
+sigma=1.0 >=1000 (203x3): r=4: 2.22  r=16: 1.15  r=64: 1.05  r=16 +25% replicas: 1.11

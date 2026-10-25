@@ -1,0 +1,37 @@
+== ctx 128K p=0.8: best Rubin tok/s/W, single NVL72 vs multi-rack EP; Continuum-6 ratio vs best of all
+                                           200    500   1000   1500   2000
+Rubin NVL72 (tau 10)                      37.9   36.5   31.0   23.7   17.0
+Rubin EP over 2 racks, tau 10             14.8   13.1   11.9   11.2   10.0
+Rubin EP over 2 racks, tau 15             14.8   13.1   11.9   10.5    8.7
+Rubin EP over 2 racks, tau 20             14.8   13.1   11.4    9.8    8.4
+Rubin EP over 4 racks, tau 10             10.6    9.4    9.4    8.5    7.8
+Rubin EP over 4 racks, tau 15             10.6    9.4    8.8    8.5    7.7
+Rubin EP over 4 racks, tau 20             10.6    9.4    8.5    7.7    6.6
+Continuum-6 / best of all Rubin configs   1.04   1.08   1.27   1.51   1.91   per-stack vs ref 200:2.6x 500:2.7x 1000:3.1x 1500:3.7x 2000:4.7x
+
+== ctx 1024K p=0.8: best Rubin tok/s/W, single NVL72 vs multi-rack EP; Continuum-6 ratio vs best of all
+                                           200    500   1000   1500   2000
+Rubin NVL72 (tau 10)                      10.1   10.1    8.9    6.6    2.9
+Rubin EP over 2 racks, tau 10              9.8    9.8    8.5    7.4    5.1
+Rubin EP over 2 racks, tau 15              9.8    9.8    8.5    7.4    4.4
+Rubin EP over 2 racks, tau 20              9.8    9.8    8.5    7.4    2.4
+Rubin EP over 4 racks, tau 10              8.0    8.0    7.5    6.4    5.6
+Rubin EP over 4 racks, tau 15              8.0    8.0    7.5    6.4    5.6
+Rubin EP over 4 racks, tau 20              8.0    8.0    7.5    5.9    3.7
+Continuum-6 / best of all Rubin configs   1.13   1.13   1.29   1.53   2.02   per-stack vs ref 200:2.8x 500:2.8x 1000:3.2x 1500:3.8x 2000:5.0x
+
+== All systems with Continuum-6 (128K / 1M, p=0.8, equal tau 10; LPX 8, CS-4 9)
+-- 128K
+                                           200    500   1000   1500   2000
+C6 / MI455X                               1.64   1.81   2.35   2.56   3.37   MI455X max 4795
+C6 / TPU8i                                1.84   2.25   3.04   3.72  10.15   TPU8i max 3748
+C6 / Ironwood                             3.30   4.02   5.47   6.70  44.26   Ironwood max 3491
+C6 / Rubin+LPX                            3.40   3.40   3.54   4.15   4.89   Rubin+LPX max 2700
+C6 / CS-4                                20.31  20.31  20.31  18.35  16.80   CS-4 max 5737
+-- 1024K
+                                           200    500   1000   1500   2000
+C6 / MI455X                               1.46   1.50   2.07   2.73   6.49   MI455X max 4777
+C6 / TPU8i                                1.57   1.95   2.69   7.16  22.14   TPU8i max 3734
+C6 / Ironwood                             2.53   2.96   4.25  11.45  53.25   Ironwood max 3477
+C6 / Rubin+LPX                            5.85   5.85   5.95   7.65   9.39   Rubin+LPX max 2661
+C6 / CS-4                                17.65  17.65  17.65  17.65  17.65   CS-4 max 5611

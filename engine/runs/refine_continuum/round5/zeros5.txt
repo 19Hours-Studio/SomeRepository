@@ -1,0 +1,3 @@
+gaussian    zero codes 0.068 -> weight-only zero-skip speedup <= 1.07x
+laplace     zero codes 0.128 -> weight-only zero-skip speedup <= 1.15x
+student-t3  zero codes 0.121 -> weight-only zero-skip speedup <= 1.14x
