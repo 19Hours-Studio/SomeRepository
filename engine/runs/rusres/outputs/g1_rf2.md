@@ -1,0 +1,17 @@
+Scope is brownfield open pits and towns: Natalka, Olimpiada, Udokan, Elga and Norilsk surface plant. Polyus is the gold operator. Gold has a 5x ceiling and no room for a 3x cut, so I claim single-digit to roughly 20% gains. All figures marked est. are my own estimates.
+
+=== IDEAS ===
+IDEA 1
+NAME: XRT pre-sorting before milling
+MECHANISM: X-ray transmission sorters from Rados (Russia) reject low-grade rock ahead of the Natalka and Olimpiada mills, so the mill and reagents treat only feed with gold in it. One quantity decides it: the share of ore mass rejected compared with the share of gold lost in that reject. If 25% of the mass is rejected and ≤5% of the gold goes with it (est., from tests on core), processing cost per ounce falls about 20%. Processing is 30% of TCC, so TCC falls about 6% (est.) and spare mill capacity can take higher-grade feed. The closest earlier attempt is Natalka's planned 2025 flotation retrofit (F66), which raises recovery but still grinds all the waste. Sorting attacks the ground tonnes directly and is domestic and modular. Benchmark: Polyus group recovery of 81.8% (F67). Not suited to Norilsk disseminated ore or Elga coal. Main risk: free gold too fine for X-ray density contrast. Test: core tests in year 1, a 200 t/h module by years 3–4.
+VALUE: Gold operations get about 5–8% lower total cash cost per ounce delivered, from domestic equipment, within 4 years.
+
+IDEA 2
+NAME: Cold-calendar maintenance shift
+MECHANISM: Planned overhauls and major component changes at the Natalka, Udokan and Elga pits move into January–February at −40 to −50 °C. Fleet failure rates rise up to 6–7x in that period (F111). In the warmer months the whole fleet runs. Arctic-grade oils from Gazpromneft and Lukoil and Teplostar preheaters keep the trucks that do run in the cold working. One quantity decides it: the share of overhaul hours that can be moved compared with the hours lost to cold failures. If the 8% of fleet hours spent on planned overhaul land on cold days (est.), effective tonnes per year rise 3–6% (est.). Fixed cost is spread over more tonnes, so unit cost falls 2–4%. The closest earlier attempts, the Zyfra and BelAZ autonomous haulage pilots (F196), add technology but do not change when failures happen. Benchmarks: Kupol and Diavik. Main risks: workshop space and spares lead times (F63). Test: a 2-year A/B trial on two fleets at one site.
+VALUE: The same open-pit fleets gain more days of operation per year, with almost no capital.
+
+IDEA 3
+NAME: Triaged thermosyphon pile retrofit
+MECHANISM: Borehole temperatures plus InSAR rank plant foundations by remaining pile capacity. Retrofit GET/VET thermosyphons from Fundamentproekt then go only on the Norilsk and Talnakh structures headed toward a loss of more than 40% (F89). One quantity decides it: the air freezing index compared with the heat flowing into the pile. Norilsk's long, deep winter still gives a strong cooling margin. TAPS and Qinghai–Tibet lost cooling where winters were weak (F320–322), so the scheme is limited to the coldest sites and leaves out Salekhard and Nadym. The closest earlier attempt, post-spill monitoring (F18), detected thaw but fixed nothing. Benchmark: Ambarnaya and the 35% deformed-building share (F252). Main risk: non-condensable gas fade, so inspect every 3 years. Test: an instrumented pilot on 20 piles with 3 seasons of monitoring.
+VALUE: Avoids unplanned plant outages and prolongs infrastructure life on thawing ground, at a small share of Norilsk's ~$3bn/yr capex.
