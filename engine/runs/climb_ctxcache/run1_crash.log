@@ -1,0 +1,5 @@
+  check of v0: $0.60; Idea 1 cuts billed input by about 28% against in-place edits (token hit rate 88.7% → 96.3%, not 92.9% → 99.75%), for full-size errata with edits spread across the context every 5 turns. The gain is ab
+  round 1 reframe: 1585 words, $1.41
+  round 1 fresh: 1502 words, $1.30
+  round 1 fix: 1651 words, $1.63
+round reply is 64 words against 1317 before, and no saved answer was found in /home/user/SomeRepository/engine/runs/climb_ctxcache/round1/lever

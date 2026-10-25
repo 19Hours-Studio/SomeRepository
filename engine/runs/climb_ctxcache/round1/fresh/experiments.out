@@ -1,0 +1,102 @@
+
+== W1 synthetic, 50 turns, anthropic  (W=1.25, R=0.1, window n=5) ==
+  in-place edits (prefix caching)                      hit=0.890  cost/session=   751,329  peak ctx= 122,700  vs ref +0.0%  vs errata -37.0%
+  append-only / errata (baseline Idea 1)               hit=0.963  cost/session=   548,410  peak ctx= 143,400  vs ref +27.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.606  cost/session=   757,802  peak ctx=  35,795  vs ref -0.9%  vs errata -38.2%
+  mask, EOQ batch K*=12 (closed form)                  hit=0.899  cost/session=   391,453  peak ctx=  54,355  vs ref +47.9%  vs errata +28.6%
+  mask, online ski-rental trigger                      hit=0.899  cost/session=   391,453  peak ctx=  54,355  vs ref +47.9%  vs errata +28.6%
+  mask, oracle best fixed K=12                         hit=0.899  cost/session=   391,453  peak ctx=  54,355  vs ref +47.9%  vs errata +28.6%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.940  cost/session=   444,296  peak ctx=  99,700  vs ref +40.9%  vs errata +19.0%
+
+== W1 synthetic, 50 turns, openai  (W=1.0, R=0.1, window n=5) ==
+  in-place edits (prefix caching)                      hit=0.890  cost/session=   660,116  peak ctx= 122,700  vs ref +0.0%  vs errata -28.8%
+  append-only / errata (baseline Idea 1)               hit=0.963  cost/session=   512,560  peak ctx= 143,400  vs ref +22.4%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.606  cost/session=   622,828  peak ctx=  35,795  vs ref +5.6%  vs errata -21.5%
+  mask, EOQ batch K*=10 (closed form)                  hit=0.887  cost/session=   356,078  peak ctx=  53,315  vs ref +46.1%  vs errata +30.5%
+  mask, online ski-rental trigger                      hit=0.897  cost/session=   352,007  peak ctx=  55,945  vs ref +46.7%  vs errata +31.3%
+  mask, oracle best fixed K=6                          hit=0.866  cost/session=   344,092  peak ctx=  43,735  vs ref +47.9%  vs errata +32.9%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.940  cost/session=   404,908  peak ctx=  99,700  vs ref +38.7%  vs errata +21.0%
+
+== W1 synthetic, 100 turns, anthropic  (W=1.25, R=0.1, window n=5) ==
+  in-place edits (prefix caching)                      hit=0.894  cost/session= 2,745,236  peak ctx= 237,700  vs ref +0.0%  vs errata -54.2%
+  append-only / errata (baseline Idea 1)               hit=0.981  cost/session= 1,780,610  peak ctx= 281,400  vs ref +35.1%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.686  cost/session= 1,643,087  peak ctx=  51,695  vs ref +40.1%  vs errata +7.7%
+  mask, EOQ batch K*=12 (closed form)                  hit=0.918  cost/session=   876,313  peak ctx=  70,255  vs ref +68.1%  vs errata +50.8%
+  mask, online ski-rental trigger                      hit=0.918  cost/session=   876,313  peak ctx=  70,255  vs ref +68.1%  vs errata +50.8%
+  mask, oracle best fixed K=12                         hit=0.918  cost/session=   876,313  peak ctx=  70,255  vs ref +68.1%  vs errata +50.8%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.948  cost/session=   972,226  peak ctx=  99,735  vs ref +64.6%  vs errata +45.4%
+
+== W1 synthetic, 100 turns, openai  (W=1.0, R=0.1, window n=5) ==
+  in-place edits (prefix caching)                      hit=0.894  cost/session= 2,417,684  peak ctx= 237,700  vs ref +0.0%  vs errata -41.4%
+  append-only / errata (baseline Idea 1)               hit=0.981  cost/session= 1,710,260  peak ctx= 281,400  vs ref +29.3%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.686  cost/session= 1,363,388  peak ctx=  51,695  vs ref +43.6%  vs errata +20.3%
+  mask, EOQ batch K*=10 (closed form)                  hit=0.909  cost/session=   803,348  peak ctx=  69,215  vs ref +66.8%  vs errata +53.0%
+  mask, online ski-rental trigger                      hit=0.917  cost/session=   790,142  peak ctx=  71,845  vs ref +67.3%  vs errata +53.8%
+  mask, oracle best fixed K=6                          hit=0.891  cost/session=   781,402  peak ctx=  59,635  vs ref +67.7%  vs errata +54.3%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.948  cost/session=   893,204  peak ctx=  99,735  vs ref +63.1%  vs errata +47.8%
+
+real trajectories: steps [5, 5, 12, 16, 9, 14, 18, 4, 4, 7, 12, 21, 5, 14, 12, 11, 11, 11, 13] mean obs tok 288 mean asst tok 77 median prompt tok 2145
+
+== W2a real trajectories as recorded, anthropic  (W=1.25, R=0.1, window n=5) ==
+  append-only / errata (baseline Idea 1)               hit=0.868  cost/session=    12,408  peak ctx=  13,748  vs ref +0.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.651  cost/session=    22,384  peak ctx=  13,013  vs ref -80.4%  vs errata -80.4%
+  mask, EOQ batch K*=12 (closed form)                  hit=0.860  cost/session=    12,747  peak ctx=  13,748  vs ref -2.7%  vs errata -2.7%
+  mask, online ski-rental trigger                      hit=0.868  cost/session=    12,408  peak ctx=  13,748  vs ref +0.0%  vs errata +0.0%
+  mask, oracle best fixed K=16                         hit=0.868  cost/session=    12,408  peak ctx=  13,748  vs ref +0.0%  vs errata +0.0%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.868  cost/session=    12,408  peak ctx=  13,748  vs ref +0.0%  vs errata +0.0%
+
+== W2a real trajectories as recorded, openai  (W=1.0, R=0.1, window n=5) ==
+  append-only / errata (baseline Idea 1)               hit=0.868  cost/session=    10,784  peak ctx=  13,748  vs ref +0.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.651  cost/session=    18,488  peak ctx=  13,013  vs ref -71.4%  vs errata -71.4%
+  mask, EOQ batch K*=11 (closed form)                  hit=0.860  cost/session=    11,002  peak ctx=  13,748  vs ref -2.0%  vs errata -2.0%
+  mask, online ski-rental trigger                      hit=0.866  cost/session=    10,762  peak ctx=  13,748  vs ref +0.2%  vs errata +0.2%
+  mask, oracle best fixed K=16                         hit=0.868  cost/session=    10,784  peak ctx=  13,748  vs ref +0.0%  vs errata +0.0%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.868  cost/session=    10,784  peak ctx=  13,748  vs ref +0.0%  vs errata +0.0%
+
+== W2b bootstrapped from real steps, 50 steps, anthropic  (W=1.25, R=0.1, window n=5) ==
+  append-only / errata (baseline Idea 1)               hit=0.964  cost/session=    78,580  peak ctx=  35,534  vs ref +0.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.698  cost/session=   126,215  peak ctx=  17,613  vs ref -60.6%  vs errata -60.6%
+  mask, EOQ batch K*=12 (closed form)                  hit=0.921  cost/session=    66,573  peak ctx=  23,482  vs ref +15.3%  vs errata +15.3%
+  mask, online ski-rental trigger                      hit=0.928  cost/session=    63,270  peak ctx=  22,125  vs ref +19.5%  vs errata +19.5%
+  mask, oracle best fixed K=15                         hit=0.931  cost/session=    66,263  peak ctx=  29,773  vs ref +15.7%  vs errata +15.7%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.964  cost/session=    78,580  peak ctx=  35,534  vs ref +0.0%  vs errata +0.0%
+
+== W2b bootstrapped from real steps, 50 steps, anthropic  (W=1.25, R=0.1, window n=10) ==
+  append-only / errata (baseline Idea 1)               hit=0.964  cost/session=    78,580  peak ctx=  35,534  vs ref +0.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.561  cost/session=   205,960  peak ctx=  23,396  vs ref -162.1%  vs errata -162.1%
+  mask, EOQ batch K*=18 (closed form)                  hit=0.930  cost/session=    77,020  peak ctx=  25,755  vs ref +2.0%  vs errata +2.0%
+  mask, online ski-rental trigger                      hit=0.940  cost/session=    71,772  peak ctx=  34,310  vs ref +8.7%  vs errata +8.7%
+  mask, oracle best fixed K=20                         hit=0.943  cost/session=    73,786  peak ctx=  31,622  vs ref +6.1%  vs errata +6.1%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.964  cost/session=    78,580  peak ctx=  35,534  vs ref +0.0%  vs errata +0.0%
+
+== W2b bootstrapped from real steps, 50 steps, openai  (W=1.0, R=0.1, window n=5) ==
+  append-only / errata (baseline Idea 1)               hit=0.964  cost/session=    73,538  peak ctx=  35,534  vs ref +0.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.698  cost/session=   104,914  peak ctx=  17,613  vs ref -42.7%  vs errata -42.7%
+  mask, EOQ batch K*=11 (closed form)                  hit=0.913  cost/session=    61,124  peak ctx=  25,836  vs ref +16.9%  vs errata +16.9%
+  mask, online ski-rental trigger                      hit=0.925  cost/session=    56,431  peak ctx=  22,412  vs ref +23.3%  vs errata +23.3%
+  mask, oracle best fixed K=9                          hit=0.912  cost/session=    59,432  peak ctx=  23,482  vs ref +19.2%  vs errata +19.2%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.964  cost/session=    73,538  peak ctx=  35,534  vs ref +0.0%  vs errata +0.0%
+
+== W2b bootstrapped from real steps, 100 steps, anthropic  (W=1.25, R=0.1, window n=5) ==
+  append-only / errata (baseline Idea 1)               hit=0.981  cost/session=   249,011  peak ctx=  58,542  vs ref +0.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.773  cost/session=   285,634  peak ctx=  22,291  vs ref -14.7%  vs errata -14.7%
+  mask, EOQ batch K*=12 (closed form)                  hit=0.940  cost/session=   158,078  peak ctx=  30,542  vs ref +36.5%  vs errata +36.5%
+  mask, online ski-rental trigger                      hit=0.946  cost/session=   151,235  peak ctx=  28,334  vs ref +39.3%  vs errata +39.3%
+  mask, oracle best fixed K=12                         hit=0.940  cost/session=   158,078  peak ctx=  30,542  vs ref +36.5%  vs errata +36.5%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.981  cost/session=   249,011  peak ctx=  58,542  vs ref +0.0%  vs errata +0.0%
+
+== W2b bootstrapped from real steps, 100 steps, anthropic  (W=1.25, R=0.1, window n=10) ==
+  append-only / errata (baseline Idea 1)               hit=0.981  cost/session=   249,011  peak ctx=  58,542  vs ref +0.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.633  cost/session=   480,971  peak ctx=  27,142  vs ref -93.2%  vs errata -93.2%
+  mask, EOQ batch K*=17 (closed form)                  hit=0.944  cost/session=   183,340  peak ctx=  30,840  vs ref +26.4%  vs errata +26.4%
+  mask, online ski-rental trigger                      hit=0.952  cost/session=   175,095  peak ctx=  35,350  vs ref +29.7%  vs errata +29.7%
+  mask, oracle best fixed K=18                         hit=0.949  cost/session=   180,104  peak ctx=  32,756  vs ref +27.7%  vs errata +27.7%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.981  cost/session=   249,011  peak ctx=  58,542  vs ref +0.0%  vs errata +0.0%
+
+== W2b bootstrapped from real steps, 100 steps, openai  (W=1.0, R=0.1, window n=5) ==
+  append-only / errata (baseline Idea 1)               hit=0.981  cost/session=   239,320  peak ctx=  58,542  vs ref +0.0%  vs errata +0.0%
+  mask every turn (SWE-agent 0.7, polling=1)           hit=0.773  cost/session=   240,734  peak ctx=  22,291  vs ref -0.6%  vs errata -0.6%
+  mask, EOQ batch K*=11 (closed form)                  hit=0.937  cost/session=   144,050  peak ctx=  26,783  vs ref +39.8%  vs errata +39.8%
+  mask, online ski-rental trigger                      hit=0.944  cost/session=   136,956  peak ctx=  26,803  vs ref +42.8%  vs errata +42.8%
+  mask, oracle best fixed K=10                         hit=0.935  cost/session=   143,856  peak ctx=  28,984  vs ref +39.9%  vs errata +39.9%
+  Anthropic-style clear_tool_uses(100k, keep 3, >=20k) hit=0.981  cost/session=   239,320  peak ctx=  58,542  vs ref +0.0%  vs errata +0.0%

@@ -1,0 +1,15 @@
+== anthropic
+  append             48,574,068  vs sliding -28.4%  vs append +0.0%  token hit=0.971 (token-weighted)  mean prompt=29,912
+  sliding            67,874,201  vs sliding +0.0%  vs append +39.7%  token hit=0.725 (token-weighted)  mean prompt=13,360
+  batch5k            35,924,049  vs sliding -47.1%  vs append -26.0%  token hit=0.918 (token-weighted)  mean prompt=15,156
+  horizon            37,075,054  vs sliding -45.4%  vs append -23.7%  token hit=0.899 (token-weighted)  mean prompt=14,030
+  horizon-oracle     36,700,532  vs sliding -45.9%  vs append -24.4%  token hit=0.909 (token-weighted)  mean prompt=14,667
+  opt                33,347,648  vs sliding -50.9%  vs append -31.3%  
+== openai
+  append             45,961,271  vs sliding -18.9%  vs append +0.0%  token hit=0.971 (token-weighted)  mean prompt=29,912
+  sliding            56,668,397  vs sliding +0.0%  vs append +23.3%  token hit=0.725 (token-weighted)  mean prompt=13,360
+  batch5k            32,141,091  vs sliding -43.3%  vs append -30.1%  token hit=0.918 (token-weighted)  mean prompt=15,156
+  horizon            33,449,951  vs sliding -41.0%  vs append -27.2%  token hit=0.892 (token-weighted)  mean prompt=13,876
+  horizon-oracle     33,251,862  vs sliding -41.3%  vs append -27.7%  token hit=0.900 (token-weighted)  mean prompt=14,347
+  opt                30,051,202  vs sliding -47.0%  vs append -34.6%  
+superset check: 0 violations in 24442 requests (0 = model never sees less than under the sliding window)

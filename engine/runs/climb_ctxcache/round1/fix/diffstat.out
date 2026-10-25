@@ -1,0 +1,5 @@
+tool observations=12217  edit confirmations=1150  re-views of a mostly-seen region=623 (5.1% of observations)
+  identical to what is already in context: 444 (71.3%)
+  diff/full size ratio: median=0.000  p75=0.278  mean=0.177
+  re-view size tokens: median=228  mean=295
+  token-weighted saving if re-views were sent as diffs: 82.3% of re-view tokens

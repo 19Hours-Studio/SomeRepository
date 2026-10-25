@@ -1,0 +1,9 @@
+no edits R=0.10 k=1    input   472,855 (+0.0%)
+no edits R=0.10 k=1.5  input   366,695 (-22.5%)
+no edits R=0.10 k=2    input   301,460 (-36.2%)
+no edits R=0.03 k=1    input   249,219 (-47.3%)
+no edits R=0.03 k=1.5  input   217,371 (-54.0%)
+no edits R=0.03 k=2    input   195,788 (-58.6%)
+calls=20: k=1.5 saves 15.2% of input
+calls=50: k=1.5 saves 22.5% of input
+calls=100: k=1.5 saves 27.3% of input

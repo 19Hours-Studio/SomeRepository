@@ -1,0 +1,13 @@
+D(13)=4.958 EP bytes/hid per pos per pkg x1.07 = 1.212 TP = 2.9230769230769234
+f(0.55)=0.6351 tau=11.72 us
+link CSA us 8.099434158088169
+ HO 4 link us 9.74906881268847
+ HO 8 link us 11.948581685488872
+ HO 16 link us 16.347607431089678
+T us 22.793641586719843 spd 1273.6998585355955 eff 59.73203810924491
+HBM per CSA pkg GB 128.86454335015384 cap(90%) 129.60000000000002 physical 144
+prefill J/tok 0.0125; lost users 6801; re-prefill tokens 8.91e+08; energy 1.11e+07 J = 6.9 s of the 1.60 MW pod
+fails/yr 123, annual loss 0.0027% of capacity (answer: 2.7%, 1.9 h each)
+mirror 10 W/slot cost: 0.44%
+break-even fraction for 1.63x: 1/1.63 = 0.613 -> parity, not 1.63x
+tok/s per CSA pkg 8.66e+06; compressed KV+idx 1.39 GB/s; incl. window entries 6.38 GB/s

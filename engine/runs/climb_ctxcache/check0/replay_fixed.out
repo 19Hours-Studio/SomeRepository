@@ -1,0 +1,14 @@
+seed0 reproduce (bug kept): (0.9285908063300679, 604185.0) (0.9974594213126323, 364600.0)
+fix_new=False pos=uniform e=1000: inplace hit=0.9181 cost=644,349 | erratum hit=0.9975 cost=364,600 | saving=43.4%
+fix_new=False pos=uniform e=2300: inplace hit=0.9181 cost=644,349 | erratum hit=0.9946 cost=407,305 | saving=36.8%
+fix_new=False pos=recent  e=1000: inplace hit=0.9840 cost=392,797 | erratum hit=0.9975 cost=364,600 | saving=7.2%
+fix_new=False pos=recent  e=2300: inplace hit=0.9840 cost=392,797 | erratum hit=0.9946 cost=407,305 | saving=-3.7%
+fix_new=True  pos=uniform e=1000: inplace hit=0.8873 cost=761,649 | erratum hit=0.9628 cost=505,705 | saving=33.6%
+fix_new=True  pos=uniform e=2300: inplace hit=0.8873 cost=761,649 | erratum hit=0.9626 cost=548,410 | saving=28.0%
+fix_new=True  pos=recent  e=1000: inplace hit=0.9533 cost=510,097 | erratum hit=0.9628 cost=505,705 | saving=0.9%
+fix_new=True  pos=recent  e=2300: inplace hit=0.9533 cost=510,097 | erratum hit=0.9626 cost=548,410 | saving=-7.5%
+no-edit floor: (0.9630143180105502, 472855.0)
+edit_every=1: saving=56.6%  ctx growth erratum vs inplace=+115000 tok
+edit_every=2: saving=45.5%  ctx growth erratum vs inplace=+57500 tok
+edit_every=5: saving=28.0%  ctx growth erratum vs inplace=+23000 tok
+edit_every=10: saving=15.0%  ctx growth erratum vs inplace=+11500 tok

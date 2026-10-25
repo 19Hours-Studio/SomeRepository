@@ -1,0 +1,3 @@
+toolagent_trace.jsonl      req= 23608 tok_hit=0.571  input_bill=    120.5M  reads=10% writes=90% | 100%-hit bound: -83% input | output share of (input+output) bill=15%
+conversation_trace.jsonl   req= 12031 tok_hit=0.374  input_bill=    118.8M  reads=5% writes=95% | 100%-hit bound: -88% input | output share of (input+output) bill=15%
+synthetic_trace.jsonl      req=  3993 tok_hit=0.651  input_bill=     30.7M  reads=13% writes=87% | 100%-hit bound: -80% input | output share of (input+output) bill=9%

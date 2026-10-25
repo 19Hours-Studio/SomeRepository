@@ -1,0 +1,10 @@
+policy                                               input   output    in+out  d_input  d_total tok_hit final_ctx
+in-place edits, 1 call/request (current practice)   761,649   75,000   836,649     0.0%     0.0%   0.887   125,000
+errata (diff, 1000 tok)                            505,705   75,000   580,705   -33.6%   -30.6%   0.963   134,000
+errata (full, 2300 tok)                            548,410   75,000   623,410   -28.0%   -25.5%   0.963   145,700
+no edits at all (floor for any hit-rate scheme)    472,855   75,000   547,855   -37.9%   -34.5%   0.963   125,000
+errata + 2 calls/request                           323,310   75,000   398,310   -57.6%   -52.4%   0.926   134,000
+errata + 3 calls/request                           267,750   75,000   342,750   -64.8%   -59.0%   0.891   134,000
+errata + digest 300 tok                            351,660  150,000   501,660   -53.8%   -40.0%   0.967    49,000
+errata + digest 300 + 2 calls/request              277,470  150,000   427,470   -63.6%   -48.9%   0.934    49,000
+errata(full) + digest 300 + 2 calls/request        305,875  150,000   455,875   -59.8%   -45.5%   0.932    60,700

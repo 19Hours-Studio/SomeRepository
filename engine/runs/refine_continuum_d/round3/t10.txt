@@ -1,0 +1,27 @@
+C9 reproduce HO1 64 lanes            59.8   59.8   59.8   55.6   51.2 | /Rubin   1.22   1.35   1.63   1.81   2.67 | /Ultra4   1.11   1.11   1.23   1.27   1.34
+     >=1000 0.55V wt k1 m2 b713 A=('S', 13, 3, True, False) B=('S', 10, 0, False, True) MTP=('S', 9, 0, False, True) pkgs 710 stacks 1174 users 88,412 1,274 tok/s/user T 22.8 us c(us)=11.1/11.0/10.5 avg slot 2257 W
+     >=2000 0.55V wt k3 m2 b407 A=('S', 14, 2, True, False) B=('S', 11, 0, False, True) MTP=('S', 10, 0, False, True) pkgs 772 stacks 844 users 50,468 2,031 tok/s/user T 23.4 us c(us)=11.7/11.4/11.1 avg slot 2205 W
+critic HO8 64 lanes                  53.3   53.3   53.3   49.2   45.6 | /Rubin   1.09   1.20   1.46   1.60   2.38 | /Ultra4   0.99   0.99   1.10   1.12   1.19
+     >=1000 0.55V wt k2 m2 b308 A=('S', 6, 3, True, False) B=('S', 5, 0, False, True) MTP=('S', 5, 0, False, True) pkgs 341 stacks 544 users 38,192 1,260 tok/s/user T 31.2 us c(us)=15.5/15.6/15.6 avg slot 2251 W
+     >=2000 0.55V wt k3 m2 b233 A=('S', 8, 2, True, False) B=('S', 8, 0, False, True) MTP=('S', 8, 0, False, True) pkgs 497 stacks 484 users 28,892 2,027 tok/s/user T 23.5 us c(us)=11.7/11.4/11.4 avg slot 2194 W
+critic HO8 88 lanes                  58.1   58.1   58.1   54.1   49.7 | /Rubin   1.19   1.31   1.59   1.76   2.59 | /Ultra4   1.08   1.08   1.20   1.23   1.30
+     >=1000 0.55V wt k1 m2 b713 A=('S', 13, 3, True, False) B=('S', 10, 0, False, True) MTP=('S', 10, 0, False, True) pkgs 711 stacks 1174 users 88,412 1,274 tok/s/user T 22.8 us c(us)=11.1/11.0/10.7 avg slot 2318 W
+     >=2000 0.55V wt k3 m2 b407 A=('S', 14, 2, True, False) B=('S', 11, 0, False, True) MTP=('S', 11, 0, False, True) pkgs 773 stacks 844 users 50,468 2,031 tok/s/user T 23.4 us c(us)=11.7/11.4/11.4 avg slot 2267 W
+PAIR HO8 48 lanes Gmax28             52.7   52.7   52.7   46.1   41.3 | /Rubin   1.08   1.19   1.44   1.50   2.15 | /Ultra4   0.98   0.98   1.09   1.05   1.08
+     >=1000 0.55V wt k1 m2 b539 A=('P', 8, 2, True, False) B=('S', 4, 0, False, True) MTP=('S', 4, 0, False, True) pkgs 249 stacks 484 users 33,418 1,035 tok/s/user T 56.1 us c(us)=28.1/27.7/27.7 avg slot 2242 W
+     >=2000 0.55V wt k3 m2 b233 A=('P', 9, 1, True, False) B=('S', 5, 0, False, True) MTP=('S', 5, 0, False, True) pkgs 281 stacks 274 users 14,446 2,037 tok/s/user T 46.7 us c(us)=23.3/21.0/21.0 avg slot 2153 W
+PAIR HO8 56 lanes Gmax28             57.3   57.3   57.3   51.8   47.3 | /Rubin   1.17   1.30   1.57   1.69   2.46 | /Ultra4   1.07   1.07   1.18   1.18   1.24
+     >=1000 0.55V wt k1 m2 b539 A=('P', 8, 2, True, False) B=('S', 4, 0, False, True) MTP=('S', 4, 0, False, True) pkgs 249 stacks 484 users 33,418 1,137 tok/s/user T 51.0 us c(us)=25.5/23.8/23.8 avg slot 2263 W
+     >=2000 0.55V wt k3 m2 b268 A=('P', 9, 1, True, False) B=('S', 5, 0, False, True) MTP=('S', 5, 0, False, True) pkgs 281 stacks 274 users 16,616 2,046 tok/s/user T 46.5 us c(us)=23.1/20.7/20.7 avg slot 2174 W
+PAIR HO8 64 lanes Gmax28             60.6   60.6   60.6   55.3   52.2 | /Rubin   1.24   1.37   1.66   1.80   2.72 | /Ultra4   1.13   1.13   1.25   1.26   1.36
+     >=1000 0.55V wt k1 m2 b620 A=('P', 9, 2, True, False) B=('S', 4, 0, False, True) MTP=('S', 4, 0, False, True) pkgs 279 stacks 544 users 38,440 1,182 tok/s/user T 49.1 us c(us)=24.6/24.0/23.9 avg slot 2284 W
+     >=2000 0.55V wt k2 m3 b468 A=('P', 21, 1, True, True) B=('S', 12, 0, False, True) MTP=('S', 12, 0, False, True) pkgs 655 stacks 634 users 43,524 2,026 tok/s/user T 38.9 us c(us)=13.0/12.6/12.6 avg slot 2194 W
+PAIR HO8 72 lanes Gmax28             62.0   62.0   60.1   59.2   55.6 | /Rubin   1.27   1.40   1.64   1.93   2.90 | /Ultra4   1.16   1.16   1.24   1.35   1.45
+     >=1000 0.55V wt k1 m3 b620 A=('P', 13, 2, True, True) B=('S', 6, 0, False, True) MTP=('S', 6, 0, False, True) pkgs 403 stacks 784 users 57,660 1,139 tok/s/user T 51.0 us c(us)=17.0/16.6/16.6 avg slot 2304 W
+     >=2000 0.55V wt k2 m3 b468 A=('P', 20, 1, True, True) B=('S', 11, 0, False, True) MTP=('S', 11, 0, False, True) pkgs 623 stacks 604 users 43,524 2,074 tok/s/user T 37.9 us c(us)=12.6/12.0/12.0 avg slot 2215 W
+PAIR HO8 88 lanes Gmax28             61.9   61.9   59.3   59.2   55.7 | /Rubin   1.26   1.40   1.62   1.93   2.90 | /Ultra4   1.15   1.15   1.22   1.35   1.46
+     >=1000 0.55V wt k1 m2 b1084 A=('P', 16, 2, True, False) B=('S', 7, 0, False, True) MTP=('S', 6, 0, False, True) pkgs 494 stacks 964 users 67,208 1,203 tok/s/user T 48.3 us c(us)=24.1/23.9/23.7 avg slot 2346 W
+     >=2000 0.55V wt k2 m3 b539 A=('P', 23, 1, True, True) B=('S', 10, 0, False, True) MTP=('S', 10, 0, False, True) pkgs 711 stacks 694 users 50,127 2,095 tok/s/user T 37.6 us c(us)=12.5/12.5/12.2 avg slot 2256 W
+PAIR HO8 64 lanes Gmax40 gmax20      60.6   60.6   60.6   55.3   52.2 | /Rubin   1.24   1.37   1.66   1.80   2.72 | /Ultra4   1.13   1.13   1.25   1.26   1.36
+     >=1000 0.55V wt k1 m2 b620 A=('P', 9, 2, True, False) B=('S', 4, 0, False, True) MTP=('S', 4, 0, False, True) pkgs 279 stacks 544 users 38,440 1,182 tok/s/user T 49.1 us c(us)=24.6/24.0/23.9 avg slot 2284 W
+     >=2000 0.55V wt k2 m3 b468 A=('P', 21, 1, True, True) B=('S', 12, 0, False, True) MTP=('S', 12, 0, False, True) pkgs 655 stacks 634 users 43,524 2,026 tok/s/user T 38.9 us c(us)=13.0/12.6/12.6 avg slot 2194 W

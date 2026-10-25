@@ -1,0 +1,9 @@
+e = erratum tokens (2300 = full re-send of the 2,300-token entry; 410 = diff-style erratum, 0.177 x 2300 from diffstat.out)
+pos=uniform e=2300: inplace 761,649 | erratum 548,410 (+28.0%) | hybrid-online 541,933 (+28.8%, vs erratum +1.2%; 1.0 rewrites/8.0 errata) | hybrid-oracle 532,930 (+30.0%)
+pos=uniform e= 410: inplace 761,649 | erratum 486,324 (+36.1%) | hybrid-online 486,324 (+36.1%, vs erratum +0.0%; 0.0 rewrites/9.0 errata) | hybrid-oracle 486,324 (+36.1%)
+pos=recent  e=2300: inplace 510,097 | erratum 548,410 (-7.5%) | hybrid-online 513,016 (-0.6%, vs erratum +6.5%; 6.2 rewrites/2.8 errata) | hybrid-oracle 502,731 (+1.4%)
+pos=recent  e= 410: inplace 510,097 | erratum 486,324 (+4.7%) | hybrid-online 486,324 (+4.7%, vs erratum +0.0%; 0.0 rewrites/9.0 errata) | hybrid-oracle 486,324 (+4.7%)
+no-edit floor (hit rate, cost): [0.963, 472855.0]
+break-even turns (incremental rewrite cost (W-R)(N-p)):
+  N=100000 p=50000 e=500: 1137
+  N=100000 p=90000 e=2000: 45

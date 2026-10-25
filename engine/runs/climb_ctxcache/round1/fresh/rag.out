@@ -1,0 +1,6 @@
+anthropic p_reuse=0.3: rebuild: hit=0.748 cost= 265,522 (+0.0%) avg_sent=13,625  pin: hit=0.962 cost= 478,739 (-80.3%) avg_sent=66,434  pin+evict: hit=0.911 cost= 380,622 (-43.3%) avg_sent=37,590
+anthropic p_reuse=0.6: rebuild: hit=0.748 cost= 265,522 (+0.0%) avg_sent=13,625  pin: hit=0.962 cost= 324,592 (-22.2%) avg_sent=45,303  pin+evict: hit=0.922 cost= 300,945 (-13.3%) avg_sent=31,690
+anthropic p_reuse=0.8: rebuild: hit=0.748 cost= 265,522 (+0.0%) avg_sent=13,625  pin: hit=0.964 cost= 218,313 (+17.8%) avg_sent=30,759  pin+evict: hit=0.940 cost= 224,887 (+15.3%) avg_sent=26,546
+openai    p_reuse=0.3: rebuild: hit=0.748 cost= 222,610 (+0.0%) avg_sent=13,625  pin: hit=0.962 cost= 446,876 (-100.7%) avg_sent=66,434  pin+evict: hit=0.896 cost= 339,276 (-52.4%) avg_sent=35,081
+openai    p_reuse=0.6: rebuild: hit=0.748 cost= 222,610 (+0.0%) avg_sent=13,625  pin: hit=0.962 cost= 303,270 (-36.2%) avg_sent=45,303  pin+evict: hit=0.917 cost= 262,045 (-17.7%) avg_sent=30,029
+openai    p_reuse=0.8: rebuild: hit=0.748 cost= 222,610 (+0.0%) avg_sent=13,625  pin: hit=0.964 cost= 204,287 (+8.2%) avg_sent=30,759  pin+evict: hit=0.939 cost= 200,261 (+10.0%) avg_sent=25,853

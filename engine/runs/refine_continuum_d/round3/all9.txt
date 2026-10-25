@@ -1,0 +1,65 @@
+
+== 128K p=0.8
+                                                             200    500   1000   1500   2000
+C9 tok/s/W                                                  59.8   59.8   59.8   55.6   51.2   max 4858
+C8 tok/s/W (round 1, reproduced)                            55.2   55.2   55.2   52.4   48.2
+   >=200: 0.55V wt k1 m2 b713 CSA(g,h,idx,kv)=(13, 3, True, False) HCA=(10, 0, False, True) MTP=(9, 0, False, True) pkgs 710 stacks 1174 users 88,412 1,274 tok/s/user T 22.8 us c(us)=11.1/11.0/10.5 avg slot 2257 W
+   >=500: 0.55V wt k1 m2 b713 CSA(g,h,idx,kv)=(13, 3, True, False) HCA=(10, 0, False, True) MTP=(9, 0, False, True) pkgs 710 stacks 1174 users 88,412 1,274 tok/s/user T 22.8 us c(us)=11.1/11.0/10.5 avg slot 2257 W
+   >=1000: 0.55V wt k1 m2 b713 CSA(g,h,idx,kv)=(13, 3, True, False) HCA=(10, 0, False, True) MTP=(9, 0, False, True) pkgs 710 stacks 1174 users 88,412 1,274 tok/s/user T 22.8 us c(us)=11.1/11.0/10.5 avg slot 2257 W
+   >=1500: 0.55V wt k2 m2 b539 CSA(g,h,idx,kv)=(13, 3, True, False) HCA=(10, 0, False, True) MTP=(9, 0, False, True) pkgs 710 stacks 1174 users 66,836 1,569 tok/s/user T 25.1 us c(us)=12.5/12.5/11.9 avg slot 2257 W
+   >=2000: 0.55V wt k3 m2 b407 CSA(g,h,idx,kv)=(14, 2, True, False) HCA=(11, 0, False, True) MTP=(10, 0, False, True) pkgs 772 stacks 844 users 50,468 2,031 tok/s/user T 23.4 us c(us)=11.7/11.4/11.1 avg slot 2205 W
+C9 / Rubin trimmed 150 W                                    1.22   1.35   1.63   1.81   2.67   (  49.0   44.2   36.6   30.7   19.2; max 4949)
+C9 / Rubin as shipped                                       1.33   1.47   1.79   1.99   2.92   (  44.9   40.5   33.4   28.0   17.5; max 4949)
+C9 / Ultra 4-die bottom-up, trimmed 150 W                   1.11   1.11   1.23   1.27   1.34   (  53.6   53.6   48.5   44.0   38.2; max 5557)
+C9 / Ultra 4-die 600 kW, 100 PF, full clock, trimmed 150 W  1.00   1.10   1.22   1.24   1.29   (  60.0   54.2   49.2   44.8   39.5; max 5557)
+C9 / Ultra 2-die (reported), trimmed 150 W                  1.30   1.44   1.74   1.93   2.84   (  46.0   41.6   34.4   28.9   18.0; max 4949)
+C9 / MI455X                                                 2.19   2.42   2.74   3.27   4.70   (  27.3   24.7   21.8   17.0   10.9; max 4795)
+C9 / TPU8i                                                  2.41   2.91   3.85   4.88  13.53   (  24.8   20.5   15.5   11.4    3.8; max 3748)
+C9 / Rubin+LPX (LP30 FP8)                                   8.84   8.84   9.18  11.10  13.25   (   6.8    6.8    6.5    5.0    3.9; max 2700)
+C9 / CS-4                                                  30.71  30.71  30.71  28.59  26.52   (   1.9    1.9    1.9    1.9    1.9; max 5737)
+C9 with g <= 20 / Rubin trimmed                             1.26   1.39   1.68   1.97   2.93   pkgs at >=1000: 927
+C9 with g <= 10 / Rubin trimmed                             1.19   1.32   1.59   1.80   2.56   pkgs at >=1000: 525
+C9 with 3% cold spares (5% idle power) / Rubin trimmed      1.22   1.35   1.63   1.81   2.66
+  prefill mJ/prompt token: Rubin 15.8, C9 12.5 (pod-average slot 2257 W): ratio 1.27, same node ~1.15
+   r    GPU prefill + C9 decode (>=200 >=1000 >=2000) | all-C9 (>=200 >=1000 >=2000)
+   0.25  1.18  1.51  2.39   |   1.23  1.58  2.47
+   1     1.11  1.33  1.92   |   1.24  1.48  2.12
+   4     1.05  1.13  1.39   |   1.25  1.36  1.66
+   16    1.01  1.04  1.12   |   1.26  1.29  1.39
+   64    1.00  1.01  1.03   |   1.26  1.27  1.30
+  supply >=200: 134,877 tok/s/pkg vs Rubin 76,472/GPU; 1.65 stacks/pkg; tokens per HBM GB 6.4x; all silicon per token 3.09x (N2 only 1.03x); SoIC passes per GW 77k (packages per GW 443k, stacks per GW 0.73M); BOM $9.1-11.3k, tok/s per BOM$ centre 1.78 crossed 1.18-2.52; with 3% spares centre 1.73
+  supply >=1000: 134,877 tok/s/pkg vs Rubin 57,126/GPU; 1.65 stacks/pkg; tokens per HBM GB 8.6x; all silicon per token 2.31x (N2 only 0.77x); SoIC passes per GW 77k (packages per GW 443k, stacks per GW 0.73M); BOM $9.1-11.3k, tok/s per BOM$ centre 2.38 crossed 1.58-3.38; with 3% spares centre 2.31
+  supply >=2000: 112,830 tok/s/pkg vs Rubin 29,981/GPU; 1.09 stacks/pkg; tokens per HBM GB 20.7x; all silicon per token 1.45x (N2 only 0.48x); SoIC passes per GW 79k (packages per GW 453k, stacks per GW 0.50M); BOM $8.6-10.2k, tok/s per BOM$ centre 4.12 crossed 2.80-5.70; with 3% spares centre 4.00
+
+== 1024K p=0.8
+                                                             200    500   1000   1500   2000
+C9 tok/s/W                                                  14.4   14.4   14.4   14.4   14.4   max 4858
+C8 tok/s/W (round 1, reproduced)                            15.7   15.7   15.7   15.7   15.7
+   >=200: 0.55V wt k5 m3 b66 CSA(g,h,idx,kv)=(14, 4, True, False) HCA=(13, 0, False, True) MTP=(12, 0, False, True) pkgs 836 stacks 1684 users 12,276 2,639 tok/s/user T 22.5 us c(us)=7.5/7.4/7.5 avg slot 2290 W
+   >=500: 0.55V wt k5 m3 b66 CSA(g,h,idx,kv)=(14, 4, True, False) HCA=(13, 0, False, True) MTP=(12, 0, False, True) pkgs 836 stacks 1684 users 12,276 2,639 tok/s/user T 22.5 us c(us)=7.5/7.4/7.5 avg slot 2290 W
+   >=1000: 0.55V wt k5 m3 b66 CSA(g,h,idx,kv)=(14, 4, True, False) HCA=(13, 0, False, True) MTP=(12, 0, False, True) pkgs 836 stacks 1684 users 12,276 2,639 tok/s/user T 22.5 us c(us)=7.5/7.4/7.5 avg slot 2290 W
+   >=1500: 0.55V wt k5 m3 b66 CSA(g,h,idx,kv)=(14, 4, True, False) HCA=(13, 0, False, True) MTP=(12, 0, False, True) pkgs 836 stacks 1684 users 12,276 2,639 tok/s/user T 22.5 us c(us)=7.5/7.4/7.5 avg slot 2290 W
+   >=2000: 0.55V wt k5 m3 b66 CSA(g,h,idx,kv)=(14, 4, True, False) HCA=(13, 0, False, True) MTP=(12, 0, False, True) pkgs 836 stacks 1684 users 12,276 2,639 tok/s/user T 22.5 us c(us)=7.5/7.4/7.5 avg slot 2290 W
+C9 / Rubin trimmed 150 W                                    1.08   1.08   1.29   1.81   3.50   (  13.3   13.3   11.2    7.9    4.1; max 4933)
+C9 / Rubin as shipped                                       1.18   1.18   1.41   1.96   3.83   (  12.2   12.2   10.2    7.3    3.8; max 4933)
+C9 / Ultra 4-die bottom-up, trimmed 150 W                   0.84   0.84   1.02   1.16   1.32   (  17.1   17.1   14.1   12.4   10.9; max 5549)
+C9 / Ultra 4-die 600 kW, 100 PF, full clock, trimmed 150 W  0.87   0.87   1.02   1.26   1.69   (  16.5   16.5   14.2   11.4    8.5; max 5549)
+C9 / Ultra 2-die (reported), trimmed 150 W                  0.98   1.08   1.37   1.91   3.72   (  14.7   13.3   10.5    7.5    3.9; max 4933)
+C9 / MI455X                                                 1.45   1.60   2.03   2.97   6.12   (   9.9    9.0    7.1    4.8    2.4; max 4777)
+C9 / TPU8i                                                  1.58   2.01   2.80   5.81  23.35   (   9.1    7.2    5.1    2.5    0.6; max 3734)
+C9 / Rubin+LPX (LP30 FP8)                                  12.66  12.66  12.88  16.55  20.32   (   1.1    1.1    1.1    0.9    0.7; max 2661)
+C9 / CS-4                                                  22.24  22.24  22.24  22.24  22.24   (   0.6    0.6    0.6    0.6    0.6; max 5611)
+C9 with g <= 20 / Rubin trimmed                             1.21   1.21   1.44   2.03   3.91   pkgs at >=1000: 1176
+C9 with g <= 10 / Rubin trimmed                             1.05   1.05   1.25   1.77   3.40   pkgs at >=1000: 588
+C9 with 3% cold spares (5% idle power) / Rubin trimmed      1.08   1.08   1.29   1.81   3.49
+  prefill mJ/prompt token: Rubin 32.7, C9 26.2 (pod-average slot 2290 W): ratio 1.25, same node ~1.14
+   r    GPU prefill + C9 decode (>=200 >=1000 >=2000) | all-C9 (>=200 >=1000 >=2000)
+   0.25  1.07  1.26  3.23   |   1.09  1.28  3.30
+   1     1.05  1.20  2.70   |   1.13  1.28  2.88
+   4     1.03  1.10  1.87   |   1.18  1.26  2.14
+   16    1.01  1.03  1.29   |   1.22  1.25  1.57
+   64    1.00  1.01  1.08   |   1.24  1.25  1.34
+-- 128K NVFP4 KV on both:   1.25   1.38   1.57   1.70   2.35
+-- 1024K NVFP4 KV on both:   0.96   1.04   1.28   1.81   3.14
+-- 128K p=0.6:   1.20   1.49   2.81   8.86  97.45
+-- 1024K p=0.6:   0.99   1.01   2.43  13.55  33.16

@@ -123,15 +123,22 @@ def main():
                 s = WRITE.replace("{QUESTION}", q).replace("{NOTES}", notes).replace("{MOVE}", MOVES[move]).replace("{FILES}", cf + "/")
                 s = s.replace("{WORKDIR}", wd + "/").replace("{REJECTED}", "\n".join(rejected) or "(none yet)")
                 s = s.replace("{ANSWER}", open(cur).read()).replace("{CHECK}", open(ck).read())
-                text, u = runner.call(s, model=a.model, tools="research", cwd=wd); runner.log(D, f"round{r}:{move}", u)
-                text = full_answer(text, wd, len(open(cur).read().split())); open(f, "w").write(text)
-                print(f"  round {r} {move}: {len(text.split())} words, ${u['cost_usd']:.2f}", flush=True)
+                for attempt in (1, 2):  # a reply that is only a note about the work (climb_ctxcache round 1 lever: 64 words) gets one retry
+                    text, u = runner.call(s, model=a.model, tools="research", cwd=wd); runner.log(D, f"round{r}:{move}" + ("" if attempt == 1 else ":retry"), u)
+                    try: text = full_answer(text, wd, len(open(cur).read().split())); break
+                    except SystemExit as e:
+                        print(f"  round {r} {move}: {e}", flush=True); text = None
+                        s += ("\n\nYour previous attempt replied with a short note instead of the answer. The files it wrote in your folder are "
+                              "kept; reuse them. Your final reply must be the complete answer itself.")
+                if text is None: return None
+                open(f, "w").write(text); print(f"  round {r} {move}: {len(text.split())} words, ${u['cost_usd']:.2f}", flush=True)
             return f, wd
-        with ThreadPoolExecutor(len(MOVES)) as ex: cands = dict(zip(MOVES, ex.map(write, MOVES)))
+        with ThreadPoolExecutor(len(MOVES)) as ex: cands = {m: c for m, c in zip(MOVES, ex.map(write, MOVES)) if c}
         with ThreadPoolExecutor(len(MOVES)) as ex:
-            res = dict(zip(MOVES, ex.map(lambda m: duel(os.path.join(rd, f"judge_{m}"), cur, cf, *cands[m]), MOVES)))
-        ok = [m for m in MOVES if res[m][0]]; pick = max(ok, key=lambda m: res[m][1]) if ok else None
+            res = dict(zip(cands, ex.map(lambda m: duel(os.path.join(rd, f"judge_{m}"), cur, cf, *cands[m]), cands)))
+        ok = [m for m in cands if res[m][0]]; pick = max(ok, key=lambda m: res[m][1]) if ok else None
         for m in MOVES:
+            if m not in cands: log.append((r, m, (False, 0, "no answer (two short replies)", ("-", "-"), ("-", "-")))); continue
             log.append((r, m, res[m])); print(f"  round {r} {m}: {'won both' if res[m][0] else 'lost'} ({res[m][1]:+d}); gain {res[m][4][0][:120]}", flush=True)
             if m != pick: rejected.append(f"- round {r}, move '{m}': {res[m][2][:400]}")
         if pick:

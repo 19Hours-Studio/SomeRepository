@@ -1,0 +1,21 @@
+tier $/GB-h: {'HBM': 0.025, 'DRAM': 0.005, 'NVMe': 0.00021}
+P= 20,000 n=  500 gap=  10s  recompute=$0.0041  read/recompute: HBM=11.77% DRAM= 2.99% NVMe= 0.89%  (attention part 0.80%)
+P= 20,000 n=  500 gap=  60s  recompute=$0.0041  read/recompute: HBM=66.60% DRAM=13.97% NVMe= 1.36%  (attention part 0.80%)
+P= 20,000 n=  500 gap= 600s  recompute=$0.0041  read/recompute: HBM=658.84% DRAM=132.53% NVMe= 6.42%  (attention part 0.80%)
+P= 20,000 n= 2300 gap=  10s  recompute=$0.0041  read/recompute: HBM=14.80% DRAM= 6.03% NVMe= 3.93%  (attention part 3.84%)
+P= 20,000 n= 2300 gap=  60s  recompute=$0.0041  read/recompute: HBM=69.64% DRAM=17.01% NVMe= 4.40%  (attention part 3.84%)
+P= 20,000 n= 2300 gap= 600s  recompute=$0.0041  read/recompute: HBM=661.87% DRAM=135.57% NVMe= 9.46%  (attention part 3.84%)
+P= 50,000 n=  500 gap=  10s  recompute=$0.0128  read/recompute: HBM= 9.51% DRAM= 2.42% NVMe= 0.72%  (attention part 0.64%)
+P= 50,000 n=  500 gap=  60s  recompute=$0.0128  read/recompute: HBM=53.86% DRAM=11.29% NVMe= 1.10%  (attention part 0.64%)
+P= 50,000 n=  500 gap= 600s  recompute=$0.0128  read/recompute: HBM=532.79% DRAM=107.17% NVMe= 5.19%  (attention part 0.64%)
+P= 50,000 n= 2300 gap=  10s  recompute=$0.0128  read/recompute: HBM=11.87% DRAM= 4.78% NVMe= 3.08%  (attention part 3.00%)
+P= 50,000 n= 2300 gap=  60s  recompute=$0.0128  read/recompute: HBM=56.22% DRAM=13.65% NVMe= 3.46%  (attention part 3.00%)
+P= 50,000 n= 2300 gap= 600s  recompute=$0.0128  read/recompute: HBM=535.15% DRAM=109.53% NVMe= 7.55%  (attention part 3.00%)
+P=100,000 n=  500 gap=  10s  recompute=$0.0338  read/recompute: HBM= 7.21% DRAM= 1.83% NVMe= 0.54%  (attention part 0.48%)
+P=100,000 n=  500 gap=  60s  recompute=$0.0338  read/recompute: HBM=40.83% DRAM= 8.56% NVMe= 0.83%  (attention part 0.48%)
+P=100,000 n=  500 gap= 600s  recompute=$0.0338  read/recompute: HBM=403.98% DRAM=81.26% NVMe= 3.93%  (attention part 0.48%)
+P=100,000 n= 2300 gap=  10s  recompute=$0.0338  read/recompute: HBM= 8.97% DRAM= 3.60% NVMe= 2.31%  (attention part 2.25%)
+P=100,000 n= 2300 gap=  60s  recompute=$0.0338  read/recompute: HBM=42.60% DRAM=10.33% NVMe= 2.59%  (attention part 2.25%)
+P=100,000 n= 2300 gap= 600s  recompute=$0.0338  read/recompute: HBM=405.74% DRAM=83.03% NVMe= 5.70%  (attention part 2.25%)
+P=100000 n=2300: load 0.82s vs new-token prefill 2.09s on one GPU
+P=100000 n=500: load 0.82s vs new-token prefill 0.45s on one GPU

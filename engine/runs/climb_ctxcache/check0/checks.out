@@ -1,0 +1,12 @@
+== break-even turns: answer's formula vs incremental (rewrite replaces a 0.1x read of the suffix) ==
+100000 50000 500 answer=1238 corrected=1137
+100000 90000 2000 answer=50 corrected=45
+== doc ordering: insert 1 new doc into n cached docs; fraction of doc tokens recomputed ==
+n=5: hash-sort recompute=0.500  first-seen-order recompute=0.000
+n=10: hash-sort recompute=0.499  first-seen-order recompute=0.000
+n=20: hash-sort recompute=0.501  first-seen-order recompute=0.000
+n=50: hash-sort recompute=0.501  first-seen-order recompute=0.000
+== prefill cost incl. attention, Llama-3-70B (80L, d=8192), H100 $2/h 45% MFU ==
+ctx=8000: attn/linear=0.07  recompute=$0.188/M tok  DRAM breakeven reuse interval=6.9 min  NVMe=2.9 h
+ctx=32000: attn/linear=0.30  recompute=$0.227/M tok  DRAM breakeven reuse interval=8.3 min  NVMe=3.5 h
+ctx=100000: attn/linear=0.94  recompute=$0.338/M tok  DRAM breakeven reuse interval=12.4 min  NVMe=5.2 h
