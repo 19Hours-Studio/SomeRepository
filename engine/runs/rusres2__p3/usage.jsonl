@@ -1,0 +1,1 @@
+{"step": "research:ledger", "time": "2026-10-25 10:56:07", "model": "sonnet", "tools": "WebSearch,Bash,Read,Write", "tokens": 78330, "output_tokens": 5143, "cache_read": 0, "fresh_input": 73187, "cost_usd": 0.344174, "turns": 1, "seconds": 43.8}

@@ -1,1 +1,9 @@
 /home/user/SomeRepository/engine/runs/rusres2__p3/ledger/TASK.md
+  ledger: 78,330 tokens, 43.8 s
+ledger: 967 words
+  skip attempts (attempts.md present)
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE ? | untouchable 17.0% -> ceiling 5.9x | 10x cut of one term: capital 1.50x; labour 1.19x; processing 1.12x; energy 1.08x; inbound logistics 1.04x; outbound logistics 1.04x | 3x needs: capital, labour, processing, energy | NO ROOM
+ARCHETYPE ? | untouchable 8.0% -> ceiling 12.5x | 10x cut of one term: capital 1.50x; processing 1.25x; labour 1.17x; energy 1.10x; outbound logistics 1.04x; inbound logistics 1.03x | 3x needs: capital, processing, labour | TIGHT
+ARCHETYPE ? | untouchable 9.0% -> ceiling 11.1x | 10x cut of one term: capital 1.50x; processing 1.19x; energy 1.14x; labour 1.14x; inbound logistics 1.06x; outbound logistics 1.02x | 3x needs: capital, processing, energy, labour | NO ROOM
+ARCHETYPE D: structures on Norilsk ground | untouchable 15.0% -> ceiling 6.7x | 10x cut of one term: capital 1.82x; labour 1.22x; inbound logistics 1.13x; energy 1.02x; processing 1.00x | 3x needs: capital, labour, inbound logistics | TIGHT
