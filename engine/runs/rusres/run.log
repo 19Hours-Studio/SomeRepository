@@ -41,3 +41,8 @@ g1_rf2: 3 ideas (579 words)
 /home/user/SomeRepository/engine/runs/rusres/gate/c1/TASK.md
 /home/user/SomeRepository/engine/runs/rusres/gate/c2/TASK.md
   gate.1: 314,366 tokens, 157.3 s
+  gate.2: 756,536 tokens, 295.9 s
+/home/user/SomeRepository/engine/runs/rusres/gate/TASK.md
+  skip gate (done)
+gate: 8/8 parsed {'DEAD': 7, 'WOUNDED': 1}
+  gate: 9 new facts -> evidence.md

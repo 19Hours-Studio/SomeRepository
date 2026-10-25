@@ -1,0 +1,66 @@
+{
+ "g1_ledger#3": {
+  "killer": "summer heat flux the loop must remove",
+  "why": "The loop is undersized by about 2.6x, and fixing that would still leave no cost gain, because foundations are not a meaningful share of LNG delivered cost.",
+  "screen": "6 heat budget (summer flux to remove): 0.38; 4 frozen-ground strength (adfreeze at −0.5 vs −3 °C): 0.30 — this is the loss the loop would prevent, so not a killer of the idea itself; 9 baseline (piles plus thermosyphons already hold at Yamal LNG): ratio ceiling 1.01",
+  "margin": 0.38,
+  "ratio": 1.01,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#2": {
+  "killer": "Arc7 ships needed to clear Arctic LNG 2 Train 1 (6.6 Mt/y)",
+  "why": "The per-ship gain of about 1.6x is real, but this route is already in use and only trims a 22% cost share; for Arctic LNG 2 the binding limit is the number of Arc7 hulls and sanctions, not voyage length.",
+  "screen": "1 season and ship-time (Arc7 tonnage vs output): 0.36 (T1) and 0.18–0.36 (T1+T2); 9 baseline (Murmansk-area transshipment already exists as an FSU route): ratio ceiling 1.06–1.08; 8 storage: Saam FSU holds 361,600 m³, which is enough",
+  "margin": 0.36,
+  "ratio": 1.07,
+  "verdict": "DEAD"
+ },
+ "g1_mech#2": {
+  "killer": "depth to competent rock",
+  "why": "The idea restates current Russian code practice, and foundation failures are under 1% of chain cost, so there is nothing left to win.",
+  "screen": "4 frozen-ground strength (warm adfreeze loss the sleeve avoids): 0.30 lost on the current design, so this is the idea's justification rather than a failure; geometry (depth to rock in Norilsk vs the 30 m limit): 1.5; 9 baseline (the national pile code already prescribes rock-bearing piles): ratio ceiling 1.008",
+  "margin": 1.5,
+  "ratio": 1.01,
+  "verdict": "DEAD"
+ },
+ "g1_rf1#1": {
+  "killer": "share of the year the added output can be shipped",
+  "why": "The domestic technology works and capital does fall by about 1.2x, but Train 4 took about 4.5 years, not 2–3, and new trains have no winter ships to deliver through.",
+  "screen": "1 season and shipping (winter Arc7 capacity for new output): 0.42 (only the Jul–Nov conventional-carrier window is open; the Yamal fleet of 15 is fully used and Arctic LNG 2 has 1–2 ships); schedule (2.5 years claimed vs Train 4 actual): 0.56; 9 baseline capital: ratio 1.21; 13 pilot (3 trains measure capex but cannot prove reliability): not decisive",
+  "margin": 0.42,
+  "ratio": 1.21,
+  "verdict": "WOUNDED"
+ },
+ "g1_neg#1": {
+  "killer": "buyers for new Arctic LNG volume by 2033",
+  "why": "Drives and the process would work at 0.9 Mtpa, but within 3–7 years every extra tonne joins about 24 Mt/yr of built Russian Arctic LNG that has no buyer and no free Arc7 hull, so \"revenue sooner\" cannot happen.",
+  "screen": "8 market/outlet: 0.00 for the new tranche (0.35 for the whole stack); 11/1 Arc7 winter shuttle: 0.0 free hulls against 2.5 needed; drive power: 25 MW needed per 0.9 Mtpa train at 220 kWh/t (F175), and 16–25 MW serial drives exist, so ≈1.0; 9 baseline ceiling: removing all T1–3 plant capital caps the ratio at 1.46",
+  "margin": 0.0,
+  "ratio": 1.22,
+  "verdict": "DEAD"
+ },
+ "g1_rf2#3": {
+  "killer": "piles needed to prove the retrofit prevents loss of capacity",
+  "why": "The cold-side physics has headroom at Norilsk, but foundation losses are about 2% of Norilsk's full cost, so even a perfect retrofit cannot move cost per tonne by 1.1x.",
+  "screen": "6 heat budget (freezing index against the idea's own Salekhard cut-off): Norilsk 4,415 °C·d against Salekhard 3,271 °C·d gives 1.35, falling to 1.22 after +1.75 °C (0.07 °C/yr × 25 yr, F104); 13 pilot proof: 20 piles against 59 needed to show <5% loss rate gives 0.34; 9 baseline ceiling: ratio 1.02",
+  "margin": 0.34,
+  "ratio": 1.02,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#1": {
+  "killer": "buyers for new Arctic LNG volume by 2033",
+  "why": "Even with an unproven 2–3x scale-up working, the new trains would add product to a market where already-built trains sit idle, and no Arc7 capacity is free to carry it in winter.",
+  "screen": "8 market/outlet: 0.00 for the new tranche (0.33 for the stack); 11/1 Arc7: 0.0 free against 3.2 needed; scale-up: 1.5–2.5 Mtpa is 1.7–2.8 times the only proven train. The 2023 Arctic Cascade Modified patent targets 3 Mtpa but has never been built. Drive: 55 MW per 2 Mtpa train, which needs 2–3 drives or domestic 112 MW compressors; 9 ceiling 1.46",
+  "margin": 0.0,
+  "ratio": 1.28,
+  "verdict": "DEAD"
+ },
+ "g1_mech#1": {
+  "killer": "buyers for new Arctic LNG volume by 2033",
+  "why": "It is the most honest of the LNG ideas: it copies a proven size and claims only 1.2x. But 1.2x is below 1.5, the proposed test cannot prove 90% availability, and no buyer or ship exists for the extra tonnes before about 2033.",
+  "screen": "8 market/outlet: 0.00 for the new tranche (0.38 for the stack); 11/1 Arc7: 0.0 free against 1.4 needed; 13 availability proof: two copies over 3 years give 72 train-months against 138 needed to pin 90% ±5%, so 0.52; Train 4 availability itself is fine (Yamal made 21 Mt in 2024); 9 ceiling 1.46",
+  "margin": 0.0,
+  "ratio": 1.22,
+  "verdict": "DEAD"
+ }
+}
