@@ -31,3 +31,5 @@ ARCHETYPE D: Greenfield copper-gold with no infrastructure (Baimskaya; benchmark
 g1_ledger: 3 ideas (662 words)
   g1_neg: 21,758 tokens, 89.5 s
 g1_neg: 3 ideas (679 words)
+  g1_mech: 18,788 tokens, 60.2 s
+g1_mech: 3 ideas (654 words)

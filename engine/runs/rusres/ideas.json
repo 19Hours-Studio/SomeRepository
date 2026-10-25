@@ -70,5 +70,32 @@
   "name": "Re-levelling thaw-tolerant foundations",
   "mech": "Surface structures sit on spread footings or space frames with 300 mm hydraulic jacks and are re-levelled from survey data as the active layer moves. The ground is allowed to thaw instead of being kept frozen. The closest earlier attempts, fixed piles and thermosyphons, failed as winters warmed; this design carries no assumed ground-temperature margin. The deciding quantity is the differential settlement rate compared with jack stroke and re-levelling interval.",
   "value": "It decouples infrastructure life from the rate of permafrost warming."
+ },
+ {
+  "id": "g1_mech#1",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Replicated cold-ambient domestic trains",
+  "mech": "Copy Train 4 at Yamal and Gydan, which uses a three-stage cascade with cold Arctic air as the heat sink, in place of the APCI/Baker Hughes design, and drive the compressors with domestic electric motors from site power. The closest earlier attempt is Train 4 itself, which ran only at 0.9 Mtpa and needed its piping replaced (F172–174). This plan does not scale the train up; it copies the proven size with corrected alloy piping. The gain is capital: about $73/t, or $1.4/mmBtu, from 1.23x cheaper delivery (est.), assuming the Train 4 capex claim holds. The deciding quantity is train availability, which must be at least 90% across 4 or more trains; test it with two copies built within 4 years.",
+  "value": "LNG capacity added without Western drives, at about 1.2x lower delivered cost against Yamal T1–3."
+ },
+ {
+  "id": "g1_mech#2",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Rock-socketed piles with slip sleeves",
+  "mech": "Carry new and rebuilt plant loads on bored steel piles set into rock below the frozen ground, and coat the shaft inside the frozen layer with a bitumen slip layer, so thaw adds only small drag load instead of removing the pile's support. Use TMK pipe and Chinese piling rigs. The closest earlier attempts are pile design to SP 25.13330, which has lost 20–55% of capacity (F89), and the Ambarnaya piles set in ice-rich ground (F325). Ground cooling is not involved, so a warming climate does not erode the support. The design applies at Norilsk, Udokan and Baimskaya, but not on deep Yamal sediments. The deciding quantity is depth to competent rock, which must be 30 m or less; test it with load-cell piles monitored for 3–5 thaw seasons.",
+  "value": "Structure life of 50+ years, for about 1–3% more capex."
+ },
+ {
+  "id": "g1_mech#3",
+  "label": "g1_mech",
+  "arm": "E",
+  "gen": 1,
+  "name": "Crusher-conveyor underground ore haulage",
+  "mech": "Crush ore underground at the level and carry it by fixed belt to the shaft, using Russian-made belts and Ruselprom drives, in place of long truck hauls. A belt uses an estimated 3–5 times less energy per tonne-km and needs far fewer crew and imported spares. The closest earlier attempt is the BelAZ underground truck, still at prototype stage (F184–186); this plan removes most of that fleet instead of replacing it. The deciding quantity is belt availability against a maximum lump size; pilot it on one Talnakh level within 3 years.",
+  "value": "Full cost at Norilsk down 3–6%, with less reliance on spares for the Western fleet."
  }
 ]
