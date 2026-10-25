@@ -1,0 +1,18 @@
+Continuum baseline (6us/layer, 0.3pJ/b)        >=  200 t/s/u: B= 4096 tok/s/u=   218 tok/J= 7.75 tok/s/kW=  6200
+Continuum floor 12us/layer                     >=  200 t/s/u: B= 4096 tok/s/u=   202 tok/J= 7.53 tok/s/kW=  5742
+Continuum floor 20us/layer                     >=  200 t/s/u: B= 2048 tok/s/u=   300 tok/J= 6.62 tok/s/kW=  4270
+Continuum SRAM 0.6 pJ/b                        >=  200 t/s/u: B= 4096 tok/s/u=   218 tok/J= 7.74 tok/s/kW=  6200
+Continuum half compute (15/7.5 PF)             >=  200 t/s/u: B= 2048 tok/s/u=   218 tok/J= 5.63 tok/s/kW=  3100
+Rubin opt SW floor 10us/layer                  >=  200 t/s/u: B= 4096 tok/s/u=   265 tok/J= 7.12 tok/s/kW=  5253
+Rubin HBM 13 TB/s (low report)                 >=  200 t/s/u: B= 2048 tok/s/u=   263 tok/J= 4.96 tok/s/kW=  2603
+Groq3 at 400 W/chip                            >=  200 t/s/u: B=16384 tok/s/u=   845 tok/J= 3.66 tok/s/kW=  1417
+Continuum baseline (6us/layer, 0.3pJ/b)        >= 1000 t/s/u: B=  512 tok/s/u=  1119 tok/J= 6.35 tok/s/kW=  3978
+Continuum floor 12us/layer                     >= 1000 t/s/u: B=  256 tok/s/u=  1004 tok/J= 3.97 tok/s/kW=  1785
+Continuum floor 20us/layer                     >= 1000 t/s/u: infeasible
+Continuum SRAM 0.6 pJ/b                        >= 1000 t/s/u: B=  512 tok/s/u=  1119 tok/J= 6.28 tok/s/kW=  3978
+Continuum half compute (15/7.5 PF)             >= 1000 t/s/u: B=  256 tok/s/u=  1119 tok/J= 4.26 tok/s/kW=  1989
+Rubin opt SW floor 10us/layer                  >= 1000 t/s/u: B=  128 tok/s/u=  1033 tok/J= 1.56 tok/s/kW=   639
+Rubin HBM 13 TB/s (low report)                 >= 1000 t/s/u: infeasible
+Groq3 at 400 W/chip                            >= 1000 t/s/u: B= 1024 tok/s/u=  1012 tok/J= 3.02 tok/s/kW=  1120
+HBM 3.0 pJ/b: Continuum                        >=  200 t/s/u: B= 4096 tok/s/u=   218 tok/J= 8.08 tok/s/kW=  6200
+HBM 3.0 pJ/b: Rubin opt SW                     >=  200 t/s/u: B= 4096 tok/s/u=   214 tok/J= 6.74 tok/s/kW=  4227

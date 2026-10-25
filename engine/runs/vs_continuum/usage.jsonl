@@ -1,0 +1,3 @@
+{"step": "baseline:baseline", "time": "2026-10-25 12:01:42", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 402416, "output_tokens": 37138, "cache_read": 301247, "fresh_input": 64031, "cost_usd": 1.4708749, "turns": 20, "seconds": 410.6}
+{"step": "review:compare.r2", "time": "2026-10-25 12:08:34", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 306853, "output_tokens": 38153, "cache_read": 206513, "fresh_input": 62187, "cost_usd": 1.4331052, "turns": 15, "seconds": 411.2}
+{"step": "review:compare.r1", "time": "2026-10-25 12:08:38", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 253972, "output_tokens": 40101, "cache_read": 155460, "fresh_input": 58411, "cost_usd": 1.4316829000000002, "turns": 14, "seconds": 415.3}

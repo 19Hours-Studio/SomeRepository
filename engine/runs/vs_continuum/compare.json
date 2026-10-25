@@ -1,0 +1,91 @@
+{
+ "ids": [
+  "baseline#4",
+  "ENGINE:repair#3",
+  "baseline#3",
+  "baseline#1",
+  "ENGINE:repair#1",
+  "baseline#2",
+  "ENGINE:repair#4"
+ ],
+ "rows": {
+  "baseline#1": {
+   "FATAL": 0.0,
+   "MAJOR": 2.0,
+   "MINOR": 2.5,
+   "ratio": 1.1,
+   "known": "partly/partly",
+   "per_review": [
+    "0/2/2",
+    "0/2/3"
+   ]
+  },
+  "baseline#2": {
+   "FATAL": 0.0,
+   "MAJOR": 2.5,
+   "MINOR": 1.5,
+   "ratio": 1.75,
+   "known": "yes/yes",
+   "per_review": [
+    "0/3/1",
+    "0/2/2"
+   ]
+  },
+  "baseline#3": {
+   "FATAL": 0.0,
+   "MAJOR": 1.5,
+   "MINOR": 1.0,
+   "ratio": 1.0,
+   "known": "partly/partly",
+   "per_review": [
+    "0/2/1",
+    "0/1/1"
+   ]
+  },
+  "baseline#4": {
+   "FATAL": 0.0,
+   "MAJOR": 1.0,
+   "MINOR": 1.5,
+   "ratio": 0.7,
+   "known": "yes/yes",
+   "per_review": [
+    "0/1/2",
+    "0/1/1"
+   ]
+  },
+  "ENGINE:repair#1": {
+   "FATAL": 0.0,
+   "MAJOR": 2.5,
+   "MINOR": 2.0,
+   "ratio": 2.3,
+   "known": "partly/partly",
+   "per_review": [
+    "0/3/2",
+    "0/2/2"
+   ]
+  },
+  "ENGINE:repair#4": {
+   "FATAL": 0.0,
+   "MAJOR": 2.5,
+   "MINOR": 1.5,
+   "ratio": 1.275,
+   "known": "yes/yes",
+   "per_review": [
+    "0/3/1",
+    "0/2/2"
+   ]
+  },
+  "ENGINE:repair#3": {
+   "FATAL": 0.0,
+   "MAJOR": 1.5,
+   "MINOR": 2.0,
+   "ratio": 1.1,
+   "known": "yes/yes",
+   "per_review": [
+    "0/2/2",
+    "0/1/2"
+   ]
+  }
+ },
+ "reviewers": 2
+}

@@ -1,0 +1,13 @@
+current-like T=  250 N/m  l=2.00mm  depth   66.3 ->  24.00 um   hinge force over 150mm width    38 N  glass stress 4 MPa (70um)
+current-like T=  500 N/m  l=1.41mm  depth   66.3 ->  12.00 um   hinge force over 150mm width    75 N  glass stress 7 MPa (70um)
+current-like T= 1000 N/m  l=1.00mm  depth   66.3 ->   6.00 um   hinge force over 150mm width   150 N  glass stress 14 MPa (70um)
+current-like T= 2000 N/m  l=0.71mm  depth   66.3 ->   3.00 um   hinge force over 150mm width   300 N  glass stress 29 MPa (70um)
+proposed     T=  250 N/m  l=3.22mm  depth    1.7 ->   0.40 um   hinge force over 150mm width    38 N  glass stress 4 MPa (70um)
+proposed     T=  500 N/m  l=2.28mm  depth    1.7 ->   0.20 um   hinge force over 150mm width    75 N  glass stress 7 MPa (70um)
+proposed     T= 1000 N/m  l=1.61mm  depth    1.7 ->   0.10 um   hinge force over 150mm width   150 N  glass stress 14 MPa (70um)
+proposed     T= 2000 N/m  l=1.14mm  depth    1.7 ->   0.05 um   hinge force over 150mm width   300 N  glass stress 29 MPa (70um)
+acrylic OCA  Tg= -30C heat 25->45C speeds relaxation x22
+acrylic OCA  Tg= -30C heat 25->60C speeds relaxation x122
+TPU top film Tg= -40C heat 25->45C speeds relaxation x13
+TPU top film Tg= -40C heat 25->60C speeds relaxation x61
+heater energy 1.5 W x 45 s = 67.5 J = 0.081 % of a 6000 mAh cell

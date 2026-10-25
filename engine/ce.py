@@ -1656,7 +1656,7 @@ def cmd_compare(a):
         rat = [r["ratio"] for r in rs if r.get("ratio") is not None]
         agg_[i] = {"FATAL": m("FATAL"), "MAJOR": m("MAJOR"), "MINOR": m("MINOR"), "ratio": sum(rat) / len(rat) if rat else None,
                    "known": "/".join(str(r.get("known")) for r in rs), "per_review": [f"{r['FATAL']}/{r['MAJOR']}/{r['MINOR']}" for r in rs]}
-    rank = sorted(agg_, key=lambda i: (round(agg_[i]["FATAL"]), -round(agg_[i]["ratio"] or 0, 1), agg_[i]["MAJOR"], agg_[i]["FATAL"]))
+    rank = sorted(agg_, key=lambda i: (agg_[i]["FATAL"], -round(agg_[i]["ratio"] or 0, 1), agg_[i]["MAJOR"]))  # any reviewer's FATAL counts
     save(R, "compare.json", {"ids": rank, "rows": agg_, "reviewers": a.reviewers})
     out = [f"| rank | idea | arm | mean F/M/m | per review | ratio | known |", "|---|---|---|---|---|---|---|"]
     for k, i in enumerate(rank, 1):

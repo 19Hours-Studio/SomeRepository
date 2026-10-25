@@ -1,0 +1,13 @@
+| rank | idea | arm | mean F/M/m | per review | ratio | known |
+|---|---|---|---|---|---|---|
+| 1 | Pre-staged flood-crest barges | ENGINE | 0.0/2.5/0.5 | 0/3/0, 0/2/1 | 1.2 | yes/partly |
+| 2 | Fuel on empty coal-barge legs | ENGINE | 0.0/2.5/0.5 | 0/2/1, 0/3/0 | 1.2 | partly/partly |
+| 3 | Self-heated barge boilerhouse | ENGINE | 0.0/2.5/1.5 | 0/3/1, 0/2/2 | 1.05 | partly/partly |
+| 4 | Kite-towed sled trains, no roads | BASE | 0.5/3.0/0.5 | 1/3/0, 0/3/1 | 1.1 | partly/partly |
+| 5 | Winter-cold salt removal for lithium brines | BASE | 0.5/3.0/1.0 | 1/3/1, 0/3/1 | 1.0 | partly/partly |
+| 6 | Single-use ice barges on spring flood | BASE | 2.0/3.0/1.0 | 2/3/1, 2/3/1 | 0.8 | partly/partly |
+
+| arm | n | best rank | mean FATAL | mean MAJOR | mean ratio | known yes share |
+|---|---|---|---|---|---|---|
+| ENGINE | 3 | 1 | 0.00 | 2.50 | 1.15 | 1/6 |
+| BASE | 3 | 4 | 1.00 | 3.00 | 0.97 | 0/6 |

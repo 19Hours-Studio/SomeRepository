@@ -1,0 +1,81 @@
+
+=== DSv3-671B, context 32K, weights 4.5b, KV 4.5b ===
+weights 377 GB; KV per user 0.65 GB; attn intensity 860 FLOP/B
+  -- target >= 50 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72                 72 16384       53    874894    6.57      4227         1519     759.5
+  Rubin NVL72 (opt. SW)       72 16384       71   1157729    7.42      5593         2010    1005.0
+  Ironwood x64                64  4096       59    240013    5.45      3000          469     267.9
+  Groq3 LPU                24419 16384      845  13844467    2.64       945          n/a      81.0
+  Cerebras WSE-3             278 16384      211   3456335    1.62       541          n/a      26.9
+  Continuum x64               64 16384       58    949551    7.94      6594         2473     515.2
+  -- target >= 200 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72               infeasible
+  Rubin NVL72 (opt. SW)       72  4096      214    874894    6.48      4227         1519     759.5
+  Ironwood x64                64   512      232    118546    3.26      1482          232     132.3
+  Groq3 LPU                24419 16384      845  13844467    2.64       945          n/a      81.0
+  Cerebras WSE-3             278 16384      211   3456335    1.62       541          n/a      26.9
+  Continuum x64               64  4096      218    892741    7.75      6200         2325     484.3
+  -- target >= 1000 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72               infeasible
+  Rubin NVL72 (opt. SW)     infeasible
+  Ironwood x64              infeasible
+  Groq3 LPU                 2313  1024     1012   1036051    2.15       747          n/a      64.0
+  Cerebras WSE-3              11    32     1229     39318    0.50       155          n/a       7.7
+  Continuum x64               64   512     1119    572858    6.35      3978         1492     310.8
+
+=== DSv3-671B, context 128K, weights 4.5b, KV 4.5b ===
+weights 377 GB; KV per user 2.59 GB; attn intensity 860 FLOP/B
+  -- target >= 50 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72                 72  4096       55    223753    1.69      1081          388     194.2
+  Rubin NVL72 (opt. SW)       72  4096       73    298306    1.92      1441          518     258.9
+  Ironwood x64                64  1024       63     64897    1.45       811          127      72.4
+  Groq3 LPU                95157 16384      872  14286469    0.70       250          n/a      21.4
+  Cerebras WSE-3            1082 16384      223   3656091    0.44       147          n/a       7.3
+  Continuum x64               64  4096       61    248768    2.07      1728          648     135.0
+  -- target >= 200 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72               infeasible
+  Rubin NVL72 (opt. SW)       72  1024      219    223753    1.67      1081          388     194.2
+  Ironwood x64                64   128      232     29752    0.83       372           58      33.2
+  Groq3 LPU                95157 16384      872  14286469    0.70       250          n/a      21.4
+  Cerebras WSE-3            1082 16384      223   3656091    0.44       147          n/a       7.3
+  Continuum x64               64  1024      228    233216    2.02      1620          607     126.5
+  -- target >= 1000 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72               infeasible
+  Rubin NVL72 (opt. SW)     infeasible
+  Ironwood x64              infeasible
+  Groq3 LPU                 2313   256     1047    268042    0.56       193          n/a      16.6
+  Cerebras WSE-3              11    16     1018     16295    0.20        64          n/a       3.2
+  Continuum x64               64   128     1151    147279    1.64      1023          384      79.9
+
+=== Llama-70B, context 8K, weights 4.5b, KV 4.5b ===
+weights 40 GB; KV per user 0.75 GB; attn intensity 28 FLOP/B
+  -- target >= 50 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72                 72 16384       56    920831    9.91      4448         1599     799.3
+  Rubin NVL72 (opt. SW)       72 16384       85   1389343   12.79      6712         2412    1206.0
+  Ironwood x64                64  8192       51    415933   10.96      5199          812     464.2
+  Groq3 LPU                27577 16384     1074  17599047    3.40      1064          n/a      91.2
+  Cerebras WSE-3             314 16384      574   9399224    4.13      1301          n/a      64.8
+  Continuum x64               64 16384       60    987813   12.96      6860         2572     535.9
+  -- target >= 200 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72               infeasible
+  Rubin NVL72 (opt. SW)       72  4096      224    915991    9.85      4425         1590     795.1
+  Ironwood x64                64   512      231    118255    4.19      1478          231     132.0
+  Groq3 LPU                27577 16384     1074  17599047    3.40      1064          n/a      91.2
+  Cerebras WSE-3             314 16384      574   9399224    4.13      1301          n/a      64.8
+  Continuum x64               64  4096      222    908903   12.35      6312         2367     493.1
+  -- target >= 1000 tok/s/user
+  system                   chips     B  tok/s/u     tok/s   tok/J  tok/s/kW tok/s/HBMstk tok/s/cm2
+  Rubin NVL72               infeasible
+  Rubin NVL72 (opt. SW)     infeasible
+  Ironwood x64              infeasible
+  Groq3 LPU                27577 16384     1074  17599047    3.40      1064          n/a      91.2
+  Cerebras WSE-3               2    16     1059     16938    1.20       368          n/a      18.3
+  Continuum x64               64   512     1017    520687    8.58      3616         1356     282.5
