@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A has margin 0.85 (unstable) and whole-chain gain 2.9 and states its losses honestly; B's margin is 0.61 across consistent estimates, since layer-serial pipelining halves per-user speed and breaks its $0.068 claim.
+PAIR 2 | WINNER A | A is ALIVE with margin 2.0 (unstable) and gain 20, whereas B is WOUNDED at margin 0.75 because SRAM density is about 2x short, leaving at most a 1.2x gain.
+PAIR 3 | WINNER A | A is ALIVE with margin 1.0 (unstable) and a roofline gain of about 2.0-2.3x per kW; B is WOUNDED at margin 0.89 and gives only about 1.12-1.17x on the whole system.
+PAIR 4 | WINNER A | A is ALIVE with margin 1.44 and gain 1.55, though much of it is avoided vendor markup; B is WOUNDED with an unstable margin of 1.14 and gain 1.12, because energy is only about 9% of TCO.
+PAIR 5 | WINNER A | Both are WOUNDED on hybrid-bonded DRAM density, but A's margin of 0.33 comes with a gain of 1.8 and a narrower, honest tier, whereas B's 0.32 is consistent across estimates and its current claim is off by 2x, so A is slightly better.

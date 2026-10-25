@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A's margin 0.46 is stable and its whole-chain gain is 1.39x, while B's 0.85 margin is unstable and its gain is only 1.22x. A also covers more cases (reorder, tool outputs, insertions) and returns exact quality on the requests the probe routes away.
+PAIR 2 | WINNER A | A's whole-chain gain is 1.64x, against 1.21x for B, and it covers reordering, insertion and moved tool outputs. B's margin of 0.9 is unstable and it only trims rewrites without raising the hit rate. A's margin of 0.53 is stable but below 1 on multi-source queries.
+PAIR 3 | WINNER B | B's gain is 1.8x, against 1.14x for A, and it covers reordering with position-independent chunks. Its margin of 0.4 is below 1, but A's margin of 0.64 buys only a small gain.
+PAIR 4 | WINNER A | A covers middle edits, insertions and changed tool outputs, and its stable margin of 0.5 is still a real 1.1–1.45x whole-system gain. B's PCIe fetch fails by 5–10x at serving batch sizes, and without it the gain is about 1.16x and does not raise the hit rate.
+PAIR 5 | WINNER B | B's whole-chain gain is 1.36x, against 1.16x for A. B never loses money across the tested regimes and reaches 1.5x at Zipf 1.5 from about 100 requests per 5 minutes, while A's single breakpoint is no better than plain four-breakpoint always-write at high traffic.

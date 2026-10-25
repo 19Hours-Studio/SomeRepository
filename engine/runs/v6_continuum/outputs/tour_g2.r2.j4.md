@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B's cost win is large (gain 2.9 vs 1.12) and survives even if per-user speed falls; A's 2× tok/kW is mostly eaten by HBM energy and is ~9% of TCO. Both are wounded and unstable, but B's margin (0.85) is close to 1.
+PAIR 2 | WINNER A | Both are wounded, but A's shortfall is mild (margin 0.89, gain 1.14, physically fine); B's layer-serial pipelining caps it at about half the claimed speed (margin 0.61), and its cost claim rests on utilization that doesn't hold.
+PAIR 3 | WINNER B | Both are ALIVE, but B's gain is 20× vs A's 1.55×, with margin 2.0 (unstable, 0.95–3.2) against A's stable 1.44. A's gain mostly comes from avoiding vendor margin and falls to ~1.15× against in-house silicon, so B's much larger upside wins despite the instability.
+PAIR 4 | WINNER B | B is ALIVE with margin 1.0 (unstable, 0.5–1.1) and a gain of 2.0 over Rubin, versus A's WOUNDED margin of 0.64, stable at that value, so A's density need is not met.
+PAIR 5 | WINNER B | B is wounded but has margin 0.75 and a net gain of 1.2 over the incumbent, while A's margin is 0.32 (about 3× short) and its current claim is internally off by 2×.

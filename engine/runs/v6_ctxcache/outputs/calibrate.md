@@ -1,0 +1,12 @@
+=== CALIBRATION ===
+P | 1 | 38% | No FATAL defect, and it is the only candidate whose cost gain survives both reviews against a fair baseline (about 1.3–2× whole-request). It is mostly a stack of prior art (CacheBlend, EPIC, APE, LMCache), runs only on your own or the provider's stack, and its multi-hop quality is unverified.
+P | 2 | 22% | Exact and lossless, and it works client-side through a third-party API. The gain is about 1.1–1.15× and falls below break-even at the measured skew (Zipf ≈ 0.8). It is largely CacheWeaver and Berkeley reordering.
+P | 3 | 10% | Capped by an unanswered FATAL. The 1% shadow gate cannot fall back per request, so 99% of requests are served unchecked. Without that defect it has the most compute headroom on content that varies by set or offset.
+P | 4 | 8% | Capped by an unanswered FATAL. "Never loses" fails against a baseline that caches the system prompt (0.81–0.90× at low traffic), and it loses at Zipf 0.8. The second-sighting admission rule is a small, sound addition.
+P | none | 22% | No candidate reaches about 100% hit rate. All gains measured against fair baselines are 1.0–2×, not "much cheaper". Real-trace results with query-correlated retrieval are missing for every candidate.
+
+WEAKEST LINK: Idea 1's quality when only 10–15% of tokens are recomputed on long or multi-hop RAG. The review cites KVShareArena: repairs recover only about ½–⅔ of the quality gap on multi-source questions. The gap here is between serving with no cache and full recomputation. APE's 93% retention also means a 7% loss, not the claimed 1–3%. Separately, against canonical-order prefix caching the whole-request gain is only 1.17–1.47×.
+
+FLIP TEST: Run CacheBlend+EPIC at r = 15% against full recompute on MuSiQue and 2WikiMQA, with about 8–10k paired questions so a 1-point F1 shift is detectable. If the F1 loss exceeds about 3 points, or less than about 80% of the gap is recovered, the blending stage is not worth its quality risk. Idea 1 then reduces to lossless canonical ordering, and Idea 2 leads.
+
+UNKNOWN: Two things stay open even if Idea 1 is right. First, the popularity skew and co-retrieval correlation of real traffic, which set every reuse figure. Second, how much reordering alone changes answers. A hit rate near 100% stays unreachable for first-seen and long-tail content (23–85% of document tokens) under any approach here.

@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A's tensor-parallel stages fix the layer-serial speed cap that consistently sinks B (margin 0.61 on all estimates). A's margin of 0.85 is unstable but closer to holding, and its cost win survives even at Groq-level speed.
+PAIR 2 | WINNER A | A is ALIVE with a 2.0 margin (unstable) and a large gain. B is WOUNDED: its stacked-SRAM density falls about 2× short (margin 0.75), which leaves only about 1.2× net gain.
+PAIR 3 | WINNER A | A is a full ALIVE architecture with about 2× checked gain per kW (margin 1.0, unstable). B is a WOUNDED KV-compression feature with a 0.89 margin and only about 1.14× whole-system gain.
+PAIR 4 | WINNER A | A is ALIVE with a 1.44 margin and 1.55× gain, though its claimed 2.7× is an accounting error. B is WOUNDED: HBM access energy eats its 2× tokens-per-kW budget, and energy is only about 9% of TCO, so the gain is about 1.12×.
+PAIR 5 | WINNER A | Both fall well short (about 0.33 vs 0.32). A sizes to measured density, has one estimate above 1 and states its losing tier honestly. B needs about 3× the measured hybrid-bonded density and its current figure is off by 2× internally.

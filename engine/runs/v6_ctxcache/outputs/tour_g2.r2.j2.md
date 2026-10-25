@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B's quality margin is higher and its estimates agree (0.53, against A's disputed 0.3–0.5); its gain is a little lower, but it adds offset-independent lookup with an exact fallback, while A is a stack of prior art already in LMCache.
+PAIR 2 | WINNER A | A has a measured whole-chain gain of 1.36x with exact KV, never loses money and runs client-side; B has no whole-chain gain established (about 1.1–1.45x system-wide) and rests on single-group preprints.
+PAIR 3 | WINNER B | B's margin is much closer to holding (0.85 unstable, against 0.45), its output is exact and it works client-side through APIs; A's 1.46–1.55x claim was a prefill-only figure that shrinks to 1.27–1.44x over the whole bill.
+PAIR 4 | WINNER A | A's margin is near holding (0.9 unstable, against a stable 0.46) at almost the same gain (1.21x against 1.39x), with zero quality risk; B's 1.5x needs m ≤ 0.12 while a realistic m is about 0.25, and probe recall is unmeasured.
+PAIR 5 | WINNER A | A's margin is above 1 on most estimates (1.8, though unstable) and its gain is slightly higher (1.16x against 1.14x); B's margin is 0.64, and measured repeat rates hold it to about 1.1–1.3x.

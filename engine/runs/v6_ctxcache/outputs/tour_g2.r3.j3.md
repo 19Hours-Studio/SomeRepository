@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B has real compute headroom (margin 0.53, gain 1.64) on reordered content, while A's margin is 0.375 and its gain is limited to client-side billing savings (1.06–1.83x) with a large share of document tokens still missing.
+PAIR 2 | WINNER B | B has the higher whole-chain gain (1.8 vs 1.22) and the cost chain clears 1.5x; its margin is 0.4 and A's is an unstable 0.85, but A's gain is only 1.22.
+PAIR 3 | WINNER B | B's gain is a checked 1.39 with a stable margin of 0.46, whereas A's margin is 0.5 with a whole-system gain of only about 1.1–1.45x and quality evidence from single-group preprints.
+PAIR 4 | WINNER B | B has the higher whole-chain gain (1.16 vs 1.21 is close, but B's margin of 0.675 is stable-ish and never loses money) versus A's unstable margin 0.9 resting on an unmeasured rewrite share f; B is the more reliable result.
+PAIR 5 | WINNER A | A's whole-chain gain is 1.35 with a margin of 0.45, against B's 1.14 and margin 0.64, and A reaches the cost terms that matter, though its stated 1.46–1.55x figure is overstated and the real figure is nearer 1.27–1.44x.

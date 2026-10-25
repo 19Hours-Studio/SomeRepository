@@ -237,35 +237,70 @@
   "killer": "gate uses each document's own reuse probability, but a hit needs the whole prefix path (all earlier documents) to repeat",
   "why": "It never loses money, but with only one breakpoint it misses shallower shared prefixes: at ≥100 requests per 5 min it does no better than (often worse than) a plain four-breakpoint always-write, and it falls short of its claimed 1.33/1.50/1.9x everywhere (by about 1.5x at its own claimed Zipf 1.2 point).",
   "ratio": 1.16,
-  "margin": 0.77,
-  "verdict": "WOUNDED"
+  "margin": 0.675,
+  "verdict": "WOUNDED",
+  "margins": [
+   0.77,
+   0.58
+  ],
+  "margin_gate": 0.77,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  },
  "improve_g2#3": {
   "killer": "share of input tokens that cache expiry forces you to rewrite (the most any TTL choice can recover)",
   "why": "The arithmetic is correct and the output is byte-identical, but the idea only covers expiry, and on real traces that recovers about 1.1x at most.",
-  "margin": 0.07,
+  "margin": 0.505,
   "ratio": 1.05,
-  "verdict": "DEAD"
+  "verdict": "DEAD",
+  "margins": [
+   0.07,
+   0.94
+  ],
+  "margin_gate": 0.07,
+  "unstable": true,
+  "verdict_gate": "DEAD"
  },
  "improve_g2#1": {
   "killer": "document-token hit rate against the near-100% target",
   "why": "It is the best of the four: it never loses money, reaches 1.5x or more only at Zipf 1.5 and ≥100 requests per 5 min, beats always-write by 0.1–0.3x, and the 1-hour TTL at low traffic adds 0.07–0.17x; but most document tokens still miss and it covers reordering only.",
-  "margin": 0.4,
+  "margin": 0.375,
   "ratio": 1.36,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.4,
+   0.35
+  ],
+  "margin_gate": 0.4,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  },
  "cross_g2#3": {
   "killer": "cost of pings compared with the extra hits they buy",
   "why": "The rule P × 1.25 > 0.1 ignores that a ping is paid every window on the whole prefix, system prompt included, and that pings on the same branch overlap; at low traffic, where it is meant to help, almost no leaf path qualifies.",
-  "margin": 0.4,
+  "margin": 0.2,
   "ratio": 0.9,
-  "verdict": "DEAD"
+  "verdict": "DEAD",
+  "margins": [
+   0.4,
+   0.0
+  ],
+  "margin_gate": 0.4,
+  "unstable": true,
+  "verdict_gate": "DEAD"
  },
  "cross_g2#2": {
   "killer": "largest share m of requests the probe can send to the exact-prefix path while the whole bill still falls 1.5x",
   "why": "Popularity ordering does roughly double exact-prefix reuse over hash ordering. But prefill is only 55% of the whole bill, so at m = 0.25 the total falls only 1.27–1.44x. The claimed 1.46–1.55x matches a prefill-only figure (1.62–2.24x) better than a whole-bill one. Quality is untested: we have no data on probe recall, and FACTs 4 and 8 report that blending degrades on long-context and cross-document tasks.",
-  "margin": 0.3,
+  "margin": 0.45,
   "ratio": 1.35,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.3,
+   0.6
+  ],
+  "margin_gate": 0.3,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  }
 }

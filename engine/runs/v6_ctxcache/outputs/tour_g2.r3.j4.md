@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A has a real compute gain (whole-chain 1.64, margin 0.53 on quality recovery) and covers middle/insertion/tool cases, while B covers only reordering with a 0.375 hit-rate margin and 1.36 gain; A's higher margin and gain win.
+PAIR 2 | WINNER A | A's whole-chain gain is 1.8 (cost chain clears 1.5x) versus B's 1.22 with an unstable margin; A's quality margin of 0.4 is lower than B's 0.85 but its gain is much larger and it covers more cases.
+PAIR 3 | WINNER B | B covers middle edits, insertions and tool outputs with a 0.5 margin and a large per-edit saving, while A's margin of 0.46 and whole-chain gain of 1.39 depend on an unmeasured probe; B's whole-chain gain was not computed (about 1.1–1.45x), so this is a narrow call.
+PAIR 4 | WINNER B | B's whole-chain gain is 1.21 with a margin of 0.9 (unstable) and no output change, against A's 1.16 gain and 0.675 margin, where one breakpoint misses shallower shared prefixes.
+PAIR 5 | WINNER B | B's whole-chain gain is 1.35 against A's 1.14, and both have margins below 1, with B's 0.45 against A's 0.64; the larger gain decides it.

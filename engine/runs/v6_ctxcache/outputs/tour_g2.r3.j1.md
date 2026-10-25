@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B has the higher margin (0.53 vs 0.375) and the higher whole-chain gain (1.64 vs 1.36), and it covers reorders, moved tool outputs and post-insertion text; A covers reordering only.
+PAIR 2 | WINNER A | A's exact-prefix margin (0.85, unstable) is much nearer to holding than B's quality margin (0.4), so B's 1.8x is mostly a promise, and B adds little beyond already-shipped prior art (CacheBlend/EPIC in LMCache).
+PAIR 3 | WINNER B | Margins are close (0.5 vs 0.46), but B has a checked whole-chain gain of 1.39; A's 20–50x applies only to the edited suffix and has no verified whole-system gain (about 1.1–1.45x).
+PAIR 4 | WINNER A | A has the higher margin (0.9 vs 0.675) and the higher gain (1.21 vs 1.16); B's per-document gate ignores the need for the whole prefix path to repeat and can do worse than plain four-breakpoint writes.
+PAIR 5 | WINNER A | A's checked gain of 1.35 clearly beats B's 1.14, and A covers more request-change cases; this outweighs B's moderately higher margin (0.64 vs 0.45), even with A's inflated prefill-only claim corrected.

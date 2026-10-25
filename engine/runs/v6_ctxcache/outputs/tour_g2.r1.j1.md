@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A is closer to holding (margin 0.85, unstable) and its output is exact. B's 1.39x depends on an unmeasured probe recall, and its margin of 0.46 shows the claimed 1.5x routing budget does not hold.
+PAIR 2 | WINNER B | B's checked gain is 1.64x and covers reordering, insertions and moved tool outputs; its weak margin concerns only full-quality multi-hop. A tops out near 1.2x and touches only post-expiry rewrites.
+PAIR 3 | WINNER A | A's whole-chain gain is 1.8x, clears 1.5x on varied RAG sets, and adds lossless canonical hits. B is checked at 1.14x and covers only repeated tool outputs.
+PAIR 4 | WINNER B | B addresses middle edits and insertions, the core hard case, with a sound mechanism and a gain of about 1.1–1.45x. A's per-query CPU/SSD fetch fails on PCIe bandwidth by 5–10x, leaving only about 1.16x.
+PAIR 5 | WINNER A | A's checked gain is 1.36x and it never loses money across regimes. B's single breakpoint misses shallower shared prefixes and does no better than plain always-write (1.16x).

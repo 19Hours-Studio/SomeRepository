@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both margins are below 1, but B's 0.85 (unstable) is much closer to holding than A's 0.61. B also replaces the layer-serial pipelining that halves A's claimed 1,000 tok/s/user, and drops A's unsupported "GB300 cost at 20× speed" claim.
+PAIR 2 | WINNER B | B is ALIVE with margin 2.0 (unstable) and a large claimed gain. A is WOUNDED at margin 0.75 because SRAM density is about 2× short, which breaks the 144-package fit and leaves only about 1.2× gain.
+PAIR 3 | WINNER B | B is ALIVE at margin 1.0 (unstable) with about 2× whole-system gain and a full architecture with metrics. A is a single KV-compression technique, WOUNDED at margin 0.89, worth only about 1.14× system-wide, and unmeasured at 128K.
+PAIR 4 | WINNER B | B is ALIVE at margin 1.44 with about 1.55× cost-per-token gain. A is WOUNDED at margin 1.14 (unstable): HBM energy eats its 2× tok/kW budget, and energy is only about 9% of TCO, so its net gain is about 1.12×.
+PAIR 5 | WINNER B | Both are WOUNDED near margin 0.32. A is consistently 0.32, needs about 3× the measured hybrid-bonded density, and has a 2× current error. B uses measured density, has one estimate that holds (1.2), and states its loss to Rubin at ≤100 tok/s/user.

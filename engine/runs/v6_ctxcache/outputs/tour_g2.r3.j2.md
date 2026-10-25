@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A's margin (0.53) and whole-chain gain (1.64x) both beat B's (0.375, 1.36x); B's exact popularity ordering leaves most document tokens uncached.
+PAIR 2 | WINNER B | B's margin (0.85, unstable) is far closer to holding than A's (0.40). A's higher 1.8x is a promise built on prior art that already ships in LMCache, with a disputed quality margin on multi-hop work.
+PAIR 3 | WINNER A | A has a checked whole-chain gain (1.39x) at a similar margin (0.46 vs 0.5). B's edit-local repair has no established whole-system gain, and its 20–50x applies only to the edited suffix.
+PAIR 4 | WINNER B | B's keep-alive pricing has a higher margin (0.9, unstable) and gain (1.21x) and cannot hurt quality. A's single breakpoint misses shallower shared prefixes and often does no better than plain four-breakpoint always-write.
+PAIR 5 | WINNER B | B's checked gain of 1.35x clearly beats A's 1.14x diff-encoding gain, even though B's margin to its 1.5x claim is lower (0.45 vs 0.64) and it overstates its own figure.

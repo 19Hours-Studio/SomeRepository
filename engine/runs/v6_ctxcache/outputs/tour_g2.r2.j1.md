@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A's margin (0.53) is higher and its estimates agree, and it adds offset-independent lookup plus a gate with exact fallback. B's gain is higher (1.8 vs 1.64), but its margin is lower (0.4, estimates 0.3–0.5) and it mostly restacks prior art that already ships in LMCache.
+PAIR 2 | WINNER B | B has a measured whole-chain gain of 1.36 with exact KV and runs client-only. A targets the harder middle-edit case, but it has no checked whole-chain gain (about 1.1–1.45x system-wide) and its quality evidence comes from a single group.
+PAIR 3 | WINNER A | A's margin is much higher (0.85, though unstable, vs 0.45) and its output is exact with no blending. B's 1.35 gain rests on a prefill-only figure that the check cut to 1.27–1.44x.
+PAIR 4 | WINNER B | B's margin (0.9, unstable) is close to holding and it cannot change output. A's higher gain (1.39) depends on a margin of 0.46 and on unmeasured probe recall, with m likely near 25% against the ≤12% it needs.
+PAIR 5 | WINNER B | B's majority margin is 1.8 (unstable) against A's 0.64, and its gains are about equal (1.16 vs 1.14). Even if the CPU/SSD fetch fails on bandwidth, B's in-HBM fallback still reaches the 1.16x decode-share gain.

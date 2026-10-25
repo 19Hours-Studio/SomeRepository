@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Higher quality margin (0.53 vs 0.4) and a larger whole-chain gain (1.64 vs 1.8 claimed but checked as stack of prior art); B also adds a quality gate with exact fallback and states honestly that ≈100% is unreachable for multi-hop.
+PAIR 2 | WINNER A | A's margin (0.375) is low but its gain of 1.36 is measured and it never loses money, while B has no whole-chain gain (None) and its 20–50x applies only to the edited suffix, about 1.1–1.45x overall.
+PAIR 3 | WINNER B | B's margin is 0.85 (unstable) versus A's 0.45, and it delivers exact, measured 1.17–1.78x gains with no KV approximation, though A's whole-chain gain figure of 1.35 is higher than B's 1.22.
+PAIR 4 | WINNER B | B has a higher whole-chain gain (1.39 vs 1.21) with stable estimates (0.46, 0.46, 0.48) and covers reordering, moved tool outputs and insertions, while A's margin is unstable and its saving only applies to rewrites after expiry.
+PAIR 5 | WINNER B | B's whole-chain gain is only 1.14 against A's 1.16, but A's mechanism fails on PCIe bandwidth by 5–10x at serving batch sizes, so B is the one that holds.

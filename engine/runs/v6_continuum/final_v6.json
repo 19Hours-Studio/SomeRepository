@@ -1,0 +1,34 @@
+{
+ "improve_g2#1": {
+  "FATAL": 0.0,
+  "MAJOR": 2.5,
+  "MINOR": 2.5,
+  "fit": 0.0,
+  "ratio": 0.925,
+  "known": "partly/partly"
+ },
+ "g1_rf2#1": {
+  "FATAL": 2.0,
+  "MAJOR": 1.5,
+  "MINOR": 1.0,
+  "fit": 0.0,
+  "ratio": 0.35,
+  "known": "partly/yes"
+ },
+ "baseline_1#1": {
+  "FATAL": 0.0,
+  "MAJOR": 4.5,
+  "MINOR": 1.5,
+  "fit": 0.0,
+  "ratio": 1.1,
+  "known": "partly/partly"
+ },
+ "cross_g2#3": {
+  "FATAL": 0.5,
+  "MAJOR": 3.5,
+  "MINOR": 1.5,
+  "fit": 0.0,
+  "ratio": 1.15,
+  "known": "partly/partly"
+ }
+}

@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both are wounded and unstable, but B's cost win (2.9×, about $0.14–0.23/Mtok) survives even if per-user speed falls to Groq levels; A's 2× tok/kW mostly goes to HBM read energy and nets only 1.12×.
+PAIR 2 | WINNER B | B is a complete architecture whose capacity and compute totals check out; even at half the claimed per-user speed it keeps a large whole-chain gain (4.6×). A is one KV-compression trick worth about 1.14× system-wide, with unmeasured 128K accuracy.
+PAIR 3 | WINNER A | A is ALIVE with a consistent margin (1.3–1.48) and a real 1.55× cost gain. B's 20× depends on SRAM density about 25% above any shipped die, its low estimate is 0.95, and a vendor markup breaks its $/GB limit.
+PAIR 4 | WINNER B | B is ALIVE at margin 1.0 with about 2× tok/kW. A halves capacity to fix density, but its deciding density still has only been shown at 0.64 of what it needs.
+PAIR 5 | WINNER B | Both fail their deciding density, but A is about 3× short (margin 0.32) and its current figure is off by 2×. B is 0.75 and honestly keeps about 1.1–1.6× (1.2× net checked) with a sound bandwidth-split idea.

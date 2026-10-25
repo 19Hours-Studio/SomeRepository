@@ -1,0 +1,12 @@
+{
+ "p": {
+  "baseline_1#1": 0.34,
+  "improve_g2#1": 0.24,
+  "cross_g2#3": 0.08,
+  "g1_rf2#1": 0.03,
+  "none": 0.31
+ },
+ "weakest_link": "Idea 1 assumes 160 GB at 64 TB/s and ≤1 pJ/bit of hybrid-bonded DRAM sitting under ~1–1.5 W/mm² logic. That is about 2–5× the capacity of any shown part. It also needs the DRAM to stay cool enough to avoid heavy refresh or throttling, which imec measured at 141.7 °C unmitigated.",
+ "flip_test": "A measured logic-on-DRAM stack, or a validated thermal and electrical simulation, run at full logic power. | The ranking flips if it shows any of these:\n- under ~20 GB per stack;\n- under ~8 TB/s per stack at ≤95 °C;\n- refresh or frequency throttling that cuts usable bandwidth or FP8 by more than ~40%.\n\nAny one of these pulls Idea 1's GQA gain below ~1.4×. Idea 2, or \"none\", would then lead.",
+ "unknown": "Even if Idea 1 is right, it may not be best on cost per token. Composite wafer-on-wafer yield is about 34%, package capex is unknown, and energy is only about 10% of TCO. It is also unclear whether frontier models will stay GQA (where Continuum wins) or move to MLA (where it barely wins)."
+}

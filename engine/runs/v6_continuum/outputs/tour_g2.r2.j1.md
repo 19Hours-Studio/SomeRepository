@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | Both are WOUNDED and unstable. A's 0.85 margin still leaves a cost win of about 2.9× that holds even at Groq-level speed. B barely holds at 1.14, but energy is only ~9% of TCO, so it gains just 1.12×.
+PAIR 2 | WINNER A | A is stable at 0.61 with a 4.6× gain, so it still delivers about 500 tok/s/user at low cost. B is unstable at 0.89, gains only about 1.14×, and is a KV-cache feature, not a full chip architecture.
+PAIR 3 | WINNER A | Both are ALIVE. A's median margin is 2.0 with a 20× gain, though the margin is unstable (0.95–3.2) and depends on an unshipped SRAM density. B is stable at 1.44 but gains only 1.55×, mostly from avoided vendor markup, and its 2.7× claim is an accounting error.
+PAIR 4 | WINNER A | A is ALIVE at a 1.0 median margin (unstable) with a 2.0× tokens/kW gain. B is WOUNDED: its deciding DRAM density is consistently only 0.64 of what it needs, for a similar 1.9× gain.
+PAIR 5 | WINNER A | A is short on SRAM (0.75) but keeps about 1.2× net. B needs about 3× the measured hybrid-bonded DRAM density (margin 0.32), and its current figures are off by 2×, so its 2.2× gain does not hold.

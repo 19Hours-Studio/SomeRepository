@@ -1,0 +1,12 @@
+{
+ "p": {
+  "baseline_1#2": 0.38,
+  "improve_g1#2": 0.22,
+  "baseline_2#2": 0.1,
+  "improve_g2#1": 0.08,
+  "none": 0.22
+ },
+ "weakest_link": "Idea 1's quality when only 10–15% of tokens are recomputed on long or multi-hop RAG. The review cites KVShareArena: repairs recover only about ½–⅔ of the quality gap on multi-source questions. The gap here is between serving with no cache and full recomputation. APE's 93% retention also means a 7% loss, not the claimed 1–3%. Separately, against canonical-order prefix caching the whole-request gain is only 1.17–1.47×.",
+ "flip_test": "Run CacheBlend+EPIC at r = 15% against full recompute on MuSiQue and 2WikiMQA, with about 8–10k paired questions so a 1-point F1 shift is detectable. If the F1 loss exceeds about 3 points, or less than about 80% of the gap is recovered, the blending stage is not worth its quality risk. Idea 1 then reduces to lossless canonical ordering, and Idea 2 leads.",
+ "unknown": "Two things stay open even if Idea 1 is right. First, the popularity skew and co-retrieval correlation of real traffic, which set every reuse figure. Second, how much reordering alone changes answers. A hit rate near 100% stays unreachable for first-seen and long-tail content (23–85% of document tokens) under any approach here."
+}

@@ -109,3 +109,35 @@ gate: 6/6 parsed {'ALIVE': 2, 'WOUNDED': 2, 'DEAD': 2}
   tour_g2.r1.j3: 12,081 tokens, 10.1 s
   tour_g2.r1.j2: 12,489 tokens, 14.0 s
   tour_g2.r1.j1: 12,723 tokens, 16.7 s
+  tour_g2.r2.j3: 11,531 tokens, 9.2 s
+  tour_g2.r2.j4: 11,674 tokens, 12.8 s
+  tour_g2.r2.j1: 12,446 tokens, 17.9 s
+  tour_g2.r2.j2: 12,624 tokens, 19.6 s
+  tour_g2.r3.j4: 11,625 tokens, 8.7 s
+  tour_g2.r3.j3: 11,692 tokens, 11.3 s
+  tour_g2.r3.j2: 12,102 tokens, 13.9 s
+  tour_g2.r3.j1: 12,184 tokens, 15.0 s
+  tour_g2: 61 judgments over 11 answers
+/home/user/SomeRepository/engine/runs/v6_continuum/audit_final_r2/TASK.md
+/home/user/SomeRepository/engine/runs/v6_continuum/audit_final_r1/TASK.md
+  audit_final_r1: 275,200 tokens, 380.1 s
+  audit_final_r1: 5 new facts -> evidence.md
+  audit_final_r2: 279,452 tokens, 383.8 s
+  audit_final_r2: 3 new facts -> evidence.md
+  calibrate: 16,070 tokens, 22.0 s
+
+FINAL v6 (two blind reviews, mean defects; BT = tournament score; p = stated probability of being the best answer):
+  1. baseline_1#1       [BASE] F0.0/M4.5/m1.5 ratio 1.1 known partly/partly BT +1.26 p 34%  Hybrid-bonded DRAM-on-logic decode package
+  2. improve_g2#1       [E] F0.0/M2.5/m2.5 ratio 0.93 known partly/partly BT +2.40 p 24%  N6 SRAM chiplets, package-wide tensor stages
+  3. cross_g2#3         [E] F0.5/M3.5/m1.5 ratio 1.15 known partly/partly BT +0.82 p 8%  Cheap-node HBM decode tier
+  4. g1_rf2#1           [E] F2.0/M1.5/m1.0 ratio 0.35 known partly/yes BT +1.63 p 3%  N6 SRAM-chiplet pipeline packages
+  best answer: a PLAIN one-call answer - Hybrid-bonded DRAM-on-logic decode package
+  none of these: p 31%
+  weakest link: Idea 1 assumes 160 GB at 64 TB/s and ≤1 pJ/bit of hybrid-bonded DRAM sitting under ~1–1.5 W/mm² logic. That is about 2–5× the capacity of any shown part. It also needs the DRAM to stay cool enough to avoid heavy refresh or throttling, which imec measured at 141.7 °C unmitigated.
+  flip test: A measured logic-on-DRAM stack, or a validated thermal and electrical simulation, run at full logic power. | The ranking flips if it shows any of these:
+- under ~20 GB per stack;
+- under ~8 TB/s per stack at ≤95 °C;
+- refresh or frequency throttling that cuts usable bandwidth or FP8 by more than ~40%.
+
+Any one of these pulls Idea 1's GQA gain below ~1.4×. Idea 2, or "none", would then lead.
+spent 4,181,359 tokens, $17.41
