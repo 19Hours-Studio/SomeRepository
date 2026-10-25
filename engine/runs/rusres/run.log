@@ -138,3 +138,8 @@ gate: 8/8 parsed {'DEAD': 7, 'WOUNDED': 1}
 gate: 4/4 parsed {'DEAD': 4}
   gate_fill: 4 more families tested, 7 new facts -> evidence.md
   known: ideas changed, will run again
+  known: 52,501 tokens, 43.1 s
+  known: g1_mech#3 partly, g1_neg#2 partly, g1_rf1#2 yes, g1_neg#3 yes, g1_rf1#1 partly, g1_rf2#3 partly (6/6 parsed)
+/home/user/SomeRepository/engine/runs/rusres/repair/TASK.md
+/home/user/SomeRepository/engine/runs/rusres/repair/c1/TASK.md
+/home/user/SomeRepository/engine/runs/rusres/repair/c2/TASK.md

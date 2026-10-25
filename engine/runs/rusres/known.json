@@ -1,44 +1,44 @@
 {
- "g1_mech#2": {
+ "g1_mech#3": {
   "known": "partly",
-  "closest": "US4818148 \"Frost damage proofed pile\", plus bitumen-coat negative-skin-friction work (Canadian patent CA1254393 family; TRID \"Performance of bituminous coats in reducing negative skin friction\")",
-  "url": "https://patents.google.com/patent/US4818148",
-  "same": "Piles in permafrost with a smooth slip covering on the shaft. Bitumen coats cut negative skin friction and downdrag. Soviet and Norilsk piles use end-bearing and rock-bearing design.",
-  "new": "The combined package for thaw: a bored rock socket below the frozen layer, a bitumen sleeve over the frozen zone only, and load-cell monitoring over 3–5 thaw seasons. I found no permafrost-thaw-specific case with all three. The search did not reach SP 25.13330 or Russian-language sources."
+  "closest": "Grasberg underground block-cave crusher/conveyor system (phase 1 commissioned mid-2018), Freeport-McMoRan; the Vale S11D truck-free in-pit crush-and-convey system is the open-pit analogue",
+  "url": "https://www.mdpi.com/2076-3417/15/24/13148 (Grasberg snippet came from the bulk-online result; the S11D figures are from https://www.flsmidth.com/-/media/brochures/performance-studies/batch1/fls-performance-study_22-027f.pdf)",
+  "same": "Crush then belt in place of trucks; the Metso blog and the AusIMM paper put belt energy at 15–30% of truck energy, which matches the 3–5x claim",
+  "new": "A level-scale crusher feeding a fixed belt to the shaft at Talnakh, in narrow-vein sulphide ore, with Russian belts and Ruselprom drives. I found no Talnakh or Norilsk source. The search was thin on underground-specific work."
  },
- "g1_ledger#1": {
+ "g1_neg#2": {
   "known": "partly",
-  "closest": "Novatek \"Ob LNG\", 2 trains of 2.5 Mtpa on the modified Arctic Cascade (ACM), plus the ACM patent for 3 Mtpa trains on domestic equipment, Novatek, 2019–2020",
-  "url": "https://lngprime.com/lng-terminals/novatek-forms-murmansk-lng-unit/99302",
-  "same": "Mid-scale (2.5–3 Mtpa) Arctic Cascade trains, designed to use domestic equipment, built in parallel on a gravity base.",
-  "new": "Sizing at 1.5–2.5 Mtpa, with 3–4 trains each starting up as built after the 2022 import loss. I found no published uptime or cost data for it. The Ob LNG FID and build status are unconfirmed."
+  "closest": "Kutcho Copper project pre-sorting plan (Canada, ~2020s); NexMetals Selebi Cu-Ni XRT bulk tests",
+  "url": "https://im-mining.com/tag/kutcho-copper",
+  "same": "XRT sorting of sulphide ore ahead of the mill, with sorter rejects used as cemented backfill in underground mines. NexMetals reported head grade up more than 15% on Cu-Ni-Co ore. A 2026 paper reports 95.67% Cu recovery.",
+  "new": "Sorting at the shaft bottom of a disseminated Ni-Cu mine (Norilsk), domestic sorters, the stated aim of freeing fixed concentrator capacity, and the <3% metal-loss target. Kutcho is a plan, not an operating case."
  },
  "g1_rf1#2": {
   "known": "yes",
-  "closest": "Novatek's Saam FSU (Ura Bay) and Kildin/Murmansk transshipment complex, plus the Arc7 winter shuttle plan, Novatek/Arctic Transshipment, 2020–2026",
-  "url": "https://www.marineinsight.com/russia-executes-first-triple-arctic-lng-ship-to-ship-transfer-in-murmansk-region/",
-  "same": "Arc7 carriers shuttle to Murmansk-area floating storage, and conventional tankers carry the LNG onward. Novatek planned a 4-day turnaround to support winter shuttles to Murmansk, and is building 360,000 m³ storage units at Murmansk and Kamchatka.",
-  "new": "Nothing in the mechanism. Only the specific 1.5–2x tonnage estimate and turnaround logging are new."
+  "closest": "Novatek Arc7 shuttles to the Saam FSU near Murmansk, with ship-to-ship transfer to conventional tankers, 2026",
+  "url": "https://www.marineinsight.com/shipping-news/russias-arc7-lng-carrier-alexey-kosygin-completes-first-arctic-lng-delivery/",
+  "same": "Arc7 ships load at Gydan or Yamal and unload to Saam, then conventional tankers carry the cargo. Novatek plans a ~4-day turnaround for winter Gulf of Ob–Murmansk shuttles. Arc7 STS transfers at Kildin are also reported.",
+  "new": "Nothing material. Only the quantified 1.5–2x cargo gain and the turnaround-logging test are not in the sources."
+ },
+ "g1_neg#3": {
+  "known": "yes",
+  "closest": "Larsen, \"Integrated post and jack system\", US 2011/0088336, and Canadian patent CA 2717101",
+  "url": "https://patents.justia.com/patent/20110088336",
+  "same": "A hydraulic leveling jack on a post base, for foundations hit by subsidence and frost heave in permafrost, used to re-level after movement. The Alaska 2022 guide and NREL 2024 guidebook call adjustable foundations standard, and say jacks on piles correct differential settlement.",
+  "new": "Survey-driven re-levelling on a schedule, 300 mm stroke, and application to industrial plant on spread footings or space frames. The ground is allowed to thaw. Industrial use is only weakly covered."
  },
  "g1_rf1#1": {
   "known": "partly",
-  "closest": "Yamal LNG Train 4 (Arctic Cascade, 0.9 Mtpa, started May 2021), Novatek; also the Ob LNG ACM design",
-  "url": "https://lngprime.com/lng-terminals/novatek-forms-murmansk-lng-unit/99302",
-  "same": "The domestic 0.9 Mtpa Arctic Cascade train exists and runs. Novatek has used the same approach on gravity bases with shared port facilities. Cryogas-Vysotsk at 0.66 Mtpa is another small-train precedent.",
-  "new": "Copying the 0.9 Mtpa train in series at Utrenneye and Sabetta, sharing the existing infrastructure, with the sub-$600/t/y capex target. I found no published plan or cost data."
+  "closest": "Yamal LNG Train 4, Novatek Arctic Cascade, 0.9 Mtpa, domestic equipment, started 2021",
+  "url": "https://www.arctictoday.com/?p=33206",
+  "same": "The same unit, using Russian-made equipment and the cold climate to cut liquefaction cost. Novatek originally meant to reuse it elsewhere.",
+  "new": "Series copies of 3 trains sharing the GBS, port and berths at Utrenneye and Sabetta, and the <$600/t/y capex target. Reports say Novatek dropped reuse of the technology at Ob LNG. Train 4 was delayed by commissioning problems with the domestic equipment."
  },
  "g1_rf2#3": {
   "known": "partly",
-  "closest": "ARCO North Slope passive subgrade cooling with 29 installations, including retrofits (CPC5-365); the Qinghai–Tibet line piles retrofitted with thermosyphons, 7 years of monitoring (Permafrost and Periglacial Processes 33(3), 2022)",
-  "url": "https://pubs.aina.ucalgary.ca/cpc/CPC5-365.pdf",
-  "same": "Retrofitting thermosyphons to existing piles, with monitoring of the result. Nornickel runs foundation geotechnical monitoring since 2020. InSAR was used on the 2020 tank collapse (Remote Sensing 14(19):5036).",
-  "new": "Ranking Norilsk and Talnakh structures by InSAR plus borehole data to decide which get retrofits, with a cutoff at a 40% capacity loss. I found no such ranking method."
- },
- "g1_ledger#3": {
-  "known": "partly",
-  "closest": "US11555658B2 \"Methods and systems to convert passive cooling to active cooling\"",
-  "url": "https://patents.google.com/patent/US11555658",
-  "same": "A chiller circulates glycol coolant through pile or thermosyphon tubing, runs in summer, and does not depend on the weather. Also Univ. of Alberta glycol screw-pile work and CCHRC \"Pile Adfreeze with Active Refrigeration\".",
-  "new": "Using the LNG plant's own refrigeration as the cold source, applying the loop to pile caps, and the 5 W/m² and 2.5 MW sizing. I found no LNG-plant use."
+  "closest": "Nornickel automated geotechnical monitoring (about 40 thermistor strings, inclinometers, 165 objects, 2021–22); Qinghai–Tibet pile thermosyphon study",
+  "url": "https://www.comnews.ru/digital-economy/content/219214/2022-03-11/2022-w10/nornikel-konsolidiruet-dannye-o-vechnoy-merzlote-norilske",
+  "same": "Borehole-temperature ranking of Norilsk foundations, with a modelled pile capacity loss of up to 50% over 60 years. Thermosyphons on piles were seven-year monitored on the Qinghai–Tibet line.",
+  "new": "Triage of which piles get retrofits, the InSAR input, and a freezing-index cutoff that excludes warm sites. CSA S500:21 does not cover retrofit. I found no source on Fundamentproekt retrofits or on InSAR prioritisation."
  }
 }
