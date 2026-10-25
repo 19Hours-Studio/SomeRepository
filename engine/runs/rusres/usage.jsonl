@@ -16,3 +16,4 @@
 {"step": "gen:g1_mech", "time": "2026-10-25 01:11:01", "model": "opus", "tools": "", "tokens": 18788, "output_tokens": 4588, "cache_read": 1496, "fresh_input": 12704, "cost_usd": 0.1936832, "turns": 1, "seconds": 60.2}
 {"step": "gen:g1_rf1", "time": "2026-10-25 01:11:46", "model": "opus", "tools": "", "tokens": 17829, "output_tokens": 3519, "cache_read": 1496, "fresh_input": 12814, "cost_usd": 0.17318319999999998, "turns": 1, "seconds": 45.0}
 {"step": "gen:g1_rf2", "time": "2026-10-25 01:12:27", "model": "opus", "tools": "", "tokens": 17134, "output_tokens": 2864, "cache_read": 1496, "fresh_input": 12774, "cost_usd": 0.1597632, "turns": 1, "seconds": 40.5}
+{"step": "gen:triage", "time": "2026-10-25 01:13:07", "model": "opus", "tools": "", "tokens": 17599, "output_tokens": 3375, "cache_read": 1496, "fresh_input": 12728, "cost_usd": 0.1696152, "turns": 1, "seconds": 40.6}
