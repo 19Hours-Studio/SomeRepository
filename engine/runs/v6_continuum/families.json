@@ -21,5 +21,11 @@
  "baseline_2#1": "stacked sram weights hbm kv",
  "baseline_2#2": "hardware sparse attention kv gather",
  "baseline_2#3": "deterministic compiler scheduled fabric",
- "baseline_2#4": "phase split decode prefill parts"
+ "baseline_2#4": "phase split decode prefill parts",
+ "improve_g1#1": "sram chiplet weight residency",
+ "improve_g1#2": "dram hybrid bonded onto logic",
+ "improve_g1#3": "stacked sram weights hbm kv",
+ "cross_g1#1": "sram chiplet weight residency",
+ "cross_g1#2": "dram hybrid bonded onto logic",
+ "cross_g1#3": "stacked sram weights hbm kv"
 }
