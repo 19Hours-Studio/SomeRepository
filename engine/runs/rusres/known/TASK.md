@@ -46,32 +46,32 @@ IDEA 1: KNOWN <yes/partly/no> | CLOSEST: <title or number, owner, year> | <URL> 
 
 THE 6 IDEAS:
 IDEA 1
+NAME: Rock-socketed piles with slip sleeves
+MECHANISM: Carry new and rebuilt plant loads on bored steel piles set into rock below the frozen ground, and coat the shaft inside the frozen layer with a bitumen slip layer, so thaw adds only small drag load instead of removing the pile's support. Use TMK pipe and Chinese piling rigs. The closest earlier attempts are pile design to SP 25.13330, which has lost 20–55% of capacity (F89), and the Ambarnaya piles set in ice-rich ground (F325). Ground cooling is not involved, so a warming climate does not erode the support. The design applies at Norilsk, Udokan and Baimskaya, but not on deep Yamal sediments. The deciding quantity is depth to competent rock, which must be 30 m or less; test it with load-cell piles monitored for 3–5 thaw seasons.
+VALUE: Structure life of 50+ years, for about 1–3% more capex.
+
+IDEA 2
 NAME: Parallel mid-scale domestic LNG trains
 MECHANISM: Build Gydan/Yamal LNG as 3–4 parallel trains of 1.5–2.5 Mtpa each, on the Arctic Cascade process. Each train uses domestic electric or UEC-Kuznetsov drives, Arctic air cooling and gravity-base modules, and each comes online as soon as it is built. The closest earlier attempt is Train 4, which stalled at proving the process at 0.9 Mtpa; Arctic LNG 2 failed because its 6.6 Mtpa trains needed imported turbines. This idea stops short of 6.6 Mtpa, so neither the scale-up nor the import limit applies. Colder heat rejection lowers the compressor work per tonne, by the Carnot relation. The deciding quantity is the uptime of a train at 2 Mtpa against the 1,100 $/t/y benchmark of Yamal LNG Trains 1–3.
 VALUE: Cuts delivered LNG cost by about 30% (est.) and brings each train into production about a year sooner.
 
-IDEA 2
-NAME: Numbers-up Arctic Cascade trains
-MECHANISM: Train 4's 0.9 Mtpa Arctic Cascade design, which is domestic and already running, is copied in series at Utrenneye and Sabetta. Each copy shares the existing gravity base, port, gas gathering and Arc7 berths, instead of scaling to 6.6 Mtpa trains on imported turbines. The closest earlier attempt is Arctic LNG 2, which stalled because only 4 of its 20 Baker Hughes turbines were delivered and the GTE-170 exists only at unit scale. Small trains avoid both by using domestic drives. The deciding quantity is whether series-built trains hold unit capex below $600/t/y once the alloy piping is replaced. Risks are low-temperature metallurgy and efficiency losses at small scale. The test, over 3–5 years, is to build 3 trains, then measure their capex and how many days a year they run.
-VALUE: Annualised capital falls about 60% and delivered cost falls about 20–30%, against the Yamal LNG Trains 1–3 benchmark. First LNG comes about 2–3 years after the decision, against 4 for Yamal LNG, with no imported drives.
-
 IDEA 3
-NAME: Numbered-up mid-scale LNG trains
-MECHANISM: Replicate the Arctic Cascade train built at 0.9 Mtpa about seven times instead of scaling up to 6.6 Mtpa. Each train is driven by 16–25 MW gas turbines already in serial production for Russian pipelines, and Arctic air does the precooling. The closest earlier attempt, Arctic LNG 2, stalled on scarce large turbines; this design avoids that by using drives already built in volume. The deciding quantity is installed capex per tonne-year together with train availability at −45 °C.
-VALUE: It phases LNG capital and starts revenue sooner using only domestic drives.
-
-IDEA 4
 NAME: Murmansk winter shuttle loop
 MECHANISM: In winter, Arc7 ships run only Sabetta/Utrenneye–Murmansk and back, unloading into existing floating storage there. Conventional tankers then carry the LNG onward. The closest earlier attempt is the Zeebrugge transshipment, whose roughly 5,000 km leg wastes scarce Arc7 tonnage and which the EU ban from 2027 closes. The deciding quantity is Arc7 round-trip days in the January–April ice. Risk: storage capacity at Murmansk. The test, over 3 years, is to log turnaround times for the existing ships.
 VALUE: The cargo each Arc7 ship delivers per year rises about 1.5–2x (est.), which removes the shipping bottleneck that left Arctic LNG 2 Train 1 unsold. Outbound logistics, the second-largest cost share, falls roughly 25–35%.
 
-IDEA 5
-NAME: Replicated cold-ambient domestic trains
-MECHANISM: Copy Train 4 at Yamal and Gydan, which uses a three-stage cascade with cold Arctic air as the heat sink, in place of the APCI/Baker Hughes design, and drive the compressors with domestic electric motors from site power. The closest earlier attempt is Train 4 itself, which ran only at 0.9 Mtpa and needed its piping replaced (F172–174). This plan does not scale the train up; it copies the proven size with corrected alloy piping. The gain is capital: about $73/t, or $1.4/mmBtu, from 1.23x cheaper delivery (est.), assuming the Train 4 capex claim holds. The deciding quantity is train availability, which must be at least 90% across 4 or more trains; test it with two copies built within 4 years.
-VALUE: LNG capacity added without Western drives, at about 1.2x lower delivered cost against Yamal T1–3.
+IDEA 4
+NAME: Numbers-up Arctic Cascade trains
+MECHANISM: Train 4's 0.9 Mtpa Arctic Cascade design, which is domestic and already running, is copied in series at Utrenneye and Sabetta. Each copy shares the existing gravity base, port, gas gathering and Arc7 berths, instead of scaling to 6.6 Mtpa trains on imported turbines. The closest earlier attempt is Arctic LNG 2, which stalled because only 4 of its 20 Baker Hughes turbines were delivered and the GTE-170 exists only at unit scale. Small trains avoid both by using domestic drives. The deciding quantity is whether series-built trains hold unit capex below $600/t/y once the alloy piping is replaced. Risks are low-temperature metallurgy and efficiency losses at small scale. The test, over 3–5 years, is to build 3 trains, then measure their capex and how many days a year they run.
+VALUE: Annualised capital falls about 60% and delivered cost falls about 20–30%, against the Yamal LNG Trains 1–3 benchmark. First LNG comes about 2–3 years after the decision, against 4 for Yamal LNG, with no imported drives.
 
-IDEA 6
+IDEA 5
 NAME: Triaged thermosyphon pile retrofit
 MECHANISM: Borehole temperatures plus InSAR rank plant foundations by remaining pile capacity. Retrofit GET/VET thermosyphons from Fundamentproekt then go only on the Norilsk and Talnakh structures headed toward a loss of more than 40% (F89). One quantity decides it: the air freezing index compared with the heat flowing into the pile. Norilsk's long, deep winter still gives a strong cooling margin. TAPS and Qinghai–Tibet lost cooling where winters were weak (F320–322), so the scheme is limited to the coldest sites and leaves out Salekhard and Nadym. The closest earlier attempt, post-spill monitoring (F18), detected thaw but fixed nothing. Benchmark: Ambarnaya and the 35% deformed-building share (F252). Main risk: non-condensable gas fade, so inspect every 3 years. Test: an instrumented pilot on 20 piles with 3 seasons of monitoring.
 VALUE: Avoids unplanned plant outages and prolongs infrastructure life on thawing ground, at a small share of Norilsk's ~$3bn/yr capex.
+
+IDEA 6
+NAME: Plant-chilled foundations
+MECHANISM: Run a glycol loop through the pile caps of an LNG plant, cooled by its own refrigeration and kept running in summer. Thermosyphons from Fundamentstroyarkos would still cover the winter. A summer heat flux of about 5 W/m² over 1 km² is about 5 MW of heat, or about 2.5 MW of electricity at a COP of 2. That is under 1% of the plant's drive power. The closest earlier attempts are TAPS and the Qinghai–Tibet thermosyphons, which fade as winters warm. An active loop does not depend on how cold the winter is. The deciding quantity is the summer heat flux, measured in boreholes.
+VALUE: Holds pile capacity at the design γt for the life of the plant, whatever the warming.
 

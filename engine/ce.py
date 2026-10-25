@@ -1154,6 +1154,7 @@ def plan_rows(a, usd=False):
     est = {k: (sum(v) / len(v) if (v := learned.get(k)) else base[k]) for k in base}
     cfg = load(a.run, "config.json", {}); k = int(getattr(a, "dossier", None) or cfg.get("dossier") or 0) if pipe_kind(a) == "invent" else 0
     steps = (["gen:dossier_plan"] + [f"research:dossier.{j + 1}" for j in range(k)] if k else []) + PIPE[pipe_kind(a)][a.mode]
+    if pipe_kind(a) == "invent" and (getattr(a, "fill_families", None) or cfg.get("fill_families")): steps.insert(steps.index("review:gate") + 1, "review:gate_fill")
     return [(s, est[s.split(":")[0]]) for s in steps]
 
 def cmd_plan(a):
@@ -1230,6 +1231,7 @@ def cmd_run(a):
     if getattr(a, "lessons_exclude", None) is not None: cfg["lessons_exclude"] = [x for x in a.lessons_exclude.split(",") if x]
     if getattr(a, "slice_facts", None) is not None: cfg["slice_facts"] = a.slice_facts
     if getattr(a, "dossier", None): cfg["dossier"] = a.dossier
+    if getattr(a, "fill_families", None): cfg["fill_families"] = a.fill_families
     if a.notes: cfg["notes"] = a.notes
     save(R, "config.json", cfg); budget = a.max_tokens; bench = [x for x in (getattr(a, "bench", None) or "").split(",") if x]
     def spent(): return runner.summary(D)[1]
@@ -1369,6 +1371,20 @@ def cmd_run(a):
         cmd_gate(argparse.Namespace(run=R, dir=gd2, transcript=None, file=path(R, "outputs", "gate2.md"), out=None))
         print(f"  gate2: {add_new_facts(R, t2, 'gate2')} new facts -> evidence.md")
         return p2
+    def fill_families(pick, n, kit):
+        """v5.2: a second kill test for the best-triaged member of each family the first one left out (at most n), so that
+        repair chooses among mechanisms, not among copies of one."""
+        fam = load(R, "families.json", {}); tids = json.load(open(path(R, "prompts", "triage.ids.json")))
+        tri = take_triage(open(path(R, "outputs", "triage.md")).read(), tids); have = {fam.get(i, i) for i in pick}; left, seen = [], set()
+        for i in sorted(tids, key=lambda i: -tri.get(i, 0)):
+            if (f := fam.get(i, i)) not in have and f not in seen: left.append(i); seen.add(f)
+        if not (left := left[:n]): return []
+        gd2 = os.path.join(D, "gate_fill"); os.makedirs(gd2, exist_ok=True); stale(os.path.join(gd2, "ids.json"), left, ["gate_fill"])
+        left = order("gate_fill", left, os.path.join(gd2, "ids.json"))
+        cmd_gatetask(argparse.Namespace(run=R, ids=",".join(left), dir=gd2, kit=kit))
+        t2 = step("gate_fill", "review", task("gate_fill"), a.model, "research", cwd=gd2)
+        cmd_gate(argparse.Namespace(run=R, dir=gd2, transcript=None, file=path(R, "outputs", "gate_fill.md"), out=None))
+        print(f"  gate_fill: {len(left)} more families tested, {add_new_facts(R, t2, 'gate_fill')} new facts -> evidence.md"); return left
     def known_check(ids):
         """v5.1: the closest prior art for each idea going on, found by a search for its MECHANISM (not its problem), before
         repair spends on it. In 8 v5 runs no finalist came out of the final audit as unknown, and the patents on a winner's
@@ -1411,6 +1427,7 @@ def cmd_run(a):
         cmd_gate(argparse.Namespace(run=R, dir=gd, transcript=None, file=path(R, "outputs", "gate.md"), out=None))
         print(f"  gate: {add_new_facts(R, t, 'gate')} new facts -> evidence.md")
         if getattr(a, "rivals", False): pick += rival_round(pick)
+        if (nf := int(getattr(a, "fill_families", 0) or cfg.get("fill_families") or 0)): pick += fill_families(pick, nf, kit)
         g = load(R, "gate.json", {}); gk = lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0))
         fam = load(R, "families.json", {})
         cand = diverse(sorted(pick, key=gk), fam, 1)[:6]; kn = known_check(cand)  # v5.1: the 4 to repair are chosen knowing what already exists
@@ -1479,7 +1496,7 @@ def cmd_ask(a):
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
                                lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=a.bench,
-                               dossier=a.dossier,
+                               dossier=a.dossier, fill_families=a.fill_families,
                                target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd, rivals=False))
 
 def cmd_prompt_path(run, tech, label):
@@ -1554,6 +1571,7 @@ def main():
     x.add_argument("--notes"); x.add_argument("--force", action="store_true"); x.add_argument("--tag", help="question tag for memory")
     x.add_argument("--max-usd", type=float); x.add_argument("--chunk", type=int, default=4); x.add_argument("--repair-chunk", type=int, default=2)
     x.add_argument("--kit", action="store_true"); x.add_argument("--dossier", type=int, default=0, help="v5.2 invent: research slices before the ledger")
+    x.add_argument("--fill-families", type=int, default=0, help="v5.2 invent: second kill test for families the first one left out")
     x.add_argument("--bench", help="v5: imported earlier finalists to add to the final blind review (import them after the brief)")
     for nm in ("plan", "run"):
         x = sp.add_parser(nm); x.add_argument("run"); x.add_argument("--pipeline", choices=list(PIPE), help="default: the run's format")
@@ -1572,6 +1590,7 @@ def main():
             x.add_argument("--kit", action="store_true", help="v3.4: give the kill test the Arctic calculation kit (engine/kit)")
             x.add_argument("--dossier", type=int, help="v5.2 invent: collect a sourced dossier in this many search-only slices before the ledger")
             x.add_argument("--dossier-searches", type=int, default=25, help="v5.2: searches per dossier slice")
+            x.add_argument("--fill-families", type=int, help="v5.2 invent: a second kill test for up to this many families the first one left out")
             x.add_argument("--rivals", action="store_true", help="v5 invent: add the rival round (round-2 generators see round 1 and its kill tests as rivals); "
                            "+~$1.3, no survival gain shown yet (20-continuum.md)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")

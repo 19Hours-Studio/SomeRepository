@@ -353,7 +353,7 @@ def main():
             ce("import", R11, R8, "--arm", "OLD", "--ids", "known#1")
             assert "ESTIMATE invent/lite" in ce("plan", R11)
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R11, "--tag", "coal", "--lessons-exclude", "coal",
-                                  "--bench", "OLD:known#1", "--rivals", "--dossier", "2", "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
+                                  "--bench", "OLD:known#1", "--rivals", "--dossier", "2", "--fill-families", "2", "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
             assert "FINAL (blind review" in out.stdout and "| OLD | 1 |" in out.stdout, out.stdout[-900:] + out.stderr[-900:]
             ceil = open(os.path.join(rd11, "ceilings.md")).read()
             assert "(settlement) | untouchable 1.5% -> ceiling 66.7x" in ceil and "3x needs: outbound logistics | ROOM" in ceil
@@ -376,7 +376,7 @@ def main():
             rp = open(os.path.join(rd11, "repair", "TASK.md")).read()
             assert "KILL TEST: killer ice" in rp and "ice road open 45 days in 2026 | NEW from gate" in rp and "{" not in rp
             assert "OLD:known#1" in json.load(open(os.path.join(rd11, "audit_final", "ids.json")))
-            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 24  # dossier plan + 2 slices, families, gate and repair in 2 chunks, rival round 4 steps, known, one bench reviewer
+            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 25  # dossier plan + 2 slices, families, gate_fill, gate and repair in 2 chunks, rival round 4 steps, known, one bench reviewer
             ev11 = open(os.path.join(rd11, "evidence.md")).read()  # v5.2 dossier: slices merged, duplicates dropped, sources counted
             assert ev11.startswith("FACT 1: barge freight 40 USD/t on the Lena | HARD | https://a.example/1 | dossier: Deposits") and ev11.count("winter road open 90 days") == 1, ev11[:400]
             assert open(os.path.join(rd11, "dossier.md")).read().startswith("2 facts, 3 distinct sources, 2 slices") and "Deposits: no tariff data" in open(os.path.join(rd11, "dossier.md")).read()
@@ -384,6 +384,8 @@ def main():
             assert "Logistics" in open(os.path.join(rd11, "dossier", "s1", "TASK.md")).read() and "About 25 searches" in open(os.path.join(rd11, "dossier", "s2", "TASK.md")).read()
             fam11 = json.load(open(os.path.join(rd11, "families.json"))); assert len(fam11) == 7 and fam11[min(fam11)] in ("barge loop", "rail spur")
             assert sum(fam11.get(i) == "barge loop" for i in gate_ids) <= 2 and len(gate_ids) == 8  # at most 2 per family go to the kill test
+            gf = json.load(open(os.path.join(rd11, "gate_fill", "ids.json"))); gj = json.load(open(os.path.join(rd11, "gate.json")))
+            assert len(gf) == 2 and all(i in gj for i in gf) and not {fam11.get(i, i) for i in gf} & {fam11.get(i, i) for i in gate_ids}  # untested families only
             kn = json.load(open(os.path.join(rd11, "known.json"))); kid = json.load(open(os.path.join(rd11, "known", "ids.json")))
             assert len(kid) == 6 and kn[kid[0]]["known"] == "yes" and kn[kid[1]] == {"known": "no", "closest": "rail study", "url": "https://p.example/2",
                                                                                    "same": "route", "new": "ice keel"}, kn

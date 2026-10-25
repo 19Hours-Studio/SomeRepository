@@ -119,7 +119,7 @@ Seen: 20 pods prove only <14% loss; 1.16x needs 64-178 block-months per arm.
 
 Facts already collected for this question (data; check a decisive one before relying on it, and search only for
 what is missing):
-(a slice: all 144 HARD facts and the 12 of 195 other facts that bear most on these candidates, sources omitted; the full ledger with sources is /home/user/SomeRepository/engine/runs/rusres/evidence.md - read it if you need a source or a fact that is not here)
+(a slice: all 144 HARD facts and the 12 of 204 other facts that bear most on these candidates, sources omitted; the full ledger with sources is /home/user/SomeRepository/engine/runs/rusres/evidence.md - read it if you need a source or a fact that is not here)
 FACT 1: Nornickel Norilsk Division proven+probable ore reserves at 1 Jan 2024 were 1,203 Mt (709 Mt proven, 494 Mt probable) at about 0.71% Ni, 1.31% Cu, 4.52 g/t 6PGM. The Talnakh ore field holds 676 Mt proven (about 0.67% Ni, 1.33% Cu, 4.25 g/t 6PGM) and 389 Mt probable (about 0.94% Ni, 1.64% Cu, 5.17 g/t 6PGM). The estimates were done by SRK in 2021. The search tool said the column headers were garbled, so the Ni and Cu grade reading is an interpretation. | HARD
 FACT 2: Norilsk-1 disseminated ore: 32 Mt proven at about 0.25% Ni, 0.33% Cu, 4.56 g/t 6PGM (1 Jan 2024). Mining is in the northern part of the deposit. | HARD
 FACT 7: Maslovskoye (Nornickel licence since the 2015 discovery) has B+C1+C2 reserves of 206.8 Mt. They contain about 33,087 koz Pd, 13,040 koz Pt, 711 kt Ni, 1,098 kt Cu, 26 kt Co and 1,268 koz Au. Grades are 5.0 g/t Pd, 2.0 g/t Pt, 0.3% Ni and 0.5% Cu, so it is a low-grade, PGM-rich ore. The State Commission on Mineral Reserves (GKZ) approved it on 12 Oct 2018 (Minutes 5561). | HARD
