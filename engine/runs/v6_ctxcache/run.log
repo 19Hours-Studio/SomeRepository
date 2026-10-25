@@ -33,3 +33,7 @@ baseline_2: 3 ideas (1140 words)
 /home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g0/c2/TASK.md
   eval_g0.1: 67,160 tokens, 99.6 s
   eval_g0.2: 68,454 tokens, 108.7 s
+  eval_g0.3: 115,528 tokens, 114.2 s
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g0/TASK.md
+  skip eval_g0 (done)
+gate: 10/10 parsed {'WOUNDED': 6, 'DEAD': 4}

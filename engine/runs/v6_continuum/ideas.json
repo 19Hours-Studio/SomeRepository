@@ -169,5 +169,41 @@
   "name": "4.5-bit numerics, compiler-placed memory, kill gates",
   "mech": "Weights and KV are stored as NVFP4/MXFP4 at about 4.5 bits, activations are FP8, and accumulation is FP32. Existing checkpoints run after post-training quantization; they do not need retraining. The software stack is PyTorch/JAX → torch.export/StableHLO → MLIR, with Triton-style tile kernels and vLLM/SGLang backends. The compiler places experts statically in stacked DRAM and pages the KV cache. CUDA-only kernels need porting, which is the adoption cost. Five tests could kill the design: 1. Recalibrate the model against MLPerf and Artificial Analysis. Drop the design if the GQA-128K lead is below 1.5×. 2. Run 3D thermal and power simulation (3D-ICE/HotSpot plus a power-integrity tool). It fails if DRAM runs above 95 °C, or if IR drop exceeds 5% while delivering about 2,700 A at 0.75 V through the DRAM stack. 3. Model the DRAM in CACTI-3DD/Accelergy. It fails above 1.5 pJ/bit or below 40 TB/s per package. 4. Simulate in LLMCompass with real expert-routing traces. 5. Run RULER at 128K with NVFP4 KV. The numerics plan fails if it loses more than 1 point against BF16.",
   "value": "Models and frameworks carry over with quantization only, and every headline ratio has a test that can prove it wrong before tape-out."
+ },
+ {
+  "id": "baseline_2#1",
+  "label": "baseline_2",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Stacked-SRAM weights, HBM-only KV package",
+  "mech": "Each package has two compute dies of about 800 mm² each on N2/N3, rated at about 30 PF dense FP4 and 15 PF FP8. Each compute die sits face-to-face on an 800 mm² SRAM base die. Older-node SRAM at about 30 Mb/mm² gives about 2.25 GB per die, so roughly 4 GB per package. At about 14k bonds/mm² across 40 mm² of signal area, each die gets about 210 TB/s, so about 300 TB/s per package at about 0.12 pJ/bit. Eight HBM4 stacks add 288 GB at 22 TB/s, which is about 3 pJ/bit. The model's 545 GB of weights are pinned across the SRAM of a 144-package domain (136 packages minimum). HBM then carries only KV cache, so weight reads and KV reads no longer compete for the same bandwidth. Earlier runs found weight reads take 23–36% of GPU HBM time. Power at full load is about 288 W (SRAM) + 528 W (HBM) + 900 W (compute at 0.12 pJ per FP8 multiply-accumulate) + about 250 W of I/O, roughly 2.0 kW, inside a 2.3 kW package. That is the same class as Rubin's reported 1.8–2.3 kW. The package needs CoWoS-L at about 4.5× reticle, like Rubin, plus TSMC's SoIC hybrid bonding. The model gives these per-MW results against the best incumbent: - **8K context:** 18.6 vs 16.5 Mtok/s/MW at ≥100 tok/s/user (1.12×); 18.6 vs 13.2 at ≥300 (1.41×). - **128K context:** 2.55 vs 2.23 at ≥100 (1.14×); 2.38 vs 1.51 at ≥300 (1.58×). - **Losses:** prefill FLOPs per watt are about 0.91× Rubin, and capex is about 10–15% higher (my estimate) for the SRAM dies and bonding.",
+  "value": "Cost per token comes out about 1.1–1.6× lower than Rubin NVL72 at interactive speeds (an estimate). It needs about 8× fewer SRAM chips than Groq LP30 (136 vs 1,064) and, unlike Cerebras, it doesn't cap concurrency: the modelled CS-3 cluster fits only about 15 users at 128K context."
+ },
+ {
+  "id": "baseline_2#2",
+  "label": "baseline_2",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Near-HBM sparse-KV gather attention engine",
+  "mech": "Attention units sit beside each HBM4 controller. The KV cache is stored as 4.5-bit NVFP4 rows (324 B per token per layer for MLA) and read with a hardware top-k gather, in the style of DeepSeek's sparse attention (top 2,048 tokens plus a 128-dim FP4 index). At 128K context this cuts KV traffic per user-token from 2.59 GB to 0.62 GB. Dense MLA decode needs 1.18 TFLOP per user-token at 128K, about 450 FLOP per byte at FP4 KV. So the HBM-side attention units are sized at about 10 PF FP8 (≈22 TB/s × 450) rather than relying on the main arrays. With sparse attention, Continuum gets 9.39 Mtok/s/MW against Rubin's 5.74 (1.64×) and Ironwood's 7.04 (1.33×). The model assumes the gather sustains at least 80% of HBM peak at 324 B granularity; only a DRAM simulator or silicon can confirm that.",
+  "value": "Long-context throughput per MW rises about 3.7× over dense attention on the same hardware, and Continuum keeps a 1.3–1.6× lead over incumbents running the same sparse model."
+ },
+ {
+  "id": "baseline_2#3",
+  "label": "baseline_2",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Compiler-scheduled deterministic scale-up fabric",
+  "mech": "The 144 packages are linked at 3.6 TB/s each in a statically scheduled network, Groq-style. The compiler fixes when every MoE dispatch and combine happens, so there are no software launch or handshake costs. The design target is 1.5 µs per all-to-all, against an assumed 8 µs for NVLink-class software collectives. At 61 layers × 2 collectives, one token's critical path drops from about 0.98 ms to 0.18 ms, giving 5,450 vs 1,010 tok/s/user at batch size 1. If latency is really 4 µs, single-user speed falls to 2,050 tok/s, but per-MW still beats Rubin, e.g. 2.08 vs 1.51 Mtok/s/MW at 128K and ≥300 tok/s/user. Software path: PyTorch/JAX export (torch.export / StableHLO) feeds a static dataflow compiler, and a vLLM/SGLang backend plugs in on top. MoE routing uses capacity-padded static schedules. Standard Transformer, MoE, MLA and GQA models run unchanged, but custom CUDA kernels don't port.",
+  "value": "At ≥1,000 tok/s/user it is the only design in the model with both high throughput and high per-user speed: 14.8 Mtok/s/MW at 8K, against about 0 for Rubin and Ironwood in this model. That 1,000 tok/s figure rests entirely on the latency assumption."
+ },
+ {
+  "id": "baseline_2#4",
+  "label": "baseline_2",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "One compute die, two phase-split SKUs",
+  "mech": "Prefill and training are compute-bound, so the SRAM base die adds cost there without adding speed. A \"C\" SKU uses the same compute die on a plain interposer with HBM only, while the \"D\" SKU described above handles decode. They are mixed at a measured prefill-to-decode ratio, like Nvidia's CPX/Rubin pairing at 1:1. Training on the C SKU sits at about 0.86–1.0× Rubin per package (30 vs 35 PF FP4) because the compute die and HBM are the same class. I make no claim that it wins at training.",
+  "value": "It avoids the roughly 10–15% SRAM cost on compute-bound work and shares one tape-out between both SKUs. Training is at parity, not best."
  }
 ]
