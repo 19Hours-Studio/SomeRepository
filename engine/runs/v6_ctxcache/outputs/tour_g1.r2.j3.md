@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B's margin is 0.46 but stable, with a 1.39 whole-chain gain, against A's unstable 0.9 margin and a gain of only about 1.2x; B beats prefix caching by more and covers more cases.
+PAIR 2 | WINNER A | A is exact, works client-only for API users, and has a 1.22 whole-chain gain with an unstable 0.85 margin; B's quality margin of 0.53 means it does not hold for multi-hop work.
+PAIR 3 | WINNER B | B's whole-chain gain of 1.8 clears 1.5x and covers reordering with canonical exact hits, while A's PCIe fetch fails by 5–10x at serving batch sizes and only reaches about 1.16x if KV stays in HBM.
+PAIR 4 | WINNER A | A is client-side and implementable by any API user with a 1.14 gain and a margin of 0.64, while B's quality margin is 0.5 from a single source and its whole-system gain is only about 1.1–1.45x on unverified quality evidence.
+PAIR 5 | WINNER B | B has a margin of 0.63 and a 1.24 gain, slightly above A's 1.23, but A's margin of 0.325 is unstable and capped below 1.25x, and B's mechanism covers reordering and blending cases that A ignores.

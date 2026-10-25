@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A is exact-output, client-only, and gains 1.22x (margin 0.85, unstable) versus B's 1.39x gain with margin 0.46 that fails on realistic m (~25%) and has unmeasured probe recall; A's near-holding, quality-safe gain beats B's failing margin.
+PAIR 2 | WINNER A | A has margin 0.9 and a 1.21x whole-chain gain with no quality risk, while B's margin of 0.53 means repair recovers only about half the quality gap on multi-source queries, so its 1.64x is a promise.
+PAIR 3 | WINNER B | B holds at a 1.14x gain with exact output (margin 0.64 but with a plausible 0.9 estimate), whereas A's new part is just what vLLM prefix caching already does and its gain depends on CacheBlend acceptance above 0.8 that evidence contradicts (margin 0.63, 1.24x).
+PAIR 4 | WINNER B | B's mechanism is sound with cheap loading and about 1.1–1.45x system-wide gain, while A's PCIe fetch fails by 5–10x at serving batch sizes, leaving only the ~1.16x decode share from plain Quest.
+PAIR 5 | WINNER A | A has a 1.8x whole-chain gain and a mechanism that is sound though prior-art-heavy, while B's margin of 0.325 (unstable) and its ceiling below 1.25x from a mostly unavoidable write term make it the weaker option.

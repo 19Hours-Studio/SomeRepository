@@ -73,3 +73,24 @@ cross_g1: 3 ideas (599 words)
 /home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g1/TASK.md
   skip eval_g1 (done)
 gate: 6/6 parsed {'DEAD': 2, 'WOUNDED': 4}
+  eval_g1_re.2: 66,916 tokens, 89.6 s
+  eval_g1_re.1: 154,882 tokens, 134.5 s
+  recheck cross_g1#3: margins 0.68, 0.46, 0.58 -> 0.58; DEAD -> DEAD
+  recheck improve_g1#2: margins 0.7, 1.24, 0.85 -> 0.85 UNSTABLE; WOUNDED -> WOUNDED
+  recheck cross_g1#1: margins 0.6, 0.93, 0.63 -> 0.63; WOUNDED -> WOUNDED
+  recheck improve_g1#3: margins 0.025, 0.02, 0.023 -> 0.02; DEAD -> DEAD
+  recheck improve_g1#1: margins 0.48, 0.46, 0.46 -> 0.46; WOUNDED -> WOUNDED
+  recheck cross_g1#2: margins 0.42, 0.16, 0.16 -> 0.16; WOUNDED -> DEAD
+  tour_g1.r1.j3: 11,690 tokens, 9.1 s
+  tour_g1.r1.j4: 11,762 tokens, 12.9 s
+  tour_g1.r1.j1: 12,183 tokens, 16.1 s
+  tour_g1.r1.j2: 12,602 tokens, 21.6 s
+  tour_g1.r2.j3: 11,681 tokens, 9.4 s
+  tour_g1.r2.j4: 11,721 tokens, 10.7 s
+  tour_g1.r2.j1: 12,916 tokens, 23.0 s
+  tour_g1.r2.j2: 13,020 tokens, 24.3 s
+  tour_g1.r3.j4: 11,625 tokens, 10.7 s
+  tour_g1.r3.j3: 11,741 tokens, 11.8 s
+  tour_g1.r3.j2: 12,251 tokens, 15.5 s
+  tour_g1.r3.j1: 12,365 tokens, 17.0 s
+  tour_g1: 60 judgments over 10 answers

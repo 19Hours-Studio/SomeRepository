@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both are wounded on multi-hop quality, but B has the higher whole-chain gain (1.8 vs 1.64) and uses canonical ordering to turn many reorders into exact hits, though its margin is lower (0.4 vs 0.53).
+PAIR 2 | WINNER A | A holds a measurable 1.21x gain, can't hurt output and runs client-only, while B's 20–50x claim shrinks to about 1.1–1.45x system-wide with unproven quality (margin 0.5).
+PAIR 3 | WINNER B | A's page-fetch design fails on PCIe bandwidth by 5–10x and falls to about 1.16x, while B is cheap, client-only and gains about 1.14x with an ordinary measurable assumption; they are close, and B's mechanism at least works as described.
+PAIR 4 | WINNER B | B has a 1.39x whole-chain gain and a mechanism that is sound, with a stated threshold of m ≤ 0.12 for 1.5x, while A's margin is 0.325 and its ceiling stays below 1.25x.
+PAIR 5 | WINNER A | A is exact in quality, works client-only through a third-party API and gains 1.22x with a margin of 0.85, while B's gain comes from CacheBlend acceptance with margin 0.63 and its new fallback is already in vLLM.

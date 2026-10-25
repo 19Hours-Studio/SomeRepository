@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B's quality margin is higher and its estimates agree (0.53 vs A's 0.3–0.5), and its exact-fallback gate is a real addition; A's larger 1.8× gain rests on a weaker margin and is mostly a stack of what already ships in LMCache.
+PAIR 2 | WINNER B | B's margin (0.9, unstable) is close to holding, it gives a checked 1.21× gain and cannot change output; A's 20–50× applies only to the edited suffix, has no verified whole-system gain (about 1.1–1.45×) and a 0.5 margin.
+PAIR 3 | WINNER A | The gains are nearly equal (1.14× vs 1.16×). A's client-side diffing directly covers changed tool outputs and holds as written; the check found B's CPU/SSD page fetch fails on PCIe bandwidth by 5–10×, and B's estimates swing from 0.09 to 1.8.
+PAIR 4 | WINNER A | A has the higher gain (1.39× vs 1.23×) and the steadier margin (0.46, estimates agree vs B's unstable 0.325), and it covers reordering and insertions; B only removes hidden lookback rewrites and stays below 1.25× even if perfect.
+PAIR 5 | WINNER B | The gains are similar (1.22× vs 1.24×), but B's margin is higher (0.85 vs 0.63), its output is exact and it works client-side through third-party APIs; the check found A's only new part already exists as vLLM prefix caching, and A depends on contested CacheBlend acceptance.

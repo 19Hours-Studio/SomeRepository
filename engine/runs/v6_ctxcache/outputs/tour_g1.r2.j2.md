@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B's margin is 0.9, unstable with one estimate at 1.0, and it cannot change output; A's 0.46 is consistent across all three estimates and rests on an unmeasured probe recall, so A's 1.39x is less secure than B's 1.21x.
+PAIR 2 | WINNER B | B's margin is 0.85, unstable with one estimate at 1.24, and its reuse is exact and works client-side; A's quality margin is 0.53 in every estimate, so its 1.64x assumes a repair that published results show recovers only about half the gap.
+PAIR 3 | WINNER B | B's margin is 1.8 in two of three estimates and gives a modest 1.16x if KV stays in HBM; A's quality margin is 0.4 and its stack already ships in LMCache, so its 1.8x is mostly prior art on disputed quality.
+PAIR 4 | WINNER B | B has a checked whole-chain gain of 1.14x at margin 0.64; A's margin is 0.5 from a single estimate with no whole-chain gain measured, and its 20–50x applies only to the edited suffix.
+PAIR 5 | WINNER A | A's margin of 0.63 is roughly twice B's unstable 0.325, and their gains are about equal (1.24x vs 1.23x).

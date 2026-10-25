@@ -146,43 +146,91 @@
  "cross_g1#3": {
   "killer": "Input price per MTok needed to reach the claimed 2.4x lower total bill (output is 10% of the bill and cannot be touched)",
   "why": "The 2.4x needs an input price below the $0.30 cache-read floor; against append-only best practice, errata add nothing and keep-alive adds less than 1.1x.",
-  "margin": 0.68,
+  "margin": 0.58,
   "ratio": 1.0,
-  "verdict": "DEAD"
+  "verdict": "DEAD",
+  "margins": [
+   0.68,
+   0.46,
+   0.58
+  ],
+  "margin_gate": 0.68,
+  "unstable": false,
+  "verdict_gate": "DEAD"
  },
  "improve_g1#2": {
   "killer": "Exact document-token reuse per request needed for a 1.5x lower bill under Anthropic's multipliers, given the 5-minute TTL and the 4-breakpoint limit",
   "why": "The output is exact and the client-only claim holds, but 1.5x is reached only with steep popularity (Zipf ≥ about 1.4) and ≥1k requests per 5-minute TTL window in one organisation's cache; the effect of reordering on answer quality needs a run on a real model.",
-  "margin": 0.7,
+  "margin": 0.85,
   "ratio": 1.22,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.7,
+   1.24,
+   0.85
+  ],
+  "margin_gate": 0.7,
+  "unstable": true,
+  "verdict_gate": "WOUNDED"
  },
  "cross_g1#1": {
   "killer": "Share of requests that the shadow-KL gate must accept as blended to give 1.5x over prefix caching with canonical order (prefill 55% of cost, an assumed ledger share; blending recomputes 15%)",
   "why": "The new part, partial-prefix fallback, is what vLLM's automatic prefix caching already does; all the gain comes from CacheBlend acceptance, which must exceed about 0.8 and has independent evidence against it on multi-hop and long-context work.",
-  "margin": 0.6,
+  "margin": 0.63,
   "ratio": 1.24,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.6,
+   0.93,
+   0.63
+  ],
+  "margin_gate": 0.6,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  },
  "improve_g1#3": {
   "killer": "Probability that a session idle for 5 minutes returns in the next window (the ping break-even)",
   "why": "It is correct as a guard, but against the real best practice (5-minute caching without blanket 1-hour TTL or fixed pings) it saves nothing; the 1.36x figure is measured against a worse baseline nobody competent uses by default.",
-  "margin": 0.025,
+  "margin": 0.023,
   "ratio": 1.0,
-  "verdict": "DEAD"
+  "verdict": "DEAD",
+  "margins": [
+   0.025,
+   0.02,
+   0.023
+  ],
+  "margin_gate": 0.025,
+  "unstable": false,
+  "verdict_gate": "DEAD"
  },
  "improve_g1#1": {
   "killer": "m, the share of requests the probe sends to exact recompute (true multi-source share × recall + single-source share × false-positive rate)",
   "why": "The cost model holds up, but 1.5x needs ≤12% of requests routed away, and realistic multi-source shares plus probe errors put m near 25%; probe recall is unmeasured (2606.17107 says deviation signals are unreliable) and needs a real-model run on 2WikiMQA, MuSiQue and agent replays.",
-  "margin": 0.48,
+  "margin": 0.46,
   "ratio": 1.39,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.48,
+   0.46,
+   0.46
+  ],
+  "margin_gate": 0.48,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  },
  "cross_g1#2": {
   "killer": "fallback share m once the idea's own \"0.42 vs 0.83 compute\" claim is turned into a whole bill (45% fixed + 55% prefill, plus the 1% shadow recompute)",
   "why": "It is the same economics as Idea 1 but routes by query and document class, not per request, so multi-hop requests inside a \"passing\" class still get blended; it misses 1.5x unless fallback stays ≤13%.",
-  "margin": 0.42,
+  "margin": 0.16,
   "ratio": 1.36,
-  "verdict": "WOUNDED"
+  "verdict": "DEAD",
+  "margins": [
+   0.42,
+   0.16,
+   0.16
+  ],
+  "margin_gate": 0.42,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  }
 }

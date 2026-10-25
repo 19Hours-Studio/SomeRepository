@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A's margin of 0.85 is unstable but much closer to holding than B's stable 0.46, and A also gives exact output client-side; B's larger 1.39 gain rests on a probe routing rate (m ≈ 25%) that breaks its own 1.5x condition.
+PAIR 2 | WINNER A | A's margin of 0.9 (unstable) nearly holds and it cannot hurt quality; B's 1.64 gain depends on a repair-recovery fraction of 0.53 against the roughly 0.95 that full quality needs, so its headline is a promise, not a result.
+PAIR 3 | WINNER A | The margins are almost equal (0.63 vs 0.64), so the larger checked whole-chain gain decides it: A's 1.24x beats B's 1.14x, even though A's new part largely duplicates vLLM prefix caching.
+PAIR 4 | WINNER A | A is the only answer whose margin clears 1 in most estimates (1.8, unstable) and it has a measured 1.16x gain; B's margin is 0.5 with no measured whole-chain gain, so its 20–50x claim is unverified.
+PAIR 5 | WINNER A | A beats B on both checked numbers: margin 0.4 vs an unstable 0.325, and gain 1.8x vs 1.23x; A also covers reordering at scale, while B's audit stays below 1.25x even when it works perfectly.

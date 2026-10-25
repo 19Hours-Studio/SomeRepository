@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B's checked gain (1.39x) already uses the realistic routed share, so it beats A's 1.21x even though B misses its own 1.5x target; A's margin is closer to 1 but cannot exceed about 1.2x by design.
+PAIR 2 | WINNER A | B's 1.64x assumes blending repairs quality, but the quality margin is 0.53 against the ~0.95 needed; A's 1.22x has exact output, runs client-side, and its margin of 0.85 is near holding.
+PAIR 3 | WINNER A | A's median margin (1.8) holds, giving a real but small 1.16x; B's 1.8x rests on a quality margin of 0.4 that later papers dispute, and B is mostly a stack of existing prior art.
+PAIR 4 | WINNER B | B covers middle edits and insertions, the hardest cases, with a whole-system gain of about 1.1–1.45x; A tops out near 1.14x, its margin estimates spread from 0.38 to 0.9, and it covers only repeated tool outputs.
+PAIR 5 | WINNER B | Gains are nearly tied (1.24x vs 1.23x), but B's margin (0.63) is higher and steadier than A's (0.325, unstable), and even a perfect version of A's audit stays below 1.25x.

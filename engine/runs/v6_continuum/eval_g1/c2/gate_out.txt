@@ -1,0 +1,7 @@
+vcache Mb/mm2 14.222222222222221
+8192 300 weight share 0.103 users bw 201 cap 855 per-pkg gain 1.115
+8192 100 weight share 0.034 users bw 648 cap 855 per-pkg gain 1.036
+131072 300 weight share 0.103 users bw 13 cap 53 per-pkg gain 1.115
+131072 100 weight share 0.034 users bw 41 cap 53 per-pkg gain 1.036
+SRAM GB/pkg 2.84 pkgs 191.90140845070422
+SRAM GB/pkg 2.56 pkgs 213.22378716744913

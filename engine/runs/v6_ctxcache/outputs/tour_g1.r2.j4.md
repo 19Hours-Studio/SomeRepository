@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A has a measured whole-chain gain of 1.39 (margin 0.46, stable across estimates) against B's 1.21 with an unstable margin. A also keeps the exact-recompute fallback for multi-source requests.
+PAIR 2 | WINNER A | A has a whole-chain gain of 1.64 against B's 1.22, and both are wounded. A's margin of 0.53 is stable. B's margin of 0.85 is unstable and needs Zipf of about 1.4 or more.
+PAIR 3 | WINNER A | A clears 1.5x on the cost chain with a gain of 1.8, while B's gain is 1.16 and its fetch-from-CPU mechanism fails on PCIe bandwidth by 5–10x.
+PAIR 4 | WINNER B | A's 20–50x figure applies only to the edited suffix, and across a whole system it falls to about 1.1–1.45x on a single-group quality margin of 0.5. B's gain is 1.14, but A has no reported chain gain, so neither is strong. B's gain is at least measured and its output risk is lower, so I give it the edge.
+PAIR 5 | WINNER A | A has a whole-chain gain of 1.24 against B's 1.23. B's margin of 0.325 is unstable, and even a perfect audit stays below 1.25x. A's margin of 0.63 is higher, though its gain comes from CacheBlend acceptance rather than the new fallback.

@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both are wounded, but B's quality margin (0.53, stable across estimates) beats A's 0.4, and B adds a shadow-KL gate with exact fallback and honestly states that about 100% is unreachable for multi-hop work. Its whole-chain gain is also slightly lower than A's quoted 1.8 only in the sense of being measured (1.64).
+PAIR 2 | WINNER B | B's margin of 0.9 and measured whole-chain gain of 1.21 beat A's margin of 0.5 and gain of only about 1.1–1.45x, with no stable number. B also cannot hurt output quality.
+PAIR 3 | WINNER B | B's margin of 1.8 on the bandwidth check holds only if KV stays in HBM, where the gain is about 1.16x. A's margin of 0.64 with a gain of 1.14 is no better, but B's gain is slightly higher, so B is marginally ahead. Both are weak.
+PAIR 4 | WINNER A | A has a whole-chain gain of 1.39 with a cost model that holds, against B's 1.23 where even a perfect audit stays below 1.25x. A's margin of 0.46 is stable across estimates, B's 0.325 is unstable.
+PAIR 5 | WINNER B | B is exact (no KV approximation) and works client-side, with a gain of 1.22 and a margin of 0.85 that reaches 1.5x at steep popularity. A's only new part is partial-prefix fallback, which vLLM already does, and its margin is 0.63 with a gain of 1.24.

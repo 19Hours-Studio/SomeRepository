@@ -1,0 +1,6 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A's quality margin (0.53, estimates stable) beats B's 0.4, and A adds offset-independent lookup with an exact-fallback gate; B's larger 1.8x gain rests on a weaker margin and a stack that already ships as prior art.
+PAIR 2 | WINNER A | A has a measured whole-chain gain (1.21x), a margin near holding (0.9) and no risk to output quality; B has no whole-chain gain (about 1.1–1.45x system-wide) and a single-source quality margin of 0.5.
+PAIR 3 | WINNER A | A's median margin (1.8) clears 1, though unstable, and its HBM-resident fallback still gives about 1.16x on the largest remaining cost line; B's 1.14x rests on a 0.64 margin.
+PAIR 4 | WINNER B | B gives the larger checked gain (1.39x against 1.23x) on a higher, stable margin (0.46 against an unstable 0.325), and A's main fix is already in the provider's guidance.
+PAIR 5 | WINNER A | A keeps output exact and works client-only, with a higher margin (0.85 against 0.63) at almost the same gain; B's only new part, partial-prefix fallback, is what vLLM's automatic prefix caching already does.
