@@ -1,0 +1,14 @@
+I1 expiry at turn 10 f=0.25
+I1 expiry at turn 25 f=0.37
+I1 expiry at turn 40 f=0.45
+I3 KV GB/GPU 4.096 fetch ms @50GB/s 81.92
+compute ms 251.34 unoverlapped transfer share 0.24599508009839802
+I8 GB 0.262144 GB/s need 8.738133333333334
+I8 GB 0.524288 GB/s need 17.476266666666668
+bw 7 [0.8, 0.4]
+bw 26 [2.98, 1.49]
+bw 31.5 [3.6, 1.8]
+bw 50 [5.72, 2.86]
+I9 miss rate/turn 0.005555555555555556 1 per 180.0
+I7 0.19786
+I4 recovered 0.29036004645760743 rel loss 0.3188103313331594

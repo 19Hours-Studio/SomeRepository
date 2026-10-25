@@ -25,3 +25,9 @@ g1_rf2: 3 ideas (896 words)
 baseline_1: 4 ideas (1266 words)
   baseline_2: 229,527 tokens, $1.11
 baseline_2: 4 ideas (1524 words)
+  families: 14,303 tokens, 23.4 s
+  families: 16 among 23 candidates (23 parsed)
+  triage: 21,080 tokens, 47.6 s
+/home/user/SomeRepository/engine/runs/v6_continuum/eval_g0/c3/TASK.md
+/home/user/SomeRepository/engine/runs/v6_continuum/eval_g0/c2/TASK.md
+/home/user/SomeRepository/engine/runs/v6_continuum/eval_g0/c1/TASK.md

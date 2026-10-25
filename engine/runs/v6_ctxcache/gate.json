@@ -2,68 +2,145 @@
  "g1_mech#1": {
   "killer": "f, the share of cache-write tokens that are rewrites after the cache expires (the only cost this idea can remove)",
   "why": "The rule works and cannot hurt output quality, but even at the assumed f=0.4 it saves only about 1.2x. f has to be measured from real `cache_creation.ephemeral_5m_input_tokens` logs split by idle gap, and it would need to be about 0.8 for the idea to be ALIVE.",
-  "margin": 0.51,
+  "margin": 0.9,
   "ratio": 1.21,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.51,
+   0.9,
+   1.0
+  ],
+  "margin_gate": 0.51,
+  "unstable": true,
+  "verdict_gate": "WOUNDED"
  },
  "baseline_2#1": {
   "killer": "Hit-rate gain over best practice, which is already append-only for agents (ledger A) and already uses canonical chunk order for RAG (ledger B)",
   "why": "Its gain is measured against clients that edit in place, so it adds nothing over current best practice. On top of that, it risks stale facts leaking into answers, which would need a real-model run to measure.",
   "margin": 0.1,
   "ratio": 1.0,
-  "verdict": "DEAD"
+  "verdict": "DEAD",
+  "margins": [
+   0.1,
+   0.0,
+   0.4
+  ],
+  "margin_gate": 0.1,
+  "unstable": true,
+  "verdict_gate": "DEAD"
  },
  "g1_rf1#1": {
   "killer": "Share of the total cost that comes from moving KV (the only thing this idea removes)",
   "why": "The output is exact, but it removes a cost that is about 5% of the total and already overlapped with compute. It also does nothing for middle edits or reordering.",
   "margin": 0.15,
   "ratio": 1.05,
-  "verdict": "DEAD"
+  "verdict": "DEAD",
+  "margins": [
+   0.15,
+   1.0,
+   0.1
+  ],
+  "margin_gate": 0.15,
+  "unstable": true,
+  "verdict_gate": "DEAD"
  },
  "baseline_1#2": {
   "killer": "Quality loss against full recomputation when 10–15% of tokens are recomputed, on long or multi-hop RAG",
   "why": "The cost chain clears 1.5x, but the method is a stack of existing prior art (it already ships in LMCache), and the quality margin at long, multi-hop contexts is unverified and disputed by later papers.",
   "ratio": 1.8,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.3,
+   0.5
+  ],
+  "margin_gate": null,
+  "margin": 0.4,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  },
  "baseline_1#3": {
   "killer": "share of the best-practice agent bill caused by in-place middle edits, which is the only thing errata can remove",
   "why": "My exact recomputation supports the arithmetic: in-place edit 6.1x vs erratum 1.02x per edit, close to the idea's 6.78x and 1.03x. But the 1.85x is measured against in-place editing, which best practice already avoids, so the gain over a competent append-only agent is about 1x.",
   "margin": 0.03,
   "ratio": 1.02,
-  "verdict": "DEAD"
+  "verdict": "DEAD",
+  "margins": [
+   0.03,
+   0.0,
+   0.1
+  ],
+  "margin_gate": 0.03,
+  "unstable": true,
+  "verdict_gate": "DEAD"
  },
  "baseline_2#2": {
   "killer": "fraction of the quality gap (no cache vs full recomputation) recovered by partial-recompute repair on multi-source queries; \"≈100% hit at full quality\" needs about 0.95 or more",
   "why": "It has real compute headroom on reordered or re-placed content and the memory and transfer numbers check out (128 KiB/token at 8B; 512 MiB is about 10.7 ms over PCIe5). But published repairs recover only half to two-thirds of the multi-source quality gap. The gate would fall back to exact recompute on exactly the hardest cases, and it does nothing for third-party API users (Archetype B).",
-  "margin": 0.6,
+  "margin": 0.53,
   "ratio": 1.64,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.6,
+   0.53,
+   0.53
+  ],
+  "margin_gate": 0.6,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  },
  "g1_ledger#3": {
   "killer": "share of written plus re-read tokens that duplicate content already in context",
   "why": "It does reach the right terms (writes, and every later re-read of them), but measured repeat rates put the typical gain near 1.1–1.3x. The 50% case is model-specific, and the 60% file-read share needs a trace measurement.",
-  "margin": 0.38,
+  "margin": 0.64,
   "ratio": 1.14,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.38,
+   0.9
+  ],
+  "margin_gate": 0.38,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  },
  "baseline_2#3": {
   "killer": "CPU-to-GPU PCIe bandwidth needed to fetch top-K pages per decode step from CPU/SSD as written (Llama-3-8B, 128 KiB/token, 2–4k token budget = 0.27–0.54 GB per step per sequence, 30 ms per-token latency)",
   "why": "Fetching pages per query from CPU/SSD fails on PCIe bandwidth by 5–10x at serving batch sizes. If KV stays in HBM (plain Quest), the gain is limited to the decode share (~1.16x). The \"0.1x read\" is a provider price, not a GPU cost this idea removes, so on an API it changes nothing.",
-  "margin": 0.09,
+  "margin": 1.8,
   "ratio": 1.16,
-  "verdict": "DEAD"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.09,
+   1.8,
+   1.8
+  ],
+  "margin_gate": 0.09,
+  "unstable": true,
+  "verdict_gate": "DEAD"
  },
  "g1_mech#2": {
   "killer": "Share of the cache-write term that comes from hidden lookback-miss rewrites (the part this idea can remove)",
   "why": "The arithmetic is right and the fix is cheap, but most of the write term is new tokens arriving each turn, which must be written anyway, so even a perfect audit stays below 1.25x, and the \"second breakpoint\" fix is already in Anthropic's own guidance.",
-  "margin": 0.55,
+  "margin": 0.325,
   "ratio": 1.23,
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.55,
+   0.1
+  ],
+  "margin_gate": 0.55,
+  "unstable": true,
+  "verdict_gate": "WOUNDED"
  },
  "baseline_1#1": {
   "killer": "Share of real edits whose quality matches full recompute without falling back (the dependent text must sit next to the edit)",
   "why": "The mechanism is sound and loading is cheap, but the 20–50x figure applies only to the edited suffix: over a whole serving system with realistic edit shares the gain is about 1.1–1.45x, the quality evidence is single-group 2026 preprints that partly conflict, the idea does not cover document reordering, and the fallback rate when dependencies sit downstream (the usual case when the question comes last) has not been measured.",
-  "verdict": "WOUNDED"
+  "verdict": "WOUNDED",
+  "margins": [
+   0.5
+  ],
+  "margin_gate": null,
+  "margin": 0.5,
+  "unstable": false,
+  "verdict_gate": "WOUNDED"
  }
 }

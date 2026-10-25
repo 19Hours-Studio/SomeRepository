@@ -37,3 +37,15 @@ baseline_2: 3 ideas (1140 words)
 /home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g0/TASK.md
   skip eval_g0 (done)
 gate: 10/10 parsed {'WOUNDED': 6, 'DEAD': 4}
+  eval_g0_re.2: 131,724 tokens, 91.1 s
+  eval_g0_re.1: 132,628 tokens, 94.4 s
+  recheck g1_mech#1: margins 0.51, 0.9, 1 -> 0.90 UNSTABLE; WOUNDED -> WOUNDED
+  recheck baseline_2#1: margins 0.1, 0, 0.4 -> 0.10 UNSTABLE; DEAD -> DEAD
+  recheck g1_rf1#1: margins 0.15, 1, 0.1 -> 0.15 UNSTABLE; DEAD -> DEAD
+  recheck baseline_1#2: margins 0.3, 0.5 -> 0.40; WOUNDED -> WOUNDED
+  recheck baseline_1#3: margins 0.03, 0, 0.1 -> 0.03 UNSTABLE; DEAD -> DEAD
+  recheck baseline_2#2: margins 0.6, 0.53, 0.53 -> 0.53; WOUNDED -> WOUNDED
+  recheck g1_ledger#3: margins 0.38, 0.9 -> 0.64; WOUNDED -> WOUNDED
+  recheck baseline_2#3: margins 0.09, 1.8, 1.8 -> 1.80 UNSTABLE; DEAD -> WOUNDED
+  recheck g1_mech#2: margins 0.55, 0.1 -> 0.33 UNSTABLE; WOUNDED -> WOUNDED
+  recheck baseline_1#1: margins 0.5 -> 0.50; WOUNDED -> WOUNDED
