@@ -1,0 +1,10 @@
+{
+ "p": {
+  "repair#2": 0.33,
+  "repair#1": 0.07,
+  "none": 0.6
+ },
+ "weakest_link": "Idea 1's net availability gain. It depends on unmeasured inputs: the 9-month grey-import lead time, +7 percentage points of availability, mines being the limit 60% of the time, and domestic parts lasting at least 0.6–0.8× as long once change-out downtime is counted. Hoisting, backfill and ventilation limits at Talnakh may also stop extra LHD hours from becoming extra ore.",
+ "flip_test": "Measured fleet availability (KTG) and the share of time hoisting or the mine, not the concentrator, is the limit at Talnakh/Oktyabrskoye, plus the replacement schedule for the Western fleet. | Flip to \"none\" or below Idea 2: the mine is the limit less than about 30% of the time, or more than about half the Western LHDs are replaced by 2028. Either drops the gain below about 15 kt/yr at more than $5,400/t, close to brownfield cost with a shorter life.",
+ "unknown": "Even if Idea 1 is right, it says nothing about the largest unanswered levers. Those are recovering disseminated and Maslovskoye ore at NOF and Nadezhda, Sulphur Programme cost and schedule without foreign contractors, and foundation design life. On foundations, Nornickel's thermometric forecasts to 2050 versus the 1 cm/yr thaw trend are unpublished at structure level. How much of the risk is thaw rather than engineering faults (Ambarnaya, the 2021 NOF collapse) remains unquantified."
+}

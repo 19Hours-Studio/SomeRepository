@@ -33,3 +33,12 @@ repair: 2 ideas (1213 words)
 /home/user/SomeRepository/engine/runs/rusres2__p3/audit_final/TASK.md
   audit_final: 376,629 tokens, 275.9 s
   audit_final: 4 new facts -> evidence.md
+  calibrate: 9,203 tokens, 17.3 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#2       F0/M4/m3 fit 0.00 ratio 1.01 known partly p 33%  Availability as capacity
+  2. repair#1       F1/M4/m3 fit 0.00 ratio 1.0 known yes p 7%  Gate Talnakh-3 on refill
+  none of these: p 60%
+  weakest link: Idea 1's net availability gain. It depends on unmeasured inputs: the 9-month grey-import lead time, +7 percentage points of availability, mines being the limit 60% of the time, and domestic parts lasting at least 0.6–0.8× as long once change-out downtime is counted. Hoisting, backfill and ventilation limits at Talnakh may also stop extra LHD hours from becoming extra ore.
+  flip test: Measured fleet availability (KTG) and the share of time hoisting or the mine, not the concentrator, is the limit at Talnakh/Oktyabrskoye, plus the replacement schedule for the Western fleet. | Flip to "none" or below Idea 2: the mine is the limit less than about 30% of the time, or more than about half the Western LHDs are replaced by 2028. Either drops the gain below about 15 kt/yr at more than $5,400/t, close to brownfield cost with a shorter life.
+spent 2,021,796 tokens, $5.29
