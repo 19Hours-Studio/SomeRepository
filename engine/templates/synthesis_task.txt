@@ -11,6 +11,11 @@ the parts and the facts below already cover the literature. Work only in `{WORKD
 commit.
 
 Build ONE integrated answer to the whole question, and at most one alternative, from the parts:
+0. Start from the single strongest part answer as the anchor: no FATAL defect, the largest reviewed gain, then the fewest
+   MAJOR defects. Add another part only where it removes one of the anchor's stated defects or adds a gain you compute;
+   never bundle parts for coverage and never average them. Every number you add needs a source or the python that
+   computes it: merged answers have failed on numbers nobody checked (fuel tanks on piles that could not freeze in
+   time, a road that was 8% built).
 1. Use only parts whose review found no FATAL defect, or fix the FATAL defect and show the number that fixes it.
    Answer the MAJOR defects of every part you use: fix them, or carry them as stated risks.
 2. Check how the parts combine: shared infrastructure, power, ports, ships, people, capital, markets; conflicts; and

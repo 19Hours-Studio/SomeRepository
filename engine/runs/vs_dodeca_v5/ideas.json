@@ -1,0 +1,65 @@
+[
+ {
+  "id": "baseline#1",
+  "label": "baseline",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Gallo-Celtic cult object, cosmological or divinatory",
+  "mech": "Each dodecahedron was a valued religious object made locally in the Celtic-heritage north-west. It probably stood for the cosmos: in Plato's *Timaeus* the dodecahedron is the shape of the universe, and Pythagorean ideas reached Gaul by way of the Druids (Leach & Guggenberger 2025). It was used in rites, possibly divination, which may have involved thread or sighting through the holes. It may also have been carried on a staff, since in the 1966 Gellep woman's grave a rod-shaped bone lay beside one. The holes all differ in size, so each face can be told apart, which a divination object needs and a measuring tool cannot have. The knobs let it stand on any face or sit on a mount, and they also prevent it rolling like a die. Lost-wax casting means every piece is a one-off with no standard size, which fits a ritual object rather than a measure. No text mentions them because the cult was local and passed on by word of mouth, as Druidic lore was.",
+  "value": "This idea alone accounts for the narrow distribution (about 70% Gaul and Germany, about 20% Britain, almost none in Italy or the East), the lack of wear, the soft alloy, and the careful deposits in graves, coin hoards, rivers and pits, which are classic votive patterns. Cheap test: a blind use-wear and residue survey (microscope, FTIR/GC-MS of the interior and hole rims) on about 20 museum pieces. The prediction is no tool wear, but possible traces of wax, textile or organic offerings, with deposition rates in graves, hoards and rivers well above those for ordinary bronze tools at the same sites."
+ },
+ {
+  "id": "baseline#2",
+  "label": "baseline",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Seasonal sighting calendar for sowing",
+  "mech": "You look through a pair of opposite holes at the sun or a star such as the Pleiades. The day the sun's noon height (or a star's rising) just fills the aperture sets the date to sow winter grain. Because the opposite holes differ in size, each pair gives a different angle and so a different date. Pieces of different sizes would then be versions made for different latitudes.",
+  "value": "This explains why the holes differ and why opposite faces are paired. It also explains a north-western, agricultural spread without needing written instructions. Decisive test: compute each pair's viewing angle (arctan of the hole-diameter difference over the face-to-face distance) for catalogued specimens and check it against the latitude of each find spot. No correlation would falsify it, and the lack of standard sizes already weighs against it."
+ },
+ {
+  "id": "baseline#3",
+  "label": "baseline",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Masterpiece or prestige display object",
+  "mech": "Bronzesmiths made it to show off their skill (Rüdiger Schwarz's idea): a hollow, accurately faceted lost-wax casting with graded holes and knobs. Owners kept it as a status piece or heirloom.",
+  "value": "This explains why there is no wear, no standard size and no text. It also explains why owners valued them enough to bury them in graves and hoards. Against it: a demonstration of casting skill should not need a lead-heavy alloy (Norton Disney is about 26% lead, which is worse for casting) or the same 12-hole layout repeated across about 134 pieces. Test: XRF and CT surveys of casting quality across the corpus. A masterpiece hypothesis predicts consistently high quality, while a cult object allows crude examples."
+ },
+ {
+  "id": "baseline#4",
+  "label": "baseline",
+  "arm": "BASE",
+  "gen": 1,
+  "name": "Rangefinder, gauge or knitting tool",
+  "mech": "This covers the practical-tool ideas. Sighting through opposite holes, which differ in size, would give a distance to a target of known size, as with Sparavigna's vexillum example (ranges of about 15–200 m). Other versions have it as a gauge for pipes or coins, or a frame for knitting glove fingers on the knobs.",
+  "value": "This is the only family of ideas that gives the hole-size differences a measuring use. However, no standard sizes, no wear, no textile residue and the votive find contexts all argue against it. Decisive test: microscope inspection of knob and hole edges for thread-groove or abrasion wear. Their absence, which current reports already suggest, rules these ideas out."
+ },
+ {
+  "id": "ENGINE:g1_crux#2",
+  "label": "ENGINE:g1_crux",
+  "arm": "ENGINE",
+  "gen": 1,
+  "name": "Unwritten twelve-face lot",
+  "mech": "The object was a lot for drawing omens, cast by hand onto soft ground or cloth. Each face was identified by its hole size instead of by numbers. Because the holes had to differ, variation within each object is required, and the lack of any shared scheme between objects follows from each maker setting their own sizes. The two large unringed holes marked the \"special\" outcomes, and the knobs made the object come to rest on a face. Occasional private use explains the lack of wear and the silence of the texts.",
+  "value": "Unlike other divination ideas, it makes the absence of inscriptions and the varied holes necessary rather than awkward. Test: check knob tips under a microscope for even, all-round micro-flattening and compare it with the unused Norton Disney piece. If the corpus shows no such wear, the idea is refuted."
+ },
+ {
+  "id": "ENGINE:repair#1",
+  "label": "ENGINE:repair",
+  "arm": "ENGINE",
+  "gen": 3,
+  "name": "Staff-mounted provincial symbolic bronze head",
+  "mech": "The dodecahedron was a prestige object with symbolic meaning, made in regional bronze workshops of Gaul, the Rhineland and Britain. It was a lost-wax shell about 1 mm thick cast around a clay core. Every face is pierced because the core had to be supported during casting and broken out afterwards. The holes were then finished to a six-axis plan. Opposite holes were sized alike, very clearly on Tongeren and weakly on the second published table. Ten holes were ringed. One larger, unringed and sometimes oval opposite pair formed a through-axis, by which the head could be fitted onto a rod or handle. The bone object (about 15 × 3 cm) found right beside the Gellep piece, in the grave of a wealthy woman from about AD 350, suggests this. When it was not mounted, the corner knobs let it stand on any face as a finished ornament. Its meaning was probably cosmological or astral: the 4th-century Geneva lead dodecahedron carries the twelve zodiac names, so in this region a twelve-face solid could stand for the twelve signs. Well-off civilians of both sexes owned it, and some soldiers did too. They used it rarely or in ceremonies, which is why wear is slight. They valued it enough to repair it (Kortessem) and to put it in rich graves and hoards. It belonged to a north-western provincial tradition, carried by people moving to the Danube forts and across the river. That explains why it is missing from the Mediterranean and why no Greek or Latin author describes it.",
+  "value": "It is the only reading that accounts at once for: - a hole in every face; - holes that vary in size but match axis by axis; - the special unringed opposite pair found across the corpus; - thin, unworn shells; - the repaired, grave and hoard contexts."
+ },
+ {
+  "id": "ENGINE:repair#2",
+  "label": "ENGINE:repair",
+  "arm": "ENGINE",
+  "gen": 3,
+  "name": "Bronzesmith's hollow-casting display piece",
+  "mech": "The dodecahedron was a showpiece from regional north-western workshops that demonstrated difficult thin-wall hollow casting. No guild \"masterpiece\" institution is needed for this, and there is no Roman evidence for one. The core was held and later removed through the face openings, set along the six axes, so opposite openings came out matched in size. Finishing (triple rings, one plain and sometimes oval pair) varied from workshop to workshop. The knobs were cast-on ornament and feet, not vents. Nobody used it for anything, so it shows no wear. People kept it as a valued item and placed it in graves and hoards, and its distribution follows the workshop tradition.",
+  "value": "It explains the pierced faces, the axis matching, the thin walls and the lack of wear without assuming any use. It cannot explain why one pair is consistently left unringed, made larger and sometimes oval across the corpus, or the rod beside the Gellep piece. The same rim test refutes it if the unringed pair does show fitting marks or wear that the ringed holes lack."
+ }
+]

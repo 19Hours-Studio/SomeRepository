@@ -809,9 +809,15 @@ def parse_review(d):
                                 "ratio": float(rt.group(1)) if rt else None, "known": kn.group(1).lower() if kn else None}
     return out
 
+def gain(r):
+    """The reviewed gain in steps of 0.1 (whole-chain RATIO for inventions, share of hard facts explained for explanations),
+    so that noise below a step does not decide."""
+    return round(r.get("ratio") or 0, 1) + round(r.get("fit") or 0, 1)
+
 def review_rank(rows):
-    """Ids best first: fewer FATAL, then fewer MAJOR, then larger share of hard facts explained, then larger cost ratio."""
-    return sorted(rows, key=lambda i: (rows[i]["FATAL"], rows[i]["MAJOR"], -rows[i]["fit"], -(rows[i].get("ratio") or 0)))
+    """Ids best first: fewer FATAL, then larger reviewed gain, then fewer MAJOR. v5.3: gain before MAJOR, because ranking by
+    defects alone put the current practice first whenever no answer gained much (rusres_cmp: building code beat everything)."""
+    return sorted(rows, key=lambda i: (rows[i]["FATAL"], -gain(rows[i]), rows[i]["MAJOR"], rows[i].get("MINOR", 0)))
 
 def cmd_exec(a):
     """v4: run one step with a model (runner.call: headless `claude -p`), save the output, log tokens, optionally ingest."""
@@ -1249,7 +1255,7 @@ def cmd_run(a):
     if getattr(a, "dossier", None): cfg["dossier"] = a.dossier
     if getattr(a, "fill_families", None): cfg["fill_families"] = a.fill_families
     if getattr(a, "decompose", None) is not None: cfg["decompose"] = a.decompose
-    for k_ in ("recheck", "directions", "vs"):
+    for k_ in ("recheck", "directions", "vs", "baseline"):
         if getattr(a, k_, None): cfg[k_] = getattr(a, k_)
     if a.notes: cfg["notes"] = a.notes
     save(R, "config.json", cfg); budget = a.max_tokens; bench = [x for x in (getattr(a, "bench", None) or "").split(",") if x]
@@ -1378,7 +1384,13 @@ def cmd_run(a):
                                                       "PARTS": "\n\n".join(px), "EVIDENCE": fact_slice(R, px)})
         open(os.path.join(sd, "TASK.md"), "w").write(s_); step("synthesis", "repair", s_, a.model, "research", cwd=sd)
         cmd_ingest(argparse.Namespace(run=R, label="synthesis", arm="F", gen=3, parents=None, transcript=None, file=path(R, "outputs", "synthesis.md")))
-        own = [i["id"] for i in ideasR() if i["label"] == "synthesis"] + imp; fd = os.path.join(D, "audit_final")
+        syn = [i["id"] for i in ideasR() if i["label"] == "synthesis"]; gd = os.path.join(D, "gate_synth")  # v5.3: the merge passes the same kill test
+        cmd_gatetask(argparse.Namespace(run=R, ids=",".join(syn), dir=gd, kit=bool(getattr(a, "kit", False) or cfg.get("kit"))))
+        tg = step("gate_synth", "review", task("gate_synth"), a.model, "research", cwd=gd)
+        cmd_gate(argparse.Namespace(run=R, dir=gd, transcript=None, file=path(R, "outputs", "gate_synth.md"), out=None)); add_new_facts(R, tg, "gate_synth")
+        gs = load(R, "gate.json", {}); dead = [i for i in syn if gs.get(i, {}).get("verdict") == "DEAD"]
+        if dead: print(f"  merged answers dead in the kill test, left out of the final: {', '.join(dead)}")
+        own = [i for i in syn if i not in dead] + imp; fd = os.path.join(D, "audit_final")
         rows = review("audit_final", own + bench, "redteam_task", chunk=0); own = [i for i in review_rank(rows) if i not in bench]
         s2 = fill(R, tpl("calibrate_task"), len(own), {"IDEAS": idea_blocks(R, own, {i: ["BLIND REVIEW:"] + latest_review([fd], i) for i in own}, scores=False)})
         fresh = not done("calibrate"); cal = take_calibration(R, step("calibrate", "gen", saved("calibrate", s2), a.model, "none"), own, record=fresh)
@@ -1395,6 +1407,9 @@ def cmd_run(a):
         return True
     # 1. raw material (+ ceilings in code)
     if kind == "invent" and cfg.get("dossier"): dossier(int(cfg["dossier"]))
+    if cfg.get("baseline") and kind != "make":  # v5.3: the plain one-call answer joins the final review as the floor to beat
+        cmd_baseline(argparse.Namespace(run=R, model=a.model, tools="research", budget_usd=8.0, force=False))
+        bench = bench + [i["id"] for i in load(R, "ideas.json", []) if i["arm"] == "BASE" and i["id"] not in bench]
     if kind == "invent" and cfg.get("decompose") and not cfg.get("parent") and split_run(int(cfg["decompose"])): return
     if kind == "explain":
         research("evidence", "evidence_task", "evidence"); research("hypotheses", "hypotheses_task", "attempts")
@@ -1641,7 +1656,7 @@ def cmd_compare(a):
         rat = [r["ratio"] for r in rs if r.get("ratio") is not None]
         agg_[i] = {"FATAL": m("FATAL"), "MAJOR": m("MAJOR"), "MINOR": m("MINOR"), "ratio": sum(rat) / len(rat) if rat else None,
                    "known": "/".join(str(r.get("known")) for r in rs), "per_review": [f"{r['FATAL']}/{r['MAJOR']}/{r['MINOR']}" for r in rs]}
-    rank = sorted(agg_, key=lambda i: (agg_[i]["FATAL"], agg_[i]["MAJOR"], -(agg_[i]["ratio"] or 0)))
+    rank = sorted(agg_, key=lambda i: (round(agg_[i]["FATAL"]), -round(agg_[i]["ratio"] or 0, 1), agg_[i]["MAJOR"], agg_[i]["FATAL"]))
     save(R, "compare.json", {"ids": rank, "rows": agg_, "reviewers": a.reviewers})
     out = [f"| rank | idea | arm | mean F/M/m | per review | ratio | known |", "|---|---|---|---|---|---|---|"]
     for k, i in enumerate(rank, 1):
@@ -1802,6 +1817,7 @@ def main():
             x.add_argument("--recheck", type=int, help="v5.3 invent: independent re-estimates of each finalist's deciding number (median margin, verdict in code)")
             x.add_argument("--directions", action="store_true", help="v5.3 invent: one call lays out a distinct mechanism region per generator")
             x.add_argument("--vs", action="store_true", help="v5.3: verbalized sampling inside the generators (develop only low-probability candidates)")
+            x.add_argument("--baseline", action="store_true", help="v5.3: a plain one-call answer (same model, question, tools) joins the final review as the floor to beat")
             x.add_argument("--rivals", action="store_true", help="v5 invent: add the rival round (round-2 generators see round 1 and its kill tests as rivals); "
                            "+~$1.3, no survival gain shown yet (20-continuum.md)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")
