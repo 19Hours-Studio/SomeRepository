@@ -1,0 +1,2 @@
+Rubin trimmed 150 W, 128K:   49.0   44.2   36.6   30.7   19.2
+omega 1.00 lanes 64:   58.6   58.6   58.6   58.6   54.1 | ratio   1.20   1.33   1.60   1.91   2.82 | >=1000: 0.55V wt k1 m3 b468 CSA(g,h,idx,kv)=(13, 3, True, False) HCA=(10, 0, False, True) MTP=(9, 0, False, True) pkgs 710 stacks 1174 users 87,048 1,333 tok/s/user T 21.8 us c(us)=7.3/7.2/6.9 avg slot 2369 W

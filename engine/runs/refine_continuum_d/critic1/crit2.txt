@@ -1,0 +1,7 @@
+128K C8 / Ultra-2die 512 GB:   1.20   1.33   1.61   1.81   2.67   (Ultra   46.0   41.6   34.4   28.9   18.0)
+128K C8 / Ultra-2die 192 GB:   1.33   1.33   1.61   1.81   2.67   (Ultra   41.6   41.6   34.4   28.9   18.0)
+1024K C8 / Ultra-2die 512 GB:   1.07   1.18   1.49   2.08   4.05   (Ultra   14.7   13.3   10.5    7.5    3.9)
+1024K C8 / Ultra-2die 192 GB:   1.51   1.51   1.66   2.08   4.05   (Ultra   10.4   10.4    9.4    7.5    3.9)
+>=200: silicon cm2/pkg C8 125 (logic+SRAM 90, DRAM 35) Rubin 141 (logic 16.5, DRAM 125) -> per-token C8/Rubin incl DRAM 0.52; excl DRAM 3.24
+>=1000: silicon cm2/pkg C8 125 (logic+SRAM 90, DRAM 35) Rubin 141 (logic 16.5, DRAM 125) -> per-token C8/Rubin incl DRAM 0.39; excl DRAM 2.42
+>=2000: silicon cm2/pkg C8 112 (logic+SRAM 90, DRAM 22) Rubin 141 (logic 16.5, DRAM 125) -> per-token C8/Rubin incl DRAM 0.22; excl DRAM 1.49
