@@ -9,3 +9,4 @@ TYPE invent; MODE standard
   dossier.1: 226,965 tokens, 135.8 s
   dossier.2: 229,081 tokens, 136.4 s
   dossier.3: 229,398 tokens, 124.2 s
+  dossier.4: 251,529 tokens, 147.6 s
