@@ -1,7 +1,7 @@
 # Quality of the server-side splice (Idea 3) on a real model and real traces, against full recompute.
 # Model: SmolLM2-135M-Instruct (GGUF Q4_1 dequantized to fp32; smol.py). Traces: the 200 SWE-agent
 # trajectories of round 1. Each trace is replayed under sliding last-KEEP clearing (the placeholder
-# replaces each observation that leaves the window). Every message is cut to MSGCAP tokens and a trace
+# replaces each observation that leaves the window; POLL=P clears P at a time, as SWE-agent's polling). Every message is cut to MSGCAP tokens and a trace
 # is followed until the context reaches CAP tokens, to fit the 8k model on CPU.
 # Modes, all scored on the same next assistant message (teacher-forced, its real tokens):
 #   full     exact recompute of the cleared prompt (reference)
@@ -15,7 +15,7 @@
 # of the real next message. Usage: python3 spliceq.py MODEL.gguf data/traces.jsonl SHARD NSHARDS > out
 import sys, json, random, os, torch, smol
 KEEP = int(os.environ.get("KEEP", 3)); MSGCAP = int(os.environ.get("MSGCAP", 192))
-CAP = int(os.environ.get("CAP", 2048)); NTR = int(os.environ.get("NTR", 18)); EVERY = int(os.environ.get("EVERY", 3))
+CAP = int(os.environ.get("CAP", 2048)); NTR = int(os.environ.get("NTR", 18)); EVERY = int(os.environ.get("EVERY", 3)); POLL = int(os.environ.get("POLL", 1))
 M = smol.Smol(sys.argv[1]); shard, nsh = int(sys.argv[3]), int(sys.argv[4])
 lines = open(sys.argv[2]).read().splitlines()
 pick = sorted(random.Random(0).sample(range(len(lines)), NTR))
@@ -35,9 +35,10 @@ def run_trace(t):
     PHS = [M.enc(f"<|im_start|>{roles[i]}\nOld environment output: ({t['msgs'][i]['text'].count(chr(10))} lines omitted)<|im_end|>\n")
            for i in range(len(roles))]
     is_obs = lambda i: i >= 2 and roles[i] in ("tool", "user")
-    def elided(a, keep):
+    def elided(a, keep):  # sliding last-keep window; with POLL=P the boundary moves only every P steps (SWE-agent polling)
         obs = [i for i in range(a) if is_obs(i)]
-        return set(obs[:-keep]) if len(obs) > keep else set()
+        m = max(0, len(obs) - keep); m = (m // POLL) * POLL
+        return set(obs[:m])
     def prompt(a, keep):  # token list of msgs[:a] under sliding(keep) + header of msg a
         el = elided(a, keep); ids = []
         for i in range(a): ids += PHS[i] if i in el else full_ids[i]

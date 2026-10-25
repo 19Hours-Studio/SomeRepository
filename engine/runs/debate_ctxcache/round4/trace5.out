@@ -1,0 +1,29 @@
+== A. append-only agent: corrected headline ==
+backrefs runs>=3: -3.2%; + strict cap-4 batching keeping 100% of merged output: -11.6%; batching part scaled by precision 0.77..0.90 -> -9.7% .. -10.8%
+backrefs runs>=3: -3.2%; + strict cap-4 batching keeping 75% of merged output: -14.2%; batching part scaled by precision 0.77..0.90 -> -11.7% .. -13.1%
+backrefs runs>=5: -2.5%; + strict cap-4 batching keeping 100% of merged output: -10.9%; batching part scaled by precision 0.77..0.90 -> -9.0% .. -10.1%
+backrefs runs>=5: -2.5%; + strict cap-4 batching keeping 75% of merged output: -13.6%; batching part scaled by precision 0.77..0.90 -> -11.0% .. -12.5%
+(batching alone, 100% output kept: -8.7%)
+
+== B. real token streams under a context-MUTATING policy (SWE-agent LastNObservations) ==
+append-only (no elision): 95,205,486 units (trace4 base 95,205,486), mean context 21,219 tokens
+LastN n= 5 polling= 1 prefix:  142,130,261 units  vs append-only +49.3%  vs same-n polling=1  +0.0%  mean context  13,927
+LastN n= 5 polling= 2 prefix:  116,525,829 units  vs append-only +22.4%  vs same-n polling=1 -18.0%  mean context  14,074
+LastN n= 5 polling= 5 prefix:  100,452,410 units  vs append-only  +5.5%  vs same-n polling=1 -29.3%  mean context  14,518
+LastN n= 5 polling=10 prefix:   96,607,596 units  vs append-only  +1.5%  vs same-n polling=1 -32.0%  mean context  15,112
+LastN n= 5 polling=20 prefix:   94,815,215 units  vs append-only  -0.4%  vs same-n polling=1 -33.3%  mean context  16,302
+LastN n=10 polling= 1 prefix:  205,189,143 units  vs append-only +115.5%  vs same-n polling=1  +0.0%  mean context  15,334
+LastN n=10 polling=10 prefix:  102,682,549 units  vs append-only  +7.9%  vs same-n polling=1 -50.0%  mean context  16,518
+LastN n=10 polling=20 prefix:   98,898,599 units  vs append-only  +3.9%  vs same-n polling=1 -51.8%  mean context  17,217
+LastN n= 5 polling= 1 span  :   81,790,118 units  vs append-only -14.1%  vs same-n polling=1 -42.5%  mean context  13,927
+LastN n=10 polling= 1 span  :   84,429,520 units  vs append-only -11.3%  vs same-n polling=1 -58.9%  mean context  15,334
+LastN n=15 polling= 1 span  :   86,749,137 units  vs append-only  -8.9%                              mean context  16,577
+LastN n=20 polling= 1 span  :   88,735,192 units  vs append-only  -6.8%                              mean context  17,648
+LastN n= 5 polling= 5 span  :   82,900,222 units  vs append-only -12.9%  vs same-n polling=1 -41.7%  mean context  14,518
+
+frontier: span ops vs the cheapest client polling setting with >= the same mean context
+span n=5 p=1 (81,790,118, ctx 13,927) vs client n=5 p=20 (94,815,215, ctx 16,302): -13.7%
+span n=10 p=1 (84,429,520, ctx 15,334) vs client n=5 p=20 (94,815,215, ctx 16,302): -11.0%
+span n=15 p=1 (86,749,137, ctx 16,577) vs client n=10 p=20 (98,898,599, ctx 17,217): -12.3%
+span n=20: ctx 17,648 above every client polling point; vs append-only (ctx 21,219) -6.8%
+span n=5 p=5 (82,900,222, ctx 14,518) vs client n=5 p=20 (94,815,215, ctx 16,302): -12.6%

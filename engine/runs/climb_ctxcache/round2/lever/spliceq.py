@@ -7,7 +7,6 @@
 #   S0     : chained splice: drop the span's KV, compute placeholder KV, re-rotate downstream keys (Leyline / llama.cpp seq_rm+seq_add)
 #   SG     : chained splice but keep the position gap (no key re-rotation)
 #   S<k>   : S0 + recompute the first k tokens after each cut (boundary repair)
-#   SR<m>  : S0 + full exact refresh of the cache after every m-th splice (bounded staleness)
 # Usage: python3 -I spliceq.py data/traces.jsonl OUT.jsonl SHARD NSHARD
 import sys, os, json, random, time, torch
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -16,7 +15,7 @@ from qwen import Qwen3, DIR
 from tokenizers import Tokenizer
 import traces as T
 
-KEEP = 5; CAP = int(os.environ.get("CAP", 9000)); ACT = 128; NTR = int(os.environ.get("NTR", 12)); KS = (16, 128); RM = 4; MAXEV = int(os.environ.get("MAXEV", 8))
+KEEP = 5; CAP = int(os.environ.get("CAP", 9000)); ACT = 128; NTR = int(os.environ.get("NTR", 12)); KS = (16, 128); MAXEV = int(os.environ.get("MAXEV", 8))
 tk = Tokenizer.from_file(f"{DIR}/tokenizer.json")
 def wrap(role, text):
     if role == "tool": return f"<|im_start|>user\n<tool_response>\n{text}\n</tool_response><|im_end|>\n"
@@ -84,49 +83,59 @@ def cmp(ref, x, act):
     nll = -x[:len(act) - 1].gather(1, tgt[:, None])[:, 0]
     return {"kl": kl[:-1].mean().item(), "kl_max": kl[:-1].max().item(), "top1": (ref.argmax(-1) == x.argmax(-1))[:-1].float().mean().item(), "nll": nll.mean().item()}
 
+def walk(tr, ids, ph, A, chain, on_eval):
+    """Replay the sliding policy request by request; keep `chain` (or None) in sync; call on_eval at eval points."""
+    el = set(); done = 0; nev = 0
+    for a in A:
+        if sum(len(ids[i]) for i in range(a)) > CAP: break
+        old = T.old_obs(tr, a); new_el = sorted(old - el, reverse=True)
+        if chain is not None:
+            for i in new_el:
+                if i < done: chain.splice(i, ph[i])
+            for i in range(done, a): chain.append(("ph", i) if i in old else i, ph[i] if i in old else ids[i])
+        el |= set(new_el); done = a
+        if not el: continue
+        nev += 1
+        if nev > MAXEV: break
+        on_eval(a, el)
+
 def run(path, out, shard, nshard):
     Tr = T.load(path); byid = {t["id"]: t for t in Tr}
-    sel = select(Tr); m = Qwen3(); fo = open(out, "a")
+    sel = select(Tr); m = Qwen3(); fo = open(out, "a"); tmp = os.environ.get("TMPD", "/tmp/claude-0/t")
+    os.makedirs(tmp, exist_ok=True)
     print("selected", sel, flush=True)
+    variants = {"S0": dict(mode="rot"), "SG": dict(mode="gap")}
+    for k in KS: variants[f"S{k}"] = dict(mode="rot", k=k)
     for ti, tid in enumerate(sel):
         if ti % nshard != shard: continue
-        tr = byid[tid]; ids, ph = prepare(tr); A = T.requests(tr)
-        chains = {"S0": Chain(m, "rot"), "SG": Chain(m, "gap")}
-        for k in KS: chains[f"S{k}"] = Chain(m, "rot", k=k)
-        chains[f"SR{RM}"] = Chain(m, "rot", refresh=RM)
-        el = set(); done = 0; floor_done = False; nev = 0
-        for a in A:
-            if sum(len(ids[i]) for i in range(a)) > CAP: break
-            new_el = sorted(T.old_obs(tr, a) - el, reverse=True)
-            for c in chains.values():
-                for i in new_el:
-                    if i < done: c.splice(i, ph[i])
-                for i in range(done, a): c.append(("ph", i) if i in T.old_obs(tr, a) else i, ph[i] if i in T.old_obs(tr, a) else ids[i])
-            el |= set(new_el); done = a
-            if not el: continue
-            nev += 1
-            if nev > MAXEV: break
-            t0 = time.time()
-            act = enc("<|im_start|>assistant\n" + tr["text"][a])[:ACT]
+        tr = byid[tid]; ids, ph = prepare(tr); A = T.requests(tr); recs = {}
+        def act_of(a): return enc("<|im_start|>assistant\n" + tr["text"][a])[:ACT]
+        def ref_eval(a, el):  # exact references, stored on disk
+            t0 = time.time(); act = act_of(a)
             sp = [t for i in range(a) for t in (ph[i] if i in el else ids[i])]
-            assert sp == chains["S0"].ids, "token mismatch"
-            _, rc = m.forward(sp, None, want_logits=False); ref = dist(m, rc, len(sp), act)
+            _, rc = m.forward(sp, None, want_logits=False); ref = dist(m, rc, len(sp), act); del rc
             ap = [t for i in range(a) for t in ids[i]]
-            _, acache = m.forward(ap, None, want_logits=False); app = dist(m, acache, len(ap), act); del acache
-            rec = {"id": tid, "req": a, "n_splices": len(el), "sliding_len": len(sp), "append_len": len(ap),
-                   "app": cmp(ref, app, act), "ref": cmp(ref, ref, act)}
-            # reverse direction for clearing: how far is the sliding prompt from the full-context answer
-            rec["ref_vs_app"] = cmp(app, ref, act)
-            for name, c in chains.items():
-                rec[name] = cmp(ref, dist(m, c.cache, c.pos[-1] + 1, act), act); rec[name]["work"] = c.work
-                rec[name]["vs_app"] = cmp(app, dist(m, c.cache, c.pos[-1] + 1, act), act)["kl"] if name == "S0" else None
-            if not floor_done:  # numerical floor: same exact prompt, prefilled in two chunks instead of one
+            _, ac = m.forward(ap, None, want_logits=False); app = dist(m, ac, len(ap), act); del ac
+            torch.save((ref, app), f"{tmp}/{tid}_{a}.pt")
+            rec = {"id": tid, "req": a, "n_cleared": len(el), "sliding_len": len(sp), "append_len": len(ap),
+                   "ref": cmp(ref, ref, act), "app": cmp(ref, app, act), "ref_vs_app": cmp(app, ref, act)}
+            if not recs:  # numerical floor: same exact prompt prefilled in two chunks instead of one
                 h = len(sp) // 2
                 _, c1 = m.forward(sp[:h], None, want_logits=False); _, c1 = m.forward(sp[h:], c1, want_logits=False)
-                rec["floor"] = cmp(ref, dist(m, c1, len(sp), act), act); floor_done = True; del c1
-            rec["sec"] = round(time.time() - t0, 1)
-            fo.write(json.dumps(rec) + "\n"); fo.flush()
-            print(tid, a, len(sp), len(ap), {k: round(rec[k]["kl"], 4) for k in ["app", "S0", "SG", f"S{KS[0]}", f"S{KS[1]}", f"SR{RM}"]}, rec["sec"], flush=True)
+                rec["floor"] = cmp(ref, dist(m, c1, len(sp), act), act); del c1
+            rec["sec_ref"] = round(time.time() - t0, 1); recs[a] = rec
+        walk(tr, ids, ph, A, None, ref_eval)
+        for name, kw in variants.items():
+            ch = Chain(m, **kw)
+            def var_eval(a, el, ch=ch, name=name):
+                act = act_of(a); assert ch.ids == [t for i in range(a) for t in (ph[i] if i in el else ids[i])], "token mismatch"
+                ref, app = torch.load(f"{tmp}/{tid}_{a}.pt"); x = dist(m, ch.cache, ch.pos[-1] + 1, act)
+                r = cmp(ref, x, act); r["kl_vs_app"] = cmp(app, x, act)["kl"]; r["work"] = ch.work; recs[a][name] = r
+            walk(tr, ids, ph, A, ch, var_eval); del ch
+        for a, rec in recs.items():
+            fo.write(json.dumps(rec) + "\n"); os.remove(f"{tmp}/{tid}_{a}.pt")
+            print(tid, a, rec["sliding_len"], rec["append_len"], {k: round(rec[k]["kl"], 4) for k in ["app"] + list(variants)}, flush=True)
+        fo.flush()
 
 if __name__ == "__main__":
     run(sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]))

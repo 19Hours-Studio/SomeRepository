@@ -1,0 +1,20 @@
+drift 0.1:
+   sysctx        613,355  vs sysctx  +0.0%  vs tail +53.6%  mean ctx  17,450
+   tail          399,225  vs sysctx -34.9%  vs tail  +0.0%  mean ctx  17,450
+   tail_new      189,620  vs sysctx -69.1%  vs tail -52.5%  mean ctx  28,273
+   tail_span     198,406  vs sysctx -67.7%  vs tail -50.3%  mean ctx  17,500
+   tail_cap12    317,345  vs sysctx -48.3%  vs tail -20.5%  mean ctx  18,140
+   tail_cap15    282,500  vs sysctx -53.9%  vs tail -29.2%  mean ctx  19,367
+   tail_cap20    241,175  vs sysctx -60.7%  vs tail -39.6%  mean ctx  22,113
+   tail_cap30    210,190  vs sysctx -65.7%  vs tail -47.4%  mean ctx  25,393
+   output share of sysctx bill 7.3%, of tail_span bill 22.7%
+drift 0.3:
+   sysctx        625,315  vs sysctx  +0.0%  vs tail +56.6%  mean ctx  17,450
+   tail          399,225  vs sysctx -36.2%  vs tail  +0.0%  mean ctx  17,450
+   tail_new      250,820  vs sysctx -59.9%  vs tail -37.2%  mean ctx  41,927
+   tail_span     278,777  vs sysctx -55.4%  vs tail -30.2%  mean ctx  17,500
+   tail_cap12    396,360  vs sysctx -36.6%  vs tail  -0.7%  mean ctx  17,607
+   tail_cap15    374,890  vs sysctx -40.0%  vs tail  -6.1%  mean ctx  18,807
+   tail_cap20    355,125  vs sysctx -43.2%  vs tail -11.0%  mean ctx  21,073
+   tail_cap30    306,600  vs sysctx -51.0%  vs tail -23.2%  mean ctx  25,713
+   output share of sysctx bill 7.2%, of tail_span bill 16.1%

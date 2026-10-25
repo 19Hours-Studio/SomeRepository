@@ -1,4 +1,0 @@
-200 traces: recorded $242.60 vs replayed append-only $186.33  ratio 1.302
-per-trace ratio recorded/replayed: p10 1.21 median 1.31 p90 1.47
-history processors: {'[{"type": "cache_control", "last_n_messages": 2, "last_n_messages_offset": 0, "tagged_roles": ["user", "tool"]}]'}
-api calls 12320 replayed requests 12221

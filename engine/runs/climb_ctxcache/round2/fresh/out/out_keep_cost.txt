@@ -1,6 +1,0 @@
-qwen_traceA_blksz_16.jsonl: prefill tokens saved by 1-h vs 5-min retention 11.6M; extra storage 25.9M token-hours (keep-everything), 1.5M (oracle keeps only blocks that come back)
-   dense 72B    recompute avoided $  2.09   DRAM: cost/benefit  26.82 (oracle  1.59)  NVMe: cost/benefit   0.57 (oracle  0.03)
-   MoE 30B-A3B  recompute avoided $  0.10   DRAM: cost/benefit 175.52 (oracle 10.41)  NVMe: cost/benefit   3.72 (oracle  0.22)
-qwen_coder_blksz_16.jsonl: prefill tokens saved by 1-h vs 5-min retention 21.8M; extra storage 55.6M token-hours (keep-everything), 3.9M (oracle keeps only blocks that come back)
-   dense 72B    recompute avoided $  3.92   DRAM: cost/benefit  30.65 (oracle  2.17)  NVMe: cost/benefit   0.65 (oracle  0.05)
-   MoE 30B-A3B  recompute avoided $  0.18   DRAM: cost/benefit 200.60 (oracle 14.19)  NVMe: cost/benefit   4.26 (oracle  0.30)

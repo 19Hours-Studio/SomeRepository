@@ -1,3 +1,0 @@
-K=4: assistant tokens 2116951, verify passes 1162850: 1.82 tokens per pass (median message 1.90, p90 2.82); proposed tokens per output token 0.89
-K=8: assistant tokens 2116951, verify passes 1061408: 1.99 tokens per pass (median message 2.08, p90 3.62); proposed tokens per output token 1.39
-K=16: assistant tokens 2116951, verify passes 1007255: 2.10 tokens per pass (median message 2.17, p90 4.09); proposed tokens per output token 2.34

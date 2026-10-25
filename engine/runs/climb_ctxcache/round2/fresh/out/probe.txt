@@ -1,0 +1,4 @@
+data/qwen_coder_blksz_16.jsonl 43011 {'coder': 43011} ids 5202517 ids w/ >1 predecessor 0 ids at >1 position 0
+data/qwen_thinking_blksz_16.jsonl 10812 {'thinking': 10812} ids 1735015 ids w/ >1 predecessor 0 ids at >1 position 0
+data/qwen_traceA_blksz_16.jsonl 43058 {'text': 31744, 'image': 1617, 'search': 8187, 'file': 1510} ids 2530337 ids w/ >1 predecessor 16686 ids at >1 position 52168
+data/qwen_traceB_blksz_16.jsonl 172800 {'api': 150936, 'text': 21864} ids 3830390 ids w/ >1 predecessor 44869 ids at >1 position 114101

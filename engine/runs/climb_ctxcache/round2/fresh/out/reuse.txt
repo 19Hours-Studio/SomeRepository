@@ -1,0 +1,12 @@
+qwen_traceA_blksz_16.jsonl: blocks 6293976  prefix-hit 57.8%  non-prefix seen-before 1.6%  (in runs>=4: 1.1%)
+   file      share 10.3%  prefix 55.1%  nonprefix 0.5%  runs 0.3%
+   image     share  0.9%  prefix 78.0%  nonprefix 7.6%  runs 3.9%
+   search    share 48.6%  prefix 48.8%  nonprefix 1.6%  runs 1.1%
+   text      share 40.2%  prefix 68.9%  nonprefix 1.8%  runs 1.2%
+qwen_traceB_blksz_16.jsonl: blocks 9956137  prefix-hit 53.4%  non-prefix seen-before 7.9%  (in runs>=4: 6.2%)
+   api       share 86.9%  prefix 55.4%  nonprefix 6.2%  runs 4.5%
+   text      share 13.1%  prefix 40.1%  nonprefix 19.3%  runs 17.8%
+qwen_coder_blksz_16.jsonl: blocks 15470907  prefix-hit 66.4%  non-prefix seen-before 0.0%  (in runs>=4: 0.0%)
+   coder     share 100.0%  prefix 66.4%  nonprefix 0.0%  runs 0.0%
+qwen_thinking_blksz_16.jsonl: blocks 3223990  prefix-hit 46.2%  non-prefix seen-before 0.0%  (in runs>=4: 0.0%)
+   thinking  share 100.0%  prefix 46.2%  nonprefix 0.0%  runs 0.0%
