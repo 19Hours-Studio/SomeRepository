@@ -1,0 +1,20 @@
+QUESTION: {QUESTION}
+
+Below are {N} pairs of candidate answers. Each answer carries what independent checks found: the deciding quantity, its
+margin (available / required; below 1 means it does not hold as described), the whole-chain gain against the best
+current practice, and whether independent estimates of the deciding number agreed. For each pair, decide which answer
+would give the asker more of what the question asks for, if both were carried out as described.
+
+- Weigh the checked numbers above the prose. A large gain with a margin below 1 is a promise, not a result; an
+  unstable margin is uncertain; an answer the checks found DEAD loses to any answer that holds.
+- The current practice gains nothing over itself: an answer that restates it loses to one that beats it by a measured
+  amount, and wins against one that does not hold.
+- Length, style, confidence and position (A or B) are not merit.
+
+Final answer (text only), one line per pair, in the order given:
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | <one line: the deciding difference>
+(same for the other pairs; WINNER is A or B)
+
+THE PAIRS:
+{PAIRS}

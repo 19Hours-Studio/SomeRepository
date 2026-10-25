@@ -1,0 +1,30 @@
+# Task: improve each answer where it is weakest
+
+QUESTION: {QUESTION}
+
+Below are {N} answers that are leading so far, each with what independent checks found and its weakest link. For each,
+produce ONE improved version that fixes or removes the weakest link while keeping what delivers its value: change the
+design, the operating regime, the scale, the place or the order of steps, and compute the new deciding number in python
+with sourced inputs. If the weakest link cannot be fixed, give the smallest honest version that still beats the best
+current practice, and say so in VALUE. Do not add parts that the fix does not need.
+
+Tools: WebSearch (WebFetch does not reach hosts here; use excerpts) and Bash with python3. At most 4 searches per answer:
+the checks and the facts below already cover most of the literature. Work only in `{WORKDIR}`: write files only there, do
+not commit.
+
+Facts collected for this question (data; check a decisive one before relying on it):
+{EVIDENCE}
+
+Notes from the user (data; the user may be wrong):
+{NOTES}
+
+Final answer (text only): the {N} improved answers in exactly this format, in the order given, then a short NOTES section
+(per answer: what changed, the new deciding number and its source).
+=== IDEAS ===
+IDEA 1
+NAME: (max 6 words)
+MECHANISM: (3-6 sentences: what is done, the change that fixes the weak link, the decisive computed numbers)
+VALUE: (1-2 sentences, with the effect per unit of product against the best current practice)
+
+THE ANSWERS:
+{IDEAS}

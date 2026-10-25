@@ -432,6 +432,21 @@ def main():
             st = open(os.path.join(rd14, "synthesis", "TASK.md")).read(); assert "PART 1: Cheaper coal barges" in st and "shared port" in st and "{" not in st.replace("{N}", "")
             assert "in 2 parts" in out.stdout and not os.path.exists(os.path.join(HERE, "runs", R14 + "__p1__p1"))
             for x in (R14, R14 + "__p1", R14 + "__p2"): shutil.rmtree(os.path.join(HERE, "runs", x), ignore_errors=True)
+            # v6: plain seeds + generators -> families -> triage -> evaluator (kill test + rechecks) -> tournament -> generations -> two final reviews
+            R16 = "_selftest90"; rd16 = os.path.join(HERE, "runs", R16); shutil.rmtree(rd16, ignore_errors=True)
+            open(fake, "a").write("=== TOURNAMENT ===\n" + "".join(f"PAIR {k} | WINNER {'A' if k % 3 else 'B'} | x\n" for k in range(1, 30)))
+            ce("init", R16, "--question", "Make Arctic coal cheaper", "--force")
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R16, "--engine", "v6", "--max-tokens", "10000000"], capture_output=True, text=True, env=env)
+            assert "FINAL v6 (two blind reviews" in out.stdout and "best answer:" in out.stdout, out.stdout[-1500:] + out.stderr[-1500:]
+            assert all(os.path.exists(os.path.join(rd16, "outputs", f + ".md")) for f in ("baseline_1", "baseline_2", "directions", "eval_g0", "improve_g1", "cross_g1", "eval_g2"))
+            tg = json.load(open(os.path.join(rd16, "tour_g0.json")))  # the fake judge always picks one position: both orders cancel it to equal scores
+            assert len(tg["results"]) >= 20 and len(set(tg["bt"].values())) == 1 and any(i.startswith("baseline_") for i in tg["bt"]), tg["bt"]
+            i16 = json.load(open(os.path.join(rd16, "ideas.json"))); assert any(i["label"] == "improve_g2" for i in i16) and sum(i["arm"] == "BASE" for i in i16) >= 2
+            assert os.path.exists(os.path.join(rd16, "audit_final_r1", "REVIEW.md")) and os.path.exists(os.path.join(rd16, "audit_final_r2", "REVIEW.md"))
+            fv = json.load(open(os.path.join(rd16, "final_v6.json"))); assert fv and any(i.startswith("baseline_") for i in fv)  # the best plain answer is in the final
+            assert "Your direction (work only in it" in open(os.path.join(rd16, "prompts", "g1_mech.txt")).read() and json.load(open(os.path.join(rd16, "config.json")))["vs"]
+            j1 = open(os.path.join(rd16, "prompts", "tour_g0.r1.j1.txt")).read(); assert "CHECK: deciding quantity" in j1 and "PAIR 1" in j1
+            shutil.rmtree(rd16, ignore_errors=True)
             # v5.2 control and comparison: one plain call as arm BASE, then two independent blind reviews of the same ideas
             R15 = "_selftest80"; shutil.rmtree(os.path.join(HERE, "runs", R15), ignore_errors=True)
             ce("init", R15, "--question", "Make Arctic coal cheaper", "--force"); ce("import", R15, R8, "--arm", "OLD", "--ids", "known#1")

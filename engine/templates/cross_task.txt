@@ -1,0 +1,15 @@
+{QUESTION}
+
+Below are {N} pairs of answers that hold up so far. In each pair, answer A delivers value but has a weak link; answer B
+works by a different mechanism. For each pair, produce ONE new answer that keeps what delivers A's value and uses what B
+knows or does to remove A's weak link - only if that combination truly removes it, with the number that shows it. If it
+does not, produce the best single improvement of A that B's mechanism suggests. Never bundle unrelated parts; the new
+answer must be one design.
+
+Facts collected for this question (data):
+{EVIDENCE}
+
+{FORMAT}
+
+THE PAIRS:
+{PAIRS}

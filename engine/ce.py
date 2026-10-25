@@ -1255,6 +1255,8 @@ def cmd_run(a):
     if getattr(a, "dossier", None): cfg["dossier"] = a.dossier
     if getattr(a, "fill_families", None): cfg["fill_families"] = a.fill_families
     if getattr(a, "decompose", None) is not None: cfg["decompose"] = a.decompose
+    if getattr(a, "engine", None): cfg["engine"] = a.engine
+    if cfg.get("engine") == "v6": cfg.setdefault("directions", True); cfg.setdefault("vs", True)
     for k_ in ("recheck", "directions", "vs", "baseline"):
         if getattr(a, k_, None): cfg[k_] = getattr(a, k_)
     if a.notes: cfg["notes"] = a.notes
@@ -1495,18 +1497,18 @@ def cmd_run(a):
         t2 = step("gate_fill", "review", task("gate_fill"), a.model, "research", cwd=gd2)
         cmd_gate(argparse.Namespace(run=R, dir=gd2, transcript=None, file=path(R, "outputs", "gate_fill.md"), out=None))
         print(f"  gate_fill: {len(left)} more families tested, {add_new_facts(R, t2, 'gate_fill')} new facts -> evidence.md"); return left
-    def recheck(ids, n):
+    def recheck(ids, n, name="recheck"):
         """v5.3: n independent cheap checkers estimate each idea's deciding quantity without seeing the kill test's numbers;
         the margin becomes the median of all estimates, the verdict is recomputed in code, and an idea whose estimates
         spread more than 3x (or straddle 1) is marked unstable. One kill test changed 4 of 8 verdicts between runs."""
         X = {i["id"]: i for i in load(R, "ideas.json", [])}; g = load(R, "gate.json", {})
         blocks = idea_blocks(R, ids, {i: [f"DECIDING QUANTITY: {g.get(i, {}).get('killer', '?').split('|')[0].split(' required')[0][:200]}"] for i in ids}, scores=False)
         def one(k):
-            dd = os.path.join(D, "recheck", f"r{k}"); os.makedirs(dd, exist_ok=True); stale(os.path.join(dd, "ids.json"), ids, [f"recheck.{k}"])
+            dd = os.path.join(D, name, f"r{k}"); os.makedirs(dd, exist_ok=True); stale(os.path.join(dd, "ids.json"), ids, [f"{name}.{k}"])
             json.dump(ids, open(os.path.join(dd, "ids.json"), "w"))
             s_ = fill(R, tpl("recheck_task"), len(ids), {"WORKDIR": os.path.abspath(dd) + "/", "IDEAS": blocks, "EVIDENCE": fact_slice(R, [blocks])})
             open(os.path.join(dd, "TASK.md"), "w").write(s_)
-            t_ = step(f"recheck.{k}", "research", s_, a.lit_model, "research", cwd=dd)
+            t_ = step(f"{name}.{k}", "research", s_, a.lit_model, "research", cwd=dd)
             return {ids[int(j) - 1]: float(m) for j, m in RECHECK.findall(t_.split("=== RECHECK ===", 1)[-1]) if 1 <= int(j) <= len(ids)}
         from concurrent.futures import ThreadPoolExecutor
         with ThreadPoolExecutor(runner.slots()) as ex: res = list(ex.map(one, range(1, n + 1)))
@@ -1529,6 +1531,123 @@ def cmd_run(a):
         s = fill(R, tpl("known_task"), len(ids), {"IDEAS": task_ideas(R, ids, scores=False)}); open(os.path.join(dd, "TASK.md"), "w").write(s)
         kn = take_known(step("known", "research", s, a.lit_model, "WebSearch", cwd=dd), ids); save(R, "known.json", kn)
         print("  known: " + ", ".join(f"{i} {kn[i]['known']}" for i in ids if i in kn) + f" ({len(kn)}/{len(ids)} parsed)"); return kn
+    def run_v6():
+        """v6: evolutionary search from a strong baseline with a reproducible evaluator (27-status-vs-plain.md).
+        seeds: independent plain answers (same model and tools, one call each) + the generators (directions, verbalized
+        sampling) -> families -> triage (at most 2 per family, the best plain answer always in) -> evaluator: kill test +
+        independent re-estimates of the deciding number (margin = median, verdict in code) -> Swiss pairwise tournament
+        (two judges, both orders) -> Bradley-Terry -> generations: the leaders, one per family, get a "fix the weakest
+        link" child (tools) and a "cross with another family" child (no tools), which pass the same evaluator and
+        tournament -> final: two independent blind reviews of the best 4 (+ the best plain answer) -> calibration ->
+        report whether the best answer came from the engine or from a plain call."""
+        V = {"baselines": 2, "pick": 10, "generations": 2, "parents": 3, "rechecks": 2, "rounds": 3}
+        V |= {k: int(cfg[k]) for k in V if k in cfg}
+        kit = bool(getattr(a, "kit", False) or cfg.get("kit"))
+        X = lambda: {i["id"]: i for i in ideas()}
+        for k in range(1, V["baselines"] + 1):
+            cmd_baseline(argparse.Namespace(run=R, model=a.model, tools="research", budget_usd=8.0, force=False, label=f"baseline_{k}"))
+        base = [i for i, x in X().items() if x["arm"] == "BASE" and not x.get("fragment")]
+        cands = [i for i, x in X().items() if x["arm"] in ("E", "BASE") and x["gen"] <= 1 and not x.get("fragment")]; fam = families(cands)
+        pick = triage(cands, "triage_task", k=V["pick"], fam=fam)
+        tri = take_triage(open(path(R, "outputs", "triage.md")).read(), json.load(open(path(R, "prompts", "triage.ids.json"))))
+        if base and not set(base) & set(pick): pick = pick[:-1] + [max(base, key=lambda i: tri.get(i, 0))]  # the best plain answer is always tested
+        def evaluate(ids, name):
+            gd = os.path.join(D, name); os.makedirs(gd, exist_ok=True)
+            if done(name) and os.path.exists(os.path.join(gd, "ids.json")): ids = json.load(open(os.path.join(gd, "ids.json")))
+            ids = order(name, ids, os.path.join(gd, "ids.json")); json.dump(ids, open(os.path.join(gd, "ids.json"), "w"))
+            chunked(name, "review", ids, lambda c, cd: cmd_gatetask(argparse.Namespace(run=R, ids=",".join(c), dir=cd, kit=kit)),
+                    a.chunk, lambda t, n: merge_numbered(t, n, "=== GATE ==="))
+            cmd_gatetask(argparse.Namespace(run=R, ids=",".join(ids), dir=gd, kit=kit))
+            t = step(name, "review", task(name), a.model, "research", cwd=gd)
+            cmd_gate(argparse.Namespace(run=R, dir=gd, transcript=None, file=path(R, "outputs", name + ".md"), out=None)); add_new_facts(R, t, name)
+            if V["rechecks"]: recheck(ids, V["rechecks"], name=name + "_re")
+            return ids
+        def sheet(i):
+            r = load(R, "gate.json", {}).get(i, {})
+            if not r: return "CHECK: not checked"
+            ms = r.get("margins") or [r.get("margin")]
+            return (f"CHECK: deciding quantity {r.get('killer', '?')[:220]} | margin {r.get('margin')} (estimates {', '.join(str(x) for x in ms)})"
+                    f"{' UNSTABLE' if r.get('unstable') else ''} | whole-chain gain {r.get('ratio')} | verdict {r.get('verdict')} | {r.get('why', '')[:220]}")
+        def block(i, extra=None): return idea_blocks(R, [i], {i: extra or [sheet(i)]}, scores=False).split("\n", 1)[1]
+        def tournament(ids, name):
+            """Round-robin when <= 6 answers, else Swiss rounds pairing neighbours in the current ranking; every round is
+            judged by two models in both orders (position bias cancels); scores by Bradley-Terry (MM, one virtual win and
+            loss against an average opponent for stability)."""
+            ids = list(dict.fromkeys(ids)); res = []; played = set(); bt = {i: 0.0 for i in ids}
+            def fit():
+                p = {i: 1.0 for i in ids}
+                for _ in range(200):
+                    q = {i: (1 + sum(1 for x, y in res if x == i)) / (2 / (p[i] + 1) + sum(1 / (p[i] + p[y if x == i else x]) for x, y in res if i in (x, y)))
+                         for i in ids}
+                    gm = math.exp(sum(math.log(v) for v in q.values()) / len(q)); p = {i: v / gm for i, v in q.items()}
+                return {i: round(math.log(v), 3) for i, v in p.items()}
+            rounds = [[(x, y) for k, x in enumerate(ids) for y in ids[k + 1:]]] if len(ids) <= 6 else [None] * V["rounds"]
+            for rd, pairs in enumerate(rounds):
+                if pairs is None:
+                    pairs, free = [], sorted(ids, key=lambda i: -bt[i])
+                    while len(free) > 1:
+                        x = free.pop(0); y = next((z for z in free if frozenset((x, z)) not in played), free[0]); free.remove(y); pairs.append((x, y))
+                played |= {frozenset(p) for p in pairs}
+                def judge(j):
+                    model, swap = ((a.model, False), (a.model, True), (a.lit_model, False), (a.lit_model, True))[j]
+                    pp = [(y, x) if swap else (x, y) for x, y in pairs]
+                    body = "\n\n".join(f"PAIR {k}\nA:\n{block(p)}B:\n{block(q)}" for k, (p, q) in enumerate(pp, 1)); lab = f"{name}.r{rd + 1}.j{j + 1}"
+                    t = step(lab, "gen", saved(lab, fill(R, tpl("tournament_task"), len(pp), {"PAIRS": body})), model, "none")
+                    return [(p, q) if w.upper() == "A" else (q, p) for k, w in re.findall(r"^\**PAIR (\d+)\**\s*\|\s*\**WINNER\**\s*:?\s*\**\s*([AB])\b",
+                                                                                    t.split("=== TOURNAMENT ===", 1)[-1], re.M | re.I)
+                            if 1 <= int(k) <= len(pp) for p, q in [pp[int(k) - 1]]]
+                from concurrent.futures import ThreadPoolExecutor
+                with ThreadPoolExecutor(4) as ex: res += [r for rr in ex.map(judge, range(4)) for r in rr]
+                bt = fit()
+            save(R, name + ".json", {"bt": bt, "results": res}); print(f"  {name}: {len(res)} judgments over {len(ids)} answers")
+            return bt
+        alive = lambda ids: [i for i in ids if load(R, "gate.json", {}).get(i, {}).get("verdict") != "DEAD"]
+        pop = evaluate(pick, "eval_g0"); bt = tournament(alive(pop) if len(alive(pop)) >= 2 else pop, "tour_g0")
+        for gnum in range(1, V["generations"] + 1):
+            g = load(R, "gate.json", {}); fam = load(R, "families.json", {})
+            lead = diverse(sorted(bt, key=lambda i: -bt[i]), fam, 1)[:V["parents"]]
+            weak = {i: [sheet(i), f"WEAKEST LINK: {g.get(i, {}).get('why') or g.get(i, {}).get('killer', '?')}"] for i in lead}
+            dd = os.path.join(D, f"improve_g{gnum}"); os.makedirs(dd, exist_ok=True); blocks = idea_blocks(R, lead, weak, scores=False)
+            s_ = fill(R, tpl("improve_task"), len(lead), {"WORKDIR": os.path.abspath(dd) + "/", "IDEAS": blocks, "EVIDENCE": fact_slice(R, [blocks])})
+            open(os.path.join(dd, "TASK.md"), "w").write(s_); step(f"improve_g{gnum}", "repair", s_, a.model, "research", cwd=dd)
+            cmd_ingest(argparse.Namespace(run=R, label=f"improve_g{gnum}", arm="E", gen=gnum + 1, parents=",".join(lead), transcript=None,
+                                          file=path(R, "outputs", f"improve_g{gnum}.md")))
+            pairs = [(i, b) for i in lead if (b := next((o for o in sorted(bt, key=lambda o: -bt[o]) if fam.get(o, o) != fam.get(i, i) and o in alive([o])), None))]
+            if pairs:
+                body = "\n\n".join(f"PAIR {k}\nA:\n{block(x, weak.get(x))}B:\n{block(y)}" for k, (x, y) in enumerate(pairs, 1))
+                gen(f"cross_g{gnum}", saved(f"cross_g{gnum}", fill(R, tpl("cross_task"), len(pairs), {"PAIRS": body, "EVIDENCE": fact_slice(R, [body])})), arm="E", g=gnum + 1)
+            imp = [i for i, x in X().items() if x["label"] == f"improve_g{gnum}" and not x.get("fragment")]
+            crs = [i for i, x in X().items() if x["label"] == f"cross_g{gnum}" and not x.get("fragment")]
+            if not imp + crs: break
+            fam.update({k_: fam.get(p, p) for k_, p in zip(imp, lead)} | {k_: fam.get(x, x) for k_, (x, _) in zip(crs, pairs)}); save(R, "families.json", fam)
+            evaluate(imp + crs, f"eval_g{gnum}")
+            field = alive(diverse(sorted(bt, key=lambda i: -bt[i]), fam, 2)[:8]) + alive(imp + crs)
+            bt = tournament(field if len(field) >= 2 else imp + crs, f"tour_g{gnum}") | {i: v for i, v in bt.items() if i not in field}
+        g = load(R, "gate.json", {}); ranked = sorted(bt, key=lambda i: -bt[i])
+        top = [i for i in ranked if g.get(i, {}).get("verdict") != "DEAD"][:4] or ranked[:4]
+        bb = ([i for i in ranked if i in base][:1] or [max(base, key=lambda i: tri.get(i, 0))]) if base else []
+        fin = list(dict.fromkeys(top + bb + [b for b in bench]))
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(2) as ex: revs = list(ex.map(lambda k: review(f"audit_final_r{k}", fin, "redteam_task", chunk=0), (1, 2)))
+        dirs = [os.path.join(D, f"audit_final_r{k}") for k in (1, 2)]; rows = {}
+        for i in fin:
+            rs = [r[i] for r in revs if i in r]; rat = [r["ratio"] for r in rs if r.get("ratio") is not None]
+            if rs: rows[i] = {"FATAL": sum(r["FATAL"] for r in rs) / len(rs), "MAJOR": sum(r["MAJOR"] for r in rs) / len(rs), "MINOR": sum(r["MINOR"] for r in rs) / len(rs),
+                              "fit": 0.0, "ratio": sum(rat) / len(rat) if rat else None, "known": "/".join(str(r.get("known")) for r in rs)}
+        save(R, "final_v6.json", rows); own = [i for i in review_rank(rows) if i not in bench]
+        ex_ = {i: [sheet(i), f"TOURNAMENT SCORE: {bt.get(i, 0):+.2f}"] + sum(([f"BLIND REVIEW {k}:"] + latest_review([d], i) for k, d in enumerate(dirs, 1)), []) for i in own}
+        s2 = fill(R, tpl("calibrate_task"), len(own), {"IDEAS": idea_blocks(R, own, ex_, scores=False)})
+        fresh = not done("calibrate"); cal = take_calibration(R, step("calibrate", "gen", saved("calibrate", s2), a.model, "none"), own, record=fresh)
+        if not done("learn"): open(path(R, "outputs", "learn.md"), "w").write(f"{learn(R, dirs, own)} defects -> memory\n")
+        names = {i: x["name"] for i, x in X().items()}; order_ = review_rank(rows)
+        print("\nFINAL v6 (two blind reviews, mean defects; BT = tournament score; p = stated probability of being the best answer):")
+        for k, i in enumerate(order_, 1):
+            r = rows[i]; print(f"  {k}. {i:18s} [{X()[i]['arm']}] F{r['FATAL']:.1f}/M{r['MAJOR']:.1f}/m{r['MINOR']:.1f} ratio "
+                               f"{'-' if r['ratio'] is None else round(r['ratio'], 2)} known {r['known']} BT {bt.get(i, float('nan')):+.2f} p {cal['p'].get(i, 0):.0%}  {names[i]}")
+        if order_: print(f"  best answer: {'a PLAIN one-call answer' if order_[0] in base else 'from the engine'} - {names[order_[0]]}")
+        print(f"  none of these: p {cal['p'].get('none', 0):.0%}\n  weakest link: {cal['weakest_link']}\n  flip test: {cal['flip_test']}")
+        _, tok, cost = runner.summary(D); print(f"spent {tok:,} tokens, ${cost:.2f}")
+    if kind == "invent" and cfg.get("engine") == "v6": return run_v6()
     if kind == "explain":  # 4e. triage, blind review, (evolution), reality check of the leaders
         allids = triage([i["id"] for i in ideas() if i["arm"] in ("E", "K") and not i.get("fragment")], "triage_explain")
         rows = review("audit_a", allids, "redteam_explain") if a.mode == "lite" else \
@@ -1598,15 +1717,15 @@ def cmd_baseline(a):
     """v5.2 control: the same model on the same question and notes, with the same tools, in ONE call and without the
     pipeline (no dossier, generators, kill test, repair or memory). Its answers enter the run as arm BASE."""
     import runner
-    R = a.run; dd = path(R, "baseline"); os.makedirs(dd, exist_ok=True); out = path(R, "outputs", "baseline.md")
+    lab = getattr(a, "label", None) or "baseline"; R = a.run; dd = path(R, lab); os.makedirs(dd, exist_ok=True); out = path(R, "outputs", lab + ".md")
     if os.path.exists(out) and not a.force: print("  skip baseline (done)")
     else:
         cfg = load(R, "config.json", {}); s = tpl("baseline_task").replace("{QUESTION}", cfg["question"]).replace("{NOTES}", cfg.get("notes") or "(none)")
         s = s.replace("{ANSWERFORMAT}", BASE_FMT["explain" if run_kind(cfg) == "explain" else "invent"])
         s = s.replace("{WORKDIR}", os.path.abspath(dd) + "/"); open(os.path.join(dd, "TASK.md"), "w").write(s)
         text, u = runner.call(s, model=a.model, tools=a.tools, cwd=dd, budget_usd=a.budget_usd)
-        open(out, "w").write(text); runner.log(rdir(R), "baseline:baseline", u); print(f"  baseline: {u['tokens']:,} tokens, ${u['cost_usd']:.2f}")
-    cmd_ingest(argparse.Namespace(run=R, label="baseline", arm="BASE", gen=1, parents=None, transcript=None, file=out))
+        open(out, "w").write(text); runner.log(rdir(R), f"baseline:{lab}", u); print(f"  {lab}: {u['tokens']:,} tokens, ${u['cost_usd']:.2f}")
+    cmd_ingest(argparse.Namespace(run=R, label=lab, arm="BASE", gen=1, parents=None, transcript=None, file=out))
 
 BASE_FMT = {"invent": "IDEA 1\nNAME: (max 6 words)\nMECHANISM: (3-7 sentences, with the decisive numbers)\n"
                       "VALUE: (1-2 sentences, with the effect per unit of product against the best current practice)",
@@ -1709,7 +1828,7 @@ def cmd_ask(a):
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
                                lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=a.bench,
-                               dossier=a.dossier, fill_families=a.fill_families, decompose=a.decompose,
+                               dossier=a.dossier, fill_families=a.fill_families, decompose=a.decompose, engine=a.engine,
                                target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd, rivals=False))
 
 def cmd_prompt_path(run, tech, label):
@@ -1793,6 +1912,7 @@ def main():
     x.add_argument("--fill-families", type=int, default=0, help="v5.2 invent: second kill test for families the first one left out")
     x.add_argument("--decompose", type=int, help="v5.2 invent: split into at most this many parts if the question is large (0 = off)")
     x.add_argument("--slots", type=int, help="v5.2: model calls at once across all engine processes (default 8)")
+    x.add_argument("--engine", choices=["v5", "v6"])
     x.add_argument("--bench", help="v5: imported earlier finalists to add to the final blind review (import them after the brief)")
     for nm in ("plan", "run"):
         x = sp.add_parser(nm); x.add_argument("run"); x.add_argument("--pipeline", choices=list(PIPE), help="default: the run's format")
@@ -1818,6 +1938,7 @@ def main():
             x.add_argument("--directions", action="store_true", help="v5.3 invent: one call lays out a distinct mechanism region per generator")
             x.add_argument("--vs", action="store_true", help="v5.3: verbalized sampling inside the generators (develop only low-probability candidates)")
             x.add_argument("--baseline", action="store_true", help="v5.3: a plain one-call answer (same model, question, tools) joins the final review as the floor to beat")
+            x.add_argument("--engine", choices=["v5", "v6"], help="v6: evolutionary search from plain baselines with a reproducible evaluator and a pairwise tournament")
             x.add_argument("--rivals", action="store_true", help="v5 invent: add the rival round (round-2 generators see round 1 and its kill tests as rivals); "
                            "+~$1.3, no survival gain shown yet (20-continuum.md)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")
