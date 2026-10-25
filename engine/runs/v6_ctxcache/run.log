@@ -62,3 +62,5 @@ gate: 10/10 parsed {'WOUNDED': 6, 'DEAD': 4}
   tour_g0.r3.j1: 8,998 tokens, 13.3 s
   tour_g0.r3.j3: 8,473 tokens, 16.8 s
   tour_g0: 36 judgments over 7 answers
+  improve_g1: 781,913 tokens, 318.3 s
+improve_g1: 3 ideas (1309 words)

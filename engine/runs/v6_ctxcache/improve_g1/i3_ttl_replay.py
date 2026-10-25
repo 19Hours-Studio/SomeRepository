@@ -83,10 +83,12 @@ for f in sys.argv[1:]:
     h = hazard(R)
     print(f)
     print('  leaf hazard per 5-min window (k=1..):', ' '.join('%.3f' % x for x in h))
-    base, f0, _ = bill(R, lambda k: False)
+    base, f0, w0 = bill(R, lambda k: False)
     print('  plain 5m: rewrite share of writes f=%.3f' % f0)
+    print('  ceiling if every rewrite were a free cache read: %.3f' % (base / (base - f0 * w0 * (W5 - RD))))
     for name, pol in [('ping always, 1x', lambda k: k <= 1), ('ping always, 3x', lambda k: k <= 3),
                       ('hazard>0.08 rule', lambda k: k <= len(h) and h[k - 1] > RD / W5)]:
         c, f1, _ = bill(R, pol)
         print('  %-18s f=%.3f bill ratio vs plain 5m = %.3f' % (name, f1, base / c))
-    print('  1h TTL on all writes: ratio = %.3f' % (base / bill_1h(R)))
+    h1 = bill_1h(R)
+    print('  1h TTL on all writes: ratio = %.3f  (hazard rule vs blanket 1h: %.2fx cheaper)' % (base / h1, h1 / base))

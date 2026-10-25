@@ -1,0 +1,1 @@
+Recheck notes (arithmetic in session): I1 die $62-93/GB (N6 $6-9k/wafer, 100mm2, 85% yield, 14.2Mb/mm2); I4 545/144=3.78GB vs 2.84GB@14.2Mb/mm2; I6 10PF*0.06pJ/FLOP=600W (75W/stack); I9 230B*4.5b=129GB*1.3=168GB, 132GB left, 1.14GB/user->115 users; I10 22TB/s*3.44-5.74pJ=605-1010W vs 920W.

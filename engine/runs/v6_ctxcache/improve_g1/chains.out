@@ -1,0 +1,11 @@
+I1 old claim (all blended, 23.2%): 1.64x
+I1 routed share m=0.1: bill ratio vs prefix caching 1.52x
+I1 routed share m=0.2: bill ratio vs prefix caching 1.43x
+I1 routed share m=0.3: bill ratio vs prefix caching 1.35x
+I1 routed share m=0.5: bill ratio vs prefix caching 1.22x
+I1 max routed share for 1.5x: 0.12
+I2 API hash z1.05 doc reuse 0.152: bill ratio vs uncached-docs best practice 0.95x
+I2 API pop z1.05  doc reuse 0.400: bill ratio vs uncached-docs best practice 1.17x
+I2 API pop z1.2   doc reuse 0.546: bill ratio vs uncached-docs best practice 1.35x
+I2 API pop z1.5   doc reuse 0.768: bill ratio vs uncached-docs best practice 1.78x
+I2 API break-even doc reuse 0.217
