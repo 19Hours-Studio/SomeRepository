@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both are WOUNDED, but B's margin is higher (0.53 vs 0.5, a small edge given overlapping estimates) and it has a measured whole-chain gain of 1.64, with a quality gate and exact fallback; A's gain is only about 1.1–1.45x over a whole system.
+PAIR 2 | WINNER B | B's whole-chain gain is 1.8 against A's 1.16; A's top-K fetch from CPU/SSD fails on PCIe bandwidth, and in HBM it only improves the decode share. B's quality margin is also unverified (0.4), but its cost chain holds.
+PAIR 3 | WINNER B | B has a higher whole-chain gain (1.21 vs 1.14) and a higher margin (0.9 vs 0.64); it cannot hurt output quality, while A risks diff-application errors and gains only about 1.1–1.3x.

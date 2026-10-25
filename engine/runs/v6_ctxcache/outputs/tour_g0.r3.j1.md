@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | Both have similar quality margins (0.53 vs 0.5), but A's checked whole-chain gain is 1.64 across reordering, re-placement and insertion. B has no verified whole-chain gain, and its 20–50x figure shrinks to about 1.1–1.45x system-wide.
+PAIR 2 | WINNER A | A's canonical-ordering step turns reorders into lossless exact hits, and its cost chain gives 1.8x, though its blending quality margin (0.4) is unproven. B's bandwidth margin is unstable (one estimate is 0.09; the check says CPU/SSD fetch fails by 5–10x at batch). B falls back to about 1.16x and does not address non-identical prefixes at all.
+PAIR 3 | WINNER A | A has a higher margin (0.9, unstable, vs 0.64) and a higher gain (1.21x vs 1.14x), with zero risk to output quality. B adds diff-application and quality risk for a smaller measured gain.

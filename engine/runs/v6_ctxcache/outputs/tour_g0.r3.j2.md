@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B has a measured whole-chain gain of 1.64x and a slightly better margin (0.53, three estimates in agreement). A has no whole-chain gain once realistic edit shares are counted (about 1.1–1.45x) and a 0.5 margin on single-group evidence.
+PAIR 2 | WINNER B | B's cost chain gives 1.8x, and canonical ordering turns most reorders into lossless exact hits, which fits the question. A's margin is unstable (0.09 vs 1.8): its CPU/SSD fetch fails on PCIe bandwidth at batch sizes, leaving about 1.16x, and it does not raise hit rate on non-identical prefixes.
+PAIR 3 | WINNER B | B has the higher gain (1.21x vs 1.14x) and the closer margin (0.9 unstable vs 0.64), with zero risk to output quality. A's diff encoding risks errors when applying diffs and has a lower measured repeat rate.
