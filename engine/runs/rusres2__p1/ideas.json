@@ -133,5 +133,23 @@
   "name": "Genset heat-recovery cogeneration",
   "mech": "Fit domestic diesel gensets with jacket-water and exhaust heat recovery to heat the mill, the camp and the thawing of ore bins and the CIL circuit. This replaces separate boiler fuel. Size the tank farm for 14 months so that one summer delivery via Pevek covers a failed winter road. The closest earlier attempt is wind-diesel at Raglan and Diavik, about 10% of power with an 8-year payback and CAD 7,831/MWh storage. Heat recovery needs no storage and no wind resource. The deciding quantity is the usable thermal kWh per ounce.",
   "value": "Total fuel per ounce falls by an estimated 20–30% (A, unverified). Operating days per year are protected against a short winter-road season."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Kupol winter-road toll hub",
+  "mech": "Anchor: third-party high-grade lodes are developed as mine-only satellites. Their ore goes by winter road to the Kupol mill, which runs on its own diesel plant, so it needs none of the 8 MW the Chaun–Bilibino node has spare. Repaired design: haul radius ≤200 km, head grade ≥4 g/t, and at most 0.5 Mt per winter season per corridor. That cap comes from 12,500 loads in a 75-day season, about 167 a day, which matches the Tibbitt–Contwoyto record. Each satellite runs a domestic RADOS X-ray sorter and ships only the sorted fraction (assumed 65% of mass, 93% of the gold). The first target is Kekura's second-stage ore (7.5 g/t, 160 km west of Kupol). Kekura's feasibility study assumed grid power from Bilibino, which has now closed. Ore is stockpiled frozen at Kupol and milled all year. Haul costs $0.22/t-km, or $177/oz at 7.5 g/t. Avoiding a satellite mill, tailings dam and power plant saves $322/oz. The extra milling adds only about 1.7 MW and 3.4 kt a year of diesel at Kupol.",
+  "value": "Full cost is $863/oz delivered against $1,018/oz for a stand-alone Kekura-type mill (0.85×), and first gold comes about 2 years after decision against about 4 for the stand-alone mill and 4–5 for Natalka. At 300 km the advantage almost disappears ($20–45/oz)."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Diesel-sized first line, nuclear expansion",
+  "mech": "Anchor: a diesel-sized starter on leased domestic or unrestricted gensets comes first. The nuclear-sized expansion follows when the floating units deliver, and the gensets then move to other sites. Repaired design: the starter is no longer a separate 6 Mt/y plant. That version still fails: $8.3k/t Cu net against $2.0k/t for the full plan, and a $45m a year margin on $1.08bn of capex. Instead, line 1 of the Baimskaya plant now under construction (start planned for end-2028) runs at a throughput sized to 80 MW of leased gensets. It uses the SAG mill and one of two ball mills at a coarser grind, on the highest-grade benches. That gives 15 Mt/y of ore at about 0.51% Cu (the first-decade head implied by the feasibility study), 67 kt Cu and 98 koz Au a year. It burns 117 kt of diesel a year at $0.30/kWh, which takes 6 tanker calls into Pevek and needs 174k m³ of tankage. With fuel coming in and concentrate going out on the same trucks, that is about 7,000 loads a year: 20 a day on the all-season road, or 78 a day on a winter road alone. Net cash cost is $1.95k/t Cu after gold credit. Line 1 is also commissioned on diesel, so the ramp-up is done before the reactors arrive.",
+  "value": "Each year the floating units slip, the bridge earns about $0.52bn of cash margin ($0.29bn at Cu $8k / Au $2.8k) from a plant whose $8bn would otherwise cost about $1.2bn a year to carry idle. Waiting idle earns nothing in those years."
  }
 ]

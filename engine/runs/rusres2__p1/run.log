@@ -28,3 +28,6 @@ gate: 4/4 parsed {'DEAD': 3, 'WOUNDED': 1}
   known: 43,781 tokens, 42.7 s
   known: g1_neg#2 partly, g1_mech#1 no, g1_neg#1 partly, g1_ledger#1 yes (4/4 parsed)
 /home/user/SomeRepository/engine/runs/rusres2__p1/repair/TASK.md
+  repair: 772,903 tokens, 463.0 s
+repair: 2 ideas (1412 words)
+/home/user/SomeRepository/engine/runs/rusres2__p1/audit_final/TASK.md
