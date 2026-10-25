@@ -410,6 +410,23 @@ def main():
             t = open(ce("prompt", R11, "gen_invent", "mem2").strip()).read(); assert "coal one" in t and "sank an answer in an earlier run: ice too thin" in t
             assert "- learned on coal\n" in t  # provenance is not shown in the prompt
             shutil.rmtree(rd11, ignore_errors=True)
+            # v5.2 size and split: parts run in parallel as their own runs, one agent merges them, a blind review compares
+            R14 = "_selftest70"; rd14 = os.path.join(HERE, "runs", R14)
+            for x in (R14, R14 + "__p1", R14 + "__p2"): shutil.rmtree(os.path.join(HERE, "runs", x), ignore_errors=True)
+            open(fake, "a").write("=== SIZE ===\nSIZE: split\nWHY: two cases\nPART 1: Cheaper coal barges | CASES: Lena | MEASURE: rub/t | BINDING: season\n"
+                                  "PART 2: Cheaper rail spur | CASES: Elga | MEASURE: rub/t | BINDING: capital\nLEFT OUT: none\nINTERFACES: shared port\n")
+            ce("init", R14, "--question", "Make Arctic resources cheaper", "--force")
+            out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "run", R14, "--decompose", "3", "--slots", "3", "--max-tokens", "10000000"],
+                                 capture_output=True, text=True, env=env)
+            assert "size: split into 2 parts" in out.stdout and "FINAL (blind review of the merged answer" in out.stdout, out.stdout[-1500:] + out.stderr[-1500:]
+            c1 = json.load(open(os.path.join(HERE, "runs", R14 + "__p1", "config.json")))
+            assert c1["question"].startswith("Cheaper coal barges\nCases: Lena\nA good answer: rub/t") and c1["parent"] == R14 and c1["repair_top"] == 2
+            assert "shared port" in c1["notes"] and len(json.load(open(os.path.join(HERE, "runs", R14 + "__p1", "gate", "ids.json")))) == 4
+            af = json.load(open(os.path.join(rd14, "audit_final", "ids.json")))
+            assert any(i.startswith("P1:") for i in af) and any(i.startswith("P2:") for i in af) and any(i.startswith("synthesis#") for i in af)
+            st = open(os.path.join(rd14, "synthesis", "TASK.md")).read(); assert "PART 1: Cheaper coal barges" in st and "shared port" in st and "{" not in st.replace("{N}", "")
+            assert "in 2 parts" in out.stdout and not os.path.exists(os.path.join(HERE, "runs", R14 + "__p1__p1"))
+            for x in (R14, R14 + "__p1", R14 + "__p2"): shutil.rmtree(os.path.join(HERE, "runs", x), ignore_errors=True)
             # v5 make: research -> reframes -> concepts -> triage -> two builds -> blind review of renders -> repair -> final review
             ideas3 = "".join(f"IDEA {k}\nNAME: page{k}\nMECHANISM: threshold gate opens the catalogue {k}.\nVALUE: visitors find releases {k}.\n\n" for k in (1, 2, 3))
             open(fake, "w").write("=== EVIDENCE ===\nFACT 1: visitors come for releases first | HARD | s\nFACT 2: catalogue numbers like POR-001 | SOFT | s\n"

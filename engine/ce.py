@@ -694,6 +694,8 @@ def cmd_gate(a):
 
 GATE_W = {"ALIVE": 1.0, "WOUNDED": 0.4, "DEAD": 0.0}
 KNOWN_BONUS = {"no": 0.3, "partly": 0.15, "yes": 0.0}  # v5.1: added to the kill-test weight when choosing what to repair
+PART = {"triage_k": 4, "repair_top": 2}  # v5.2: lean settings for the parts of a split question
+PARTLINE = re.compile(r"^\**PART (\d+)\**\s*:\s*\**\s*(.+)$", re.M)
 FAMLINE = re.compile(r"^\**IDEA (\d+)\**\s*\|\s*\**FAMILY\**\s*:?\s*(.+?)\s*$", re.M | re.I)
 
 def diverse(ids, fam, cap):
@@ -1155,6 +1157,8 @@ def plan_rows(a, usd=False):
     cfg = load(a.run, "config.json", {}); k = int(getattr(a, "dossier", None) or cfg.get("dossier") or 0) if pipe_kind(a) == "invent" else 0
     steps = (["gen:dossier_plan"] + [f"research:dossier.{j + 1}" for j in range(k)] if k else []) + PIPE[pipe_kind(a)][a.mode]
     if pipe_kind(a) == "invent" and (getattr(a, "fill_families", None) or cfg.get("fill_families")): steps.insert(steps.index("review:gate") + 1, "review:gate_fill")
+    if pipe_kind(a) == "invent" and (getattr(a, "decompose", None) or cfg.get("decompose")) and not cfg.get("parent"):
+        steps = steps[:steps.index("research:ledger")] + ["gen:size"] + steps[steps.index("research:ledger"):]  # if it splits: per part ~ the rest, lean
     return [(s, est[s.split(":")[0]]) for s in steps]
 
 def cmd_plan(a):
@@ -1179,7 +1183,7 @@ def run_make(R, D, a, triage, step, saved, order, done):
         cd = os.path.join(bd, f"b{j + 1}"); os.makedirs(cd, exist_ok=True)
         s = fill(R, tpl("build_task"), 1, {"WORKDIR": cd + "/", "TOOLS": tools_dir, "IDEAS": task_ideas(R, [pick[j]], scores=False), "PAGERULES": pr})
         open(os.path.join(cd, "TASK.md"), "w").write(s); step(f"build.{j + 1}", "repair", s, a.model, "write", cwd=cd)
-    with ThreadPoolExecutor(2) as ex: list(ex.map(build, range(len(pick))))
+    with ThreadPoolExecutor(runner.slots()) as ex: list(ex.map(build, range(len(pick))))
     pages = {i: f for j, i in enumerate(pick) if os.path.exists(f := os.path.join(bd, f"b{j + 1}", "index.html"))}
     if not pages: sys.exit("no page was built (no index.html in build/b*)")
     def review(name, items):
@@ -1232,6 +1236,7 @@ def cmd_run(a):
     if getattr(a, "slice_facts", None) is not None: cfg["slice_facts"] = a.slice_facts
     if getattr(a, "dossier", None): cfg["dossier"] = a.dossier
     if getattr(a, "fill_families", None): cfg["fill_families"] = a.fill_families
+    if getattr(a, "decompose", None) is not None: cfg["decompose"] = a.decompose
     if a.notes: cfg["notes"] = a.notes
     save(R, "config.json", cfg); budget = a.max_tokens; bench = [x for x in (getattr(a, "bench", None) or "").split(",") if x]
     def spent(): return runner.summary(D)[1]
@@ -1257,7 +1262,7 @@ def cmd_run(a):
             for n in names:
                 if os.path.exists(o := path(R, "outputs", n + ".md")): os.remove(o); print(f"  {n}: ideas changed, will run again")
     def chunked(name, kind_, ids, write_task, size, merge):
-        """v5: a tool step over many ideas run as chunks of <= size ideas, at most 2 agents at a time. Every turn re-reads
+        """v5: a tool step over many ideas run as chunks of <= size ideas, as many agents at a time as runner.slots() allows. Every turn re-reads
         the growing context, so tokens grow ~ with turns squared and two half-size agents use ~40% fewer. Dollars do not
         follow: re-reads cost ~1/30 of new input, and a tool step's bill is about half new context (search results, files)
         and half output (prices fitted over 156 earlier steps; a foldcrease repair agent: $1.2 new context, $1.2 output,
@@ -1268,7 +1273,7 @@ def cmd_run(a):
             cd = os.path.join(dd, f"c{j + 1}"); write_task(cs[j], cd)
             return step(f"{name}.{j + 1}", kind_, open(os.path.join(cd, "TASK.md")).read(), a.model, "research", cwd=cd)
         from concurrent.futures import ThreadPoolExecutor
-        with ThreadPoolExecutor(2) as ex: texts = list(ex.map(one, range(len(cs))))
+        with ThreadPoolExecutor(runner.slots()) as ex: texts = list(ex.map(one, range(len(cs))))
         open(path(R, "outputs", name + ".md"), "w").write(merge(texts, [len(c) for c in cs]))
     def review(name, ids, tp, chunk=None):
         dd = os.path.join(D, name); ids = order(name, ids, os.path.join(dd, "ids.json"))
@@ -1290,7 +1295,7 @@ def cmd_run(a):
         cmd_material(argparse.Namespace(run=R, kind=kind_, transcript=None, file=path(R, "outputs", name + ".md")))
     def dossier(k):
         """v5.2 dossier: one planning call splits the facts the question needs into k slices, then k search-only
-        researchers (the cheap model, 2 at a time) collect 30-45 sourced facts each; the merged ledger feeds the ledger and
+        researchers (the cheap model, in parallel) collect 30-45 sourced facts each; the merged ledger feeds the ledger and
         attempts researchers (who then search only for what is missing), the kill test, the repair and the reviews."""
         if done("dossier"): print("  skip dossier (done)"); return
         plan = step("dossier_plan", "gen", saved("dossier_plan", fill(R, tpl("dossier_plan"), k)), a.model, "none")
@@ -1304,11 +1309,79 @@ def cmd_run(a):
             open(os.path.join(dd, "TASK.md"), "w").write(s_)
             return step(f"dossier.{j + 1}", "research", s_, a.lit_model, "WebSearch", cwd=dd)
         from concurrent.futures import ThreadPoolExecutor
-        with ThreadPoolExecutor(2) as ex: texts = list(ex.map(one, range(len(sl))))
+        with ThreadPoolExecutor(runner.slots()) as ex: texts = list(ex.map(one, range(len(sl))))
         nf, ns = take_dossier(R, texts, titles); open(path(R, "outputs", "dossier.md"), "w").write(f"{nf} facts, {ns} sources\n")
         print(f"  dossier: {nf} facts, {ns} distinct sources, {len(sl)} slices -> evidence.md")
+    def split_run(kmax):
+        """v5.2 size and split: one cheap call decides whether the question is one design or several (cases whose
+        binding constraints differ). Split: each part becomes its own run (shared dossier, lean settings: 4 ideas to the
+        kill test, 2 to repair), all parts run in parallel, one agent merges the parts' survivors into one answer
+        (how they combine, in what order, the combined effect computed in code), and a blind review compares the merged
+        answer with each part's best. Returns False when the question stays one."""
+        import subprocess, shutil
+        from concurrent.futures import ThreadPoolExecutor
+        sz = step("size", "gen", saved("size", fill(R, tpl("size_task"), 0, {"K": str(kmax), "EVIDENCE": fact_slice(R, [cfg["question"]], k=40)})), a.model, "none")
+        body = sz.split("=== SIZE ===", 1)[-1]; parts = [x.strip() for _, x in PARTLINE.findall(body)][:kmax]
+        if not re.search(r"^\**SIZE\**\s*:\s*\**\s*split", body, re.M | re.I) or len(parts) < 2: print("  size: one question"); return False
+        inter = m.group(1).strip() if (m := re.search(r"^\**INTERFACES\**\s*:\s*(.+)$", body, re.M)) else "(not stated)"
+        print(f"  size: split into {len(parts)} parts")
+        kids = []
+        for k, p in enumerate(parts, 1):
+            C = f"{R}__p{k}"; f = [x.strip() for x in p.split("|")]
+            fields = {m.group(1).upper(): m.group(2).strip() for x in f[1:] if (m := re.match(r"(CASES|MEASURE|BINDING)\s*:\s*(.+)", x, re.I))}
+            q = (f[0] + (f"\nCases: {fields['CASES']}" if "CASES" in fields else "") + (f"\nA good answer: {fields['MEASURE']}" if "MEASURE" in fields else "")
+                 + (f"\nThe binding constraint to attack: {fields['BINDING']}" if "BINDING" in fields else "")
+                 + f"\nThis is part {k} of {len(parts)} of a larger question (context, not instructions): {cfg['question'].splitlines()[0][:400]}")
+            if not os.path.exists(path(C, "config.json")):
+                cmd_init(argparse.Namespace(run=C, question=q, format="value", n=cfg.get("n", 3), force=True))
+                cc = load(C, "config.json", {}); cc.update({"parent": R, "part": k, "repair_top": PART["repair_top"], "kit": bool(getattr(a, "kit", False) or cfg.get("kit")),
+                                                            "notes": "\n".join(x for x in (cfg.get("notes"), f"What the parts share or compete for: {inter}") if x)}
+                                                           | {x: cfg[x] for x in ("tag", "lessons_exclude", "slice_facts") if x in cfg}); save(C, "config.json", cc)
+                for fn in ("evidence.md", "dossier.md", "attempts.md"):  # shared raw material; each part builds its own ledger
+                    if os.path.exists(path(R, fn)): shutil.copy(path(R, fn), path(C, fn))
+            kids.append(C); print(f"   part {k}: {f[0][:150]}")
+        share = (a.max_usd - spent_usd() - 4.0) / len(kids) if getattr(a, "max_usd", None) else None
+        def run_kid(C):
+            if os.path.exists(path(C, "outputs", "calibrate.md")): return
+            cmd = [sys.executable, "-u", os.path.join(HERE, "ce.py"), "run", C, "--pipeline", "invent", "--model", a.model, "--lit-model", a.lit_model,
+                   "--triage-k", str(PART["triage_k"]), "--chunk", str(a.chunk), "--max-tokens", str(a.max_tokens or 10**9)]
+            if share: cmd += ["--max-usd", f"{max(share, 2.0):.2f}"]
+            with open(path(C, "run.log"), "a") as lf: rc = subprocess.run(cmd, stdout=lf, stderr=subprocess.STDOUT).returncode
+            print(f"  part {C}: done (exit {rc}, ${runner.summary(rdir(C))[2]:.2f})")
+        with ThreadPoolExecutor(len(kids)) as ex: list(ex.map(run_kid, kids))
+        ideasR = lambda: load(R, "ideas.json", []); px, imp = [], []
+        for k, C in enumerate(kids, 1):
+            fdC = os.path.join(rdir(C), "audit_final"); rowsC = parse_review(fdC) if os.path.isdir(fdC) else {}
+            if not rowsC: print(f"  part {k}: no final review (see {C}/run.log)"); continue
+            calC = load(C, "calibration.json", {"p": {}}); ownC = review_rank(rowsC)
+            ex_ = {i: ["BLIND REVIEW:"] + latest_review([fdC], i) + [f"STATED PROBABILITY of being the best answer to its part: {calC['p'].get(i, 0):.0%}"] for i in ownC}
+            px.append(f"PART {k}: {load(C, 'config.json', {})['question'].splitlines()[0]}\nWEAKEST LINK of this part: {calC.get('weakest_link', '')}\n"
+                      + idea_blocks(C, ownC[:2], ex_, scores=False))
+            cmd_import(argparse.Namespace(dst=R, src=C, arm=f"P{k}", ids=ownC[0])); imp.append(f"P{k}:{ownC[0]}")
+        if not px: sys.exit("no part finished; see the parts' run.log")
+        sd = os.path.join(D, "synthesis"); os.makedirs(sd, exist_ok=True)
+        s_ = fill(R, tpl("synthesis_task"), len(px), {"WORKDIR": os.path.abspath(sd) + "/", "K": str(len(px)), "INTERFACES": inter,
+                                                      "PARTS": "\n\n".join(px), "EVIDENCE": fact_slice(R, px)})
+        open(os.path.join(sd, "TASK.md"), "w").write(s_); step("synthesis", "repair", s_, a.model, "research", cwd=sd)
+        cmd_ingest(argparse.Namespace(run=R, label="synthesis", arm="F", gen=3, parents=None, transcript=None, file=path(R, "outputs", "synthesis.md")))
+        own = [i["id"] for i in ideasR() if i["label"] == "synthesis"] + imp; fd = os.path.join(D, "audit_final")
+        rows = review("audit_final", own + bench, "redteam_task", chunk=0); own = [i for i in review_rank(rows) if i not in bench]
+        s2 = fill(R, tpl("calibrate_task"), len(own), {"IDEAS": idea_blocks(R, own, {i: ["BLIND REVIEW:"] + latest_review([fd], i) for i in own}, scores=False)})
+        fresh = not done("calibrate"); cal = take_calibration(R, step("calibrate", "gen", saved("calibrate", s2), a.model, "none"), own, record=fresh)
+        if not done("learn"): open(path(R, "outputs", "learn.md"), "w").write(f"{learn(R, [fd], own)} defects -> memory\n")
+        names = {i["id"]: i["name"] for i in ideasR()}
+        print("\nFINAL (blind review of the merged answer against each part's best; p = stated probability of being the best answer):")
+        for k, i in enumerate(own, 1):
+            r = rows[i]; print(f"  {k}. {i:18s} F{r['FATAL']}/M{r['MAJOR']}/m{r['MINOR']} ratio {r.get('ratio') or '-'} known {r.get('known') or '-'} "
+                               f"p {cal['p'].get(i, 0):.0%}  {names[i]}")
+        print(f"  none of these: p {cal['p'].get('none', 0):.0%}\n  weakest link: {cal['weakest_link']}\n  flip test: {cal['flip_test']}")
+        tot = runner.summary(D)[2] + sum(runner.summary(rdir(C))[2] for C in kids)
+        print(f"spent ${runner.summary(D)[2]:.2f} here + ${tot - runner.summary(D)[2]:.2f} in {len(kids)} parts = ${tot:.2f}")
+        if bench: cmd_bench(argparse.Namespace(run=R, dir=fd))
+        return True
     # 1. raw material (+ ceilings in code)
     if kind == "invent" and cfg.get("dossier"): dossier(int(cfg["dossier"]))
+    if kind == "invent" and cfg.get("decompose") and not cfg.get("parent") and split_run(int(cfg["decompose"])): return
     if kind == "explain":
         research("evidence", "evidence_task", "evidence"); research("hypotheses", "hypotheses_task", "attempts")
         if os.path.exists(path(R, "outputs", "hypotheses.md")):
@@ -1334,6 +1407,7 @@ def cmd_run(a):
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_make"), cfg["n"], {"TECH": tech, "PAGERULES": tpl("_page_rules")})))
     else:
         techs = {"g1_ledger": TECH[led_tech()]} | {k: TECH[k] for k in ("g1_neg", "g1_mech")} | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
+        if cfg.get("gens"): techs = {k: v for k, v in techs.items() if k in cfg["gens"]}
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})))
     ideas = lambda: load(R, "ideas.json", [])
     def families(ids):
@@ -1430,8 +1504,8 @@ def cmd_run(a):
         if (nf := int(getattr(a, "fill_families", 0) or cfg.get("fill_families") or 0)): pick += fill_families(pick, nf, kit)
         g = load(R, "gate.json", {}); gk = lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0))
         fam = load(R, "families.json", {})
-        cand = diverse(sorted(pick, key=gk), fam, 1)[:6]; kn = known_check(cand)  # v5.1: the 4 to repair are chosen knowing what already exists
-        top = diverse(sorted(cand, key=lambda i: (gk(i)[0] - KNOWN_BONUS.get(kn.get(i, {}).get("known"), 0.0), gk(i)[1])), fam, 1)[:4]
+        ntop = int(cfg.get("repair_top", 4)); cand = diverse(sorted(pick, key=gk), fam, 1)[:ntop + 2]; kn = known_check(cand)  # v5.1: the 4 to repair are chosen knowing what already exists
+        top = diverse(sorted(cand, key=lambda i: (gk(i)[0] - KNOWN_BONUS.get(kn.get(i, {}).get("known"), 0.0), gk(i)[1])), fam, 1)[:ntop]
         stale(os.path.join(D, "repair", "parents.json"), top, ["repair"] + [f"repair.{j}" for j in range(1, 5)])
         rargs_last = argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_task",
                                         audits=None, notes=a.notes, gate="gate.json", known="known.json"); cmd_repairtask(rargs_last)
@@ -1496,7 +1570,7 @@ def cmd_ask(a):
     mode = a.mode or ("standard" if b.get("MODE", "").lower().startswith("standard") else "lite")
     cmd_run(argparse.Namespace(run=R, pipeline=kind, mode=mode if mode in PIPE[kind] else "lite", max_tokens=a.max_tokens, model=a.model,
                                lit_model=a.lit_model, notes=notes or None, force=False, tag=a.tag, lessons_exclude=None, bench=a.bench,
-                               dossier=a.dossier, fill_families=a.fill_families,
+                               dossier=a.dossier, fill_families=a.fill_families, decompose=a.decompose,
                                target=3.0, triage_k=8, slice_facts=12, chunk=a.chunk, repair_chunk=a.repair_chunk, kit=a.kit, max_usd=a.max_usd, rivals=False))
 
 def cmd_prompt_path(run, tech, label):
@@ -1572,6 +1646,8 @@ def main():
     x.add_argument("--max-usd", type=float); x.add_argument("--chunk", type=int, default=4); x.add_argument("--repair-chunk", type=int, default=2)
     x.add_argument("--kit", action="store_true"); x.add_argument("--dossier", type=int, default=0, help="v5.2 invent: research slices before the ledger")
     x.add_argument("--fill-families", type=int, default=0, help="v5.2 invent: second kill test for families the first one left out")
+    x.add_argument("--decompose", type=int, help="v5.2 invent: split into at most this many parts if the question is large (0 = off)")
+    x.add_argument("--slots", type=int, help="v5.2: model calls at once across all engine processes (default 8)")
     x.add_argument("--bench", help="v5: imported earlier finalists to add to the final blind review (import them after the brief)")
     for nm in ("plan", "run"):
         x = sp.add_parser(nm); x.add_argument("run"); x.add_argument("--pipeline", choices=list(PIPE), help="default: the run's format")
@@ -1591,6 +1667,8 @@ def main():
             x.add_argument("--dossier", type=int, help="v5.2 invent: collect a sourced dossier in this many search-only slices before the ledger")
             x.add_argument("--dossier-searches", type=int, default=25, help="v5.2: searches per dossier slice")
             x.add_argument("--fill-families", type=int, help="v5.2 invent: a second kill test for up to this many families the first one left out")
+            x.add_argument("--decompose", type=int, help="v5.2 invent: let one call split the question into at most this many parts run in parallel and merged (0 = off)")
+            x.add_argument("--slots", type=int, help="v5.2: model calls at once across all engine processes (default 8)")
             x.add_argument("--rivals", action="store_true", help="v5 invent: add the rival round (round-2 generators see round 1 and its kill tests as rivals); "
                            "+~$1.3, no survival gain shown yet (20-continuum.md)")
             x.add_argument("--slice-facts", type=int, default=12, help="v5: tool steps get every HARD fact (no sources) and this many other facts (0 = whole ledger)")
@@ -1644,6 +1722,7 @@ def main():
     needs_src = a.cmd in ("ingest", "family", "judge", "lit", "gapwalk", "strip", "audit", "concretize", "species", "valorize", "material", "gate") or (a.cmd == "intent" and a.pick is None)
     if getattr(a, "transcript", None) is None and getattr(a, "file", None) is None and needs_src:
         sys.exit("need --transcript or --file")
+    if getattr(a, "slots", None): os.environ["CE_SLOTS"] = str(a.slots)  # parts started by this process inherit it
     globals()["cmd_" + a.cmd.replace("-", "_")](a)
 
 

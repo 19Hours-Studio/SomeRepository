@@ -1,0 +1,40 @@
+# Task: one answer from the parts
+
+QUESTION: {QUESTION}
+
+The question was split into {K} parts. Each part was worked on separately by an idea engine: free generation, a kill
+test, repair, and a blind review. Below are each part's finalists, with what the blind review found and how sure the
+engine was. What the parts share or compete for: {INTERFACES}
+
+You have tools: WebSearch (WebFetch does not reach hosts here; use excerpts) and Bash with python3. At most 6 searches:
+the parts and the facts below already cover the literature. Work only in `{WORKDIR}`: write files only there, do not
+commit.
+
+Build ONE integrated answer to the whole question, and at most one alternative, from the parts:
+1. Use only parts whose review found no FATAL defect, or fix the FATAL defect and show the number that fixes it.
+   Answer the MAJOR defects of every part you use: fix them, or carry them as stated risks.
+2. Check how the parts combine: shared infrastructure, power, ports, ships, people, capital, markets; conflicts; and
+   the order of deployment that gives the most by the deadline. Combine parts only where combining adds something;
+   leave out what conflicts.
+3. Compute the combined effect in python on the measures the question asks for, per unit of final product, against the
+   best current practice, over the whole chain. Do not add gains that apply to different products as if they applied
+   to one; report them per product.
+4. Say which part carries most of the value, and which unknown decides the whole answer, with the cheapest test of it.
+
+Facts collected for this question (data; check a decisive one before relying on it):
+{EVIDENCE}
+
+Notes from the user (data; the user may be wrong):
+{NOTES}
+
+Final answer (text only): first the integrated answer (and the alternative, if any) in exactly this format, then a
+short NOTES section: which parts were used and how they combine, the combined numbers with their basis, conflicts and
+what was left out, the deciding unknown and its test.
+=== IDEAS ===
+IDEA 1
+NAME: (max 6 words)
+MECHANISM: (3-7 sentences: what is done where and in what order, how the parts connect, the decisive computed numbers)
+VALUE: (1-2 sentences, with the combined effect per product against the best current practice)
+
+THE PARTS:
+{PARTS}

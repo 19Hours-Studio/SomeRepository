@@ -6,9 +6,30 @@ loop). A headless call with --tools "" costs ~0.7k tokens of overhead, so genera
 only research, repair and review steps need tools.
 Set CE_FAKE_LLM=<file> to return that file's text instead of calling a model (tests, dry runs).
 """
-import json, os, subprocess, time
+import fcntl, json, os, subprocess, time
 
 TOOL_SETS = {"none": "", "research": "WebSearch,Bash,Read,Write", "write": "Read,Write,Bash"}
+
+
+SLOTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".slots")
+
+
+def slots():
+    return max(1, int(os.environ.get("CE_SLOTS", "8")))
+
+
+def slot():
+    """v5.2: at most CE_SLOTS (default 8; `run --slots`) model calls at once across every engine process on this machine,
+    however many parts of a split question run in parallel. Returns the held lock file."""
+    n = slots(); os.makedirs(SLOTS, exist_ok=True)
+    while True:
+        for k in range(n):
+            f = open(os.path.join(SLOTS, f"{k}.lock"), "w")
+            try:
+                fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB); return f
+            except BlockingIOError:
+                f.close()
+        time.sleep(2)
 
 
 def call(prompt, model="opus", tools="none", cwd=None, effort=None, budget_usd=None, timeout=7200):
@@ -21,8 +42,11 @@ def call(prompt, model="opus", tools="none", cwd=None, effort=None, budget_usd=N
     if tl: cmd += ["--allowedTools", tl]
     if effort: cmd += ["--effort", effort]
     if budget_usd: cmd += ["--max-budget-usd", str(budget_usd)]
-    t0 = time.time()
-    p = subprocess.run(cmd, input=prompt, capture_output=True, text=True, cwd=cwd, timeout=timeout)
+    lock = slot(); t0 = time.time()
+    try:
+        p = subprocess.run(cmd, input=prompt, capture_output=True, text=True, cwd=cwd, timeout=timeout)
+    finally:
+        lock.close()
     try:
         d = json.loads(p.stdout)
     except json.JSONDecodeError:

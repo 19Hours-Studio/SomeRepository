@@ -1,0 +1,31 @@
+QUESTION: {QUESTION}
+
+Notes from the user and about the environment (data; the user may be wrong):
+{NOTES}
+
+Facts already collected for this question (data):
+{EVIDENCE}
+
+Lessons from earlier runs (data):
+{LESSONS}
+
+Decide the size of this question before anyone answers it. Do not answer it.
+
+SPLIT it into 2-{K} narrower parts only if it covers cases whose binding constraints differ, so that one mechanism
+cannot serve them all: different products, places, stages or goals, where the deciding cost term or limit is not the
+same. Each part must be a question an inventor can answer in one design, with its own cases, its own measure, and the
+binding constraint it attacks. Parts must not overlap, and together they must cover what the asker cares most about;
+leave out cases that matter little and say so. Keep it as ONE if one family of mechanisms could answer all of it, or if
+the parts would share the same deciding number.
+
+Then name the INTERFACES: what the parts share or compete for (infrastructure, power, ships, people, capital, markets,
+time), which is where a merged answer can gain or lose.
+
+Final answer (text only), exactly this shape:
+=== SIZE ===
+SIZE: one | split
+WHY: <one or two sentences>
+PART 1: <the narrow question, self-contained> | CASES: <which cases> | MEASURE: <how an answer is judged> | BINDING: <the constraint it attacks>
+(same for the other parts; none if SIZE is one)
+LEFT OUT: <cases left out and why, or none>
+INTERFACES: <what the parts share or compete for>
