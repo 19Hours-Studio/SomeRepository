@@ -32,3 +32,8 @@ baseline_2: 4 ideas (1524 words)
 /home/user/SomeRepository/engine/runs/v6_continuum/eval_g0/c2/TASK.md
 /home/user/SomeRepository/engine/runs/v6_continuum/eval_g0/c1/TASK.md
   eval_g0.3: 65,085 tokens, 79.9 s
+  eval_g0.1: 114,407 tokens, 149.6 s
+  eval_g0.2: 241,006 tokens, 238.0 s
+/home/user/SomeRepository/engine/runs/v6_continuum/eval_g0/TASK.md
+  skip eval_g0 (done)
+gate: 10/10 parsed {'WOUNDED': 5, 'DEAD': 5}

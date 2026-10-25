@@ -1,0 +1,72 @@
+{
+ "g1_rf2#1": {
+  "killer": "delivered system $ per GB of SRAM, which depends on how many MB fit on a ~100 mm² N6 die",
+  "why": "The economics are sound if built at cost, but the claim relies on SRAM density about 25% above any shipped pure-SRAM die, and a vendor markup would push it past the $1.5k/GB limit.",
+  "margin": 0.95,
+  "ratio": 20.0,
+  "verdict": "WOUNDED"
+ },
+ "baseline_1#4": {
+  "killer": "peak temperature of DRAM stacked on a roughly 2 kW logic die. The idea's own gate is DRAM ≤95 °C.",
+  "why": "The parts that work are what incumbents already do, and the one new part, logic-on-DRAM at 2 kW, fails its own 95 °C gate by about 2x in rise above coolant.",
+  "margin": 0.56,
+  "ratio": 1.0,
+  "verdict": "DEAD"
+ },
+ "g1_mech#1": {
+  "killer": "quality loss at about 2 bits per weight. The idea's stated deciding quantity was decode energy; I chose quality instead because it fails first at the scale the idea needs.",
+  "why": "At 2 bits per weight, quality falls about 10x below what production serving accepts. Measured against FP4 rather than FP8, the gain is under 1.5x. QTIP's own computed codes already regenerate the codebook without storing a table.",
+  "margin": 0.1,
+  "ratio": 1.25,
+  "verdict": "DEAD"
+ },
+ "baseline_2#1": {
+  "killer": "SRAM capacity per package for pinning 545 GB of weights in a 144-package domain",
+  "why": "The bandwidth split is a sound idea, but SRAM density is about 2x short. That breaks the 144-package fit and leaves at most 1.2x net cost gain.",
+  "margin": 0.56,
+  "ratio": 1.2,
+  "verdict": "WOUNDED"
+ },
+ "g1_mech#2": {
+  "killer": "KV compression versus FP16 reached at ≤1% accuracy loss at 128K context",
+  "why": "It is physically fine, but it buys only 1.7× on KV over NVFP4, which is about 1.12–1.17× on the whole system, and its accuracy at 128K has never been measured.",
+  "margin": 0.89,
+  "ratio": 1.14,
+  "verdict": "WOUNDED"
+ },
+ "baseline_2#2": {
+  "killer": "heat from about 10 PF FP8 of logic in the HBM4 base dies, which sit under the DRAM",
+  "why": "The 3.7× comes from the sparse model, which incumbents also run. The near-HBM engine is sized for dense intensity (450 FLOP/B) and cannot be cooled under DRAM, and with the bandwidth unchanged it barely changes $/Mtok.",
+  "margin": 0.22,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "baseline_1#1": {
+  "killer": "hybrid-bonded DRAM capacity per package at 64 TB/s, which needs 0.20 Gb/mm² per DRAM die and 50 GB/s/Gb",
+  "why": "The roofline gain is real, about 2.3× per kW and about 2.6× per package. But it depends on 160 GB of hybrid-bonded DRAM per package, about 2× what is claimed as mature, and on a full-access energy no one has measured. Delivering about 2.7 kA up through the DRAM stack to the logic is also an open problem.",
+  "margin": 0.5,
+  "ratio": 2.0,
+  "verdict": "WOUNDED"
+ },
+ "baseline_2#4": {
+  "killer": "C-SKU training throughput per package compared with Rubin",
+  "why": "A product-line choice that gives at most about 5–7% on prefill and loses or ties on training is not a lead.",
+  "margin": 0.86,
+  "ratio": 1.05,
+  "verdict": "DEAD"
+ },
+ "g1_rf2#2": {
+  "killer": "SRAM left for KV cache after the weights, measured as concurrent users at 500 tok/s on 8k-in/1k-out traffic (~9k-token context; MiniMax-M2 has 62 layers × 8 KV heads × head dim 128, so KV is 127 KB/token at FP8 and 71 KB at NVFP4). To get near GB300's $/Mtok, a 3-wafer system at ~$571/hr TCO (3 × ~$3M CS-3-class wafers over 4 years, with the package taken as 45% of TCO) has to sell ~2.64M tok/s",
+  "why": "Keeping all 230B parameters in SRAM leaves almost no room for KV cache, so the batch is roughly 20–90× too small to amortise wafer-class silicon; also, 300 GB in \"2.5–3 wafers\" needs ~100–120 GB per wafer, against WSE-3's 44 GB (≈6.8 wafers at WSE-3 density).",
+  "margin": 0.05,
+  "ratio": 0.012,
+  "verdict": "DEAD"
+ },
+ "baseline_1#3": {
+  "killer": "Decode power per package at Rubin-class 22 TB/s. \"2× tokens per kW\" needs ≤ half of Rubin's decode draw (taken as 0.8 × ~2.3 kW TDP, an analyst estimate). The floor is HBM read at 3.44–5.74 pJ/bit, plus 3.6 TB/s scale-up SerDes at ~5 pJ/bit, plus on-die movement at ~1 pJ/bit, plus ~100 W for compute and leakage",
+  "why": "The trade-offs are stated honestly and the design is physically plausible, but HBM access energy alone takes most of the claimed 2× power budget, and energy is only ~9% of TCO, so even a full 2× tok/kW cuts cost per token by about 1.1–1.3×, short of 1.5×.",
+  "margin": 0.64,
+  "ratio": 1.12,
+  "verdict": "WOUNDED"
+ }
+}

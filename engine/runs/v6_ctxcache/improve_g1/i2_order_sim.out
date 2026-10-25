@@ -1,0 +1,12 @@
+zipf 1.05 random 0.166 hash 0.152 pop_learned 0.400 pop_oracle 0.401 greedy 0.403  pop_learned@LRU20k 0.386
+   hash         prefill vs relevance-order prefix cache 1.017 -> bill ratio 0.99x
+   pop_learned  prefill vs relevance-order prefix cache 0.736 -> bill ratio 1.17x
+   greedy       prefill vs relevance-order prefix cache 0.732 -> bill ratio 1.17x
+zipf 1.20 random 0.249 hash 0.229 pop_learned 0.546 pop_oracle 0.546 greedy 0.548  pop_learned@LRU20k 0.536
+   hash         prefill vs relevance-order prefix cache 1.024 -> bill ratio 0.99x
+   pop_learned  prefill vs relevance-order prefix cache 0.630 -> bill ratio 1.26x
+   greedy       prefill vs relevance-order prefix cache 0.627 -> bill ratio 1.26x
+zipf 1.50 random 0.425 hash 0.503 pop_learned 0.768 pop_oracle 0.769 greedy 0.769  pop_learned@LRU20k 0.768
+   hash         prefill vs relevance-order prefix cache 0.876 -> bill ratio 1.07x
+   pop_learned  prefill vs relevance-order prefix cache 0.450 -> bill ratio 1.43x
+   greedy       prefill vs relevance-order prefix cache 0.449 -> bill ratio 1.43x

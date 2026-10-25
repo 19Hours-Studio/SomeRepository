@@ -1,0 +1,13 @@
+Groq v1 density Mb/mm2 2.537931034482759
+V-cache N7 density Mb/mm2 14.222222222222221
+dies/wafer 640 die $ 17.4 MB/die 218.75 $/MB 0.079 implied Mb/mm2 17.5
+system $ 128889 $/GB 1151
+with 2x vendor markup $/GB 2302
+users@8K 31.3 tok/s 31292 $ /Mtok at $1.5k/GB 0.05
+Cerebras owner $/Mtok 1.41 $/GB SRAM 56818.181818181816
+QTIP 2b 70B ppl gap % 21.2
+HBM decode speedup vs NVFP4 at weight share 36%: 1.24
+SRAM-silicon cost ratio (share .6): 1.47
+density 14.2 GB/pkg 2.13 pkgs for 545GB 256 margin in 144 0.56
+density 30 GB/pkg 4.5 pkgs for 545GB 122 margin in 144 1.19
+thermal margin 0.56

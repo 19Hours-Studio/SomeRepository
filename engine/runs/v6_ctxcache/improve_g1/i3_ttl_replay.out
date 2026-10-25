@@ -1,0 +1,14 @@
+traces/conversation_trace.jsonl
+  leaf hazard per 5-min window (k=1..): 0.002 0.001 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+  plain 5m: rewrite share of writes f=0.114
+  ping always, 1x    f=0.037 bill ratio vs plain 5m = 0.968
+  ping always, 3x    f=0.011 bill ratio vs plain 5m = 0.830
+  hazard>0.08 rule   f=0.114 bill ratio vs plain 5m = 1.000
+  1h TTL on all writes: ratio = 0.736
+traces/toolagent_trace.jsonl
+  leaf hazard per 5-min window (k=1..): 0.002 0.001 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+  plain 5m: rewrite share of writes f=0.089
+  ping always, 1x    f=0.014 bill ratio vs plain 5m = 0.928
+  ping always, 3x    f=0.002 bill ratio vs plain 5m = 0.748
+  hazard>0.08 rule   f=0.089 bill ratio vs plain 5m = 1.000
+  1h TTL on all writes: ratio = 0.732
