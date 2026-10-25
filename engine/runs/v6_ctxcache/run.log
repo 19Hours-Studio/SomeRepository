@@ -25,3 +25,11 @@ g1_rf2: 3 ideas (678 words)
 baseline_1: 4 ideas (1329 words)
   baseline_2: 342,414 tokens, $0.94
 baseline_2: 3 ideas (1140 words)
+  families: 14,102 tokens, 18.6 s
+  families: 17 among 21 candidates (21 parsed)
+  triage: 19,497 tokens, 29.5 s
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g0/c1/TASK.md
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g0/c3/TASK.md
+/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g0/c2/TASK.md
+  eval_g0.1: 67,160 tokens, 99.6 s
+  eval_g0.2: 68,454 tokens, 108.7 s

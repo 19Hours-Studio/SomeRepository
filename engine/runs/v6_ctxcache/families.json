@@ -1,0 +1,23 @@
+{
+ "g1_ledger#1": "canonical shard prefix with pointers",
+ "g1_ledger#2": "append only errata with deferred compaction",
+ "g1_ledger#3": "diff encoded repeated tool outputs",
+ "g1_neg#1": "composable pairwise low rank kv deltas",
+ "g1_neg#2": "lexical overlap recompute token selection",
+ "g1_neg#3": "realistic prefix conditioned chunk encoding",
+ "g1_mech#1": "ttl keepalive pricing",
+ "g1_mech#2": "breakpoint miss audit and placement",
+ "g1_mech#3": "cross tenant public prefix kv pool",
+ "g1_rf1#1": "remote attention at kv store",
+ "g1_rf1#2": "erasure coded pooled kv storage",
+ "g1_rf1#3": "cross tenant public prefix kv pool",
+ "g1_rf2#1": "quote anchor output expansion",
+ "g1_rf2#2": "chunk keyed speculative decoding drafts",
+ "baseline_1#1": "edit local contiguous suffix kv repair",
+ "baseline_1#2": "canonical ordering plus blended chunks",
+ "baseline_1#3": "append only errata with deferred compaction",
+ "baseline_1#4": "ttl keepalive pricing",
+ "baseline_2#1": "append only errata with deferred compaction",
+ "baseline_2#2": "position independent chunk kv with repair",
+ "baseline_2#3": "sparse page selective cached reads"
+}

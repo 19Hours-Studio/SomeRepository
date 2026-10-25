@@ -1,0 +1,37 @@
+=== GATE ===
+IDEA 1: Return-hazard priced keep-alive
+KILLER | f, the share of cache-write tokens that are rewrites after the cache expires (the only cost this idea can remove) | required f ≥ 0.78 for a 1.5x gain. This uses ledger A's 47% write share, with each removed rewrite costing one ping at 0.1/1.25 of the write it saves | available f ≈ 0.4. No measured value exists: the 0.4 is the idea's own assumption, and I found no source giving the post-idle share of writes (an unsourced estimate, flagged as such). The ledger caps f: writes are only 8.2% of cached tokens, which I computed as (0.47/3.75)/(0.47/3.75+0.42/0.30) | MARGIN 0.51
+CHAIN | Append-only agent with the 5-minute TTL, or Claude Code's own promptCacheTtl / 1-hour settings | now 1.00 (normalised bill) | with idea 0.83 at f=0.4. It falls to 0.91 at f=0.2, and to 0.57 only if every write is a rewrite after expiry. Against an agent already on the 1-hour TTL the gain is smaller | RATIO 1.21
+VERDICT | WOUNDED | The rule works and cannot hurt output quality, but even at the assumed f=0.4 it saves only about 1.2x. f has to be measured from real `cache_creation.ephemeral_5m_input_tokens` logs split by idle gap, and it would need to be about 0.8 for the idea to be ALIVE.
+NEW FACT | Claude Code now has separate cache TTL settings for the main conversation and for subagents (`promptCacheTtl`, `subagentPromptCacheTtl`, v2.1.242 or later). It falls back to 5 minutes when usage credits are billed. A 1-hour write costs 2x base input. So per-gap TTL control is partly shipped already | https://code.claude.com/docs/en/prompt-caching ; https://platform.claude.com/docs/en/build-with-claude/prompt-caching
+NEW FACT | The usage API already splits writes into `ephemeral_5m_input_tokens` and `ephemeral_1h_input_tokens`, so f can be measured on the client | https://platform.claude.com/docs/en/build-with-claude/prompt-caching
+
+IDEA 2: Append-only journal with cost-optimal compaction
+KILLER | Hit-rate gain over best practice, which is already append-only for agents (ledger A) and already uses canonical chunk order for RAG (ledger B) | required: about 1.5x lower cost than that practice | available: for agents the gain is about 0, because the practice is identical and A already runs at a 92% hit rate. For RAG I replayed hash-sorted top-5 retrieval from a 100k-chunk Zipf corpus (my simulation, gate.py). It reused only 15% / 23% / 50% of document tokens at Zipf exponents 1.05 / 1.2 / 1.5, which is the same as any other canonical order. The idea's in-place rewrite arithmetic checks out (90,500 vs 10,500 units), but that is a gain over a careless client, not over best practice | MARGIN 0.1 (my estimate)
+CHAIN | Ledger A practice (append-only context, stable header, deterministic serialisation) and ledger B practice (canonical chunk order) | now $0.58/MTok (A); $0.0174/request (B) | with idea about $0.58/MTok; about $0.0174/request | RATIO 1.0
+VERDICT | DEAD | Its gain is measured against clients that edit in place, so it adds nothing over current best practice. On top of that, it risks stale facts leaking into answers, which would need a real-model run to measure.
+
+IDEA 3: Attention at the KV store
+KILLER | Share of the total cost that comes from moving KV (the only thing this idea removes) | required ≥ 33% of cost for a 1.5x gain | available about 5% (ledger C, assumed). My arithmetic for Llama-3-70B with a 100k prefix and a 2k-token suffix: the KV fetch is 32.8 GB, which takes 82 ms over 8×400 Gb/s links. The suffix prefill compute takes about 255 ms on 8×H100 at 40% utilisation. So the transfer is already shorter than the compute, and layer-by-layer loading (Mooncake / LMCache, vLLM-Ascend layerwise guide) hides it behind the compute. The idea's 6.25x traffic ratio checks out exactly | MARGIN 0.15
+CHAIN | Prefix-aware routing with LMCache/Mooncake layer-by-layer KV loading | now 1.00 GPU-cost | with idea ≥ 0.95, because the attention FLOPs only move to the store node, which then needs a GPU | RATIO 1.05
+VERDICT | DEAD | The output is exact, but it removes a cost that is about 5% of the total and already overlapped with compute. It also does nothing for middle edits or reordering.
+NEW FACT | Mooncake's layer-by-layer prefill streams each layer's KV while later layers are still computing, which hides the transfer. vLLM-Ascend sizes its prefetch window from the measured ratio of transfer time to compute time | https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/mooncake_layerwise_adaptation_and_optimization.html ; https://www.gomomento.com/blog/moving-the-kv-cache-without-stalling-the-decode/
+
+IDEA 4: Canonical ordering plus position-independent chunks
+KILLER | Quality loss against full recomputation when 10–15% of tokens are recomputed, on long or multi-hop RAG | required ≤ 1–3% loss | available: CacheBlend self-reports a drop of ≤ 0.02 F1 / Rouge-L. There is no neutral replication. FusionRAG and Decoupled Attention Fusion (competing methods, preprints) report "a significant gap" from full attention, and "severe accuracy degradation at longer contexts". So the claim holds only on the authors' own short benchmarks. It needs a real-model run on Musique / 2Wiki at 32k+ tokens | MARGIN about 0.5 (my estimate; self-reported 1, independent reports below 1)
+CHAIN | vLLM/SGLang automatic prefix caching plus routing plus LMCache (ledger C). Document tokens mostly miss when the document set varies | now 1.00 GPU-cost, with prefill at 55% | with idea 0.53–0.56. Prefill falls to 10–15% of document tokens plus the question; my calculation in gate.py from ledger shares, which are assumed. The idea's "5–10× less prefill" shrinks to about 1.8x over the whole system | RATIO 1.8
+VERDICT | WOUNDED | The cost chain clears 1.5x, but the method is a stack of existing prior art (it already ships in LMCache), and the quality margin at long, multi-hop contexts is unverified and disputed by later papers.
+NEW FACT | Two 2026 preprints report that CacheBlend's quality degrades at longer contexts or multi-hop questions: FusionRAG says a "significant gap remains" against full attention; Decoupled Attention Fusion reports "severe accuracy degradation at longer contexts" | https://arxiv.org/html/2601.12904 ; https://arxiv.org/html/2607.21599v1 ; https://arxiv.org/pdf/2606.05875
+NEW FACT | Replay of hash-canonical top-5 RAG ordering (100k-chunk corpus, Zipf exponent 1.05–1.5): exact-prefix document-token reuse is only 15–50%. This is the ceiling the canonical-ordering stage gives before any blending | my simulation, gate.py in the run directory
+
+The script with all of these calculations is `/home/user/SomeRepository/engine/runs/v6_ctxcache/eval_g0/c1/gate.py`. I did not commit it.
+
+Sources:
+- [Claude prompt caching docs](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
+- [Claude Code prompt caching docs](https://code.claude.com/docs/en/prompt-caching)
+- [CacheBlend](https://arxiv.org/pdf/2405.16444)
+- [FusionRAG](https://arxiv.org/html/2601.12904)
+- [Decoupled Attention Fusion](https://arxiv.org/html/2607.21599v1)
+- [QCFuse](https://arxiv.org/pdf/2606.05875)
+- [vLLM-Ascend Mooncake layerwise guide](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/mooncake_layerwise_adaptation_and_optimization.html)
+- [Momento on moving the KV cache](https://www.gomomento.com/blog/moving-the-kv-cache-without-stalling-the-decode/)

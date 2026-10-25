@@ -1,0 +1,17 @@
+write fraction of cached tokens 0.08216783216783217
+cost/MTok 0.5834790209790209
+n/C=0.05: max removable write share 0.39, ratio 1.23
+n/C=0.03: max removable write share 0.63, ratio 1.43
+required write share removed for 1.5x 0.7092198581560283
+example 0.4
+m=0.2 fallback=0.0: ratio 1.11
+m=0.2 fallback=0.08: ratio 1.10
+m=0.2 fallback=0.3: ratio 1.07
+m=0.4 fallback=0.0: ratio 1.26
+m=0.4 fallback=0.08: ratio 1.23
+m=0.4 fallback=0.3: ratio 1.16
+m=0.6 fallback=0.0: ratio 1.45
+m=0.6 fallback=0.08: ratio 1.40
+m=0.6 fallback=0.3: ratio 1.27
+max fallback for 10x 0.07692307692307694
+load s 0.32768 prefill s 11.666666666666666
