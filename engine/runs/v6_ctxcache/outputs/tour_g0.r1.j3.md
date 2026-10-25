@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B has a whole-chain gain of 1.8 against A's 1.21, and its quality margin of 0.4 is unverified rather than dead. A's margin of 0.9 is unstable and its gain is only about 1.2x.
+PAIR 2 | WINNER A | A has a whole-chain gain of 1.64 (3–10x compute cut on reordered content) with a margin of 0.53 that was stable across estimates, while B gains only 1.14 at a margin of 0.64.
+PAIR 3 | WINNER B | B's gain is 1.23 against A's 1.16, and A's PCIe fetch fails by 5–10x at serving batch sizes, which leaves only the decode-share gain. B's margin of 0.325 is unstable but its fix is cheap and does not touch output quality.

@@ -49,3 +49,7 @@ gate: 10/10 parsed {'WOUNDED': 6, 'DEAD': 4}
   recheck baseline_2#3: margins 0.09, 1.8, 1.8 -> 1.80 UNSTABLE; DEAD -> WOUNDED
   recheck g1_mech#2: margins 0.55, 0.1 -> 0.33 UNSTABLE; WOUNDED -> WOUNDED
   recheck baseline_1#1: margins 0.5 -> 0.50; WOUNDED -> WOUNDED
+  tour_g0.r1.j4: 8,185 tokens, 8.6 s
+  tour_g0.r1.j3: 8,145 tokens, 10.2 s
+  tour_g0.r1.j2: 8,602 tokens, 13.5 s
+  tour_g0.r1.j1: 8,637 tokens, 13.9 s

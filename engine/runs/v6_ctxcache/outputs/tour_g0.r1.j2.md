@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A has the larger whole-chain gain (1.8 vs 1.21) and directly covers reordering and RAG changes. B only removes rewrites after expiry, its margin is also below 1 (0.9, unstable), and its ceiling is about 1.2x.
+PAIR 2 | WINNER B | B's gain is clearly larger (1.64 vs 1.14), its margin estimates agree (0.53–0.6), and it covers reorders, insertions and moved tool outputs. It also states honestly that multi-hop work cannot reach full quality. A's diff-encoding tops out near 1.1–1.3x.
+PAIR 3 | WINNER B | B's margin is 1.8, above 1 even though unstable, and its fallback of plain Quest with KV kept in HBM still yields about 1.16x. A's margin is 0.325, unstable and well below 1, and even a perfect audit stays under 1.25x, so A's 1.23x does not hold as described.

@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both margins are below 1, but B targets the asked cases (reordering, RAG sets) and gains 1.8× against A's 1.21×. A's keep-alive only removes expiry rewrites and never touches middle-edit or reorder misses.
+PAIR 2 | WINNER A | A has a stable 0.53 margin and a 1.64× gain on reordered and re-positioned content, with an exact fallback and a quality gate. B's diff-encoding gains only about 1.14× and covers only repeated tool outputs.
+PAIR 3 | WINNER A | A's median margin is 1.8, though one estimate is far lower (0.09). It holds with a modest 1.16× gain if the KV stays in HBM. B's 0.325 unstable margin means its claimed 1.23× is largely unrealised, because most writes are new tokens that must be written anyway.

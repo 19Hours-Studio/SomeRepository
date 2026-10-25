@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A has a larger whole-chain gain (1.8 vs 1.21) and actually addresses reordered and middle-edit cases; its quality margin (0.4) is weak, but B's 0.9 margin is unstable and its ceiling is about 1.2x, so A delivers more of what was asked.
+PAIR 2 | WINNER B | B has a higher whole-chain gain (1.64 vs 1.14) and a stable margin (0.53 vs an unstable 0.64) while covering reordering, insertion and moved tool outputs; A only trims duplicate tool reads for about 1.1–1.3x.
+PAIR 3 | WINNER B | B's gain is 1.16 against A's 1.23, but A's margin is 0.325 and unstable with a ceiling below 1.25x, while B's 1.8 margin holds if KV stays in HBM, so B is the marginally better option despite the PCIe caveat.
