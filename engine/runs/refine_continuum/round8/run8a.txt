@@ -1,0 +1,38 @@
+== GPU class: model max tok/s/user (V4-Pro, p=0.8, best k<=3 i.e. MTP-depth as deployed) vs tau at f0
+   measured: GB300 NVL72 AgentX V4-Pro wall ~160-170 tok/s/user (Rubin 30x GB300 at 160, 2x at 110: NVIDIA); fastest public V4-Pro APIs 98-176 tok/s (Artificial Analysis), 280 (one secondary report)
+  ctx   64K tau0   10 us: GB300 max   2593 | Rubin max (k<=3)   3651 (k<=7)   4951
+  ctx   64K tau0   20 us: GB300 max   1679 | Rubin max (k<=3)   2066 (k<=7)   2849
+  ctx   64K tau0   40 us: GB300 max    985 | Rubin max (k<=3)   1106 (k<=7)   1541
+  ctx   64K tau0   60 us: GB300 max    696 | Rubin max (k<=3)    755 (k<=7)   1056
+  ctx   64K tau0   80 us: GB300 max    539 | Rubin max (k<=3)    573 (k<=7)    803
+  ctx   64K tau0  100 us: GB300 max    439 | Rubin max (k<=3)    462 (k<=7)    648
+  ctx   64K tau0  120 us: GB300 max    371 | Rubin max (k<=3)    387 (k<=7)    543
+  ctx   64K tau0  150 us: GB300 max    301 | Rubin max (k<=3)    311 (k<=7)    437
+  ctx  128K tau0   10 us: GB300 max   2592 | Rubin max (k<=3)   3650 (k<=7)   4949
+  ctx  128K tau0   20 us: GB300 max   1678 | Rubin max (k<=3)   2066 (k<=7)   2849
+  ctx  128K tau0   40 us: GB300 max    984 | Rubin max (k<=3)   1106 (k<=7)   1541
+  ctx  128K tau0   60 us: GB300 max    696 | Rubin max (k<=3)    755 (k<=7)   1056
+  ctx  128K tau0   80 us: GB300 max    539 | Rubin max (k<=3)    573 (k<=7)    803
+  ctx  128K tau0  100 us: GB300 max    439 | Rubin max (k<=3)    462 (k<=7)    648
+  ctx  128K tau0  120 us: GB300 max    371 | Rubin max (k<=3)    387 (k<=7)    543
+  ctx  128K tau0  150 us: GB300 max    301 | Rubin max (k<=3)    311 (k<=7)    437
+
+== static-schedule class: implied per-layer step time from measured output speeds (Artificial Analysis)
+  Groq 3 LPX, Gemma 4 31B, 100K ctx             3431 tok/s, 60 layers, 1.0 accepted/step ->   4.9 us per layer-step
+  Groq 3 LPX, Gemma 4 31B, 100K ctx             3431 tok/s, 60 layers, 2.0 accepted/step ->   9.7 us per layer-step
+  Groq 3 LPX, Gemma 4 31B, 100K ctx             3431 tok/s, 60 layers, 2.5 accepted/step ->  12.1 us per layer-step
+  Cerebras, GLM-4.7 (355B MoE, multi-wafer)     1008 tok/s, 92 layers, 1.0 accepted/step ->  10.8 us per layer-step
+  Cerebras, GLM-4.7 (355B MoE, multi-wafer)     1008 tok/s, 92 layers, 2.0 accepted/step ->  21.6 us per layer-step
+  Cerebras, GLM-4.7 (355B MoE, multi-wafer)     1008 tok/s, 92 layers, 2.5 accepted/step ->  27.0 us per layer-step
+  Cerebras, gpt-oss-120b (high)                 1697 tok/s, 36 layers, 1.0 accepted/step ->  16.4 us per layer-step
+  Cerebras, gpt-oss-120b (high)                 1697 tok/s, 36 layers, 2.0 accepted/step ->  32.7 us per layer-step
+  Cerebras, gpt-oss-120b (high)                 1697 tok/s, 36 layers, 2.5 accepted/step ->  40.9 us per layer-step
+  Continuum-7 at 0.55 V: tau = 7 + 3/0.635 = 11.7 us + compute c (12.5 us at the bulk point)
+
+== GPU-class implied per-layer step time from measured walls (62 layers incl. MTP)
+  GB300 V4-Pro wall               165 tok/s/user, 1.8 accepted/step ->   176 us per layer-step
+  GB300 V4-Pro wall               165 tok/s/user, 2.5 accepted/step ->   244 us per layer-step
+  fastest V4-Pro API (AA)         176 tok/s/user, 1.8 accepted/step ->   165 us per layer-step
+  fastest V4-Pro API (AA)         176 tok/s/user, 2.5 accepted/step ->   229 us per layer-step
+  secondary 280 tok/s report      280 tok/s/user, 1.8 accepted/step ->   104 us per layer-step
+  secondary 280 tok/s report      280 tok/s/user, 2.5 accepted/step ->   144 us per layer-step
