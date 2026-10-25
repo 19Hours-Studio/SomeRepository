@@ -16,3 +16,6 @@ TYPE invent; MODE standard
   dossier.7: 177,884 tokens, 130.7 s
   dossier: 339 facts, 353 distinct sources, 8 slices -> evidence.md
 /home/user/SomeRepository/engine/runs/rusres/ledger/TASK.md
+  ledger: 75,707 tokens, 44.8 s
+ledger: 809 words
+/home/user/SomeRepository/engine/runs/rusres/attempts/TASK.md
