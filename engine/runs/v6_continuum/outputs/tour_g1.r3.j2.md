@@ -1,0 +1,5 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B holds (ALIVE, margin 2.0, unstable) with a ~20× gain; A is WOUNDED at a 1.14 unstable margin and gains only ~1.12× once energy's ~9% TCO share is counted.
+PAIR 2 | WINNER B | B is ALIVE at margin 1.0 (unstable) with a ~2× per-kW gain; A is WOUNDED because SRAM density is ~2× short (margin 0.75), which leaves ~1.2×.
+PAIR 3 | WINNER A | Both fall short (0.64 vs 0.61). A's density shortfall degrades gracefully, since capacity mostly affects weight amortisation, so it keeps ~1.6–1.9×. B's halved per-user speed roughly doubles its $/Mtok and removes its 1.03× cost margin, so its 4.6× gain is a promise.
+PAIR 4 | WINNER B | A's deciding density margin is 0.32, about 3× short of measured, and its current figure is off by 2×; B's margin of 0.89 (unstable) is near holding with a modest ~1.14× gain.
