@@ -1,0 +1,4 @@
+gap   5s HBM $0.140 DRAM-rental $0.110 (1.28x) DRAM-capex $0.102 (1.37x)
+gap  30s HBM $0.331 DRAM-rental $0.148 (2.24x) DRAM-capex $0.103 (3.21x)
+gap 120s HBM $1.020 DRAM-rental $0.286 (3.57x) DRAM-capex $0.108 (9.49x)
+discard+recompute every turn: $1.106/session

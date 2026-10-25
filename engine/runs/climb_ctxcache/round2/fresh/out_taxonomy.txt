@@ -1,0 +1,10 @@
+qwen_traceA_blksz_16.jsonl: non-prefix reused blocks in runs>=2: 1.2% of input
+   other-source            0.9% of input (71% of non-prefix reuse)
+   reordered               0.2% of input (16% of non-prefix reuse)
+   shifted-same-source     0.2% of input (13% of non-prefix reuse)
+   new blocks between prefix end and first reused run: p25 2 median 17 p75 170 (blocks of 16 tokens)
+qwen_traceB_blksz_16.jsonl: non-prefix reused blocks in runs>=2: 6.8% of input
+   other-source            5.4% of input (78% of non-prefix reuse)
+   shifted-same-source     1.4% of input (20% of non-prefix reuse)
+   reordered               0.1% of input (1% of non-prefix reuse)
+   new blocks between prefix end and first reused run: p25 1 median 4 p75 10 (blocks of 16 tokens)

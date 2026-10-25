@@ -1,0 +1,4 @@
+qwen_coder_blksz_16.jsonl      input tokens  247.2M  root requests 60.6%  re-sent parent prompt 31.3%  parent output carried  5.2%  other new  2.8%
+qwen_thinking_blksz_16.jsonl   input tokens   51.5M  root requests 80.5%  re-sent parent prompt 15.1%  parent output carried  2.6%  other new  1.8%
+qwen_traceA_blksz_16.jsonl     input tokens  100.4M  root requests 40.0%  re-sent parent prompt 49.1%  parent output carried  8.8%  other new  2.2%
+qwen_traceB_blksz_16.jsonl     input tokens  158.0M  root requests 100.0%  re-sent parent prompt  0.0%  parent output carried  0.0%  other new  0.0%

@@ -1,1 +1,5 @@
   critic of v0: $0.66; about −30% billed input tokens (range −10% to −46% across seeds; −25% if the erratum restates the whole tool output) for Idea 1 against in-place-edit prefix cac
+  short reply (86 words); using ANSWER.md from the round folder
+  v1: 2725 words, $1.93
+  critic of v1: $0.81; −35.8% billed input vs in-place editing (Anthropic, synthetic replay, edit every 5 turns; only −11% vs append-full; provider span ops add −16.6% over errata at 
+  v2: 3299 words, $1.19

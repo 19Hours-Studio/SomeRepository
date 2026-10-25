@@ -1,0 +1,26 @@
+== 1. inplace new-token double count (replay2_fix: edited segment counted new only after break) ==
+hit_resent 0.9342 -> 0.9281; inplace no-miss floor 507,502 -> 483,697; API unchanged 747,086=747,086
+
+== 2. Idea 2 increment over the best CLIENT policy (errata), sec C retention 195k->140k, 200 turns ==
+punch: -16.6% vs errata  (-24.5% vs append_full)
+patch: -18.1% vs errata  (-25.8% vs append_full)
+target 100k: punch -7.5% vs errata, -12.2% vs append_full
+target 170k: punch -34.6% vs errata, -40.0% vs append_full
+
+== 3. Sec B grid edge: extend triggers/targets below 150k/40k (200 turns, 20 seeds) ==
+append_full  best 1,338,718 at 60k/15k
+errata       best 1,281,145 at 60k/15k
+punch        best 1,339,447 at 60k/15k
+patch        best 1,268,391 at 60k/15k
+
+== 4. Early mutable state (memory/todo block right after sys prompt): edit always hits segment 1 ==
+errata -53.6% vs inplace (uniform-position edits gave -35.8%), append_full -47.8%
+
+== 5. Unused lever: fewer requests per unit of work (batch k tool calls per request; same tokens) ==
+1 tool calls/request: errata API 479,425 (+0.0% vs 1/request)
+2 tool calls/request: errata API 312,740 (-34.8% vs 1/request)
+4 tool calls/request: errata API 216,000 (-54.9% vs 1/request)
+
+== 6. 5-min TTL expiry: fraction f of turns idle > TTL rebill live context as write ==
+f=0.05: errata API 479,425 -> 665,610 (+39%); hit rate on re-sent tokens -> 0.95
+f=0.20: errata API 479,425 -> 1,224,165 (+155%); hit rate on re-sent tokens -> 0.80

@@ -1,0 +1,4 @@
+qwen_traceA_blksz_16.jsonl     prefix-hit share of input blocks  TTL 5m: 46.2%  TTL 10m: 52.2%  TTL 30m: 57.0%  TTL 60m: 57.8%  TTL inf: 57.8%
+qwen_traceB_blksz_16.jsonl     prefix-hit share of input blocks  TTL 5m: 51.2%  TTL 10m: 52.1%  TTL 30m: 53.0%  TTL 60m: 53.3%  TTL inf: 53.4%
+qwen_coder_blksz_16.jsonl      prefix-hit share of input blocks  TTL 5m: 57.3%  TTL 10m: 61.1%  TTL 30m: 65.0%  TTL 60m: 66.1%  TTL inf: 66.4%
+qwen_thinking_blksz_16.jsonl   prefix-hit share of input blocks  TTL 5m: 43.1%  TTL 10m: 44.6%  TTL 30m: 45.8%  TTL 60m: 46.0%  TTL inf: 46.2%

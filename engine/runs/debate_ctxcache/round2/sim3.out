@@ -1,0 +1,47 @@
+== 0. sanity: matches round1 (anth5m, 50 calls, 1/request) ==
+inplace      API=  747,086 reads=  295,634 writes=  451,452 hit_resent=0.9307 vs inplace +0.0% vs append_full +38.7%
+append_full  API=  538,555 reads=  362,680 writes=  175,875 hit_resent=1.0000 vs inplace -27.9% vs append_full +0.0%
+errata       API=  479,425 reads=  323,800 writes=  155,625 hit_resent=1.0000 vs inplace -35.8% vs append_full -11.0%
+punch        API=  486,341 reads=  311,790 writes=  174,551 hit_resent=0.9999 vs inplace -34.9% vs append_full -9.7%
+patch        API=  475,256 reads=  319,271 writes=  155,985 hit_resent=0.9993 vs inplace -36.4% vs append_full -11.8%
+
+== 0b. prices: openai56 (w=1.25,r=0.1,30m TTL) equals anth5m without idle; legacy w=1.0 ==
+openai56       errata -35.8% vs inplace, -11.0% vs append_full
+openai_legacy  errata -31.7% vs inplace, -10.9% vs append_full
+
+== 0c. read-price sensitivity (unverified 0.05x on newer Anthropic models) ==
+r=0.05: errata -47.0% vs inplace, -11.1% vs append_full
+
+== 1. fewer requests: share of calls issued in parallel groups (errata, same 50 calls) ==
+q2=0.0 q4=0.0: requests= 50.0 errata   479,425 (+0.0% vs errata seq, -11.0% vs append_full seq); append_full batched +0.0%
+q2=0.3 q4=0.0: requests= 38.4 errata   400,223 (-16.5% vs errata seq, -25.7% vs append_full seq); append_full batched -16.8%
+q2=0.5 q4=0.0: requests= 33.8 errata   368,878 (-23.1% vs errata seq, -31.5% vs append_full seq); append_full batched -23.0%
+q2=1.0 q4=0.0: requests= 25.0 errata   305,830 (-36.2% vs errata seq, -43.2% vs append_full seq); append_full batched -35.9%
+q2=0.0 q4=0.5: requests= 20.1 errata   271,884 (-43.3% vs errata seq, -49.5% vs append_full seq); append_full batched -41.9%
+q2=0.0 q4=1.0: requests= 13.0 errata   226,570 (-52.7% vs errata seq, -57.9% vs append_full seq); append_full batched -52.3%
+   baseline already parallel at q2=0.3 -> errata with q2=1:
+   -31.7% (pairs), -49.4% (quads) vs append_full at q2=0.3
+
+== 2. idle gaps > TTL (errata, sequential): fraction of requests preceded by an idle gap ==
+anth5m   gap  15 min f=0.05: expire +42.7%  keepalive +11.1%  ski-rental +11.1%  (hit_resent expire 0.945)
+anth5m   gap  15 min f=0.20: expire +158.5%  keepalive +41.3%  ski-rental +41.3%  (hit_resent expire 0.796)
+anth5m   gap  45 min f=0.05: expire +42.7%  keepalive +33.4%  ski-rental +33.4%  (hit_resent expire 0.945)
+anth5m   gap  45 min f=0.20: expire +158.5%  keepalive +124.0%  ski-rental +124.0%  (hit_resent expire 0.796)
+anth5m   gap 120 min f=0.05: expire +42.7%  keepalive +96.6%  ski-rental +83.6%  (hit_resent expire 0.945)
+anth5m   gap 120 min f=0.20: expire +158.5%  keepalive +358.3%  ski-rental +310.0%  (hit_resent expire 0.796)
+openai56 gap  15 min f=0.05: expire  +0.0%  keepalive  +0.0%  ski-rental  +0.0%  (hit_resent expire 1.000)
+openai56 gap  15 min f=0.20: expire  +0.0%  keepalive  +0.0%  ski-rental  +0.0%  (hit_resent expire 1.000)
+openai56 gap  45 min f=0.05: expire +42.7%  keepalive  +3.7%  ski-rental  +3.7%  (hit_resent expire 0.945)
+openai56 gap  45 min f=0.20: expire +158.5%  keepalive +13.8%  ski-rental +13.8%  (hit_resent expire 0.796)
+openai56 gap 120 min f=0.05: expire +42.7%  keepalive +14.9%  ski-rental +14.9%  (hit_resent expire 0.945)
+openai56 gap 120 min f=0.20: expire +158.5%  keepalive +55.1%  ski-rental +55.1%  (hit_resent expire 0.796)
+
+== 3. provider span ops vs errata by retention (200 calls, 200k window, trigger 195k) ==
+target  15k (trig 60k): errata   1,281,145  punch +4.6%  patch -1.0% vs errata;  errata -4.3% vs append_full
+target  40k (trig 60k): errata   2,026,660  punch -22.3%  patch -26.2% vs errata;  errata -6.7% vs append_full
+target 100k (trig 195k): errata   3,404,077  punch -7.5%  patch -9.1% vs errata;  errata -5.1% vs append_full
+target 140k (trig 195k): errata   4,081,112  punch -16.6%  patch -18.1% vs errata;  errata -9.4% vs append_full
+target 170k (trig 195k): errata   5,505,614  punch -34.6%  patch -35.9% vs errata;  errata -8.3% vs append_full
+target 185k (trig 195k): errata   8,124,905  punch -54.6%  patch -55.3% vs errata;  errata -7.8% vs append_full
+   combined with pairs (q2=1) at 170k:
+   errata+pairs -36.8%, patch+pairs -66.2% vs append_full sequential

@@ -1,0 +1,56 @@
+
+=== sandwich UTG 20/adh 3/panel 22/adh/UTG: total 68 um, D=1.763e-03 N m (single 70um UTG = 2.058e-03)
+  R=4mm outer-fibre strain 0.85%  glass stress 612 MPa | panel surface strain 0.27%  adhesive max strain 0.35%
+  R=5mm outer-fibre strain 0.68%  glass stress 490 MPa | panel surface strain 0.22%  adhesive max strain 0.28%
+  R=6mm outer-fibre strain 0.57%  glass stress 408 MPa | panel surface strain 0.18%  adhesive max strain 0.23%
+  R=8mm outer-fibre strain 0.43%  glass stress 306 MPa | panel surface strain 0.14%  adhesive max strain 0.18%
+  UTG top  D-share  49.77%  centroid offset  -24.0 um
+  adh      D-share   0.08%  centroid offset  -12.5 um
+  panel    D-share   0.30%  centroid offset    0.0 um
+  adh      D-share   0.08%  centroid offset   12.5 um
+  UTG bot  D-share  49.77%  centroid offset   24.0 um
+
+=== sandwich UTG 25/adh 5/panel 25/adh/UTG: total 85 um, D=3.442e-03 N m (single 70um UTG = 2.058e-03)
+  R=4mm outer-fibre strain 1.06%  glass stress 765 MPa | panel surface strain 0.31%  adhesive max strain 0.44%
+  R=5mm outer-fibre strain 0.85%  glass stress 612 MPa | panel surface strain 0.25%  adhesive max strain 0.35%
+  R=6mm outer-fibre strain 0.71%  glass stress 510 MPa | panel surface strain 0.21%  adhesive max strain 0.29%
+  R=8mm outer-fibre strain 0.53%  glass stress 382 MPa | panel surface strain 0.16%  adhesive max strain 0.22%
+  UTG top  D-share  49.79%  centroid offset  -30.0 um
+  adh      D-share   0.10%  centroid offset  -15.0 um
+  panel    D-share   0.23%  centroid offset    0.0 um
+  adh      D-share   0.10%  centroid offset   15.0 um
+  UTG bot  D-share  49.79%  centroid offset   30.0 um
+
+Teardrop R=5.0mm neck Rn=8.0mm: alpha=50.9 deg, fold-zone length 38.8 mm, bulb inner dia 10 mm
+  neck tension on user (top) surface 306 MPa; bulb tension on protected inner (bottom) surface 490 MPa
+
+Residual crease (phi = set fraction of each viscoelastic layer's folded strain)
+  phi_panel=0.05 phi_adh=0.02 eff=0.018% clamp margin   0mm: depth  2.601 um slope  0.268 mrad
+  phi_panel=0.05 phi_adh=0.02 eff=0.018% clamp margin   1mm: depth  2.744 um slope  0.277 mrad
+  phi_panel=0.05 phi_adh=0.02 eff=0.018% clamp margin   3mm: depth  3.032 um slope  0.292 mrad
+  phi_panel=0.05 phi_adh=0.02 eff=0.018% clamp margin   8mm: depth  3.751 um slope  0.321 mrad
+  phi_panel=0.10 phi_adh=0.05 eff=0.038% clamp margin   0mm: depth  5.431 um slope  0.560 mrad
+  phi_panel=0.10 phi_adh=0.05 eff=0.038% clamp margin   1mm: depth  5.728 um slope  0.578 mrad
+  phi_panel=0.10 phi_adh=0.05 eff=0.038% clamp margin   3mm: depth  6.330 um slope  0.610 mrad
+  phi_panel=0.10 phi_adh=0.05 eff=0.038% clamp margin   8mm: depth  7.831 um slope  0.670 mrad
+  phi_panel=0.20 phi_adh=0.10 eff=0.076% clamp margin   0mm: depth 10.861 um slope  1.119 mrad
+  phi_panel=0.20 phi_adh=0.10 eff=0.076% clamp margin   1mm: depth 11.456 um slope  1.156 mrad
+  phi_panel=0.20 phi_adh=0.10 eff=0.076% clamp margin   3mm: depth 12.660 um slope  1.221 mrad
+  phi_panel=0.20 phi_adh=0.10 eff=0.076% clamp margin   8mm: depth 15.662 um slope  1.340 mrad
+  phi_panel=0.50 phi_adh=0.30 eff=0.199% clamp margin   0mm: depth 28.292 um slope  2.916 mrad
+  phi_panel=0.50 phi_adh=0.30 eff=0.199% clamp margin   1mm: depth 29.842 um slope  3.011 mrad
+  phi_panel=0.50 phi_adh=0.30 eff=0.199% clamp margin   3mm: depth 32.978 um slope  3.179 mrad
+  phi_panel=0.50 phi_adh=0.30 eff=0.199% clamp margin   8mm: depth 40.797 um slope  3.491 mrad
+
+With tension (worst row phi 0.5/0.3, margin 3 mm)
+  T=    0 N/m depth 32.978 um slope 3.179 mrad
+  T=  250 N/m depth 3.810 um slope 0.836 mrad
+  T=  500 N/m depth 2.069 um slope 0.600 mrad
+  T= 1000 N/m depth 1.092 um slope 0.426 mrad
+
+Stiff adhesive: M=0.353 N, V~M/Lneck=50 N/m, interface shear 0.97 MPa, strain 0.08% (G~1.15 GPa)
+  shear-lag length 61 um  -> layers act as one plate beyond ~0.1 mm
+tension 500 N/m: stack strain 166 ue, stroke over 39 mm 6.4 um, glass stress 12.0 MPa, force over 150 mm 75 N
+tension 1000 N/m: stack strain 332 ue, stroke over 39 mm 12.9 um, glass stress 23.9 MPa, force over 150 mm 150 N
+Al-vs-glass mismatch over 39 mm, 35 K: 20 um -> spring rate for +-20% of 75 N: <= 762 N/mm, preload deflection 0.10 mm
+Al-vs-glass mismatch over 140 mm, 35 K: 71 um -> spring rate for +-20% of 75 N: <= 211 N/mm, preload deflection 0.36 mm

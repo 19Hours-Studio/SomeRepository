@@ -1,0 +1,7 @@
+reference (no idle) 479,425; 1h-TTL writes with no idle +19.5%
+gap  15 min f=0.05: expire +42.7%  keepalive +11.1%  ski +11.1%  1h +19.5%  -> best keepalive (-22% vs expire)
+gap  15 min f=0.20: expire +158.5%  keepalive +41.3%  ski +41.3%  1h +19.5%  -> best 1h (-54% vs expire)
+gap  45 min f=0.05: expire +42.7%  keepalive +33.4%  ski +33.4%  1h +19.5%  -> best 1h (-16% vs expire)
+gap  45 min f=0.20: expire +158.5%  keepalive +124.0%  ski +124.0%  1h +19.5%  -> best 1h (-54% vs expire)
+gap 120 min f=0.05: expire +42.7%  keepalive +96.6%  ski +83.6%  1h +90.1%  -> best expire (+0% vs expire)
+gap 120 min f=0.20: expire +158.5%  keepalive +358.3%  ski +310.0%  1h +281.3%  -> best expire (+0% vs expire)

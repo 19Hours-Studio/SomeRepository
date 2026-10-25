@@ -1,0 +1,12 @@
+qwen_traceA_blksz_16.jsonl: requests 43058 children 19957 (60.0% of input blocks)
+   parent blocks re-sent by child: 48.7% of all input; lost to a mid-prompt change: 0.00% of all input (0.0% of re-sent); broken children 0.0%
+   turn gap median 111s p90 719s; reusable-prefix tokens arriving after 5 min 26.1%, after 1 h 0.0%
+qwen_traceB_blksz_16.jsonl: requests 172800, no parent links
+qwen_coder_blksz_16.jsonl: requests 43011 children 16605 (39.4% of input blocks)
+   parent blocks re-sent by child: 31.2% of all input; lost to a mid-prompt change: 0.00% of all input (0.0% of re-sent); broken children 0.4%
+   break position (fraction of parent): p10 1.00 median 1.00 p90 1.00
+   turn gap median 118s p90 942s; reusable-prefix tokens arriving after 5 min 23.1%, after 1 h 0.6%
+qwen_thinking_blksz_16.jsonl: requests 10812 children 1200 (19.5% of input blocks)
+   parent blocks re-sent by child: 15.0% of all input; lost to a mid-prompt change: 0.00% of all input (0.0% of re-sent); broken children 3.7%
+   break position (fraction of parent): p10 0.99 median 1.00 p90 1.00
+   turn gap median 29s p90 258s; reusable-prefix tokens arriving after 5 min 8.2%, after 1 h 0.3%

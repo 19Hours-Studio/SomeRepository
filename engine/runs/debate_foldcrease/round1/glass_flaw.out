@@ -1,0 +1,19 @@
+
+CS=450 MPa DOL=6 um
+  sandwich bulb, protected bottom face, R=5                  applied  490 MPa  worst flaw 10.0 um  net   346 MPa  K=2.17 MPa√m
+  sandwich neck, user top face, Rn=8                         applied  306 MPa  worst flaw 10.0 um  net   216 MPa  K=1.36 MPa√m
+  sandwich bulb at R=4                                       applied  612 MPa  worst flaw 10.0 um  net   432 MPa  K=2.71 MPa√m
+  single 30um UTG at R=1.5 (shipping-like, radius unverified) applied  720 MPa  worst flaw  6.0 um  net   432 MPa  K=2.10 MPa√m
+  single 30um UTG at R=2.0                                   applied  540 MPa  worst flaw  6.0 um  net   324 MPa  K=1.58 MPa√m
+
+CS=650 MPa DOL=4 um
+  sandwich bulb, protected bottom face, R=5                  applied  490 MPa  worst flaw 10.0 um  net   346 MPa  K=2.17 MPa√m
+  sandwich neck, user top face, Rn=8                         applied  306 MPa  worst flaw 10.0 um  net   216 MPa  K=1.36 MPa√m
+  sandwich bulb at R=4                                       applied  612 MPa  worst flaw 10.0 um  net   432 MPa  K=2.71 MPa√m
+  single 30um UTG at R=1.5 (shipping-like, radius unverified) applied  720 MPa  worst flaw  5.0 um  net   480 MPa  K=2.13 MPa√m
+  single 30um UTG at R=2.0                                   applied  540 MPa  worst flaw  5.0 um  net   360 MPa  K=1.60 MPa√m
+
+Smallest surface-flaw depth that reaches K_th=0.3 (slow growth) / K_IC=0.7 (fracture), CT ignored
+ CS=450 DOL=6: sandwich bulb.. R=5: 1.4/2.8 um; sandwich neck.. Rn=8: 3.4/4.7 um; sandwich bulb at R=4..sandwich bulb at R=4: 0.6/1.8 um; single 30um UTG at R=1.5 (ship.. radius unverified): 0.3/1.3 um; single 30um UTG at R=2.0..single 30um UTG at R=2.0: 1.2/3.0 um
+ CS=650 DOL=4: sandwich bulb.. R=5: 1.8/2.6 um; sandwich neck.. Rn=8: 2.8/3.5 um; sandwich bulb at R=4..sandwich bulb at R=4: 1.2/2.0 um; single 30um UTG at R=1.5 (ship.. radius unverified): 0.8/1.7 um; single 30um UTG at R=2.0..single 30um UTG at R=2.0: 1.8/2.6 um
+ CS=800 DOL=5: sandwich bulb.. R=5: 2.8/3.4 um; sandwich neck.. Rn=8: 3.8/4.4 um; sandwich bulb at R=4..sandwich bulb at R=4: 2.1/2.8 um; single 30um UTG at R=1.5 (ship.. radius unverified): 1.7/2.6 um; single 30um UTG at R=2.0..single 30um UTG at R=2.0: 2.8/3.6 um

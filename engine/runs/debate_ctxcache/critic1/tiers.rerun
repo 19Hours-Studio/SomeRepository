@@ -1,0 +1,4 @@
+gap    5s: HBM-pinned $0.140 (hold 0.038)  DRAM-parked $0.102  ratio 1.37x  | input-side only (prefill+hold): 1.80x
+gap   30s: HBM-pinned $0.331 (hold 0.230)  DRAM-parked $0.103  ratio 3.21x  | input-side only (prefill+hold): 5.70x
+gap  120s: HBM-pinned $1.020 (hold 0.918)  DRAM-parked $0.108  ratio 9.49x  | input-side only (prefill+hold): 18.31x
+gap  600s: HBM-pinned $4.693 (hold 4.591)  DRAM-parked $0.130  ratio 36.13x  | input-side only (prefill+hold): 61.78x

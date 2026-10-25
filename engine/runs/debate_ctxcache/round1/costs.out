@@ -1,0 +1,21 @@
+== recompute cost per token at context position ==
+pos       0: $0.175/M tok
+pos  50,000: $0.338/M tok
+pos 100,000: $0.502/M tok
+
+== cost of one cached token for one turn (n_new new tokens attend to it, n_out decoded, gap_s parked) ==
+prefill attention from 2300 new tokens: $0.0075/M  = 2.0% of recompute at pos 60k ($0.371/M)
+BF16             decode KV reads (300 tok): $0.0163/M ; hold 30s: HBM $0.0683/M, DRAM cloud $0.005/GB-h $0.0137/M, DRAM capex $4/GB/3y $0.0004/M ; reload 100k tok over PCIe 50GB/s: 0.66 s
+FP8              decode KV reads (300 tok): $0.0082/M ; hold 30s: HBM $0.0341/M, DRAM cloud $0.005/GB-h $0.0068/M, DRAM capex $4/GB/3y $0.0002/M ; reload 100k tok over PCIe 50GB/s: 0.33 s
+MLA-BF16 (DSV3)  decode KV reads (300 tok): $0.0035/M ; hold 30s: HBM $0.0146/M, DRAM cloud $0.005/GB-h $0.0029/M, DRAM capex $4/GB/3y $0.0001/M ; reload 100k tok over PCIe 50GB/s: 0.14 s
+
+== storage break-even reuse interval (recompute $/M at pos 100k vs hold $/M-h) ==
+HBM $2/h/80GB      $8.1920/M-tok-h  break-even interval     0.04 h  (recompute avg over 100k prefill $0.338/M)
+DRAM cloud-rental  $1.6384/M-tok-h  break-even interval     0.21 h  (recompute avg over 100k prefill $0.338/M)
+DRAM capex 3y      $0.0499/M-tok-h  break-even interval     6.78 h  (recompute avg over 100k prefill $0.338/M)
+NVMe cloud block   $0.0655/M-tok-h  break-even interval     5.16 h  (recompute avg over 100k prefill $0.338/M)
+NVMe capex 3y      $0.0010/M-tok-h  break-even interval   339.23 h  (recompute avg over 100k prefill $0.338/M)
+
+== document set grows by one doc per request: tokens rewritten ==
+D=10 docs x 1000 tok: hash-sort rewrites 6,003 tok/request; first-seen order 1,000 (+ rank line ~50 tok)
+D=50 docs x 500 tok: hash-sort rewrites 12,758 tok/request; first-seen order 500 (+ rank line ~250 tok)

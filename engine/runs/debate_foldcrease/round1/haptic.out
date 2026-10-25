@@ -1,0 +1,7 @@
+width   1 mm -> haptic detection threshold ~    6.4 um
+width   3 mm -> haptic detection threshold ~   26.9 um
+width   5 mm -> haptic detection threshold ~   52.2 um
+width  10 mm -> haptic detection threshold ~  128.5 um
+width  31 mm -> haptic detection threshold ~  559.2 um
+HTX 167 um, slope 21.64 mrad
+HTX 48 um, slope 1.75 mrad

@@ -1,0 +1,2 @@
+[llm]
+smollm2 = llm_smollm2

@@ -1,0 +1,41 @@
+== A. output tokens priced (300 tok/call generated; out multiple x input) ==
+Anthropic 5x: O=75,000 errata vs inplace -32.6% (claimed -35.8%), vs append_full -9.6% (-11.0%); pairs vs errata seq -31.3% (-36.2%), quads -45.6% (-52.7%); pairs/quads vs append_full@q2=.3 -27.2%/-42.3% (-31.7/-49.4%)
+OpenAI 8x: O=120,000 errata vs inplace -30.9% (claimed -35.8%), vs append_full -9.0% (-11.0%); pairs vs errata seq -29.0% (-36.2%), quads -42.2% (-52.7%); pairs/quads vs append_full@q2=.3 -25.0%/-39.0% (-31.7/-49.4%)
+  with 1000 thinking tok/request (5x): pairs vs errata seq -37.1%
+  with 3000 thinking tok/request (5x): pairs vs errata seq -42.1%
+
+== B. span ops: cost vs MEAN live context per request (quality proxy), 200 calls, 20 seeds ==
+errata   60k-> 15k cost   1,281,145 mean ctx    36,468  cost/meanctx   35.1
+errata   60k-> 40k cost   2,026,660 mean ctx    47,182  cost/meanctx   43.0
+errata  120k-> 60k cost   2,504,740 mean ctx    82,333  cost/meanctx   30.4
+errata  195k->100k cost   3,404,077 mean ctx   128,021  cost/meanctx   26.6
+errata  195k->140k cost   4,081,112 mean ctx   140,601  cost/meanctx   29.0
+errata  195k->170k cost   5,505,614 mean ctx   149,650  cost/meanctx   36.8
+errata  195k->185k cost   8,124,905 mean ctx   154,141  cost/meanctx   52.7
+patch    60k-> 15k cost   1,268,391 mean ctx    35,990  cost/meanctx   35.2
+patch    60k-> 40k cost   1,496,496 mean ctx    47,375  cost/meanctx   31.6
+patch   120k-> 60k cost   2,177,011 mean ctx    81,426  cost/meanctx   26.7
+patch   195k->100k cost   3,093,911 mean ctx   127,277  cost/meanctx   24.3
+patch   195k->140k cost   3,341,694 mean ctx   139,662  cost/meanctx   23.9
+patch   195k->170k cost   3,531,628 mean ctx   149,150  cost/meanctx   23.7
+patch   195k->185k cost   3,628,743 mean ctx   153,980  cost/meanctx   23.6
+punch    60k-> 15k cost   1,339,447 mean ctx    36,090  cost/meanctx   37.1
+punch    60k-> 40k cost   1,574,681 mean ctx    47,585  cost/meanctx   33.1
+punch   120k-> 60k cost   2,266,460 mean ctx    82,046  cost/meanctx   27.6
+punch   195k->100k cost   3,150,025 mean ctx   126,216  cost/meanctx   25.0
+punch   195k->140k cost   3,402,586 mean ctx   138,794  cost/meanctx   24.5
+punch   195k->170k cost   3,601,878 mean ctx   148,756  cost/meanctx   24.2
+punch   195k->185k cost   3,685,346 mean ctx   152,917  cost/meanctx   24.1
+  frontier comparison at similar mean context:
+  patch 60k->40k mean 47,375: 1,496,496 vs errata frontier 2,029,288 -> -26.3%
+  patch 120k->60k mean 81,426: 2,177,011 vs errata frontier 2,492,414 -> -12.7%
+  patch 195k->100k mean 127,277: 3,093,911 vs errata frontier 3,389,438 -> -8.7%
+  patch 195k->140k mean 139,662: 3,341,694 vs errata frontier 4,030,610 -> -17.1%
+  patch 195k->170k mean 149,150: 3,531,628 vs errata frontier 5,426,890 -> -34.9%
+  patch 195k->185k mean 153,980: 3,628,743 vs errata frontier 8,030,946 -> -54.8%
+
+== C. TTL: selective 1h write only on the request before a predicted idle gap ==
+gap 15 f=0.05: selective-1h +0.90% vs best answer policy (keepalive/1h-all)
+gap 15 f=0.2: selective-1h +3.59% vs best answer policy (keepalive/1h-all)
+gap 45 f=0.05: selective-1h +0.90% vs best answer policy (keepalive/1h-all)
+gap 45 f=0.2: selective-1h +3.59% vs best answer policy (keepalive/1h-all)

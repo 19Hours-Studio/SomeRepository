@@ -4,3 +4,4 @@
   round 1 reframe: won both (+4); gain The same −33.6% from errata, plus about −48% to −58% input with batched tool calls at k=1.5–2 (k from one example run). 
   round 1 fresh: won both (+4); gain about 19–39% lower billed input than append-only caching on 50–100-step agent sessions (resampled from real steps), 0% o
   round 1: v1 = fix
+  check of v1: $0.78; −45.4% billed input vs per-turn sliding clearing reproduces (CI −46.4% to −44.3%), but existing SWE-agent `polling=10` gets −45.0%, so the gain beyond prior art is about 0–2 points. Against the append

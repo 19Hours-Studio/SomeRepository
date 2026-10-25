@@ -1,0 +1,54 @@
+== A. 50 turns, no window, 100 seeds ==
+anthropic5m inplace      API=  747,086 (+0.0% vs inplace, +38.7% vs append_full) hit=0.8911 hit_resent=0.9281 maxctx=122,700 | own $0.188 (prefill 0.133 decode 0.054 hold 0.0014) +0.0% vs inplace, +56.9% vs append_full
+anthropic5m append_full  API=  538,555 (-27.9% vs inplace, +0.0% vs append_full) hit=0.9627 hit_resent=1.0000 maxctx=140,700 | own $0.120 (prefill 0.057 decode 0.061 hold 0.0016) -36.3% vs inplace, +0.0% vs append_full
+anthropic5m errata       API=  479,425 (-35.8% vs inplace, -11.0% vs append_full) hit=0.9630 hit_resent=1.0000 maxctx=124,500 | own $0.103 (prefill 0.047 decode 0.055 hold 0.0014) -45.1% vs inplace, -13.9% vs append_full
+anthropic5m punch        API=  486,341 (-34.9% vs inplace, -9.7% vs append_full) hit=0.9571 hit_resent=0.9999 maxctx=121,200 | own $0.107 (prefill 0.053 decode 0.053 hold 0.0014) -43.0% vs inplace, -10.5% vs append_full
+anthropic5m patch        API=  475,256 (-36.4% vs inplace, -11.8% vs append_full) hit=0.9624 hit_resent=0.9999 maxctx=122,700 | own $0.103 (prefill 0.047 decode 0.054 hold 0.0014) -45.3% vs inplace, -14.2% vs append_full
+openai      inplace      API=  656,795 (+0.0% vs inplace, +30.5% vs append_full) hit=0.8911 hit_resent=0.9281 maxctx=122,700
+openai      append_full  API=  503,380 (-23.4% vs inplace, +0.0% vs append_full) hit=0.9627 hit_resent=1.0000 maxctx=140,700
+openai      errata       API=  448,300 (-31.7% vs inplace, -10.9% vs append_full) hit=0.9630 hit_resent=1.0000 maxctx=124,500
+openai      punch        API=  451,431 (-31.3% vs inplace, -10.3% vs append_full) hit=0.9571 hit_resent=0.9999 maxctx=121,200
+openai      patch        API=  444,059 (-32.4% vs inplace, -11.8% vs append_full) hit=0.9624 hit_resent=0.9999 maxctx=122,700
+inplace      no-miss floor for its own prompt = 450,665
+append_full  no-miss floor for its own prompt = 503,380
+errata       no-miss floor for its own prompt = 448,300
+punch        no-miss floor for its own prompt = 451,205
+patch        no-miss floor for its own prompt = 443,800
+
+== B. 200k window; per policy best (trigger,target); 30 seeds ==
+turns=100 inplace      API=  1,864,960 (+0.0% vs inplace, +54.1% vs append_full) hit_resent=0.9145 compactions=1.0 trig/tgt=150k/40k own $0.50
+turns=100 append_full  API=  1,210,385 (-35.1% vs inplace, +0.0% vs append_full) hit_resent=0.9941 compactions=2.0 trig/tgt=150k/40k own $0.27
+turns=100 errata       API=  1,121,851 (-39.8% vs inplace, -7.3% vs append_full) hit_resent=0.9967 compactions=1.0 trig/tgt=150k/40k own $0.25
+turns=100 punch        API=  1,113,506 (-40.3% vs inplace, -8.0% vs append_full) hit_resent=0.9999 compactions=1.0 trig/tgt=150k/40k own $0.25
+turns=100 patch        API=  1,086,401 (-41.7% vs inplace, -10.2% vs append_full) hit_resent=0.9999 compactions=1.0 trig/tgt=150k/40k own $0.24
+turns=200 inplace      API=  3,947,385 (+0.0% vs inplace, +59.4% vs append_full) hit_resent=0.9177 compactions=3.0 trig/tgt=150k/40k own $1.08
+turns=200 append_full  API=  2,476,824 (-37.3% vs inplace, +0.0% vs append_full) hit_resent=0.9945 compactions=4.0 trig/tgt=150k/40k own $0.56
+turns=200 errata       API=  2,401,521 (-39.2% vs inplace, -3.0% vs append_full) hit_resent=0.9958 compactions=3.0 trig/tgt=150k/40k own $0.53
+turns=200 punch        API=  2,366,118 (-40.1% vs inplace, -4.5% vs append_full) hit_resent=0.9999 compactions=3.0 trig/tgt=150k/40k own $0.54
+turns=200 patch        API=  2,311,451 (-41.4% vs inplace, -6.7% vs append_full) hit_resent=0.9999 compactions=3.0 trig/tgt=150k/40k own $0.51
+turns=400 inplace      API=  8,252,196 (+0.0% vs inplace, +62.1% vs append_full) hit_resent=0.9160 compactions=7.0 trig/tgt=150k/40k own $2.30
+turns=400 append_full  API=  5,090,680 (-38.3% vs inplace, +0.0% vs append_full) hit_resent=0.9947 compactions=9.0 trig/tgt=150k/40k own $1.16
+turns=400 errata       API=  4,929,688 (-40.3% vs inplace, -3.2% vs append_full) hit_resent=0.9952 compactions=8.0 trig/tgt=150k/40k own $1.09
+turns=400 punch        API=  4,873,097 (-40.9% vs inplace, -4.3% vs append_full) hit_resent=0.9999 compactions=7.0 trig/tgt=150k/40k own $1.12
+turns=400 patch        API=  4,739,507 (-42.6% vs inplace, -6.9% vs append_full) hit_resent=0.9999 compactions=8.0 trig/tgt=150k/40k own $1.06
+
+== C. same target for all (quality-matched context budget 195k->140k), 200 turns ==
+inplace      API=  6,915,901 (+0.0% vs inplace, +53.5% vs append_full) compactions=5.0
+append_full  API=  4,504,072 (-34.9% vs inplace, +0.0% vs append_full) compactions=7.0
+errata       API=  4,081,112 (-41.0% vs inplace, -9.4% vs append_full) compactions=5.0
+punch        API=  3,402,160 (-50.8% vs inplace, -24.5% vs append_full) compactions=5.0
+patch        API=  3,341,694 (-51.7% vs inplace, -25.8% vs append_full) compactions=5.0
+
+== D. sensitivity: patch/punch boundary k; diff size; edit frequency (50 turns, Anthropic) ==
+k=   0 patch 474,925  punch 486,052
+k=  32 patch 475,256  punch 486,341
+k= 256 patch 477,575  punch 488,366
+k=2000 patch 495,625  punch 504,130
+diff=  50 errata 474,498 patch 473,704
+diff= 200 errata 479,425 patch 475,256
+diff=1000 errata 505,705 patch 483,536
+diff=2000 errata 538,555 patch 493,886
+edit_every= 2 inplace=+0.0% append_full=-47.0% errata=-59.9% punch=-58.2% patch=-60.8%
+edit_every= 5 inplace=+0.0% append_full=-27.9% errata=-35.8% punch=-34.9% patch=-36.4%
+edit_every=10 inplace=+0.0% append_full=-15.9% errata=-20.3% punch=-19.8% patch=-20.6%
+edit_every=25 inplace=+0.0% append_full=-4.9% errata=-6.2% punch=-6.0% patch=-6.3%
