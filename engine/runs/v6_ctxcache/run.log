@@ -94,3 +94,6 @@ gate: 6/6 parsed {'DEAD': 2, 'WOUNDED': 4}
   tour_g1.r3.j2: 12,251 tokens, 15.5 s
   tour_g1.r3.j1: 12,365 tokens, 17.0 s
   tour_g1: 60 judgments over 10 answers
+  improve_g2: 354,823 tokens, 221.0 s
+WARNING: improve_g2#2 is a fragment (refers to another idea) - excluded from selection
+improve_g2: 3 ideas (1147 words)

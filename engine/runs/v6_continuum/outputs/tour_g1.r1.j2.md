@@ -1,0 +1,5 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both hold. B's margin is 2.0 against A's 1.0, and its whole-chain gain is 20× against 2.0×. The vendor-markup risk on B's SRAM cost per GB is smaller than A's unproven 160 GB of hybrid-bonded DRAM, which one estimate puts at only 0.5 of what is needed.
+PAIR 2 | WINNER A | Both are wounded with similar gains (1.14× vs 1.2×). A's margin is 0.89 and one estimate is above 1. B's margin is a consistent 0.75, because SRAM density is short and that breaks the 144-package weight-pinning fit.
+PAIR 3 | WINNER A | B is close to holding (margin 1.14, unstable) but gains only 1.12×. A's layer-serial pipelining roughly halves its per-user speed (margin 0.61). Even so, it still delivers about 500 tok/s/user at GPU-class cost per token, which is far more than B's marginal gain.
+PAIR 4 | WINNER B | Both depend on the same unproven DRAM density. B needs 0.64 of what has been demonstrated, holds a 1.9× gain, and its power arithmetic checks out. A's margin is 0.32 (about 3× short), and its per-stack current claim is internally off by 2×.

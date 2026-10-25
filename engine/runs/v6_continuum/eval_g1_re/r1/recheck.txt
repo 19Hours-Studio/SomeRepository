@@ -1,0 +1,1 @@
+I1 margin 0.034; I2 0.32 (0.99 vs commodity HBM die); I3 0.64; I4 0.61; I5 0.36; I6 0.355

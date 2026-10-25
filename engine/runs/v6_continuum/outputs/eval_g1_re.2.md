@@ -1,0 +1,13 @@
+=== RECHECK ===
+IDEA 1: per-user bandwidth with layers pipelined across chiplets | required 39 TB/s for one user at 1,000 tok/s (39 GB of weights read per token; my arithmetic) | available 1.32 TB/s (one stage: 312 Gbit ÷ 32 chiplets = 9.75 Gbit × 135 GB/s/Gbit, UniIC VLSI 2023 via FACT 8). The 42 TB/s figure is a total over all chiplets. | MARGIN 0.034
+IDEA 2: DRAM areal density per layer for 80 GB on 2 chiplets × 4 layers | required 0.20 Gb/mm² (640 Gb ÷ (8 layers × 400 mm²); the 400 mm² is taken from the sibling design, not measured) | available 0.064 Gb/mm² (the only measured hybrid-bonded logic-to-DRAM density: Alibaba ISSCC 2022, FACT 14). Commodity HBM3E core is ≥0.198 Gb/mm² (Micron 24 GB 8-high in 11×11 mm, FACT 16), but that has no wide-I/O periphery or power TSVs. | MARGIN 0.32 (0.99 if commodity density were usable as is)
+IDEA 3: wide-I/O hybrid-bonded DRAM areal density per layer | required 0.10 Gb/mm² (640 Gb ÷ (16 layers × 400 mm²)) | available 0.064 Gb/mm² (Alibaba ISSCC 2022, FACT 14). My search for a SeDRAM Gb/mm² figure returned nothing. | MARGIN 0.64 (1.98 against commodity density, which ignores periphery and TSVs)
+IDEA 4: per-user speed with SRAM-resident weights pipelined layer by layer | required 1,000 tok/s/user (the idea's own target) | available 607 tok/s/user. Latency is L·F/P_total = 80 × 140 GFLOP ÷ 6.8 PF = 1.65 ms per token (my arithmetic; the 6.8 PF figure is the idea's own). | MARGIN 0.61
+IDEA 5: share of Rubin HBM time per decode step spent reading weights at 300 tok/s/user, with 545 GB spread over 72 packages | required 0.286 (to reach the idea's 1.4× upper claim: 1 − 1/1.4) | available 0.104 (7.6 GB ÷ 22 TB/s = 0.34 ms of a 3.33 ms step; FACT 19). The 22 TB/s is NVIDIA's peak, and one source says initial bandwidth may be lower (search excerpt, also FACT 12). | MARGIN 0.36 (the share-based cap is 1.115×)
+IDEA 6: weight-read share of Rubin HBM time per decode step at 300 tok/s/user | required 0.291 (1 − 1/1.41, for the 1.41× per-MW gain at 8K). The 1.58× claim at 128K needs 0.367. | available 0.104 (same arithmetic as Idea 5, FACT 19) | MARGIN 0.36 at 8K (0.28 at 128K)
+
+Of these, only the Idea 1 and Idea 4 calculations are my own. The rest rely on the FACT figures, which I did not re-verify against primary sources. The searches added only the HBM4 288 GB / 22 TB/s spec (with the "may be lower" caveat), and nothing on the SeDRAM density.
+
+I wrote the calculation output to `/home/user/SomeRepository/engine/runs/v6_continuum/eval_g1_re/r2/out.txt`. Nothing was committed.
+
+Sources: [guru3d Rubin](https://www.guru3d.com/story/nvidia-details-rubin-gpu-architecture-with-hbm4-nvlink-6-and-336-billion-transistors/), [XMC 3DLink/SeDRAM](https://xmcwh.com/en/site/details/300?details=1)

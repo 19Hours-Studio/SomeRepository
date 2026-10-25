@@ -65,3 +65,22 @@ cross_g1: 3 ideas (534 words)
 /home/user/SomeRepository/engine/runs/v6_continuum/eval_g1/TASK.md
   skip eval_g1 (done)
 gate: 6/6 parsed {'WOUNDED': 4, 'DEAD': 2}
+  eval_g1_re.1: 57,435 tokens, 49.1 s
+  eval_g1_re.2: 55,459 tokens, 51.3 s
+  recheck cross_g1#1: margins 0.52, 0.034, 0.034 -> 0.03 UNSTABLE; WOUNDED -> DEAD
+  recheck cross_g1#2: margins 0.32, 0.32, 0.32 -> 0.32; WOUNDED -> WOUNDED
+  recheck improve_g1#2: margins 0.64, 0.64, 0.64 -> 0.64; WOUNDED -> WOUNDED
+  recheck improve_g1#1: margins 0.53, 0.61, 0.61 -> 0.61; WOUNDED -> WOUNDED
+  recheck cross_g1#3: margins 0.52, 0.36, 0.36 -> 0.36; DEAD -> DEAD
+  recheck improve_g1#3: margins 0.36, 0.355, 0.36 -> 0.36; DEAD -> DEAD
+  tour_g1.r1.j3: 10,271 tokens, 9.2 s
+  tour_g1.r1.j4: 10,198 tokens, 11.8 s
+  tour_g1.r1.j1: 10,876 tokens, 15.6 s
+  tour_g1.r1.j2: 11,033 tokens, 19.3 s
+  tour_g1.r2.j3: 10,177 tokens, 8.3 s
+  tour_g1.r2.j4: 10,171 tokens, 8.9 s
+  tour_g1.r2.j2: 10,405 tokens, 10.6 s
+  tour_g1.r2.j1: 10,395 tokens, 11.1 s
+  tour_g1.r3.j3: 10,155 tokens, 8.6 s
+  tour_g1.r3.j4: 10,121 tokens, 8.6 s
+  tour_g1.r3.j1: 10,462 tokens, 10.5 s

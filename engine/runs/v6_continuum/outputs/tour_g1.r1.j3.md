@@ -1,0 +1,5 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A is alive with a 2.0 margin (unstable, estimates 0.95 to 3.2) and a 20x whole-chain gain; B is alive but its margin is 1.0 (unstable, estimates 0.5 to 1.1) and its gain is only 2.0x, depending on unproven 160 GB hybrid-bonded DRAM per package.
+PAIR 2 | WINNER A | A has a 1.2x whole-chain gain but a margin of 0.75 (wounded, SRAM density about 2x short), whereas B has a 1.14 gain and a 0.89 margin (unstable, unmeasured accuracy); A has the higher gain, a stable margin estimate, and a sound bandwidth-split mechanism, so it edges B.
+PAIR 3 | WINNER A | A is wounded but its margin is 1.14 (unstable, 0.64 to 1.52) with an honest disaggregated design and a 1.12x gain, while B has a margin of 0.61 because layer-serial pipelining limits it to about half the claimed speed, so A holds closer to what it claims.
+PAIR 4 | WINNER A | A has a 0.64 margin but a stable estimate and a 1.9x gain with physics that checks out, while B's margin is 0.32 (needs about 3x the measured density) and its current claim is internally off by 2x, so A is closer to holding.

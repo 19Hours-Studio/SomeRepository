@@ -1,0 +1,5 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B is ALIVE with a 20× gain, though its margin is unstable (0.95–3.2). A is only WOUNDED: its density margin is 0.64 in all three estimates, so it does not hold.
+PAIR 2 | WINNER A | A has a sound bandwidth split and a 1.2× net gain, but its SRAM density is short (margin 0.75). B's margin is unstable and its gain is 1.12×, with HBM energy eating most of its power budget. A gains slightly more and has the more stable estimates.
+PAIR 3 | WINNER A | A is ALIVE with a 2.0× whole-chain gain, which is real if the 160 GB of DRAM holds (margin 1.0, unstable). B is WOUNDED at margin 0.89 and gains only 1.14×.
+PAIR 4 | WINNER A | A is WOUNDED at margin 0.61 but still has a 4.6× whole-chain gain, and its density and capacity totals check out. B's density margin is 0.32 in all three estimates and its current claim is off by 2×, for a 2.2× gain.

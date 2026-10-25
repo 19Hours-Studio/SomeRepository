@@ -1,0 +1,5 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | Both hold, but A's SRAM cost-per-GB margin is 2.0 against B's 1.0 for DRAM capacity, and A's whole-chain gain is 20× against 2×. A's low estimate (0.95) also sits far closer to holding than B's (0.5).
+PAIR 2 | WINNER A | A is a full chip architecture with a stable margin of 0.75 and about 1.2× net gain even after its SRAM shortfall. B is only a KV-compression technique, with an unstable margin, 128K accuracy that has never been measured, and a smaller 1.14× gain.
+PAIR 3 | WINNER A | A's decode-power margin of 1.14 holds at the central estimate, and its trade-offs are stated honestly. B's 4.6× gain rests on a margin of 0.61, because layer-serial pipelining roughly halves the claimed 1,000 tok/s/user, so the gain is a promise rather than a result.
+PAIR 4 | WINNER A | A's DRAM-density margin is 0.64 with consistent physics. B needs the same "no room left" 0.20 Gb/mm² density, giving a margin of only 0.32 (about 3× short of measured), and its per-stack current figure is internally off by 2×.

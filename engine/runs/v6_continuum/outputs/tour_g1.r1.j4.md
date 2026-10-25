@@ -1,0 +1,5 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A is ALIVE with a real, if unstable, ~2.0 whole-chain gain over Rubin (margin 1.0), while B's 20× gain rests on SRAM density about 25% above any shipped die and on a vendor markup that would break its cost limit.
+PAIR 2 | WINNER B | B is WOUNDED with margin 0.75 but still gives a ~1.2× whole-chain gain with honest trade-offs, while A's margin of 0.89 yields only ~1.14× on the system and its 128K accuracy was never measured.
+PAIR 3 | WINNER B | B has a margin of 1.14 and states honest trade-offs (concedes single-user speed and training), while A's layer-serial pipelining cuts it to roughly half its claimed 1,000 tok/s/user (margin 0.61) and its cost edge is only ~1.03×.
+PAIR 4 | WINNER B | B's density shortfall is milder (margin 0.64 vs 0.32) and its modeled gain is nearly as large (1.9 vs 2.2) with the current-draw error fixed, while A needs ~3× the measured hybrid-bonded density.

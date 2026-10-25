@@ -1,14 +1,17 @@
-gap  4 min: expire 12.5 ping 12.5 1h 14.0 -> best expire, 1.00x vs plain 5m
-gap  8 min: expire 127.5 ping 22.5 1h 14.0 -> best 1h, 9.11x vs plain 5m
-gap 12 min: expire 127.5 ping 32.5 1h 14.0 -> best 1h, 9.11x vs plain 5m
-gap 20 min: expire 127.5 ping 42.5 1h 14.0 -> best 1h, 9.11x vs plain 5m
-gap 40 min: expire 127.5 ping 82.5 1h 14.0 -> best 1h, 9.11x vs plain 5m
-gap 55 min: expire 127.5 ping 112.5 1h 14.0 -> best 1h, 9.11x vs plain 5m
-ping vs 1h crossover when the whole prefix must be re-written at 1h: 7.5 pings ~ 42 min
-share of post-gap turns s=0.05: input bill ratio 1.35x
-share of post-gap turns s=0.10: input bill ratio 1.66x
-share of post-gap turns s=0.20: input bill ratio 2.15x
-share of post-gap turns s=0.30: input bill ratio 2.54x
-share of post-gap turns s=0.50: input bill ratio 3.11x
-s needed for 1.5x on input: 0.074
-s needed for 3.0x on input: 0.455
+rule: use 1h TTL when s > s* = 0.75n / (1.15P)
+P=100k n= 2k s=0.00: plain 12.5 | 1h 14.0 | ping 12.5 | adaptive vs plain 1.00x, vs blanket-1h 1.12x  (s*=0.013)
+P=100k n= 2k s=0.02: plain 14.8 | 1h 14.0 | ping 12.9 | adaptive vs plain 1.15x, vs blanket-1h 1.09x  (s*=0.013)
+P=100k n= 2k s=0.10: plain 24.0 | 1h 14.0 | ping 14.5 | adaptive vs plain 1.71x, vs blanket-1h 1.00x  (s*=0.013)
+P=100k n= 2k s=0.30: plain 47.0 | 1h 14.0 | ping 18.5 | adaptive vs plain 3.36x, vs blanket-1h 1.00x  (s*=0.013)
+P=100k n=10k s=0.00: plain 22.5 | 1h 30.0 | ping 22.5 | adaptive vs plain 1.00x, vs blanket-1h 1.33x  (s*=0.065)
+P=100k n=10k s=0.02: plain 24.8 | 1h 30.0 | ping 22.9 | adaptive vs plain 1.08x, vs blanket-1h 1.31x  (s*=0.065)
+P=100k n=10k s=0.10: plain 34.0 | 1h 30.0 | ping 24.5 | adaptive vs plain 1.39x, vs blanket-1h 1.22x  (s*=0.065)
+P=100k n=10k s=0.30: plain 57.0 | 1h 30.0 | ping 28.5 | adaptive vs plain 2.00x, vs blanket-1h 1.05x  (s*=0.065)
+P= 20k n=10k s=0.00: plain 14.5 | 1h 22.0 | ping 14.5 | adaptive vs plain 1.00x, vs blanket-1h 1.52x  (s*=0.326)
+P= 20k n=10k s=0.02: plain 15.0 | 1h 22.0 | ping 14.6 | adaptive vs plain 1.03x, vs blanket-1h 1.51x  (s*=0.326)
+P= 20k n=10k s=0.10: plain 16.8 | 1h 22.0 | ping 14.9 | adaptive vs plain 1.13x, vs blanket-1h 1.48x  (s*=0.326)
+P= 20k n=10k s=0.30: plain 21.4 | 1h 22.0 | ping 15.7 | adaptive vs plain 1.36x, vs blanket-1h 1.40x  (s*=0.326)
+P=  8k n= 4k s=0.00: plain 5.8 | 1h 8.8 | ping 5.8 | adaptive vs plain 1.00x, vs blanket-1h 1.52x  (s*=0.326)
+P=  8k n= 4k s=0.02: plain 6.0 | 1h 8.8 | ping 5.8 | adaptive vs plain 1.03x, vs blanket-1h 1.51x  (s*=0.326)
+P=  8k n= 4k s=0.10: plain 6.7 | 1h 8.8 | ping 6.0 | adaptive vs plain 1.13x, vs blanket-1h 1.48x  (s*=0.326)
+P=  8k n= 4k s=0.30: plain 8.6 | 1h 8.8 | ping 6.3 | adaptive vs plain 1.36x, vs blanket-1h 1.40x  (s*=0.326)

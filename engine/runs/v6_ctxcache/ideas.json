@@ -254,5 +254,36 @@
   "name": "Priced prefix-preserving client",
   "mech": "Runs client-only, against any API. The client fits a survival curve over the idle gaps of each session. It sends a 1-token keep-alive read only when P(return) × 1.25 × prefix exceeds 0.1 × prefix. Instead of editing earlier content in place, it appends errata that reference the original span, so the cached prefix never changes. It compacts and rewrites the prompt only when the accumulated errata cost more than one rewrite.",
   "value": "Edited turns cost about 1.02× instead of 6.11× a cached turn, which together with keep-alive gives about a 2.4× lower bill with no server changes."
+ },
+ {
+  "id": "improve_g2#1",
+  "label": "improve_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "Popularity order with second-sighting cache writes",
+  "mech": "Documents are still sent in order of descending global retrieval count from an online counter (ties broken by ID), with the system prompt first and the question last. Every hit is therefore an exact prefix match and the cached state is exact. Two changes fix the weak link. (1) Second-sighting admission. The client keeps a list of document-prefix hashes it has seen recently, with no cached state behind them. A cache breakpoint is placed only at prefix depths already seen within the TTL window. Documents past that depth go after the last breakpoint and are billed at 1.0x instead of a 1.25x write. This is the CDN \"cache on second hit\" / TinyLFU admission idea applied to breakpoint placement. (2) TTL by traffic regime. The 1-hour TTL (2x write cost) is used when the organisation sends fewer than about 1k requests per 5 minutes, and the 5-minute TTL otherwise. Replay setup: 100k chunks, top-5, Zipf, 4 breakpoints at document depths 2–5, Anthropic multipliers, compared with sending documents uncached. Bill ratios across 10 to 1,000 requests per 5 minutes: - Zipf 1.05: 1.06–1.24x - Zipf 1.2: 1.19–1.44x - Zipf 1.5: 1.46–1.83x The old always-write rule gave 0.88–1.61x and lost money at low traffic. The method now never loses in any tested regime, and 1.5x holds at Zipf 1.5 from about 100 requests per 5 minutes (1.66x), where the old rule needed about 1k. It covers document reordering only. Quality effect: only the reordering itself. Test it by comparing F1/EM and the spread across permutations against relevance order on a real model.",
+  "value": "1.06–1.83x cheaper per request than the best current API practice (documents uncached), with no approximated KV, and it runs client-side only. It no longer loses money at low traffic or flat popularity. Rarely retrieved documents still miss (23–60% of document tokens), so a hit rate near 100% is not reachable.",
+  "parent": "improve_g1#2"
+ },
+ {
+  "id": "improve_g2#2",
+  "label": "improve_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "Probe-gated blending, popularity-ordered exact fallback",
+  "mech": "This runs on your own serving stack or provider-side only. The parts kept from before: - position-independent chunk KV, stored before position rotation is applied; - the EPIC fix (recompute each chunk's first tokens); - CacheBlend's top-r recompute and the seam-window recompute; - the layer-1 deviation probe that sends requests that look multi-source to the exact path. The fix: flagged requests are no longer recomputed in relevance order, which reused only 17% (an 83% prefill). They are re-sent in Idea 1's popularity-first order, so the exact path reuses 0.40–0.77 of document tokens (prefill falls to 0.736, 0.630 and 0.450 of relevance order at Zipf 1.05, 1.2 and 1.5). At the realistic routed share m = 0.25, the bill against plain prefix caching is 1.46, 1.50 and 1.55x (was 1.39x). The largest m that still keeps 1.5x rises from 0.12 to 0.19, 0.24 and 0.46. The honest stronger baseline is prefix caching plus popularity order. Against it, blending adds only 1.25, 1.19 and 1.08x at m = 0.25, and less at steep popularity, because the exact path already captures most of the reuse. It covers reordering, moved or re-read tool outputs, and text after an insertion. Changed spans and multi-source requests get exact recompute. Memory and latency are unchanged (128 KiB per token at 8B; 4k tokens load in 10.7 ms over PCIe5).",
+  "value": "About 1.5x cheaper than plain prefix caching at m ≈ 0.25, but only 1.08–1.25x on top of popularity-ordered prefix caching. Two things still need a real-model run on 2WikiMQA, MuSiQue and agent replays: probe recall and quality on single-source requests. Blending is worth it only where popularity is flat.",
+  "fragment": true,
+  "parent": "improve_g1#1"
+ },
+ {
+  "id": "improve_g2#3",
+  "label": "improve_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "Per-session TTL switch from return hazard",
+  "mech": "The client measures, per session, s (the share of turns that come back after a 5–60 minute gap) and n/P (tokens written per turn divided by the cached prefix). It uses the 1-hour TTL when s > s* = 0.75n/(1.15P). Otherwise it uses the 5-minute TTL with a 1-token keep-alive read sent only while the return probability exceeds 0.08 per window. Prior art is Claude Code's static `promptCacheTtl`/`subagentPromptCacheTtl` (5m or 1h per request type, about v2.1.243). What this adds is choosing the TTL per session from measured s and n/P. Input-bill ratios: - Long agent session (100k prefix, 2k tokens per turn, s* = 0.013): 1.15x at s = 0.02 and 1.71x at s = 0.10 against plain 5-minute TTL. It matches a blanket 1-hour TTL there. - Short-prefix sessions with large writes (s* = 0.33): 1.40–1.52x cheaper than a blanket 1-hour TTL. On the Mooncake traces the measured rewrite share is f = 0.09–0.11, so the ceiling there is only 1.07–1.10x. It covers no edit cases, only expiry. Output is byte-identical, so there is no quality risk. It runs client-only with zero added latency.",
+  "value": "1.0–1.5x on input against the best static TTL choice. The gain is large only for sessions with real 5–60 minute pauses, and nothing on short-gap traffic. This is the smallest honest version: it cannot make edited or reordered context cheaper.",
+  "parent": "g1_mech#1"
  }
 ]

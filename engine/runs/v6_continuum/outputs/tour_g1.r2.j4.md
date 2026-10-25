@@ -1,0 +1,5 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A is ALIVE with a 20x gain and a 2.0 margin (unstable, but the estimates straddle 1), while B is WOUNDED at margin 0.64 with a 1.9x gain, so A holds and B does not.
+PAIR 2 | WINNER B | B is WOUNDED at margin 0.75 but still has a 1.2x gain from a sound bandwidth split, while A is WOUNDED with an unstable 1.14 margin and only a 1.12x gain that mostly restates disaggregated practice.
+PAIR 3 | WINNER B | B is ALIVE with a 2.0x gain at margin 1.0, which is unstable but may hold, while A is WOUNDED at margin 0.89 with an unmeasured accuracy claim and only a 1.14x gain.
+PAIR 4 | WINNER B | B is WOUNDED at margin 0.61 but keeps a 4.6x gain with checked density, capacity and compute totals, while A is WOUNDED at margin 0.32 and needs a density about 3x beyond what has been measured.
