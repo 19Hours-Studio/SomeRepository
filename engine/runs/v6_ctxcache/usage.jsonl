@@ -30,3 +30,4 @@
 {"step": "gen:tour_g0.r3.j3", "time": "2026-10-25 13:25:47", "model": "sonnet", "tools": "", "tokens": 8473, "output_tokens": 274, "cache_read": 1496, "fresh_input": 6703, "cost_usd": 0.0296976, "turns": 1, "seconds": 16.8}
 {"step": "repair:improve_g1", "time": "2026-10-25 13:31:05", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 781913, "output_tokens": 26698, "cache_read": 701146, "fresh_input": 54069, "cost_usd": 1.1538420999999999, "turns": 23, "seconds": 318.3}
 {"step": "gen:cross_g1", "time": "2026-10-25 13:31:50", "model": "opus", "tools": "", "tokens": 14450, "output_tokens": 3627, "cache_read": 1496, "fresh_input": 9327, "cost_usd": 0.1474472, "turns": 1, "seconds": 45.3}
+{"step": "review:eval_g1.2", "time": "2026-10-25 13:33:17", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 80732, "output_tokens": 6261, "cache_read": 57226, "fresh_input": 17245, "cost_usd": 0.2981579, "turns": 5, "seconds": 86.5}

@@ -1,0 +1,23 @@
+[I1] need GB old (FP8) 111.6  new (NVFP4) 62.8
+[I1] MB/die at 14.2 Mb/mm2 on 80 mm2 = 142; dies 448; pkgs 14; capacity 63.7 GB
+[I1] compute need 5.01 PF FP8, have 6.77 PF -> margin 1.35
+[I1] cost at build 113 k$, with 2x markup 226 k$ -> 3540 $/GB; allowed 2637 $/GB at original budget
+[I1] power 14.6 kW; $/Mtok 0.068 at 1000 tok/s/user (GB300 ~0.07 at ~50 tok/s, gate-check figure)
+[I1] margin on $/system vs original 168k$ budget: 0.74
+[I2] density 0.20 Gb/mm2 x 4-high -> 160 GB; need 50 GB/s/Gb (SeDRAM measured 135)
+[I2] density 0.10 Gb/mm2 x 4-high -> 80 GB; need 100 GB/s/Gb (SeDRAM measured 135)
+[I2] ctx   8192 N=16  Rubin  18950 tok/s/kW | 160GB  44096 | 80GB  31049 -> 80GB/Rubin 1.64x (user ceiling 800 tok/s)
+[I2] ctx   8192 N=32  Rubin  20268 tok/s/kW | 160GB  50305 | 80GB  43220 -> 80GB/Rubin 2.13x (user ceiling 800 tok/s)
+[I2] ctx   8192 N=64  Rubin  20926 tok/s/kW | 160GB  53410 | 80GB  49305 -> 80GB/Rubin 2.36x (user ceiling 800 tok/s)
+[I2] ctx 131072 N=16  Rubin   1184 tok/s/kW | 160GB   2756 | 80GB   1941 -> 80GB/Rubin 1.64x (user ceiling 800 tok/s)
+[I2] ctx 131072 N=32  Rubin   1267 tok/s/kW | 160GB   3144 | 80GB   2701 -> 80GB/Rubin 2.13x (user ceiling 800 tok/s)
+[I2] ctx 131072 N=64  Rubin   1308 tok/s/kW | 160GB   3338 | 80GB   3082 -> 80GB/Rubin 2.36x (user ceiling 800 tok/s)
+[I2] 667 A per chiplet -> 66667 power TSVs -> 15.0% of a 400 mm2 DRAM layer at 30 um pitch
+[I3] GB/pkg raw 2.84 usable 2.56 -> min pkgs 213, domain 224 (was 144)
+[I3] per-pkg 42780 tok/s x 14.0 MB a2a = 0.60 TB/s scale-up (NVLink6 ~3.6 TB/s/GPU, S)
+[I3] base-die silicon $184 each, $368 per pkg
+[I3] 8K >=100    per-MW 1.12x -> net cost gain 0.97-1.07x
+[I3] 8K >=300    per-MW 1.41x -> net cost gain 1.23-1.34x
+[I3] 128K >=100  per-MW 1.14x -> net cost gain 0.99-1.09x
+[I3] 128K >=300  per-MW 1.58x -> net cost gain 1.37-1.50x
+[I3] SRAM chips vs Groq LP30 1064: 448 -> 2.4x fewer
