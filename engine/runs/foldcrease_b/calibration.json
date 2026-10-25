@@ -1,0 +1,12 @@
+{
+ "p": {
+  "repair#2": 0.3,
+  "repair#4": 0.05,
+  "repair#3": 0.04,
+  "repair#1": 0.06,
+  "none": 0.55
+ },
+ "weakest_link": "Idea 1 depends on how much curvature a free-standing 20 µm panel (colour filter on encapsulation, on-cell touch) retains as set. The residual slope scales linearly with that set (set × π × D-ratio). To reach 0.3 mrad with 5 leaves, retained set must be about 2% or less, not the assumed 10%.",
+ "flip_test": "This is also the cheapest experiment. Fold bare 20 µm panel coupons, with no adhesive, at R = 2.5 mm:\n- 2000 cycles at 60 °C and 90% relative humidity,\n- plus 24 h held folded at 60 °C,\n- then measure the retained curvature with a profilometer after 1 h of recovery.\n\nHow to read the result:\n- **Set of 2% or less:** idea 1 rises to about 55–60% and \"none\" falls.\n- **Set of 5% or more:** idea 1 cannot be invisible even with 5 leaves (≥0.8 mrad). It falls to about 10%, and \"none\" rises to about 75%.\n\nA second cheap check is to thermally cycle a 7-film fluid sandwich from −20 to 60 °C and inspect it for bubbles. If bubbles appear, idea 1 falls just as far, whatever the set result.",
+ "unknown": "Even if idea 1 works, three things remain unverified:\n- Whether 0.3 mrad and about 1 µm are truly invisible under specular off-axis light and to a sliding finger or stylus. No published human-threshold data was cited.\n- How the sealed fluid stack holds up over years of permeation, outgassing and drop shock."
+}

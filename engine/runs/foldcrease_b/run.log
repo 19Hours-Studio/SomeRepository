@@ -40,3 +40,23 @@ repair: 4 ideas (2898 words)
 /home/user/SomeRepository/engine/runs/foldcrease_b/audit_final/TASK.md
   audit_final: 227,753 tokens, 412.8 s
   audit_final: 4 new facts -> evidence.md
+  calibrate: 11,263 tokens, 20.4 s
+
+FINAL (blind review; p = stated probability of being the best answer):
+  1. repair#2       F0/M3/m2 fit 0.00 ratio 0.94 known partly p 30%  Fluid-slip glass-leaf sandwich
+  2. repair#4       F1/M1/m1 fit 0.00 ratio 0.99 known partly p 5%  Glass-carried thermally scheduled tension
+  3. repair#3       F1/M2/m3 fit 0.00 ratio 0.93 known partly p 4%  Centre-pinned capillary-wrung glass sandwich
+  4. repair#1       F1/M3/m1 fit 0.00 ratio 0.99 known partly p 6%  Load-cell-scheduled drumhead hinge
+  none of these: p 55%
+  weakest link: Idea 1 depends on how much curvature a free-standing 20 µm panel (colour filter on encapsulation, on-cell touch) retains as set. The residual slope scales linearly with that set (set × π × D-ratio). To reach 0.3 mrad with 5 leaves, retained set must be about 2% or less, not the assumed 10%.
+  flip test: This is also the cheapest experiment. Fold bare 20 µm panel coupons, with no adhesive, at R = 2.5 mm:
+- 2000 cycles at 60 °C and 90% relative humidity,
+- plus 24 h held folded at 60 °C,
+- then measure the retained curvature with a profilometer after 1 h of recovery.
+
+How to read the result:
+- **Set of 2% or less:** idea 1 rises to about 55–60% and "none" falls.
+- **Set of 5% or more:** idea 1 cannot be invisible even with 5 leaves (≥0.8 mrad). It falls to about 10%, and "none" rises to about 75%.
+
+A second cheap check is to thermally cycle a 7-film fluid sandwich from −20 to 60 °C and inspect it for bubbles. If bubbles appear, idea 1 falls just as far, whatever the set result.
+spent 2,079,739 tokens, $8.42
