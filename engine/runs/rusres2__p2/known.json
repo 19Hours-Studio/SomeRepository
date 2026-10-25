@@ -1,0 +1,30 @@
+{
+ "g1_rf1#3": {
+  "known": "partly",
+  "closest": "\"Russia's Novatek postpones Arctic LNG 2 third line to 2028\", PGJ Online (Aug 2024), with a 2020 Argus plan that tied the second Arc7 batch to the Train 3 start",
+  "url": "https://pgjonline.com/news/2024/august/russias-novatek-postpones-arctic-lng-2-third-line-to-2028",
+  "same": "Train 3 work is paused or deferred while carriers are short, and Train 3 gear is shared with other trains.",
+  "new": "A formal hull ledger (hulls delivered × 2.6 Mt/y against 13.2 Mt/y) that releases Train 3 capex by rule, and Train 3 gas turbines and modules sent to Trains 1–2 as spares. I found no source that sets such a trigger."
+ },
+ "g1_neg#1": {
+  "known": "partly",
+  "closest": "Arc7 winter shuttle between the Gulf of Ob and the Saam FSU, Ura Bay (Christophe de Margerie since Dec 2025; Alexey Kosygin from Feb 2026), reported by Barents Observer and Marine Insight",
+  "url": "https://www.marineinsight.com/shipping-news/russias-arc7-lng-carrier-alexey-kosygin-completes-first-arctic-lng-delivery/",
+  "same": "Arc7 hulls shuttle on the ice leg to the Saam FSU and hand cargo to conventional carriers. Novatek plans a four-day turnaround. The Yamal LNG Kildin and Zeebrugge transfers are the same mechanism.",
+  "new": "FOB sale at the FSU, a fixed Jan–Jul split between shuttle-limited and design-rate running with buyer-chartered open-water hulls in the ice-free months, and Train 3 parts used as spares. No source describes this operating rule or the cost split."
+ },
+ "g1_ledger#1": {
+  "known": "partly",
+  "closest": "Arc7 shuttle Gydan–Saam FSU with a four-day turnaround plan (Marine Insight, Barents Observer, 2026); summer seasonal shift of transfers to the Koryak FSU (gCaptain 2026)",
+  "url": "https://www.marineinsight.com/shipping-news/russias-arc7-lng-carrier-alexey-kosygin-completes-first-arctic-lng-delivery/",
+  "same": "Arc7 hulls run the short ice leg to Ura Bay in winter, and the fleet moves in summer to the east and the Koryak FSU. Yamal LNG ran the same short-leg logic with Zeebrugge and Kildin.",
+  "new": "A fixed rule that every new hull stays on the short cycle, with a direct NSR run to China from July to November only if it beats two shuttle cycles. The 14-day winter round-trip threshold and the utilisation arithmetic are also new."
+ },
+ "g1_mech#3": {
+  "known": "partly",
+  "closest": "Rosneft Vostok Oil launch, first Arc7 loading at Bukhta Sever, Sept 2026 (S&P Global; gCaptain), and the existing Vankor–Purpe line into Transneft (about 550 km, 600 kb/d)",
+  "url": "https://www.spglobal.com/energy/en/news-research/latest-news/crude-oil/090626-russia-launches-major-vostok-oil-project-with-first-arctic-loading",
+  "same": "Vankor crude already goes south through Purpe and Transneft. S&P flags the ice-class tanker shortage as limiting the northern route. A 2021 report said Rosneft would use existing tankers via Murmansk until new ones arrive.",
+  "new": "A monthly allocation rule that caps Bukhta Sever at what the Arc7 fleet can lift (about 2.1 Mt/y per hull) and sends the surplus south, sized by spare Transneft capacity. I found no source describing this rule."
+ }
+}

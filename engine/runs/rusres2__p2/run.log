@@ -26,3 +26,6 @@ g1_rf2: 3 ideas (555 words)
   gate: 370,819 tokens, 216.7 s
 gate: 4/4 parsed {'DEAD': 4}
   gate: 6 new facts -> evidence.md
+  known: 42,582 tokens, 36.9 s
+  known: g1_rf1#3 partly, g1_neg#1 partly, g1_ledger#1 partly, g1_mech#3 partly (4/4 parsed)
+/home/user/SomeRepository/engine/runs/rusres2__p2/repair/TASK.md
