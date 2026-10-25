@@ -19,3 +19,10 @@ TYPE invent; MODE standard
   ledger: 75,707 tokens, 44.8 s
 ledger: 809 words
 /home/user/SomeRepository/engine/runs/rusres/attempts/TASK.md
+  attempts: 74,699 tokens, 38.4 s
+attempts: 1692 words
+Target: 3x cheaper. Ceiling = 1 / (share no engineering can touch: taxes, royalties, fees, margins). 'needs' = the fewest cost terms that must each fall 10x to reach the target.
+ARCHETYPE A: Gydan/Yamal pipeline-gas to LNG, modular plant on a gravity base, Arc7 shipping (Yamal LNG | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: capital 1.73x; outbound logistics 1.25x; processing 1.10x; energy 1.06x; labour 1.03x; inbound logistics 1.02x | 3x needs: capital, outbound logistics, processing | TIGHT
+ARCHETYPE B: Norilsk underground Ni-Cu-PGM mining, Talnakh concentrator, Kola/Norilsk smelting, Dudinka | untouchable 11.0% -> ceiling 9.1x | 10x cut of one term: capital 1.50x; labour 1.32x; processing 1.11x; energy 1.06x; outbound logistics 1.05x; inbound logistics 1.03x | 3x needs: capital, labour, processing | TIGHT
+ARCHETYPE C: Open-pit gold on permafrost, CIL/flotation, road/winter-road supply (Polyus Natalka, Magad | untouchable 20.0% -> ceiling 5.0x | 10x cut of one term: processing 1.37x; labour 1.29x; energy 1.12x; inbound logistics 1.12x; outbound logistics 1.01x; capital 1.00x | 3x needs: processing, labour, energy, inbound logistics | NO ROOM
+ARCHETYPE D: Greenfield copper-gold with no infrastructure (Baimskaya; benchmark KAZ Minerals feasibili | untouchable 10.0% -> ceiling 10.0x | 10x cut of one term: capital 1.66x; processing 1.14x; outbound logistics 1.10x; energy 1.10x; labour 1.08x; inbound logistics 1.04x | 3x needs: capital, processing, outbound logistics, energy | NO ROOM
