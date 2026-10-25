@@ -441,6 +441,7 @@ def main():
             out = subprocess.run([sys.executable, os.path.join(HERE, "ce.py"), "compare", R15, "--ids", ",".join(base[:2] + ["OLD:known#1"])], capture_output=True, text=True, env=env)
             cj = json.load(open(os.path.join(HERE, "runs", R15, "compare.json"))); assert len(cj["ids"]) == 3 and all(len(r["per_review"]) == 2 for r in cj["rows"].values()), out.stdout + out.stderr[-600:]
             assert "| 1 |" in open(os.path.join(HERE, "runs", R15, "compare.md")).read()
+            assert "| BASE |" in open(os.path.join(HERE, "runs", R15, "compare.md")).read()
             shutil.rmtree(os.path.join(HERE, "runs", R15), ignore_errors=True)
             # v5 make: research -> reframes -> concepts -> triage -> two builds -> blind review of renders -> repair -> final review
             ideas3 = "".join(f"IDEA {k}\nNAME: page{k}\nMECHANISM: threshold gate opens the catalogue {k}.\nVALUE: visitors find releases {k}.\n\n" for k in (1, 2, 3))

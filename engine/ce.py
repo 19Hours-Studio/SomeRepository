@@ -1587,10 +1587,35 @@ def cmd_baseline(a):
     if os.path.exists(out) and not a.force: print("  skip baseline (done)")
     else:
         cfg = load(R, "config.json", {}); s = tpl("baseline_task").replace("{QUESTION}", cfg["question"]).replace("{NOTES}", cfg.get("notes") or "(none)")
+        s = s.replace("{ANSWERFORMAT}", BASE_FMT["explain" if run_kind(cfg) == "explain" else "invent"])
         s = s.replace("{WORKDIR}", os.path.abspath(dd) + "/"); open(os.path.join(dd, "TASK.md"), "w").write(s)
         text, u = runner.call(s, model=a.model, tools=a.tools, cwd=dd, budget_usd=a.budget_usd)
         open(out, "w").write(text); runner.log(rdir(R), "baseline:baseline", u); print(f"  baseline: {u['tokens']:,} tokens, ${u['cost_usd']:.2f}")
     cmd_ingest(argparse.Namespace(run=R, label="baseline", arm="BASE", gen=1, parents=None, transcript=None, file=out))
+
+BASE_FMT = {"invent": "IDEA 1\nNAME: (max 6 words)\nMECHANISM: (3-7 sentences, with the decisive numbers)\n"
+                      "VALUE: (1-2 sentences, with the effect per unit of product against the best current practice)",
+            "explain": "IDEA 1\nNAME: (max 6 words)\nMECHANISM: (3-6 sentences: what the thing was or what happened, how it worked, and what each "
+                       "distinctive feature in the evidence does in this explanation)\nVALUE: (2 sentences: which hard facts this explains that the "
+                       "rival explanations do not, and one cheap decisive test)"}  # the same shape the pipeline's repaired finalists have
+
+def cmd_vsbase(a):
+    """v5.3 benchmark against a plain call: for an earlier run SRC, a fresh run vs_SRC with the same question and notes gets
+    the plain baseline (same model and tools, one call), SRC's top finalists by its final audit are imported, and several
+    independent blind reviewers compare them all (`compare`). About $3-5 per question."""
+    import shutil
+    S = a.src; R = a.run or f"vs_{S}"; cfg = load(S, "config.json", {})
+    if not os.path.exists(path(R, "config.json")):
+        cmd_init(argparse.Namespace(run=R, question=cfg["question"], format=cfg["format"], n=cfg.get("n", 3), force=True))
+        c = load(R, "config.json", {}); c.update({k: cfg[k] for k in ("notes", "slice_facts") if k in cfg}); c["tag"] = f"vs_{cfg.get('tag') or S}"; save(R, "config.json", c)
+        if os.path.exists(path(S, "evidence.md")): shutil.copy(path(S, "evidence.md"), path(R, "evidence.md"))  # facts the reviewers may use, for both sides
+    cmd_baseline(argparse.Namespace(run=R, model=a.model, tools="research", budget_usd=a.budget_usd, force=False))
+    own = [i for i in review_rank(parse_review(os.path.join(rdir(S), "audit_final"))) if ":" not in i][:a.top]
+    if not own: sys.exit(f"{S} has no final audit to take finalists from")
+    cmd_import(argparse.Namespace(dst=R, src=S, arm="ENGINE", ids=",".join(own)))
+    base = [i["id"] for i in load(R, "ideas.json", []) if i["arm"] == "BASE"]
+    cmd_compare(argparse.Namespace(run=R, ids=",".join(base + [f"ENGINE:{i}" for i in own]), reviewers=a.reviewers, model=a.model,
+                                   tpl="redteam_explain" if run_kind(cfg) == "explain" else "redteam_task"))
 
 def cmd_compare(a):
     """v5.2: several independent blind reviews (each its own random order) of the same ideas; mean FATAL and MAJOR per
@@ -1622,6 +1647,13 @@ def cmd_compare(a):
     for k, i in enumerate(rank, 1):
         r = agg_[i]; out.append(f"| {k} | {names.get(i, (i,))[0]} | {names.get(i, ('', '?'))[1]} | {r['FATAL']:.1f}/{r['MAJOR']:.1f}/{r['MINOR']:.1f} | "
                                 f"{', '.join(r['per_review'])} | {r['ratio'] if r['ratio'] is None else round(r['ratio'], 2)} | {r['known']} |")
+    arms = defaultdict(list)
+    for k, i in enumerate(rank, 1): arms[names.get(i, ("", "?"))[1]].append((k, agg_[i]))
+    out += ["", "| arm | n | best rank | mean FATAL | mean MAJOR | mean ratio | known yes share |", "|---|---|---|---|---|---|---|"]
+    for arm, xs in arms.items():
+        rat = [r["ratio"] for _, r in xs if r["ratio"] is not None]; kn = [x for _, r in xs for x in r["known"].split("/")]
+        out.append(f"| {arm} | {len(xs)} | {min(k for k, _ in xs)} | {sum(r['FATAL'] for _, r in xs) / len(xs):.2f} | {sum(r['MAJOR'] for _, r in xs) / len(xs):.2f} | "
+                   f"{(sum(rat) / len(rat)) if rat else float('nan'):.2f} | {kn.count('yes')}/{len(kn)} |")
     open(path(R, "compare.md"), "w").write("\n".join(out) + "\n"); print("\n".join(out))
 
 BRIEF_KEYS = ("TYPE", "QUESTION", "SUCCESS", "CONSTRAINTS", "CONTEXT", "DATA", "ASSUMPTIONS", "CORRECTED", "UNCLEAR", "MODE")
@@ -1733,6 +1765,8 @@ def main():
     x = sp.add_parser("usage"); x.add_argument("run")
     x = sp.add_parser("baseline"); x.add_argument("run"); x.add_argument("--model", default="opus"); x.add_argument("--tools", default="research")
     x.add_argument("--budget-usd", type=float, help="cap for the single call"); x.add_argument("--force", action="store_true")
+    x = sp.add_parser("vsbase"); x.add_argument("src"); x.add_argument("--run"); x.add_argument("--top", type=int, default=3)
+    x.add_argument("--reviewers", type=int, default=2); x.add_argument("--model", default="opus"); x.add_argument("--budget-usd", type=float, default=8)
     x = sp.add_parser("compare"); x.add_argument("run"); x.add_argument("--ids", required=True); x.add_argument("--reviewers", type=int, default=2)
     x.add_argument("--model", default="opus"); x.add_argument("--tpl", default="redteam_task")
     x = sp.add_parser("ask"); x.add_argument("run"); x.add_argument("question"); x.add_argument("--max-tokens", type=int)
