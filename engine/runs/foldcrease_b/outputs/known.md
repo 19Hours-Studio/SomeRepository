@@ -1,0 +1,19 @@
+=== KNOWN ===
+IDEA 1: KNOWN partly | CLOSEST: US 11546986 "Foldable support and display device" (lubricating layer or air gap in the bend zone so adjacent layers slide), plus US 10147772 (compliant adhesive decoupling layers into multiple neutral planes), Korean-origin family, ~2023 | https://patents.justia.com/patent/11546986 | SAME: layers left free to slide in the bend zone, with a lubricating layer, air gap or non-bonded layer so each layer bends about its own neutral plane; adhesive bonding kept outside the bend zone (Samsung Display US 11985770 omits adhesive there) | NEW: a sealed, index-matched ~5 µm silicone fluid film between the glass, OLED and support of an optical stack, with a gap-uniformity and edge-seal retention criterion. No fluid-filled optical stack was found; the 11546986 layers are metal supports. | 
+
+IDEA 2: KNOWN yes | CLOSEST: EP 4738056 A1, Apple, 2026 (tension assembly applies tension to the flexible display in the flat state; spring and slider) | https://www.goveda.com/patent/EP-4738056-A1 | SAME: hinge or housing mechanism puts the display in in-plane tension when flat, and relaxes it when folded. Also US 12541230 (tension assembly keeps the panel flat and reduces the crease when unfolded), US 9874904 and US 10852774 (elastic pulling belt). | NEW: nothing material. Only the µm-depth tension target against OCA creep and UTG edge-stress limits is specific to the idea. |
+
+IDEA 3: KNOWN partly | CLOSEST: US 11546986, Korean-origin family, ~2023 (lubricating layer or air gap lets adjacent layers slip in the bend) and US 10147772 (compliant adhesive gives partial decoupling, multiple neutral planes) | https://patents.justia.com/patent/11546986 | SAME: removing or replacing the shear-coupling adhesive in the fold band so layers slip and each bends about its own midplane; low-modulus, high-recovery OCAs. | NEW: an index-matched sealed gel or fluid replacing the OCA in the optical stack, with the set after 8 h at 60 °C as the criterion, plus colour-filter-on-encapsulation in place of the polarizer. Searches found no fluid or gel in the OCA position. |
+
+IDEA 4: KNOWN yes | CLOSEST: EP 4738056 A1, Apple, 2026 (tension in the flat state) and US 12541230 (tension assembly flattens the panel and reduces the crease); sliding-plate patents US 12698659 and US 12032416 (tension module pushes the sliding base outward) | https://patents.google.com/patent/US12032416 | SAME: a teardrop or water-drop hinge whose wing plates slide outward when opened, tensioning the panel against a support plate. | NEW: nothing core. Only the numeric choices (R ≥ 3 mm, ~0.1% tension) are new. |
+
+IDEA 5: KNOWN yes | CLOSEST: EP 4738056 A1, Apple, 2026 | https://www.goveda.com/patent/EP-4738056-A1 | SAME: a slider or cam moves the panel ends outward on opening, applying sustained in-plane tension against the support in the flat state. Also US 10852774, US 9874904 and US 12541230. | NEW: nothing in mechanism. Only the quantitative membrane-tension model (600 N/m, ~90 N, flattening length 0.5 mm) is specific. |
+
+IDEA 6: KNOWN partly | CLOSEST: EP 4738056 A1, Apple, 2026 (tension assembly applied only past a threshold hinge angle, i.e. at the end of opening) and US 12541230 | https://www.goveda.com/patent/EP-4738056-A1 | SAME: cams or sliders pull the panel in the last degrees of opening, putting the panel in tension to flatten it. | NEW: load cells in the hinge that store the zero-slope tension and adapt it with temperature, i.e. closed-loop control. No patent with a tension sensor was found. |
+
+Sources:
+- https://patents.justia.com/patent/11546986
+- https://www.goveda.com/patent/EP-4738056-A1
+- https://patents.google.com/patent/US12032416
+- https://patents.google.com/patent/US10147772B2/Direct
+- https://patents.google.com/patent/US11985770

@@ -28,3 +28,8 @@ g1_rf2: 3 ideas (842 words)
   skip gate (done)
 gate: 8/8 parsed {'DEAD': 6, 'WOUNDED': 2}
   gate: 11 new facts -> evidence.md
+  known: 39,497 tokens, 39.4 s
+  known: g1_mech#2 partly, g1_rf1#3 yes, g1_rf2#1 partly, g1_rf2#3 yes, g1_neg#2 yes, g1_ledger#2 partly (6/6 parsed)
+/home/user/SomeRepository/engine/runs/foldcrease_b/repair/TASK.md
+/home/user/SomeRepository/engine/runs/foldcrease_b/repair/c1/TASK.md
+/home/user/SomeRepository/engine/runs/foldcrease_b/repair/c2/TASK.md
