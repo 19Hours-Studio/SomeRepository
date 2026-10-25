@@ -53,3 +53,7 @@ gate: 10/10 parsed {'WOUNDED': 6, 'DEAD': 4}
   tour_g0.r1.j3: 8,145 tokens, 10.2 s
   tour_g0.r1.j2: 8,602 tokens, 13.5 s
   tour_g0.r1.j1: 8,637 tokens, 13.9 s
+  tour_g0.r2.j4: 8,640 tokens, 9.4 s
+  tour_g0.r2.j3: 8,610 tokens, 10.0 s
+  tour_g0.r2.j2: 9,168 tokens, 15.2 s
+  tour_g0.r2.j1: 9,312 tokens, 18.4 s

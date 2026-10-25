@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | B's margin is higher (0.53) and its estimates agree. A's is lower (0.4) and its estimates split. B also adds something new over prior art: lookup that finds a reused span at any offset, plus a quality gate that falls back to exact recompute. A only stacks existing pieces, so its larger gain (1.8 vs 1.64) rests on a weaker margin.
+PAIR 2 | WINNER A | A's margin is uncertain (1.8, but estimates range down to 0.09), and its gain is a modest 1.16 when KV stays in GPU memory. B's margin of 0.5 falls clearly short, and the checks could not verify a whole-chain gain for it. An uncertain margin beats one that does not hold.
+PAIR 3 | WINNER B | Both gains are about 1.2x. B's margin (0.9) is far closer to holding than A's (0.325), B runs entirely on the client, and it cannot change the output.

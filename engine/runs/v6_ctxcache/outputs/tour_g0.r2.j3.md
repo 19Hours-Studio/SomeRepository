@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both are WOUNDED with similar gain (1.64 vs 1.8), but B's quality margin is stable (0.53, estimates agree) and it states honestly that multi-hop cannot reach full quality, while A's margin is 0.4 and unstable (0.3 to 0.5), and A restates what already ships in LMCache.
+PAIR 2 | WINNER B | B's gain is not computed ("None") but it still has a sound mechanism and cheap loading, with a stable margin of 0.5. A's gain is only 1.16 and its deciding PCIe bandwidth margin is unstable (0.09 to 1.8), with the CPU/SSD fetch failing by 5–10x at serving batch sizes.
+PAIR 3 | WINNER B | B's gain is 1.21 against A's 1.23, essentially equal, but B's margin is higher (0.9 vs 0.325) and it cannot hurt output quality, while A's best case stays under 1.25x because most of the write term is unavoidable new tokens.

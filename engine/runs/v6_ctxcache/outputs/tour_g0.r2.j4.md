@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER B | Both are wounded on the same quality margin (B 0.4 vs A 0.53), but B has the higher whole-chain gain (1.8 vs 1.64) and the canonical ordering turns most reorders into lossless exact hits, so the lossy repair applies only to the remainder. A's quality margin is slightly better, but it is still below 1 and its gain is smaller.
+PAIR 2 | WINNER A | A's margin of 0.5 is stable and its repair is real, though its whole-chain gain is only about 1.1–1.45x. B's per-query CPU/SSD page fetching fails on PCIe bandwidth by 5–10x, and if KV stays in HBM its gain is only about 1.16x, so it does not hold as described.
+PAIR 3 | WINNER A | A's gain is 1.21 against 1.23 for B, which is effectively a tie, but A's margin of 0.9 (estimates 0.51 to 1.0) is far closer to holding than B's 0.325, and B's second-breakpoint fix is already standard practice. A cannot hurt output quality and needs only client-side logs.

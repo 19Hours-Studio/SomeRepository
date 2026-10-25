@@ -1,0 +1,4 @@
+=== TOURNAMENT ===
+PAIR 1 | WINNER A | A's repair-quality margin is stable at about 0.53 across agreeing estimates; B's is lower and split (0.4 from 0.3 and 0.5) and mostly restates LMCache/CacheBlend/EPIC, so B's slightly higher 1.8x gain does not offset its weaker quality margin.
+PAIR 2 | WINNER A | A's edit-local repair targets middle edits and insertions directly, with a sound mechanism and an estimated 1.1–1.45x system gain; B's CPU/SSD per-step page fetch fails PCIe bandwidth by 5–10x as written (margin unstable, 0.09 vs 1.8), leaving only about 1.16x from the HBM-only fallback, and it does not address the hit-rate goal.
+PAIR 3 | WINNER A | Similar gains (1.21x vs 1.23x), but A's margin is much closer to holding (0.9 vs 0.325) and A cannot affect output quality; B's removable share is small, and its second-breakpoint fix is already existing guidance.
