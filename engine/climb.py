@@ -77,6 +77,21 @@ REAL GAIN A: <the gain over the best current practice that A really supports, or
 REAL GAIN B: <the same for B>
 """
 
+RANK = """QUESTION:
+{QUESTION}
+
+The current folder holds {N} answers to this question: {NAMES}. The files behind each one (code, data, outputs) are in:
+{FILES}
+
+Find out which one is really better for the person who asked, and rank them all. How you check is up to you: read and
+run their code, write your own calculations, search for prior art and real figures. You may write files in the
+current folder.
+
+End your reply with these lines:
+RANKING: <all labels, best first, e.g. C2 > C1 > C3>
+WHY: <2-4 sentences: what you checked and what decided it>
+"""
+
 
 def main():
     p = argparse.ArgumentParser(); p.add_argument("run"); p.add_argument("--question-from", required=True)
@@ -108,6 +123,25 @@ def main():
         score = sum(WEIGHT.get(r[1], 1) * (1 if w else -1) for r, w in zip((r1, r2), won))
         return all(won), score, r1[2], (r1[3], r2[4]), (r1[4], r2[3])
 
+    playoffs = []
+    def playoff(rd, ok, cands, res):  # several candidates beat the current one: one free judge ranks them all, in two orders (Borda)
+        pts = {m: 0 for m in ok}
+        for tag, order in (("", ok), ("_rev", ok[::-1])):
+            jf = os.path.join(rd, f"playoff{tag}.md")
+            if not os.path.exists(jf):
+                wd = jf[:-3]; os.makedirs(wd, exist_ok=True)
+                for i, m in enumerate(order): shutil.copy(cands[m][0], os.path.join(wd, f"C{i + 1}.md"))
+                s = RANK.replace("{QUESTION}", q).replace("{N}", str(len(order))).replace("{NAMES}", ", ".join(f"`C{i + 1}.md`" for i in range(len(order))))
+                s = s.replace("{FILES}", "\n".join(f"- C{i + 1}: `{cands[m][1]}/`" for i, m in enumerate(order)))
+                text, u = runner.call(s, model=a.model, tools="Read,Bash,WebSearch", cwd=wd)
+                runner.log(D, os.path.relpath(jf, D), u); open(jf, "w").write(text)
+            line = (re.findall(r"^\W*RANKING\W*:\s*(.+)$", open(jf).read(), re.M | re.I) or [""])[-1]; seen = []
+            for i in re.findall(r"C(\d+)", line):
+                if 0 < int(i) <= len(order) and order[int(i) - 1] not in seen: seen.append(order[int(i) - 1])
+            for pos, m in enumerate(seen): pts[m] += len(ok) - 1 - pos
+        playoffs.append((len(playoffs) + 1, rd, pts)); print(f"  playoff: {pts}", flush=True)
+        return max(ok, key=lambda m: (pts[m], res[m][1]))
+
     for r in range(1, a.rounds + 1):
         cur, cf = chain[-1]; k = len(chain) - 1; rd = os.path.join(D, f"round{r}"); os.makedirs(rd, exist_ok=True)
         ck = os.path.join(D, f"check_v{k}.md")
@@ -136,7 +170,8 @@ def main():
         with ThreadPoolExecutor(len(MOVES)) as ex: cands = {m: c for m, c in zip(MOVES, ex.map(write, MOVES)) if c}
         with ThreadPoolExecutor(len(MOVES)) as ex:
             res = dict(zip(cands, ex.map(lambda m: duel(os.path.join(rd, f"judge_{m}"), cur, cf, *cands[m]), cands)))
-        ok = [m for m in cands if res[m][0]]; pick = max(ok, key=lambda m: res[m][1]) if ok else None
+        ok = [m for m in cands if res[m][0]]
+        pick = playoff(rd, ok, cands, res) if len(ok) > 1 else ok[0] if ok else None  # climb_ctxcache round 1: all four won, all +4
         for m in MOVES:
             if m not in cands: log.append((r, m, (False, 0, "no answer (two short replies)", ("-", "-"), ("-", "-")))); continue
             log.append((r, m, res[m])); print(f"  round {r} {m}: {'won both' if res[m][0] else 'lost'} ({res[m][1]:+d}); gain {res[m][4][0][:120]}", flush=True)
@@ -155,6 +190,8 @@ def main():
            "| round | move | beat the current best in both orders | score | real gain (judge, as given / swapped) | why (judge) |", "|---|---|---|---|---|---|"]
     for r, m, (won, sc, why, gx, gy) in log:
         out.append(f"| {r} | {m} | {'yes' if won else 'no'} | {sc:+d} | {gy[0][:160]} / {gy[1][:160]} | {why[:300]} |")
+    out += ["", "Playoffs (Borda points over two orders, when several candidates beat the current best): " +
+            "; ".join(f"{os.path.basename(rd)}: " + ", ".join(f"{m} {p}" for m, p in pts.items()) for _, rd, pts in playoffs)]
     out += ["", "## Final (fresh judges, both orders)", "", "| final against | final won both | score | real gain of the other | real gain of the final |", "|---|---|---|---|---|"]
     for name, won, sc, why, gx, gy in fin:
         out.append(f"| {name} | {'yes' if won else 'no'} | {sc:+d} | {gx[0][:200]} / {gx[1][:200]} | {gy[0][:200]} / {gy[1][:200]} |")

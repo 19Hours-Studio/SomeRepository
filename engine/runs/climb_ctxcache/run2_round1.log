@@ -1,0 +1,6 @@
+  round 1 lever: 1659 words, $1.02
+  round 1 fix: won both (+4); gain about 45% lower billed input than per-turn sliding-window clearing on real traces, at equal or more context, or about 24
+  round 1 lever: won both (+4); gain about −30% (CI −26% to −34%) billed input against append-only prefix caching on real SWE-agent traces, from a client-onl
+  round 1 reframe: won both (+4); gain The same −33.6% from errata, plus about −48% to −58% input with batched tool calls at k=1.5–2 (k from one example run). 
+  round 1 fresh: won both (+4); gain about 19–39% lower billed input than append-only caching on 50–100-step agent sessions (resampled from real steps), 0% o
+  round 1: v1 = fix
