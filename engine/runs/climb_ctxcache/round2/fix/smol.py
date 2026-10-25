@@ -4,7 +4,7 @@
 # Weights are dequantized to float32 with the gguf package; nothing is downloaded from huggingface.
 import numpy as np, torch, gguf
 from tokenizers import Tokenizer, models, pre_tokenizers, decoders, AddedToken
-torch.set_grad_enabled(False)
+torch.set_grad_enabled(False); torch.set_num_threads(int(__import__("os").environ.get("THREADS", 1)))
 
 class Smol:
     def __init__(self, path):

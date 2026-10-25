@@ -35,7 +35,7 @@ punch   195k->185k cost   3,685,346 mean ctx   152,917  cost/meanctx   24.1
   patch 195k->185k mean 153,980: 3,628,743 vs errata frontier 8,030,946 -> -54.8%
 
 == C. TTL: selective 1h write only on the request before a predicted idle gap ==
-gap 15 f=0.05: selective-1h +0.90% vs best answer policy (keepalive/1h-all)
-gap 15 f=0.2: selective-1h +3.59% vs best answer policy (keepalive/1h-all)
-gap 45 f=0.05: selective-1h +0.90% vs best answer policy (keepalive/1h-all)
-gap 45 f=0.2: selective-1h +3.59% vs best answer policy (keepalive/1h-all)
+gap 15 f=0.05: selective-1h +0.90% vs no-idle reference (answer best: keepalive +11.1%, 1h-all +19.5%)
+gap 15 f=0.2: selective-1h +3.59% vs no-idle reference (answer best: keepalive +11.1%, 1h-all +19.5%)
+gap 45 f=0.05: selective-1h +0.90% vs no-idle reference (answer best: keepalive +11.1%, 1h-all +19.5%)
+gap 45 f=0.2: selective-1h +3.59% vs no-idle reference (answer best: keepalive +11.1%, 1h-all +19.5%)

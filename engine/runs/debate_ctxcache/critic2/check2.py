@@ -55,4 +55,4 @@ for G in (15, 45):
         # extra = (2.0-1.25)*new tokens of the request preceding each gap; new tokens/request ~ 2300 (+200 per edit)
         x = S.avg("errata", seeds=40, idle_p=f, idle_min=G, ttl_policy="none")  # no expiry modelled
         extra = 0.75 * 2340 * f * 49
-        print(f"gap {G} f={f}: selective-1h {(x['api']+extra)/ref-1:+.2%} vs best answer policy (keepalive/1h-all)")
+        print(f"gap {G} f={f}: selective-1h {(x['api']+extra)/ref-1:+.2%} vs no-idle reference (answer best: keepalive +11.1%, 1h-all +19.5%)")
