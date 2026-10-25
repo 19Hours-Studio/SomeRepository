@@ -88,3 +88,7 @@ gate: 6/6 parsed {'WOUNDED': 4, 'DEAD': 2}
   tour_g1: 48 judgments over 8 answers
   improve_g2: 526,831 tokens, 446.9 s
 improve_g2: 3 ideas (1125 words)
+  cross_g2: 16,368 tokens, 72.5 s
+cross_g2: 3 ideas (462 words)
+/home/user/SomeRepository/engine/runs/v6_continuum/eval_g2/c2/TASK.md
+/home/user/SomeRepository/engine/runs/v6_continuum/eval_g2/c1/TASK.md

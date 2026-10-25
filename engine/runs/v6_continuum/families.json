@@ -27,5 +27,11 @@
  "improve_g1#3": "stacked sram weights hbm kv",
  "cross_g1#1": "sram chiplet weight residency",
  "cross_g1#2": "dram hybrid bonded onto logic",
- "cross_g1#3": "stacked sram weights hbm kv"
+ "cross_g1#3": "stacked sram weights hbm kv",
+ "improve_g2#1": "sram chiplet weight residency",
+ "improve_g2#2": "dram hybrid bonded onto logic",
+ "improve_g2#3": "phase split decode prefill parts",
+ "cross_g2#1": "sram chiplet weight residency",
+ "cross_g2#2": "dram hybrid bonded onto logic",
+ "cross_g2#3": "phase split decode prefill parts"
 }

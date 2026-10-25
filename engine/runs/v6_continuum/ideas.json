@@ -292,5 +292,32 @@
   "mech": "Prefill and training stay on Rubin or Rubin CPX. Decode moves to a part priced for memory bandwidth rather than FLOPS, keeping Rubin's 8 HBM4 stacks and 22 TB/s, which use proven supply. Three things are cut. The stacks are 8-high (192 GB, not 288 GB), because the capacity decode needs is about bandwidth ÷ per-user rate plus the weight share: 81 GB at 128K and 300 tok/s/user. Compute drops to 5 PF FP8, against the 3–4 PF needed. Scale-up drops to 1.2 TB/s, since the MoE all-to-all needs about 0.6 TB/s. The weak link is handled by moving the claim from tokens per kW to cost per token, because energy is only 6% of cost of ownership. The cost inputs are HBM4 at $18.4/GB, a $55k Rubin and a $7.8M rack. On a full cost-of-ownership model the part is 1.19–1.24× cheaper per token than Rubin NVL72 at ≥300 tok/s/user, at 8K and 128K. Decode draw falls from 1.64 kW to 1.34 kW. At 100 tok/s/user the gain is only 1.00–1.04×, because 192 GB runs out of capacity.",
   "value": "About 1.2× lower cost per decode token than Rubin NVL72 at ≥300 tok/s/user, and 1.5× more decode packages per HBM wafer while HBM is sold out. The weak link cannot be fixed to 1.5×: the rest of the cost is vendor price and rack, not physics. This is the smallest honest version, and it gives up training and the lowest-latency tier.",
   "parent": "baseline_1#3"
+ },
+ {
+  "id": "cross_g2#1",
+  "label": "cross_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "DRAM-bonded N6 pipeline chiplets",
+  "mech": "Each ~100 mm² N6 pipeline die keeps only activation and staging SRAM. Weights and KV cache sit in one hybrid-bonded stacked-DRAM layer at the measured 64 Mb/mm² (8 MB/mm²), which gives ~800 MB per die. A 70B pipeline at the same ~112 GB footprint then needs ~140 dies instead of 512 SRAM dies. Bandwidth is ~135 GB/s/Gb (≈0.86 TB/s per die, ≈121 TB/s per model) at 0.66 pJ/bit, still on organic packages. The compiler-managed layer pipelining is unchanged. The low per-die power of N6 SRAM-class logic is what keeps the stack below the thermal wall seen with DRAM on GPUs.",
+  "value": "Storage density is 3.7× the density the SRAM design needed (17.5 Mb/mm²) and is a measured figure, not one 25% above shipped parts. Even after a 3× vendor markup, delivered $/GB stays far under $1.5k/GB."
+ },
+ {
+  "id": "cross_g2#2",
+  "label": "cross_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "Thin-stack DRAM-on-N6 decode pipeline",
+  "mech": "Each 400 mm² N6 logic chiplet carries a 2-high hybrid-bonded DRAM stack at the measured 64 Mb/mm², not a 4-high stack at 200 Mb/mm². That gives 6.4 GB per chiplet and 25.6 GB and ~27.6 TB/s per package, with DRAM power of 27.6 TB/s × 8 × 0.66 pJ ≈ 146 W. A 1T/32B-active MoE with its KV cache (~800 GB) is layer-pipelined across ~32 such ~600 W packages, and only activations cross package links. Decode is memory-bound, so ~10 PF FP4 per package on mature N6 is enough. The power-saving logic stays the same: no slow tier, and every resident byte is read each step.",
+  "value": "The design depends only on measured density and energy. Current per package drops from ~2.7 kA to ~0.8 kA through half the stack. Modeled bandwidth per kW is ~46 TB/s/kW, against ~32 for the 4-high design and ~12 for Rubin. The cost is ~6× more logic area, but on a cheaper node."
+ },
+ {
+  "id": "cross_g2#3",
+  "label": "cross_g2",
+  "arm": "E",
+  "gen": 3,
+  "name": "Cheap-node HBM decode tier",
+  "mech": "Energy is ~9% of TCO, so this decode-only part competes on capex per TB/s rather than tokens per kW. Decode needs only ~3 PF FP8 to saturate 22 TB/s, so the compute dies move to N6. The design keeps 288 GB of HBM4 and is built at cost. Estimated package cost is ~$16k (HBM ~$12k, N6 logic ~$1.5k, packaging ~$2k), against a ~$45k street Rubin package (also an estimate). Prefill and training stay on HBM or GDDR parts, linked to this tier by KV-cache transfer.",
+  "value": "Cost per token improves by 1/(0.91/2.8 + 0.09/2) ≈ 2.7×. The 1.5× target holds while the package costs ≤ ~$31k, a ~1.9× margin, though most of that margin is vendor markup avoided rather than physics."
  }
 ]
