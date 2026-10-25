@@ -1,3 +1,31 @@
   planted blind swap: $0.19
   ctx_v2_v8 blind swap: $0.17
   planted blind: $0.20
+  cont_plain_best blind: $0.21
+  cont_plain_best blind swap: $0.21
+  ctx_v2_v8 blind: $0.17
+  cont_plain_best free: $0.37
+  cont_plain_best free swap: $0.40
+  planted free: $0.18
+  planted free swap: $0.21
+  ctx_v2_v8 free swap: $0.37
+  ctx_v2_v8 free: $0.45
+# freejudge: free judges (tools, their own checks) against blind judges (two texts, no tools)
+
+| pair | judge | order | winner | known answer | how much | real gain of the first answer | real gain of the second |
+|---|---|---|---|---|---|---|---|
+| planted | free | as given | A ✓ | A | Clearly better. It is the same answer, but B's headline client-side savings are inflated about threefold (0.643× instead of 0.881×, and 43% instead of 18% of context repeated). They don't reproduce, a | For API clients, the line-run references cut the bill to about 0.88× (versus 0.993× for the best prior art, Claude Code's re-read stub) with no information lost; batching read-only calls brings it to  | The same method as A, so really the same roughly 0.88× (about 12%) gain. B's claimed 0.64× / 0.60× / 0.46× figures are not supported by the code. |
+| planted | free | swapped | A ✓ | A | Clearly better on accuracy. The two answers share all their reasoning, but A inflates the headline savings about threefold (36% claimed versus 12% real), and B's figures reproduce exactly from the cod | About 11–12% lower API bill than the best prior art for exact references (0.881× vs 0.993×), and about 10% more when combined with batched clearing (0.720× vs 0.801× at keep 10). The hit rate stays at | The same as B's, about 0.88× of the bill against 0.993× for the prior-art stub. A's own stated 0.643× is not supported. |
+| planted | blind | as given | A ✓ | A | clearly | - | - |
+| planted | blind | swapped | A ✓ | A | clearly | - | - |
+| ctx_v2_v8 | free | as given | B | - | Clearly better, not overwhelmingly. B backs its claims with real agent traces, a checked bill model and baselines tuned to their best, and it delivers an exact client-side saving of about 12% on the b | Small. Over current practice (append-only context, volatile content last, popularity-ordered documents), A adds a corrected ordering rule worth about 1% median recompute (up to 17% in rare layouts), a | About 0.88× of the API bill (12% off), exact and client-only, from line-run references against 0.993× for existing whole-output dedup, measured on 42 real SWE-bench sessions. Batched clearing at keep  |
+| ctx_v2_v8 | free | swapped | B | - | By a wide margin. A includes everything B has, then adds a new exact method measured on real traces, plus fair, tuned baselines and honest self-corrections. B's numbers mostly come from synthetic mode | Close to none that is verified. Its layout advice is mostly prior art, and the new ordering rule is about 1% better at the median. Its 0.62× splice figure is approximate, comes from tiny traces, and i | About a 12% cut in the API bill (0.881× against 0.993× for the best existing re-read stub) while keeping all information, provided resolve rate holds up. Batched clearing, which drops content on purpo |
+| ctx_v2_v8 | blind | as given | B | - | clearly | - | - |
+| ctx_v2_v8 | blind | swapped | B | - | clearly | - | - |
+| cont_plain_best | free | as given | B | - | Clearly better, moderately to substantially. B covers everything the question asks for, calibrated against measured data and compared across many designs. A is a credible but much thinner sketch with  | Model-only. About 1.2× tokens per joule and about 1.5× tokens per kW and per HBM stack against a best-case Rubin NVL72, at 200 tok/s per user and 32K context. This falls to about 1.08× at 128K. Its SR | Model-only, with an unmeasured realisation factor. About 1.36–1.5× decode tok/s per watt against Rubin at 1,000 tok/s per user or more on 128K MoE decode. At bulk speeds it is a tie (about 0.95–1.13×) |
+| cont_plain_best | free | swapped | B | - | By a wide margin. A is a complete, reproducible and calibrated design that admits where it ties or loses. B is a readable but thin sketch, and its headline wins depend on an unrealistically weak GPU b | At most about 1.1–1.2× tokens per joule over a realistic Rubin baseline at moderate speed and short context (its 32K case), falling to about 1.08× at 128K. Its larger speed-tier claims are not support | About 1.2–1.5× decode tokens per watt over Rubin at ≥1,000 tok/s/user for sparse-MoE models with compressed attention (about 1.36× on the same node, 1.21× under the worst tested pair of assumptions),  |
+| cont_plain_best | blind | as given | B | - | clearly | - | - |
+| cont_plain_best | blind | swapped | B | - | clearly | - | - |
+
+First answer = A as given on the command line, second = B; winners are in those labels in both orders.
+spent $3.14

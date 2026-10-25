@@ -21,10 +21,10 @@ S_STATIC = 100.0
 IMB_EP = None      # None -> replica rule (1.07 if room else 1.12); else fixed EP imbalance
 
 
-def design_profiles(h, omega=1.0, lanes=64, labels=None, s_static=None):
+def design_profiles(h, omega=1.0, lanes=64, labels=None, s_static=None, wt_dyn=1.0):
     s_static = S_STATIC if s_static is None else s_static
     base = dict(e8.C8, srambw=512e12 * omega, link=1.8e12 * 0.85 * lanes / 64)
-    parts = dict(e8.C8_PARTS, wt_w=(614 - s_static) * omega, other_w=e8.STACK_W * h + 144 * lanes / 64 + s_static)
+    parts = dict(e8.C8_PARTS, wt_w=(614 - s_static) * omega * wt_dyn, other_w=e8.STACK_W * h + 144 * lanes / 64 + s_static)
     pr = q.cont_prof(base, parts)
     return {l: (s, f) for l, s, f in pr if labels is None or l in labels}
 
@@ -70,7 +70,7 @@ def stage(s, typ, g, h, b, pos, L, users, idx_sram, kv_sram, split="ep", two_pha
 
 def env(ctx, p=0.8, labels=("0.55V wt", "0.60V wt"), omega=1.0, lanes=64, split="ep", hs_csa=(2, 3, 4), hs_hca=(0, 2, 4),
         idx_opts=(False, True), hca_sram_opts=(False, True), gmax=20, two_phase=False, imb_fixed=None, tiers=q.T,
-        ks=range(7), tau_fn=None, s_static=None, spares=0.0, spare_mode="hot", parts_over=None, base_over=None):
+        ks=range(7), tau_fn=None, s_static=None, spares=0.0, spare_mode="hot", parts_over=None, base_over=None, wt_dyn=1.0):
     """best tok/s/W per tier for one Continuum-9 design point. parts_over/base_over: dict of multiplicative
     overrides used by sensitivities, e.g. {'comp_w': 1.25}."""
     tau_fn = tau_fn or q.tau_f
@@ -80,7 +80,7 @@ def env(ctx, p=0.8, labels=("0.55V wt", "0.60V wt"), omega=1.0, lanes=64, split=
         old_b, old_p = dict(e8.C8), dict(e8.C8_PARTS)
         for k_, v in (base_over or {}).items(): e8.C8[k_] = old_b[k_] * v
         for k_, v in (parts_over or {}).items(): e8.C8_PARTS[k_] = old_p[k_] * v
-        try: profs[h] = design_profiles(h, omega, lanes, labels, s_static)
+        try: profs[h] = design_profiles(h, omega, lanes, labels, s_static, wt_dyn)
         finally: e8.C8.clear(); e8.C8.update(old_b); e8.C8_PARTS.clear(); e8.C8_PARTS.update(old_p)
     sp = (1 + spares) if spare_mode == "hot" else (1 + 0.05 * spares)
     res, mx = {}, 0
@@ -128,6 +128,7 @@ def env(ctx, p=0.8, labels=("0.55V wt", "0.60V wt"), omega=1.0, lanes=64, split=
     return res
 
 
+BASE = dict(omega=0.7, lanes=64, gmax=14)   # Continuum-9 base design (sweep9/sweep9b)
 DESIGNS = [(o, l) for o in (1.0, 0.75, 0.6, 0.5, 0.4) for l in (64, 48, 32)]
 
 
