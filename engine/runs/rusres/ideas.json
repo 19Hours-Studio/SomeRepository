@@ -16,5 +16,32 @@
   "name": "Pre-staged flood-crest barges",
   "mech": "Anchor: a loaded barge waits out the ice drift in a sheltered backwater and leaves on the flood crest. Repair: load it in autumn while it is still afloat at a deep berth, so nothing is loaded through ice. It winters in a backwater at least 2.5 m deep, and it is used on a tributary that is navigable only on the spring flood, where there is just one trip a year anyway. With a modelled 12-day recession, a convoy arriving 5–10 days late loses 35–62% of its load. A barge pre-staged at the river mouth goes in full.",
   "value": "About 3,100 rub/t against 4,700–11,300 rub/t on that leg today (1.5–3.6x). On the Kolyma main stem the gain is only about 14%."
+ },
+ {
+  "id": "g1_ledger#1",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Parallel mid-scale domestic LNG trains",
+  "mech": "Build Gydan/Yamal LNG as 3–4 parallel trains of 1.5–2.5 Mtpa each, on the Arctic Cascade process. Each train uses domestic electric or UEC-Kuznetsov drives, Arctic air cooling and gravity-base modules, and each comes online as soon as it is built. The closest earlier attempt is Train 4, which stalled at proving the process at 0.9 Mtpa; Arctic LNG 2 failed because its 6.6 Mtpa trains needed imported turbines. This idea stops short of 6.6 Mtpa, so neither the scale-up nor the import limit applies. Colder heat rejection lowers the compressor work per tonne, by the Carnot relation. The deciding quantity is the uptime of a train at 2 Mtpa against the 1,100 $/t/y benchmark of Yamal LNG Trains 1–3.",
+  "value": "Cuts delivered LNG cost by about 30% (est.) and brings each train into production about a year sooner."
+ },
+ {
+  "id": "g1_ledger#2",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Powered-first staged Baimskaya",
+  "mech": "Start Baimskaya with a 5–8 Mtpa first phase, at an estimated 20–25 kWh per tonne of ore, or about 30 MW. It would run on the spare capacity of the existing Akademik Lomonosov plant and the Pevek line, and its concentrate would ship from Pevek in the NSR window. The full nuclear-powered project would follow later. The closest earlier attempt is KAZ Minerals' 300 kt/y plan, which slipped while it waited for new power and roads. This idea needs neither in its first phase. The deciding quantity is the spare MW at Chaun–Pevek after Bilibino closes.",
+  "value": "Brings first concentrate several years earlier and puts less capital at risk before any revenue."
+ },
+ {
+  "id": "g1_ledger#3",
+  "label": "g1_ledger",
+  "arm": "E",
+  "gen": 1,
+  "name": "Plant-chilled foundations",
+  "mech": "Run a glycol loop through the pile caps of an LNG plant, cooled by its own refrigeration and kept running in summer. Thermosyphons from Fundamentstroyarkos would still cover the winter. A summer heat flux of about 5 W/m² over 1 km² is about 5 MW of heat, or about 2.5 MW of electricity at a COP of 2. That is under 1% of the plant's drive power. The closest earlier attempts are TAPS and the Qinghai–Tibet thermosyphons, which fade as winters warm. An active loop does not depend on how cold the winter is. The deciding quantity is the summer heat flux, measured in boreholes.",
+  "value": "Holds pile capacity at the design γt for the life of the plant, whatever the warming."
  }
 ]
