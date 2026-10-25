@@ -1,0 +1,7 @@
+stroke for 500 N/m: 7.6 um
+stroke for 1000 N/m: 15.2 um
+Al-frame vs stack mismatch over 35 K: 71 um
+D_dec=2.6e-3, D_full= 0.0273  -> lock fraction 0.9
+HTX d 48.0 um slope 0.1 deg -> L >= 110 mm
+HTX d 167.0 um slope 1.24 deg -> L >= 31 mm
+Goodman allowed amplitude at mean 250: 375.0 MPa vs actual 250

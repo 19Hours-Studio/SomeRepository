@@ -1,0 +1,3 @@
+chars/token=2.8: batch5k vs sliding -47.3% / vs append -26.2%  horizon vs sliding -45.9% / vs append -24.3%  polling10 vs sliding -45.6% / vs append -23.8%
+chars/token=3.5: batch5k vs sliding -47.1% / vs append -26.0%  horizon vs sliding -45.4% / vs append -23.7%  polling10 vs sliding -45.0% / vs append -23.2%
+chars/token=4.2: batch5k vs sliding -46.2% / vs append -25.0%  horizon vs sliding -44.8% / vs append -23.1%  polling10 vs sliding -44.5% / vs append -22.6%

@@ -1,0 +1,22 @@
+Tension (Idea 2) applied to OCA-set crease, R=4mm, a_extra=3mm
+G=  10000 phi=0.02 T=    0N/m: depth    4.23 um slope   0.53 mrad
+G=  10000 phi=0.02 T=  500N/m: depth    1.14 um slope   0.15 mrad
+G=  10000 phi=0.02 T= 1000N/m: depth    0.67 um slope   0.09 mrad
+G=  10000 phi=0.10 T=    0N/m: depth   21.16 um slope   2.63 mrad
+G=  10000 phi=0.10 T=  500N/m: depth    5.72 um slope   0.73 mrad
+G=  10000 phi=0.10 T= 1000N/m: depth    3.35 um slope   0.44 mrad
+G= 100000 phi=0.02 T=    0N/m: depth   22.75 um slope   2.84 mrad
+G= 100000 phi=0.02 T=  500N/m: depth    7.00 um slope   0.91 mrad
+G= 100000 phi=0.02 T= 1000N/m: depth    4.18 um slope   0.55 mrad
+G= 100000 phi=0.10 T=    0N/m: depth  113.77 um slope  14.19 mrad
+G= 100000 phi=0.10 T=  500N/m: depth   35.02 um slope   4.53 mrad
+G= 100000 phi=0.10 T= 1000N/m: depth   20.89 um slope   2.77 mrad
+
+Cold opening (OCA stiffens): folded extra axial stress
+G=1e+05: OCA shear 4.52, glass extra 182 MPa, Ti extra 308 MPa -> Ti total ~808 MPa
+G=1e+06: OCA shear 2.39, glass extra 401 MPa, Ti extra 677 MPa -> Ti total ~1177 MPa
+G=1e+07: OCA shear 2.37, glass extra 1352 MPa, Ti extra 2281 MPa -> Ti total ~2781 MPa
+
+Lever: very-low-modulus (gel/liquid) optical coupling layer, phi=0.5 (poor recovery)
+G=1e+02: depth 1.271 um slope 0.158 mrad, OCA shear 6.5
+G=1e+03: depth 12.446 um slope 1.545 mrad, OCA shear 6.5

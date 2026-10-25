@@ -1,0 +1,18 @@
+C1 is the best answer for the asker, followed by C2, C4 and C3. All four answers reach the same main conclusion: on a growing session, close to 100% hit rate can't be reached, and the bill is mostly paying again to re-read cached context. They differ in how well they back that up.
+
+**What I re-ran.** C1's rule replay on 200 real coding-agent runs (SWE-agent with Claude Sonnet 4; the data file's checksum matches), C2's replay on 63 older runs (Claude 3.5 Sonnet), C3's four scripts and C4's document-retrieval simulation. Every output matched what the answers report. C3's `combo.py` and `noedit.py` only run without Python's `-I` flag, because they import a sibling file.
+
+**My own check.** C2's one lossless gain is "delta views": when the agent looks at a file again, lines it has already seen are replaced by a short back-reference. C2 reports −19.4% against keeping everything. I applied the same rule to C1's 200 newer runs and it saved only **2.5%**. The 19% comes from the old SWE-agent's file viewer, which shows the same 100 lines again after every edit. C2 doesn't say the gain depends on that. C1 does say that deltas add almost nothing on current agents.
+
+**Ranking:**
+1. **C1.** It has the largest and newest real sample. Clearing old tool outputs in batches, timed by price, cuts billed input by 24–26% against keeping everything. A check over 24,442 requests found no case where the model sees less than under the usual sliding-window clearing. C1 also puts a dollar figure on server-side span removal and gives per-model break-even times for keeping cached state in GPU memory, RAM or disk. One weakness: its −45% headline is measured against a baseline that breaks the cache on every turn.
+2. **C2.** Same core finding on real runs (−19% from batching alone), with the best breakdown of where the bill goes. Its main lossless idea mostly disappears on current agent setups, and its sample is smaller and older.
+3. **C4.** Same batching idea with a neat formula for batch size, plus a cost rule for when to keep retrieved documents in place. The evidence is synthetic or resampled from 19 short demo runs, and it saves 0% on the runs as recorded. Its −47.9% headline compares context removal, which loses information, against in-place edits, which don't.
+4. **C3.** It frames the problem well (re-reads, not misses, dominate the bill) and its cost model for cache reads on a self-run server is sound. But its −63% assumes the agent can bundle 1.5–2 actions per request, a number taken from one demo run. It also assumes a lower read price that people using a hosted API can't set.
+
+None of the four measured output quality with a real model. Every quality claim still needs a live test.
+
+The full verdict, with the reproduction table, is in `VERDICT.md` in the playoff folder. My delta-view test script is `/tmp/claude-0/-home-user-SomeRepository-engine-runs-climb-ctxcache-round1-playoff/86b61a25-826d-5e99-8ce4-43b0688ac74a/scratchpad/linedelta.py`.
+
+RANKING: C1 > C2 > C4 > C3
+WHY: I re-ran every answer's main scripts and all reproduced exactly. I also tested C2's delta-view idea on C1's 200 newer real runs, where it saves 2.5%, not 19.4%, because that gain depends on an old file viewer. C1 has the largest current real-trace evidence, a context check with no violations, and honest notes on which levers don't pay. C4 and C3 rest mostly on synthetic data, and C3's headline also depends on an assumed batching factor and a read price API users can't change.

@@ -1,0 +1,35 @@
+policy           cost        vs sliding  vs append  mean prompt   (Anthropic prices)
+append            48,574,068   -28.4%    +0.0%     29,912
+sliding           67,874,201    +0.0%   +39.7%     13,360
+batch5k           35,924,049   -47.1%   -26.0%     15,156
+horizon           37,075,054   -45.4%   -23.7%     14,030
+polling5          39,372,125   -42.0%   -18.9%     14,396
+polling10         37,309,416   -45.0%   -23.2%     15,724
+polling20         38,569,392   -43.2%   -20.6%     18,411
+sel500_3k         39,099,012   -42.4%   -19.5%     17,402
+sel500_5k         39,139,649   -42.3%   -19.4%     18,196
+sel500_10k        40,567,866   -40.2%   -16.5%     20,298
+sel1000_3k        40,914,453   -39.7%   -15.8%     20,050
+sel1000_5k        41,139,197   -39.4%   -15.3%     20,686
+sel1000_10k       43,929,530   -35.3%    -9.6%     23,329
+sel2000_3k        41,543,780   -38.8%   -14.5%     22,046
+sel2000_5k        42,177,828   -37.9%   -13.2%     22,573
+sel2000_10k       45,433,886   -33.1%    -6.5%     25,157
+
+opt (answer's DP) for reference: 33,347,648
+
+With Anthropic ~20-block lookback, one breakpoint at the end (no extra breakpoint at the clear point):
+  append          48,574,068  vs exact-LCP +0.0%  vs sliding(lb20) -28.4%
+  sliding         67,874,201  vs exact-LCP +0.0%  vs sliding(lb20) +0.0%
+  batch5k         40,259,604  vs exact-LCP +12.1%  vs sliding(lb20) -40.7%
+  horizon         48,788,565  vs exact-LCP +31.6%  vs sliding(lb20) -28.1%
+  polling10       44,463,753  vs exact-LCP +19.2%  vs sliding(lb20) -34.5%
+  sel1000_5k      43,544,522  vs exact-LCP +5.8%  vs sliding(lb20) -35.8%
+bootstrap 95% CI horizon vs sliding: -46.4% .. -44.3%
+bootstrap 95% CI horizon vs append: -25.1% .. -22.2%
+bootstrap 95% CI batch5k vs sliding: -47.8% .. -46.3%
+bootstrap 95% CI batch5k vs append: -27.6% .. -24.3%
+bootstrap 95% CI polling10 vs sliding: -45.7% .. -44.3%
+bootstrap 95% CI polling10 vs append: -24.9% .. -21.3%
+bootstrap 95% CI sel1000_5k vs sliding: -40.9% .. -37.8%
+bootstrap 95% CI sel1000_5k vs append: -16.8% .. -13.7%

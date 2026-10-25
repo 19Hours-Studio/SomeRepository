@@ -1,0 +1,9 @@
+Llama-3-70B, BF16 KV   ctx=  8000: recompute $0.188/M tok | break-even reuse interval: HBM    1.4 min  DRAM    6.9 min  NVMe  172.0 min
+Llama-3-70B, BF16 KV   ctx= 32000: recompute $0.227/M tok | break-even reuse interval: HBM    1.7 min  DRAM    8.3 min  NVMe  207.9 min
+Llama-3-70B, BF16 KV   ctx=100000: recompute $0.338/M tok | break-even reuse interval: HBM    2.5 min  DRAM   12.4 min  NVMe  309.8 min
+Llama-3-70B, FP8 KV    ctx=  8000: recompute $0.188/M tok | break-even reuse interval: HBM    2.8 min  DRAM   13.8 min  NVMe  344.0 min
+Llama-3-70B, FP8 KV    ctx= 32000: recompute $0.227/M tok | break-even reuse interval: HBM    3.3 min  DRAM   16.6 min  NVMe  415.9 min
+Llama-3-70B, FP8 KV    ctx=100000: recompute $0.338/M tok | break-even reuse interval: HBM    5.0 min  DRAM   24.8 min  NVMe  619.6 min
+DeepSeek-V3, BF16 MLA  ctx=  8000: recompute $0.117/M tok | break-even reuse interval: HBM    4.0 min  DRAM   20.0 min  NVMe  500.9 min
+DeepSeek-V3, BF16 MLA  ctx= 32000: recompute $0.192/M tok | break-even reuse interval: HBM    6.6 min  DRAM   32.8 min  NVMe  820.4 min
+DeepSeek-V3, BF16 MLA  ctx=100000: recompute $0.404/M tok | break-even reuse interval: HBM   13.8 min  DRAM   69.0 min  NVMe 1725.9 min

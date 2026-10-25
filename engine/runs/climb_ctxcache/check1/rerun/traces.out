@@ -1,0 +1,31 @@
+traces=200  requests/trace mean=61.1  file re-views/trace=6.6 (changed 6.4)
+
+== anthropic (write 1.25x, read 0.1x); totals over all traces, base-input units ==
+no cache (all input at 1.0x): 365,552,048   output tokens at 5.0x: 13,536,950
+append          cost=    48,574,068  vs append +0.0%  vs sliding -28.4%  tok-hit=0.966 mean ctx=28,085
+sliding         cost=    67,874,201  vs append +39.7%  vs sliding +0.0%  tok-hit=0.707 mean ctx=12,871
+sliding+splice  cost=    28,498,452  vs append -41.3%  vs sliding -58.0%                
+batch5k         cost=    35,924,049  vs append -26.0%  vs sliding -47.1%  tok-hit=0.913 mean ctx=14,636
+batch10k        cost=    36,962,998  vs append -23.9%  vs sliding -45.5%  tok-hit=0.930 mean ctx=16,678
+batch20k        cost=    41,075,599  vs append -15.4%  vs sliding -39.5%  tok-hit=0.949 mean ctx=21,180
+batch30k        cost=    44,576,275  vs append -8.2%  vs sliding -34.3%  tok-hit=0.958 mean ctx=24,374
+ski             cost=    39,944,440  vs append -17.8%  vs sliding -41.1%  tok-hit=0.950 mean ctx=20,803
+opt             cost=    33,347,648  vs append -31.3%  vs sliding -50.9%                
+delta           cost=    48,465,492  vs append -0.2%  vs sliding -28.6%  tok-hit=0.966 mean ctx=28,018
+delta+ski       cost=    39,879,456  vs append -17.9%  vs sliding -41.2%                mean ctx=20,769
+
+== openai (write 1.0x, read 0.1x); totals over all traces, base-input units ==
+no cache (all input at 1.0x): 365,552,048   output tokens at 5.0x: 13,536,950
+append          cost=    45,961,271  vs append +0.0%  vs sliding -18.9%  tok-hit=0.966 mean ctx=28,085
+sliding         cost=    56,668,397  vs append +23.3%  vs sliding +0.0%  tok-hit=0.707 mean ctx=12,871
+sliding+splice  cost=    25,852,593  vs append -43.8%  vs sliding -54.4%                
+batch5k         cost=    32,141,091  vs append -30.1%  vs sliding -43.3%  tok-hit=0.913 mean ctx=14,636
+batch10k        cost=    33,506,427  vs append -27.1%  vs sliding -40.9%  tok-hit=0.930 mean ctx=16,678
+batch20k        cost=    37,934,807  vs append -17.5%  vs sliding -33.1%  tok-hit=0.949 mean ctx=21,180
+batch30k        cost=    41,623,438  vs append -9.4%  vs sliding -26.5%  tok-hit=0.958 mean ctx=24,374
+ski             cost=    35,369,844  vs append -23.0%  vs sliding -37.6%  tok-hit=0.945 mean ctx=19,351
+opt             cost=    30,051,202  vs append -34.6%  vs sliding -47.0%                
+delta           cost=    45,858,572  vs append -0.2%  vs sliding -19.1%  tok-hit=0.966 mean ctx=28,018
+delta+ski       cost=    35,306,970  vs append -23.2%  vs sliding -37.7%                mean ctx=19,324
+
+anthropic append-only: reads are 73.1% of billed input; input is 78.2% of input+output bill

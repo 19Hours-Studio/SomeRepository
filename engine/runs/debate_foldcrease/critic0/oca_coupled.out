@@ -1,0 +1,20 @@
+Proposed stack (70um UTG / 25um OCA / 25um panel + 40um Ti), R=4mm
+G=  10000Pa phi_OCA=0.02: depth   4.23 um  slope  0.53 mrad | folded: OCA shear 6.0, extra glass axial    47 MPa, extra Ti axial    79 MPa | s=104um lam_ax=75mm
+G=  10000Pa phi_OCA=0.05: depth  10.58 um  slope  1.31 mrad | folded: OCA shear 6.0, extra glass axial    47 MPa, extra Ti axial    79 MPa | s=104um lam_ax=75mm
+G=  10000Pa phi_OCA=0.10: depth  21.16 um  slope  2.63 mrad | folded: OCA shear 6.0, extra glass axial    47 MPa, extra Ti axial    79 MPa | s=104um lam_ax=75mm
+G=  30000Pa phi_OCA=0.02: depth  10.26 um  slope  1.28 mrad | folded: OCA shear 5.4, extra glass axial   100 MPa, extra Ti axial   169 MPa | s=104um lam_ax=44mm
+G=  30000Pa phi_OCA=0.05: depth  25.65 um  slope  3.19 mrad | folded: OCA shear 5.4, extra glass axial   100 MPa, extra Ti axial   169 MPa | s=104um lam_ax=44mm
+G=  30000Pa phi_OCA=0.10: depth  51.30 um  slope  6.38 mrad | folded: OCA shear 5.4, extra glass axial   100 MPa, extra Ti axial   169 MPa | s=104um lam_ax=44mm
+G= 100000Pa phi_OCA=0.02: depth  22.75 um  slope  2.84 mrad | folded: OCA shear 4.5, extra glass axial   182 MPa, extra Ti axial   308 MPa | s=104um lam_ax=24mm
+G= 100000Pa phi_OCA=0.05: depth  56.89 um  slope  7.09 mrad | folded: OCA shear 4.5, extra glass axial   182 MPa, extra Ti axial   308 MPa | s=104um lam_ax=24mm
+G= 100000Pa phi_OCA=0.10: depth 113.77 um  slope 14.19 mrad | folded: OCA shear 4.5, extra glass axial   182 MPa, extra Ti axial   308 MPa | s=104um lam_ax=24mm
+
+sensitivity: free span margin a_extra and radius, G=1e5, phi=0.1
+a_extra=1mm R=2mm: depth  16.60 um slope  4.46 mrad
+a_extra=1mm R=4mm: depth  61.51 um slope  9.07 mrad
+a_extra=3mm R=2mm: depth  46.88 um slope  9.43 mrad
+a_extra=3mm R=4mm: depth 113.77 um slope 14.19 mrad
+a_extra=8mm R=2mm: depth 194.92 um slope 23.61 mrad
+a_extra=8mm R=4mm: depth 303.30 um slope 27.33 mrad
+
+thinner OCA 10um, G=1e5, phi=0.1: {'depth': np.float64(132.74)} um depth
