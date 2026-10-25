@@ -1,0 +1,26 @@
+check D_UTG30 0.00016800000000000002  check t/2R 160um,R2mm 0.04
+I1 glass-PI fold-induced membrane mismatch pi*d/L = 0.63 %
+I2 UTG-pol fold-induced membrane mismatch pi*d/L = 1.41 %
+I2 pol-PI fold-induced membrane mismatch pi*d/L = 1.41 %
+I1 PI20 L15 eps_cr=5.85e-06 dCTE=1.0ppm eps_th=4.0e-05 margin=0.146
+I1 PI20 L15 eps_cr=5.85e-06 dCTE=3.5ppm eps_th=1.4e-04 margin=0.042
+   gap-limited wrinkle: lambda=664 um slope=23.7 mrad
+I2 PI20 L10 eps_cr=1.32e-05 dCTE=1.0ppm eps_th=4.0e-05 margin=0.329
+I2 PI20 L10 eps_cr=1.32e-05 dCTE=3.5ppm eps_th=1.4e-04 margin=0.094
+   gap-limited wrinkle: lambda=664 um slope=23.7 mrad
+I2 pol50 L10 eps_cr=8.22e-05 dCTE=1.0ppm eps_th=4.0e-05 margin=2.056
+I2 pol50 L10 eps_cr=8.22e-05 dCTE=3.5ppm eps_th=1.4e-04 margin=0.587
+   gap-limited wrinkle: lambda=664 um slope=23.7 mrad
+stack D lower bound 0.00039093333333333337
+T=600 UTG only residual ratio 0.23  167um->39 um
+T=600 stack residual ratio 0.42  167um->70 um
+T=2000 UTG only residual ratio 0.08  167um->14 um
+T=2000 stack residual ratio 0.18  167um->29 um
+T=4000 UTG only residual ratio 0.04  167um->7 um
+T=4000 stack residual ratio 0.10  167um->16 um
+T for 20->2um: 3858 N/m; force over 0.151m: 583 N
+OCA 25C T_avail at gamma=300%: 6521 N/m margin 1.69
+OCA 80C T_avail at gamma=300%: 5009 N/m margin 1.30
+I4 stroke um 31.384615384615387 ; +-30% T tol -> 9.415384615384616 um
+I4 thermal drift Al(23)-UTG(8.7) 40K um 77.792
+I4 margin assembly only 0.31384615384615383  with Al thermal 0.08734771240337516

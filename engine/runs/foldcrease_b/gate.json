@@ -1,0 +1,58 @@
+{
+ "g1_rf1#3": {
+  "killer": "Peak shear the OCA must hold for as long as the phone stays open, at 60 °C, to carry the tension that pulls the crease down to ≤1 µm",
+  "why": "As written (≤1 µm), the bond has to hold about 6x the shear at which foldable OCAs already creep. The same model says ~120 N/m (0.004 % strain, 2.5 kPa peak shear) would reach the 20 µm target with about 4x margin, so the cheapest test is to tension a coupon of the stack after folding. Note that if the layers bond tightly (cold, about −20 °C) the stiffness rises about 40x and the margin goes away.",
+  "margin": 0.17,
+  "ratio": 28.0,
+  "verdict": "DEAD"
+ },
+ "g1_rf2#1": {
+  "killer": "Bending strain in the solid polymer layers that still bend at the phone's small radius (cover PET or CPI, back film); the gel does not change this",
+  "why": "Even if the gel stores no shear set, the polymer films still bend at about 3x their creep-safe strain, and the polarizer saving is already in Samsung's design, so the gain is at most ~1.2x.",
+  "margin": 0.3,
+  "ratio": 1.18,
+  "verdict": "WOUNDED"
+ },
+ "g1_mech#1": {
+  "killer": "Fraction of the 180° bend that does not recover after 8 h folded at 60 °C. The depth of a free crease is about πR·θ/8, which I checked on an exact circle.",
+  "why": "A larger radius lowers strain, but the same unrecovered fraction spread over a 15.7 mm arc makes a deeper crease. It would need about 99.7 % recovery, and the measured OCA and film recoveries are 10–100x short. The 5 mm radius also pushes the folded phone past 12 mm, versus 8.9 mm for the Fold7.",
+  "margin": 0.08,
+  "ratio": 0.7,
+  "verdict": "DEAD"
+ },
+ "g1_rf2#3": {
+  "killer": "Peak shear the OCA must hold for as long as the phone stays open, at 60 °C, to carry the specified 0.1 % panel tension (T = 0.001 × EA = 2.74 kN/m, shear-lag length about 48 mm)",
+  "why": "The specified 0.1 % tension loads the edge bonds about 5x above the level where certified OCAs already creep. The model says about 25x less tension would be enough, but that is a re-spec, not the idea as written.",
+  "margin": 0.18,
+  "ratio": 28.0,
+  "verdict": "DEAD"
+ },
+ "g1_mech#2": {
+  "killer": "Length mismatch between the unbonded layers. The layers are bonded at both ends of the zone and the fluid carries no shear, so a 20 µm PI layer over a 15 mm free span buckles once the mismatch exceeds the clamped Euler strain π²t²/3L².",
+  "why": "Bonding the layers at the zone ends means they cannot slide, so a few tens of ppm of thermal or creep mismatch buckles the free PI into a ripple that shows in reflection; the defect moves rather than disappears.",
+  "margin": 0.04,
+  "ratio": 2.0,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#1": {
+  "killer": "The same constraint on the thinnest unbonded layer (20 µm PI over a 10 mm strip). Folding also adds mismatch, so the claimed 0.75% strain does not hold.",
+  "why": "Because the strip ends are bonded, the layers cannot slip, so the strain relief the idea claims does not happen and the free films buckle under ordinary thermal mismatch.",
+  "margin": 0.09,
+  "ratio": 2.0,
+  "verdict": "DEAD"
+ },
+ "g1_ledger#2": {
+  "killer": "Peak OCA shear at the edges, held for as long as the phone is open, at the tension needed to flatten a 20 µm, 3 mm-wide set to 2 µm. That needs T ≈ 3.9 kN/m, or about 580 N over a 151 mm fold, given a stack bending stiffness D ≥ 3.9×10⁻⁴ N·m.",
+  "why": "Closed-loop tension can mechanically flatten the crease by about 10x, but it holds about 580 N in the hinge and the OCA in near-limit shear for as long as the phone is open, well past the 10-day hold the adhesive is designed for.",
+  "margin": 0.9,
+  "ratio": 10.0,
+  "verdict": "WOUNDED"
+ },
+ "g1_neg#2": {
+  "killer": "Tension accuracy of a cam that sets displacement rather than force. 600 N/m on a stack with Et ≈ 2.6×10⁶ N/m over a 136 mm span is a stroke of only 31 µm.",
+  "why": "The tolerance and thermal drift swamp the 31 µm stroke, so the tension swings from slack to several times nominal; even at nominal tension, a 20 µm set only drops to about 8 µm, which is not invisible.",
+  "margin": 0.09,
+  "ratio": 2.4,
+  "verdict": "DEAD"
+ }
+}
