@@ -29,3 +29,6 @@ gate: 4/4 parsed {'DEAD': 4}
   known: 42,582 tokens, 36.9 s
   known: g1_rf1#3 partly, g1_neg#1 partly, g1_ledger#1 partly, g1_mech#3 partly (4/4 parsed)
 /home/user/SomeRepository/engine/runs/rusres2__p2/repair/TASK.md
+  repair: 803,459 tokens, 556.1 s
+repair: 2 ideas (1464 words)
+/home/user/SomeRepository/engine/runs/rusres2__p2/audit_final/TASK.md

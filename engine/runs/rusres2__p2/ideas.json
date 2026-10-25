@@ -133,5 +133,23 @@
   "name": "Dikson coal: stockpile, summer convoy",
   "mech": "Syradasayskoye coal is stockpiled at Dikson all year. It ships only in the summer–autumn window on Russian ice-class bulkers, in the same icebreaker convoys as the Bukhta Sever tankers in the nearby Yenisei Gulf. Cargoes go to buyers not barred from Russian coal, for example China at its 3% duty. The closest earlier attempt is Red Dog, which ships 122 days a year and works. Mary River Phase 2 was stopped by a permit rejection, not by the window. The deciding quantity is window days × bulker cycle. 5 Mt in about 140 days is about 36 kt/day. On a 10-day Dikson–Murmansk loop (est.) with 70 kt hulls, that needs about 5–6 hulls and no Arc7.",
   "value": "Stage 1 delivers 5 Mt/y with no winter-class hulls and shared icebreaker cost. That attacks the 25% outbound-logistics share, which is the coal stream's largest cost term."
+ },
+ {
+  "id": "repair#1",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Legality-split hull-day swing",
+  "mech": "The anchor is unchanged: ice-class hulls stay on the short ice leg wherever a lawful onward hull exists, and train output is set by hull-days. The design now splits cargo by legal status. From 1 Jan 2027 the EU ban removes Zeebrugge and about 15 Mt/y of EU sales. Yamal LNG (not on the US SDN list) would then run its 15 existing Arc7s as a winter shuttle from Sabetta to a Kildin ship-to-ship (STS) transfer point near Murmansk, not the Saam FSU, whose owner is on the SDN list. Clean non-EU conventional hulls take the cargo on to Asia. In summer the fleet splits into 40 direct NSR-east cargoes plus 64 shuttle cargoes. Winter needs only 9.7–11.4 of the 15 hulls, so all 19.7 Mt/y is delivered, against 7.4 Mt/y if the Arc7s carry every cargo to Asia themselves. Arctic LNG 2 cargo has no lawful onward hull, so it moves only on Russian-built Zvezda Arc7s delivering straight to the Chinese buyer (0.49 Mt per hull per year). Train 1 runs at the rate those hulls allow, a 30% duty factor with 4 hulls, and Trains 2–3 become a spares pool. Train 3 is not commissioned.",
+  "value": "Yamal LNG's full cost falls from about $657/t to about $387/t delivered (ratio 0.59) against realised prices of $442–494/t. Arctic LNG 2 earns about $110–160/t in cash on each delivered tonne, but its full cost (about $1,216/t with 4 hulls) stays far above price until about 33 Zvezda hulls exist."
+ },
+ {
+  "id": "repair#2",
+  "label": "repair",
+  "arm": "F",
+  "gen": 3,
+  "name": "Size Sever to hulls",
+  "mech": "The anchor is unchanged: each month Bukhta Sever receives only what the Russian-built Arc hulls can lift, about 1.54 Mt/y per 69 kt hull on the 15.5-day Murmansk cycle (1.2 Mt/y if winter stretches the cycle to 20 days). The allocation is reversed. Vankor-cluster oil (about 11.6–12.3 Mt in 2026–27) stays on the existing Vankor–Purpe line. That line is rated 25 Mt/y and has 12.7–13.4 Mt/y spare. The oil goes to the export outlet it already sells to, not to domestic refineries, which are already crude-long. South is the cheaper margin: about $57/t to an Asian buyer via Transneft and Kozmino, against about $86/t north via Sever, Murmansk and Suez. The north carries only Payakha oil, and Payakha drilling is scheduled to Zvezda Arc hull deliveries, so no well is drilled whose oil cannot be lifted. Because of that, no surplus ever has to go south and the Payakha–Vankor segment never needs reverse flow.",
+  "value": "Delivered cost per tonne falls by about $29/t on every Vankor tonne kept south, and holding back 15–25 Mt/y of Payakha capacity by 2–3 years saves $2.4–5.8bn in present value. That is about $80–190 per tonne of the capacity deferred, against the published plan of 30 Mt/y in H2 2027, which needs about 19 hulls that do not exist."
  }
 ]
