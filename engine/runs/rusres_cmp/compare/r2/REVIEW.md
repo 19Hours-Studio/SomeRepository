@@ -1,0 +1,85 @@
+=== REVIEW ===
+IDEA 1: Shared nuclear grids replace site diesel
+DEFECT | MAJOR | The largest saving, about 1,900 USD/t Cu at Baimskaya, is measured against a wrong baseline. Baimskaya has never been a diesel-only plan: its own four floating units are the current plan. Kupol is a gold mine, not a copper benchmark. Against Baimskaya's actual plan the saving is about 0. | Rosatom plans 4 × 106 MW floating units for a load of up to 350 MW (KAZ Minerals/Interfax). PortNews, Apr 2026: units delivered 2028–2031.
+DEFECT | MAJOR | 9.6 RUB/kWh is lower than what a floating plant costs at the loads it actually runs. The capital charge alone is 12.9 RUB/kWh. | Akademik Lomonosov: $480m, 250 GWh delivered in 2024 against 429 GWh design (NEI Magazine). At CRF 8%/40 yr that gives $0.161/kWh, before operation, refuelling and decommissioning. Ruscable, 28 Sep 2026: the Baimskaya power contract is still unsigned, so no tariff exists.
+DEFECT | MAJOR | The cost of the line to an off-grid gold mine is left out. For a 20 MW mine it adds about 8 RUB/kWh. Lowering the nuclear tariff and adding the line cuts the saving from 16.4 to about 0–8 RUB/kWh. | Natalka's 220 kV connection cost RUB 10 bn (Polyus, 2020). At CRF 0.13 over 158 GWh/yr that is 8.2 RUB/kWh.
+DEFECT | MINOR | The Yakutia anchor plant has slipped, so Kyuchus cannot be on reactor power before about 2030. | neftegaz.ru: the Ust-Kuyga small nuclear plant has moved to 2030.
+DEFECT | MINOR | No domestic multi-MW wind turbine has a track record in Arctic cold (−50 °C). Novawind's 2.5 MW units are temperate designs, so the "domestic hybrid" route is unproven. | No Arctic Novawind installation found.
+SURVIVES | 0.22 kg/kWh genset rate. Diavik 9.2 MW and about 10% diesel saved. 26 RUB/kWh → 16.4 × 9,600 kWh / 83 RUB/$ = $1,897/t reproduces.
+RATIO | 1.04 | Baimskaya 1.00 (already nuclear). Grid-connectable Chukotka gold mines 1.05–1.10 if spare Chaun–Bilibino capacity exists: Lomonosov runs at 58% of design.
+KNOWN | yes | Chaun–Bilibino grid with Akademik Lomonosov; Baimskaya floating units; Ust-Kuyga plant for Kyuchus. All are in Rosatom/government plans.
+NEW FACT | Akademik Lomonosov delivered 250 GWh in 2024 against 429 GWh/yr design | neimagazine.com
+
+IDEA 2: Shaft-bottom XRT sorting, hoist-bound mines
+DEFECT | MAJOR | No domestic or unrestricted supplier makes a proven 150 t/h XRT sorter. The only Russian XRT machine found is a prototype (Ural State Mining University, Mar 2025). Bourevestnik and RADOS make XRF/X-ray luminescence machines, and Bourevestnik's coarse-size work stops at −80+50 mm. The Selebi-type results come from imported hardware. | rg.ru, 26 Mar 2025. Bourevestnik literature.
+DEFECT | MAJOR | A fixed hoist gives more metal only if the mine breaks, hauls and fills 1.108–1.40× more ore underground. Idea 3 says the same Norilsk underground fleet is already short of availability. Mining, not hoisting, is then the binding limit. | Mined/hoisted = 1/(1−0.65r) = 1.108 and 1.401. Idea 3's 6.3 t Ni-eq lost per machine-hour.
+DEFECT | MAJOR | The rejects cannot go "straight" into stope backfill. Norilsk uses cemented (hardening) fill mixed at surface plants, so coarse −150 mm rejects need underground binder dosing, i.e. cemented rockfill. That plant is not costed. | Mass fits: 0.40 t rejects per t hoisted against 0.44–0.67 t of fill needed. Binding them is the problem.
+DEFECT | MINOR | The quoted ratio of 1.2–1.8× does not follow from the cost ranges given. | $6.7–12.6k against $5.0–8.3k gives 0.81–2.52× (midpoints 1.45×). The low end is worse than a shaft.
+SURVIVES | ×1.094 and ×1.364 metal reproduce at 35% fines. Two 150 t/h units at 85% give 2.23 Mt/yr against 1.44–1.82 Mt coarse feed. Excluding disseminated ore is right.
+RATIO | 1.02 | At most about 3–5% lower unit cost at the few hoist-bound mines, if a sorter exists. About 1% group-wide.
+KNOWN | partly | Underground pre-concentration has been studied (CRC ORE, TOMRA trials). Nothing is installed at Norilsk.
+
+IDEA 3: Gated diesel bridge plus pooled spares
+DEFECT | FATAL | The road needed to carry the diesel and concentrate is not built. In April 2026 the roughly 410 km all-season road from the plant to the coast was about 8% complete. The Q1 2029 bridge assumes it carries about 146 kt of fuel inward. | RAEX rating release, 24 Apr 2026 (raexpert.ru/releases/2026/apr24a).
+DEFECT | MAJOR | The decision gate is too late to work. A Q4 2027 decision leaves about 9 winter months to design, pass state review and build 173k m³ of cooled-pile tankage, and to fill it in the 2028 navigation before a Q1 2029 start. The real decision point is about 2026, which removes the option value. | Pevek navigation runs July–October, 154 days in 2024 (alta.ru).
+DEFECT | MAJOR | The 146 kt of diesel would raise Pevek's whole oil-product throughput by 82% in one season. That capacity is not shown. | Pevek handled 177.6 kt of oil products in 2024 (alta.ru).
+DEFECT | MINOR | The fuel figure does not match its own load. 65 MW average × 8,760 h × 0.225 kg/kWh = 128 kt, not 146 kt; 146 kt implies 74 MW. At 74 MW average on 80 MW installed there is no N+1 reserve for a SAG-mill grid. | Python check.
+DEFECT | MINOR | The nickel half rests on a facility that may not exist yet. The 150 machines/yr Sosnovoborsk JV figure appears in only one report; the JV agreement was signed in Sept 2026, and the plant is not shown to be producing. | myfin.by; Moscow Times, 7 Sep 2026.
+SURVIVES | Ni-eq −0.85% reproduces: implied group output 857 kt, (10.05Q + 81)/(Q + 15) = 9.97. 222 kt wet concentrate at 21.6% Cu; 5.6 ships of 40 kt.
+RATIO | 1.01 | Nickel 1.009. The copper bridge is infeasible for a 2029 start, so ≈1.00.
+KNOWN | partly | Rented diesel bridging for mine start-ups is common; Kupol itself runs on diesel. Nornickel's spares localisation is under way.
+NEW FACT | First floating unit 2028, all four by 2031; power contract unsigned Sept 2026 | portnews.ru/news/389849; ruscable.ru, 28 Sep 2026
+
+IDEA 4: Pre-staged flood-crest barges
+DEFECT | MAJOR | The 2.5 m backwater depth leaves only 0.25–1.0 m of free water under ice. A loaded barge (draft about 1.5–2 m) is frozen in for the whole winter. It needs continuous ice-cutting around the hull and faces ice pressure, winter level drops and break-up. None of that is costed in the 3,100 rub/t. | AARI: end-of-April ice 152 cm (Yana, Yubileynaya), 167–185 cm (Indigirka), 175–225 cm (lower Lena).
+DEFECT | MAJOR | The decisive 35–62% load loss comes from a model, not a measurement. It is a "modelled 12-day recession", the probability of arriving late is not given, and the expected gain is not computed. | No gauge data cited.
+DEFECT | MINOR | The baseline leaves out the winter road. Yakutia's winter roads carried about 480 kt in 2026. | eastrussia.ru.
+SURVIVES | 4,700/3,100 = 1.52× and 11,300/3,100 = 3.65× reproduce.
+RATIO | 1.02 | The gain is on one leg only, a small share of whole-chain delivered cost, before ice-management costs.
+KNOWN | partly | Lena-basin fleets routinely winter in backwaters and run high-water deliveries. Wintering loaded barges was not confirmed.
+
+IDEA 5: Ore sorting plus dry-stack tailings
+DEFECT | FATAL | The cited test results break the mass balance the value depends on. 70% rejection with grade ×1.5–1.6 means only 45–48% of the gold reports to product. At the assumed 50% rejection, ×1.6 means about 20 points of recovery lost, not 1–5. Keeping 1–5 points would need ×1.90–1.98. | (1 − 0.7) × 1.55 = 0.47; 0.5 × 1.6 = 0.80.
+DEFECT | MAJOR | Natalka and Pavlik do not run on diesel. Natalka is on the 220 kV hydro grid, so the "pays most where diesel" premise fails for half of the named mines. | Polyus: 220 kV Ust-Omchug–Omchak connection, Nov 2020, about 90% renewable.
+DEFECT | MINOR | Fort Knox leaches year-round, with lower recovery in winter. It is not a seasonal operation. | Miningnewsnorth: cold lowers heap-leach recoveries in winter; it does not stop leaching.
+SURVIVES | Eagle heap failure, about 5.95 Mm³, with poor drainage plus frozen fine ore (Northern Miner, Independent Review Board report, 2 Jul 2025). Dry stacks at Raglan and Pogo.
+RATIO | 1.00 | At a gold price around $4,000, a loss of 10–20 points outweighs a 15–25% cut in processing cost. Positive only at low rejection on proven ores.
+KNOWN | yes | Polymetal's XRT work at Dukat; dry stacks at Raglan, Pogo and Greens Creek.
+
+IDEA 6: Diesel-sized first line, nuclear expansion
+DEFECT | FATAL | It depends on the same road as Idea 3: 20 trucks a day assume an all-season road that was about 8% complete in April 2026. A start at end-2028 also contradicts the VEB timeline (first stage, 35 Mt/y, in 2029). | RAEX, 24 Apr 2026; www1.ru, 30 Dec 2024 (VEB).
+DEFECT | MAJOR | Throughput is overstated relative to the design energy intensity. 117 kt of diesel gives 59.4 MW average. At the design ratio of 39 kWh/t (350 MW for 70 Mt/y) that supports 13.2 Mt/y, not 15. Idea 3 runs the same plant at 12.2 Mt on 65–74 MW. After correcting for coarse grind (84% recovery) it gives about 57 kt Cu and 84 koz Au, not 67 kt and 98 koz. | Python check.
+DEFECT | MAJOR | After that correction, the cash margin per year of slip falls from $0.52bn to about $0.39bn. | 56.5 kt × $9.7k + 84 koz × $4k − scaled costs ≈ $0.39bn.
+DEFECT | MINOR | Tankage of 174k m³ is Idea 3's 146 kt figure. For 117 kt the volume is 139k m³. | 117/0.84.
+SURVIVES | $0.52bn margin and $1.95k/t net cash cost reproduce at Cu $9.7k/Au $4.0k; low case $0.29bn. 7,000 loads/yr = 19 a day, or 78 a day over 90 winter-road days.
+RATIO | 1.02 | Only if the road and fuel port exist. Otherwise 1.00.
+KNOWN | partly | Diesel start-ups ahead of the grid (Kupol; Natalka before 2020). Baimskaya has published no plan like this.
+
+IDEA 7: Design for warming ground, with monitoring
+DEFECT | MAJOR | The core benefit, avoiding a 20–50% loss of foundation life for 0.3–1% of capex, is the author's own assumption with no measured basis, so the value is unquantified. | Text says "my assumption".
+DEFECT | MAJOR | Russian code already requires the main proposal. SP 25.13330.2020 was revised to account for climate change, and Change No. 3 took effect on 14 June 2026. That makes the idea current practice, not an improvement. | normacs.info/news/78881.
+DEFECT | MINOR | The 3-year paired-pad test is underpowered. Settlement differences of a few centimetres per year between heterogeneous pads need many pads per arm. Monitoring alone does not reduce settlement; only the interventions it triggers do. | No sample size stated.
+SURVIVES | GTN-P +0.39 ± 0.15 °C. Rostekhnadzor: weak piles and pile cap, half the piles overloaded, thaw excluded (Interfax 737323; Novaya Gazeta, 10 Nov 2020). 1.4 bn/165 = 8.5 M RUB per object.
+RATIO | 1.01 | A small avoided-failure value against the current code baseline.
+KNOWN | yes | SP 25.13330.2020 with Change 3; Nornickel's geotechnical monitoring; thermosyphons standard at Yamal LNG.
+
+IDEA 8: Develop by value per tonne
+DEFECT | MAJOR | The rule is applied inconsistently. Baimskaya is ranked first, but its concentrate (about 1 Mt/yr wet) also needs an ice-class eastern NSR fleet that is not built. That is the same reason the idea gives for deferring Syradasay. | portnews.ru/news/339875: the Baimskaya fleet programme was still at the planning stage.
+DEFECT | MAJOR | None of the three measures is quantified, and the ordering mostly restates what is already happening. Udokan is already producing cathode (from Sept 2026, after a fire delay). Vostok Oil has started. | Moscow Times, 2 Sep 2026; S&P Global, 6 Sep 2026.
+DEFECT | MINOR | Elga's 35.1 Mt is output, not rail haul. Deliveries were 26 Mt, 7 Mt of them on the new Pacific Railway to an Okhotsk Sea port that freezes in winter. Red Dog storage is about 1.2 Mt, not 950 kt. | eastrussia regional review; AIDEA DMTS fact sheet, 2023.
+SURVIVES | NSR 37.02 Mt, −2.3% (Gekon). Arctic LNG 2 1.3 Mt in 23 cargoes (LSEG). Lomonosov pause from 1 Jul 2026. Freight shares 33/18/7/1.3/0.3% reproduce.
+RATIO | 1.00 | No quantified change from current sequencing.
+KNOWN | yes | Russia's Arctic and NSR strategy already sequences projects by fleet availability.
+
+IDEA 9: Size Sever to hulls
+DEFECT | MAJOR | The baseline is a strawman. Vankor-cluster oil already goes south on Vankor–Purpe, so the $29/t is not a saving against current practice. | Carnegie, Aug 2025: existing pipelines carry current cluster output (14.8 Mt in 2023).
+DEFECT | MAJOR | Assuming only 69 kt hulls understates lift capacity. The second cargo at Sever was the roughly 120 kt Aframax Akademik Gubkin, built at Zvezda. The berth takes 120 kt tankers, so summer lift per call is about 1.7× higher and the "19 hulls" count is inflated. | S&P Global, 6 Sep 2026; gCaptain.
+DEFECT | MINOR | The PV saving per tonne is quoted on the wrong denominator. $2.4–5.8bn divided by 15–25 Mt deferred is $160–232/t, not $80–190/t; the $80–190 uses 30 Mt. | Python check.
+DEFECT | MINOR | Rated capacity and the south/north costs are unsourced. Vankor–Purpe is quoted at both 25 and about 30 Mt/y, so spare capacity is 12.7–18.4 Mt/y. The $57/t south and $86/t north are not sourced. | Wikipedia (600 kb/d) against the Transneft 2011 figure.
+SURVIVES | 365/15.5 × 69 kt = 1.62 Mt (1.54 at about 95% availability); 1.26 Mt on a 20-day cycle. First oil at Sever in Sept 2026.
+RATIO | 1.00 | Current practice already sends Vankor oil south. The capex-deferral gain is against Rosneft's plan, not delivered cost.
+KNOWN | yes | Rosneft says Sever volumes are set by the ice-class fleet (S&P Global, 6 Sep 2026).
+
+Overall rank (most to least defensible): 7 > 1 > 9 > 2 > 8 > 4 > 3 > 6 > 5. Ideas 3 and 6 are the same Baimskaya bridge and both depend on a road that was 8% built. Idea 5's own evidence contradicts it.
+
+Sources: [WNN Cape Nagloynyn](https://world-nuclear-news.org/articles/cape-nagloynyn-contracts-take-shape) · [PortNews 389849](https://portnews.ru/news/389849/) · [Ruscable 28.09.2026](https://www.ruscable.ru/news/2026/09/28/Kontrakt_na_energosnabzhenie_Baimskogo_GOKa_do_six/) · [RAEX 24.04.2026](https://raexpert.ru/releases/2026/apr24a) · [VEB/www1](https://www1.ru/news/2024/12/30/bolse-zolota-i-medi-veb-pomozet-postroit-na-cukotke-baimskii-gorno-obogatitelnyi-kombinat.html) · [KAZ Minerals update](https://kazminerals.com/?p=2752) · [NEI Lomonosov](https://www.neimagazine.com/news/russias-floating-npp-generates-its-first-electricity-7569717/) · [Polyus Natalka grid](https://sustainability.polyus.com/en/blog/connection-of-natalka-to-the-ust-omchug-omchak-power-transmission-line/) · [Neftegaz Yakutia plant 2030](https://neftegaz.ru/news/nuclear/872888-v-yakutii-sroki-vvoda-atomnoy-stantsii-maloy-moshchnosti-smestili-na-2030-g/) · [Alta Pevek 2024](https://www.alta.ru/logistics_news/115326/) · [RG XRT prototype](https://rg.ru/2025/03/26/reg-urfo/rentgen-vidit-pustuiu-porodu.html) · [Northern Miner Eagle](https://northernminer.com/news/board-cites-poor-drainage-for-eagle-gold-leach-failure/1003880103) · [Miningnewsnorth Fort Knox](https://miningnewsnorth.com/story/2009/11/22/news/fort-knox-heap-leach-yields-first-gold/2118.html) · [AARI ice bulletin](https://old.aari.ru/resources/f0021/2014_spring.pdf) · [Interfax TPP-3](https://www.interfax.ru/russia/737323) · [Novaya Gazeta](https://novayagazeta.ru/articles/2020/11/10/165575-rostehnadzor-tayanie-vechnoy-merzloty-ne-moglo-stat-prichinoy-avarii-na-tets-3-v-norilske) · [Normacs SP 25 Change 3](https://www.normacs.info/news/78881) · [Breakbulk NSR 2025](https://breakbulk.news/?p=51120) · [Moscow Times Arctic LNG 2](https://ru.themoscowtimes.com/2026/01/12/factbox-otgruzki-na-tankery-s-podsanktsionnogo-proekta-arktik-spg-2-v-2025-godu-a184257) · [Moscow Times Udokan](https://ru.themoscowtimes.com/2026/09/02/update-1-udokan-nachal-proizvodstvo-katodnoy-medi-posle-zaderzhki-iz-za-pozhara-a205110) · [Moscow Times Nornickel–BelAZ](https://ru.themoscowtimes.com/2026/09/07/nornikel-i-belaz-dogovorilis-o-sozdaniya-sp-dlya-proizvodstva-podzemnoy-tekhniki-a205476) · [MYFIN Sosnovoborsk](https://myfin.by/article/belarus/nornikel-i-belaz-postroat-zavod-gornoj-tehniki-v-sibiri-45134) · [PortNews Baimskaya fleet](https://portnews.ru/news/339875/) · [S&P Vostok Oil](https://www.spglobal.com/energy/en/news-research/latest-news/crude-oil/090626-russia-launches-major-vostok-oil-project-with-first-arctic-loading) · [gCaptain](https://gcaptain.com/russia-launches-massive-vostok-oil-project-marking-new-arctic-shipping-era/) · [Carnegie Vostok Oil](https://carnegieendowment.org/russia-eurasia/politika/2025/07/russia-new-oil-project) · [Wikipedia Vankor](https://en.wikipedia.org/wiki/Vankor_Field) · [AIDEA DMTS](https://www.aidea.org/Portals/0/ProjectFactSheets/DMTS%20Project%20Fact%20Sheet%202023.pdf) · [GJEPC Severalmaz](https://gjepc.org/solitaire/?p=37067) · [EastRussia winter roads](https://www.eastrussia.ru/news/avtozimniki-obespechili-zavoz-pochti-500-tys-tonn-gruzov-v-yakutiyu-/)
