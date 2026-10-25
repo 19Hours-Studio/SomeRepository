@@ -1,0 +1,12 @@
+phi (0.05, 0.02) phi_g 0e+00 T=2000: crease 0.0060, sag 0.0245, worst sum 0.0256 mrad
+phi (0.05, 0.02) phi_g 0e+00 T=3000: crease 0.0040, sag 0.0167, worst sum 0.0174 mrad
+phi (0.05, 0.02) phi_g 0e+00 T=4000: crease 0.0030, sag 0.0127, worst sum 0.0131 mrad
+phi (0.2, 0.1) phi_g 0e+00 T=2000: crease 0.0246, sag 0.0245, worst sum 0.0364 mrad
+phi (0.2, 0.1) phi_g 0e+00 T=3000: crease 0.0164, sag 0.0167, worst sum 0.0246 mrad
+phi (0.2, 0.1) phi_g 0e+00 T=4000: crease 0.0123, sag 0.0127, worst sum 0.0186 mrad
+phi (0.2, 0.1) phi_g 6e-04 T=2000: crease 0.0355, sag 0.0245, worst sum 0.0470 mrad
+phi (0.2, 0.1) phi_g 6e-04 T=3000: crease 0.0237, sag 0.0167, worst sum 0.0317 mrad
+phi (0.2, 0.1) phi_g 6e-04 T=4000: crease 0.0178, sag 0.0127, worst sum 0.0239 mrad
+phi (0.2, 0.1) phi_g 1e-03 T=2000: crease 0.0427, sag 0.0245, worst sum 0.0541 mrad
+phi (0.2, 0.1) phi_g 1e-03 T=3000: crease 0.0285, sag 0.0167, worst sum 0.0364 mrad
+phi (0.2, 0.1) phi_g 1e-03 T=4000: crease 0.0214, sag 0.0127, worst sum 0.0275 mrad

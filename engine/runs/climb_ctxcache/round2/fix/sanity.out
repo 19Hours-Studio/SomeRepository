@@ -4,3 +4,5 @@ trace file view  rope=normal tokens=   74 nll=3.987 top1=0.425  chars/token=3.32
 trace file view  rope=neox   tokens=   74 nll=5.633 top1=0.137  chars/token=3.32
 chunked vs unchunked max |dlogit|: 4.76837158203125e-05
 splice+reinsert same tokens: max |dK| = 1.239776611328125e-05  max |dV| = 1.1086463928222656e-05  pos equal: True
+last= option vs full logits, max |dlogit|: 4.57763671875e-05
+1000-token prefill (shared machine): 4.5s

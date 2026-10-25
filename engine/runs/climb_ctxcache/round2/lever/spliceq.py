@@ -15,6 +15,8 @@ from qwen import Qwen3, DIR
 from tokenizers import Tokenizer
 import traces as T
 
+LONG = bool(os.environ.get("LONG"))   # long-chain mode: cap the SLIDING prompt, skip the append-only reference, eval every EVERY-th request
+EVERY = int(os.environ.get("EVERY", 4))
 KEEP = 5; CAP = int(os.environ.get("CAP", 9000)); ACT = 128; NTR = int(os.environ.get("NTR", 12)); KS = (16, 128); MAXEV = int(os.environ.get("MAXEV", 8))
 tk = Tokenizer.from_file(f"{DIR}/tokenizer.json")
 def wrap(role, text):
@@ -32,7 +34,11 @@ def prepare(tr):
 def select(Tr):
     ok = []
     for tr in Tr:
-        ids, _ = prepare(tr); A = T.requests(tr)
+        ids, ph = prepare(tr); A = T.requests(tr)
+        if LONG:
+            ev = [a for a in A if T.old_obs(tr, a) and sum(len(ph[i]) if i in T.old_obs(tr, a) else len(ids[i]) for i in range(a)) <= CAP]
+            if len(ev) >= 30: ok.append(tr["id"])
+            continue
         ev = [a for a in A if sum(len(ids[i]) for i in range(a)) <= CAP and T.old_obs(tr, a)]
         if len(ev) >= 4: ok.append(tr["id"])
     random.Random(0).shuffle(ok)
@@ -56,7 +62,8 @@ class Chain:  # a spliced KV cache for the sliding prompt, updated incrementally
             o += n
     def splice(s, i, ph):
         a, n = s.off(i); b = a + n; p = len(ph); p0 = s.pos[a]
-        _, c = s.m.forward(ph, sl(s.cache, 0, a), start=p0, want_logits=False); s.work += p
+        _, c = s.m.forward(ph, sl(s.cache, 0, a), start=p0, want_logits=False, keep="new"); s.work += p
+        c = cat(sl(s.cache, 0, a), c)
         rest = sl(s.cache, b); tail = s.pos[b:]
         delta = (p0 + p) - s.pos[b] if b < len(s.pos) else 0
         if s.mode == "gap" and delta <= 0: delta = 0           # keep original positions (hole in position ids)
@@ -68,8 +75,8 @@ class Chain:  # a spliced KV cache for the sliding prompt, updated incrementally
         if s.k:  # boundary repair: recompute the first k tokens after the cut on top of the spliced prefix
             e = min(a + p + s.k, len(s.ids))
             if e > a + p:
-                _, c2 = s.m.forward(s.ids[a + p:e], sl(s.cache, 0, a + p), start=s.pos[a + p], want_logits=False)
-                s.cache = cat(c2, sl(s.cache, e)); s.work += e - a - p
+                _, c2 = s.m.forward(s.ids[a + p:e], sl(s.cache, 0, a + p), start=s.pos[a + p], want_logits=False, keep="new")
+                s.cache = cat(sl(s.cache, 0, a + p), c2, sl(s.cache, e)); s.work += e - a - p
         if s.refresh and s.nsplice % s.refresh == 0:   # exact refresh from the first cut that is still stale
             _, s.cache = s.m.forward(s.ids, None, want_logits=False); s.pos = list(range(len(s.ids))); s.work += len(s.ids)
 
@@ -87,8 +94,11 @@ def walk(tr, ids, ph, A, chain, on_eval):
     """Replay the sliding policy request by request; keep `chain` (or None) in sync; call on_eval at eval points."""
     el = set(); done = 0; nev = 0
     for a in A:
-        if sum(len(ids[i]) for i in range(a)) > CAP: break
-        old = T.old_obs(tr, a); new_el = sorted(old - el, reverse=True)
+        old = T.old_obs(tr, a)
+        if LONG:
+            if sum(len(ph[i]) if i in old else len(ids[i]) for i in range(a)) > CAP: break
+        elif sum(len(ids[i]) for i in range(a)) > CAP: break
+        new_el = sorted(old - el, reverse=True)
         if chain is not None:
             for i in new_el:
                 if i < done: chain.splice(i, ph[i])
@@ -97,17 +107,21 @@ def walk(tr, ids, ph, A, chain, on_eval):
         if not el: continue
         nev += 1
         if nev > MAXEV: break
+        if LONG and (nev - 1) % EVERY: continue
         on_eval(a, el)
 
 def run(path, out, shard, nshard):
     Tr = T.load(path); byid = {t["id"]: t for t in Tr}
-    sel = select(Tr); m = Qwen3(); fo = open(out, "a"); tmp = os.environ.get("TMPD", "/tmp/claude-0/t")
+    sel = select(Tr); m = Qwen3(); tmp = os.environ.get("TMPD", "/tmp/claude-0/t")
     os.makedirs(tmp, exist_ok=True)
     print("selected", sel, flush=True)
     variants = {"S0": dict(mode="rot"), "SG": dict(mode="gap")}
     for k in KS: variants[f"S{k}"] = dict(mode="rot", k=k)
+    if LONG: variants = {"S0": dict(mode="rot"), "S128": dict(mode="rot", k=128)}
+    done_ids = {json.loads(l)["id"] for l in open(out)} if os.path.exists(out) else set()
+    fo = open(out, "a")
     for ti, tid in enumerate(sel):
-        if ti % nshard != shard: continue
+        if ti % nshard != shard or tid in done_ids: continue   # resumable: skip traces already written
         tr = byid[tid]; ids, ph = prepare(tr); A = T.requests(tr); recs = {}
         def act_of(a): return enc("<|im_start|>assistant\n" + tr["text"][a])[:ACT]
         def ref_eval(a, el):  # exact references, stored on disk
@@ -115,7 +129,8 @@ def run(path, out, shard, nshard):
             sp = [t for i in range(a) for t in (ph[i] if i in el else ids[i])]
             _, rc = m.forward(sp, None, want_logits=False); ref = dist(m, rc, len(sp), act); del rc
             ap = [t for i in range(a) for t in ids[i]]
-            _, ac = m.forward(ap, None, want_logits=False); app = dist(m, ac, len(ap), act); del ac
+            if LONG: app = ref                        # append-only reference skipped in long-chain mode
+            else: _, ac = m.forward(ap, None, want_logits=False); app = dist(m, ac, len(ap), act); del ac
             torch.save((ref, app), f"{tmp}/{tid}_{a}.pt")
             rec = {"id": tid, "req": a, "n_cleared": len(el), "sliding_len": len(sp), "append_len": len(ap),
                    "ref": cmp(ref, ref, act), "app": cmp(ref, app, act), "ref_vs_app": cmp(app, ref, act)}

@@ -1,0 +1,5 @@
+f=0.635 F4=40.6PF srambw=228TB/s link=1.72TB/s users=69376
+SRAM 11.74 GB of 16.56; HBM 85.0 of 86.4
+CSA us [6.7, 8.99, 13.66, 8.72] ho 4.83  HCA us [6.08, 8.99, 10.47, 8.72]
+chip 1919 W slot 2309 W; c_pair 24.13 T 48.3 speed 1165
+eff (pod avg slot 2303) 60.0 tok/s/W

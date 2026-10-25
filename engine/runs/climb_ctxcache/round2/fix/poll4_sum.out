@@ -1,0 +1,11 @@
+traces=11 eval points=18 mean ctx=1,688 tokens mean scored tokens/point=74 mean splices so far=4.7 max splices=8
+
+mode      KL nats/tok               95% CI   median top-1 agree     dNLL             95% CI
+splice        0.00566   0.00387..  0.00732  0.00432      0.9832  -0.0080  -0.0196.. +0.0024
+noshift       0.00839   0.00593..  0.01066  0.00675      0.9827  -0.0027  -0.0203.. +0.0186
+keep+1        0.00000   0.00000..  0.00000  0.00000      1.0000  +0.0000  +0.0000.. +0.0000
+noise    max |KL| 1.5e-08, min top-1 1.0000, max |dNLL| 1.1e-06 over 11 points
+
+by observations spliced out so far (splice mode):
+   3- 5: n= 15  KL=0.00574  noshift KL=0.00839  keep+1 KL=0.00000  top1=0.9845  dNLL=-0.0088
+   6-10: n=  3  KL=0.00527  noshift KL=0.00840  keep+1 KL=0.00000  top1=0.9768  dNLL=-0.0040

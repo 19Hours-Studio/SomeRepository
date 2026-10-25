@@ -27,3 +27,9 @@ span n=10 p=1 (84,429,520, ctx 15,334) vs client n=5 p=20 (94,815,215, ctx 16,30
 span n=15 p=1 (86,749,137, ctx 16,577) vs client n=10 p=20 (98,898,599, ctx 17,217): -12.3%
 span n=20: ctx 17,648 above every client polling point; vs append-only (ctx 21,219) -6.8%
 span n=5 p=5 (82,900,222, ctx 14,518) vs client n=5 p=20 (94,815,215, ctx 16,302): -12.6%
+
+combined with strict cap-4 batching (all output kept; batching part to be scaled by precision 0.77..0.90)
+n=None p=1 prefix: -8.7% vs append-only (without batching +0.0%); precision-scaled -6.7% .. -7.8%
+n=5 p=20 prefix: -7.6% vs append-only (without batching -0.4%); precision-scaled -6.0% .. -6.9%
+n=5 p=1 span: -19.8% vs append-only (without batching -14.1%); precision-scaled -18.5% .. -19.2%
+n=10 p=1 span: -17.7% vs append-only (without batching -11.3%); precision-scaled -16.2% .. -17.1%

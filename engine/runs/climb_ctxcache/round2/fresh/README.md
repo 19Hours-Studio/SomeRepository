@@ -1,7 +1,7 @@
 # round2/fresh: files and how to re-run them
 
 Everything uses the Python standard library only. `sh scripts/fetch_data.sh` fetches the data and
-checks its hashes; `sh scripts/run_all.sh` rewrites every file in `out/` (about 15–25 min on 4 cores).
+checks its hashes; `sh scripts/run_all.sh` rewrites every file in `out/` (about 35–40 min run serially, about 20 min if the four groups in it are run in parallel; peak ~6 GB RAM).
 
 ## Data (sha256 in `data/SHA256SUMS`)
 

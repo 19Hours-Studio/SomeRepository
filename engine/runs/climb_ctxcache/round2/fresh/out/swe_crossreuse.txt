@@ -1,0 +1,7 @@
+tool/user-output tokens 7.3M: already seen in an earlier trajectory 8.3%; repeated within the same trajectory 9.6%
+   django         41.9% of tokens, cross-trajectory repeats 12.9%
+   sphinx-doc     18.3% of tokens, cross-trajectory repeats 6.5%
+   sympy          13.0% of tokens, cross-trajectory repeats 4.9%
+   matplotlib      5.4% of tokens, cross-trajectory repeats 9.0%
+   pytest-dev      4.6% of tokens, cross-trajectory repeats 1.5%
+   pydata          3.8% of tokens, cross-trajectory repeats 4.3%

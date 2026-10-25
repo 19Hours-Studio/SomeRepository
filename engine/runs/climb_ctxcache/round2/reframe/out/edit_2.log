@@ -1,0 +1,7 @@
+matplotlib__matplotlib-23476 {'clear': 0.017, 'replace': 0.0084, 'insert': 0.0082, 'reorder': 0.0075}
+astropy__astropy-7606 {'clear': 0.0878, 'replace': 0.0181, 'insert': 0.0134, 'reorder': 0.0055}
+sphinx-doc__sphinx-7910 {'clear': 0.0367, 'replace': 0.0044, 'insert': 0.0063, 'reorder': 0.0068}
+django__django-16899 {'clear': 0.0405, 'replace': 0.0031, 'insert': 0.0032, 'reorder': 0.0046}
+django__django-12741 {'clear': 0.0437, 'replace': 0.0024, 'insert': 0.0025, 'reorder': 0.0043}
+django__django-11163 {'clear': 0.0245, 'replace': 0.0095, 'insert': 0.0104, 'reorder': 0.0042}
+sphinx-doc__sphinx-10614 {'clear': 0.032, 'replace': 0.0038, 'insert': 0.0049, 'reorder': 0.0065}

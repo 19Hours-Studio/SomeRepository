@@ -1,0 +1,3 @@
+nominal: seat sigma limit 0.135 um (3 sigma 0.41 um); load-path eccentricity limit 0.125 mm (EI 10, dF 2.5%)
+phi_g 1e-3: seat sigma limit 0.123 um (3 sigma 0.37 um); load-path eccentricity limit 0.099 mm (EI 10, dF 2.5%)
+tongue 50 mm: seat sigma limit 0.176 um (3 sigma 0.53 um); load-path eccentricity limit 0.175 mm (EI 10, dF 2.5%)

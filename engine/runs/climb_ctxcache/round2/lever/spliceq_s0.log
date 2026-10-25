@@ -1,0 +1,14 @@
+selected ['astropy__astropy-14096', 'sphinx-doc__sphinx-7590', 'django__django-14315', 'pydata__xarray-2905', 'sympy__sympy-18698', 'django__django-16032', 'pylint-dev__pylint-4661', 'django__django-14034']
+astropy__astropy-14096 14 3828 4837 {'app': 0.0136, 'S0': 0.0073, 'SG': 0.0204, 'S16': 0.0097, 'S128': 0.0154}
+astropy__astropy-14096 16 2631 5128 {'app': 0.0225, 'S0': 0.0183, 'SG': 0.014, 'S16': 0.0203, 'S128': 0.0088}
+astropy__astropy-14096 18 2369 5211 {'app': 0.0202, 'S0': 0.0082, 'SG': 0.0164, 'S16': 0.0082, 'S128': 0.0067}
+astropy__astropy-14096 20 2872 5774 {'app': 0.0055, 'S0': 0.0021, 'SG': 0.0042, 'S16': 0.0008, 'S128': 0.0024}
+astropy__astropy-14096 22 2541 5888 {'app': 0.0099, 'S0': 0.0054, 'SG': 0.0065, 'S16': 0.0062, 'S128': 0.005}
+astropy__astropy-14096 24 2788 6585 {'app': 0.0146, 'S0': 0.0045, 'SG': 0.0066, 'S16': 0.0033, 'S128': 0.0022}
+selected ['astropy__astropy-14096', 'sphinx-doc__sphinx-7590', 'django__django-14315', 'pydata__xarray-2905', 'sympy__sympy-18698', 'django__django-16032', 'pylint-dev__pylint-4661', 'django__django-14034']
+django__django-14315 14 2802 4805 {'app': 0.0174, 'S0': 0.0067, 'SG': 0.008, 'S16': 0.0068, 'S128': 0.0072}
+django__django-14315 16 3260 5790 {'app': 0.0812, 'S0': 0.0081, 'SG': 0.0094, 'S16': 0.0069, 'S128': 0.0067}
+django__django-14315 18 3362 6027 {'app': 0.0079, 'S0': 0.0019, 'SG': 0.0035, 'S16': 0.0019, 'S128': 0.0011}
+django__django-14315 20 2993 6399 {'app': 0.0498, 'S0': 0.022, 'SG': 0.0259, 'S16': 0.025, 'S128': 0.0175}
+django__django-14315 22 3468 7010 {'app': 0.026, 'S0': 0.0199, 'SG': 0.0411, 'S16': 0.0101, 'S128': 0.003}
+django__django-14315 24 3283 7142 {'app': 0.0347, 'S0': 0.0158, 'SG': 0.0285, 'S16': 0.013, 'S128': 0.0101}

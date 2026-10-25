@@ -1,0 +1,16 @@
+R5.5 28/12: Rn 20.2 zone 80 width 13.4 | T4000 phi_g0 0.18 um 0.0066 mrad | phi_g1e-3 0.31 um 0.0114 mrad
+R5.5 28/10: Rn 18.3 zone 77 width 13.2 | T4000 phi_g0 0.18 um 0.0067 mrad | phi_g1e-3 0.31 um 0.0117 mrad
+R5.5 28/9: Rn 17.4 zone 75 width 13.1 | T4000 phi_g0 0.18 um 0.0068 mrad | phi_g1e-3 0.32 um 0.0119 mrad
+R5.5 28/8: Rn 16.5 zone 73 width 13.0 | T4000 phi_g0 0.19 um 0.0069 mrad | phi_g1e-3 0.32 um 0.0120 mrad
+R5.5 28/7: Rn 15.6 zone 72 width 12.9 | T4000 phi_g0 0.19 um 0.0072 mrad | phi_g1e-3 0.33 um 0.0125 mrad
+R5.5 25/12: Rn 19.7 zone 77 width 12.7 | T4000 phi_g0 0.18 um 0.0074 mrad | phi_g1e-3 0.31 um 0.0129 mrad
+R5.5 25/10: Rn 17.7 zone 73 width 12.5 | T4000 phi_g0 0.18 um 0.0076 mrad | phi_g1e-3 0.32 um 0.0132 mrad
+R5.5 25/9: Rn 16.7 zone 71 width 12.5 | T4000 phi_g0 0.19 um 0.0077 mrad | phi_g1e-3 0.33 um 0.0134 mrad
+R7.0 35/12: Rn 22.4 zone 96 width 16.6 | T4000 phi_g0 0.15 um 0.0043 mrad | phi_g1e-3 0.25 um 0.0074 mrad
+R7.0 35/10: Rn 20.6 zone 92 width 16.4 | T4000 phi_g0 0.15 um 0.0044 mrad | phi_g1e-3 0.26 um 0.0076 mrad
+R7.0 35/9: Rn 19.7 zone 91 width 16.3 | T4000 phi_g0 0.15 um 0.0045 mrad | phi_g1e-3 0.26 um 0.0078 mrad
+R7.0 30/12: Rn 21.3 zone 90 width 15.5 | T4000 phi_g0 0.15 um 0.0050 mrad | phi_g1e-3 0.26 um 0.0088 mrad
+R7.0 30/10: Rn 19.4 zone 86 width 15.4 | T4000 phi_g0 0.15 um 0.0052 mrad | phi_g1e-3 0.26 um 0.0090 mrad
+R7.0 35/8: Rn 18.9 zone 89 width 16.2 | T4000 phi_g0 0.15 um 0.0052 mrad | phi_g1e-3 0.26 um 0.0091 mrad
+R7.0 30/9: Rn 18.5 zone 85 width 15.3 | T4000 phi_g0 0.15 um 0.0052 mrad | phi_g1e-3 0.27 um 0.0091 mrad
+R7.0 28/12: Rn 20.7 zone 87 width 15.2 | T4000 phi_g0 0.15 um 0.0054 mrad | phi_g1e-3 0.26 um 0.0095 mrad

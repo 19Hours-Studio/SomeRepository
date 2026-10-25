@@ -1,0 +1,2 @@
+R3 nominal: worst feature reaches 0.024 mrad at phi_g = 2.82e-03; at phi_g 1e-2: interior 0.0619, clamp 0.0349 mrad, depth 1.57 um
+R3 nominal, R=7 35/10, tongue 50: worst feature reaches 0.024 mrad at phi_g = 4.97e-03; at phi_g 1e-2: interior 0.0427, clamp 0.0250 mrad, depth 1.25 um

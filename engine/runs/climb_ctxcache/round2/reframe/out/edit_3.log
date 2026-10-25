@@ -1,1 +1,10 @@
 sympy__sympy-18199 {'clear': 0.0464, 'replace': 0.0052, 'insert': 0.0031, 'reorder': 0.0047}
+django__django-15268 {'clear': 0.0363, 'replace': 0.0311, 'insert': 0.0234, 'reorder': 0.0136}
+sphinx-doc__sphinx-9711 {'clear': 0.0191, 'replace': 0.0063, 'insert': 0.0086, 'reorder': 0.0043}
+sympy__sympy-19783 {'clear': 0.0535, 'replace': 0.0205, 'insert': 0.0071, 'reorder': 0.006}
+pydata__xarray-4966 {'clear': 0.036, 'replace': 0.0111, 'insert': 0.0045, 'reorder': 0.0056}
+matplotlib__matplotlib-20859 {'clear': 0.0388, 'replace': 0.004, 'insert': 0.0042, 'reorder': 0.0127}
+django__django-14011 {'clear': 0.0188, 'replace': 0.0025, 'insert': 0.0025, 'reorder': 0.0062}
+pydata__xarray-4695 {'clear': 0.0075, 'replace': 0.0102, 'insert': 0.0108, 'reorder': 0.0021}
+matplotlib__matplotlib-24637 {'clear': 0.0546, 'replace': 0.0052, 'insert': 0.0073, 'reorder': 0.0154}
+django__django-14787 {'clear': 0.0215, 'replace': 0.0051, 'insert': 0.006, 'reorder': 0.0028}

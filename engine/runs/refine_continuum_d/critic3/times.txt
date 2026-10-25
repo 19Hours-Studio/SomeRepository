@@ -1,0 +1,30 @@
+
+real	0m0.044s
+user	0m0.016s
+sys	0m0.008s
+hand10
+
+real	5m59.345s
+user	4m32.888s
+sys	0m0.429s
+t10
+
+real	8m18.122s
+user	4m47.026s
+sys	0m1.283s
+sweep10
+
+real	4m58.974s
+user	2m44.845s
+sys	0m0.445s
+tau10
+
+real	3m51.519s
+user	2m34.010s
+sys	0m0.175s
+feyn10
+
+real	7m57.590s
+user	7m19.473s
+sys	0m0.256s
+all10

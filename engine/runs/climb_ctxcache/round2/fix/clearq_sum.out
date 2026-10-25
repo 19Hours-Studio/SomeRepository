@@ -1,0 +1,3 @@
+eval points=37 traces=18 mean append prompt=1,451
+keep5: points that cleared=19  prompt 1,452 vs append 1,663  KL=0.00802 (median 0.00376)  top1=0.9862  dNLL=+0.0043
+keep3: points that cleared=37  prompt 1,119 vs append 1,451  KL=0.02314 (median 0.01360)  top1=0.9723  dNLL=+0.0110

@@ -1,0 +1,39 @@
+A. Max net tension through the glass cross-section (what an edge flaw sees), linear CS profile + uniform CT
+  CS 450 DOL 6.0: CT(20um) 337 MPa -> sandwich bottom sheet R5.5 max 756 MPa ; CT(30um) 150 -> single 30um UTG R1.5 582 / R2.0 474 MPa
+  CS 700 DOL 3.0: CT(20um) 150 MPa -> sandwich bottom sheet R5.5 max 608 MPa ; CT(30um) 88 -> single 30um UTG R1.5 663 / R2.0 519 MPa
+  CS 800 DOL 2.5: CT(20um) 133 MPa -> sandwich bottom sheet R5.5 max 598 MPa ; CT(30um) 80 -> single 30um UTG R1.5 680 / R2.0 530 MPa
+
+B. Surface-flaw depth reaching K_th 0.3 / K_IC 0.7 MPa sqrt(m) (CT added beyond DOL)
+  CS 700/DOL 3.0 sandwich bulb inner face R5.5    applied  497 MPa: 1.48 / 2.04 um
+  CS 700/DOL 3.0 sandwich neck user face Rn20     applied  137 MPa: 2.84 / 3.00 um
+  CS 700/DOL 3.0 single 30um UTG R1.5             applied  720 MPa: 0.80 / 1.46 um
+  CS 700/DOL 3.0 single 30um UTG R2.0             applied  540 MPa: 1.45 / 2.06 um
+  CS 800/DOL 2.5 sandwich bulb inner face R5.5    applied  497 MPa: 1.40 / 1.83 um
+  CS 800/DOL 2.5 sandwich neck user face Rn20     applied  137 MPa: 2.40 / 2.50 um
+  CS 800/DOL 2.5 single 30um UTG R1.5             applied  720 MPa: 0.89 / 1.39 um
+  CS 800/DOL 2.5 single 30um UTG R2.0             applied  540 MPa: 1.37 / 1.83 um
+
+C. Finger on tensioned span (membrane estimate F/(2 pi T) ln(L/2 / r0), r0=4 mm contact) + gravity sag
+  T=1000: 1 N finger -> 358 um; lands on 60/100 um backstop at 0.17/0.28 N; gravity sag 1.07 um, end slope 0.056 mrad, curvature radius 678 m; membrane strain 327 ue, glass 24 MPa, force on 150 mm 150 N, stroke over 70 mm 0 um
+  T=2000: 1 N finger -> 179 um; lands on 60/100 um backstop at 0.33/0.56 N; gravity sag 0.53 um, end slope 0.028 mrad, curvature radius 1356 m; membrane strain 654 ue, glass 47 MPa, force on 150 mm 300 N, stroke over 70 mm 0 um
+  T=3000: 1 N finger -> 119 um; lands on 60/100 um backstop at 0.50/0.84 N; gravity sag 0.36 um, end slope 0.019 mrad, curvature radius 2033 m; membrane strain 980 ue, glass 71 MPa, force on 150 mm 450 N, stroke over 70 mm 0 um
+
+D. Spring sizing for +-20% force over 35 K Al-vs-glass mismatch on 140 mm
+  T=2000: F=300 N, rate <= 844 N/mm, preload deflection >= 0.36 mm; opening work ~ 13.7 mJ
+  T=3000: F=450 N, rate <= 1267 N/mm, preload deflection >= 0.36 mm; opening work ~ 30.9 mJ
+
+E. Glass-anelasticity budget, 30 um panel, 15/15 mm ramps (kappa' = (1/5.5+1/20.1)/15 mm), slope ~ sum(phi D)*kappa'/T
+  polymer 0.05/0.02, T=2000: slope<=0.024 mrad needs phi_g <= 9.9e-04
+  polymer 0.05/0.02, T=3000: slope<=0.024 mrad needs phi_g <= 1.7e-03
+  polymer 0.05/0.02, T=3000, phi_g 1e-2 (Zerodur-like saturation): slope 0.125 mrad
+  polymer 0.2/0.1, T=2000: slope<=0.024 mrad needs phi_g <= -3.9e-05
+  polymer 0.2/0.1, T=3000: slope<=0.024 mrad needs phi_g <= 6.2e-04
+  polymer 0.2/0.1, T=3000, phi_g 1e-2 (Zerodur-like saturation): slope 0.138 mrad
+
+F. Reference: display-glass waviness WCA (0.8-8 mm band) as sinusoid, A = pi/2*WCA
+  WCA 0.03 um, lambda 8 mm: slope amplitude 0.037 mrad
+  WCA 0.03 um, lambda 4 mm: slope amplitude 0.074 mrad
+  WCA 0.10 um, lambda 8 mm: slope amplitude 0.123 mrad
+  WCA 0.10 um, lambda 4 mm: slope amplitude 0.247 mrad
+  WCA 0.15 um, lambda 8 mm: slope amplitude 0.185 mrad
+  WCA 0.15 um, lambda 4 mm: slope amplitude 0.370 mrad

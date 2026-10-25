@@ -14,7 +14,7 @@ Usage: python3 climb.py <run> --question-from <run> --start <v0 file> --start-fi
 State: engine/runs/<run>/ (v0.md, v1.md ... accepted versions; roundR/<move>.md and judge files; final/; report.md).
 Resumable: every call is cached in a file, and the decisions are recomputed from the cache.
 """
-import argparse, json, os, re, shutil, sys
+import argparse, json, os, re, shutil, subprocess, sys
 from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
@@ -153,12 +153,16 @@ def main():
 
         def write(move):
             f = os.path.join(rd, f"{move}.md"); wd = os.path.join(rd, move); os.makedirs(wd, exist_ok=True)
+            if os.path.exists(f + ".failed"): return None
             if not os.path.exists(f):
                 s = WRITE.replace("{QUESTION}", q).replace("{NOTES}", notes).replace("{MOVE}", MOVES[move]).replace("{FILES}", cf + "/")
                 s = s.replace("{WORKDIR}", wd + "/").replace("{REJECTED}", "\n".join(rejected) or "(none yet)")
                 s = s.replace("{ANSWER}", open(cur).read()).replace("{CHECK}", open(ck).read())
                 for attempt in (1, 2):  # a reply that is only a note about the work (climb_ctxcache round 1 lever: 64 words) gets one retry
-                    text, u = runner.call(s, model=a.model, tools="research", cwd=wd); runner.log(D, f"round{r}:{move}" + ("" if attempt == 1 else ":retry"), u)
+                    try: text, u = runner.call(s, model=a.model, tools="research", cwd=wd)
+                    except subprocess.TimeoutExpired:  # climb_ctxcache round 2: a candidate ran past the 2-hour limit; it drops out
+                        print(f"  round {r} {move}: no reply within the time limit; dropped", flush=True); open(f + ".failed", "w").write("timeout\n"); return None
+                    runner.log(D, f"round{r}:{move}" + ("" if attempt == 1 else ":retry"), u)
                     try: text = full_answer(text, wd, len(open(cur).read().split())); break
                     except SystemExit as e:
                         print(f"  round {r} {move}: {e}", flush=True); text = None
@@ -173,7 +177,7 @@ def main():
         ok = [m for m in cands if res[m][0]]
         pick = playoff(rd, ok, cands, res) if len(ok) > 1 else ok[0] if ok else None  # climb_ctxcache round 1: all four won, all +4
         for m in MOVES:
-            if m not in cands: log.append((r, m, (False, 0, "no answer (two short replies)", ("-", "-"), ("-", "-")))); continue
+            if m not in cands: log.append((r, m, (False, 0, "no answer (timeout or two short replies)", ("-", "-"), ("-", "-")))); continue
             log.append((r, m, res[m])); print(f"  round {r} {m}: {'won both' if res[m][0] else 'lost'} ({res[m][1]:+d}); gain {res[m][4][0][:120]}", flush=True)
             if m != pick: rejected.append(f"- round {r}, move '{m}': {res[m][2][:400]}")
         if pick:

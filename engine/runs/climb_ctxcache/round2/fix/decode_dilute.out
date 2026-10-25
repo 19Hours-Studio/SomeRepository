@@ -1,0 +1,20 @@
+output tokens 2,707,390  decode weight compute at 45% MFU: 0.24 GPU-h
+  append                   GPU-h   5.06  vs append +0.0%
+  sliding                  GPU-h   6.74  vs append +33.2%
+  sliding+splice           GPU-h   2.94  vs append -41.9%
+  sliding+splice/refresh4  GPU-h   5.74  vs append +13.4%
+  sliding+splice/refresh8  GPU-h   4.31  vs append -14.8%
+  polling10/keep5          GPU-h   3.81  vs append -24.7%
+  polling10/keep5+splice   GPU-h   3.24  vs append -36.0%
+  batch5k/keep5            GPU-h   3.66  vs append -27.7%
+  horizon/keep5            GPU-h   3.77  vs append -25.5%
+output tokens 2,707,390  decode weight compute at 15% MFU: 0.72 GPU-h
+  append                   GPU-h   5.54  vs append +0.0%
+  sliding                  GPU-h   7.22  vs append +30.3%
+  sliding+splice           GPU-h   3.42  vs append -38.3%
+  sliding+splice/refresh4  GPU-h   6.22  vs append +12.3%
+  sliding+splice/refresh8  GPU-h   4.79  vs append -13.5%
+  polling10/keep5          GPU-h   4.29  vs append -22.6%
+  polling10/keep5+splice   GPU-h   3.72  vs append -32.9%
+  batch5k/keep5            GPU-h   4.14  vs append -25.3%
+  horizon/keep5            GPU-h   4.25  vs append -23.3%

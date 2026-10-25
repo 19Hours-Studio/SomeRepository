@@ -1,0 +1,2 @@
+anthropic append-only input   48.6M  with carry-over   45.5M (-6.4%)  whole bill -5.0%  token hit 97.1% -> 97.9%
+openai    append-only input   46.0M  with carry-over   43.5M (-5.3%)  whole bill -4.1%  token hit 97.1% -> 97.9%

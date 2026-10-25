@@ -21,11 +21,11 @@ def horizon_seq(tr, ntok, W, R):  # same online rule as rule.py (rule.py runs on
     return seq
 
 P = 70e9; NL = 80; QD = 8192; KVB = 320 * 1024; KB = KVB / 2
-PEAK = 989e12 * 0.45; BW = 3.35e12; WB = 140e9; BATCH = 32
+PEAK = 989e12 * 0.45; BW = 3.35e12; WB = 140e9; BATCH = int(os.environ.get("BATCH", 32))
 W, R = T.PRICES["anthropic"]
 
 def gpu_time(seq, outs, splice_k=None, refresh=0):
-    pre = dec = rot = 0.0; prev = []; prevkeys = set(); ctxsum = 0; nsp = 0
+    pre = dec = rot = 0.0; prev = []; prevkeys = set(); ctxsum = 0; nsp = 0; reused = 0
     for s, o in zip(seq, outs):
         L = sum(t for _, t in s)
         if splice_k is None:
@@ -38,11 +38,11 @@ def gpu_time(seq, outs, splice_k=None, refresh=0):
                     rot += 2 * down * KB / BW; n += min(splice_k, down); nsp += 1
                     if refresh and nsp % refresh == 0: n = L   # periodic exact refresh
             c = L - min(n, L)
-        x = L - c
+        x = L - c; reused += c
         pre += (2 * P * x + 4 * NL * QD * (L * L - c * c) / 2) / PEAK
         dec += o * max((2 * P + 4 * NL * QD * L) / PEAK, (WB / BATCH + L * KVB) / BW)
         prev = s; prevkeys = {k for k, _ in s}; ctxsum += L
-    return pre, dec, rot, ctxsum / len(seq)
+    return pre, dec, rot, ctxsum / len(seq), reused, ctxsum
 
 def main(path):
     tot = {}
@@ -57,12 +57,12 @@ def main(path):
                 "sliding + splice, refresh every 4": (T.policy_seq(tr, ntok, "sliding", W, R), 0, 4)}
         for k, (seq, sk, rf) in pols.items():
             r = gpu_time(seq, outs, sk, rf)
-            tot[k] = [a + b for a, b in zip(tot.get(k, [0, 0, 0, 0]), r)]
+            tot[k] = [a + b for a, b in zip(tot.get(k, [0] * 6), r)]
     b = sum(tot["append"][:3])
-    print(f"{'policy':36s} {'prefill h':>9s} {'decode h':>9s} {'rotate h':>9s} {'total h':>8s} {'vs append':>9s}  mean ctx (sum over traces)")
-    for k, (p, d, r, cx) in tot.items():
+    print(f"{'policy':36s} {'prefill h':>9s} {'decode h':>9s} {'rotate h':>9s} {'total h':>8s} {'vs append':>9s}  mean ctx  token reuse")
+    for k, (p, d, r, cx, ru, cs) in tot.items():
         t = p + d + r
-        print(f"{k:36s} {p/3600:9.3f} {d/3600:9.3f} {r/3600:9.4f} {t/3600:8.3f} {t/b-1:+9.1%}  {cx/200:,.0f}")
+        print(f"{k:36s} {p/3600:9.3f} {d/3600:9.3f} {r/3600:9.4f} {t/3600:8.3f} {t/b-1:+9.1%}  {cx/200:8,.0f}  {ru/cs:.3f}")
 
 if __name__ == "__main__":
     main(sys.argv[1])

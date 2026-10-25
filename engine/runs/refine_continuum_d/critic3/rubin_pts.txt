@@ -1,0 +1,12 @@
+128K >=200: 49.0 tok/s/W 0.55V k=1 spd=367 B=17636 (t,m)=(1, 2) mem=2367us comp=2450us link=1073us c=39.52 T=79.04
+128K >=500: 44.2 tok/s/W 0.55V k=2 spd=505 B=11596 (t,m)=(1, 2) mem=2170us comp=2417us link=1059us c=38.98 T=77.96
+128K >=1000: 36.6 tok/s/W 0.55V k=4 spd=1110 B=4360 (t,m)=(2, 2) mem=1460us comp=1514us link=663us c=24.43 T=48.85
+128K >=1500: 30.7 tok/s/W 0.55V k=6 spd=1630 B=2492 (t,m)=(4, 2) mem=1192us comp=1212us link=531us c=19.55 T=39.09
+128K >=2000: 19.2 tok/s/W 0.55V k=6 spd=2038 B=1246 (t,m)=(4, 1) mem=1192us comp=1212us link=531us c=19.55 T=31.27
+  slot P at chosen label 1562 kv_store MB/user 652
+1024K >=200: 13.3 tok/s/W 0.55V k=3 spd=615 B=2866 (t,m)=(1, 2) mem=2399us comp=2261us link=349us c=38.70 T=77.39
+1024K >=500: 13.3 tok/s/W 0.55V k=3 spd=615 B=2866 (t,m)=(1, 2) mem=2399us comp=2261us link=349us c=38.70 T=77.39
+1024K >=1000: 11.2 tok/s/W 0.55V k=5 spd=1036 B=1426 (t,m)=(2, 2) mem=1780us comp=1687us link=260us c=28.71 T=57.41
+1024K >=1500: 7.9 tok/s/W 0.60V k=6 spd=1501 B=819 (t,m)=(2, 1) mem=1870us comp=1946us link=349us c=31.39 T=42.45
+1024K >=2000: 4.1 tok/s/W 0.55V k=7 spd=2032 B=268 (t,m)=(4, 1) mem=1321us comp=846us link=130us c=21.31 T=33.04
+  slot P at chosen label 1562 kv_store MB/user 5184

@@ -22,10 +22,10 @@ for m in modes:
     kl = [r[m]["kl"] for r in rows]; a, b = ci(m, "kl"); c, d = ci(m, "dnll")
     print(f"{m:8s} {st.mean(kl):12.5f} {a:9.5f}..{b:9.5f} {st.median(kl):8.5f} {st.mean(r[m]['top1'] for r in rows):11.4f} "
           f"{st.mean(r[m]['dnll'] for r in rows):+8.4f} {c:+8.4f}..{d:+8.4f}")
-w = sum(r["splice"]["kl"] < r["keep+1"]["kl"] for r in rows)
-print(f"\nsplice KL below keep+1 KL at {w}/{len(rows)} eval points; mean ratio splice/keep+1 = "
-      f"{st.mean(r['splice']['kl'] for r in rows)/st.mean(r['keep+1']['kl'] for r in rows):.2f}")
-print("\nby accumulated splices (splice mode):")
+w = sum(r["splice"]["kl"] < r["keep+1"]["kl"] for r in rows); kp = st.mean(r['keep+1']['kl'] for r in rows)
+if kp > 0: print(f"\nsplice KL below keep+1 KL at {w}/{len(rows)} eval points; mean ratio splice/keep+1 = "
+                 f"{st.mean(r['splice']['kl'] for r in rows)/kp:.2f}")
+print("\nby observations spliced out so far (splice mode):")
 for lo, hi in ((1, 2), (3, 5), (6, 10), (11, 99)):
     g = [r for r in rows if lo <= r["clears"] <= hi]
     if g: print(f"  {lo:2d}-{hi:2d}: n={len(g):3d}  KL={st.mean(r['splice']['kl'] for r in g):.5f}  noshift KL={st.mean(r['noshift']['kl'] for r in g):.5f}"

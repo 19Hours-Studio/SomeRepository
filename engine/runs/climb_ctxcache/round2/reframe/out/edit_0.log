@@ -1,1 +1,10 @@
 django__django-11603 {'clear': 0.0458, 'replace': 0.0052, 'insert': 0.0061, 'reorder': 0.0063}
+django__django-14404 {'clear': 0.0247, 'replace': 0.0102, 'insert': 0.0153, 'reorder': 0.0067}
+matplotlib__matplotlib-26466 {'clear': 0.0518, 'replace': 0.0117, 'insert': 0.0093, 'reorder': 0.0109}
+sympy__sympy-14248 {'clear': 0.0165, 'replace': 0.0038, 'insert': 0.004, 'reorder': 0.0055}
+psf__requests-5414 {'clear': 0.0074, 'replace': 0.0033, 'insert': 0.0033, 'reorder': 0.0047}
+django__django-11333 {'clear': 0.0272, 'replace': 0.0068, 'insert': 0.0052, 'reorder': 0.0134}
+scikit-learn__scikit-learn-13439 {'clear': 0.0266, 'replace': 0.004, 'insert': 0.0033, 'reorder': 0.0066}
+matplotlib__matplotlib-24870 {'clear': 0.037, 'replace': 0.0066, 'insert': 0.0084, 'reorder': 0.0125}
+astropy__astropy-7166 {'clear': 0.0335, 'replace': 0.0095, 'insert': 0.0099, 'reorder': 0.011}
+sphinx-doc__sphinx-9698 {'clear': 0.0275, 'replace': 0.0045, 'insert': 0.0044, 'reorder': 0.0101}

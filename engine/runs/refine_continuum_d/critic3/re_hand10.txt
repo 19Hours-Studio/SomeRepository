@@ -1,0 +1,12 @@
+128K G=16 h=2 b=1084 k=1 m=2 users=69,376  slot P=2309 W  F4=40.6 PF srambw=228 TB/s link=1.72 TB/s
+  SRAM: experts 2x0.89 + dense 2x0.43 + 9.09 idx + 0.00 HCA-KV = 11.74 of cap 16.56 GB
+  HBM: 85.0 of cap 86.4 GB; D(G)=5.14
+  CSA: sram 6.70 us  hbm 8.99  compute 13.66  dispatch/combine 8.72
+  HCA: sram 6.08 us  hbm 8.99  compute 10.47  dispatch/combine 8.72
+  hand-off 4.83 us; c_pair 24.13 us; tau 11.72; T = max(2x c, c+2tau) = 48.3 us; speed 1,165 tok/s/user
+1024K G=27 h=3 b=233 k=2 m=3 users=22,368  slot P=2401 W  F4=40.6 PF srambw=228 TB/s link=1.72 TB/s
+  SRAM: experts 2x0.53 + dense 2x0.43 + 13.90 idx + 0.00 HCA-KV = 15.81 of cap 16.56 GB
+  HBM: 129.1 of cap 129.6 GB; D(G)=5.47
+  CSA: sram 5.01 us  hbm 0.76  compute 6.88  dispatch/combine 1.82
+  HCA: sram 4.37 us  hbm 5.51  compute 6.27  dispatch/combine 1.82
+  hand-off 0.92 us; c_pair 13.15 us; tau 11.72; T = max(3x c, c+2tau) = 39.4 us; speed 1,933 tok/s/user

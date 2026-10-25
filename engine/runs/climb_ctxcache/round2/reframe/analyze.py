@@ -4,7 +4,7 @@ Usage: python3 -I analyze.py out/edit_*.jsonl
 """
 import json, sys, random, statistics as st
 
-R = [json.loads(l) for f in sys.argv[1:] for l in open(f)]
+R = list({r["id"]: r for r in (json.loads(l) for f in sys.argv[1:] for l in open(f))}.values())  # dedupe resumed runs
 rng = random.Random(0)
 
 

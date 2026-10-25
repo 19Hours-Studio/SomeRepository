@@ -1,1 +1,6 @@
 scikit-learn__scikit-learn-26194 {'clear': 0.0559, 'replace': 0.0111, 'insert': 0.0065, 'reorder': 0.0076}
+django__django-9296 {'clear': 0.0394, 'replace': 0.0089, 'insert': 0.007, 'reorder': 0.0088}
+django__django-15161 {'clear': 0.0367, 'replace': 0.0031, 'insert': 0.0043, 'reorder': 0.01}
+django__django-12193 {'clear': 0.0466, 'replace': 0.0176, 'insert': 0.0207, 'reorder': 0.0062}
+django__django-11951 {'clear': 0.0133, 'replace': 0.009, 'insert': 0.0113, 'reorder': 0.0045}
+django__django-13343 {'clear': 0.0427, 'replace': 0.006, 'insert': 0.0081, 'reorder': 0.0077}

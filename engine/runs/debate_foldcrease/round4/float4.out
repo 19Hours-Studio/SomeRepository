@@ -1,0 +1,92 @@
+stack 76 um, D 2.372e-03 N m, q 1.475 Pa, tension length l = sqrt(D/T) = 0.77 mm at T=4000
+
+A. material-set crease on the clamp-to-clamp span (max |slope| mrad, depth um)
+  R5.5 25/9 (v3)  T4000: zone 71 bulb 12.5 Rn 16.7 mm | g0e+00 0.0077 (0.19 um) | g5e-04 0.0106 (0.26 um) | g1e-03 0.0134 (0.33 um) | g3e-03 0.0248 (0.60 um) | pess(0.5/0.3, g1e-3) 0.0256
+  R5.5 25/9 (v3)  T5000: zone 71 bulb 12.5 Rn 16.7 mm | g0e+00 0.0062 (0.15 um) | g5e-04 0.0084 (0.21 um) | g1e-03 0.0107 (0.26 um) | g3e-03 0.0198 (0.48 um) | pess(0.5/0.3, g1e-3) 0.0204
+  R5.5 28/12      T4000: zone 80 bulb 13.4 Rn 20.2 mm | g0e+00 0.0066 (0.18 um) | g5e-04 0.0090 (0.24 um) | g1e-03 0.0114 (0.31 um) | g3e-03 0.0212 (0.57 um) | pess(0.5/0.3, g1e-3) 0.0218
+  R5.5 28/12      T5000: zone 80 bulb 13.4 Rn 20.2 mm | g0e+00 0.0053 (0.14 um) | g5e-04 0.0072 (0.19 um) | g1e-03 0.0092 (0.25 um) | g3e-03 0.0169 (0.46 um) | pess(0.5/0.3, g1e-3) 0.0175
+  R6.0 30/12      T4000: zone 85 bulb 14.4 Rn 20.9 mm | g0e+00 0.0057 (0.17 um) | g5e-04 0.0078 (0.23 um) | g1e-03 0.0099 (0.29 um) | g3e-03 0.0183 (0.53 um) | pess(0.5/0.3, g1e-3) 0.0189
+  R6.0 30/12      T5000: zone 85 bulb 14.4 Rn 20.9 mm | g0e+00 0.0046 (0.13 um) | g5e-04 0.0062 (0.18 um) | g1e-03 0.0079 (0.23 um) | g3e-03 0.0147 (0.43 um) | pess(0.5/0.3, g1e-3) 0.0151
+  R7.0 35/12      T4000: zone 96 bulb 16.6 Rn 22.4 mm | g0e+00 0.0043 (0.15 um) | g5e-04 0.0058 (0.20 um) | g1e-03 0.0074 (0.25 um) | g3e-03 0.0137 (0.47 um) | pess(0.5/0.3, g1e-3) 0.0142
+  R7.0 35/12      T5000: zone 96 bulb 16.6 Rn 22.4 mm | g0e+00 0.0034 (0.12 um) | g5e-04 0.0047 (0.16 um) | g1e-03 0.0059 (0.20 um) | g3e-03 0.0110 (0.38 um) | pess(0.5/0.3, g1e-3) 0.0113
+  check vs round-3 wing-clamped span (R5.5 25/9, T4000, g0): round-3 budget3 0.0074 mrad
+
+B. v3 clamp-line terms in the floating design: transfer to glass shape vs gap consumed (h = 30 um)
+  uniform net pressure p (gravity q, vent residual): parabola w = p(a^2-x^2)/2T, curvature p/T = 3.69e-04 1/m at p=q (R = 2.7 km); identical in fold and non-fold zones (no line feature); gravity sag 1.04 um
+  bond moment c*tau (critic 0.82-0.87 mrad): no bond under the active area -> 0; tension enters at the outer clamps (C)
+  seat kink delta/2 + dh/2a, frame bow, thermal bow, hinge gravity torque: the backing moves, the glass chord does not -> 0 in shape; each consumes gap (D)
+  servo bridge reference (critic 7 nm): no servo; vented gap -> 0 in shape
+
+C. edge-clamp tail: two-face clamp, jaw bonds 20 um epoxy each face, shear asymmetry eps -> moment eps*c*tau; jaw angle error
+  asymmetry 0.05: slope at mouth 0.043 mrad; at distance into active side 1 mm: 0.01111, 2 mm: 0.00241, 3 mm: 0.00003, 4 mm: 0.00062, 5 mm: 0.00079 mrad
+  asymmetry 0.20: slope at mouth 0.173 mrad; at distance into active side 1 mm: 0.04446, 2 mm: 0.00962, 3 mm: 0.00012, 4 mm: 0.00247, 5 mm: 0.00317 mrad
+  jaw angle error 0.2 mrad (hinge deflection, worst) decays e^(-d/l): d 3 mm -> 0.00407 mrad
+  jaw angle error 0.2 mrad (hinge deflection, worst) decays e^(-d/l): d 4 mm -> 0.00111 mrad
+  jaw angle error 0.2 mrad (hinge deflection, worst) decays e^(-d/l): d 5 mm -> 0.00030 mrad
+
+D. gap budget, h = 30 um (closures, worst sign); backing = lapped AlSiC wings + bridge
+  fixed: glass gravity sag toward backing                      1.04 um
+  fixed: wing/bridge flatness (lapped, assumed)                2.00 um
+  fixed: wing-bridge seam step (coarse, assumed)               3.00 um
+  fixed: hinge angular repeat 2 um/30 mm tongue x 37.5 mm      2.50 um
+  fixed: thermal bow of backing, AlSiC, 300 W/m2               0.04 um
+  fixed sum 8.6 um; load cases (EI of open body across the fold / hinge k_theta):
+    nominal EI 10, k 1000    on a table / held flat                : load   0.0 + fixed  8.6 =   8.6 um -> h=30 um margin  21.4 um
+    nominal EI 10, k 1000    held by one half, other cantilevered  : load   1.8 + fixed  8.6 =  10.3 um -> h=30 um margin  19.7 um
+    nominal EI 10, k 1000    held by both outer edges, face-down   : load  12.0 + fixed  8.6 =  20.6 um -> h=30 um margin   9.4 um
+    nominal EI 10, k 1000    held at centre from behind            : load   4.8 + fixed  8.6 =  13.3 um -> h=30 um margin  16.7 um
+    nominal EI 10, k 1000    extra hand moment across the hinge that closes the remaining gap (nominal hold): 0.07 N m
+    pessimistic EI 5, k 300  on a table / held flat                : load   0.0 + fixed  8.6 =   8.6 um -> h=30 um margin  21.4 um
+    pessimistic EI 5, k 300  held by one half, other cantilevered  : load   5.9 + fixed  8.6 =  14.5 um -> h=30 um margin  15.5 um
+    pessimistic EI 5, k 300  held by both outer edges, face-down   : load  26.2 + fixed  8.6 =  34.8 um -> h=30 um margin  -4.8 um
+    pessimistic EI 5, k 300  held at centre from behind            : load  11.7 + fixed  8.6 =  20.3 um -> h=30 um margin   9.7 um
+    pessimistic EI 5, k 300  extra hand moment across the hinge that closes the remaining gap (nominal hold): 0.03 N m
+  slow-vent cushion (sealed on handling time scales, vent tau ~1 min): glass mean follows backing mean (gas/membrane stiffness
+    ratio 1583); gap used = max(backing - mean-matched parabola) as a fraction of the vented case:
+    self-weight, held by edges (quartic)    : 0.04
+    uniform moment (parabola)               : 0.00
+    hinge kink (triangle)                   : 0.25
+  touch (membrane point load, finger r 4 mm, clamp span 75 mm):
+    h 10 um: glass lands on backing at 0.09 N, then rigid (no foam layer)
+    h 30 um: glass lands on backing at 0.26 N, then rigid (no foam layer)
+    groove pitch 1 mm: squeeze damping 6.67e+02 Pa s/m; dimple time 0.02 ms; full-span lift-off after tensioning (from 1 um texture) ~0.21 s
+    groove pitch 5 mm: squeeze damping 1.67e+04 Pa s/m; dimple time 0.42 ms; full-span lift-off after tensioning (from 1 um texture) ~5.27 s
+    drum mode f1 544 Hz; damping ratio with 5 mm grooves 16.2 (overdamped, no buzz)
+    stylus 3 N: dimple radius 1.09 mm, curvature ~50 1/m -> bending 138 MPa + membrane 94 MPa on bottom face (CS 700)
+
+E. folded-state retention: glass slack, held on the wings by electroadhesive strips (energised only while folded)
+  R5.5: edge shear V = D/(Rn*Lr2) = 9.8 N/m; hold 2 kPa -> lift-off 9.8 mm, peak curvature 10.1 1/m (neck 50 1/m)
+  R5.5: edge shear V = D/(Rn*Lr2) = 9.8 N/m; hold 5 kPa -> lift-off 3.9 mm, peak curvature 4.0 1/m (neck 50 1/m)
+  R5.5: edge shear V = D/(Rn*Lr2) = 9.8 N/m; hold 20 kPa -> lift-off 1.0 mm, peak curvature 1.0 1/m (neck 50 1/m)
+  R7.0: edge shear V = D/(Rn*Lr2) = 8.8 N/m; hold 2 kPa -> lift-off 8.8 mm, peak curvature 8.2 1/m (neck 45 1/m)
+  R7.0: edge shear V = D/(Rn*Lr2) = 8.8 N/m; hold 5 kPa -> lift-off 3.5 mm, peak curvature 3.3 1/m (neck 45 1/m)
+  R7.0: edge shear V = D/(Rn*Lr2) = 8.8 N/m; hold 20 kPa -> lift-off 0.9 mm, peak curvature 0.8 1/m (neck 45 1/m)
+  ideal parallel-plate electroadhesion 100 V across 3 um (eps_r 3.5): 17 kPa (measured conductive targets: 1-100 kPa at 400 V)
+  ideal parallel-plate electroadhesion 200 V across 5 um (eps_r 3.5): 25 kPa (measured conductive targets: 1-100 kPa at 400 V)
+
+F. thresholds and comparison
+  10" vernier -> surface slope 0.0242 mrad (source at infinity), 0.0279 mrad (lamp 2 m, eye 0.3 m)
+   5" vernier -> surface slope 0.0121 mrad (source at infinity), 0.0139 mrad (lamp 2 m, eye 0.3 m)
+   3" vernier -> surface slope 0.0073 mrad (source at infinity), 0.0084 mrad (lamp 2 m, eye 0.3 m)
+  worst line feature at the fold (crease; edge tails are a separate location, max 0.0036 mrad at 4 mm, see C):
+    v4 R5.5 25/9 (v3)  T4000: phi_g 0 0.0077, 5e-4 0.0106, 1e-3 0.0134, 3e-3 0.0248, pess polymer 0.5/0.3 + g1e-3 0.0256
+    v4 R5.5 28/12      T4000: phi_g 0 0.0066, 5e-4 0.0090, 1e-3 0.0114, 3e-3 0.0212, pess polymer 0.5/0.3 + g1e-3 0.0218
+    v4 R5.5 28/12      T5000: phi_g 0 0.0053, 5e-4 0.0072, 1e-3 0.0092, 3e-3 0.0169, pess polymer 0.5/0.3 + g1e-3 0.0175
+    v4 R7.0 35/12      T4000: phi_g 0 0.0043, 5e-4 0.0058, 1e-3 0.0074, 3e-3 0.0137, pess polymer 0.5/0.3 + g1e-3 0.0142
+    v4 R7.0 35/12      T5000: phi_g 0 0.0034, 5e-4 0.0047, 1e-3 0.0059, 3e-3 0.0110, pess polymer 0.5/0.3 + g1e-3 0.0113
+    v3 as re-budgeted by the critic: 0.047-0.058 nominal; v3 pessimistic 0.123 + critic terms
+    shipping iPhone Duo after 3000 folds (HTX, 1.24 deg): 21.6 mrad; new (<0.1 deg): <1.75 mrad
+
+G. side checks: Poisson-free clamps, tension hardware, glass stress
+  membrane strain 0.131%: Poisson contraction (nu 0.22) over 150 mm width 43 um -> jaws must allow +-22 um in y (flexure comb), else hindered contraction -> transverse compression -> wrinkling risk
+  T 4000: frame load 600 N; stretch over 150 mm 196 um; cam work ~F*stretch 118 mJ per opening; glass membrane 94 MPa, sustained core 244 MPa; jaw bond shear (3 mm, two faces) 0.67 MPa
+  T 5000: frame load 750 N; stretch over 150 mm 245 um; cam work ~F*stretch 184 mJ per opening; glass membrane 118 MPa, sustained core 268 MPa; jaw bond shear (3 mm, two faces) 0.83 MPa
+
+H. like-for-like ratios (same crease model, same polymer/glass set assumptions)
+  nominal, v3 geometry R5.5 25/9 T4000, phi_g 0                                   : 0.047-0.058 -> 0.0077 mrad = 6.1-7.5x
+  nominal, v4 geometry R5.5 28/12 T4000, phi_g 0                                  : 0.047-0.058 -> 0.0066 mrad = 7.1-8.8x
+  critic's improved v3 (R7, shape servo, dF 0.5%, k 2e3-1e4) vs v4 R7 35/12 T4000 : 0.02-0.029 -> 0.0043 mrad = 4.7-6.8x
+  R5.5 28/12 T4000: tolerable phi_g for 5" (0.0121) 1.13e-03, for 3" (0.0073) 1.46e-04
+  R5.5 28/12 T5000: tolerable phi_g for 5" (0.0121) 1.76e-03, for 3" (0.0073) 5.22e-04
+  R7.0 35/12 T4000: tolerable phi_g for 5" (0.0121) 2.48e-03, for 3" (0.0073) 9.60e-04
+  R7.0 35/12 T5000: tolerable phi_g for 5" (0.0121) 3.44e-03, for 3" (0.0073) 1.54e-03

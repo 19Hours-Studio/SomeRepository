@@ -1,8 +1,7 @@
 # Minimal Qwen3 forward pass with an explicit, editable KV cache (keys stored post-RoPE).
 # Lets us splice the cache (drop a span, insert a placeholder, re-rotate downstream keys)
 # and compare against exact recomputation. Weights: Qwen3-0.6B safetensors (Docker Hub ai/qwen3:0.6b-safetensors).
-import json, math, os, torch
-from safetensors.torch import load_file
+import json, math, mmap, os, struct, torch
 
 DIR = os.environ.get("QWEN_DIR", "/tmp/claude-0/w/qwen3")
 DT = {"bf16": torch.bfloat16, "fp32": torch.float32}[os.environ.get("QWEN_DT", "bf16")]
@@ -10,13 +9,22 @@ DT = {"bf16": torch.bfloat16, "fp32": torch.float32}[os.environ.get("QWEN_DT", "
 class Qwen3:
     def __init__(self, d=DIR):
         c = json.load(open(f"{d}/config.json")); self.c = c
-        w = load_file(f"{d}/model.safetensors")
-        self.w = {k.replace("model.", ""): v.to(DT) for k, v in w.items()}
+        self.w = {k.replace("model.", ""): v.to(DT) for k, v in self.load(f"{d}/model.safetensors").items()}
         self.L, self.H, self.KV, self.D = c["num_hidden_layers"], c["num_attention_heads"], c["num_key_value_heads"], c["head_dim"]
         self.eps = c["rms_norm_eps"]
         self.inv = 1.0 / (c["rope_theta"] ** (torch.arange(0, self.D, 2, dtype=torch.float64) / self.D))
         self.emb = self.w["embed_tokens.weight"]
         self.lm = self.w.get("lm_head.weight", self.emb)
+
+    @staticmethod
+    def load(path):  # safetensors via a private file mmap: weights stay file-backed (reclaimable), not anonymous memory
+        f = open(path, "rb"); n = struct.unpack("<Q", f.read(8))[0]; hdr = json.loads(f.read(n))
+        mm = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_COPY); out = {}
+        for k, v in hdr.items():
+            if k == "__metadata__": continue
+            assert v["dtype"] == "BF16"; a, b = v["data_offsets"]
+            out[k] = torch.frombuffer(mm, dtype=torch.bfloat16, count=(b - a) // 2, offset=8 + n + a).view(v["shape"])
+        return out
 
     def rms(self, x, g): return x * torch.rsqrt(x.pow(2).mean(-1, keepdim=True) + self.eps) * g
 
@@ -60,7 +68,8 @@ class Qwen3:
             if cache is not None:
                 K = torch.cat([cache[l][0], k], 1); V = torch.cat([cache[l][1], v], 1)
             else: K, V = k, v
-            if keep: newc.append((K, V))
+            if keep == "new": newc.append((k, v))
+            elif keep: newc.append((K, V))
             Kq = K.repeat_interleave(g, 0); Vq = V.repeat_interleave(g, 0)
             a = torch.nn.functional.scaled_dot_product_attention(q[None], Kq[None], Vq[None], attn_mask=m)[0]
             x = x + a.transpose(0, 1).reshape(n, -1) @ self.w[p + "self_attn.o_proj.weight"].T

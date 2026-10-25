@@ -6,3 +6,24 @@
   critic of v2: $0.96; Client-only errata −35.8% vs in-place (−32.6% with output priced) and −11% vs append-full (−9.6%); batching adds −14% to −31% on top, depending on the unmeasure
   v3: 2834 words, $2.37
   critic of v3: $1.08; about −11% of the total API bill (−10% to −12%) on real append-only agent traces, client-only, quality untested; −32.6% vs in-place-editing harnesses holds only
+  v4: 2323 words, $1.61
+# debate_ctxcache: stepwise improvement of a plain answer, judged afterwards
+
+| version | round prompt | words | cost | honest gain (judge, after its own check) |
+|---|---|---|---|---|
+| v0 | - | 1317 | plain answer | none |
+| v1 | debate | 2725 | $1.93 | about −3% to −11% billed input against append-only best practice (synthetic replays only; no gain in hit rate, which append-only already has at ~100% on re-sent tokens; quality untested) |
+| v2 | debate | 3299 | $1.19 | about −1% to −2% API cost against append-only agents that already return short snippets (up to −11% only against agents that re-append full 2,000-token outputs), from client-side diff errata, synthetic and with quality untested; no gain in hit rate, and the other ideas are prior art or show about 0 at cost-optimal settings. |
+| v3 | debate | 2834 | $2.37 | about −4% of total cost (back-references on real append-only traces, output quality untested); the claimed −12% needs batching that this model did not do even when the prompt asked for it |
+| v4 | debate | 2323 | $1.61 | about −11% to −14% total cost against batched tool-output clearing, modelled only, needing server-side span deletion billed as a cache hit, with quality untested; none for client-only API users |
+
+| comparison | newer version won (both orders) | margins | score (+ newer, - older) |
+|---|---|---|---|
+| v1 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v0 | 2 of 2 | clearly, clearly | +4 |
+| v2 vs v1 | 2 of 2 | clearly, clearly | +4 |
+| v3 vs v2 | 2 of 2 | clearly, clearly | +4 |
+| v4 vs v3 | 2 of 2 | clearly, clearly | +4 |
+spent $17.07

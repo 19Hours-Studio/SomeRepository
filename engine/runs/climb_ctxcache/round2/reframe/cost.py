@@ -118,8 +118,8 @@ def run(path):
         g_runs["batch5k (client, exact)"] = exact_log(T.policy_seq(tr, ntok, "batch", W, R, 5000))
         g_runs["sliding5 (exact recompute)"] = exact_log(sliding_seq(tr, ntok, 5))
         for keep in (5, 10):
-            lg = []; splice_bill(tr, sliding_seq(tr, ntok, keep), W, R, 16, 0, True, lg)
-            g_runs[f"splice{keep}+b16+decodeKV"] = lg
+            lg = []; splice_bill(tr, sliding_seq(tr, ntok, keep), W, R, 64, 0, True, lg)
+            g_runs[f"splice{keep}+b64+decodeKV"] = lg
         for k, lg in g_runs.items():
             pf, dc, rt, hold = gpu(lg, outs)
             add(("gpu", k, "pf"), pf); add(("gpu", k, "dc"), dc); add(("gpu", k, "rt"), rt)
@@ -131,7 +131,7 @@ def run(path):
             for keep in (2, 5, 10):
                 sl = sliding_seq(tr, ntok, keep)
                 c, h, t = T.bill(sl, W, R); add((pn, f"sliding{keep}"), c); add((pn, f"sliding{keep}", "t"), t); add((pn, f"sliding{keep}", "h"), h)
-                for BK, TAIL, dec in ((0, 0, False), (16, 0, False), (64, 0, False), (16, 256, False), (16, 0, True)):
+                for BK, TAIL, dec in ((0, 0, False), (16, 0, False), (64, 0, False), (16, 256, False), (16, 0, True), (64, 0, True)):
                     k = f"splice{keep}" + (f"+b{BK}" if BK else "") + (f"+tail{TAIL}" if TAIL else "") + ("+decodeKV" if dec else "")
                     c, ru, tt, rp, wr = splice_bill(tr, sl, W, R, BK, TAIL, dec)
                     add((pn, k), c); add((pn, k, "t"), tt); add((pn, k, "h"), ru - rp); add((pn, k, "rep"), rp)
@@ -145,12 +145,13 @@ def run(path):
         print(f"{'policy':28s} {'billed input':>13s} {'vs append':>9s} {'vs best client (DP)':>19s} {'tok-hit':>7s} {'mean prompt':>11s} {'repair tok/req':>14s}")
         keys = ["append", "append+decodeKV", "polling10", "batch5k", "opt"] + \
                [f"sliding{k}" for k in (2, 5, 10)] + \
-               [x for keep in (2, 5, 10) for x in (f"splice{keep}", f"splice{keep}+b16", f"splice{keep}+b64", f"splice{keep}+b16+tail256", f"splice{keep}+b16+decodeKV")]
+               [x for keep in (2, 5, 10) for x in (f"splice{keep}", f"splice{keep}+b16", f"splice{keep}+b64", f"splice{keep}+b16+tail256", f"splice{keep}+b16+decodeKV", f"splice{keep}+b64+decodeKV")]
         for k in keys:
             c = agg[(pn, k)]
             hit = f"{agg[(pn,k,'h')]/agg[(pn,k,'t')]:.3f}" if (pn, k, "h") in agg else "   -  "
             mp = f"{agg[(pn,k,'t')]/nreq:,.0f}" if (pn, k, "t") in agg else "-"
-            rp = f"{agg[(pn,k,'rep')]/nreq:.0f}" if (pn, k, "rep") in agg else ""
+            rp = (f"{agg[(pn,k,'rep')]/nreq:.0f}  (reuse of already-cached tokens {agg[(pn,k,'h')]/(agg[(pn,k,'h')]+agg[(pn,k,'rep')]):.2%})"
+                  if (pn, k, "rep") in agg else "")
             print(f"{k:28s} {c:13,.0f} {c/ap-1:+9.1%} {c/agg[(pn,'opt')]-1:+19.1%} {hit:>7s} {mp:>11s} {rp:>14s}")
     print("\n== Part 2: operator GPU-seconds (Llama-3.1-70B-class, BF16 KV 320 KB/token, H100, prefill MFU 45%,"
           " decode batch 64, HBM-bandwidth-bound) ==")

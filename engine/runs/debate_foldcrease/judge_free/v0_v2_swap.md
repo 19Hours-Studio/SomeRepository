@@ -1,0 +1,21 @@
+**A is the better answer, by a clear margin.** A sets a stricter, better-argued test for "invisible" and its model is more thorough. It does have real practical weaknesses, which B handles better.
+
+**What both answers get right.** They propose the same core idea. Remove the polymer film over the glass, let the glass carry most of the bending stiffness so it springs the stack back flat, and use hinge tension to pull out any leftover set. I rederived the physics for a stiff plate under tension. The leftover depth scales as (stiffness ÷ tension) × the leftover curvature, and the leftover slope scales with how sharply that curvature changes. Both answers use this correctly, and both scripts reproduce the numbers they report. Both cite the same HTX measurement of the iPhone Duo (48 µm new, 167 µm after 3,000 folds), and both say the "0.7 mm" Fold 7 figure has no source.
+
+**Where A is stronger**
+- **The test for "invisible".** B's slope target of ≤0.4 mrad bends a reflected ray by about 2.8 arcmin. A straight line reflected across the fold distorted by that much is plausibly still visible, so B's design may only be "less visible". A sets ≤0.024 mrad, backed by line-curvature perception studies. It also adds a relative test: the fold zone must look the same as the rest of the screen, which fits "physically absent" better.
+- **A new mechanism, with numbers.** A solves the folded hinge shape so the fold still closes. It then shows that easing the curvature in gradually over 15 mm cuts the leftover slope about 6.6× at the same tension (0.016 mrad at 3,000 N/m with realistic polymer set).
+- **Honesty about the main risk.** A names a risk B misses: ion-exchanged glass may itself take a small, slow, reversible set while folded, as some alkali-containing glasses do. A works out the limit this must stay under (about 6×10⁻⁴) and says plainly that the target fails if it is higher. Its strip test on mandrels measures this directly and has a clear kill criterion.
+
+**Where A is weaker**
+- **Hard to read.** It is written as a reply to an earlier critique ("round 1 corrected", "the check's point"), which the asker never saw.
+- **A bulky, risky build.** The folded spine is 13–14 mm, the hinge cavity takes 25–35 mm from each half, and the frame must carry 450 N. The bare 20 µm cover glass would likely do badly in pen-drop tests, and A leaves drop tests unquantified.
+- **A risk A didn't check.** My calculation found that at 3,000 N/m the glass holds about 75 MPa of steady tension the whole time the phone is open. A 5 µm flaw at a cut edge would then sit above the slow-crack-growth threshold (about 0.3 MPa√m or more, against a threshold of 0.25–0.3). B's 70 µm glass at 500–1,000 N/m stays under it. A's own table suggests a fix: at 1,000 N/m with the gradual curvature ramps the slope is still 0.049 mrad.
+
+**Where B is stronger.** It reads as one self-contained answer. The design is more buildable: 70 µm glass is more robust, the spine is only 2–3 mm thicker, and the tension is gentle. The optional heater that speeds recovery after opening is a sensible extra. But its model is rougher. Its "calibration" is just order-of-magnitude agreement with one second-hand HTX measurement, and it never works out the slope under tension.
+
+My edge-fatigue script is at `/tmp/claude-0/-home-user-SomeRepository-engine-runs-debate-foldcrease-judge-free-v0-v2-swap/86b61a25-826d-5e99-8ce4-43b0688ac74a/scratchpad/edge.py`.
+
+WINNER: A
+MARGIN: clearly
+WHY: I reran both answers' models, rederived the tension physics, and added an edge-fatigue check that neither did. A's design is bulkier and runs at a tension high enough to risk slow crack growth at the glass edges, but its tighter visibility test (≤0.024 mrad against B's ≤0.4 mrad) and its full hinge-shape model answer "actually invisible" far more convincingly. A also names the deciding unknown, the glass's own slow set, and gives a cheap strip test with a kill criterion. B is cleaner and more practical but cruder, and its target likely still allows a visible crease.

@@ -49,7 +49,7 @@ def segs_of(t):
     obs = [min(len(s["obs"]) / 3.6 + 0.5, max(t[i + 1]["L"] - s["L"], 0)) if i + 1 < n else 0 for i, s in enumerate(t)]
     oth = [max(t[i + 1]["L"] - s["L"], 0) - obs[i] if i + 1 < n else 0 for i, s in enumerate(t)]
     return obs, oth
-def run(t, n_keep, poll, mode="prefix", ph=10, k=32):
+def run(t, n_keep, poll, mode="prefix", ph=10, k=32, drop=frozenset()):
     """mode prefix: provider prefix cache (hit up to the first changed block). mode span: provider replace_span —
     an elided observation is replaced in place, billed as a hit, k boundary tokens after each new hole recomputed."""
     obs, oth = segs_of(t); upto = 0; prev = None; c = 0.0; vis = 0.0; Lsum = 0.0
@@ -70,8 +70,9 @@ def run(t, n_keep, poll, mode="prefix", ph=10, k=32):
             pk = set(key for key, _ in prev) if prev else set()
             holes = (new_upto - upto) if prev else 0
             hit = max(0.0, sum(x for key, x in segs if key in pk) - k * holes)
+        if j in drop: c += O * s["out"]; Lsum -= L; continue   # merged into the previous turn: no request sent
         c += R * hit + W * (L - hit) + O * s["out"]; prev = segs; upto = new_upto
-    return c, Lsum / len(t)
+    return c, Lsum / max(1, len(t) - len(drop))
 ap = [run(t, None, 1) for t, _ in TR]; A = sum(c for c, _ in ap); Lap = sum(l * len(t) for (c, l), (t, _) in zip(ap, TR)) / nreq
 print(f"append-only (no elision): {A:,.0f} units (trace4 base {base:,.0f}), mean context {Lap:,.0f} tokens")
 res = {}
@@ -91,3 +92,10 @@ for k, (c, L) in res.items():
     if ok:
         b = min(ok); print(f"span n={k[0]} p={k[1]} ({c:,.0f}, ctx {L:,.0f}) vs client n={b[2][0]} p={b[2][1]} ({b[0]:,.0f}, ctx {b[1]:,.0f}): {c/b[0]-1:+.1%}")
     else: print(f"span n={k[0]}: ctx {L:,.0f} above every client polling point; vs append-only (ctx {Lap:,.0f}) {c/A-1:+.1%}")
+
+print("\ncombined with strict cap-4 batching (all output kept; batching part to be scaled by precision 0.77..0.90)")
+for n_keep, poll, mode in ((None, 1, "prefix"), (5, 20, "prefix"), (5, 1, "span"), (10, 1, "span")):
+    c = sum(run(t, n_keep, poll, mode, drop=d)[0] for (t, _), d in zip(TR, drops))
+    c0 = sum(run(t, n_keep, poll, mode)[0] for t, _ in TR)
+    print(f"n={n_keep} p={poll} {mode}: {c/A-1:+.1%} vs append-only (without batching {c0/A-1:+.1%});"
+          f" precision-scaled {(c0 + 0.77*(c-c0))/A-1:+.1%} .. {(c0 + 0.90*(c-c0))/A-1:+.1%}")

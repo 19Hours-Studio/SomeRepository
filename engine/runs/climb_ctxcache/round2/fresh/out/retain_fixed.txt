@@ -1,0 +1,15 @@
+qwen_traceA_blksz_16.jsonl
+  5-min TTL (default)              hit 46.2%  input+pings     72.3M ( +0.0%)  total incl. output  +0.0%  [pings 0.0M]
+  1-h TTL on every write           hit 57.8%  input+pings     90.9M (+25.7%)  total incl. output +11.3%  [pings 0.0M]
+  5-min + 2 pings (Aider-style)    hit 54.2%  input+pings     74.6M ( +3.1%)  total incl. output  +1.3%  [pings 11.5M]
+  5-min + 11 pings                 hit 57.7%  input+pings    101.6M (+40.5%)  total incl. output +17.8%  [pings 42.6M]
+qwen_coder_blksz_16.jsonl
+  5-min TTL (default)              hit 57.3%  input+pings    146.4M ( +0.0%)  total incl. output  +0.0%  [pings 0.0M]
+  1-h TTL on every write           hit 66.1%  input+pings    184.2M (+25.8%)  total incl. output +11.8%  [pings 0.0M]
+  5-min + 2 pings (Aider-style)    hit 62.6%  input+pings    166.1M (+13.5%)  total incl. output  +6.2%  [pings 34.9M]
+  5-min + 11 pings                 hit 66.0%  input+pings    268.2M (+83.3%)  total incl. output +38.1%  [pings 146.7M]
+qwen_thinking_blksz_16.jsonl
+  5-min TTL (default)              hit 43.1%  input+pings     38.9M ( +0.0%)  total incl. output  +0.0%  [pings 0.0M]
+  1-h TTL on every write           hit 46.0%  input+pings     58.1M (+49.1%)  total incl. output  +8.1%  [pings 0.0M]
+  5-min + 2 pings (Aider-style)    hit 45.0%  input+pings     46.5M (+19.5%)  total incl. output  +3.2%  [pings 8.7M]
+  5-min + 11 pings                 hit 46.0%  input+pings     77.0M (+97.7%)  total incl. output +16.1%  [pings 39.8M]

@@ -1,0 +1,9 @@
+Rubin >=200    k=1 positions/token 1.11  compute W/PF(V0) 49.1  compute share of slot 0.43
+C10 >=200      k=0 positions/token 1.00  compute W/PF(V0) 41.2  compute share of slot 0.42
+Rubin >=1000   k=4 positions/token 1.49  compute W/PF(V0) 49.1  compute share of slot 0.43
+C10 >=1000     k=1 positions/token 1.11  compute W/PF(V0) 41.2  compute share of slot 0.45
+Rubin >=2000   k=6 positions/token 1.77  compute W/PF(V0) 49.1  compute share of slot 0.43
+C10 >=2000     k=2 positions/token 1.23  compute W/PF(V0) 41.2  compute share of slot 0.47
+>=200: speculative-waste factor 1.11 x node factor 1.19 / compute-share factor 0.96 = 1.37
+>=1000: speculative-waste factor 1.34 x node factor 1.19 / compute-share factor 1.04 = 1.53
+>=2000: speculative-waste factor 1.44 x node factor 1.19 / compute-share factor 1.08 = 1.59

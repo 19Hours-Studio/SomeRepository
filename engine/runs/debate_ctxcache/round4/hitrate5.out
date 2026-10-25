@@ -1,0 +1,7 @@
+real traces LastN n=None p=1 prefix: token hit rate 96.3%
+real traces LastN n=5 p=1 prefix: token hit rate 74.9%
+real traces LastN n=5 p=20 prefix: token hit rate 92.7%
+real traces LastN n=5 p=1 span: token hit rate 94.2%
+RAG drift 0.3 sysctx: token hit rate 12.3%
+RAG drift 0.3 tail: token hit rate 49.9%
+RAG drift 0.3 tail_span: token hit rate 70.0%

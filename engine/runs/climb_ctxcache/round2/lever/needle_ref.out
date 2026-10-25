@@ -1,0 +1,13 @@
+trials=12  downstream tokens mean=1,822
+correction (port changed OLD -> NEW in place):
+  exact_new          answers NEW in 12/12  mean s=+13.53
+  exact_old          answers NEW in  0/12  mean s=-15.32
+  corr_splice_k0     answers NEW in 12/12  mean s=+13.65  shift toward OLD vs exact_new=-0.12 nats
+  corr_splice_k128   answers NEW in 12/12  mean s=+13.54  shift toward OLD vs exact_new=-0.01 nats
+  corr_splice_k512   answers NEW in 12/12  mean s=+13.52  shift toward OLD vs exact_new=+0.02 nats
+clearing (port line replaced by a placeholder):
+  exact_cleared      mean s=+1.93  P(OLD)>P(NEW) in  5/12  leak fraction=+0.000
+  clear_splice_k0    mean s=+1.59  P(OLD)>P(NEW) in  6/12  leak fraction=-0.020
+  clear_splice_k128  mean s=+1.84  P(OLD)>P(NEW) in  5/12  leak fraction=+0.010
+  clear_splice_k512  mean s=+1.97  P(OLD)>P(NEW) in  5/12  leak fraction=+0.005
+  (exact_old, full memory: mean s=-15.32)

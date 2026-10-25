@@ -1,0 +1,32 @@
+  128K switch only (+130 W)                         omega 0.5:   58.6   58.6   58.6   53.0   48.9 /Rubin   1.20   1.33   1.60   1.73   2.55 /Ultra4   1.09   1.09   1.21   1.21   1.28
+  128K switch only (+130 W)                         omega 0.6:   59.0   59.0   57.7   55.0   51.5 /Rubin   1.20   1.33   1.58   1.79   2.68 /Ultra4   1.10   1.10   1.19   1.25   1.35
+  128K switch only (+130 W)                         omega 0.7:   58.9   58.9   56.8   55.9   52.5 /Rubin   1.20   1.33   1.55   1.82   2.74 /Ultra4   1.10   1.10   1.17   1.27   1.37
+ 1024K switch only (+130 W)                         omega 0.5:   17.8   17.8   17.8   17.8   17.3 /Rubin   1.34   1.34   1.60   2.25   4.19 /Ultra4   1.05   1.05   1.26   1.44   1.58
+ 1024K switch only (+130 W)                         omega 0.6:   17.8   17.8   17.8   17.8   17.8 /Rubin   1.33   1.33   1.59   2.24   4.32 /Ultra4   1.04   1.04   1.26   1.43   1.63
+ 1024K switch only (+130 W)                         omega 0.7:   17.5   17.5   17.5   17.5   17.5 /Rubin   1.32   1.32   1.57   2.21   4.26 /Ultra4   1.03   1.03   1.24   1.42   1.60
+  128K adjusted (switch+leak parity+HBM 50 W)       omega 0.5:   66.0   66.0   65.6   59.3   54.1 /Rubin   1.35   1.49   1.79   1.93   2.82 /Ultra4   1.23   1.23   1.35   1.35   1.42
+  128K adjusted (switch+leak parity+HBM 50 W)       omega 0.6:   67.3   67.3   64.5   61.5   56.8 /Rubin   1.37   1.52   1.76   2.00   2.96 /Ultra4   1.26   1.26   1.33   1.40   1.49
+  128K adjusted (switch+leak parity+HBM 50 W)       omega 0.7:   67.1   67.1   63.4   62.4   57.9 /Rubin   1.37   1.52   1.73   2.03   3.02 /Ultra4   1.25   1.25   1.31   1.42   1.51
+ 1024K adjusted (switch+leak parity+HBM 50 W)       omega 0.5:   20.2   20.2   20.2   20.2   19.2 /Rubin   1.52   1.52   1.81   2.55   4.68 /Ultra4   1.18   1.18   1.43   1.63   1.76
+ 1024K adjusted (switch+leak parity+HBM 50 W)       omega 0.6:   20.1   20.1   20.1   20.1   20.1 /Rubin   1.51   1.51   1.80   2.53   4.88 /Ultra4   1.18   1.18   1.42   1.62   1.84
+ 1024K adjusted (switch+leak parity+HBM 50 W)       omega 0.7:   19.8   19.8   19.8   19.8   19.8 /Rubin   1.48   1.48   1.77   2.49   4.80 /Ultra4   1.16   1.16   1.40   1.60   1.81
+  128K adjusted + zero-skip lost (Continuum only)   omega 0.5:   58.0   58.0   53.0   50.4   46.4 /Rubin   1.19   1.31   1.45   1.64   2.42 /Ultra4   1.08   1.08   1.09   1.15   1.21
+  128K adjusted + zero-skip lost (Continuum only)   omega 0.6:   57.0   57.0   52.2   52.0   48.2 /Rubin   1.17   1.29   1.43   1.69   2.51 /Ultra4   1.06   1.06   1.08   1.18   1.26
+  128K adjusted + zero-skip lost (Continuum only)   omega 0.7:   56.1   56.1   51.6   51.2   47.4 /Rubin   1.15   1.27   1.41   1.67   2.47 /Ultra4   1.05   1.05   1.06   1.16   1.24
+ 1024K adjusted + zero-skip lost (Continuum only)   omega 0.5:   18.8   18.8   18.8   18.8   18.1 /Rubin   1.41   1.41   1.68   2.37   4.39 /Ultra4   1.10   1.10   1.33   1.52   1.66
+ 1024K adjusted + zero-skip lost (Continuum only)   omega 0.6:   18.5   18.5   18.5   18.5   18.5 /Rubin   1.39   1.39   1.66   2.33   4.49 /Ultra4   1.08   1.08   1.31   1.49   1.69
+ 1024K adjusted + zero-skip lost (Continuum only)   omega 0.7:   18.2   18.2   18.2   18.2   18.2 /Rubin   1.37   1.37   1.63   2.30   4.42 /Ultra4   1.07   1.07   1.29   1.47   1.67
+  128K adjusted + activity W-tier (x0.62)           omega 0.5:   68.3   68.3   67.9   61.4   56.1 /Rubin   1.39   1.54   1.86   2.00   2.92 /Ultra4   1.27   1.27   1.40   1.40   1.47
+  128K adjusted + activity W-tier (x0.62)           omega 0.6:   70.0   70.0   67.2   64.0   59.2 /Rubin   1.43   1.58   1.84   2.09   3.09 /Ultra4   1.30   1.30   1.39   1.46   1.55
+  128K adjusted + activity W-tier (x0.62)           omega 0.7:   70.2   70.2   66.4   65.4   60.8 /Rubin   1.43   1.59   1.82   2.13   3.17 /Ultra4   1.31   1.31   1.37   1.49   1.59
+ 1024K adjusted + activity W-tier (x0.62)           omega 0.5:   20.9   20.9   20.9   20.9   19.9 /Rubin   1.57   1.57   1.87   2.63   4.83 /Ultra4   1.22   1.22   1.48   1.69   1.82
+ 1024K adjusted + activity W-tier (x0.62)           omega 0.6:   20.9   20.9   20.9   20.9   20.9 /Rubin   1.57   1.57   1.87   2.63   5.07 /Ultra4   1.22   1.22   1.48   1.69   1.91
+ 1024K adjusted + activity W-tier (x0.62)           omega 0.7:   20.7   20.7   20.7   20.7   20.7 /Rubin   1.55   1.55   1.85   2.61   5.02 /Ultra4   1.21   1.21   1.47   1.67   1.89
+BEST-OMEGA   128K switch only (+130 W)                           59.0   59.0   58.6   55.9   52.5 /Rubin   1.20   1.33   1.60   1.82   2.74 /Ultra4   1.10   1.10   1.21   1.27   1.37
+BEST-OMEGA  1024K switch only (+130 W)                           17.8   17.8   17.8   17.8   17.8 /Rubin   1.34   1.34   1.60   2.25   4.32 /Ultra4   1.05   1.05   1.26   1.44   1.63
+BEST-OMEGA   128K adjusted (switch+leak parity+HBM 50 W)         67.3   67.3   65.6   62.4   57.9 /Rubin   1.37   1.52   1.79   2.03   3.02 /Ultra4   1.26   1.26   1.35   1.42   1.51
+BEST-OMEGA  1024K adjusted (switch+leak parity+HBM 50 W)         20.2   20.2   20.2   20.2   20.1 /Rubin   1.52   1.52   1.81   2.55   4.88 /Ultra4   1.18   1.18   1.43   1.63   1.84
+BEST-OMEGA   128K adjusted + zero-skip lost (Continuum only)     58.0   58.0   53.0   52.0   48.2 /Rubin   1.19   1.31   1.45   1.69   2.51 /Ultra4   1.08   1.08   1.09   1.18   1.26
+BEST-OMEGA  1024K adjusted + zero-skip lost (Continuum only)     18.8   18.8   18.8   18.8   18.5 /Rubin   1.41   1.41   1.68   2.37   4.49 /Ultra4   1.10   1.10   1.33   1.52   1.69
+BEST-OMEGA   128K adjusted + activity W-tier (x0.62)             70.2   70.2   67.9   65.4   60.8 /Rubin   1.43   1.59   1.86   2.13   3.17 /Ultra4   1.31   1.31   1.40   1.49   1.59
+BEST-OMEGA  1024K adjusted + activity W-tier (x0.62)             20.9   20.9   20.9   20.9   20.9 /Rubin   1.57   1.57   1.87   2.63   5.07 /Ultra4   1.22   1.22   1.48   1.69   1.91

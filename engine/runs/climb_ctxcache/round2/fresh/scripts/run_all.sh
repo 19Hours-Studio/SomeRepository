@@ -1,5 +1,5 @@
 #!/bin/sh
-# Re-runs every result in out/ (about 15-25 min on 4 cores, ~6 GB RAM peak). Standard library only.
+# Re-runs every result in out/ (about 35-40 min serially, ~6 GB RAM peak). Standard library only.
 set -e; cd "$(dirname "$0")/.."; S="python3 -I scripts"; A=data/qwen_traceA_blksz_16.jsonl; Bt=data/qwen_traceB_blksz_16.jsonl
 C=data/qwen_coder_blksz_16.jsonl; T=data/qwen_thinking_blksz_16.jsonl
 $S/probe.py $C $T $A $Bt            > out/probe.txt

@@ -1,3 +1,8 @@
   critic of v0: $1.28; Ideas 1+2 with realistic OCA set give about 0.7–21 µm modelled residual depth, against about 167 µm for the aged iPhone Duo (about 8–250× less). That is a large
   v1: 2354 words, $2.05
   critic of v1: $1.43; modelled residual of about 0.1–0.9 µm and 0.04–0.30 mrad at 1000 N/m (realistic set, 22–30 µm panel), about 50–800× below the aged Duo's 167 µm (unverified unti
+  v2: 2483 words, $2.16
+  critic of v2: $1.66; the modelled material-set crease falls from 0.97 µm / 0.335 mrad to 0.24 µm / 0.016 mrad (4× depth, 20× slope; reproduced), but invisibility is not shown. Gravi
+  v3: 3376 words, $3.66
+  critic of v3: $1.88; worst visible feature ≈ 0.047–0.058 mrad at nominal tolerances (≈10× below the author's own v2-hardware 0.51 mrad, not 26×), which is still 1.9–2.4× over the 0.
+  v4: 3633 words, $3.96

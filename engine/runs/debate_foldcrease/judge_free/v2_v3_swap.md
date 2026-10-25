@@ -1,0 +1,18 @@
+A is clearly the better answer. Both describe the same basic design: a glass/OLED/glass sandwich with the OLED panel on the neutral plane, smooth curvature ramps in the fold, and a spring that pulls the glass taut when the phone is open. B is the earlier version (v2) and A is the revised one (v3), and A fixes the errors in B's case that matter most.
+
+**What I checked**
+- **Both sides' scripts:** I re-ran every script in `round2/` (B) and `round3/` (A). All of them reproduce their saved outputs exactly, so neither answer misquotes its own numbers.
+- **B's headline claim:** B says the crease plus gravity sag "meets" the 0.024 mrad slope target at a tension of 3000 N/m. B's own `sag_combo.out` gives 0.0246 mrad for that case, so it slightly fails. If the glass itself takes even a small permanent set (6e-4), the result rises to 0.032 mrad even with no measurement of that set.
+- **The hinge seat, which B never budgets:** when the phone is open, the taut glass is held at the hinge edges, and any angle error in the hinge's open position shows up as a kink there. The kink spreads over the tension length √(D/T), about 0.8–0.9 mm. A plain detent with a 2 µm error over 4 mm is 0.5 mrad off, which gives a kink of about 0.25 mrad. That is roughly 10× the whole target. I worked this out by hand, and A's budget script gives 0.39–1.45 mrad for B's hardware, where the tolerances are A's assumptions. So the edges of the open span, not the crease, set visibility in B's design, and B's "crease is gone" conclusion doesn't hold. A adds a kinematic seat with a 30 mm lever, an in-plane load path, and an AlSiC housing whose thermal expansion matches the glass. With those, A's nominal budget is 0.020 mrad, which meets the target with 18% margin.
+- **B's cheapest experiment:** B proposes measuring how much a 30 mm tail of bare 20 µm glass stays bent after being wrapped. I calculated that the tail sags about 965 µm under its own weight when held horizontally. The expected signal is about 50 µm, so B's test cannot resolve it. A spotted this and changed the test to hanging the strips vertically.
+
+**Where A falls short**
+- **Practicality:** A's design is much more exotic. It needs a piezo-servoed sealed air cushion under the glass, seat repeatability of 0.135 µm or better inside a phone, 600 N of compression in the frame, and 244 MPa of sustained tension in the glass core while open. It costs more and adds a few grams.
+- **Margins:** A says plainly that its pessimistic case fails by 5×. It also says invisibility depends on two unmeasured numbers: how much permanent set the glass takes and how repeatable the seat is. It gives a bench test for each, with a kill criterion.
+- **Evidence:** A adds the 2024 PolyU paper on permanent creasing in ion-exchanged thin glass and withdraws B's "2k cycles = 500k" claim.
+
+Both compare themselves with the iPhone Duo, Galaxy Z Fold 7 and Oppo Find N6 in much the same way. A's comparison is sharper because it gives a number: Oppo's quoted 0.05 mm hinge flatness is about 100× coarser than the 0.4 µm (3σ) seat tolerance A's budget needs.
+
+WINNER: A
+MARGIN: clearly
+WHY: I re-ran both sides' scripts (both reproduce) and checked the decisive points by hand. B's slope budget leaves out the hinge-edge kink, which on ordinary detent tolerances is about 10× the 0.024 mrad target. B's own output shows its "meets target" case at 0.0246 mrad, and its cheapest experiment can't work because the bare glass strip sags about 1 mm against a 50 µm signal. A budgets the hinge edges, gravity and air pressure, fixes the experiment, and is upfront that its pessimistic case fails. Against that, A's hinge is much more complex.

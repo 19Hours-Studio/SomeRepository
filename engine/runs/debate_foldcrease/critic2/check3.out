@@ -1,0 +1,46 @@
+0. D=2.3723e-03  glass 99.22%  panel 0.569%  adh 0.207%  l=sqrt(D/T) @3000 = 0.89 mm
+1. 15/15 geometry: Rn=20.13 zone 70.5 width 11.26 mm
+   phi 0.2/0.1 g0e+00 T=1000: analytic 0.739 um 0.0493 mrad | numeric 0.703 um 0.0488 mrad, peak curvature 0.0193 1/m = 38.7 mdpt (reflective power)
+   phi 0.2/0.1 g0e+00 T=3000: analytic 0.246 um 0.0164 mrad | numeric 0.240 um 0.0164 mrad, peak curvature 0.0111 1/m = 22.3 mdpt (reflective power)
+   phi 0.05/0.02 g0e+00 T=1000: analytic 0.179 um 0.0119 mrad | numeric 0.170 um 0.0118 mrad, peak curvature 0.0047 1/m = 9.4 mdpt (reflective power)
+   phi 0.05/0.02 g0e+00 T=3000: analytic 0.060 um 0.0040 mrad | numeric 0.058 um 0.0040 mrad, peak curvature 0.0027 1/m = 5.4 mdpt (reflective power)
+   phi 0.2/0.1 g1e-03 T=1000: analytic 1.284 um 0.0856 mrad | numeric 1.222 um 0.0849 mrad, peak curvature 0.0336 1/m = 67.2 mdpt (reflective power)
+   phi 0.2/0.1 g1e-03 T=3000: analytic 0.428 um 0.0285 mrad | numeric 0.417 um 0.0285 mrad, peak curvature 0.0193 1/m = 38.7 mdpt (reflective power)
+2. folded shape (per half): depth into the half body (x - g/2) vs distance from spine tip y
+   y= 2 mm: cavity depth  4.04 mm
+   y= 5 mm: cavity depth  5.34 mm
+   y=10 mm: cavity depth  4.70 mm
+   y=15 mm: cavity depth  2.43 mm
+   y=20 mm: cavity depth  0.78 mm
+   y=25 mm: cavity depth  0.13 mm
+   y=30 mm: cavity depth  0.00 mm
+   total y-extent of curved zone 31.2 mm; min x along curve 0.200 mm (must stay >= g/2=0.2)
+   ramps 13: Rn 16.7 zone 65 width 11.1
+   ramps 14: Rn 18.4 zone 68 width 11.2
+   ramps 15: Rn 20.1 zone 70 width 11.3
+   ramps 16: Rn 2.9 zone 126 width 17.7
+   ramps 17: Rn 23.5 zone 76 width 11.5
+3a. wing angle mismatch delta (each wing tilted delta/2, T=3000); kink = slope change vs wing within ~l of the clamp
+   delta 1.00 mrad (0.0573 deg): slope change at clamp 0.5000 mrad over 0.89 mm
+   delta 0.10 mrad (0.0057 deg): slope change at clamp 0.0500 mrad over 0.89 mm
+   delta 0.05 mrad (0.0029 deg): slope change at clamp 0.0250 mrad over 0.89 mm
+3b. height step dh between wings (parallel): chord slope dh/(2a); kink at each clamp = dh/(2a)
+   dh    1 um -> kink 0.0131 mrad
+   dh    2 um -> kink 0.0262 mrad
+   dh    5 um -> kink 0.0654 mrad
+   dh   20 um -> kink 0.2615 mrad
+3c. pressure difference across the free span (q=dP), worst slope and deflection
+   dP    1 Pa: slope 0.0113 mrad, deflection 0.23 um
+   dP   10 Pa: slope 0.1133 mrad, deflection 2.32 um
+   dP   50 Pa: slope 0.5667 mrad, deflection 11.62 um
+   dP  340 Pa: slope 3.8538 mrad, deflection 79.00 um
+   sealed cavity, +1 K: dP=340 Pa ; vented cavity with time constant tau, heating 10 K/10 min: dP ~ P0*(dT/dt)/T0*tau = 5.7 Pa per s of tau
+3d. frame compression 450 N, eccentricity 1 mm, half EI 40 N m^2: wing end slope 0.81 mrad; +-20% thermal -> +-0.16 mrad
+3d. frame compression 450 N, eccentricity 2 mm, half EI 40 N m^2: wing end slope 1.62 mrad; +-20% thermal -> +-0.32 mrad
+3d. frame compression 450 N, eccentricity 2 mm, half EI 20 N m^2: wing end slope 3.24 mrad; +-20% thermal -> +-0.65 mrad
+4. lever: bulb radius (15/15 ramps re-solved), 20/10 set, phi_g 0 and 1e-3, T=3000
+   R 4.5 mm: glass 608 MPa, Rn 21.2, zone 66, width 9.7 | phi_g 0e+00: 0.28 um/0.0191 mrad | phi_g 1e-03: 0.49 um/0.0332 mrad
+   R 5.5 mm: glass 497 MPa, Rn 20.1, zone 70, width 11.3 | phi_g 0e+00: 0.24 um/0.0164 mrad | phi_g 1e-03: 0.42 um/0.0285 mrad
+   R 7.0 mm: glass 391 MPa, Rn 18.6, zone 78, width 14.0 | phi_g 0e+00: 0.20 um/0.0139 mrad | phi_g 1e-03: 0.35 um/0.0242 mrad
+   R 9.0 mm: glass 304 MPa, Rn 16.9, zone 89, width 18.0 | phi_g 0e+00: 0.17 um/0.0121 mrad | phi_g 1e-03: 0.30 um/0.0210 mrad
+5. membrane estimate 1 N -> 119 um (author 119)

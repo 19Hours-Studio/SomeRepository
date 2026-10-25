@@ -1,0 +1,21 @@
+qwen_traceA_blksz_16.jsonl  (held-out sessions; output is 56% of the default bill)
+  default: 5-min breakpoint at end   token hit 46.3%  billed input  +0.0%  whole bill  +0.0%
+  never write new tokens             token hit  0.0%  billed input +39.4%  whole bill +17.4%
+  1-h TTL on every write             token hit 58.1%  billed input +25.0%  whole bill +11.0%
+  online per-request choice          token hit 50.9%  billed input  -1.0%  whole bill  -0.5%
+  oracle per-request choice          token hit 56.3%  billed input -21.8%  whole bill  -9.6%
+  online choices: {'skip': '4%', 'w5': '83%', 'w60': '14%'}
+qwen_coder_blksz_16.jsonl  (held-out sessions; output is 54% of the default bill)
+  default: 5-min breakpoint at end   token hit 58.0%  billed input  +0.0%  whole bill  +0.0%
+  never write new tokens             token hit  0.0%  billed input +71.5%  whole bill +32.8%
+  1-h TTL on every write             token hit 66.6%  billed input +25.9%  whole bill +11.9%
+  online per-request choice          token hit 28.2%  billed input +45.8%  whole bill +21.0%
+  oracle per-request choice          token hit 35.4%  billed input +23.8%  whole bill +10.9%
+  online choices: {'skip': '61%', 'w60': '22%', 'w5': '17%'}
+qwen_thinking_blksz_16.jsonl  (held-out sessions; output is 83% of the default bill)
+  default: 5-min breakpoint at end   token hit 43.1%  billed input  +0.0%  whole bill  +0.0%
+  never write new tokens             token hit  0.0%  billed input +32.5%  whole bill  +5.4%
+  1-h TTL on every write             token hit 46.2%  billed input +48.7%  whole bill  +8.2%
+  online per-request choice          token hit 13.2%  billed input +20.6%  whole bill  +3.5%
+  oracle per-request choice          token hit 16.4%  billed input +14.9%  whole bill  +2.5%
+  online choices: {'skip': '89%', 'w5': '9%', 'w60': '2%'}

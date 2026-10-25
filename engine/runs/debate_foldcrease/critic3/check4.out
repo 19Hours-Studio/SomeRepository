@@ -1,0 +1,55 @@
+A. analytic crease (slope ~ eff*D*max|k'|/T, depth ~ eff*D*dk/T) vs solver, 25/9 ramps R=5.5
+  phi_g 0e+00: eff 1.35e-03  analytic slope 0.0077 mrad (solver 0.0074); analytic depth 0.19 um (solver 0.19)
+  phi_g 1e-03: eff 2.34e-03  analytic slope 0.0134 mrad (solver 0.0128); analytic depth 0.33 um (solver 0.33)
+  phi_g 3e-03: eff 4.32e-03  analytic slope 0.0248 mrad (solver 0.0237); analytic depth 0.62 um (solver 0.60)
+  max|k'| = 9664 1/m^2, Rn = 16.7 mm, l = 0.77 mm
+
+B. load enters the stack through its bottom face (wing bond) -> distributed moment c*tau at each clamp line
+  thin glassy bond 3 um     : shear-lag 0.09 mm, 1/beta 0.053 mm | static kink 0.872 mrad, lift 0.71 um | change for dF 2.5%: 0.0211 mrad  (target 0.024)
+  structural epoxy 20 um    : shear-lag 0.28 mm, 1/beta 0.094 mm | static kink 0.870 mrad, lift 0.74 um | change for dF 2.5%: 0.0205 mrad  (target 0.024)
+  gap-filling wedge 100 um  : shear-lag 0.89 mm, 1/beta 0.168 mm | static kink 0.815 mrad, lift 0.76 um | change for dF 2.5%: 0.0184 mrad  (target 0.024)
+  dF that keeps this term <= 0.012 mrad (half budget), 20 um epoxy: 1.38% of T
+
+C. servo reference: capacitor reads glass-to-BRIDGE gap; bridge height vs wing clamp plane is the error
+  bridge offset      7 nm ->  0.051 Pa equivalent -> pressure term 0.0005 mrad, worst 0.0197 mrad
+  bridge offset     50 nm ->  0.364 Pa equivalent -> pressure term 0.0035 mrad, worst 0.0226 mrad
+  bridge offset    100 nm ->  0.729 Pa equivalent -> pressure term 0.0069 mrad, worst 0.0260 mrad
+  bridge offset    300 nm ->  2.186 Pa equivalent -> pressure term 0.0207 mrad, worst 0.0396 mrad
+  bridge offset   1000 nm ->  7.288 Pa equivalent -> pressure term 0.0690 mrad, worst 0.0873 mrad
+  thermal: 20 K x 8 ppm/K x 2 mm bridge support height = 320 nm; gravity sag mean being cancelled = 202 nm
+
+D. gravity torque about the hinge (phone held by one half, other half cantilevered)
+  joint angular stiffness      300 N m/rad: d(theta) = 0.1570 mrad -> clamp kink ~0.0785 mrad
+  joint angular stiffness     2000 N m/rad: d(theta) = 0.0235 mrad -> clamp kink ~0.0118 mrad
+  joint angular stiffness    10000 N m/rad: d(theta) = 0.0047 mrad -> clamp kink ~0.0024 mrad
+  joint angular stiffness   100000 N m/rad: d(theta) = 0.0005 mrad -> clamp kink ~0.0002 mrad
+  M = 0.047 N m; kink <= 0.012 mrad needs k_theta >= 1962 N m/rad
+  two 30 mm AlSiC tongues 3x1 mm: tip k 0.01 N/um, k_theta 10 N m/rad -> kink 2.354 mrad
+  two 30 mm AlSiC tongues 5x2 mm: tip k 0.07 N/um, k_theta 133 N m/rad -> kink 0.177 mrad
+  two 30 mm AlSiC tongues 5x4 mm: tip k 0.59 N/um, k_theta 1067 N m/rad -> kink 0.022 mrad
+  glass tension as restoring torque: 600 N x eccentricity; for M_g need preload offset >= 0.078 mm (vs e <= 0.05 mm spec)
+
+E. strip test: tension length under self-weight when hung with gravity along the length
+  bare 20 um UTG: T at clamp 0.0147 N/m, l = 57.114 mm; free-curling tip length ~46.08 mm -> tip offset ~49.091 um (vs 49 um unloaded)
+  76 um sandwich: T at clamp 0.0443 N/m, l = 231.510 mm; free-curling tip length ~117.15 mm -> tip offset ~49.091 um (vs 49 um unloaded)
+
+F. visibility threshold: reflected deviation = 2*theta; vernier optimum 3-5 arcsec
+  10" -> theta 0.0242 mrad: nominal 0.0197 passes, R=7/50 mm 0.0152 passes
+   5" -> theta 0.0121 mrad: nominal 0.0197 fails x1.6, R=7/50 mm 0.0152 fails x1.3
+   3" -> theta 0.0073 mrad: nominal 0.0197 fails x2.7, R=7/50 mm 0.0152 fails x2.1
+
+G. press on a sealed 5 um gas film: displaced volume vs gas volume
+  F 0.05 N: free dimple volume 5.43 mm3 = 8.7% of gas -> gas would add 8843 Pa; stiff limit 4 Pa uniform -> rest of zone bulges, mean 0.55 um while pressed
+  F 0.50 N: free dimple volume 54.34 mm3 = 87.3% of gas -> gas would add 88428 Pa; stiff limit 40 Pa uniform -> rest of zone bulges, mean 5.51 um while pressed
+  F 1.00 N: free dimple volume 108.68 mm3 = 174.6% of gas -> gas would add 176857 Pa; stiff limit 80 Pa uniform -> rest of zone bulges, mean 11.02 um while pressed
+
+B2. lever: soft wing bond (E 1 MPa, 50 um) carries flatness, tension taken by an edge clamp under the bezel 60 mm out
+  shear-lag 0.02 m; max slope over fold window+wing 0.4333 mrad static, change for dF 2.5% 0.0069 mrad
+
+H. nominal budget with the added terms (bond-moment dF term, servo bridge reference, hinge gravity torque)
+  author nominal                                      : interior 0.0074 clamp 0.0197 -> worst 0.0197 mrad (0.82x target)
+  + bond-moment change at dF 2.5% (0.0205)            : interior 0.0074 clamp 0.0402 -> worst 0.0402 mrad (1.68x target)
+  + servo bridge ref 100 nm (0.73 Pa)                 : interior 0.0131 clamp 0.0466 -> worst 0.0466 mrad (1.94x target)
+  + gravity torque, k_theta 2000 N m/rad (0.0118)     : interior 0.0131 clamp 0.0584 -> worst 0.0584 mrad (2.43x target)
+  same, but dF held to 0.5% and shape-sensing servo   : interior 0.0074 clamp 0.0333 -> worst 0.0333 mrad (1.39x target)
+  same + R=7, 35/10, tongue 50 mm                     : interior 0.0056 clamp 0.0289 -> worst 0.0289 mrad (1.20x target)

@@ -1,0 +1,16 @@
+qwen_traceA_blksz_16.jsonl
+  in-memory, 5 min                 token hit 46.2%  billed input  +0.0%  whole bill  +0.0%
+  in-memory, 10 min                token hit 52.2%  billed input  -9.2%  whole bill  -3.6%
+  prompt_cache_retention=24h       token hit 57.8%  billed input -17.8%  whole bill  -6.9%
+qwen_coder_blksz_16.jsonl
+  in-memory, 5 min                 token hit 57.3%  billed input  +0.0%  whole bill  +0.0%
+  in-memory, 10 min                token hit 61.1%  billed input  -7.2%  whole bill  -2.9%
+  prompt_cache_retention=24h       token hit 66.4%  billed input -16.9%  whole bill  -6.9%
+qwen_thinking_blksz_16.jsonl
+  in-memory, 5 min                 token hit 43.1%  billed input  +0.0%  whole bill  +0.0%
+  in-memory, 10 min                token hit 44.6%  billed input  -2.2%  whole bill  -0.3%
+  prompt_cache_retention=24h       token hit 46.2%  billed input  -4.6%  whole bill  -0.6%
+qwen_traceB_blksz_16.jsonl
+  in-memory, 5 min                 token hit 51.2%  billed input  +0.0%  whole bill  +0.0%
+  in-memory, 10 min                token hit 52.1%  billed input  -1.6%  whole bill  -0.8%
+  prompt_cache_retention=24h       token hit 53.4%  billed input  -3.8%  whole bill  -2.0%
