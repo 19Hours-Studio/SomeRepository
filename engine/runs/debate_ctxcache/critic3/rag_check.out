@@ -1,0 +1,4 @@
+drift 0.1: relevance 613,355 (+0.0%, final ctx 24,700)  first 346,078 (-43.6%, final ctx 44,750)  tail 399,225 (-34.9%, final ctx 24,700)  tail_new 185,125 (-69.8%, final ctx 46,200)  first_cap20 398,955 (-35.0%, final ctx 31,950)
+   first-seen vs tail: -13.3%
+drift 0.3: relevance 625,315 (+0.0%, final ctx 24,700)  first 398,135 (-36.3%, final ctx 62,350)  tail 399,225 (-36.2%, final ctx 24,700)  tail_new 246,325 (-60.6%, final ctx 63,800)  first_cap20 547,750 (-12.4%, final ctx 28,750)
+   first-seen vs tail: -0.3%

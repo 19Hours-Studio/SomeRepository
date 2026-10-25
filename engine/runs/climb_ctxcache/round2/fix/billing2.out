@@ -1,0 +1,57 @@
+traces=200 requests=12221
+
+(a) Anthropic breakpoint model (20-block lookback). Cost vs exact-LCP billing of the same policy:
+  append            exact   48,574,068 | 1bp   48,574,068 (+0.0%, vs append-1bp +0.0%) | 2bp   48,574,068 (+0.0%, vs append-2bp +0.0%)
+  sliding           exact   67,874,201 | 1bp  164,606,990 (+142.5%, vs append-1bp +238.9%) | 2bp   70,772,797 (+4.3%, vs append-2bp +45.7%)
+  polling10/keep5   exact   37,309,416 | 1bp   44,463,753 (+19.2%, vs append-1bp -8.5%) | 2bp   37,556,221 (+0.7%, vs append-2bp -22.7%)
+  batch5k/keep5     exact   35,924,049 | 1bp   40,658,738 (+13.2%, vs append-1bp -16.3%) | 2bp   36,139,189 (+0.6%, vs append-2bp -25.6%)
+  horizon/keep5     exact   37,075,054 | 1bp   57,817,038 (+55.9%, vs append-1bp +19.0%) | 2bp   37,654,973 (+1.6%, vs append-2bp -22.5%)
+
+(b) Cost vs context, Anthropic prices, exact-LCP billing (2bp makes this achievable, see (a)):
+  policy               vs append vs sliding mean prompt tok hit
+  horizon/keep3           -30.7%     -50.4%      12,822   0.900
+  sliding                 +39.7%      +0.0%      13,360   0.725
+  batch3k/keep3           -30.9%     -50.5%      13,393   0.909
+  polling5/keep3          -28.2%     -48.6%      13,420   0.902
+  horizon/keep5           -23.7%     -45.4%      14,030   0.899
+  batch5k/keep3           -30.8%     -50.5%      14,162   0.918
+  polling5/keep5          -18.9%     -42.0%      14,396   0.892
+  batch3k/keep5           -24.2%     -45.7%      14,403   0.905
+  polling10/keep3         -28.6%     -48.9%      14,805   0.920
+  horizon/keep7           -18.5%     -41.7%      15,133   0.901
+  batch5k/keep5           -26.0%     -47.1%      15,156   0.918
+  polling5/keep7          -10.4%     -35.9%      15,310   0.885
+  batch3k/keep7           -18.4%     -41.6%      15,335   0.903
+  polling10/keep5         -23.2%     -45.0%      15,724   0.918
+  batch5k/keep7           -21.9%     -44.1%      16,067   0.919
+  batch10k/keep3          -27.3%     -48.0%      16,307   0.933
+  polling10/keep7         -18.3%     -41.6%      16,599   0.917
+  polling5/keep10          +0.5%     -28.1%      16,602   0.878
+  horizon/keep10          -12.6%     -37.4%      16,622   0.905
+  batch3k/keep10          -10.4%     -35.9%      16,623   0.901
+  batch10k/keep5          -23.9%     -45.5%      17,235   0.934
+  batch5k/keep10          -15.4%     -39.5%      17,312   0.918
+  polling20/keep3         -24.1%     -45.7%      17,586   0.938
+  polling10/keep10        -12.0%     -37.0%      17,842   0.916
+  batch10k/keep7          -21.1%     -43.6%      18,074   0.936
+  polling20/keep5         -20.6%     -43.2%      18,411   0.938
+  polling20/keep7         -17.7%     -41.1%      19,203   0.939
+  batch10k/keep10         -16.8%     -40.5%      19,205   0.937
+  polling20/keep10        -13.6%     -38.2%      20,317   0.940
+  append                   +0.0%     -28.4%      29,912   0.971
+  opt/keep3               -35.8%     -54.1%         nan     nan
+  opt/keep5               -31.3%     -50.9%         nan     nan
+  opt/keep7               -27.7%     -48.3%         nan     nan
+  opt/keep10              -23.2%     -45.0%         nan     nan
+
+(c) Own stack, Llama-3-70B shape, BF16 KV, H100 (989 TFLOP/s at 45% MFU, 3.35 TB/s at 70%), all 200 traces.
+    prefill = compute for every token not served from KV (+ splice key re-rotation); decode KV = bytes of
+    context KV read per output token (weight reads are the same for every policy and left out).
+  policy                   prefill EFLOP  vs app decode KV PB  vs app   GPU-h  vs app KV-resident
+  append                            2.30   +0.0%        28.55   +0.0%    4.82   +0.0%       1.00x
+  sliding                           7.98 +247.6%        12.80  -55.2%    6.50  +35.0%       0.45x
+  sliding+splice                    1.89  -17.7%        12.80  -55.2%    2.70  -44.0%       0.45x
+  polling10/keep5                   2.86  +24.5%        15.03  -47.4%    3.57  -26.0%       0.53x
+  polling10/keep5+splice            1.95  -15.1%        15.03  -47.4%    3.00  -37.7%       0.53x
+  batch5k/keep5                     2.72  +18.5%        14.51  -49.2%    3.42  -29.0%       0.51x
+  horizon/keep5                     3.10  +35.0%        13.45  -52.9%    3.53  -26.7%       0.47x

@@ -1,0 +1,4 @@
+batch 16: weight reads $10.56; operator total $27.92 (answer $17.37); decode-KV share 33.0%; FP8 KV -16.5%; swap-over-gaps -12.7%
+batch 32: weight reads $5.28; operator total $22.64 (answer $17.37); decode-KV share 40.7%; FP8 KV -20.4%; swap-over-gaps -15.6%
+batch 64: weight reads $2.64; operator total $20.00 (answer $17.37); decode-KV share 46.1%; FP8 KV -23.0%; swap-over-gaps -17.7%
+swap reload if NOT hidden: $1.47 -> hit marginal cost 3.7% of recompute (answer 2.1%); swap still beats pin: 2.35 vs 4.42

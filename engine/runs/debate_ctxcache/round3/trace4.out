@@ -1,0 +1,24 @@
+== real traces: 441 trajectories, 19514 requests, mean 44.2/task ==
+prompt tokens/request mean 21,219 median 17,606; new input tokens/request mean 759 median 481; output(+reasoning)/request mean 373
+append-only baseline cost 95,205,486 units: reads 41.9%  writes 19.9%  output 38.2%
+  no caching at all would cost 450,424,429 (4.73x) -> exact prefix caching already saves 78.9%
+
+== A. batching: share of calls pairable with the previous call (strict lexical test) ==
+lexical cap 2 read-only follow-ups: 28.3% of requests merged away, cost -10.3% (output priced, all output tokens kept)
+lexical cap 4 read-only follow-ups: 40.6% of requests merged away, cost -14.7% (output priced, all output tokens kept)
+lexical cap 4 any non-write follow-up: 46.0% of requests merged away, cost -17.2% (output priced, all output tokens kept)
+lexical cap 8 any non-write follow-up: 50.7% of requests merged away, cost -19.0% (output priced, all output tokens kept)
+STRICT  cap 2 read-only follow-ups: 15.4% of requests merged away, cost -5.7% (output priced, all output tokens kept)
+STRICT  cap 4 read-only follow-ups: 19.0% of requests merged away, cost -6.9% (output priced, all output tokens kept)
+STRICT  cap 4 any non-write follow-up: 22.7% of requests merged away, cost -8.7% (output priced, all output tokens kept)
+STRICT  cap 8 any non-write follow-up: 23.0% of requests merged away, cost -8.8% (output priced, all output tokens kept)
+
+== B. diff-style tool outputs: lines re-shown verbatim from an earlier observation ==
+duplicate share of observation tokens 26.9%; cost with back-references -3.7%
+combined (STRICT cap-4 batching + back-references): -12.0%
+
+== C. gaps between consecutive requests (tool runtime + model latency) ==
+n=19073 median 2.2s p99 40s max 112s; >300s: 0 (0.000%)
+
+== D. one real Claude Opus 4.6 trajectory (provider cache fields) ==
+36 requests; hit on re-sent tokens 0.9938; token hit rate 0.9477; cost split reads 33,674 writes 20,630 uncached 2,089 output 24,335 units -> output share 30.1%; logged cost $0.4036

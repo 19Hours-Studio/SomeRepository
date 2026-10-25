@@ -1,0 +1,49 @@
+== 1. errata / batching, output priced ==
+out 5x: errata vs inplace -32.6%, vs append_full -9.6%
+   measured-range batching q2=0.15: -7.9% vs errata sequential
+   measured-range batching q2=0.23: -11.8% vs errata sequential
+   measured-range batching q2=0.30: -14.3% vs errata sequential
+   measured-range batching q2=0.50: -19.9% vs errata sequential
+out 8x: errata vs inplace -30.9%, vs append_full -9.0%
+   measured-range batching q2=0.15: -7.3% vs errata sequential
+   measured-range batching q2=0.23: -10.9% vs errata sequential
+   measured-range batching q2=0.30: -13.2% vs errata sequential
+   measured-range batching q2=0.50: -18.4% vs errata sequential
+   early mutable state (memory/todo block near top) handled by errata: see round2 sim3 (-53.6% unpriced)
+
+== 2. span ops: cost vs mean live context (critic2 method), 200 calls, output priced 5x ==
+errata 60k->15k cost   1,581,145 mean ctx    36,468 cost/ctx  43.4
+errata 60k->40k cost   2,326,660 mean ctx    47,182 cost/ctx  49.3
+errata 120k->60k cost   2,804,740 mean ctx    82,333 cost/ctx  34.1
+errata 195k->100k cost   3,704,077 mean ctx   128,021 cost/ctx  28.9
+errata 195k->140k cost   4,381,112 mean ctx   140,601 cost/ctx  31.2
+errata 195k->170k cost   5,805,614 mean ctx   149,650 cost/ctx  38.8
+errata 195k->185k cost   8,424,905 mean ctx   154,141 cost/ctx  54.7
+patch  60k->15k cost   1,568,391 mean ctx    35,990 cost/ctx  43.6
+patch  60k->40k cost   1,796,496 mean ctx    47,375 cost/ctx  37.9
+patch  120k->60k cost   2,477,011 mean ctx    81,426 cost/ctx  30.4
+patch  195k->100k cost   3,393,911 mean ctx   127,277 cost/ctx  26.7
+patch  195k->140k cost   3,641,694 mean ctx   139,662 cost/ctx  26.1
+patch  195k->170k cost   3,831,628 mean ctx   149,150 cost/ctx  25.7
+patch  195k->185k cost   3,928,743 mean ctx   153,980 cost/ctx  25.5
+patch 15k (mean 35,990): 1,568,391; cheapest errata with >= that context 1,581,145 (mean 36,468) -> -0.8%
+patch 40k (mean 47,375): 1,796,496; cheapest errata with >= that context 2,326,660 (mean 47,182) -> -22.8%
+patch 60k (mean 81,426): 2,477,011; cheapest errata with >= that context 2,804,740 (mean 82,333) -> -11.7%
+patch 100k (mean 127,277): 3,393,911; cheapest errata with >= that context 3,704,077 (mean 128,021) -> -8.4%
+patch 140k (mean 139,662): 3,641,694; cheapest errata with >= that context 4,381,112 (mean 140,601) -> -16.9%
+patch 170k (mean 149,150): 3,831,628; cheapest errata with >= that context 5,805,614 (mean 149,650) -> -34.0%
+patch 185k (mean 153,980): 3,928,743; cheapest errata with >= that context 8,424,905 (mean 154,141) -> -53.4%
+errata most efficient: 195k->100k cost/ctx 28.9
+   patch 100k mean 127,277 cost 3,393,911: -8.4% cost for -0.6% context vs errata@100k
+   patch 140k mean 139,662 cost 3,641,694: -1.7% cost for +9.1% context vs errata@100k
+   patch 170k mean 149,150 cost 3,831,628: +3.4% cost for +16.5% context vs errata@100k
+   patch 185k mean 153,980 cost 3,928,743: +6.1% cost for +20.3% context vs errata@100k
+
+== 3. delegation, output priced, WITH edits (errata) in both arms ==
+delegate 2/5, summary 300: -3.8%, final parent ctx 85,000 vs 127,000
+delegate 4/5, summary 500: -23.9%, final parent ctx 41,000 vs 127,000
+delegate 4/5, summary 2000: -3.9%, final parent ctx 56,000 vs 127,000
+
+== 4. RAG/multi-turn document order: relevance-ranked (real default) vs canonical hash vs first-seen ==
+drift 0.1: relevance 613,355 (final ctx 24,700)  hash 574,945 (final ctx 24,700)  first 346,078 (final ctx 44,750) -> first-seen -43.6% vs relevance, -39.8% vs hash
+drift 0.3: relevance 625,315 (final ctx 24,700)  hash 627,155 (final ctx 24,700)  first 398,135 (final ctx 62,350) -> first-seen -36.3% vs relevance, -36.5% vs hash

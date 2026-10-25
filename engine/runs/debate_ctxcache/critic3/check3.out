@@ -1,0 +1,109 @@
+== 1. back-references, by minimum run length ==
+runs >= 1 lines: dup share 26.9%, cost -3.8%
+runs >= 3 lines: dup share 19.1%, cost -3.2%
+runs >= 5 lines: dup share 14.5%, cost -2.5%
+
+== 2. batching (STRICT cap 4, any non-write) with output of merged requests reduced ==
+merged requests keep 100% of output: -8.7%
+merged requests keep 75% of output: -11.3%
+merged requests keep 50% of output: -13.9%
+combined (author) -12.0%; precision-scaled 0.77-0.90 of batching part: -10.4% .. -11.5%
+
+== 3. random strict merges (seed 3) ==
+--- django__django-15554.traj.json step 70
+ PREV: sed -n '215,240p' tests/filtered_relation/tests.py
+ OBS : <returncode>0</returncode> <output> self.assertSequenceEqual( Author.objects.annotate( book_editor_a=FilteredRelation( "book", condition=Q( book__title__icontains="book", book__editor_id=self.editor_a.pk ), ), ).filter(book_editor_a__isnull=False), [self.autho
+ NEXT: sed -n '80,105p' django/tests/filtered_relation/tests.py
+--- django__django-13406.traj.json step 41
+ PREV: sed -n '190,215p' django/db/models/sql/query.py
+ OBS : <returncode>0</returncode> <output> self.select_for_update_skip_locked = False self.select_for_update_of = () self.select_for_no_key_update = False self.select_related = False # Arbitrary limit for select_related to prevents infinite recursion. self.max_depth 
+ NEXT: sed -n '820,865p' django/db/models/query.py
+--- scikit-learn__scikit-learn-14983.traj.json step 20
+ PREV: git diff
+ OBS : <returncode>0</returncode> <output> diff --git a/sklearn/model_selection/_split.py b/sklearn/model_selection/_split.py index c49a3ce6a..92b8dbf56 100755 --- a/sklearn/model_selection/_split.py +++ b/sklearn/model_selection/_split.py @@ -1102,6 +1102,8 @@ class
+ NEXT: python -c "from sklearn.model_selection import RepeatedKFold, RepeatedStratifiedKFold; print(repr(RepeatedKFold())); print(repr(RepeatedStratifiedKFold()))"
+--- sympy__sympy-15976.traj.json step 56
+ PREV: git status
+ OBS : <returncode>0</returncode> <output> On branch master Changes not staged for commit: (use "git add <file>..." to update what will be committed) (use "git restore <file>..." to discard changes in working directory) modified: sympy/printing/mathml.py no changes a
+ NEXT: git diff sympy/printing/mathml.py
+--- django__django-11603.traj.json step 61
+ PREV: python -c "
+with open('docs/ref/models/querysets.txt', 'r', encoding='utf-8') as f:
+    content = f.read()
+idx = content.find('``Avg``')
+print('idx:', idx)
+print(repr(content[idx-5:idx+15]))
+"
+ OBS : <returncode>0</returncode> <output> idx: 125327 '.\n\n``Avg``\n~~~~~~~\n\n' </output>
+ NEXT: grep -n "``Avg``" docs/ref/models/querysets.txt
+--- astropy__astropy-14369.traj.json step 34
+ PREV: python -c "from astropy.units import Unit; print(Unit('10-7J/s/kpc2', format='cds'))"
+ OBS : <returncode>0</returncode> <output> 1e-07 J / (kpc2 s) </output>
+ NEXT: git status
+--- sympy__sympy-15809.traj.json step 33
+ PREV: git status
+ OBS : <returncode>0</returncode> <output> On branch master Changes not staged for commit: (use "git add <file>..." to update what will be committed) (use "git restore <file>..." to discard changes in working directory) modified: sympy/functions/elementary/miscellane
+ NEXT: git diff
+--- django__django-15930.traj.json step 30
+ PREV: grep -rn "When" django/db/models/ --exclude="expressions.py" --exclude-dir="__pycache__"
+ OBS : <returncode>0</returncode> <output> django/db/models/__init__.py:34: When, django/db/models/__init__.py:90: "When", django/db/models/aggregates.py:5:from django.db.models.expressions import Case, Func, Star, When django/db/models/aggregates.py:123: condition =
+ NEXT: python tests/runtests.py queries
+--- django__django-15503.traj.json step 55
+ PREV: git status
+ OBS : <returncode>0</returncode> <output> On branch main Changes not staged for commit: (use "git add <file>..." to update what will be committed) (use "git restore <file>..." to discard changes in working directory) modified: django/db/models/fields/json.py no chan
+ NEXT: git diff django/db/models/fields/json.py
+--- django__django-14631.traj.json step 40
+ PREV: git status
+ OBS : <returncode>0</returncode> <output> On branch main Changes not staged for commit: (use "git add <file>..." to update what will be committed) (use "git restore <file>..." to discard changes in working directory) modified: django/forms/boundfield.py modified: dj
+ NEXT: git diff
+--- sympy__sympy-15875.traj.json step 6
+ PREV: python3 -c "
+from sympy import I
+e = -2*I + (1+I)**2
+print('args:', e.args)
+print('(1+I)**2 is_real:', ((1+I)**2).is_real)
+print('(1+I)**2 is_imaginary:', ((1+I)**2).is_imaginary)
+print('-2*I is_real:
+ OBS : <returncode>0</returncode> <output> /testbed/sympy/solvers/diophantine.py:3188: SyntaxWarning: "is" with a literal. Did you mean "=="? if feasible is 1: # it's prime and k == 2 /testbed/sympy/plotting/plot.py:520: SyntaxWarning: "is" with a literal. Did you me
+ NEXT: git log -S "im_or_z" -p sympy/core/add.py
+--- sympy__sympy-16597.traj.json step 7
+ PREV: grep -n -C 5 "integer" sympy/assumptions/ask.py
+ OBS : <returncode>0</returncode> <output> 91- - Every real number is either rational or irrational. 92- 93- - Every real number is either algebraic or transcendental. 94- 95- - The facts ``Q.negative``, ``Q.zero``, ``Q.positive``, 96: ``Q.nonnegative``, ``Q.nonposit
+ NEXT: grep -n "finite" sympy/assumptions/ask.py
+--- sphinx-doc__sphinx-8120.traj.json step 7
+ PREV: sed -n '1120,1145p' sphinx/application.py
+ OBS : <returncode>0</returncode> <output> """ self.registry.add_html_math_renderer(name, inline_renderers, block_renderers) def add_message_catalog(self, catalog: str, locale_dir: str) -> None: """Register a message catalog. The *catalog* is a name of catalog, and *
+ NEXT: pytest
+--- django__django-13794.traj.json step 8
+ PREV: cat tests/template_tests/filter_tests/test_add.py
+ OBS : <returncode>0</returncode> <output> from datetime import date, timedelta from django.template.defaultfilters import add from django.test import SimpleTestCase from ..utils import setup class AddTests(SimpleTestCase): """ Tests for #11687 and #16676 """ @setup(
+ NEXT: python tests/runtests.py template_tests.filter_tests.test_add
+--- django__django-15467.traj.json step 8
+ PREV: sed -n '250,285p' django/contrib/admin/options.py
+ OBS : <returncode>0</returncode> <output> def formfield_for_foreignkey(self, db_field, request, **kwargs): """ Get a form Field for a ForeignKey. """ db = kwargs.get("using") if "widget" not in kwargs: if db_field.name in self.get_autocomplete_fields(request): kwarg
+ NEXT: git grep "radio_fields" tests/
+--- django__django-13794.traj.json step 25
+ PREV: grep -B 1 "def " django/template/defaultfilters.py
+ OBS : <returncode>0</returncode> <output> def stringfilter(func): -- """ def _dec(*args, **kwargs): -- @stringfilter def addslashes(value): -- @stringfilter def capfirst(value): -- @stringfilter def escapejs_filter(value): -- @register.filter(is_safe=True) def json_
+ NEXT: python -c "
+import django
+from django.conf import settings
+settings.configure(TEMPLATES=[{'BACKEND': 'django.template.backends.django.DjangoTemplates'}])
+django.setup()
+from django.template import Tem
+--- sympy__sympy-22080.traj.json step 31
+ PREV: git diff sympy/printing/precedence.py
+ OBS : <returncode>0</returncode> <output> diff --git a/sympy/printing/precedence.py b/sympy/printing/precedence.py index 47ff463faf..ea691cbe17 100644 --- a/sympy/printing/precedence.py +++ b/sympy/printing/precedence.py @@ -25,6 +25,7 @@ # here. # Do not use this w
+ NEXT: python -c "import inspect; from sympy import Mod, lambdify, symbols; x, y = symbols('x y'); expr = -Mod(x, y); f = lambdify([x, y], expr); print(inspect.getsource(f)); g = lambdify([x, y], expr, modul
+--- sphinx-doc__sphinx-7757.traj.json step 9
+ PREV: python3 -c "import ast; module = ast.parse('def func(a=1, b=2, /, c=3, d=4): pass'); args = module.body[0].args; print('posonlyargs:', [arg.arg for arg in args.posonlyargs]); print('args:', [arg.arg f
+ OBS : <returncode>0</returncode> <output> posonlyargs: ['a', 'b'] args: ['c', 'd'] defaults: ['1', '2', '3', '4'] </output>
+ NEXT: sed -n '514,570p' sphinx/util/inspect.py
+--- astropy__astropy-14508.traj.json step 8
+ PREV: grep -n "_format_float" astropy/io/fits/card.py
+ OBS : <returncode>0</returncode> <output> 1288: return f"{_format_float(value):>20}" 1291: val_str = f"({_format_float(value.real)}, {_format_float(value.imag)})" 1300:def _format_float(value): </output>
+ NEXT: grep -n "_format_value" astropy/io/fits/card.py
+--- django__django-11603.traj.json step 8
+ PREV: find tests -name "*agg*"
+ OBS : <returncode>0</returncode> <output> tests/aggregation tests/aggregation_regress tests/postgres_tests/test_aggregates.py tests/test_runner_apps/tagged </output>
+ NEXT: python tests/runtests.py aggregation

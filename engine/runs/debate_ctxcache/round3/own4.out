@@ -1,0 +1,10 @@
+operator $ for 441 tasks (cache hits, KV pinned in HBM over real gaps): 17.37
+  new_prefill       $    2.69  (15.5% of hit-path total)
+  att_over_cache    $    1.03  (5.9% of hit-path total)
+  decode_kv         $    9.22  (53.1% of hit-path total)
+  hold_pin          $    4.42  (25.5% of hit-path total)
+  hold_swap         $    0.88  (5.1% of hit-path total)
+  recompute_prefix  $   91.86  (528.9% of hit-path total)
+true marginal cost of the cache hits = attention over cached prefix + holding = $1.92 = 2.1% of recomputing those prefixes (API price: 10%)
+pin vs swap over real gaps (median 2.2 s): pin $4.42, swap $0.88
+decode KV reads are 53.1% of operator cost: FP8 KV -> -26.5%, MLA-class 4.7x smaller KV -> -41.8% (prior art, architecture-dependent)

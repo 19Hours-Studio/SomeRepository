@@ -33,8 +33,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import smol
 from smol import cache_select, cache_cat
 
-BUDGET = int(os.environ.get("BUDGET", 6000)); MAXSEG = 1200; TGT = 96; KEEP = 2
-NTRACE = int(os.environ.get("NTRACE", 48)); TAIL = 256
+BUDGET = int(os.environ.get("BUDGET", 4000)); MAXSEG = int(os.environ.get("MAXSEG", 800)); TGT = 96; KEEP = 2
+NTRACE = int(os.environ.get("NTRACE", 40)); TAIL = 256
 PH = "Old environment output: ({n} lines omitted)"
 
 
@@ -216,6 +216,7 @@ def main():
             exact = score(m, ex_c, nx, tgt, hl)
             r = {"ntok": len(ids), "first_change": fc, "n_new": sum(1 for s in src if s < 0),
                  "recompute_exact": nrec_ex, "FULL": cmp(exact, full, tgt, hl), "EXACT": cmp(exact, exact, tgt, hl)}
+            r["EXACT"]["kl_full"] = cmp(full, exact, tgt, hl)["kl"]
             variants = [("shift", 0, 0), ("shift+b16", 16, 0), ("shift+b64", 64, 0), ("shift+b16+tail", 16, TAIL)]
             if case == "clear":
                 # gap positions: each segment (or its placeholder) starts at its original offset
@@ -230,6 +231,7 @@ def main():
                                        gap_pos=gp if mode == "gap" else None)
                 x = score(m, c, nx, tgt, hl)
                 r[name] = cmp(exact, x, tgt, hl); r[name]["recompute"] = nrec
+                r[name]["kl_full"] = cmp(full, x, tgt, hl)["kl"]   # divergence from the unedited context
             rec["cases"][case] = r
         fo.write(json.dumps(rec) + "\n"); fo.flush()
         print(tr["id"], {c: round(v["shift"]["kl"], 4) for c, v in rec["cases"].items()}, flush=True)

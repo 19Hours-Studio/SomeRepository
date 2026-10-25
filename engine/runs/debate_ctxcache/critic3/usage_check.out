@@ -1,0 +1,5 @@
+requests 19514 sum completion 1708802 sum reasoning 5563329 reasoning>completion in 11148 reasoning==0 in 0
+usage keys {'completion_tokens': 19514, 'prompt_tokens': 19514, 'total_tokens': 19514, 'completion_tokens_details': 19514, 'prompt_tokens_details': 19514, 'extra_properties': 19514}
+example {"completion_tokens": 57, "prompt_tokens": 1439, "total_tokens": 1561, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens": null, "reasoning_tokens": 65, "rejected_prediction_tokens": null}, "prompt_tokens_details": null, "extra_properties": {"google": {"traffic_type": "ON_DEMAND"}}}
+actions per turn {1: 19514}
+logged instance_cost total 0 n 0

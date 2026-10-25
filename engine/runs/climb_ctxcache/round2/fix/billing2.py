@@ -78,7 +78,9 @@ def bp_bill(seq, blocks, two, maxlb=20):
 
 # Llama-3-70B prefill compute per token: 2*N_params + attention 4*n_layers*d_model*context (QK^T and AV).
 NP, NL, DM, DKV = 70.6e9, 80, 8192, 1024
-def flops(seq, splice=False):
+KVB = 2 * NL * DKV * 2          # bytes of K+V per token, BF16
+PEAK, MFU, HBM, HBMU = 989e12, 0.45, 3.35e12, 0.7   # H100 dense BF16, assumed utilisation; HBM bandwidth
+def flops(seq, splice=False, outs=None, acc=None, key=None):
     """Own-stack compute: every token not served from KV is prefilled; a splice also re-rotates the K of
     downstream cached tokens (about 6 flops per K element per layer, counted, though it is memory-bound)."""
     tot = 0.0; prevkeys = []; prev = []
@@ -93,6 +95,9 @@ def flops(seq, splice=False):
             miss = L - T.lcp(prev, s)
         ctx0 = L - miss
         tot += miss * 2 * NP + 4 * NL * DM * (miss * ctx0 + miss * miss / 2)
+        if outs is not None:   # decode: each output token reads the whole context's KV once (BF16, 320 KB/token)
+            o = outs.pop(0); acc[key + ":kvread"] = acc.get(key + ":kvread", 0) + o * (L + o / 2) * KVB
+            acc[key + ":ctxtok"] = acc.get(key + ":ctxtok", 0) + L
         prev = s
     return tot
 
@@ -114,10 +119,11 @@ def main(path):
             c, h, t = T.bill(s, W, R); add(k + ":c", c); add(k + ":t", t); add(k + ":h", h)
         for k in ("append", "sliding", "polling10/keep5", "batch5k/keep5", "horizon/keep5"):
             add(k + ":1bp", bp_bill(fam[k], blocks, False)); add(k + ":2bp", bp_bill(fam[k], blocks, True))
+        outs = [ntok[a] for a in A]
         for k in ("append", "sliding", "polling10/keep5", "batch5k/keep5", "horizon/keep5"):
-            add(k + ":fl", flops(fam[k]))
-        add("sliding+splice:fl", flops(fam["sliding"], splice=True))
-        add("polling10/keep5+splice:fl", flops(fam["polling10/keep5"], splice=True))
+            add(k + ":fl", flops(fam[k], outs=list(outs), acc=acc, key=k))
+        add("sliding+splice:fl", flops(fam["sliding"], splice=True, outs=list(outs), acc=acc, key="sliding+splice"))
+        add("polling10/keep5+splice:fl", flops(fam["polling10/keep5"], splice=True, outs=list(outs), acc=acc, key="polling10/keep5+splice"))
     ap, sl, n = acc["append:c"], acc["sliding:c"], acc["req"]
     print(f"traces={len(Tr)} requests={n}")
     print("\n(a) Anthropic breakpoint model (20-block lookback). Cost vs exact-LCP billing of the same policy:")
@@ -133,8 +139,12 @@ def main(path):
         rows.append((t / n if t else float("nan"), k, c, h / t if t else float("nan")))
     for mp, k, c, hr in sorted(rows, key=lambda r: (r[0] != r[0], r[0])):
         print(f"  {k:20s} {c/ap-1:+9.1%} {c/sl-1:+10.1%} {mp:11,.0f} {hr:7.3f}")
-    print("\n(c) Own-stack prefill compute, Llama-3-70B shape (EFLOP over all 200 traces):")
-    fa = acc["append:fl"]
+    print("\n(c) Own stack, Llama-3-70B shape, BF16 KV, H100 (989 TFLOP/s at 45% MFU, 3.35 TB/s at 70%), all 200 traces.")
+    print("    prefill = compute for every token not served from KV (+ splice key re-rotation); decode KV = bytes of")
+    print("    context KV read per output token (weight reads are the same for every policy and left out).")
+    print(f"  {'policy':24s} {'prefill EFLOP':>13s} {'vs app':>7s} {'decode KV PB':>12s} {'vs app':>7s} {'GPU-h':>7s} {'vs app':>7s} {'KV-resident':>11s}")
+    def gh(k): return (acc[k+':fl'] / (PEAK * MFU) + acc[k+':kvread'] / (HBM * HBMU)) / 3600
     for k in ("append", "sliding", "sliding+splice", "polling10/keep5", "polling10/keep5+splice", "batch5k/keep5", "horizon/keep5"):
-        print(f"  {k:24s} {acc[k+':fl']/1e18:8.2f}  vs append {acc[k+':fl']/fa-1:+.1%}")
+        f, kv = acc[k+':fl'], acc[k+':kvread']
+        print(f"  {k:24s} {f/1e18:13.2f} {f/acc['append:fl']-1:+7.1%} {kv/1e15:12.2f} {kv/acc['append:kvread']-1:+7.1%} {gh(k):7.2f} {gh(k)/gh('append')-1:+7.1%} {acc[k+':ctxtok']/acc['append:ctxtok']:10.2f}x")
 main(sys.argv[1])

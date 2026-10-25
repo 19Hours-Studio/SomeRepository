@@ -1,0 +1,5 @@
+append-only base (obs approximated) 95,205,486 units (trace4 reports 95,205,486)
+mask every 10 requests, keep last 10 obs: +7.9%
+mask every 10 requests, keep last 5 obs: +1.5%
+mask every 20 requests, keep last 10 obs: +3.9%
+mask every 5 requests, keep last 10 obs: +19.1%

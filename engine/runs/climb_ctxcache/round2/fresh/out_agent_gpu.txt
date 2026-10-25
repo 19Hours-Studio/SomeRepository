@@ -1,0 +1,8 @@
+dense 72B GQA, BF16 KV: GPU-hours 6.5 with prefix caching (vs 50.2 with none)
+   prefill_lin 14.5%  prefill_att  7.9%  dec_w 22.2%  dec_kv 52.1%  idle  3.3%
+dense 72B GQA, FP8 KV: GPU-hours 4.7 with prefix caching (vs 48.4 with none)
+   prefill_lin 20.0%  prefill_att 10.9%  dec_w 30.7%  dec_kv 36.0%  idle  2.3%
+MoE 671B-A37B MLA (DeepSeek-V3), FP8 KV: GPU-hours 2.6 with prefix caching (vs 41.6 with none)
+   prefill_lin 18.5%  prefill_att 37.5%  dec_w 14.2%  dec_kv 27.9%  idle  1.8%
+MoE 30B-A3B GQA, BF16 KV: GPU-hours 1.4 with prefix caching (vs 6.4 with none)
+   prefill_lin  3.1%  prefill_att 10.9%  dec_w  9.4%  dec_kv 72.0%  idle  4.6%

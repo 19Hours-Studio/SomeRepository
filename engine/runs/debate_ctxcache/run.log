@@ -3,3 +3,6 @@
   v1: 2725 words, $1.93
   critic of v1: $0.81; −35.8% billed input vs in-place editing (Anthropic, synthetic replay, edit every 5 turns; only −11% vs append-full; provider span ops add −16.6% over errata at 
   v2: 3299 words, $1.19
+  critic of v2: $0.96; Client-only errata −35.8% vs in-place (−32.6% with output priced) and −11% vs append-full (−9.6%); batching adds −14% to −31% on top, depending on the unmeasure
+  v3: 2834 words, $2.37
+  critic of v3: $1.08; about −11% of the total API bill (−10% to −12%) on real append-only agent traces, client-only, quality untested; −32.6% vs in-place-editing harnesses holds only

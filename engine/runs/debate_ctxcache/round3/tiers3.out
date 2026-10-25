@@ -1,0 +1,5 @@
+gap    5s: pin $0.136 swap $0.107 discard $1.104 min $0.107 | swap vs pin 1.28x, swap vs min(pin,discard) 1.28x
+gap   30s: pin $0.320 swap $0.143 discard $1.104 min $0.143 | swap vs pin 2.23x, swap vs min(pin,discard) 2.23x
+gap  120s: pin $0.984 swap $0.276 discard $1.104 min $0.276 | swap vs pin 3.56x, swap vs min(pin,discard) 3.56x
+gap  600s: pin $4.523 swap $0.984 discard $1.104 min $0.960 | swap vs pin 4.60x, swap vs min(pin,discard) 1.12x
+reload stall check: L=120k reload 0.79s vs prefill of 2.3k new tokens 2.33s

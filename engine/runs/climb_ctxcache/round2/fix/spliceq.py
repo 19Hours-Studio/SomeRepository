@@ -10,12 +10,12 @@
 #   noshift  same, but positions keep the gap (no key rotation)
 #   keep+1   exact recompute that shows one more old observation (KEEP+1): the size of a context change
 #            that harnesses already accept when they pick a window length
-#   noise    exact recompute with a different prefill chunking (numerical floor)
+#   noise    exact recompute with a different prefill chunking (numerical floor; first eval point of each trace)
 # Metrics vs full: mean KL(full || mode) per target token (nats), top-1 agreement, and the change in NLL
 # of the real next message. Usage: python3 spliceq.py MODEL.gguf data/traces.jsonl SHARD NSHARDS > out
 import sys, json, random, os, torch, smol
-KEEP = int(os.environ.get("KEEP", 3)); MSGCAP = int(os.environ.get("MSGCAP", 256))
-CAP = int(os.environ.get("CAP", 3072)); NTR = int(os.environ.get("NTR", 24)); EVERY = int(os.environ.get("EVERY", 2))
+KEEP = int(os.environ.get("KEEP", 3)); MSGCAP = int(os.environ.get("MSGCAP", 192))
+CAP = int(os.environ.get("CAP", 2048)); NTR = int(os.environ.get("NTR", 18)); EVERY = int(os.environ.get("EVERY", 3))
 M = smol.Smol(sys.argv[1]); shard, nsh = int(sys.argv[3]), int(sys.argv[4])
 lines = open(sys.argv[2]).read().splitlines()
 pick = sorted(random.Random(0).sample(range(len(lines)), NTR))
@@ -72,7 +72,7 @@ def run_trace(t):
                 outs[mode] = M.forward(S[a][0] + tgt, tmp, last=len(tgt))[:-1]
         if evaluate:
             p = prompt(a, KEEP); ref = M.forward(p + tgt, M.new_cache(), last=len(tgt))[:-1]
-            outs["noise"] = M.forward(p + tgt, M.new_cache(), chunk=384, last=len(tgt))[:-1]
+            if not rows: outs["noise"] = M.forward(p + tgt, M.new_cache(), chunk=384, last=len(tgt))[:-1]  # once per trace
             outs["keep+1"] = M.forward(prompt(a, KEEP + 1) + tgt, M.new_cache(), last=len(tgt))[:-1]
             y = torch.tensor(tgt[1:]); nll_ref = torch.nn.functional.cross_entropy(ref, y).item()
             r = {"id": t["id"], "turn": j, "ctx": len(p), "tgt": len(tgt) - 1, "clears": nclr,

@@ -1,0 +1,7 @@
+no delegation: 488,000 units, final parent ctx 125,000
+delegate 2/5 calls, summary 300: 407,850 (-16.4%), final parent ctx 85,000
+delegate 4/5 calls, summary 500: 310,950 (-36.3%), final parent ctx 41,000
+delegate 4/5 calls, summary 1000: 327,950 (-32.8%), final parent ctx 46,000
+delegate 4/5 calls, summary 2000: 361,950 (-25.8%), final parent ctx 56,000
+100 calls, no window: delegate 4/5 S=500 -56.4%
+200 calls, no window: delegate 4/5 S=500 -70.6%

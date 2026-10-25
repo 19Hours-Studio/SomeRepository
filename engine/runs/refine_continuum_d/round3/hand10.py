@@ -4,7 +4,7 @@ q, e8, m, e9 = c.q, c.e8, c.m, c.e9
 M = c.M
 def show(ctx, omega, G, h, b, k, mm, idx, kv):
     csa, hca, mtp = e8.layer_types(ctx)
-    s = e9.design_profiles(h, omega, 64, ("0.55V wt",))["0.55V wt"][0]
+    s = e9.design_profiles(h, omega, 72, ("0.55V wt",))["0.55V wt"][0]
     pos, tok, L = m.spec(M, k, 0.8); S = L - 30; users = mm * b * S
     exp_b = M["n_exp"] * m.b_exp(M) / G
     a1, h1 = c._cap(s, csa, G, users, idx, False); a2, h2 = c._cap(s, hca, G, users, False, kv)
@@ -16,8 +16,8 @@ def show(ctx, omega, G, h, b, k, mm, idx, kv):
         print(f"  {nm}: sram {t[0]*1e6:.2f} us  hbm {t[1]*1e6:.2f}  compute {t[2]*1e6:.2f}  dispatch/combine {t[3]*1e6:.2f}")
     ho = 1.07 * 8 * b * pos / G * M["hid"] / s["link"]
     cp = c.pair(s, csa, hca, G, h, b, pos, L, users, idx, kv)
-    tau = q.tau_f(0.635) if False else q.tau_f(e9.design_profiles(0, omega, 64, ("0.55V wt",))["0.55V wt"][1])
+    tau = q.tau_f(0.635) if False else q.tau_f(e9.design_profiles(0, omega, 72, ("0.55V wt",))["0.55V wt"][1])
     T = max(mm * cp, cp + 2 * tau)
     print(f"  hand-off {ho*1e6:.2f} us; c_pair {cp*1e6:.2f} us; tau {tau*1e6:.2f}; T = max({mm}x c, c+2tau) = {T*1e6:.1f} us; speed {tok/(S*T):,.0f} tok/s/user")
-show(c.q.C128, 0.7, 8, 2, 539, 1, 2, True, False)
-show(c.q.C1M, 1.0, 27, 3, 233, 2, 3, True, False)
+show(c.q.C128, 0.7, 16, 2, 1084, 1, 2, True, False)
+show(c.q.C1M, 0.7, 27, 3, 233, 2, 3, True, False)
