@@ -19,3 +19,4 @@
 {"step": "gen:triage", "time": "2026-10-25 01:13:07", "model": "opus", "tools": "", "tokens": 17599, "output_tokens": 3375, "cache_read": 1496, "fresh_input": 12728, "cost_usd": 0.1696152, "turns": 1, "seconds": 40.6}
 {"step": "review:gate.1", "time": "2026-10-25 01:15:45", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 314366, "output_tokens": 14031, "cache_read": 239739, "fresh_input": 60596, "cost_usd": 0.8608062000000001, "turns": 9, "seconds": 157.3}
 {"step": "review:gate.2", "time": "2026-10-25 01:18:03", "model": "opus", "tools": "WebSearch,Bash,Read,Write", "tokens": 756536, "output_tokens": 25469, "cache_read": 653959, "fresh_input": 77108, "cost_usd": 1.3519618, "turns": 16, "seconds": 295.9}
+{"step": "research:known", "time": "2026-10-25 01:18:43", "model": "sonnet", "tools": "WebSearch", "tokens": 45061, "output_tokens": 2918, "cache_read": 26027, "fresh_input": 16116, "cost_usd": 0.1673462, "turns": 7, "seconds": 40.2}

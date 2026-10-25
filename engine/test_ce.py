@@ -341,7 +341,8 @@ def main():
                                   "processing 5% | capital 13% | other 55%\n=== ATTEMPTS ===\nATTEMPT 1: winter road | Yakutia | standard | WHY IT DID NOT SOLVE IT: 54 days | s\n"
                                   "=== GATE ===\n" + "".join(f"IDEA {k}: n{k}\nKILLER | ice | required 2 m | available 1 m (s) | MARGIN {k}\n"
                                                               f"CHAIN | road | now 100 | with idea 50 | RATIO {k}\nVERDICT | ALIVE | ok\n" for k in (1, 2, 3)) +
-                                  "NEW FACT | ice road open 45 days in 2026 | skillings\n=== SLICES ===\nSLICE 1: Deposits | COVER: where | ANGLES: a; b | LANGUAGES: en, ru\n"
+                                  "NEW FACT | ice road open 45 days in 2026 | skillings\n=== FAMILIES ===\n" + "".join(f"IDEA {k} | FAMILY Barge loop\n" for k in range(1, 7)) +
+                                  "IDEA 7 | FAMILY: rail spur\n=== SLICES ===\nSLICE 1: Deposits | COVER: where | ANGLES: a; b | LANGUAGES: en, ru\n"
                                   "SLICE 2: Logistics | COVER: routes | ANGLES: c | LANGUAGES: en\n=== EVIDENCE ===\n**FACT 1:** barge freight 40 USD/t on the Lena | HARD | https://a.example/1\n"
                                   "FACT 2: winter road open 90 days | SOFT (company claim) | https://b.example/2, https://c.example/3\nGAPS: no tariff data\n=== KNOWN ===\n**IDEA 1:** KNOWN yes | CLOSEST: barge patent, Acme, 2019 | https://p.example/1 | "
                                   "SAME: barges | NEW: nothing\nIDEA 2: KNOWN: no | CLOSEST: rail study | https://p.example/2 | SAME: route | NEW: ice keel\n=== TRIAGE ===\nIDEA 1 | I 2 | P 2 | DECIDES: x | y\nIDEA 2 | I 9 | P 8 | DECIDES: x | y\n"
@@ -371,16 +372,18 @@ def main():
             g = open(os.path.join(rd11, "prompts", "g1_ledger.txt")).read()
             assert "ceiling 66.7x" in g and "winter road" in g and "most room under its ceiling" in g and "{" not in g
             assert "how was it held?" in open(os.path.join(rd11, "prompts", "g1_rf1.txt")).read() and os.path.exists(os.path.join(rd11, "prompts", "g1_rf2.txt"))
-            gate_ids = json.load(open(os.path.join(rd11, "gate", "ids.json"))); assert len(gate_ids) == 8  # triage cut 15 ideas to 8
+            gate_ids = json.load(open(os.path.join(rd11, "gate", "ids.json")))  # triage cut 15 ideas to 8 (checked below)
             rp = open(os.path.join(rd11, "repair", "TASK.md")).read()
             assert "KILL TEST: killer ice" in rp and "ice road open 45 days in 2026 | NEW from gate" in rp and "{" not in rp
             assert "OLD:known#1" in json.load(open(os.path.join(rd11, "audit_final", "ids.json")))
-            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 23  # dossier plan + 2 slices, gate and repair in 2 chunks, rival round 4 steps, known, one bench reviewer
+            assert sum(1 for _ in open(os.path.join(rd11, "usage.jsonl"))) == 24  # dossier plan + 2 slices, families, gate and repair in 2 chunks, rival round 4 steps, known, one bench reviewer
             ev11 = open(os.path.join(rd11, "evidence.md")).read()  # v5.2 dossier: slices merged, duplicates dropped, sources counted
             assert ev11.startswith("FACT 1: barge freight 40 USD/t on the Lena | HARD | https://a.example/1 | dossier: Deposits") and ev11.count("winter road open 90 days") == 1, ev11[:400]
             assert open(os.path.join(rd11, "dossier.md")).read().startswith("2 facts, 3 distinct sources, 2 slices") and "Deposits: no tariff data" in open(os.path.join(rd11, "dossier.md")).read()
             assert "barge freight 40 USD/t" in open(os.path.join(rd11, "ledger", "TASK.md")).read() and "barge freight 40 USD/t" in open(os.path.join(rd11, "gate", "c1", "TASK.md")).read()
             assert "Logistics" in open(os.path.join(rd11, "dossier", "s1", "TASK.md")).read() and "About 25 searches" in open(os.path.join(rd11, "dossier", "s2", "TASK.md")).read()
+            fam11 = json.load(open(os.path.join(rd11, "families.json"))); assert len(fam11) == 7 and fam11[min(fam11)] in ("barge loop", "rail spur")
+            assert sum(fam11.get(i) == "barge loop" for i in gate_ids) <= 2 and len(gate_ids) == 8  # at most 2 per family go to the kill test
             kn = json.load(open(os.path.join(rd11, "known.json"))); kid = json.load(open(os.path.join(rd11, "known", "ids.json")))
             assert len(kid) == 6 and kn[kid[0]]["known"] == "yes" and kn[kid[1]] == {"known": "no", "closest": "rail study", "url": "https://p.example/2",
                                                                                    "same": "route", "new": "ice keel"}, kn

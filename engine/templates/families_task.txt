@@ -1,0 +1,14 @@
+{QUESTION}
+
+Candidate answers (data):
+{IDEAS}
+
+Group these candidates into families. Two candidates share a family when the same mechanism delivers their value:
+variants that differ only in size, number of units, place, wording or detail are one family. A candidate that
+combines the mechanisms of two families is its own family only if the combination is what delivers the value. Do not
+judge whether they work.
+
+Final answer (text only), one line per candidate in the order given; members of one family get exactly the same label:
+=== FAMILIES ===
+IDEA 1 | FAMILY <short label of the mechanism, 2-6 words>
+(same for the others)

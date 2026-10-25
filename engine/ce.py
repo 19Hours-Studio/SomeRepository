@@ -694,6 +694,16 @@ def cmd_gate(a):
 
 GATE_W = {"ALIVE": 1.0, "WOUNDED": 0.4, "DEAD": 0.0}
 KNOWN_BONUS = {"no": 0.3, "partly": 0.15, "yes": 0.0}  # v5.1: added to the kill-test weight when choosing what to repair
+FAMLINE = re.compile(r"^\**IDEA (\d+)\**\s*\|\s*\**FAMILY\**\s*:?\s*(.+?)\s*$", re.M | re.I)
+
+def diverse(ids, fam, cap):
+    """ids in their given order, but with at most `cap` per family first and the overflow after: the expensive steps
+    see different mechanisms before they see a second copy of one (v5.2: rusres sent 4 copies of one LNG idea to repair)."""
+    seen, first, rest = Counter(), [], []
+    for i in ids:
+        f = fam.get(i, i); (first if seen[f] < cap else rest).append(i); seen[f] += 1
+    return first + rest
+
 KNOWN_LINE = re.compile(r"^\**IDEA (\d+)\**\s*:\s*\**\s*KNOWN\**\s*:?\s*\**\s*(yes|partly|no)\b(.*)$", re.M | re.I)
 
 def take_known(text, ids):
@@ -1114,7 +1124,7 @@ PIPE = {"explain": {"lite": ["research:evidence", "research:hypotheses", "gen:re
                           "repair:build.1", "repair:build.2", "review:review", "repair:repair", "review:audit_final", "gen:calibrate",
                           "code:learn"]},
         "invent": {"lite": ["research:ledger", "research:attempts", "code:ceilings", "gen:reframe", "gen:g1_ledger", "gen:g1_neg",
-                            "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:triage", "review:gate", "research:known", "repair:repair", "review:audit_final",
+                            "gen:g1_mech", "gen:g1_rf1", "gen:g1_rf2", "gen:families", "gen:triage", "review:gate", "research:known", "repair:repair", "review:audit_final",
                             "gen:calibrate", "code:learn"]}}
 TECH_MAKE = {"g1_neg": "Technique: first list honestly the 8 ways you and most designers would build this page (the usual hero, grid "
                      "and look) and name in one sentence the paradigm they share; then propose only concepts outside it.",
@@ -1240,6 +1250,10 @@ def cmd_run(a):
         if os.path.exists(f) and sorted(json.load(open(f))) == sorted(ids): return json.load(open(f))
         ids = list(ids); secrets.SystemRandom().shuffle(ids); return ids
     def task(dirname): return open(os.path.join(D, dirname, "TASK.md")).read()
+    def stale(f, ids, names):  # a resumed step whose ideas changed must run again: its stored output is for other ideas
+        if os.path.exists(f) and sorted(json.load(open(f))) != sorted(ids):
+            for n in names:
+                if os.path.exists(o := path(R, "outputs", n + ".md")): os.remove(o); print(f"  {n}: ideas changed, will run again")
     def chunked(name, kind_, ids, write_task, size, merge):
         """v5: a tool step over many ideas run as chunks of <= size ideas, at most 2 agents at a time. Every turn re-reads
         the growing context, so tokens grow ~ with turns squared and two half-size agents use ~40% fewer. Dollars do not
@@ -1320,13 +1334,19 @@ def cmd_run(a):
         techs = {"g1_ledger": TECH[led_tech()]} | {k: TECH[k] for k in ("g1_neg", "g1_mech")} | {f"g1_rf{k}": TECH["rf"].format(q) for k, q in enumerate(rfs[:2], 1)}
         for lab, tech in techs.items(): gen(lab, saved(lab, fill(R, tpl("gen_invent"), cfg["n"], {"TECH": tech})))
     ideas = lambda: load(R, "ideas.json", [])
-    def triage(ids, tp, k=None, cap=3, name="triage"):  # importance x possibility without tools; the expensive check gets the best, at most cap per generator
+    def families(ids):
+        """v5.2: one cheap call groups the candidates by the mechanism that delivers their value (families.json)."""
+        f = step("families", "gen", saved("families", fill(R, tpl("families_task"), len(ids), {"IDEAS": task_ideas(R, ids, scores=False)})), a.model, "none")
+        fam = {ids[int(k) - 1]: re.sub(r"\W+", " ", lab.lower()).strip() for k, lab in FAMLINE.findall(f.split("=== FAMILIES ===", 1)[-1]) if 1 <= int(k) <= len(ids)}
+        save(R, "families.json", fam); print(f"  families: {len(set(fam.values()))} among {len(ids)} candidates ({len(fam)} parsed)"); return fam
+    def triage(ids, tp, k=None, cap=3, name="triage", fam=None, famcap=2):  # importance x possibility without tools; the expensive check gets the best, at most cap per generator and famcap per family
         tids = order(name, ids, path(R, "prompts", name + ".ids.json")); json.dump(tids, open(path(R, "prompts", name + ".ids.json"), "w"))
         tri = take_triage(step(name, "gen", saved(name, fill(R, tpl(tp), len(tids), {"IDEAS": task_ideas(R, tids, scores=False)})),
                                a.model, "none"), tids)
-        lab = {i["id"]: i["label"] for i in ideas()}; pick, per = [], Counter()
+        lab = {i["id"]: i["label"] for i in ideas()}; pick, per, perf = [], Counter(), Counter(); fam = fam or {}
         for i in sorted(tids, key=lambda i: -tri.get(i, 0)):
-            if len(pick) < (k or a.triage_k) and per[lab[i]] < cap: pick.append(i); per[lab[i]] += 1
+            if len(pick) < (k or a.triage_k) and per[lab[i]] < cap and perf[fam.get(i, i)] < famcap:
+                pick.append(i); per[lab[i]] += 1; perf[fam.get(i, i)] += 1
         return pick
     if kind == "make": return run_make(R, D, a, triage, step, saved, order, done)
     def rival_round(pick):
@@ -1353,7 +1373,8 @@ def cmd_run(a):
         """v5.1: the closest prior art for each idea going on, found by a search for its MECHANISM (not its problem), before
         repair spends on it. In 8 v5 runs no finalist came out of the final audit as unknown, and the patents on a winner's
         mechanism turned up only there (foldcrease), after repair had been paid for. One cheap search model, search only."""
-        dd = os.path.join(D, "known"); os.makedirs(dd, exist_ok=True); ids = order("known", ids, os.path.join(dd, "ids.json"))
+        dd = os.path.join(D, "known"); os.makedirs(dd, exist_ok=True); stale(os.path.join(dd, "ids.json"), ids, ["known"])
+        ids = order("known", ids, os.path.join(dd, "ids.json"))
         json.dump(ids, open(os.path.join(dd, "ids.json"), "w"))
         s = fill(R, tpl("known_task"), len(ids), {"IDEAS": task_ideas(R, ids, scores=False)}); open(os.path.join(dd, "TASK.md"), "w").write(s)
         kn = take_known(step("known", "research", s, a.lit_model, "WebSearch", cwd=dd), ids); save(R, "known.json", kn)
@@ -1377,9 +1398,11 @@ def cmd_run(a):
         notes = "\n".join(x for x in (a.notes, found and "A check against reality found (data; its facts are also in the evidence):\n" + found) if x)
         rargs_last = argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_explain",
                                         audits=",".join(dirs), notes=notes or None, gate=None); cmd_repairtask(rargs_last)
-    else:  # 4i. triage by importance x possibility (no tools), kill test with the kit on the best, repair
-        pick = triage([i["id"] for i in ideas() if i["arm"] == "E" and not i.get("fragment")], "triage_task")
-        gd = os.path.join(D, "gate"); pick = order("gate", pick, os.path.join(gd, "ids.json")); kit = bool(getattr(a, "kit", False) or cfg.get("kit"))
+    else:  # 4i. families, triage by importance x possibility (no tools), kill test with the kit on the best, repair
+        cands = [i["id"] for i in ideas() if i["arm"] == "E" and not i.get("fragment")]; fam = families(cands)
+        pick = triage(cands, "triage_task", fam=fam); gd = os.path.join(D, "gate")
+        if done("gate") and os.path.exists(os.path.join(gd, "ids.json")): pick = json.load(open(os.path.join(gd, "ids.json")))  # resume keeps what was tested
+        pick = order("gate", pick, os.path.join(gd, "ids.json")); kit = bool(getattr(a, "kit", False) or cfg.get("kit"))
         os.makedirs(gd, exist_ok=True); json.dump(pick, open(os.path.join(gd, "ids.json"), "w"))
         chunked("gate", "review", pick, lambda c, cd: cmd_gatetask(argparse.Namespace(run=R, ids=",".join(c), dir=cd, kit=kit)),
                 a.chunk, lambda t, n: merge_numbered(t, n, "=== GATE ==="))
@@ -1389,8 +1412,10 @@ def cmd_run(a):
         print(f"  gate: {add_new_facts(R, t, 'gate')} new facts -> evidence.md")
         if getattr(a, "rivals", False): pick += rival_round(pick)
         g = load(R, "gate.json", {}); gk = lambda i: (-GATE_W.get(g.get(i, {}).get("verdict"), -1), -(g.get(i, {}).get("ratio") or 0))
-        cand = sorted(pick, key=gk)[:6]; kn = known_check(cand)  # v5.1: the 4 to repair are chosen knowing what already exists
-        top = sorted(cand, key=lambda i: (gk(i)[0] - KNOWN_BONUS.get(kn.get(i, {}).get("known"), 0.0), gk(i)[1]))[:4]
+        fam = load(R, "families.json", {})
+        cand = diverse(sorted(pick, key=gk), fam, 1)[:6]; kn = known_check(cand)  # v5.1: the 4 to repair are chosen knowing what already exists
+        top = diverse(sorted(cand, key=lambda i: (gk(i)[0] - KNOWN_BONUS.get(kn.get(i, {}).get("known"), 0.0), gk(i)[1])), fam, 1)[:4]
+        stale(os.path.join(D, "repair", "parents.json"), top, ["repair"] + [f"repair.{j}" for j in range(1, 5)])
         rargs_last = argparse.Namespace(run=R, ids=",".join(top), dir=os.path.join(D, "repair"), critique=None, tpl="repair_task",
                                         audits=None, notes=a.notes, gate="gate.json", known="known.json"); cmd_repairtask(rargs_last)
     # 5. repair with search (in chunks), 6. final blind review (+ earlier finalists for the benchmark: one reviewer for all)
