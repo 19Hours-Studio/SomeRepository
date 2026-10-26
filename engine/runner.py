@@ -39,6 +39,7 @@ def call(prompt, model="opus", tools="none", cwd=None, effort=None, budget_usd=N
     if fake:
         return open(fake).read(), {"model": model, "tools": tl, "tokens": 0, "cost_usd": 0.0, "seconds": 0.0, "fake": True}
     cmd = ["claude", "-p", "--output-format", "json", "--no-session-persistence", "--model", model, "--tools", tl]
+    if os.environ.get("CE_CPUS"): cmd = ["taskset", "-c", os.environ["CE_CPUS"]] + cmd  # bench: keep a core free for timing
     if tl: cmd += ["--allowedTools", tl]
     if effort: cmd += ["--effort", effort]
     if budget_usd: cmd += ["--max-budget-usd", str(budget_usd)]

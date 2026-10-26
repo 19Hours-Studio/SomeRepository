@@ -1,0 +1,6 @@
+{"task": "ca", "ok": true, "answer": "129b7e5691b1415c38fb4476b989f0c6b1685bd154a101278846837ac22c9eda", "seconds": 8.3, "score": 1.0}
+{"task": "queens", "ok": true, "answer": "79400", "seconds": 9.35, "score": 1.0}
+{"task": "primesum", "ok": true, "answer": "659676487", "seconds": 83.13, "score": 1.0}
+{"task": "labs", "ok": true, "merit": [5.558, 5.317], "score": 5.437}
+{"task": "ca", "ok": true, "answer": "5009dca828d165721051ab59c86e21fc063d38d9d2a2eba957383469fef01645", "seconds": 72.61, "score": 1.0}
+{"task": "queens", "ok": true, "answer": "434536", "seconds": 55.92, "score": 1.0}
