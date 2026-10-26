@@ -317,7 +317,7 @@ def main():
         B.run(L, deadline, lambda: rng.choice(np.array([-1.0, 1.0]), B.m), verbose)
         print(to_str(B.best_x)); return
     # even N: skew-symmetric search on N-1, then extend by one bit and polish with general single-flip walks
-    split = T0 + budget * 0.7
+    split = T0 + budget * 0.9
     B = BatchSkew(N - 1, W, rng)
     pool = []
     orig = B.harvest
@@ -334,7 +334,7 @@ def main():
         seen.add(k)
         for y in (np.append(x, 1), np.append(x, -1), np.insert(x, 0, 1), np.insert(x, 0, -1)):
             seeds.append((corr_energy(y), y))
-        if len(seen) >= 50: break
+        if len(seen) >= 3000: break
     seeds.sort(key=lambda t: t[0])
     best_e, best_x = seeds[0]
     if verbose: print('skew', pool[0][0], 'seed', best_e, N * N / 2 / best_e, file=sys.stderr)
