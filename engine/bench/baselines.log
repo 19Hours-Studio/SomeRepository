@@ -4,3 +4,5 @@
 {"task": "labs", "ok": true, "merit": [5.558, 5.317], "score": 5.437}
 {"task": "ca", "ok": true, "answer": "5009dca828d165721051ab59c86e21fc063d38d9d2a2eba957383469fef01645", "seconds": 72.61, "score": 1.0}
 {"task": "queens", "ok": true, "answer": "434536", "seconds": 55.92, "score": 1.0}
+{"task": "queens17", "ok": true, "answer": "15505954", "seconds": 52.0, "score": 1.0}
+{"task": "primesum13", "ok": true, "answer": "972144012", "seconds": 32.4, "score": 1.0}

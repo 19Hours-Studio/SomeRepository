@@ -10,20 +10,19 @@ one if it scores at least 3% higher.
 score: official scores of every attempt in a run, one after another (run it on a quiet machine).
 
 Usage: python3 run.py plain <run> [--tasks ca,queens,...] [--n 1]
-       python3 run.py climb <run> --start <plain run> [--tasks ...] [--rounds 3] [--k 4]
+       python3 run.py climb <run> --start <plain runs, comma-separated> [--tasks ...] [--rounds 3] [--k 4]
        python3 run.py score <run>
 State: engine/bench/runs/<run>/<task>/<attempt>/ (the agent's folder, note.md, score.json), usage.jsonl, report.md.
 """
-import argparse, json, os, shutil, subprocess, sys, threading
+import argparse, fcntl, json, os, shutil, subprocess, sys
 from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.dirname(HERE))
 import runner
 
-TASKS = ["ca", "queens", "primesum", "compress", "labs"]
+TASKS = ["ca", "queens17", "primesum13", "compress", "labs"]  # queens and primesum (plain1 run) were too small: plain Claude hit Python start-up
 SCORE = os.path.join(HERE, "score.py")
 FILES = {"compress": ["compress.py", "decompress.py"]}
-SCORING = threading.Lock()
 os.environ.setdefault("CE_CPUS", "1-3"); os.environ.setdefault("SCORE_CORE", "1")  # agents and their self-checks; core 0 is for official scores
 
 PLAIN = """Your task is in `TASK.md` in the current folder. Solve it as well as you can; only the score counts. You have
@@ -69,8 +68,8 @@ def official(task, d, cache=True):
     f = os.path.join(d, "score.json")
     if cache and os.path.exists(f): return json.load(open(f))
     env = dict(os.environ, SCORE_CORE="0")
-    with SCORING:  # one official measurement at a time
-        p = subprocess.run([sys.executable, SCORE, task, d], capture_output=True, text=True, env=env)
+    with open(os.path.join(HERE, ".scoring.lock"), "w") as lk:  # one official measurement at a time, across processes
+        fcntl.flock(lk, fcntl.LOCK_EX); p = subprocess.run([sys.executable, SCORE, task, d], capture_output=True, text=True, env=env)
     try: r = json.loads(p.stdout.strip().splitlines()[-1])
     except Exception: r = {"task": task, "ok": False, "error": (p.stderr or p.stdout)[-400:]}
     r["score"] = r.get("score", 0) if r.get("ok") else 0; json.dump(r, open(f, "w")); return r
@@ -96,11 +95,13 @@ def plain(a, D):
 
 def climb(a, D):
     def task_climb(t):
-        start = os.path.join(os.path.dirname(D), a.start, t, "plain1")
-        cur = os.path.join(D, t, "start"); prepare(t, cur, start if os.path.exists(start) else None)
-        if not os.path.exists(start):  # no plain attempt: start from the baseline
+        tries = [os.path.join(os.path.dirname(D), s, t, f) for s in (a.start or "").split(",") if os.path.isdir(os.path.join(os.path.dirname(D), s, t))
+                 for f in os.listdir(os.path.join(os.path.dirname(D), s, t)) if f.startswith("plain")]
+        start = max(tries, key=lambda d: official(t, d)["score"]) if tries else ""  # the best plain attempt
+        cur = os.path.join(D, t, "start"); prepare(t, cur, start or None)
+        if not start:  # no plain attempt: start from the baseline
             for f in os.listdir(os.path.join(cur, "baseline")): shutil.copy(os.path.join(cur, "baseline", f), cur)
-        best = official(t, cur)["score"]; hist = [f"- start ({'plain attempt' if os.path.exists(start) else 'baseline'}): {best}"]
+        best = official(t, cur)["score"]; hist = [f"- start ({'the best plain attempt' if start else 'baseline'}): {best}"]
         for r in range(1, a.rounds + 1):
             moves = list(MOVES)[:a.k]
             def write(m):
@@ -122,7 +123,7 @@ def climb(a, D):
 
 def report(D):
     out = [f"# {os.path.basename(D)}: official scores (measured by running the programs)", "", "| task | attempt | score | detail |", "|---|---|---|---|"]
-    for t in TASKS:
+    for t in sorted(os.listdir(D)):
         if not os.path.isdir(os.path.join(D, t)): continue
         for at in sorted(os.listdir(os.path.join(D, t))):
             d = os.path.join(D, t, at)

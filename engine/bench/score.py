@@ -5,7 +5,7 @@ standard library and numpy may be imported; compilers, ctypes, subprocesses and 
 
 Usage: python3 score.py <task> <solution dir> [--runs 2]   -> prints one JSON line: {"task", "ok", "score", ...}
        python3 score.py <task> --baseline                  -> measures the baseline (speed tasks store its time)
-Tasks: ca, queens, primesum (speed: score = baseline time / program time), compress (score = xz bytes / (compressed +
+Tasks: ca, queens, primesum, queens17, primesum13 (speed: score = baseline time / program time), compress (score = xz bytes / (compressed +
 xz'd decoder source) bytes), labs (score = merit factor of the sequence found within the time limit).
 """
 import ast, hashlib, json, lzma, os, shutil, subprocess, sys, tempfile, time
@@ -14,7 +14,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); TASKS = os.path.join(HERE, "t
 FORBIDDEN = {"ctypes", "cffi", "subprocess", "multiprocessing", "concurrent", "threading", "_thread", "scipy", "numba",
              "cython", "pyximport", "setuptools", "distutils", "importlib", "sysconfig", "pty", "signal", "socket"}
 BAD_CALLS = ("os.system", "os.popen", "os.exec", "os.fork", "os.spawn", "os.posix_spawn", "__import__", "exec(", "eval(")
-LIMIT = {"ca": 300, "queens": 300, "primesum": 300, "compress": 120, "labs": 60}
+LIMIT = {"ca": 300, "queens": 300, "primesum": 300, "queens17": 300, "primesum13": 300, "compress": 120, "labs": 60}
 
 
 ENTRY = {"compress": ["compress.py", "decompress.py"]}
