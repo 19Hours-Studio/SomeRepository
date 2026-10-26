@@ -1,0 +1,8 @@
+`solution.py` produces the same digest as the baseline and scores **30.76** on the self-check (2.36 s, `{"ok": true}`). The machine was heavily loaded (load average about 6.8), so the quiet-machine score may be different.
+
+**Approach (numpy only):**
+- **Bit-packing:** each row is stored as 64 `uint64` words, with word *k* holding columns *k*, *k+64*, … *k+4032*. With that layout the left and right neighbours are just the next and previous word. Wrapping around the torus only touches one edge word per row, which is fixed with a 1-bit rotate.
+- **Contiguous memory:** each row takes 66 words, with two padding words that hold the wrapped edges. Every bitwise operation runs on flat, contiguous slices with offsets of ±1 word for left and right and ±1 row for up and down. Strided views were about 4× slower.
+- **Adder logic:** a 3-input adder per row gives 2-bit column sums. The 9-cell total *T* (which includes the cell itself) is then the sum of three column sums. The rule becomes "T = 3, or T = 4 and alive, or T = 6 and dead", which reduces to `new = (t0^t2) & (t1 ^ (g & t2))` on the bits of *T*. Totals of 8 or 9 come out correctly without a fourth bit.
+- **Sharing work:** even and odd rows are kept in separate arrays, so the sum of rows 2k and 2k+1 is computed once and reused for both output rows. That is about 20 word-operations per row word.
+- **Cache blocking:** the grid is processed in strips of 128 row pairs that stay in L2 cache, and each strip's column sums are computed just before they're needed. The loop takes about 1.65 ms per step, and setup plus the final unpack add about 0.35 s.

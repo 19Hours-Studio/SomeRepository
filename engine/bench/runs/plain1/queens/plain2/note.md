@@ -1,0 +1,9 @@
+I wrote `solution.py`. It prints the correct count, **434536**, and the self-check scorer gives it **score 69.03** (0.81 s; the baseline takes about 64 s on this machine). The machine is shared, so the timing is noisy.
+
+**Approach:**
+1. **Row DP with bitmasks in numpy.** Each state is a key made of the used columns plus the two diagonal-attack masks for the next row. All states in a layer are expanded together for each column, then identical states are merged with a sort and their counts added up.
+2. **Pruning.** Before merging, the program drops any diagonal bit that can never reach a free, unblocked cell in a column that is still open. A lookup table indexed by the open-column set makes this cheap, and it lets far more states merge.
+3. **Meet in the middle.** One DP runs over the top 8 rows; the same code runs on the vertically flipped board for the bottom 7 rows. Both sides are projected onto row 7, the last row of the top part. In the flipped board the two diagonal directions swap, so the top's masks are compared against the bottom's swapped masks.
+4. **Join.** Since the column bits sit in the high part of the key, the sorted states are already grouped by column set. Each top group is paired with the bottom group that has the complementary columns. A pair is valid when the 30-bit diagonal masks don't overlap. Each group is counted with one numpy outer AND plus a matrix–vector product. Group sums stay well below 2^24, so float32 arithmetic is exact.
+
+While building it I hit one bug: the bottom half was projected onto the wrong row and the count came out as 437764. I fixed it and confirmed the result three ways: against the baseline, against the plain DP run over the whole board in both orientations, and with the official scorer.
