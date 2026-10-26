@@ -5,7 +5,7 @@ VF=1020/(n*n); P=int(sys.argv[1]) if len(sys.argv)>1 else 8; R=float(sys.argv[2]
 rho=np.full((n,n),VF)
 r=int(np.ceil(R)); yy,xx=np.mgrid[-r:r+1,-r:r+1]; H=np.maximum(0,R-np.sqrt(xx**2+yy**2))
 def filt(x): return convolve(x,H,mode='nearest')/convolve(np.ones_like(x),H,mode='nearest')
-it=0
+it=0; bestb=1e9
 for pen in [1,2,3,4,5,6,8]:
   for k_ in range(60):
     xf=filt(rho)
@@ -21,5 +21,7 @@ for pen in [1,2,3,4,5,6,8]:
     ch=abs(new-rho).max(); rho=new; it+=1
   # binarize report
   xf=filt(rho); o=np.argsort(-xf.ravel()); d=np.zeros(n*n,bool); d[o[:1020]]=True
-  print(pen,J_,Tm,'binary',evalk(1+(KH-1)*d.reshape(n,n)),flush=True)
-np.save('work/rho_%d_%s.npy'%(P,R),filt(rho))
+  vb=evalk(1+(KH-1)*d.reshape(n,n)); print(pen,J_,Tm,'binary',vb,flush=True)
+  if vb<bestb:
+    bestb=vb; open('/home/user/SomeRepository/engine/bench/runs/ideas1/heat/plain2/work/bin_%d_%s.txt'%(P,R),'w').write('\n'.join(''.join('1' if c else '0' for c in row) for row in d.reshape(n,n))+'\n')
+np.save('/home/user/SomeRepository/engine/bench/runs/ideas1/heat/plain2/work/rho_%d_%s.npy'%(P,R),filt(rho))

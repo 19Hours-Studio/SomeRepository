@@ -153,11 +153,11 @@ class Batch:
             self.wb[imp] = e[imp]; self.wbf[imp] = f[imp]
 
 
-def memetic(sp, deadline, rng, W=64, P=64, verbose=False, seeds=None, itl=0.5, ith=1.5, tdiv=8, stall=12, pmut=1.0, rand=0):
+def memetic(sp, deadline, rng, W=64, P=64, verbose=False, seeds=None, itl=0.5, ith=1.5, tdiv=8, stall=12, pmut=1.0, rand=0, tlo=0):
     m = sp.m
     B = Batch(sp, W, rng)
     it_lo, it_hi = max(8, int(itl * m)), int(ith * m) + 8
-    ten_lo, ten_hi = 1, max(2, m // tdiv)
+    ten_hi = max(2, m // tdiv); ten_lo = max(1, int(tlo * ten_hi))
     pop_f = []; pop_e = []; keys = set()
     best_e, best_f = None, None
     pool = []

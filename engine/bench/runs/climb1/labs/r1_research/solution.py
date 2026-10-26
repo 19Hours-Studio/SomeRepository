@@ -118,15 +118,15 @@ class Skew:
 
 
 class BatchSkew:
-    """W independent tabu searches over skew-symmetric sequences, advanced together with numpy.
-    Each walker runs L steps from a random start, then restarts."""
+    """W independent self-avoiding walks over skew-symmetric sequences, advanced together with numpy.
+    Each walker moves to its best not yet visited neighbour; visited states live in a per-walker
+    open-addressing hash table of Zobrist hashes. A walker restarts from a random sequence after L steps."""
 
-    def __init__(self, N, W, rng, tmin=3, tmax=8, P=0, pmem=1.0, mut=None):
+    C = 4  # neighbours checked per step before the slow path
+
+    def __init__(self, N, W, rng, L):
         self.S = S = Skew(N)
-        self.N, self.m, self.K, self.W, self.rng = N, S.m, S.K, W, rng
-        self.tmin, self.tmax = tmin, tmax
-        self.P, self.pmem = P, pmem
-        self.mut = 1.0 / ((N + 1) // 2) if mut is None else mut
+        self.N, self.m, self.K, self.W, self.rng, self.L = N, S.m, S.K, W, rng, L
         m, K = S.m, S.K
         Lmax = max(len(u) for u in S.U)
         mk = m * K
@@ -142,8 +142,16 @@ class BatchSkew:
         assert np.shares_memory(self.G, self.store)
         self.base = (np.arange(W) * (mk + 1))[:, None]
         self.f = np.zeros((W, m), dtype=np.float32); self.c = np.zeros((W, K), dtype=np.float32); self.e = np.zeros(W, dtype=np.float32)
-        self.until = np.zeros((W, m), dtype=np.int64); self.ten = np.zeros(W, dtype=np.int64); self.stepc = np.zeros(W, dtype=np.int64)
+        self.stepc = np.zeros(W, dtype=np.int64)
         self.wb = np.full(W, np.inf, dtype=np.float32); self.wbf = np.zeros((W, m), dtype=np.float32)
+        # hash tables: load factor <= 1/4
+        self.Z = rng.integers(1, 1 << 62, m, dtype=np.int64)
+        tb = 1
+        while tb < 4 * L: tb *= 2
+        self.TB = tb; self.mask = tb - 1
+        self.tab = np.zeros(W * tb, dtype=np.int64)
+        self.tbase = np.arange(W, dtype=np.int64) * tb
+        self.h = np.zeros(W, dtype=np.int64)
         # gather indices to build G from x
         N = self.N; s = S.s
         ii = np.arange(m)[:, None]; jj = N - 1 - ii; ks = np.arange(2, N, 2)[None, :]
@@ -156,18 +164,6 @@ class BatchSkew:
         S, N, m, rng = self.S, self.N, self.m, self.rng
         n = len(ws)
         fr = rng.choice(np.array([-1.0, 1.0], dtype=np.float32), (n, m))
-        if self.pop is not None and len(self.pop) >= self.P:
-            # memetic restart: child of two elites (tournament selection, uniform crossover, mutation)
-            pe = self.pope; pf = self.popf
-            k = len(pe)
-            a = rng.integers(0, k, (n, 2)); b = rng.integers(0, k, (n, 2))
-            pa = np.where(pe[a[:, 0]] < pe[a[:, 1]], a[:, 0], a[:, 1])
-            pb = np.where(pe[b[:, 0]] < pe[b[:, 1]], b[:, 0], b[:, 1])
-            cut = rng.random((n, m)) < 0.5
-            ch = np.where(cut, pf[pa], pf[pb])
-            ch = np.where(rng.random((n, m)) < self.mut, -ch, ch)
-            usec = rng.random(n) < self.pmem
-            fr[usec] = ch[usec]
         x = np.empty((n, N), dtype=np.float32); x[:, :m] = fr; x[:, m:] = fr[:, :m - 1][:, ::-1] * S.sgn[m:]
         P = np.zeros((n, 3 * N), dtype=np.float32); P[:, N:2 * N] = x
         gi = self.gi
@@ -176,28 +172,31 @@ class BatchSkew:
         X = np.fft.rfft(x, 2 * N)
         c = np.rint(np.fft.irfft(X * np.conj(X), 2 * N)[:, 2:N:2]).astype(np.float32)
         self.c[ws] = c; self.e[ws] = (c * c).sum(1); self.f[ws] = fr
-        self.until[ws] = 0; self.ten[ws] = rng.integers(self.tmin, self.tmax + 1, n); self.stepc[ws] = 0
+        self.stepc[ws] = 0
         self.wb[ws] = self.e[ws]; self.wbf[ws] = fr
+        h = np.bitwise_xor.reduce(np.where(fr > 0, self.Z, 0), axis=1)
+        self.h[ws] = h
+        tab = self.tab.reshape(self.W, self.TB)
+        tab[ws] = 0
+        tab[ws, h & self.mask] = h
 
-    pop = None
-
-    def add_pop(self, w):
-        e = float(self.wb[w]); f = self.wbf[w]
-        if self.pop is None:
-            self.pop = {}; self.pope = np.zeros(0, dtype=np.float32); self.popf = np.zeros((0, self.m), dtype=np.float32)
-        key = (f * f[0]).tobytes()
-        if key in self.pop: return
-        if len(self.pop) < self.P:
-            self.pop[key] = len(self.pop)
-            self.pope = np.append(self.pope, e); self.popf = np.vstack([self.popf, f])
-        else:
-            j = int(self.pope.argmax())
-            if e >= self.pope[j]: return
-            old = (self.popf[j] * self.popf[j, 0]).tobytes(); del self.pop[old]
-            self.pop[key] = j; self.pope[j] = e; self.popf[j] = f
+    def lookup(self, rows, nh):
+        """For hashes nh (one per row, or a row of them for a single walker): visited flags and the flat table slot where each one is or would go."""
+        mask, tab = self.mask, self.tab
+        tb = self.tbase[rows]
+        pos = nh & mask
+        v = tab[tb + pos]
+        hit = v == nh
+        act = ~hit & (v != 0)
+        while act.any():
+            pos = np.where(act, (pos + 1) & mask, pos)
+            v = tab[tb + pos]
+            h2 = v == nh
+            hit |= h2 & act
+            act &= ~h2 & (v != 0)
+        return hit, tb + pos
 
     def harvest(self, w):
-        if self.P: self.add_pop(w)
         e = int(round(float(self.wb[w])))
         if self.best_e is None or e < self.best_e:
             self.best_e = e; self.best_x = self.S.full(self.wbf[w].astype(np.int64))
@@ -205,21 +204,25 @@ class BatchSkew:
             return True
         return False
 
-    def run(self, L, deadline, verbose=True):
-        S, W, m = self.S, self.W, self.m
+    on_harvest = None
+
+    def run(self, deadline, verbose=True):
+        S, W, m, L, C = self.S, self.W, self.m, self.L, self.C
         self.reset(np.arange(W))
-        self.stepc[:] = -self.rng.integers(0, L, W)  # stagger restarts
-        G, f, c, store, until, ten, stepc = self.G, self.f, self.c, self.store, self.until, self.ten, self.stepc
-        wb, wbf = self.wb, self.wbf
+        self.stepc[:] = self.rng.integers(0, L, W)  # stagger restarts
+        G, f, c, store, stepc = self.G, self.f, self.c, self.store, self.stepc
+        wb, wbf, Z, h, tab = self.wb, self.wbf, self.Z, self.h, self.tab
         kr = S.kr; cv = S.cv.astype(np.float32); cv2 = cv * cv; cv2x = 2 * cv
-        ar = np.arange(m); wr = np.arange(W)
+        ar = np.arange(m); wr = np.arange(W); wc = wr[:, None]
         Up, Wp, base = self.Up, self.Wp, self.base
         Rp, g2, bincount, Wm = self.Rp, self.g2, np.bincount, W * m
         rbase = (np.arange(W) * m)[:, None]
-        matmul = np.matmul; where = np.where; inf = np.float32(np.inf)
+        matmul, argsort = np.matmul, np.argsort
+        lookup = self.lookup; inf = np.float32(np.inf)
         c3 = c[:, :, None]
         e = self.e
         it = self.it
+        prev = np.zeros(W, dtype=np.intp)
         while True:
             it += 1
             if (it & 31) == 0 and time.time() > deadline:
@@ -227,18 +230,42 @@ class BatchSkew:
             Gc = matmul(G, c3)[:, :, 0]
             Gc += cv * G[:, ar, kr]
             Gc *= f
-            q = 4 * g2
-            q += e[:, None]
-            q += cv2
-            q += cv2x * c[:, kr]
+            cand = 4 * g2
+            cand += e[:, None]
+            cand += cv2
+            cand += cv2x * c[:, kr]
             Gc *= -4
-            cand = q; cand += Gc
-            sel = where(until > it, inf, cand).argmin(1)
-            i1 = cand.argmin(1)
-            ce = cand[wr, i1]
-            asp = ce < wb
-            if asp.any():
-                sel[asp] = i1[asp]
+            cand += Gc
+            cand[wr, prev] = inf  # flipping back the last bit returns to a visited state
+            sel = cand.argmin(1)
+            hn = h ^ Z[sel]
+            vis, sl = lookup(wr, hn)
+            if vis.any():
+                # walkers whose best neighbour was visited: take the next best, a few times, then sort fully
+                r = np.nonzero(vis)[0]
+                sub = cand[r]
+                ra = np.arange(len(r))
+                for _ in range(C):
+                    sub[ra, sel[r]] = inf
+                    s2 = sub.argmin(1)
+                    h2 = h[r] ^ Z[s2]
+                    v2, l2 = lookup(r, h2)
+                    sel[r] = s2; hn[r] = h2; sl[r] = l2
+                    if not v2.any(): break
+                    keep = np.nonzero(v2)[0]
+                    r, sub, ra = r[keep], sub[keep], ra[:len(keep)]
+                else:
+                    for w in r.tolist():
+                        order = argsort(cand[w])
+                        nh2 = h[w] ^ Z[order]
+                        v3, s3 = lookup(np.array([w]), nh2)
+                        k = int(v3.argmin())
+                        if v3[k]:  # every neighbour visited: restart this walker soon
+                            stepc[w] = L
+                        sel[w] = order[k]; sl[w] = s3[k]; hn[w] = nh2[k]
+            tab[sl] = hn
+            prev = sel
+            h[:] = hn
             fi = f[wr, sel]
             m2 = -2 * fi
             c += m2[:, None] * G[wr, sel]
@@ -251,7 +278,6 @@ class BatchSkew:
             g2 += bincount((rbase + Rp[sel]).ravel(), new.ravel(), Wm).reshape(W, m)
             f[wr, sel] = -fi
             e = cand[wr, sel]
-            until[wr, sel] = it + ten
             imp = e < wb
             if imp.any():
                 wb[imp] = e[imp]; wbf[imp] = f[imp]
@@ -271,8 +297,6 @@ class BatchSkew:
             self.harvest(w)
             if self.on_harvest: self.on_harvest(w)
         return it
-
-    on_harvest = None
 
 
 
@@ -346,7 +370,7 @@ def main():
     deadline = T0 + budget
     rng = np.random.default_rng()
     W = int(sys.argv[5]) if len(sys.argv) > 5 else 64
-    L = int(sys.argv[4]) if len(sys.argv) > 4 else 5000
+    L = int(sys.argv[4]) if len(sys.argv) > 4 else 10000
     if N < 12:
         best = None
         for v in range(1 << N):
@@ -355,15 +379,15 @@ def main():
             if best is None or e < best[0]: best = (e, x)
         print(to_str(best[1])); return
     if N % 2 == 1:
-        B = BatchSkew(N, W, rng)
-        B.run(L, deadline, verbose)
+        B = BatchSkew(N, W, rng, L)
+        B.run(deadline, verbose)
         print(to_str(B.best_x)); return
     # even N: skew-symmetric search on N-1, then extend by one bit and polish with general single-flip walks
     split = T0 + budget * 0.9
-    B = BatchSkew(N - 1, W, rng)
+    B = BatchSkew(N - 1, W, rng, L)
     pool = []
     B.on_harvest = lambda w: pool.append((int(round(float(B.wb[w]))), B.S.full(B.wbf[w].astype(np.int64))))
-    B.run(L, split, verbose)
+    B.run(split, verbose)
     pool.sort(key=lambda t: t[0])
     seeds, seen = [], set()
     for e, x in pool:
