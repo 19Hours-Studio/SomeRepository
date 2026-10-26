@@ -1,487 +1,179 @@
-import sys, re, time, calendar
-from math import log2, log, exp, erf
-
-ENC = False
-COST = {}
-TAG = ['?']
-C = None
-TOT = 1 << 24
-
-
-class Coder:
-    def __init__(self, data=None):
-        self.rng = (1 << 48) - 1
-        if data is None:
-            self.low = 0; self.cache = 0; self.csize = 1; self.out = bytearray()
-        else:
-            self.d = data; self.p = 7
-            self.code = int.from_bytes(data[1:7], 'big')
-
-    def shift(self):
-        low = self.low
-        if low < 0xFF << 40 or low >= 1 << 48:
-            c = low >> 48
-            t = self.cache
-            while True:
-                self.out.append((t + c) & 255)
-                t = 255
-                self.csize -= 1
-                if not self.csize:
-                    break
-            self.cache = (low >> 40) & 255
-        self.csize += 1
-        self.low = (low & 0xFFFFFFFFFF) << 8
-
-    def enc(self, cum, f, tot):
-        COST[TAG[0]] = COST.get(TAG[0], 0) + log2(tot / f)
-        r = self.rng // tot
-        self.low += r * cum
-        self.rng = r * f
-        while self.rng < 1 << 40:
-            self.rng <<= 8
-            self.shift()
-
-    def finish(self):
-        for _ in range(7):
-            self.shift()
-        return bytes(self.out)
-
-    def getf(self, tot):
-        self.r = r = self.rng // tot
-        v = self.code // r
-        return v if v < tot else tot - 1
-
-    def upd(self, cum, f):
-        self.code -= cum * self.r
-        self.rng = self.r * f
-        while self.rng < 1 << 40:
-            self.rng <<= 8
-            self.code = (self.code << 8) | (self.d[self.p] if self.p < len(self.d) else 0)
-            self.p += 1
-
-
-def codef(freqs, i):
-    # code index i given integer frequency list
-    t = sum(freqs)
-    if ENC:
-        C.enc(sum(freqs[:i]), freqs[i], t)
-        return i
-    v = C.getf(t)
-    cum = 0; i = 0
-    while cum + freqs[i] <= v:
-        cum += freqs[i]; i += 1
-    C.upd(cum, freqs[i])
-    return i
-
-
-def raw(v, nbits):
-    while nbits > 0:
-        k = min(nbits, 16)
-        nbits -= k
-        if ENC:
-            C.enc((v >> nbits) & ((1 << k) - 1), 1, 1 << k)
-        else:
-            x = C.getf(1 << k)
-            C.upd(x, 1)
-            v = (v or 0) | (x << nbits)
-    return v
-
-
-class Bit:
-    __slots__ = ('a', 'b')
-
-    def __init__(self):
-        self.a = self.b = 0.4
-
-    def code(self, b):
-        p = int(4096 * self.b / (self.a + self.b))
-        p = 1 if p < 1 else 4095 if p > 4095 else p
-        if ENC:
-            if b:
-                C.enc(0, p, 4096)
-            else:
-                C.enc(p, 4096 - p, 4096)
-        else:
-            b = C.getf(4096) < p
-            if b:
-                C.upd(0, p)
-            else:
-                C.upd(p, 4096 - p)
-        if b:
-            self.b += 1
-        else:
-            self.a += 1
-        if self.a + self.b > 4096:
-            self.a *= 0.5; self.b *= 0.5
-        return b
-
-
-ESC = object()
-
-
-class Freq:
-    def __init__(self, inc=8, esc=1):
-        self.s = [ESC]; self.c = [esc]; self.ix = {}
-        self.t = esc; self.inc = inc
-
-    def code(self, sym):
-        c = self.c
-        if ENC:
-            i = self.ix.get(sym, 0)
-            C.enc(sum(c[:i]), c[i], self.t)
-        else:
-            v = C.getf(self.t)
-            cum = 0; i = 0
-            while cum + c[i] <= v:
-                cum += c[i]; i += 1
-            C.upd(cum, c[i])
-        if i == 0:
-            return ESC
-        c[i] += self.inc; self.t += self.inc
-        if self.t > 1 << 16:
-            self.rescale()
-        return self.s[i]
-
-    def add(self, sym):
-        self.ix[sym] = len(self.s)
-        self.s.append(sym); self.c.append(self.inc)
-        self.c[0] += 1
-        self.t += self.inc + 1
-
-    def rescale(self):
-        c = self.c
-        for i in range(len(c)):
-            c[i] = (c[i] + 1) >> 1
-        self.t = sum(c)
-
-
-MODELS = {}
-
-
-def M(key, factory=Freq):
-    m = MODELS.get(key)
-    if m is None:
-        m = MODELS[key] = factory()
-    return m
-
-
-def num(ctx, v):
-    m = M(('nb', ctx))
-    nb = v.bit_length() if ENC else None
-    r = m.code(nb)
-    if r is ESC:
-        nb = raw(nb, 7)
-        m.add(nb)
-    else:
-        nb = r
-    if nb <= 1:
-        return nb
-    val = 1
-    k = nb - 1
-    top = min(k, 3)
-    for j in range(top):
-        b = M(('nbit', ctx, nb, val), Bit).code(((v >> (k - 1 - j)) & 1) if ENC else None)
-        val = (val << 1) | b
-    k -= top
-    if k:
-        val = (val << k) | raw(v & ((1 << k) - 1) if ENC else None, k)
-    return val
-
-
-def cdfnum(ctx, v, F, hi):
-    # code int v in [0, hi] with continuous cdf F on cells [v-.5, v+.5]; escape above
-    S = TOT - hi - 2
-    cum = lambda x: int(F(x - 0.5) * S) + x
-    top = cum(hi + 1)
-    if ENC:
-        if v > hi:
-            C.enc(top, TOT - top, TOT)
-            return num(ctx, v - hi - 1) + hi + 1
-        a = cum(v)
-        C.enc(a, cum(v + 1) - a, TOT)
-        return v
-    t = C.getf(TOT)
-    if t >= top:
-        C.upd(top, TOT - top)
-        return num(ctx, None) + hi + 1
-    lo, h = 0, hi
-    while lo < h:
-        mid = (lo + h + 1) >> 1
-        if cum(mid) <= t:
-            lo = mid
-        else:
-            h = mid - 1
-    a = cum(lo)
-    C.upd(a, cum(lo + 1) - a)
-    return lo
-
-
-class LogN:
-    def __init__(self):
-        self.n = 2.0; self.s = 6.0; self.q = 20.0
-
-    def code(self, ctx, v):
-        n = self.n
-        mu = self.s / n
-        sd = max((self.q / n - mu * mu) ** 0.5, 0.03) * 1.414213562
-        F = lambda x: 0.0 if x <= 0 else 0.5 * (1 + erf((log(x) - mu) / sd))
-        v = cdfnum(ctx, v, F, 8191)
-        lv = log(max(v, 0.5))
-        self.n += 1; self.s += lv; self.q += lv * lv
-        return v
-
-
-def sym(key, v, lit=None, **kw):
-    m = M(key, lambda: Freq(**kw))
-    r = m.code(v)
-    if r is ESC:
-        v = (lit or string)(v)
-        m.add(v)
-        return v
-    return r
-
-
-def string(s):
-    n = num('slen', len(s) if ENC else None)
-    out = ''
-    for i in range(n):
-        ch = s[i] if ENC else None
-        ch = sym(('c2', out[-2:]), ch, lambda x: sym(('c0',), x, lambda y: chr(raw(ord(y) if ENC else None, 8))), inc=4)
-        out += ch
-    return out
-
-
-def words(s):
-    n = num('wn', s.count(' ') + 1 if ENC else None)
-    p = ''; o = []
-    for x in s.split(' ') if ENC else [None] * n:
-        p = sym(('w1', p), x, lambda y: sym(('w0',), y), inc=4)
-        o.append(p)
-    return ' '.join(o)
-
-
-def flag(key, b):
-    return M(key, Bit).code(b)
-
-
-LRE = re.compile(r'(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)\.(\d{3})Z (\d+)\.(\d+)\.(\d+)\.(\d+) "(\S+) (\S+) (\S+)" (\d+) (\d+) (\d+)ms "([^"]*)" "([^"]*)"$')
-N = r'([1-9]\d{0,8})'
-PATS = {
-    'item': (re.compile(r'/api/v2/items/%s$' % N), '/api/v2/items/%s'),
-    'rev': (re.compile(r'/api/v2/items/%s/reviews\?page=%s$' % (N, N)), '/api/v2/items/%s/reviews?page=%s'),
-    'cart': (re.compile(r'/api/v2/users/%s/cart$' % N), '/api/v2/users/%s/cart'),
-    'img': (re.compile(r'/static/img/([^/+]+)\.png$'), '/static/img/%s.png'),
-    'js': (re.compile(r'/static/js/app\.([^/+]+)\.js$'), '/static/js/app.%s.js'),
-    'search': (re.compile(r'/search\?q=([^+]+(?:\+[^+]+)*)$'), '/search?q=%s'),
-}
-HOST = 'https://shop.example.com'
-
-
-def fmt_ts(ms):
-    t = time.gmtime(ms // 1000)
-    return '%04d-%02d-%02dT%02d:%02d:%02d.%03dZ' % (t[0], t[1], t[2], t[3], t[4], t[5], ms % 1000)
-
-
-def parse(line):
-    m = LRE.match(line)
-    if not m:
-        return None
-    g = m.groups()
-    try:
-        ms = calendar.timegm(time.strptime(g[0], '%Y-%m-%dT%H:%M:%S')) * 1000 + int(g[1])
-    except Exception:
-        return None
-    ip = tuple(int(x) for x in g[2:6])
-    if max(ip) > 255:
-        return None
-    path = g[7]
-    for cls, (rx, tpl) in PATS.items():
-        mm = rx.match(path)
-        if mm:
-            params = mm.groups()
-            if cls == 'search':
-                params = params[0].split('+')
-            break
-    else:
-        cls = '=' + path; params = ()
-    f = dict(ms=ms, ip=ip, mc=(g[6], cls), params=params, proto=g[8], st=g[9], size=int(g[10]),
-             lat=int(g[11]), ref=g[12], ua=g[13])
-    return f if fmt_line(f) == line else None
-
-
-def mkpath(mc, params):
-    cls = mc[1]
-    if cls[0] == '=':
-        return cls[1:]
-    if cls == 'search':
-        params = ('+'.join(params),)
-    return PATS[cls][1] % tuple(params)
-
-
-def fmt_line(f):
-    return '%s %d.%d.%d.%d "%s %s %s" %s %d %dms "%s" "%s"' % (
-        fmt_ts(f['ms']), *f['ip'], f['mc'][0], mkpath(f['mc'], f['params']), f['proto'], f['st'], f['size'],
-        f['lat'], f['ref'], f['ua'])
-
-
-class IPState:
-    def __init__(self):
-        self.ua = None; self.path = None; self.user = None; self.items = {}
-
-
-class State:
-    def __init__(self):
-        self.ips = {}
-        self.lastms = 0
-        self.nl = 0
-        self.pip = None
-        self.sizes = {}
-        self.gid = []; self.gcnt = {}; self.gtot = 0
-
-
-ALPHA = 16.0
-
-
-def ritem(S, h, v):
-    # item id: per-ip counts smoothed toward global counts
-    TAG[0] = 'item'
-    ids = S.gid; g = S.gcnt
-    E = 1 + len(ids)
-    k = ALPHA / (S.gtot + E)
-    w = [E * k] + [h.get(j, 0) + g[j] * k for j in ids]
-    sc = (TOT - len(w)) / sum(w)
-    fr = [int(x * sc) + 1 for x in w]
-    if ENC:
-        v = int(v)
-        i = ids.index(v) + 1 if v in g else 0
-    i = codef(fr, i if ENC else None)
-    if i:
-        v = ids[i - 1]
-    else:
-        v = num('gidn', v)
-        ids.append(v); g[v] = 0
-    g[v] += 1; S.gtot += 1
-    h[v] = h.get(v, 0) + 1
-    return str(v)
-
-
-def code_line(S, f):
-    TAG[0] = 'time'
-    d = f['ms'] - S.lastms if ENC else None
-    neg = flag(('tneg',), d < 0 if ENC else None)
-    dm = (S.lastms - S.t0) / (S.nl - 1) if S.nl > 10 else 250.0
-    F = lambda x: 0.0 if x <= 0 else 1 - exp(-x / dm)
-    a = cdfnum('dt', (-d if neg else d) if ENC else None, F, 1 << 14)
-    d = -a if neg else a
-    ms = S.lastms = S.lastms + d
-    if S.nl == 0:
-        S.t0 = ms
-    S.nl += 1
-    TAG[0] = 'ip'
-    pip = S.pip
-    if ENC:
-        ip = f['ip']
-    z = flag(('r0',), ip == pip if ENC else None) if pip else False
-    if z:
-        ip = pip
-    else:
-        ip = sym(('ipf',), ip if ENC else None, newip, inc=1)
-    st = S.ips.get(ip)
-    new = st is None
-    if new:
-        st = S.ips[ip] = IPState()
-    S.pip = ip
-    TAG[0] = 'ua'
-    same = flag(('uasame',), f['ua'] == st.ua if ENC else None) if not new else False
-    ua = st.ua = st.ua if same else sym(('ua',), f['ua'] if ENC else None, words)
-    TAG[0] = 'mc'
-    mc = sym(('mc',), f['mc'] if ENC else None, lambda x: (string(x[0] if ENC else None), string(x[1] if ENC else None)))
-    cls = mc[1]
-    TAG[0] = cls
-    P = f['params'] if ENC else None
-    if cls == 'item':
-        params = (ritem(S, st.items, P[0] if ENC else None),)
-    elif cls == 'rev':
-        it = ritem(S, st.items, P[0] if ENC else None)
-        TAG[0] = 'page'
-        params = (it, str(num(('page',), int(P[1]) if ENC else None)))
-    elif cls == 'cart':
-        u = int(P[0]) if ENC else None
-        same = flag(('usame', st.user is None), u == st.user if ENC else None)
-        u = st.user = st.user if same else num('user', u)
-        params = (str(u),)
-    elif cls == 'search':
-        n = sym(('sn',), len(P) if ENC else None, lambda x: num('snn', x))
-        params = [sym(('sw',), P[j] if ENC else None) for j in range(n)]
-    elif cls in ('img', 'js'):
-        params = (sym(('nm', cls), P[0] if ENC else None),)
-    else:
-        params = ()
-    TAG[0] = 'proto'
-    proto = sym(('proto',), f['proto'] if ENC else None)
-    TAG[0] = 'st'
-    stt = sym(('st', mc), f['st'] if ENC else None)
-    path = mkpath(mc, params)
-    TAG[0] = 'size'
-    key = ('cart', params[0], stt) if cls == 'cart' else (path, stt)
-    pred = S.sizes.get(key)
-    if pred is None and stt != '200':
-        pred = S.sizes.get(stt)
-    size = f['size'] if ENC else None
-    hit = False
-    if cls == 'search' and stt == '200':
-        base = 800 + 37 * (len(path) - 10)
-        if flag(('srch',), 0 <= size - base < 16 if ENC else None):
-            size = base + sym(('srd',), size - base if ENC else None, lambda x: raw(x, 4))
-            hit = True
-    if not hit and pred is not None:
-        hit = flag(('shit', cls, stt), size == pred if ENC else None)
-        if hit:
-            size = pred
-    if not hit:
-        size = num(('size', cls), size)
-    S.sizes[key] = size
-    if stt != '200':
-        S.sizes[stt] = size
-    TAG[0] = 'lat'
-    lc = '500' if stt == '500' else 'st' if cls in ('img', 'js') else cls
-    lat = M(('lat', lc), LogN).code(('lat', lc), f['lat'] if ENC else None)
-    TAG[0] = 'ref'
-    pref = HOST + st.path if st.path else None
-    if ENC:
-        ref = f['ref']
-        rs = 0 if ref == '-' else 1 if ref == pref else 2
-    rs = sym(('ref', new), rs if ENC else None, lambda x: num('rsn', x))
-    ref = '-' if rs == 0 else pref if rs == 1 else sym(('refo',), ref if ENC else None)
-    st.path = path
-    return dict(ms=ms, ip=ip, mc=mc, params=params, proto=proto, st=stt, ua=ua, size=size, lat=lat, ref=ref)
-
-
-def newip(ip):
-    TAG[0] = 'newip'
-    o = [sym(('oct1',), ip[0] if ENC else None, lambda x: raw(x, 8))]
-    for j in range(1, 4):
-        o.append(raw(ip[j] if ENC else None, 8))
-    return tuple(o)
-
-
-def run(lines=None):
-    S = State()
-    TAG[0] = 'hdr'
-    n = num('nlines', len(lines) if ENC else None)
-    out = []
-    for i in range(n):
-        f = parse(lines[i]) if ENC else None
-        TAG[0] = 'parse'
-        if flag(('ok',), f is not None if ENC else None):
-            out.append(fmt_line(code_line(S, f)))
-        else:
-            TAG[0] = 'rawline'
-            out.append(string(lines[i] if ENC else None))
-    return out
-
-
-if __name__ == '__main__':
-    data = sys.stdin.buffer.read()
-    C = Coder(data)
-    sys.stdout.buffer.write('\n'.join(run()).encode('latin-1'))
+import sys,time
+from math import log,exp,erf
+E=0
+T=1<<24
+class K:
+ def __init__(s,d=None):
+  s.g=(1<<48)-1
+  if d is None:s.l=s.c=0;s.n=1;s.o=bytearray()
+  else:s.d=d;s.p=7;s.v=int.from_bytes(d[1:7],'big')
+ def sh(s):
+  l=s.l
+  if l<255<<40 or l>>48:
+   c=l>>48;t=s.c
+   while 1:
+    s.o.append(t+c&255);t=255;s.n-=1
+    if not s.n:break
+   s.c=l>>40&255
+  s.n+=1;s.l=(l&(1<<40)-1)<<8
+ def e(s,c,f,t):
+  r=s.g//t;s.l+=r*c;s.g=r*f
+  while s.g<1<<40:s.g<<=8;s.sh()
+ def fin(s):
+  for _ in range(7):s.sh()
+  return bytes(s.o)
+ def gf(s,t):
+  s.r=s.g//t;return min(s.v//s.r,t-1)
+ def u(s,c,f):
+  s.v-=c*s.r;s.g=s.r*f
+  while s.g<1<<40:s.g<<=8;s.v=s.v<<8|(s.d[s.p] if s.p<len(s.d) else 0);s.p+=1
+def cf(r,i):
+ t=sum(r)
+ if E:C.e(sum(r[:i]),r[i],t);return i
+ v=C.gf(t);c=i=0
+ while c+r[i]<=v:c+=r[i];i+=1
+ C.u(c,r[i]);return i
+def raw(v,n):
+ while n>0:
+  k=min(n,16);n-=k
+  if E:C.e(v>>n&(1<<k)-1,1,1<<k)
+  else:x=C.gf(1<<k);C.u(x,1);v=(v or 0)|x<<n
+ return v
+class B:
+ def __init__(s):s.a=s.b=.4
+ def __call__(s,b):
+  p=min(max(int(4096*s.b/(s.a+s.b)),1),4095)
+  b=cf([p,4096-p],0 if b else 1)==0
+  if b:s.b+=1
+  else:s.a+=1
+  if s.a+s.b>4096:s.a/=2;s.b/=2
+  return b
+X=object()
+class F:
+ def __init__(s,n=8):s.s=[X];s.c=[1];s.x={};s.i=n
+ def __call__(s,v):
+  i=cf(s.c,s.x.get(v,0) if E else 0)
+  if i:s.c[i]+=s.i
+  return s.s[i]
+ def add(s,v):s.x[v]=len(s.s);s.s.append(v);s.c.append(s.i);s.c[0]+=1
+D={}
+def M(k,f=F):
+ if k not in D:D[k]=f()
+ return D[k]
+def sym(k,v,l=None,n=8):
+ m=M(k,lambda:F(n));r=m(v)
+ if r is X:r=(l or st)(v);m.add(r)
+ return r
+def fl(k,b):return M(k,B)(b)
+def num(k,v):
+ b=sym(('n',k),v.bit_length() if E else None,lambda x:raw(x,7))
+ if b<2:return b
+ z=1;n=b-1;t=min(n,3)
+ for j in range(t):z=z*2+fl(('b',k,b,z),v>>n-1-j&1 if E else None)
+ n-=t
+ return z<<n|raw(v&(1<<n)-1 if E else None,n) if n else z
+def cdf(k,v,G,h):
+ S=T-h-2;cu=lambda x:int(G(x-.5)*S)+x;p=cu(h+1)
+ if E:
+  if v>h:C.e(p,T-p,T);return num(k,v-h-1)+h+1
+  a=cu(v);C.e(a,cu(v+1)-a,T);return v
+ t=C.gf(T)
+ if t>=p:C.u(p,T-p);return num(k,None)+h+1
+ a=0
+ while a<h:
+  m=a+h+1>>1
+  if cu(m)<=t:a=m
+  else:h=m-1
+ m=cu(a);C.u(m,cu(a+1)-m);return a
+class LN:
+ def __init__(s):s.n=2;s.s=6;s.q=20
+ def __call__(s,k,v):
+  n=s.n;m=s.s/n;d=max((s.q/n-m*m)**.5,.03)*2**.5
+  v=cdf(k,v,lambda x:x>0 and .5*(1+erf((log(x)-m)/d)),8191)
+  l=log(max(v,.5));s.n+=1;s.s+=l;s.q+=l*l;return v
+def st(s):
+ n=num('sl',len(s) if E else None);o=''
+ for i in range(n):o+=sym(('c',o[-2:]),s[i] if E else None,lambda x:sym('c0',x,lambda y:chr(raw(ord(y) if E else None,8))),4)
+ return o
+def wd(s):
+ n=num('wn',s.count(' ')+1 if E else None);p='';o=[]
+ for x in s.split(' ') if E else[None]*n:p=sym(('w',p),x,lambda y:sym('w0',y),4);o.append(p)
+ return' '.join(o)
+H='https://shop.example.com'
+P={'i':'/api/v2/items/%s','r':'/api/v2/items/%s/reviews?page=%s','c':'/api/v2/users/%s/cart','g':'/static/img/%s.png','j':'/static/js/app.%s.js','s':'/search?q=%s'}
+def mp(c,a):
+ if c[0]=='=':return c[1:]
+ return P[c]%(('+'.join(a),) if c=='s' else tuple(a))
+def fm(r):
+ ms,ip,mc,a,pr,s,z,la,rf,ua=r;t=time.gmtime(ms//1000)
+ return'%04d-%02d-%02dT%02d:%02d:%02d.%03dZ %d.%d.%d.%d "%s %s %s" %s %d %dms "%s" "%s"'%(*t[:6],ms%1000,*ip,mc[0],mp(mc[1],a),pr,s,z,la,rf,ua)
+class O:pass
+def it(S,h,v):
+ I=S.gi;g=S.gc;e=1+len(I);k=16/(S.gt+e)
+ w=[e*k]+[h.get(j,0)+g[j]*k for j in I];c=(T-len(w))/sum(w)
+ if E:v=int(v)
+ i=cf([int(x*c)+1 for x in w],I.index(v)+1 if E and v in g else 0)
+ if i:v=I[i-1]
+ else:v=num('gi',v);I.append(v);g[v]=0
+ g[v]+=1;S.gt+=1;h[v]=h.get(v,0)+1;return str(v)
+def nip(ip):return(sym('o1',ip[0] if E else None,lambda x:raw(x,8)),)+tuple(raw(ip[j] if E else None,8)for j in(1,2,3))
+def line(S,f):
+ ms,ip,mc,a,pr,s,z,la,rf,ua=f or[None]*10
+ d=ms-S.t if E else None
+ n=fl('tn',d<0 if E else None)
+ m=(S.t-S.t0)/(S.nl-1) if S.nl>10 else 250
+ x=cdf('dt',abs(d) if E else None,lambda x:x>0 and 1-exp(-x/m),1<<14)
+ ms=S.t=S.t+(-x if n else x)
+ if not S.nl:S.t0=ms
+ S.nl+=1
+ if S.pi and fl('r0',ip==S.pi if E else None):ip=S.pi
+ else:ip=sym('ip',ip,nip,1)
+ q=S.ips.get(ip);nw=q is None
+ if nw:q=S.ips[ip]=O();q.ua=q.pa=q.us=None;q.it={}
+ S.pi=ip
+ if nw or not fl('U',ua==q.ua if E else None):q.ua=sym('ua',ua,wd)
+ ua=q.ua
+ mc=sym('mc',mc,lambda x:(st(x[0] if E else None),st(x[1] if E else None)))
+ c=mc[1]
+ if c=='i':a=(it(S,q.it,a[0] if E else None),)
+ elif c=='r':a=(it(S,q.it,a[0] if E else None),str(num('pg',int(a[1]) if E else None)))
+ elif c=='c':
+  u=int(a[0]) if E else None
+  if not fl(('us',q.us is None),u==q.us if E else None):q.us=num('u',u)
+  a=(str(q.us),)
+ elif c=='s':
+  n=sym('sn',len(a) if E else None,lambda x:num('sn',x))
+  a=[sym('sw',a[j] if E else None) for j in range(n)]
+ elif c in('g','j'):a=(sym(('nm',c),a[0] if E else None),)
+ else:a=()
+ pr=sym('pr',pr)
+ s=sym(('st',mc),s)
+ pa=mp(c,a)
+ k=('c',a[0],s) if c=='c' else(pa,s)
+ p=S.sz.get(k)
+ if p is None and s!='200':p=S.sz.get(s)
+ h=0
+ if c=='s' and s=='200':
+  b=800+37*(len(pa)-10)
+  if fl('sr',0<=z-b<16 if E else None):z=b+sym('sd',z-b if E else None,lambda x:raw(x,4));h=1
+ if not h and p is not None:
+  h=fl(('sh',c,s),z==p if E else None)
+  if h:z=p
+ if not h:z=num(('sz',c),z)
+ S.sz[k]=z
+ if s!='200':S.sz[s]=z
+ k='5' if s=='500' else'g' if c in('g','j') else c
+ la=M(('la',k),LN)(('la',k),la)
+ p=H+q.pa if q.pa else None
+ r=sym(('rf',nw),(0 if rf=='-' else 1 if rf==p else 2) if E else None,lambda x:num('rf',x))
+ rf='-' if r==0 else p if r==1 else sym('ro',rf)
+ q.pa=pa
+ return ms,ip,mc,a,pr,s,z,la,rf,ua
+def run(L=None):
+ S=O();S.ips={};S.t=S.nl=0;S.pi=None;S.sz={};S.gi=[];S.gc={};S.gt=0
+ n=num('L',len(L) if E else None);o=[]
+ for i in range(n):
+  f=parse(L[i]) if E else None
+  o.append(fm(line(S,f)) if fl('ok',f is not None if E else None) else st(L[i] if E else None))
+ return o
+if __name__=='__main__':C=K(sys.stdin.buffer.read());sys.stdout.buffer.write('\n'.join(run()).encode('latin-1'))
