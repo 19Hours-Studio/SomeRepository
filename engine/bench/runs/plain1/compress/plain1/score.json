@@ -1,0 +1,1 @@
+{"task": "compress", "ok": true, "bytes": 103001, "packed": 99709, "decoder_xz": 3292, "xz_bytes": 301956, "seconds": [2.3, 2.0], "score": 2.932}

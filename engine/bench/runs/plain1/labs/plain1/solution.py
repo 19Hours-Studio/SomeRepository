@@ -10,9 +10,9 @@ from heapq import heappush, heappop
 T0 = time.time()
 N = int(sys.argv[1]) if len(sys.argv) > 1 else 127
 BUDGET = float(sys.argv[2]) if len(sys.argv) > 2 else 54.0
-LEN = float(sys.argv[3]) if len(sys.argv) > 3 else 2.0
+LEN = float(sys.argv[3]) if len(sys.argv) > 3 else 4.0
 TEN = float(sys.argv[4]) if len(sys.argv) > 4 else 0.1
-POP = int(sys.argv[5]) if len(sys.argv) > 5 else 100
+POP = int(sys.argv[5]) if len(sys.argv) > 5 else 30
 SKEW_FRAC = float(sys.argv[6]) if len(sys.argv) > 6 else 0.95
 SEEDS = int(sys.argv[7]) if len(sys.argv) > 7 else 40
 rng = np.random.default_rng()
