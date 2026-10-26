@@ -3,6 +3,7 @@ from math import isqrt
 
 M = 1_000_000_007
 CH = 1 << 15
+FT = 0.2
 
 
 def solve(N):
@@ -37,12 +38,10 @@ def solve(N):
         return ((a * b % M) * c % M * inv6 - 1) % M
 
     # values are kept lazily reduced mod M; |values| stay far below 2^53
-    S = f(ar)
-    S[0] = 0
-    V = np.zeros(r + 1, dtype=np.int64)
-    V[1:] = N // ar[1:]
-    L = f(V)
-    L[0] = 0
+    S = ar * ar
+    S %= M
+    S[1] = 0
+    np.cumsum(S, out=S)
     del pm
 
     def mulmod(z, p2, cf):
@@ -61,30 +60,47 @@ def solve(N):
 
     plist = primes.tolist()
     np_ = len(plist)
-    L1 = int(L[1])
+    L1 = int(f(np.array([N], dtype=np.int64))[0])
 
-    # phase 1: p^2 <= r.  Needed indices: squarefree i > 1 with lpf(i) > p.
+    # phase 1: p^2 <= r.  Needed indices: squarefree i > 1 with lpf(i) > p, stored
+    # compactly: I (indices), lI (their lpf), LI = L[I], VI = N // I.
     I = np.flatnonzero(sqf[2:]) + 2
     lI = lpf[I]
+    VI = N // I
+    LI = f(VI)
+    pos = np.zeros(r + 1, dtype=np.int32)
+    pos[I] = np.arange(len(I), dtype=np.int32)
     t = 0
+    dead = 0.0
     while t < np_ and plist[t] * plist[t] <= r and plist[t] ** 3 <= N:
         p = plist[t]
         pp = p * p
         sp = int(S[p - 1])
         p2 = pp % M
         cf = p2 / M
-        keep = lI > p
-        I = I[keep]
-        lI = lI[keep]
         k1 = r // p
-        L1 -= (int(L[p]) - sp) * p2 % M
+        # reads of L[i*p] (lpf(i*p) == p) happen before anything is dropped or written
+        L1 -= (int(LI[pos[p]]) - sp) * p2 % M
         a = int(np.searchsorted(I, k1, 'right'))
-        for x in range(0, a, CH):
-            Ic = I[x:min(x + CH, a)]
-            L[Ic] -= mulmod(L[Ic * p] - sp, p2, cf)
+        IA = I[:a]
+        rd = np.take(LI, pos[IA * p], mode='clip')
+        dead += 1 / p
+        if dead > FT:
+            # drop entries with lpf <= p (dead from now on); they stay harmless otherwise
+            dead = 0.0
+            keep = lI > p
+            rd = rd[keep[:a]]
+            I = I[keep]
+            lI = lI[keep]
+            LI = LI[keep]
+            VI = VI[keep]
+            pos[I] = np.arange(len(I), dtype=np.int32)
+            a = int(np.searchsorted(I, k1, 'right'))
+        if a:
+            LI[:a] -= mulmod(rd - sp, p2, cf)
         for x in range(a, len(I), CH):
-            Ic = I[x:x + CH]
-            L[Ic] -= mulmod(S[V[Ic] // p] - sp, p2, cf)
+            y = x + CH
+            LI[x:y] -= mulmod(np.take(S, VI[x:y] // p) - sp, p2, cf)
         # S[v] -= p2 * (S[v // p] - sp) for v >= p^2
         kh = r // p
         m = mulmod(S[p:kh + 1] - sp, p2, cf)
@@ -100,8 +116,8 @@ def solve(N):
         t += 1
 
     # phase 2: S is final, needed indices > 1 are primes in (p, N/p^2]; keep L at primes only
-    LP = L[primes]
-    VP = V[primes]
+    LP = LI[np.searchsorted(I, primes)]
+    VP = N // primes
     while t < np_ and plist[t] ** 3 <= N:
         p = plist[t]
         pp = p * p
@@ -112,7 +128,7 @@ def solve(N):
         e = int(np.searchsorted(primes, N // pp, 'right'))
         for x in range(t + 1, e, CH):
             y = min(x + CH, e)
-            LP[x:y] -= mulmod(S[VP[x:y] // p] - sp, p2, cf)
+            LP[x:y] -= mulmod(np.take(S, VP[x:y] // p) - sp, p2, cf)
         t += 1
 
     # phase 3: p^3 > N only touches dead entries besides L[1]; all reads are final

@@ -10,9 +10,11 @@ from math import isqrt
 # entry i (> 1) is needed iff i is squarefree, and then only the updates of
 # primes p < lpf(i) matter (the entry is read at stage lpf(i)); entry 1 needs
 # all.  This keeps ~1e8 of the ~2e9 updates.  The small table S_{p-1}(w),
-# w <= sqrt(N), is a sieve with two-level prefix sums (stage values) and the
-# final prime-square prefix sums P (when w < p^2).  Primes > N^(1/3) only
-# update entry 1, done in one vectorised sum at the end.
+# w <= sqrt(N), is a sieve: stage values are prefix sums of the partially
+# sieved weights (dense for tiny p, two-level blocks later) and the final
+# prime-square prefix sums P (when w < p^2).  Primes > N^(1/3) only update
+# entry 1, done in one vectorised sum at the end.  Updates are accumulated
+# lazily (< 16 products < M^2 per uint64) and reduced in batches.
 
 N = int(sys.argv[1]) if len(sys.argv) > 1 else 10**13
 M = 1_000_000_007
@@ -21,6 +23,9 @@ UM = U(M)
 r = isqrt(N)
 BB = 5                           # log2 block size of the two-level prefix
 BS = 1 << BB
+P_DENSE = 64                     # p < P_DENSE: rebuild prefix sums after sieving
+CH = 1 << 15                     # chunk length for cache-friendly passes
+WIN = 16                         # lazy terms < M^2 per entry before reduction
 
 
 def icbrt(n):
@@ -41,10 +46,9 @@ def modu_(a):
 
 
 # ---- sieve to r: primes, least prime factors, squarefree flags
-s2 = isqrt(r)
 lpf = np.zeros(r + 1, dtype=np.int32)
 sqf = np.ones(r + 1, dtype=np.bool_)
-for i in range(2, s2 + 1):
+for i in range(2, isqrt(r) + 1):
     if lpf[i] == 0:
         seg = lpf[i * i::i]
         seg[seg == 0] = i
@@ -52,19 +56,23 @@ for i in range(2, s2 + 1):
 isp = lpf == 0
 isp[:2] = False
 primes = np.nonzero(isp)[0]
+nW = ((r >> BB) + 1) << BB
+W = np.zeros(nW, dtype=U)                   # sieve weights n^2 mod M
 nn = np.arange(r + 1, dtype=U)
-sq = nn * nn
-modu_(sq)                                   # n^2 mod M
-P = np.cumsum(np.where(isp, sq, U(0)))
+np.multiply(nn, nn, out=W[:r + 1])
+del nn
+modu_(W)
+W[:2] = 0
+P = np.cumsum(np.where(isp[:r + 1], W[:r + 1], U(0)))
 modu_(P)
 
 # ---- needed large-table entries (squarefree i), sorted by i
-Ic = np.nonzero(sqf[1:])[0].astype(np.int64) + 1
-Lc = lpf[Ic].astype(np.int64)
-Lc[Lc == 0] = Ic[Lc == 0]                   # primes: lpf = itself
-Lc[0] = 1 << 62                             # entry 1 never dies
-del lpf, sqf
-Vc = (U(N) // Ic.astype(U))
+Ic = np.flatnonzero(sqf).astype(np.int32)[1:]          # drop 0
+Lc = lpf[Ic]
+np.copyto(Lc, Ic, where=Lc == 0)            # primes: lpf = itself
+Lc[0] = 2 ** 31 - 1                         # entry 1 never dies
+del lpf, sqf, isp
+Vc = (float(N) / Ic.astype(np.float64)).astype(U)     # exact floor
 inv6 = pow(6, M - 2, M)
 Tc = modu(Vc)
 Tc *= modu(Vc + U(1))
@@ -74,27 +82,13 @@ modu_(Tc)
 Tc *= U(inv6)
 Tc += U(M - 1)
 modu_(Tc)
-pos = np.zeros(r + 1, dtype=np.int64)
-pos[Ic] = np.arange(len(Ic))
+pos = np.zeros(r + 1, dtype=np.int32)
+pos[Ic] = np.arange(len(Ic), dtype=np.int32)
 
-# ---- small table: sieve weights with two-level prefix sums
-nW = ((r >> BB) + 1) << BB
-W = np.zeros(nW, dtype=U)
-W[:r + 1] = sq
-W[:2] = 0
-del sq, nn
-W2 = W.reshape(-1, BS)
-WP = np.cumsum(W2, axis=1)                  # within-block inclusive prefix
-bsum = WP[:, -1].copy()
-WPf = WP.reshape(-1)
-
-c3 = icbrt(N)
-CH = 1 << 16
 qb = np.empty(CH, dtype=np.int64)
 qbu = qb.view(U)
 xb = np.empty(CH, dtype=U)
 yb = np.empty(CH, dtype=U)
-WIN = 16              # lazy terms < M^2 per entry before reduction
 window = []           # (n_lim, const) since the last reduction
 
 
@@ -118,7 +112,12 @@ def flush():
     window = []
 
 
+c3 = icbrt(N)
 garbage = 0
+W2 = W.reshape(-1, BS)
+WP = np.cumsum(W2, axis=1)                  # within-block inclusive prefix
+bsum = WP[:, -1].copy()
+WPf = WP.reshape(-1)
 for p in primes:
     p = int(p)
     if p > c3:
@@ -138,22 +137,23 @@ for p in primes:
         Lc = Lc[keep]
         Vc = Vc[keep]
         Tc = Tc[keep]
-        pos[Ic] = np.arange(len(Ic))
+        pos[Ic] = np.arange(len(Ic), dtype=np.int32)
         garbage = 0
-    n_lim = int(np.searchsorted(Ic, lim, side='right'))
-    n_k1 = int(np.searchsorted(Ic, k1, side='right'))
-    n_i0 = int(np.searchsorted(Ic, i0, side='right'))
+    n_lim = int(np.searchsorted(Ic, np.int32(lim), side='right'))
+    n_k1 = int(np.searchsorted(Ic, np.int32(k1), side='right'))
+    n_i0 = int(np.searchsorted(Ic, np.int32(i0), side='right'))
     # large-table reads: entry i*p (squarefree with lpf p when i is alive)
     if n_k1:
         ps_ = pos[Ic[:n_k1] * p]
         x = Tc[ps_]
-        for (nl, c) in window:          # pending constants at those positions
-            cnt = int(np.searchsorted(ps_, nl))
-            if cnt:
-                x[:cnt] += U(c)
+        if window:                      # pending constants at those positions
+            cnt = np.searchsorted(ps_, np.array([w[0] for w in window], dtype=np.int32))
+            d = np.bincount(cnt, weights=[w[1] for w in window], minlength=n_k1 + 1)
+            x += np.cumsum(d[::-1])[n_k1 - 1::-1].astype(U)
         x = modu(x)
         x *= um
         Tc[:n_k1] += x
+    # small-table stage values
     if n_i0 > n_k1:
         bc = np.cumsum(bsum)
         bc -= bsum
@@ -172,6 +172,7 @@ for p in primes:
             xx *= um
             t = Tc[s:e]
             t += xx
+    # final small-table values
     for s in range(n_i0, n_lim, CH):
         e = min(n_lim, s + CH)
         n = e - s
@@ -187,29 +188,31 @@ for p in primes:
         flush()
     garbage += n_k1          # entries i*p (lpf p) are dead from now on
     # sieve the small table by p
-    if pp <= r and p < 64:
+    if pp > r:
+        continue
+    if p < P_DENSE:
         W[pp::p] = 0
         np.cumsum(W2, axis=1, out=WP)
         bsum[:] = WP[:, -1]
-    elif pp <= r:
-        idx = np.arange(pp, r + 1, p, dtype=np.int64)
-        w = W[idx]
-        nz = np.flatnonzero(w)
-        if len(nz):
-            idx = idx[nz]
-            w = w[nz]
-            W[idx] = 0
-            blk = idx >> BB
-            ch = np.empty(len(blk), dtype=np.bool_)
-            ch[0] = True
-            np.not_equal(blk[1:], blk[:-1], out=ch[1:])
-            ub = blk[ch]
-            inv = np.cumsum(ch) - 1
-            D = np.zeros((len(ub), BS), dtype=U)
-            D[inv, idx & (BS - 1)] = w
-            np.cumsum(D, axis=1, out=D)
-            WP[ub] -= D
-            bsum[ub] -= D[:, -1]
+        continue
+    idx = np.arange(pp, r + 1, p, dtype=np.int64)
+    w = W[idx]
+    nz = np.flatnonzero(w)
+    if len(nz):
+        idx = idx[nz]
+        w = w[nz]
+        W[idx] = 0
+        blk = idx >> BB
+        ch = np.empty(len(blk), dtype=np.bool_)
+        ch[0] = True
+        np.not_equal(blk[1:], blk[:-1], out=ch[1:])
+        ub = blk[ch]
+        inv = np.cumsum(ch) - 1
+        D = np.zeros((len(ub), BS), dtype=U)
+        D[inv, idx & (BS - 1)] = w
+        np.cumsum(D, axis=1, out=D)
+        WP[ub] -= D
+        bsum[ub] -= D[:, -1]
 flush()
 
 # ---- primes p > N^(1/3): only entry 1 is updated, reading final T[p]

@@ -1,5 +1,8 @@
 # Task: invent a sunlight concentrator for a shallow box
 
+> Known flaw (26 Oct 2026, see research/stage1-creativity/30-judges-debate-bench.md): the score divides by one face of a
+> two-sided receiver and lets a design discard most of the light; fix before use (divide by 2w, require >= 90% collected).
+
 Sunlight enters the top of a box (width W = 1, height H = 1) at every point of its top edge, with directions spread
 uniformly within +-3 degrees of straight down. Inside the box you may place any number of perfect mirrors (polylines)
 and one flat receiver (a segment that absorbs light on both sides). The goal is to bring the light onto as narrow a

@@ -87,69 +87,90 @@ def main():
         blk[r] |= 1 << c
     m = np.int64(M)
     kt = 8  # top rows 0..kt-1
+    gk = np.arange(M + 1, dtype=np.int64) << (S + CB)
     tv = half(blk, kt, True)
+    # replicate states by multiplicity so every state has weight 1
     tc = tv & CM
-    # replicate top states by multiplicity so every packed bit has weight 1
     if int(tc.max()) > 1:
         tv = np.repeat(tv, tc)
     del tc
-    tv >>= CB
-    tcol = tv >> S
-    tx = tv & ((1 << S) - 1)
-    del tv
+    ts = np.append(np.searchsorted(tv, gk), len(tv))
+    # Diagonal bits 1..31 are the only ones both halves can use: 4 chunks
+    # of 8 bits.  Top states are laid out per column group, padded to whole
+    # 64-bit words; TP[j, w] has bit i set iff top state 64w+i lacks
+    # diagonal bit j+1 (i.e. does not conflict through it).
+    nt_g = np.diff(ts)
+    W_g = (nt_g + 63) >> 6
+    wo = np.concatenate(([0], np.cumsum(W_g)))
+    tot_w = int(wo[-1])
+    pos = np.arange(len(tv), dtype=np.int64)
+    pos += np.repeat(wo[:-1] * 64 - ts[:-1], nt_g)
+    txp = np.zeros(tot_w * 64, dtype=np.int64)
+    txp[pos] = (tv >> (CB + 1)) & ((1 << 32) - 1)
+    del pos, tv
+    TP = np.empty((32, tot_w), dtype=np.uint64)
+    step = 1 << 14  # words per conversion step
+    for w in range(0, tot_w, step):
+        x = txp[w * 64:(w + step) * 64].view(np.uint8).reshape(-1, 8)
+        bits = np.unpackbits(x, axis=1, count=32, bitorder='little')
+        pk = np.packbits(bits.T, axis=1, bitorder='little')
+        TP[:, w:w + step] = ~np.ascontiguousarray(pk).view(np.uint64)
+    del txp, bits, pk
     # bottom: flipped board, rows N-1..kt, projected onto real row kt-1
     bv = half(blk[::-1], N - kt, False)
-    CH = 7
-    nch = (S + CH - 1) // CH
+    bc = bv & CM
+    if int(bc.max()) > 1:
+        bv = np.repeat(bv, bc)
+    del bc
+    bs = np.searchsorted(bv, gk).tolist() + [len(bv)]
     nb_all = len(bv)
-    # bidx[i, k] = 128 * k + (chunk k of the bottom state's diagonal bits)
-    bidx = np.empty((nb_all, nch), dtype=np.int16)
-    bc = np.empty(nb_all, dtype=np.int64)
-    bcol = np.empty(nb_all, dtype=np.int32)
-    off = np.arange(nch, dtype=np.int64) << CH
-    sh = np.arange(nch, dtype=np.int64) * CH
+    B8 = np.empty((4, nb_all), dtype=np.uint8)
     step = 1 << 18
     for i in range(0, nb_all, step):
-        x = bv[i:i + step]
-        bc[i:i + step] = x & CM
-        x = x >> CB
-        bcol[i:i + step] = x >> S
+        x = bv[i:i + step] >> CB
         # flipped board swaps the diagonals
         y = ((x >> N) & m) | ((x & m) << N)
-        bidx[i:i + step] = ((y[:, None] >> sh) & ((1 << CH) - 1)) + off
-    del bv
-    g = np.arange(M + 2)
-    ts = np.searchsorted(tcol, g).tolist()
-    bs = np.searchsorted(bcol, g).tolist()
-    del tcol, bcol
-    txb = tx.view(np.uint8).reshape(-1, 8)
-    ones = np.full((nch, 1, 1), ~np.uint64(0), dtype=np.uint64)
+        y >>= 1
+        for k in range(4):
+            B8[k, i:i + step] = (y >> (8 * k)) & 255
+    del bv, x, y
+    ts = ts.tolist()
+    wo = wo.tolist()
+    full = ~np.uint64(0)
+    lo16 = np.uint64(0x00FF00FF00FF00FF)
+    lo32 = np.uint64(0x0000FFFF0000FFFF)
     total = 0
     for c in range(M + 1):
         a0 = ts[c]
-        a1 = ts[c + 1]
-        if a0 == a1:
+        nt = ts[c + 1] - a0
+        if nt == 0:
             continue
         b0 = bs[M - c]
         b1 = bs[M - c + 1]
         if b0 == b1:
             continue
-        nt = a1 - a0
-        W = (nt + 63) >> 6
-        # pk[j]: bitset over this group's top states having diagonal bit j
-        bits = np.unpackbits(txb[a0:a1], axis=1, count=nch * CH, bitorder='little')
-        pk = np.zeros((nch * CH, W * 8), dtype=np.uint8)
-        pk[:, :(nt + 7) >> 3] = np.packbits(bits.T, axis=1, bitorder='little')
-        P = (~pk.view(np.uint64)).reshape(nch, CH, W)
-        # T[k, v]: top states compatible with bottom bits v in chunk k
-        T = np.broadcast_to(ones, (nch, 1, W))
-        for j in range(CH):
+        w0 = wo[c]
+        W = wo[c + 1] - w0
+        P = TP[:, w0:w0 + W].reshape(4, 8, W)
+        # T[k, v]: top states compatible with bottom bits v of chunk k;
+        # chunk 0 starts from the valid-state mask so padding never counts
+        T = np.full((4, 1, W), full, dtype=np.uint64)
+        if nt & 63:
+            T[0, 0, -1] = np.uint64((1 << (nt & 63)) - 1)
+        for j in range(8):
             T = np.concatenate((T, T & P[:, j:j + 1]), axis=1)
-        acc = np.bitwise_and.reduce(T.reshape(-1, W)[bidx[b0:b1]], axis=1)
-        rem = nt & 63
-        if rem:
-            acc[:, -1] &= np.uint64((1 << rem) - 1)
-        total += int(np.bitwise_count(acc).sum(axis=1, dtype=np.int64) @ bc[b0:b1])
+        idx = B8[:, b0:b1].astype(np.intp)
+        acc = np.take(T[0], idx[0], axis=0)
+        for k in range(1, 4):
+            acc &= np.take(T[k], idx[k], axis=0)
+        # popcount, summing the byte counts eight at a time
+        pc = np.bitwise_count(acc).reshape(-1)
+        n8 = len(pc) >> 3
+        q = pc[:n8 * 8].view(np.uint64)
+        q = (q & lo16) + ((q >> 8) & lo16)
+        q = (q & lo32) + ((q >> 16) & lo32)
+        s = int(q.sum())
+        total += (s & 0xFFFFFFFF) + (s >> 32) + int(pc[n8 * 8:].sum())
     print(total)
 
 
