@@ -22,7 +22,7 @@ import runner
 
 TASKS = ["ca", "queens17", "primesum13", "compress", "labs"]  # queens and primesum (plain1 run) were too small: plain Claude hit Python start-up
 SCORE = os.path.join(HERE, "score.py")
-FILES = {"compress": ["compress.py", "decompress.py"]}
+FILES = {"compress": ["compress.py", "decompress.py"], "heat": ["design.txt"]}
 os.environ.setdefault("CE_CPUS", "1-3"); os.environ.setdefault("SCORE_CORE", "1")  # agents and their self-checks; core 0 is for official scores
 
 PLAIN = """Your task is in `TASK.md` in the current folder. Solve it as well as you can; only the score counts. You have
@@ -55,6 +55,7 @@ def prepare(task, dst, src=None):
     open(os.path.join(dst, "TASK.md"), "w").write(open(os.path.join(T, "TASK.md")).read().replace("SCORE", SCORE))
     if not os.path.exists(os.path.join(dst, "baseline")): shutil.copytree(os.path.join(T, "baseline"), os.path.join(dst, "baseline"))
     if task == "compress" and not os.path.exists(os.path.join(dst, "data.log")): shutil.copy(os.path.join(T, "data.log"), dst)
+    if os.path.exists(os.path.join(T, "sim.py")): shutil.copy(os.path.join(T, "sim.py"), dst)
     if src:
         for f in os.listdir(src):
             if f in ("TASK.md", "baseline", "data.log", "note.md", "score.json", "__pycache__"): continue

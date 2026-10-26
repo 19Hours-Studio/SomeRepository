@@ -118,9 +118,15 @@ class Skew:
 
 
 class BatchSkew:
-    def __init__(self, N, W, rng):
+    """W independent tabu searches over skew-symmetric sequences, advanced together with numpy.
+    Each walker runs L steps from a random start, then restarts."""
+
+    def __init__(self, N, W, rng, tmin=3, tmax=8, P=0, pmem=1.0, mut=None):
         self.S = S = Skew(N)
         self.N, self.m, self.K, self.W, self.rng = N, S.m, S.K, W, rng
+        self.tmin, self.tmax = tmin, tmax
+        self.P, self.pmem = P, pmem
+        self.mut = 1.0 / ((N + 1) // 2) if mut is None else mut
         m, K = S.m, S.K
         Lmax = max(len(u) for u in S.U)
         mk = m * K
@@ -136,79 +142,103 @@ class BatchSkew:
         assert np.shares_memory(self.G, self.store)
         self.base = (np.arange(W) * (mk + 1))[:, None]
         self.f = np.zeros((W, m), dtype=np.float32); self.c = np.zeros((W, K), dtype=np.float32); self.e = np.zeros(W, dtype=np.float32)
-        self.h = [0] * W; self.vis = [set() for _ in range(W)]; self.steps = [0] * W
-        self.wb = np.full(W, np.inf); self.wbf = np.zeros((W, m))
+        self.until = np.zeros((W, m), dtype=np.int64); self.ten = np.zeros(W, dtype=np.int64); self.stepc = np.zeros(W, dtype=np.int64)
+        self.wb = np.full(W, np.inf, dtype=np.float32); self.wbf = np.zeros((W, m), dtype=np.float32)
         # gather indices to build G from x
         N = self.N; s = S.s
         ii = np.arange(m)[:, None]; jj = N - 1 - ii; ks = np.arange(2, N, 2)[None, :]
         self.gi = [N + ii + ks, N + ii - ks, N + jj + ks, N + jj - ks]
-        self.gs = np.where(np.arange(m) == m - 1, 0, s)[:, None].astype(np.float64)
+        self.gs = np.where(np.arange(m) == m - 1, 0, s)[:, None].astype(np.float32)
         self.best_e, self.best_x = None, None
+        self.it = 0
 
-    def reset(self, w, f):
-        S, N, m = self.S, self.N, self.m
-        f = np.asarray(f, dtype=np.float64)
-        x = S.full(f.astype(np.int64))
-        P = np.zeros(3 * N); P[N:2 * N] = x
+    def reset(self, ws):
+        S, N, m, rng = self.S, self.N, self.m, self.rng
+        n = len(ws)
+        fr = rng.choice(np.array([-1.0, 1.0], dtype=np.float32), (n, m))
+        if self.pop is not None and len(self.pop) >= self.P:
+            # memetic restart: child of two elites (tournament selection, uniform crossover, mutation)
+            pe = self.pope; pf = self.popf
+            k = len(pe)
+            a = rng.integers(0, k, (n, 2)); b = rng.integers(0, k, (n, 2))
+            pa = np.where(pe[a[:, 0]] < pe[a[:, 1]], a[:, 0], a[:, 1])
+            pb = np.where(pe[b[:, 0]] < pe[b[:, 1]], b[:, 0], b[:, 1])
+            cut = rng.random((n, m)) < 0.5
+            ch = np.where(cut, pf[pa], pf[pb])
+            ch = np.where(rng.random((n, m)) < self.mut, -ch, ch)
+            usec = rng.random(n) < self.pmem
+            fr[usec] = ch[usec]
+        x = np.empty((n, N), dtype=np.float32); x[:, :m] = fr; x[:, m:] = fr[:, :m - 1][:, ::-1] * S.sgn[m:]
+        P = np.zeros((n, 3 * N), dtype=np.float32); P[:, N:2 * N] = x
         gi = self.gi
-        self.G[w] = P[gi[0]] + P[gi[1]] + self.gs * (P[gi[2]] + P[gi[3]])
-        self.g2[w] = (self.G[w] ** 2).sum(1)
-        c = np.correlate(x, x, 'full')[N + 1::2]
-        self.c[w] = c; self.e[w] = float(c @ c); self.f[w] = f
-        h = 0
-        for i in range(m):
-            if f[i] > 0: h |= S.BITS[i]
-        self.h[w] = h; self.vis[w] = {h}; self.steps[w] = 0
-        self.wb[w] = self.e[w]; self.wbf[w] = f
+        Gn = P[:, gi[0]] + P[:, gi[1]] + self.gs * (P[:, gi[2]] + P[:, gi[3]])
+        self.G[ws] = Gn; self.g2[ws] = (Gn * Gn).sum(2)
+        X = np.fft.rfft(x, 2 * N)
+        c = np.rint(np.fft.irfft(X * np.conj(X), 2 * N)[:, 2:N:2]).astype(np.float32)
+        self.c[ws] = c; self.e[ws] = (c * c).sum(1); self.f[ws] = fr
+        self.until[ws] = 0; self.ten[ws] = rng.integers(self.tmin, self.tmax + 1, n); self.stepc[ws] = 0
+        self.wb[ws] = self.e[ws]; self.wbf[ws] = fr
+
+    pop = None
+
+    def add_pop(self, w):
+        e = float(self.wb[w]); f = self.wbf[w]
+        if self.pop is None:
+            self.pop = {}; self.pope = np.zeros(0, dtype=np.float32); self.popf = np.zeros((0, self.m), dtype=np.float32)
+        key = (f * f[0]).tobytes()
+        if key in self.pop: return
+        if len(self.pop) < self.P:
+            self.pop[key] = len(self.pop)
+            self.pope = np.append(self.pope, e); self.popf = np.vstack([self.popf, f])
+        else:
+            j = int(self.pope.argmax())
+            if e >= self.pope[j]: return
+            old = (self.popf[j] * self.popf[j, 0]).tobytes(); del self.pop[old]
+            self.pop[key] = j; self.pope[j] = e; self.popf[j] = f
 
     def harvest(self, w):
-        e = int(round(self.wb[w]))
+        if self.P: self.add_pop(w)
+        e = int(round(float(self.wb[w])))
         if self.best_e is None or e < self.best_e:
             self.best_e = e; self.best_x = self.S.full(self.wbf[w].astype(np.int64))
             assert corr_energy(self.best_x) == e
             return True
         return False
 
-    def run(self, L, deadline, newstart, verbose=True):
-        per = max(1, L // self.W)
+    def run(self, L, deadline, verbose=True):
         S, W, m = self.S, self.W, self.m
-        for w in range(W):
-            self.reset(w, newstart())
-        G, f, c, store = self.G, self.f, self.c, self.store
-        kr, cv = S.kr, S.cv.astype(np.float32); cv2 = cv * cv
+        self.reset(np.arange(W))
+        self.stepc[:] = -self.rng.integers(0, L, W)  # stagger restarts
+        G, f, c, store, until, ten, stepc = self.G, self.f, self.c, self.store, self.until, self.ten, self.stepc
+        wb, wbf = self.wb, self.wbf
+        kr = S.kr; cv = S.cv.astype(np.float32); cv2 = cv * cv; cv2x = 2 * cv
         ar = np.arange(m); wr = np.arange(W)
-        BITS = S.BITS; Up, Wp, base = self.Up, self.Wp, self.base
+        Up, Wp, base = self.Up, self.Wp, self.base
         Rp, g2, bincount, Wm = self.Rp, self.g2, np.bincount, W * m
         rbase = (np.arange(W) * m)[:, None]
-        einsum = np.einsum; matmul = np.matmul; argsort = np.argsort
-        it = 0
+        matmul = np.matmul; where = np.where; inf = np.float32(np.inf)
+        c3 = c[:, :, None]
+        e = self.e
+        it = self.it
         while True:
             it += 1
-            if (it & 63) == 0 and time.time() > deadline:
+            if (it & 31) == 0 and time.time() > deadline:
                 break
-            Gc = matmul(G, c[:, :, None])[:, :, 0]
-            Gk = G[:, ar, kr]
-            cand = self.e[:, None] + cv2 + cv * (2 * c[:, kr] - 4 * f * Gk) + 4 * (g2 - f * Gc)
-            order = argsort(cand, axis=1)[:, :3].tolist()
-            sel = []
-            hs = self.h; viss = self.vis
-            for w in range(W):
-                h = hs[w]; vis = viss[w]
-                o = order[w]
-                i = o[0]; nh = h ^ BITS[i]
-                if nh in vis:
-                    i = o[1]; nh = h ^ BITS[i]
-                    if nh in vis:
-                        i = o[2]; nh = h ^ BITS[i]
-                        if nh in vis:
-                            i = -1
-                            for i2 in argsort(cand[w]).tolist():
-                                nh = h ^ BITS[i2]
-                                if nh not in vis: i = i2; break
-                            if i < 0: i = 0; nh = h ^ BITS[0]
-                hs[w] = nh; vis.add(nh)
-                sel.append(i)
-            sel = np.array(sel)
+            Gc = matmul(G, c3)[:, :, 0]
+            Gc += cv * G[:, ar, kr]
+            Gc *= f
+            q = 4 * g2
+            q += e[:, None]
+            q += cv2
+            q += cv2x * c[:, kr]
+            Gc *= -4
+            cand = q; cand += Gc
+            sel = where(until > it, inf, cand).argmin(1)
+            i1 = cand.argmin(1)
+            ce = cand[wr, i1]
+            asp = ce < wb
+            if asp.any():
+                sel[asp] = i1[asp]
             fi = f[wr, sel]
             m2 = -2 * fi
             c += m2[:, None] * G[wr, sel]
@@ -217,20 +247,32 @@ class BatchSkew:
             old = store[idx]
             new = old + m2[:, None] * Wp[sel]
             store[idx] = new
-            g2 += bincount((rbase + Rp[sel]).ravel(), (new * new - old * old).ravel(), Wm).reshape(W, m).astype(np.float32)
+            new *= new; old *= old; new -= old
+            g2 += bincount((rbase + Rp[sel]).ravel(), new.ravel(), Wm).reshape(W, m)
             f[wr, sel] = -fi
-            e = cand[wr, sel]; self.e = e
-            imp = e < self.wb
+            e = cand[wr, sel]
+            until[wr, sel] = it + ten
+            imp = e < wb
             if imp.any():
-                self.wb[imp] = e[imp]; self.wbf[imp] = f[imp]
-            if it % per == 0:
-                w = (it // per) % W
-                if self.harvest(w) and verbose:
-                    print(self.best_e, self.N ** 2 / 2 / self.best_e, round(time.time() - T0, 1), file=sys.stderr, flush=True)
-                self.reset(w, newstart())
+                wb[imp] = e[imp]; wbf[imp] = f[imp]
+            if (it & 15) == 0:
+                stepc += 16
+                done = np.nonzero(stepc >= L)[0]
+                if len(done):
+                    for w in done.tolist():
+                        if self.harvest(w) and verbose:
+                            print(self.best_e, self.N ** 2 / 2 / self.best_e, round(time.time() - T0, 1), file=sys.stderr, flush=True)
+                        if self.on_harvest: self.on_harvest(w)
+                    self.e = e
+                    self.reset(done)
+                    e = self.e
+        self.it = it
         for w in range(W):
             self.harvest(w)
+            if self.on_harvest: self.on_harvest(w)
         return it
+
+    on_harvest = None
 
 
 
@@ -303,8 +345,8 @@ def main():
     verbose = len(sys.argv) > 3
     deadline = T0 + budget
     rng = np.random.default_rng()
-    W = int(sys.argv[5]) if len(sys.argv) > 5 else 32
-    L = int(sys.argv[4]) if len(sys.argv) > 4 else 10000
+    W = int(sys.argv[5]) if len(sys.argv) > 5 else 64
+    L = int(sys.argv[4]) if len(sys.argv) > 4 else 5000
     if N < 12:
         best = None
         for v in range(1 << N):
@@ -314,18 +356,14 @@ def main():
         print(to_str(best[1])); return
     if N % 2 == 1:
         B = BatchSkew(N, W, rng)
-        B.run(L, deadline, lambda: rng.choice(np.array([-1.0, 1.0]), B.m), verbose)
+        B.run(L, deadline, verbose)
         print(to_str(B.best_x)); return
     # even N: skew-symmetric search on N-1, then extend by one bit and polish with general single-flip walks
     split = T0 + budget * 0.9
     B = BatchSkew(N - 1, W, rng)
     pool = []
-    orig = B.harvest
-    def harvest(w):
-        pool.append((int(round(B.wb[w])), B.S.full(B.wbf[w].astype(np.int64))))
-        return orig(w)
-    B.harvest = harvest
-    B.run(L, split, lambda: rng.choice(np.array([-1.0, 1.0]), B.m), verbose)
+    B.on_harvest = lambda w: pool.append((int(round(float(B.wb[w]))), B.S.full(B.wbf[w].astype(np.int64))))
+    B.run(L, split, verbose)
     pool.sort(key=lambda t: t[0])
     seeds, seen = [], set()
     for e, x in pool:

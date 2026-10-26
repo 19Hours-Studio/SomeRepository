@@ -115,7 +115,7 @@ class SkewTabu:
         self.age[ws] = 0
         self.length[ws] = lengths
 
-    def run(self, deadline, newstarts, tmin, tmax, lmin, lmax, verbose=False):
+    def run(self, deadline, newstarts, tmin, tmax, lmin, lmax, verbose=False, max_steps=1 << 62):
         rng, W, m = self.rng, self.W, self.m
         self.reset(np.arange(W), newstarts(W), rng.integers(lmin, lmax + 1, W))
         G, f, c, store, g2 = self.G, self.f, self.c, self.store, self.g2
@@ -132,7 +132,7 @@ class SkewTabu:
         while True:
             it += 1
             if (it & 31) == 0:
-                if time.time() > deadline:
+                if time.time() > deadline or steps > max_steps:
                     break
             Gc = matmul(G, c[:, :, None])[:, :, 0]
             Gc += cv * G[:, ar, kr]

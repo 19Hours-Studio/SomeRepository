@@ -153,7 +153,7 @@ class Batch:
             self.wb[imp] = e[imp]; self.wbf[imp] = f[imp]
 
 
-def memetic(sp, deadline, rng, W=64, P=64, verbose=False, seeds=None, itl=0.5, ith=1.5, tdiv=8, stall=12, pmut=1.0):
+def memetic(sp, deadline, rng, W=64, P=64, verbose=False, seeds=None, itl=0.5, ith=1.5, tdiv=8, stall=12, pmut=1.0, rand=0):
     m = sp.m
     B = Batch(sp, W, rng)
     it_lo, it_hi = max(8, int(itl * m)), int(ith * m) + 8
@@ -180,7 +180,7 @@ def memetic(sp, deadline, rng, W=64, P=64, verbose=False, seeds=None, itl=0.5, i
             pop_f[wi] = f.copy(); pop_e[wi] = e; keys.add(k)
 
     def child():
-        if len(pop_e) < P:
+        if rand or len(pop_e) < P:
             return rng.choice(np.array([-1.0, 1.0], dtype=np.float32), m)
         def tour():
             a, b = rng.integers(0, P, 2)
