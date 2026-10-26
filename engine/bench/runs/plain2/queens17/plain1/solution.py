@@ -20,7 +20,19 @@ def relevance(blk, r, shift0):
     return rl, rr
 
 
-def half(blk, nrows, project_last):
+def kth_table():
+    """KTH[f * N + k] = position of the k-th lowest set bit of f."""
+    f = np.arange(M + 1, dtype=np.int64)
+    t = np.zeros((M + 1, N), dtype=np.int8)
+    cnt = np.zeros(M + 1, dtype=np.int64)
+    for c in range(N):
+        h = np.flatnonzero((f >> c) & 1)
+        t[h, cnt[h]] = c
+        cnt[h] += 1
+    return t.ravel()
+
+
+def half(blk, nrows, project_last, kth):
     """Row-by-row DP over the first nrows rows of blk.  Returns sorted unique
     keys rd | ld<<N | cols<<2N with counts.  ld/rd are diagonal attacks
     projected onto the next row (or the last placed row if project_last),
@@ -33,36 +45,49 @@ def half(blk, nrows, project_last):
         last = project_last and r == nrows - 1
         rlt, rrt = relevance(blk, r, 1 if last else 0)
         cols = keys >> S
-        ld = (keys >> N) & m
-        rd = keys & m
-        occ = cols | ld | rd | blk[r]
-        nk = []
-        nc = []
-        for c in range(N):
-            b = 1 << c
-            sel = (occ & b) == 0
-            if not sel.any():
-                continue
-            cc = cols[sel] | b
-            l2 = ld[sel] | b
-            r2 = rd[sel] | b
-            if not last:
-                l2 = (l2 << 1) & m
-                r2 = r2 >> 1
-            rem = cc ^ m
-            nk.append((cc << S) | ((l2 & rlt[rem]) << N) | (r2 & rrt[rem]))
-            nc.append(cnts[sel])
-        k = np.concatenate(nk)
-        cn = np.concatenate(nc)
-        del nk, nc
+        free = (cols | (keys >> N) | keys | blk[r]) & m
+        free ^= m
+        pc = np.bitwise_count(free).astype(np.int64)
+        del cols
+        k = np.repeat(keys, pc)
+        cn = np.repeat(cnts, pc)
+        f = np.repeat(free, pc)
+        end = np.cumsum(pc)
+        j = np.arange(end[-1], dtype=np.int64)
+        j -= np.repeat(end - pc, pc)
+        del keys, cnts, free, pc, end
+        f *= N
+        f += j
+        del j
+        b = np.left_shift(1, kth[f], dtype=np.int64)
+        del f
+        cc = (k >> S) | b
+        l2 = ((k >> N) & m) | b
+        r2 = (k & m) | b
+        del k, b
+        if not last:
+            l2 <<= 1
+            l2 &= m
+            r2 >>= 1
+        rem = cc ^ m
+        l2 &= rlt[rem]
+        r2 &= rrt[rem]
+        del rem
+        cc <<= S
+        l2 <<= N
+        cc |= l2
+        cc |= r2
+        k = cc
+        del l2, r2, cc
         if int(cn.max()) < (1 << CB):
             # pack counts into the low bits: a plain sort is much faster
             # than argsort + gathers
-            v = np.sort((k << CB) | cn)
-            del k, cn
-            k = v >> CB
-            cn = v & ((1 << CB) - 1)
-            del v
+            k <<= CB
+            k |= cn
+            del cn
+            k.sort()
+            cn = k & ((1 << CB) - 1)
+            k >>= CB
         else:
             o = np.argsort(k)
             k = k[o]
@@ -82,7 +107,8 @@ def main():
     kt = 8
     m = np.int64(M)
     S = 2 * N
-    tk, tc = half(blk, kt, True)
+    kth = kth_table()
+    tk, tc = half(blk, kt, True, kth)
     tcol = tk >> S
     tx = tk & ((1 << S) - 1)
     del tk
@@ -93,7 +119,7 @@ def main():
         tx = tx[rep]
         del rep
     del tc
-    bk, bc = half(blk[::-1], N - kt, False)
+    bk, bc = half(blk[::-1], N - kt, False, kth)
     bcol = bk >> S
     by = ((bk >> N) & m) | ((bk & m) << N)
     del bk
