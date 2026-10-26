@@ -7,7 +7,7 @@ PL = 200
 GF = 1.0
 PB = 300
 CAP = 1 << 22
-C1 = 1.0
+C1 = 1.5
 
 
 def solve(N):

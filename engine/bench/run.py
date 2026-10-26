@@ -22,7 +22,7 @@ import runner
 
 TASKS = ["ca", "queens17", "primesum13", "compress", "labs"]  # queens and primesum (plain1 run) were too small: plain Claude hit Python start-up
 SCORE = os.path.join(HERE, "score.py")
-FILES = {"compress": ["compress.py", "decompress.py"], "heat": ["design.txt"]}
+FILES = {"compress": ["compress.py", "decompress.py"], "heat": ["design.txt"], "optics": ["design.json"]}
 os.environ.setdefault("CE_CPUS", "1-3"); os.environ.setdefault("SCORE_CORE", "1")  # agents and their self-checks; core 0 is for official scores
 
 PLAIN = """Your task is in `TASK.md` in the current folder. Solve it as well as you can; only the score counts. You have
@@ -31,10 +31,10 @@ When you are done, reply with a short note: your approach and your self-measured
 
 MOVES = {
     "tune": "keep the current approach and push it much further: profile it, find where the time (or the loss) goes, and remove it.",
-    "algorithm": "replace the core algorithm or data representation with a fundamentally better one (asymptotically or by a large "
-                 "constant factor); the output must stay correct.",
-    "research": "search for the best known methods for this problem (papers, competitive programming, records, known tricks) and "
-                "implement the strongest one that fits the rules.",
+    "algorithm": "replace the core idea - the mechanism, the design concept, the algorithm or the representation - with a "
+                 "fundamentally better one; the answer must stay valid.",
+    "research": "search for the best known methods and designs for this problem (papers, patents, records, known tricks) and "
+                "build the strongest one that fits the rules, or go beyond it.",
     "fresh": "write a new solution from scratch with a different approach from the current one, aiming to beat its score by a large factor.",
 }
 

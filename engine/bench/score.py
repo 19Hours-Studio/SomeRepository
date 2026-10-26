@@ -113,15 +113,15 @@ def score_labs(d, runs):
     return {"ok": True, "merit": [round(v, 3) for v in vals], "score": round(sum(vals) / len(vals), 3)}
 
 
-def score_heat(d, runs):
-    f = os.path.join(d, "design.txt")
-    if not os.path.exists(f): return {"ok": False, "error": "design.txt missing"}
-    p = subprocess.run([sys.executable, os.path.join(TASKS, "heat", "sim.py"), f], capture_output=True, text=True, timeout=300)
+DESIGN = {"heat": "design.txt", "optics": "design.json"}  # invention tasks: the answer is a design file, scored by the task's simulator
+
+
+def score_design(task, d, runs):
+    f = os.path.join(d, DESIGN[task])
+    if not os.path.exists(f): return {"ok": False, "error": f"{DESIGN[task]} missing"}
+    p = subprocess.run([sys.executable, os.path.join(TASKS, task, "sim.py"), f], capture_output=True, text=True, timeout=600)
     try: return json.loads(p.stdout.strip().splitlines()[-1])
     except Exception: return {"ok": False, "error": (p.stderr or p.stdout)[-300:]}
-
-
-DESIGN = {"heat": score_heat}  # design tasks: the answer is a file, scored by the task's own simulator
 
 
 def main():
@@ -130,7 +130,7 @@ def main():
         d = os.path.join(TASKS, task, "baseline")
     else:
         d = os.path.abspath(sys.argv[2])
-    if task in DESIGN: print(json.dumps({"task": task, **DESIGN[task](d if "--baseline" not in sys.argv else os.path.join(TASKS, task, "baseline"), runs)})); return
+    if task in DESIGN: print(json.dumps({"task": task, **score_design(task, d if "--baseline" not in sys.argv else os.path.join(TASKS, task, "baseline"), runs)})); return
     err = check_source(task, d)
     if err: print(json.dumps({"task": task, "ok": False, "error": err})); return
     if task == "compress": r = score_compress(d, runs)
